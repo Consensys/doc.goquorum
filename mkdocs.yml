@@ -27,11 +27,11 @@ extra:
   support:
     gitter: https://gitter.im/PegaSysEng/GoQuorum
     email: support@pegasys.tech
-    pegasys_website: https://pegasys.tech/
-    issues: https://pegasys1.atlassian.net/secure/Dashboard.jspa?selectPageId=10000
+    pegasys_website: https://consensys.net/
+    issues: https://github.com/PegaSysEng/doc.goquorum/issues
   google:
-    site_verification: 'za1cLzyS6LXDGO-pMzvfQdYTZ0Zc67uZtY0asA4YXZ0'
-    tag_manager: 'GTM-5VXGSDM'
+    site_verification: 'TODO'
+    tag_manager: 'TODO'
 
 
 # Software Repository
