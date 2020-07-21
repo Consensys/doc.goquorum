@@ -1,0 +1,9 @@
+[submodule "common"]
+	path = common
+	url = https://github.com/PegaSysEng/doc.common.git
+[submodule "doc.ethsigner"]
+	path = doc.ethsigner
+	url = git@github.com:PegaSysEng/doc.ethsigner.git
+[submodule "doc.common"]
+	path = doc.common
+	url = git@github.com:PegaSysEng/doc.common.git

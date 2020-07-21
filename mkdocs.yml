@@ -1,0 +1,124 @@
+# Copyright 2019 ConsenSys AG.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+# the License. You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+# an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+# specific language governing permissions and limitations under the License.
+
+# Project information
+site_name: EthSigner
+site_url: https://docs.ethsigner.pegasys.tech/en/latest/
+site_description: EthSigner Transaction Signer documentation.
+site_author: EthSigner community
+copyright: EthSigner and its documentation are licensed under Apache 2.0 license /
+  This <a href="https://readthedocs.org/">Readthedocs.org</a> documentation is maintained with love by <a href="https://pegasys.tech/">PegaSys</a>.
+
+#extra project info and template customisation
+extra:
+  versions:
+    stable: '0.1.1'
+  latest_version_warning:
+    url_contains: /latest/
+    text: 'You are reading EthSigner development version documentation and
+    some displayed features may not be available in the stable release.
+    You can switch to stable version using the version box at screen bottom.'
+  support:
+    gitter: https://gitter.im/PegaSysEng/EthSigner
+    email: support@pegasys.tech
+    pegasys_website: https://pegasys.tech/
+    issues: https://pegasys1.atlassian.net/secure/Dashboard.jspa?selectPageId=10000
+  google:
+    site_verification: 'za1cLzyS6LXDGO-pMzvfQdYTZ0Zc67uZtY0asA4YXZ0'
+    tag_manager: 'GTM-5VXGSDM'
+
+
+# Software Repository
+repo_name: PegaSysEng/EthSigner
+repo_url: https://github.com/PegaSysEng/ethsigner
+
+theme:
+  name: material
+  custom_dir: common/custom_theme
+  palette:
+    primary: orange
+    accent: teal
+  favicon: favicon.ico
+  icon:
+    logo: material/key
+    repo: fontawesome/brands/git-alt
+nav:
+    - How to:
+        - Get started with EthSigner:
+            - Install binary distribution: HowTo/Get-Started/Install-Binaries.md
+            - Run EthSigner from Docker image: HowTo/Get-Started/Use-Docker.md
+            - Build from source: HowTo/Get-Started/Build-From-Source.md
+        - Use a single signing key: HowTo/Use-Single-Signer.md
+        - Use multiple signing keys: HowTo/Use-Multiple-Signers.md
+        - Make transactions: HowTo/Transactions/Make-Transactions.md
+        - Store keys externally:
+            - Use Hashicorp Vault: HowTo/Store-Keys/Use-Hashicorp.md
+            - Use Azure Key Vault: HowTo/Store-Keys/Use-Azure.md
+        - Configure TLS: HowTo/Configure-TLS.md
+        - Create external signers: HowTo/Extending-EthSigner/Add-Signer.md
+    - Tutorials:
+        - Start EthSigner with a single signer: Tutorials/Start-EthSigner.md
+        - Start EthSigner with multiple signers: Tutorials/Multifile.md
+    - Concepts:
+        - Overview: Concepts/Overview.md
+        - TLS Communication: Concepts/TLS.md
+    - Reference:
+        - Command line: Reference/CLI/CLI-Syntax.md
+        - API Methods: Reference/API-Methods.md
+        - Multikey TOML parameters: Reference/Multikey-Parameters.md
+        - Security disclosure policy: Reference/Responsible-Disclosure.md
+markdown_extensions:
+  - toc:
+      permalink: 
+      toc_depth: 3
+  - codehilite
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - markdown_include.include:
+      base_path: docs
+  - admonition
+  - footnotes
+  - def_list
+  - abbr
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.keys
+  - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - meta
+  - smarty
+
+plugins:
+  - search:
+      lang: 'en'
+      separator: '[\s]+'
+  - markdownextradata
+  - redirects:
+      redirect_maps:
+        # Configure redirects using key:value pairs:
+        # old_path.md: new_path.md
+        # you can't use an already redirected path as an old_path.
+        # new_path can be a file inside the docs/ folder or any URL (http://...)
+        Reference/EthSigner-CLI.md: Reference/CLI/CLI-Syntax.md
+        Extending-EthSigner/Adding-Signer.md: HowTo/Extending-EthSigner/Add-Signer.md
+        Using-EthSigner/Azure.md: HowTo/Store-Keys/Use-Azure.md
+        Using-EthSigner/Hashicorp.md: HowTo/Store-Keys/Use-Hashicorp.md
+        Using-EthSigner/Using-EthSigner.md: HowTo/Transactions/Make-Transactions.md
+        Using-EthSigner/Getting-Started.md: Tutorials/Start-EthSigner.md
+        Installation/Build-From-Source.md: HowTo/Get-Started/Build-From-Source.md
+        Installation/Install-Binaries.md: HowTo/Get-Started/Install-Binaries.md

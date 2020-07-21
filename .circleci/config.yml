@@ -1,0 +1,141 @@
+---
+version: 2.1
+
+orbs:
+  slack: circleci/slack@3.4.1
+
+executors:
+  python_executor:
+    docker:
+      - image: circleci/python:3.7.4
+  node_executor:
+    docker:
+      - image: circleci/node:12.9.0-stretch
+  ruby_executor:
+    docker:
+      - image: circleci/ruby:2-stretch
+
+commands:
+  prepare:
+    description: "Prepare"
+    steps:
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
+
+  notify:
+    description: "Notify Slack"
+    steps:
+      - slack/status:
+          fail_only: true
+          only_for_branches: 'master'
+
+jobs:
+  build:
+    executor: python_executor
+    steps:
+      - prepare
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "./common/build_tools/requirements.txt" }}
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r ./common/build_tools/requirements.txt
+      - save_cache:
+          paths:
+            - ./venv
+          key: deps-{{ checksum "./common/build_tools/requirements.txt" }}
+      - run:
+          name: Run MkDocs
+          command: |
+            . venv/bin/activate
+            mkdocs build -s
+      - notify
+
+  vale:
+    executor: python_executor
+    steps:
+      - prepare
+      - run:
+          name: Install dependencies
+          command: |
+            curl -sfL https://install.goreleaser.com/github.com/ValeLint/vale.sh | sh -s v1.7.1
+      - run:
+          name: Run Vale
+          command: |
+            ./bin/vale --config ./common/build_tools/vale/.vale.ini --glob='*.{md}' . | tee ./vale.out
+      - notify
+      - store_artifacts:
+          path: ./vale.out
+          destination: ./vale.out
+
+  linkchecker:
+    executor: node_executor
+    steps:
+      - prepare
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "./common/build_tools/package.json" }}
+      - run:
+          name: Install dependencies
+          command: |
+            npm install
+      - run:
+          name: Run markdown link checker
+          command: |
+            npm run test:links
+      - notify
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: deps-{{ checksum "./common/build_tools/package.json" }}
+      - store_artifacts:
+          path: ./linkchecker.out
+          destination: ./linkchecker.out
+
+  markdownlint:
+    executor: ruby_executor
+    steps:
+      - prepare
+      - run:
+          name: Install dependencies
+          command: |
+            gem install mdl
+      - run:
+          shell: /bin/bash #this is a non breaking command so it will always return success
+          name: Run Markdownlint info checks
+          command: |
+            mdl --ignore-front-matter --style ./common/build_tools/markdownlint/info_style.rb . | tee ./markdownlint_info.out
+      - run:
+          name: Run Markdownlint
+          command: |
+            mdl --ignore-front-matter --style ./common/build_tools/markdownlint/style.rb . | tee ./markdownlint.out
+      - notify
+      - store_artifacts:
+          path: ./markdownlint.out
+          destination: ./markdownlint.out
+      - store_artifacts:
+          path: ./markdownlint_info.out
+          destination: ./markdownlint_info.out
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - build
+      - vale
+      - markdownlint
+      - linkchecker
+  nightly:
+    triggers:
+      - schedule: # GMT
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - linkchecker
