@@ -10,6 +10,7 @@
 # specific language governing permissions and limitations under the License.
 
 # Project information
+# TODO Update links and repos
 site_name: GoQuorum
 site_url: https://docs.goquorum.consensys.net/
 site_description: A permissioned implementation of Ethereum supporting data privacy
@@ -25,18 +26,21 @@ extra:
     some displayed features may not be available in the stable release.
     You can switch to stable version using the version box at screen bottom.'
   support:
+    # TODO Update links
     gitter: https://gitter.im/PegaSysEng/GoQuorum
     email: support@pegasys.tech
     pegasys_website: https://consensys.net/
     issues: https://github.com/PegaSysEng/doc.goquorum/issues
   google:
+    # TODO Update codes
     site_verification: 'TODO'
     tag_manager: 'TODO'
 
 
 # Software Repository
-repo_name: PegaSysEng/GoQuorum
-repo_url: https://github.com/PegaSysEng/GoQuorum
+# TODO Update links and repos
+repo_name: Consensys/GoQuorum
+repo_url: https://github.com/Consensys/GoQuorum
 
 theme:
   name: material
@@ -47,9 +51,6 @@ theme:
   language: 'en'
   logo: 'images/logo.png'
   favicon: 'images/logo-48x48.png'
-
-extra_css:
-  - 'theme/assets/stylesheets/extra.css'
 
 nav:
   - Home: index.md
