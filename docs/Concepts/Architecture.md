@@ -4,7 +4,7 @@ description: Overview of GoQuorum Architecture
 
 # Architecture 
 
-![](Quorum%20Design.png)
+![](../images/Quorum%20Design.png)
 
 ## Differences from geth
 

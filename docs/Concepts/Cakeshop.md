@@ -7,7 +7,7 @@ Cakeshop can either start up a geth node, which you can then interact with using
 or it can be connected to an Ethereum-like node, such as Quorum, that you already have running. A given
 Cakeshop instance connects with one node on the blockchain network you connect to.
 
-![image](console.png)
+![image](../images/console.png)
 
 Out of the box you get:
 

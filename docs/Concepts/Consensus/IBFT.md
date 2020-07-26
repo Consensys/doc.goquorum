@@ -34,7 +34,7 @@ Istanbul BFT is a state machine replication algorithm. Each validator maintains 
 - `ROUND CHANGE`: A validator is waiting for `ceil(2N/3)` of `ROUND CHANGE` messages on the same proposed round number.
 
 **State Transitions**:
-![State Transitions](images/IBFTStateTransition.png)
+![State Transitions](../../images/IBFTStateTransition.png)
 
 - `NEW ROUND` -> `PRE-PREPARED`:
     - **Proposer** collects transactions from txpool.

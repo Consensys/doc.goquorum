@@ -67,6 +67,7 @@ nav:
           - Permissions:
               - Basic permissions: HowTo/Configure/BasicPermissions.md
               - Enhanced permissions: HowTo/Configure/EnhancedPermissions.md
+          - Plugins: HowTo/Configure/Plugins.md
           - DNS: HowTo/Configure/dns.md
       - Develop plugins: HowTo/DevelopPlugins.md
       - Manage keys:
@@ -86,7 +87,9 @@ nav:
       - Create network from scratch: Tutorials/Creating-A-Network-From-Scratch.md
       - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
   - Concepts:
+      - ConsenSys Quorum: Concepts/ConsenSysQuorum.md
       - Architecture: Concepts/Architecture.md
+      - Account management: Concepts/AccountManagement.md
       - Privacy:
           - Overview: Concepts/Privacy/Privacy.md
           - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
@@ -94,7 +97,7 @@ nav:
           - Private transaction lifecycle: Concepts/Privacy/PrivateTransactionLifecycle.md
           - Contract extension: Concepts/Privacy/ContractExtension.md
       - Consensus:
-          - Overview: Concepts/Consensus/EnhancedPermissionsOverview.md
+          - Overview: Concepts/Consensus/Overview.md
           - IBFT: Concepts/Consensus/IBFT.md
           - Raft: Concepts/Consensus/Raft.md
       - Permissioning:
@@ -107,7 +110,7 @@ nav:
           - Overview: Concepts/Plugins/Plugins.md
           - Architecture: Concepts/Plugins/PluginsArchitecture.md
       - Security Framework:
-          - Overview: Concepts/Security/Framework/ContractExtension.md
+          - Overview: Concepts/Security/Framework/Overview.md
           - GoQuorum Network:
             - Consortium: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
             - GoQuorum Node: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
@@ -129,6 +132,7 @@ nav:
           - IBFT RPC API: Reference/Consensus/IBFT-RPC-API.md
           - Raft RPC API: Reference/Consensus/Raft-RPC-API.md
       - Plugins:
+          - Initialization interface: Reference/Plugins/init_interface.md
           - helloworld:
               - Interface: Reference/Plugins/helloworld/interface.md
               - Implementation: Reference/Plugins/helloworld/implementation.md
@@ -141,13 +145,14 @@ nav:
             - Implementation: Reference/Plugins/security/implementation.md
       - GoQuorum projects: Reference/GoQuorum-Projects.md
       - Remix plugin:
-          - Overview: Reference/RemixPlugin/ContractExtension.md
+          - Overview: Reference/RemixPlugin/Overview.md
           - Getting started: Reference/RemixPlugin/GettingStarted.md
       - quorum.js:
           - Overview: Reference/quorum.js/Overview.md
           - extend API: Reference/quorum.js/extend.md
           - RawTransactionManager API: Reference/quorum.js/RawTransactionManager.md
       - FAQ: Reference/FAQ.md
+      - Cakeshop FAQ: Reference/CakeshopFAQ.md
 
 markdown_extensions:
   - toc:
@@ -191,7 +196,6 @@ plugins:
         # old_path.md: new_path.md
         # you can't use an already redirected path as an old_path.
         # new_path can be a file inside the docs/ folder or any URL (http://...)
-        Account-Key-Management/Constellation/Overview.md:
         Account-Key-Management/Overview.md: Concepts/AccountManagement.md
         Account-Key-Management/Quorum/Clef.md: HowTo/ManageKeys/clef.md
         Account-Key-Management/Quorum/Keystore-Files.md: HowTo/ManageKeys/ManagingKeys.md
@@ -202,7 +206,7 @@ plugins:
         Consensus/Consensus.md: Concepts/Consensus/Overview.md
         Consensus/raft/raft.md: Concepts/Consensus/Raft.md
         Getting Started/permissioned-nodes.md: HowTo/Configure/BasicPermissions.md
-        Getting Started/running.md:
+        Getting Started/running.md: HowTo/GetStarted/GettingStartedOverview.md
         Consensus/ibft/ibft-parameters.md: Reference/Consensus/IBFTParameters.md
         Consensus/ibft/istanbul-rpc-api.md: Reference/Consensus/IBFT-RPC-API.md
         Consensus/raft/raft-rpc-api.md: Reference/Consensus/Raft-RPC-API.md
