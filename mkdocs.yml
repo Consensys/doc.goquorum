@@ -52,129 +52,102 @@ extra_css:
   - 'theme/assets/stylesheets/extra.css'
 
 nav:
-  - Home: index.md
-  - Getting Started:
-      - Quickstart: Getting Started/Getting Started Overview.md
-      - Installing: Getting Started/Installing.md
-      - Examples: Getting Started/Quorum-Examples.md
-      - Creating a Network From Scratch: Getting Started/Creating-A-Network-From-Scratch.md
-      - Running Quorum: Getting Started/running.md
-      - Quorum API: Getting Started/api.md
-      - Quorum GraphQL: Getting Started/graphql.md
-      - Migration: Getting Started/migration.md
-  - Quorum Features:
-      - Transaction/Contract Privacy:
-          - Overview: Privacy/Overview.md
-          - Privacy/Privacy-Manager.md
-          - Privacy/Lifecycle-of-a-private-transaction.md
-          - Tessera:
-              - What is Tessera: Privacy/Tessera/Tessera.md
-              - Configuration:
-                  - Overview: Privacy/Tessera/Configuration/Configuration Overview.md
-                  - Keys Config: Privacy/Tessera/Configuration/Keys.md
-                  - TLS Config: Privacy/Tessera/Configuration/TLS.md
-                  - Using CLI to override config: Privacy/Tessera/Configuration/Using CLI to override config.md
-                  - Sample Configuration: Privacy/Tessera/Configuration/Sample Configuration.md
-              - Tessera Services:
-                  - Transaction Manager: Privacy/Tessera/Tessera Services/Transaction Manager.md
-                  - Enclave: Privacy/Tessera/Tessera Services/Enclave.md
-                  - Keys:
-                      - Key Generation: Privacy/Tessera/Tessera Services/Keys/Keys.md
-                      - Setting up Hashicorp Vault: Privacy/Tessera/Tessera Services/Keys/Setting up a Hashicorp Vault.md
-                      - Setting up Azure Key Vault: Privacy/Tessera/Tessera Services/Keys/Setting up an Azure Key Vault.md
-                      - Setting up AWS Secrets Manager: Privacy/Tessera/Tessera Services/Keys/Setting up an AWS Secrets Manager.md
-              - Usage:
-                  - Interfaces & API: Privacy/Tessera/Usage/Interface & API.md
-                  - Admin Usage: Privacy/Tessera/Usage/Admin Usage.md
-                  - Monitoring: Privacy/Tessera/Usage/Monitoring.md
-                  - Logging: Privacy/Tessera/Usage/Logging.md
-              - Migration from Constellation: Privacy/Tessera/Migration from Constellation.md
-          - Constellation:
-              - What is Constellation: Privacy/Constellation/Constellation.md
-              - How it works: Privacy/Constellation/How constellation works.md
-              - Sample Configuration: Privacy/Constellation/Sample Configuration.md
-              - Running Constellation: Privacy/Constellation/Installation & Running.md
-          - Contract Extension:
-              - Overview: Privacy/Contract-Extension/Overview.md
-              - APIs: Privacy/Contract-Extension/ContractExtension apis.md
+  - How to:
+      - Get started:
+          - Overview: HowTo/GetStarted/GettingStartedOverview.md
+          - Install: HowTo/GetStarted/Install.md
+          - With Cakeshop: HowTo/GetStarted/Cakeshop.md
+          - Upgrade to 2.6.0: HowTo/GetStarted/migration.md
+          - With GoQuorum Wizard:
+              - Get started: HowTo/GetStarted/Wizard/GettingStarted.md
+              - Interacting: HowTo/GetStarted/Wizard/Interacting.md
+      - Configure:
+          - Genesis file: HowTo/Configure/GenesisOptions.md
+          - High availability: HowTo/Configure/HighAvailability.md
+          - Permissions:
+              - Basic permissions: HowTo/Configure/BasicPermissions.md
+              - Enhanced permissions: HowTo/Configure/EnhancedPermissions.md
+          - DNS: HowTo/Configure/dns.md
+      - Develop plugins: HowTo/DevelopPlugins.md
+      - Manage keys:
+          - Overview: HowTo/ManageKeys/ManagingKeys.md
+          - Using clef: HowTo/ManageKeys/clef.md
+          - Using account plugins: HowTo/ManageKeys/AccountPlugins.md
+      - Use:
+          - Adding nodes to network: HowTo/Use/adding_nodes.md
+          - Adding nodes examples: HowTo/Use/add_node_examples.md
+          - Adding IBFT validators: HowTo/Use/AddingIBFTValidators.md
+          - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
+          - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
+          - Smart contracts: HowTo/Use/DevelopingSmartContracts.md
+          - GraphQL: HowTo/Use/graphql.md
+          - Backup and restore: HowTo/Use/import-export.md
+  - Tutorials:
+      - Create network from scratch: Tutorials/Creating-A-Network-From-Scratch.md
+      - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
+  - Concepts:
+      - Architecture: Concepts/Architecture.md
+      - Privacy:
+          - Overview: Concepts/Privacy/Privacy.md
+          - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
+          - Private transaction manager: Concepts/Privacy/PrivateTransactionManager.md
+          - Private transaction lifecycle: Concepts/Privacy/PrivateTransactionLifecycle.md
+          - Contract extension: Concepts/Privacy/ContractExtension.md
       - Consensus:
-          - Consensus: Consensus/Consensus.md
-          - Raft BFT:
-              - Consensus/raft/raft.md
-              - Consensus/raft/raft-rpc-api.md
-          - Istanbul BFT:
-              - Overview: Consensus/ibft/ibft.md
-              - Consensus/ibft/istanbul-rpc-api.md
-              - Consensus/ibft/ibft-parameters.md
+          - Overview: Concepts/Consensus/EnhancedPermissionsOverview.md
+          - IBFT: Concepts/Consensus/IBFT.md
+          - Raft: Concepts/Consensus/Raft.md
       - Permissioning:
-          - Overview: Permissioning/Permissions Overview.md
-          - Basic: Permissioning/Basic NetworkPermissions.md
+          - Overview: Concepts/Permissioning/PermissionsOverview.md
+          - Basic permissions: Concepts/Permissioning/BasicNetworkPermissions.md
           - Enhanced:
-              - Overview: Permissioning/Enhanced Permissions Model/Overview.md
-              - Design: Permissioning/Enhanced Permissions Model/Contract Design.md
-              - Setup: Permissioning/Enhanced Permissions Model/setup.md
-              - APIs: Permissioning/Enhanced Permissions Model/Permissioning apis.md
-              - Usage: Permissioning/Enhanced Permissions Model/Usage.md
-      - Account/Key Management:
-          - Overview: Account-Key-Management/Overview.md
-          - Quorum:
-              - Overview: Account-Key-Management/Quorum/Overview.md
-              - Keystore Files: Account-Key-Management/Quorum/Keystore-Files.md
-              - Clef: Account-Key-Management/Quorum/Clef.md
-              - account Plugins:
-                  - Overview: Account-Key-Management/Quorum/account-Plugins/Overview.md
-          - Tessera: Account-Key-Management/Tessera/Overview.md
-          - Constellation: Account-Key-Management/Constellation/Overview.md
-      - Pluggable Architecture:
-          - Overview: PluggableArchitecture/Overview.md
-          - Settings: PluggableArchitecture/Settings.md
-          - Internals: PluggableArchitecture/Internals.md
-          - Plugins:
-              - helloworld:
-                  - Interface: PluggableArchitecture/Plugins/helloworld/interface.md
-                  - Implementation: PluggableArchitecture/Plugins/helloworld/implementation.md
-              - security:
-                  - Interface: PluggableArchitecture/Plugins/security/interface.md
-                  - Implementation: PluggableArchitecture/Plugins/security/implementation.md
-              - account:
-                  - For Users: PluggableArchitecture/Plugins/account/For-Users.md
-                  - For Developers: PluggableArchitecture/Plugins/account/For-Developers.md
-                  - API: PluggableArchitecture/Plugins/account/interface.md
-          - Plugin Development: PluggableArchitecture/PluginDevelopment.md
-      - DNS: Quorum Features/dns.md
-      - Securing JSON RPC: Quorum Features/rpc-security.md
-  - Quorum Projects:
-      - Quorum Wizard:
-          - Getting Started: Wizard/GettingStarted.md
-          - Interacting with the Network: Wizard/Interacting.md
-      - Cakeshop:
-          - Overview: Cakeshop/Overview.md
-          - Getting Started: Cakeshop/Getting started.md
-          - Cakeshop FAQ: Cakeshop/Cakeshop FAQ.md
-      - Remix Plugin:
-          - Overview: RemixPlugin/Overview.md
-          - Getting Started: RemixPlugin/GettingStarted.md
+              - Overview: Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md
+              - Contract design: Concepts/Permissioning/Enhanced/ContractDesign.md
+      - Plugins:
+          - Overview: Concepts/Plugins/Plugins.md
+          - Architecture: Concepts/Plugins/PluginsArchitecture.md
+      - Security Framework:
+          - Overview: Concepts/Security/Framework/ContractExtension.md
+          - GoQuorum Network:
+            - Consortium: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
+            - GoQuorum Node: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
+            - Transaction Manager: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
+            - Operational Considerations: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
+          - Decentralized App:
+            - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
+            - Smart Contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
+      - Network and chain ID: Concepts/NetworkAndChainID.md
+      - Cakeshop: Concepts/Cakeshop.md
+  - Reference:
+      - API:
+          - Privacy: Reference/APIs/PrivacyAPI.md
+          - Permissions: Reference/APIs/PermissioningAPIs.md
+          - Contract extension: Reference/APIs/ContractExtensionAPIs.md
+      - Example genesis file: Reference/genesis.md
+      - Consensus:
+          - IBFT Parameters: Reference/Consensus/IBFTParameters.md
+          - IBFT RPC API: Reference/Consensus/IBFT-RPC-API.md
+          - Raft RPC API: Reference/Consensus/Raft-RPC-API.md
+      - Plugins:
+          - helloworld:
+              - Interface: Reference/Plugins/helloworld/interface.md
+              - Implementation: Reference/Plugins/helloworld/implementation.md
+          - account:
+            - Developers: Reference/Plugins/account/For-Developers.md
+            - Users: Reference/Plugins/account/For-Users.md
+            - Interface: Reference/Plugins/account/interface.md
+          - security:
+            - Interface: Reference/Plugins/security/interface.md
+            - Implementation: Reference/Plugins/security/implementation.md
+      - GoQuorum projects: Reference/GoQuorum-Projects.md
+      - Remix plugin:
+          - Overview: Reference/RemixPlugin/ContractExtension.md
+          - Getting started: Reference/RemixPlugin/GettingStarted.md
       - quorum.js:
-          - Overview: quorum.js/Overview.md
-          - extend API: quorum.js/extend.md
-          - RawTransactionManager API: quorum.js/RawTransactionManager.md
-  - Security Framework:
-      - Overview: Security/Framework/Overview.md
-      - Quorum Network:
-          - Consortium: Security/Framework/Quorum Network Security/Consortium.md
-          - Quorum Node: Security/Framework/Quorum Network Security/Node.md
-          - Transaction Manager: Security/Framework/Quorum Network Security/Transaction Manager.md
-          - Operational Considerations: Security/Framework/Quorum Network Security/Opertional Considerations.md
-      - Decentralized App:
-          - Frontend: Security/Framework/Decentralized Application/Frontend Components.md
-          - Smart Contracts:  Security/Framework/Decentralized Application/Smart Contracts Security.md
-  - How-To Guides:
-      - Adding new nodes: How-To-Guides/adding_nodes.md
-      - Adding IBFT validators: How-To-Guides/add_ibft_validator.md
-      - Backup & Restore: How-To-Guides/import-export.md
-      - Quorum/Tessera HA Setup: How-To-Guides/HA_Setup.md
-  - Product Roadmap: roadmap.md
-  - FAQ: FAQ.md
+          - Overview: Reference/quorum.js/Overview.md
+          - extend API: Reference/quorum.js/extend.md
+          - RawTransactionManager API: Reference/quorum.js/RawTransactionManager.md
+      - FAQ: Reference/FAQ.md
 
 markdown_extensions:
   - toc:
@@ -218,3 +191,72 @@ plugins:
         # old_path.md: new_path.md
         # you can't use an already redirected path as an old_path.
         # new_path can be a file inside the docs/ folder or any URL (http://...)
+        Account-Key-Management/Constellation/Overview.md:
+        Account-Key-Management/Overview.md: Concepts/AccountManagement.md
+        Account-Key-Management/Quorum/Clef.md: HowTo/ManageKeys/clef.md
+        Account-Key-Management/Quorum/Keystore-Files.md: HowTo/ManageKeys/ManagingKeys.md
+        Account-Key-Management/Quorum/Overview.md: Concepts/AccountManagement.md
+        Account-Key-Management/Quorum/account-Plugins/Overview.md: HowTo/ManageKeys/AccountPlugins.md
+        Account-Key-Management/Tessera/Overview.md: Concepts/AccountManagement.md
+        Consensus/ibft/ibft.md: Concepts/Consensus/IBFT.md
+        Consensus/Consensus.md: Concepts/Consensus/Overview.md
+        Consensus/raft/raft.md: Concepts/Consensus/Raft.md
+        Getting Started/permissioned-nodes.md: HowTo/Configure/BasicPermissions.md
+        Getting Started/running.md:
+        Consensus/ibft/ibft-parameters.md: Reference/Consensus/IBFTParameters.md
+        Consensus/ibft/istanbul-rpc-api.md: Reference/Consensus/IBFT-RPC-API.md
+        Consensus/raft/raft-rpc-api.md: Reference/Consensus/Raft-RPC-API.md
+        Permissioning/Basic NetworkPermissions.md: Concepts/Permissioning/BasicNetworkPermissions.md
+        Permissioning/Enhanced Permissions Model/Contract Design.md: Concepts/Permissioning/Enhanced/ContractDesign.md
+        Permissioning/Permissions Overview.md: Concepts/Permissioning/PermissionsOverview.md
+        PluggableArchitecture/Overview.md: Concepts/Plugins/Plugins.md
+        PluggableArchitecture/Internals.md: Concepts/Plugins/PluginsArchitecture.md
+        Privacy/Contract-Extension/Overview.md: Concepts/Privacy/ContractExtension.md
+        Privacy/Overview.md: Concepts/Privacy/PrivateAndPublic.md
+        Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateTransactionLifecycle.md
+        Privacy/Privacy-Manager.md: Concepts/Privacy/PrivateTransactionManager.md
+        Security/Framework/Decentralized Application/Frontend Components.md: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
+        Security/Framework/Decentralized Application/Smart Contracts Security.md: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
+        Security/Framework/Quorum Network Security/Consortium.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
+        Security/Framework/Quorum Network Security/Node.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
+        Security/Framework/Quorum Network Security/Opertional Considerations.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
+        Security/Framework/Quorum Network Security/Transaction Manager.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
+        Security/Framework/Overview.md: Concepts/Security/Framework/Overview.md
+        How-To-Guides/HA_Setup.md: HowTo/Configure/HighAvailability.md
+        How-To-Guides/add_ibft_validator.md: HowTo/Use/AddingIBFTValidators.md
+        Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/EnhancedPermissions.md
+        Quorum Features/dns.md: HowTo/Configure/dns.md
+        PluggableArchitecture/PluginDevelopment.md: HowTo/DevelopPlugins.md
+        Cakeshop/Getting started.md: HowTo/GetStarted/Cakeshop.md
+        Getting Started/Getting Started Overview.md: HowTo/GetStarted/GettingStartedOverview.md
+        Getting Started/Installing.md: HowTo/GetStarted/Install.md
+        Wizard/GettingStarted.md: HowTo/GetStarted/Wizard/GettingStarted.md
+        Wizard/Interacting.md: HowTo/GetStarted/Wizard/Interacting.md
+        Getting Started/migration.md: HowTo/GetStarted/migration.md
+        Permissioning/Enhanced Permissions Model/Usage.md: HowTo/Use/EnhancedPermissions.md
+        Quorum Features/rpc-security.md: HowTo/Use/JSON-RPC-API-Security.md
+        How-To-Guides/add_node_examples.md: HowTo/Use/add_node_examples.md
+        How-To-Guides/adding_nodes.md: HowTo/Use/adding_nodes.md
+        Getting Started/graphql.md: HowTo/Use/graphql.md
+        How-To-Guides/import-export.md: HowTo/Use/import-export.md
+        Privacy/Contract-Extension/ContractExtension apis.md: Reference/APIs/ContractExtensionAPIs.md
+        Permissioning/Enhanced Permissions Model/Permissioning apis.md: Reference/APIs/PermissioningAPIs.md
+        Getting Started/api.md: Reference/APIs/PrivacyAPI.md
+        Cakeshop/Cakeshop FAQ.md: Reference/CakeshopFAQ.md
+        FAQ.md: Reference/FAQ.md
+        Getting Started/Quorum-Examples.md: Reference/GoQuorum-Projects.md
+        PluggableArchitecture/Plugins/account/For-Developers.md: Reference/Plugins/account/For-Developers.md
+        PluggableArchitecture/Plugins/account/For-Users.md: Reference/Plugins/account/For-Users.md
+        PluggableArchitecture/Plugins/account/interface.md: Reference/Plugins/account/interface.md
+        PluggableArchitecture/Plugins/helloworld/implementation.md: Reference/Plugins/helloworld/implementation.md
+        PluggableArchitecture/Plugins/helloworld/interface.md: Reference/Plugins/helloworld/interface.md
+        PluggableArchitecture/Plugins/init_interface.md: Reference/Plugins/init_interface.md
+        PluggableArchitecture/Plugins/security/implementation.md: Reference/Plugins/security/implementation.md
+        PluggableArchitecture/Plugins/security/interface.md: Reference/Plugins/security/interface.md
+        RemixPlugin/GettingStarted.md: Reference/RemixPlugin/GettingStarted.md
+        RemixPlugin/Overview.md: Reference/RemixPlugin/Overview.md
+        Getting Started/genesis.md: Reference/genesis.md
+        quorum.js/Overview.md: Reference/quorum.js/Overview.md
+        quorum.js/RawTransactionManager.md: Reference/quorum.js/RawTransactionManager.md
+        quorum.js/extend.md: Reference/quorum.js/extend.md
+        Getting Started/Creating-A-Network-From-Scratch.md: Tutorials/Creating-A-Network-From-Scratch.md
