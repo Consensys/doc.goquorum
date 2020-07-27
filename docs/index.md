@@ -1,10 +1,10 @@
 # Quorum -  Enterprise Ethereum Client
 
 ## What is Quorum?
-Quorum is an Ethereum-based distributed ledger protocol that has been developed to provide industries such as finance, supply chain, retail, real estate, etc. with a permissioned implementation of Ethereum that supports transaction and contract privacy.  
+Quorum is an Ethereum-based distributed ledger protocol that has been developed to provide industries such as finance, supply chain, retail, real estate, etc. with a permissioned implementation of Ethereum that supports transaction and contract privacy.
 
-Quorum includes a minimalistic fork of the [Go Ethereum client](https://github.com/ethereum/go-ethereum) (a.k.a geth), and as such, leverages the work that the Ethereum developer community has undertaken.  
- 
+Quorum includes a minimalistic fork of the [Go Ethereum client](https://github.com/ethereum/go-ethereum) (a.k.a geth), and as such, leverages the work that the Ethereum developer community has undertaken.
+
 The primary features of Quorum, and therefore extensions over public Ethereum, are:
 
 * Transaction and contract privacy
@@ -16,6 +16,7 @@ The primary features of Quorum, and therefore extensions over public Ethereum, a
     For more information on the design rationale and background to Quorum, please read the [**Quorum Whitepaper**](https://github.com/jpmorganchase/quorum/blob/master/docs/Quorum%20Whitepaper%20v0.2.pdf), view the [Hyperledger deck](https://drive.google.com/open?id=0B8rVouOzG7cOeHo0M2ZBejZTdGs) or watch the [presentation](https://drive.google.com/open?id=0B8rVouOzG7cOcDg4UkxqdTBacm8) given to the Hyperledger Project Technical Steering Committee meeting on 22-Sept-16. Also see quick overview of sending private transactions [here](https://vimeo.com/user5833792/review/210456729/8f70cfaaa5)
 
 ## Quorum's components
+
 ### Logical architecture diagram
 ![](Quorum%20Design.png)
 
@@ -34,9 +35,9 @@ The Quorum Node includes the following modifications to geth:
  * The pricing of Gas has been removed, although Gas itself remains
 
 ### Privacy Manager
-[Constellation](Privacy/Constellation/Constellation) and [Tessera](Privacy/Tessera/Tessera) are Haskell and Java implementations of a general-purpose system for submitting information in a secure way. They are comparable to a network of MTA (Message Transfer Agents) where messages are encrypted with PGP. It is not blockchain-specific, and are potentially applicable in many other types of applications where you want individually-sealed message exchange within a network of counterparties. The Constellation and Tessera modules consist of two sub-modules: 
+[Constellation](Privacy/Constellation/Constellation) and [Tessera](Privacy/Tessera/Tessera) are Haskell and Java implementations of a general-purpose system for submitting information in a secure way. They are comparable to a network of MTA (Message Transfer Agents) where messages are encrypted with PGP. It is not blockchain-specific, and are potentially applicable in many other types of applications where you want individually-sealed message exchange within a network of counterparties. The Constellation and Tessera modules consist of two sub-modules:
 
-* The Node (which is used for Quorum's default implementation of a `PrivateTransactionManager`) 
+* The Node (which is used for Quorum's default implementation of a `PrivateTransactionManager`)
 * The Enclave
 
 
@@ -49,7 +50,7 @@ For further details on how the Transaction Manager interacts with the Enclave, p
 
 #### The Enclave
 
-Distributed Ledger protocols typically leverage cryptographic techniques for transaction authenticity, participant authentication, and historical data preservation (i.e. through a chain of cryptographically hashed data.)  In order to achieve a separation of concerns, as well as to provide performance improvements through parallelization of certain crypto-operations, much of the cryptographic work including symmetric key generation and data encryption/decryption is delegated to the Enclave.  
+Distributed Ledger protocols typically leverage cryptographic techniques for transaction authenticity, participant authentication, and historical data preservation (i.e. through a chain of cryptographically hashed data.)  In order to achieve a separation of concerns, as well as to provide performance improvements through parallelization of certain crypto-operations, much of the cryptographic work including symmetric key generation and data encryption/decryption is delegated to the Enclave.
 
 The Enclave works hand in hand with the Transaction Manager to strengthen privacy by managing the encryption/decryption in an isolated way.  It holds private keys and is essentially a “virtual HSM” isolated from other components.
 
