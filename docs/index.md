@@ -12,10 +12,8 @@ Authority (Raft, IBFT, and Clique) consensus mechanisms.
 
 ## Is GoQuorum part of ConsenSys Quorum? 
 
-Yes. [ConsenSys Quorum](TODO - add link ) is the complete open source blockchain layer with enterprise 
-support available from ConsenSys. [Contact us](TODO - add link)
-
-<TODO - add image when available> 
+Yes. [ConsenSys Quorum](https://consensys.net/quorum/developers) is the complete open source blockchain
+layer with enterprise support available from ConsenSys.
 
 ## What can you do with GoQuroum? 
 

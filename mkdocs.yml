@@ -87,7 +87,6 @@ nav:
       - Create network from scratch: Tutorials/Creating-A-Network-From-Scratch.md
       - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
   - Concepts:
-      - ConsenSys Quorum: Concepts/ConsenSysQuorum.md
       - Architecture: Concepts/Architecture.md
       - Account management: Concepts/AccountManagement.md
       - Privacy:
