@@ -28,7 +28,7 @@ extra:
     gitter: https://gitter.im/PegaSysEng/GoQuorum
     email: support@pegasys.tech
     pegasys_website: https://consensys.net/
-    issues: https://github.com/PegaSysEng/doc.goquorum/issues
+    issues: https://github.com/jpmorganchase/quorum/issues
   google:
     site_verification: 'TODO'
     tag_manager: 'TODO'
