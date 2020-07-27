@@ -9,4 +9,5 @@ of a public key and a private key.  The public key can be shared freely, but **t
 * GoQuorum derives the account address from the public key by taking the last 20 bytes of its keccak256 hash
 * The Privacy Manager uses the public key as an identifier for the target nodes of a private transaction (i.e. the `privateFor` transaction field)
 
-Key management determines how [GoQuorum](TODO - add link) and [Tessera](TODO - add link) stores and uses private keys.  
+Key management determines how [GoQuorum](../HowTo/ManageKeys/ManagingKeys.md) and [Tessera](https://docs.tessera.consensys.net)
+stores and uses private keys.  

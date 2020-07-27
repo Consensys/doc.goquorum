@@ -1,6 +1,6 @@
 # Installing
 
-GoQuorum and [Tessera](TODO - add link) can be installed and used as Docker containers, by building from source,
+GoQuorum and [Tessera](https://docs.tessera.consensys.net) can be installed and used as Docker containers, by building from source,
 or by downloading pre-built release binaries.
 
 ## As containers

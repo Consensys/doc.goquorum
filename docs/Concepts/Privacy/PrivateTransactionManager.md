@@ -1,6 +1,7 @@
 # Private Transaction Manager
 
-A Private Transaction Manager is required to use private transactions in GoQuorum.
+GoQuorum uses a Private Transaction Manager, [Tessera](https://docs.tessera.consensys.net), to implement
+private transactions. 
 
 The Private Transaction Manager is a separate component that is concerned with the storing and distribution
 of encrypted private transaction data between recipients of a private transaction.
@@ -14,5 +15,5 @@ export PRIVATE_CONFIG=path/to/tm.ipc
 
 The Private Transaction Manager has two components:
 
-* Transaction Manager: ToDo - add link to Tessera and relevant page 
-* Enclave: ToDo - add link to Tessera and relevant page  
+* Transaction Manager
+* Enclave

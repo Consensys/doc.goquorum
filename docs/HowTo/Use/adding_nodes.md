@@ -12,7 +12,7 @@ the other. In some cases, they may have their own options to achieve similar tas
 ## Prerequisites
 
 - [GoQuorum installed](/Getting%20Started/Installing.md)
-- [Tessera](TODO - add link) if using private transactions
+- [Tessera](https://docs.tessera.consensys.net)
 - [A running network](/Getting%20Started/Creating-A-Network-From-Scratch)
 
 ## Adding GoQuorum nodes
@@ -140,7 +140,7 @@ of them in turn.
 The IP Whitelist that Tessera provides allows you restrict connections much like the `permissioned-nodes.json` file 
 does for GoQuorum. Only IP addresses/hostnames listed in your peers list will be allowed to connect to you.
 
-See the [Tessera configuration page](TODO - add link) for details on setting it up.
+See the [Tessera configuration page](https://docs.tessera.consensys.net) for details on setting it up.
 
 In order to make sure the new node is accepted into the network:
 
@@ -176,7 +176,7 @@ In order to make sure the new node is accepted into the network:
 Tessera discovery is very similar to the IP whitelist. The difference being that the IP whitelist blocks 
 communications between nodes, whereas disabling discovery only affects which public keys we keep track of.
 
-See the [Tessera configuration page](TODO - add link) for 
+See the [Tessera configuration page](https://docs.tessera.consensys.net) for 
 details on setting it up.
    
 When discovery is disabled, Tessera will only allow keys that are owned by a node in its peer list to be available to 

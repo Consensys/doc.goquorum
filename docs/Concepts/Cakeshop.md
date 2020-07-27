@@ -20,7 +20,7 @@ Out of the box you get:
 It provides tools for managing a local blockchain node, setting up clusters,
 exploring the state of the chain, and working with contracts.
 
-The Cakeshop package includes [Tessera](TODO - add link), a [Solidity](https://solidity.readthedocs.org/en/latest/)
+The Cakeshop package includes [Tessera](https://docs.tessera.consensys.net), a [Solidity](https://solidity.readthedocs.org/en/latest/)
 compiler, and all dependencies. 
 
 Cakeshop downloads the latest version of [GoQuorum](https://github.com/jpmorganchase/quorum)
