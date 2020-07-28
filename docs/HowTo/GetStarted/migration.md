@@ -43,7 +43,7 @@ A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are 
 * Execute `geth --datadir path/to/datadir init genesis.json` with the modified `genesis.json`
 * Bring up the node in GoQuorum 2.6.0
 
-### !!! Note
+!!! Note
 * freezerdb - `geth` 1.9.7 brings in the feature of freezer db where in block data beyond certain threshold is moved to a different file based storage area. The location for freezerdb can be provided by geth command lines arguments as shown below:
 ```
 --datadir.ancient value             Data directory for ancient chain segments (default = inside chaindata)
