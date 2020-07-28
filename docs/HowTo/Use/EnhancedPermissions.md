@@ -94,7 +94,7 @@ then the network will have the following configuration once it has started up:
 ```
 
 ### Proposing a new organization into the network
-Once the network is up, the network admin accounts can then propose a new organization into the network. Majority approval from the network admin accounts is required before an organization is approved. The APIs for [proposing](../Permissioning%20apis#quorumpermission_addorg) and [approving](../Permissioning%20apis#quorumpermission_approveorg) an organization are documented in [permission APIs](../Permissioning%20apis)
+Once the network is up, the network admin accounts can then propose a new organization into the network. Majority approval from the network admin accounts is required before an organization is approved. The APIs for [proposing](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_addorg) and [approving](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_approveorg) an organization are documented in [permission APIs](../../Reference/APIs/PermissioningAPIs.md).
 
 #### Example
 An example to propose and approve an organization by name `ORG1` is as shown below:
@@ -194,7 +194,7 @@ To add a sub org at `ORG1` level refer to [addSubOrg API](../../Reference/APIs/P
 }
 ```
 
-For adding a sub org the enode id is not mandatory. For the newly created sub org if the org admin desires to add an administration account, the org admin account will have to first create a role with `isAdmin` flag as `Y` and then assign this role to the account which belongs to the sub org. Once assigned the account will act as org admin at sub org level. Refer to [addNewRole API](../Permissioning%20apis#quorumpermission_addnewrole)
+For adding a sub org the enode id is not mandatory. For the newly created sub org if the org admin desires to add an administration account, the org admin account will have to first create a role with `isAdmin` flag as `Y` and then assign this role to the account which belongs to the sub org. Once assigned the account will act as org admin at sub org level. Refer to [addNewRole API](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_addnewrole).
 ```javascript
 > quorumPermission.addNewRole("ORG1.SUB1", "SUBADMIN", 3, false, true,{from: eth.accounts[0]})
 "Action completed successfully"

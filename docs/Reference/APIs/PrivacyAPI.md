@@ -63,7 +63,7 @@ web3.eth.sendRawPrivateTransaction(signedTransactionData [, privateData] [, call
 
 Sends a pre-signed transaction. For example can be signed using: https://github.com/SilentCicero/ethereumjs-accounts
 
-__Important:__ Before calling this API, a `storeraw` api need to be called first to Tessera. Instructions on how to do this can be found [here](../../Privacy/Tessera/Usage/Interface%20&%20API/).
+__Important:__ Before calling this API, a `storeraw` api need to be called first to Tessera. Instructions on how to do this can be found [here](https://docs.tessera.consensys.net).
 
 ##### Parameters
  1. `String` - Signed transaction data in HEX format

@@ -1,4 +1,4 @@
-The `RawTransactionManager` module of quorum.js provides access to private transaction APIs that require a connection to a [Privacy Manager](../../Privacy/Privacy-Manager).
+The `RawTransactionManager` module of quorum.js provides access to private transaction APIs that require a connection to a [Privacy Manager](../../Concepts/Privacy/PrivateTransactionManager.md).
 
 ## Example
 ```js

@@ -11,7 +11,7 @@ consensus mechanisms that are more appropriate for consortium chains:
 * Istanbul BFT (Byzantine Fault Tolerance)
     
      A PBFT-inspired consensus algorithm with immediate transaction finality, by AMIS.
-    See [IBFT documentation](IBFT.md), the [RPC API](../ibft/istanbul-rpc-api.md),
+    See [IBFT documentation](IBFT.md), the [RPC API](../../Reference/Consensus/IBFT-RPC-API.md),
     and this [technical web article](https://medium.com/getamis/istanbul-bft-ibft-c2758b7fe6ff). 
 
 * Clique Proof of Authority (PoA)

@@ -58,7 +58,7 @@ We use the existing Ethereum p2p transport layer to communicate transactions bet
 
 When the minter creates a block, unlike in vanilla Ethereum where the block is written to the database and immediately considered the new head of the chain, we only insert the block or set it to be the new head of the chain once the block has flown through Raft. All nodes will extend the chain together in lock-step as they "apply" their Raft log.
 
-From the point of view of Ethereum, Raft is integrated via an implementation of the [`Service`](https://godoc.org/github.com/jpmorganchase/quorum/node#Service) interface in [`node/service.go`](https://github.com/jpmorganchase/quorum/blob/master/node/service.go): "an individual protocol that can be registered into a node". Other examples of services are [`Ethereum`](https://godoc.org/github.com/jpmorganchase/quorum/eth#Ethereum) and [`Whisper`](https://godoc.org/github.com/jpmorganchase/quorum/whisper/whisperv5#Whisper).
+From the point of view of Ethereum, Raft is integrated via an implementation of the [`Service`](https://godoc.org/github.com/jpmorganchase/quorum/node#Service) interface in [`node/service.go`](https://github.com/jpmorganchase/quorum/blob/master/node/service.go): "an individual protocol that can be registered into a node". Another example of a service is [`Ethereum`](https://godoc.org/github.com/jpmorganchase/quorum/eth#Ethereum).
 
 
 ## The lifecycle of a transaction

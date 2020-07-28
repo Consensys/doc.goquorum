@@ -6,7 +6,7 @@ The GoQuorum plugin for Ethereum's Remix IDE adds support for creating and inter
 
 ## Getting Started
 
-Just go to the [Remix IDE](https://remix.ethereum.org) and activate the **GoQuorum Network** plugin on the plugins page. For step-by-step instructions, go to the [Getting Started](../GettingStarted) doc.
+Just go to the [Remix IDE](https://remix.ethereum.org) and activate the **GoQuorum Network** plugin on the plugins page. For step-by-step instructions, go to the [Getting Started](GettingStarted.md) doc.
 
 ## Common Issues
 

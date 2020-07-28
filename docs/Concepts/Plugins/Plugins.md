@@ -25,7 +25,7 @@ The network communication and RPC are handled automatically by the [high-level p
 
 ## Installing Plugins
 
-Currently plugins must be manually installed into a directory (defaults to `plugins` directory inside `geth` data directory - default can be overriden by setting `baseDir` in [plugins settings](../Settings.md)).
+Currently plugins must be manually installed into a directory (defaults to `plugins` directory inside `geth` data directory - default can be overriden by setting `baseDir` in [plugins settings](../../HowTo/Configure/Plugins.md)).
  
 ## Using Plugins
 
