@@ -15,7 +15,7 @@ Authority (Raft, IBFT, and Clique) consensus mechanisms.
 Yes. [ConsenSys Quorum](https://consensys.net/quorum/developers) is the complete open source blockchain
 layer with enterprise support available from ConsenSys.
 
-## What can you do with GoQuroum? 
+## What can you do with GoQuorum?
 
 You can use GoQuorum to develop enterprise applications requiring secure, high-peformance transaction
 processing in a private network. 
