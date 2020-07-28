@@ -26,9 +26,8 @@ extra:
     some displayed features may not be available in the stable release.
     You can switch to stable version using the version box at screen bottom.'
   support:
-    # TODO Update links
-    gitter: https://gitter.im/PegaSysEng/GoQuorum
-    email: support@pegasys.tech
+    gitter: 'TODO'
+    email: quorum@consensys.net
     pegasys_website: https://consensys.net/
     issues: https://github.com/jpmorganchase/quorum/issues
   google:
@@ -39,8 +38,8 @@ extra:
 
 # Software Repository
 # TODO Update links and repos
-repo_name: Consensys/GoQuorum
-repo_url: https://github.com/Consensys/GoQuorum
+repo_name: jpmorganchase/quorum
+repo_url: https://github.com/jpmorganchase/quorum
 
 theme:
   name: material

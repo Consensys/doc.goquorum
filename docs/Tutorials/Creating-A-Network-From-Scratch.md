@@ -10,7 +10,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
 
 ## GoQuorum with Raft consensus
 
-1. On each machine build GoQuorum as described in the [Installing](../Installing) section. Ensure that PATH contains geth and bootnode
+1. On each machine build GoQuorum as described in the [Installing](../HowTo/GetStarted/Install.md) section. Ensure that PATH contains geth and bootnode
     ```
     $ git clone https://github.com/jpmorganchase/quorum.git
     $ cd quorum
@@ -43,7 +43,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     !!! note 
         You could generate multiple accounts for a single node, or any number of accounts for additional nodes and pre-allocate them with funds in the genesis.json file (see below)
        
-4. Create a `genesis.json` file see example [here](../genesis). The `alloc` field should be pre-populated with the account you generated at previous step
+4. Create a `genesis.json` file see example [here](../Reference/genesis.md). The `alloc` field should be pre-populated with the account you generated at previous step
     ```
     $ vim genesis.json
     ... alloc holds 'optional' accounts with a pre-funded amounts. In this example we are funding the accounts 679fed8f4f3ea421689136b25073c6da7973418f (generated from the step above) and c5c7b431e1629fb992eb18a79559f667228cd055.
@@ -90,7 +90,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     $ cat new-node-1/enode  
     '70399c3d1654c959a02b73acbdd4770109e39573a27a9b52bd391e5f79b91a42d8f2b9e982959402a97d2cbcb5656d778ba8661ec97909abc72e7bb04392ebd8'
     ```
-7. Create a file called `static-nodes.json` and edit it to match this [example](../permissioned-nodes). Your file should contain a single line for your node with your enode's id and the ports you are going to use for devp2p and raft. Ensure that this file is in your nodes data directory
+7. Create a file called `static-nodes.json` and edit it to match this [example](permissioned-nodes.md). Your file should contain a single line for your node with your enode's id and the ports you are going to use for devp2p and raft. Ensure that this file is in your nodes data directory
     ```
     $ vim static-nodes.json
     .... paste below lines with enode generated in previous step, port 21000;IP 127.0.0.1 and raft port set as 50000
@@ -305,7 +305,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
 
 ## GoQuorum with Istanbul BFT consensus
 
-1. On each machine build GoQuorum as described in the [Installing](../Installing) section. Ensure that PATH contains geth and boot node
+1. On each machine build GoQuorum as described in the [Installing](../HowTo/GetStarted/Install.md) section. Ensure that PATH contains geth and boot node
     ```
     $ git clone https://github.com/jpmorganchase/quorum.git
     $ cd quorum
@@ -913,7 +913,7 @@ Just execute **step 4** instruction from removing a validator node.
 
 ### Tessera
 
-1. Build GoQuorum and install [Tessera](https://github.com/jpmorganchase/tessera/releases) as described in the [Installing](../Installing) section. Ensure that PATH contains geth and bootnode. Be aware of the location of the `tessera.jar` release file
+1. Build GoQuorum and install [Tessera](https://github.com/jpmorganchase/tessera/releases) as described in the [Installing](../HowTo/GetStarted/Install.md) section. Ensure that PATH contains geth and bootnode. Be aware of the location of the `tessera.jar` release file
     ```
     $ git clone https://github.com/jpmorganchase/quorum.git
     $ cd quorum
@@ -1168,4 +1168,4 @@ Just execute **step 4** instruction from removing a validator node.
 
 ## Enabling permissioned configuration
 
-GoQuorum ships with a permissions system based on a custom whitelist. Detailed documentation is available in [Network Permissioning](../../Security/Framework/Quorum%20Network%20Security/Nodes/Permissioning/Network%20Permissioning).
+GoQuorum ships with a permissions system based on a custom whitelist. Detailed documentation is available in [Network Permissioning](../Concepts/Permissioning/PermissionsOverview.md).

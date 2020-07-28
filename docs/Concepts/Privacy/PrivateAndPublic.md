@@ -4,7 +4,7 @@ GoQuorum achieves Transaction Privacy by:
     
  1. Enabling transaction Senders to create a private transaction by marking who is privy to that transaction via the `privateFor` parameter
  2. Replacing the payload of a private transaction with a hash of the encrypted payload, such that the original payload is not visible to participants who are not privy to the transaction
- 3. Storing encrypted private data off-chain in a separate component called the [Privacy Manager](../Privacy-Manager).  The Privacy Manager encrypts private data, distributes the encrypted data to other parties that are privy to the transaction, and returns the decrypted payload to those parties 
+ 3. Storing encrypted private data off-chain in a separate component called the [Privacy Manager](PrivateTransactionManager.md).  The Privacy Manager encrypts private data, distributes the encrypted data to other parties that are privy to the transaction, and returns the decrypted payload to those parties 
 
 GoQuorum introduces the notion of 'Public Transactions' and 'Private Transactions'.  Note that this is a notional concept only and GoQuorum does not introduce new Transaction Types, but rather, the Ethereum Transaction Model has been extended to include an optional `privateFor` parameter (the population of which results in a Transaction being treated as private by GoQuorum) and the Transaction Type has a new `IsPrivate` method to identify such Transactions.
 

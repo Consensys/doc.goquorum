@@ -36,7 +36,7 @@
 
 ## `PluginCentralConfiguration`
 
-[Plugin Integrity Verification](../Overview/#plugin-integrity-verification) uses the GoQuorum Plugin Central Server by default.  
+[Plugin Integrity Verification](../../Concepts/Plugins/Plugins.md#plugin-integrity-verification) uses the GoQuorum Plugin Central Server by default.  
 Modifying this section configures your own local plugin central for Plugin Integrity Verification:
 
 ```json tab="JSON"

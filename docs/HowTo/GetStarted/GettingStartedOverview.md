@@ -9,7 +9,7 @@ local network, to configuring and creating a full network from scratch.
 
 ## GoQuorum Wizard
 
-The easiest way to get a network up and running is by using the [GoQuorum Wizard](../../Wizard/GettingStarted).
+The easiest way to get a network up and running is by using the [GoQuorum Wizard](Wizard/GettingStarted.md).
 This command-line tool creates a local GoQuorum network that can be started and be ready for use in minutes.
 The wizard provides options for configuring the network and generates all the resources to run either
 in containers using `docker-compose`, or locally through the use of bash scripts. 
@@ -21,11 +21,11 @@ npm install -g quorum-wizard
 quorum-wizard
 ```
 
-To explore the features of GoQuorum and deploy a private contract, follow the instructions on [Interacting with the Network](../../Wizard/Interacting). 
+To explore the features of GoQuorum and deploy a private contract, follow the instructions on [Interacting with the Network](Wizard/GettingStarted.md). 
 
 ## GoQuorum Examples sample network
 
-[GoQuorum Examples](../Quorum-Examples) provides the means to quickly create a pre-configured sample GoQuorum
+[GoQuorum Examples](../../Reference/GoQuorum-Projects.md) provides the means to quickly create a pre-configured sample GoQuorum
 network that can be run either in a virtual-machine environment using Vagrant, in containers using docker-compose,
 or locally through the use of bash scripts to automate creation of the network.
 

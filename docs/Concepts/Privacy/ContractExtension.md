@@ -42,7 +42,7 @@ In this example private contract is being extended from Nodes A to Node B.
     
 
 ## Note
-If the network is running with [Enhanced network permissioning](http://docs.goquorum.com/en/latest/Permissioning/Enhanced%20Permissions%20Model/Overview/), then:
+If the network is running with [Enhanced network permissioning](../Permissioning/Enhanced/EnhancedPermissionsOverview.md), then:
 * Initiation of contract extension can only be done by a network admin or org admin account
 
 * Similarly on the receiving node, contract extension can be accepted only by an network admin or org admin account

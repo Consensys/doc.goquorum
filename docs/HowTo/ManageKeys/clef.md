@@ -3,7 +3,7 @@
 ## Installing
 
 `geth` and all included tools (i.e. `clef`, `bootnode`, ...) can be installed to `PATH` by 
-[building GoQuorum from source with `make all`](../../../Getting%20Started/Installing#quorum).
+[building GoQuorum from source with `make all`](../GetStarted/Install.md).
 
 Verify the installation with:
 ```shell
@@ -72,8 +72,8 @@ An example workflow would be:
 ### Extending with account plugins
 
 By default, `clef` manages file-stored `keystore` accounts.  Alternative account management options
-can be enabled through the use of [`account` plugins](../account-Plugins/Overview).  See the 
-[Pluggable Architecture Overview](../../../PluggableArchitecture/Overview) for more info on using plugins with `clef`.
+can be enabled through the use of [`account` plugins](AccountPlugins.md).  See the 
+[Pluggable Architecture Overview](../../Concepts/Plugins/Plugins.md) for more info on using plugins with `clef`.
 
 ```shell
 clef --plugins file:///path/to/plugin-config.json

@@ -11,9 +11,9 @@ the other. In some cases, they may have their own options to achieve similar tas
 
 ## Prerequisites
 
-- [GoQuorum installed](/Getting%20Started/Installing.md)
+- [GoQuorum installed](../GetStarted/Install.md)
 - [Tessera](https://docs.tessera.consensys.net)
-- [A running network](/Getting%20Started/Creating-A-Network-From-Scratch)
+- [A running network](../../Tutorials/Creating-A-Network-From-Scratch.md)
 
 ## Adding GoQuorum nodes
 
@@ -219,4 +219,4 @@ to the new peer.
     
 ## Examples
 
-For a walkthrough of some examples that put into action the above, check out [this guide](/How-To-Guides/add_node_examples)!
+For a walkthrough of some examples that put into action the above, check out [this guide](add_node_examples.md). 

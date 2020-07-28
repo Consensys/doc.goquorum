@@ -24,14 +24,14 @@ an understanding of the following lifecycle (see [Advanced topics for non-Go plu
 Each plugin must implement the [`PluginInitializer`](#plugininitializer) gRPC service interface.
 After the plugin process is successfully started and connection with the GoQuorum client is successfully established,
 GoQuorum client invokes [`Init()`](#proto.PluginInitialization.Request) gRPC method in order to initialize the plugin with configuration data 
-read from the plugin definition's `config` field in [settings](../Settings/#plugindefinition) file.
+read from the plugin definition's `config` field in [settings](Configure/Plugins.md) file.
 
 ## Distribution
 
 ### File format
 
 Plugin distribution file must be a ZIP file. File name format is `<name>-<version>.zip`. 
-`<name>` and `<version>` must be the same as the values defined in the [`PluginDefinition` object](../Settings/#plugindefinition) in the settings file.
+`<name>` and `<version>` must be the same as the values defined in the [`PluginDefinition` object](Configure/Plugins.md) in the settings file.
 
 ### Metadata 
 
@@ -99,4 +99,4 @@ in the [handshake](https://github.com/hashicorp/go-plugin/blob/master/docs/inter
 
 ## Examples
 
-Please visit [Overview](../Overview/#example-helloworld-plugin) page for a built-in HelloWorld plugin example.
+Please visit [Overview](../Concepts/Plugins/Plugins.md#example-helloworld-plugin) page for a built-in HelloWorld plugin example.

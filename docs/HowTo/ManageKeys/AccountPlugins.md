@@ -2,7 +2,7 @@
 
 `account` plugins can be used with GoQuorum or `clef` to provide additional account management.  
 
-We recommended reading the [Pluggable Architecture overview](../../../../PluggableArchitecture/Overview) first to learn how to use plugins.
+We recommended reading the [Plugins overview](../../Concepts/Plugins/Plugins.md) first to learn how to use plugins.
 
 ## Using with GoQuorum & clef
 
@@ -14,7 +14,7 @@ geth --plugins file:///path/to/plugins.json ...
 clef --plugins file:///path/to/plugins.json ...
 ```
 
-Where the [plugins settings file](../../../../PluggableArchitecture/Settings), `plugins.json`, defines an `account` provider: 
+Where the [plugins settings file](../Configure/Plugins.md), `plugins.json`, defines an `account` provider: 
 
 ```json
 {
@@ -27,8 +27,6 @@ Where the [plugins settings file](../../../../PluggableArchitecture/Settings), `
     }
 }
 ```
-
-See [Available plugins](#available-plugins) for a list of available plugins and their corresponding `<NAME>` and `<VERSION>`.
 
 ## RPC API
 
@@ -173,4 +171,4 @@ geth account plugin list \
 ```
 
 ## Developers
-See [For Developers](../../../../PluggableArchitecture/Plugins/account/For-Developers). 
+See [For Developers](../../Reference/Plugins/account/For-Developers.md). 

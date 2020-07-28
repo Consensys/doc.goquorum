@@ -1,7 +1,3 @@
----
-description: Privacy
----
-
 # Developing Smart Contracts
 
 GoQuorum uses standard [Solidity](https://solidity.readthedocs.io/en/develop/) for writing Smart Contracts,

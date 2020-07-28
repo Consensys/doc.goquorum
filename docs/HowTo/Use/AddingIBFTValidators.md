@@ -288,4 +288,4 @@ repository.
 
 ## See also
 
-- [Adding a new node to the network](/How-To-Guides/adding_nodes)
+- [Adding a new node to the network](adding_nodes.md)

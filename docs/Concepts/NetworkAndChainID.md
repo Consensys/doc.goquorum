@@ -14,7 +14,7 @@ The `v` parameter is set to `2*ChainID + 35/36`. For the Ethereum Mainnet, which
 this means that all transactions have a value of either `37` or `38`.
 
 The chain ID set in the genesis configuration file, in the `config` section, and is only used when the
-block number is above the one set at `eip155Block`. See the [quorum-examples genesis files](../genesis)
+block number is above the one set at `eip155Block`. See the [quorum-examples genesis files](../Reference/genesis.md)
 for an example. It can be changed as many times as needed while the chain is below the `eip155Block` number
 and re-rerunning `geth init` - this will not delete or modify any current sync process or saved blocks. 
 

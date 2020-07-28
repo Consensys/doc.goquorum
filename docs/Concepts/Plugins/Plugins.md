@@ -25,11 +25,11 @@ The network communication and RPC are handled automatically by the [high-level p
 
 ## Installing Plugins
 
-Currently plugins must be manually installed into a directory (defaults to `plugins` directory inside `geth` data directory - default can be overriden by setting `baseDir` in [plugins settings](../Settings)).
+Currently plugins must be manually installed into a directory (defaults to `plugins` directory inside `geth` data directory - default can be overriden by setting `baseDir` in [plugins settings](../Settings.md)).
  
 ## Using Plugins
 
-[Plugins settings file](../Settings) contains a JSON that describes what plugins to be used.
+[Plugins settings file](../../HowTo/Configure/Plugins.md) contains a JSON that describes what plugins to be used.
 Then start `geth` with `--plugins` as below:
 
 ```bash
@@ -41,7 +41,7 @@ geth ... \
 
 Plugin Central Server can be used to download and verify plugin integrity using [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy). 
 The architecture enables the same verification process locally via `--plugins.localverify` and `--plugins.publickey` flags or 
-remotely with custom plugin central - reference the [`Settings`](../Settings/) section for more information on how to support custom plugin central. 
+remotely with custom plugin central - reference the [`Settings`](../../HowTo/Configure/Plugins.md) section for more information on how to support custom plugin central. 
 
 If the flag `--plugins.skipverify` is provided at runtime the plugin verification process will be disabled.
 
@@ -52,7 +52,8 @@ If the flag `--plugins.skipverify` is provided at runtime the plugin verificatio
 
 The plugin interface is implemented in Go and Java. In this example, `HelloWorld` plugin exposes a JSON RPC endpoint 
 to return a greeting message in the configured language.
-This plugin is [reloadable](../Internals/#plugin-reloading). It means that the plugin can take changes from its JSON configuration.  
+This plugin is [reloadable](../../Concepts/Plugins/PluginsArchitecture.md#plugin-reloading). It means
+that the plugin can take changes from its JSON configuration.  
 
 ### Build plugin distribution file   
 
