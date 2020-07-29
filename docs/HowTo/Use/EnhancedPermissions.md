@@ -28,7 +28,7 @@ As part of network initialization:
 * A network admin role is created with the `nwAdminRole` name specified in the config file. 
 * All accounts given in the `accounts` array of the config file are assigned the network admin role. These accounts will have the ability to propose and approve new organizations into the network.
 
-Assuming that the network was started with the `permission-config.json` given in the [set up](../setup), and assuming the network was brought up with the `static-nodes.json` file given below:
+Assuming that the network was started with the `permission-config.json` given in the [set up](../Configure/EnhancedPermissions.md), and assuming the network was brought up with the `static-nodes.json` file given below:
 ```json
 [
 	"enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0",
