@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+
+<!-- Content block -->
+{% block content %}
+
+<p style="text-align: center;font-size: 3em">
+  {% if config.theme.logo %}
+    <img src="{{ config.theme.logo | url }}" alt="logo">
+  {% else %}
+    {% set icon = config.theme.icon.logo or "material/library" %}
+    {% include ".icons/" ~ icon ~ ".svg" %}
+  {% endif %}
+</p>
+
+<h1 id="404-page-not-found" style="text-align: center">404</h1>
+<p style="text-align: center"><strong>Sorry but we can't find the page you asked for.</strong></p>
+<p style="text-align: center">
+  Try the <a href="/">homepage</a>, or use the search field on the top of this page.
+</p>
+<p style="text-align: center">
+  If you think we made a mistake and deleted a page that should be here, then please tell us on
+  <a href="{{config.extra.support.channel}}">{{config.site_name}} {{config.extra.support.tool}} channel</a> or create an issue in
+  <a href="{{config.extra.support.issues}}">{{config.site_name}} issues</a>.
+</p>
+
+{% endblock %}
