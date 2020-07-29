@@ -10,6 +10,6 @@ This repository only contains the sources for [GoQuorum documentation website ho
 This repository uses a Git submodule. Please refer to the [common tools wiki] for explanation about
 how to build and contribute to this documentation.
 
-[GoQuorum]: https://github.com/Consensys/goquorum
+[GoQuorum]: https://github.com/jpmorganchase/quorum
 [common tools wiki]: https://github.com/PegaSysEng/doc.common/wiki
 [GoQuorum documentation website hosted by ReadTheDocs]: https://pegasys-docgoquorum.readthedocs-hosted.com/
