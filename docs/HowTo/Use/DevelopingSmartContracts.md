@@ -3,7 +3,7 @@
 GoQuorum uses standard [Solidity](https://solidity.readthedocs.io/en/develop/) for writing Smart Contracts,
 and generally, these can be designed as you would design Smart Contracts for Ethereum.  Smart Contracts can
 either be public (i.e. visible and executable by all participants on a given GoQuorum network) or private to
-one or more network participants.  Note that GoQuorum does not introduce new contract types. 
+one or more network participants.  Note that GoQuorum does not introduce new contract types.
 
 ## Creating public transactions/contracts
 
@@ -33,7 +33,7 @@ Example JSON RPC API call to send a public transaction:
 See the [GoQuorum API](../../Reference/APIs/PrivacyAPI.md) page for details on the `sendTransaction` call, which includes some modifications to the standard Ethereum call.
 
 !!! info
-    See the Contract Design Considerations sections below for important points on creating GoQuorum contracts. 
+    See the Contract Design Considerations sections below for important points on creating GoQuorum contracts.
 
 ## Creating private transactions/contracts
 
@@ -66,7 +66,7 @@ Example JSON RPC API call to send a private transaction:
 See the [GoQuorum API](../../Reference/APIs/PrivacyAPI.md) page for details on the `sendTransaction` call, which includes some modifications to the standard Ethereum call.
 
 !!! info
-    See the Contract Design Considerations sections below for important points on creating GoQuorum contracts. 
+    See the Contract Design Considerations sections below for important points on creating GoQuorum contracts.
 
 ## GoQuorum contract design considerations
 
