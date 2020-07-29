@@ -3,10 +3,9 @@
 GoQuorum uses standard [Solidity](https://solidity.readthedocs.io/en/develop/) for writing Smart Contracts,
 and generally, these can be designed as you would design Smart Contracts for Ethereum.  Smart Contracts can
 either be public (i.e. visible and executable by all participants on a given GoQuorum network) or private to
-one or more network participants.  Note that GoQuorum does not introduce new contract types. Instead,
-similar to [Transactions](../../Privacy/Overview.md), the concept of public and private contracts is notional only.
+one or more network participants.  Note that GoQuorum does not introduce new contract types. 
 
-## Creating Public Transactions/Contracts
+## Creating public transactions/contracts
 
 Sending a standard Ethereum-style transaction to a given network will make it viewable and executable by
 all participants on the network.  As with Ethereum, leave the `to` field empty for a contract-creation transaction.
@@ -31,14 +30,14 @@ Example JSON RPC API call to send a public transaction:
 }
 ```
 
-See the [GoQuorum API](../Reference/APIs/PrivacyAPI.md) page for details on the `sendTransaction` call, which includes some modifications to the standard Ethereum call.
+See the [GoQuorum API](../../Reference/APIs/PrivacyAPI.md) page for details on the `sendTransaction` call, which includes some modifications to the standard Ethereum call.
 
 !!! info
-    See the Contract Design Considerations sections below for important points on creating GoQuorum contracts
+    See the Contract Design Considerations sections below for important points on creating GoQuorum contracts. 
 
-## Creating Private Transactions/Contracts
+## Creating private transactions/contracts
 
-In order to make a transaction/smart contract private and therefore only viewable and executable by a
+To make a transaction/smart contract private and therefore only viewable and executable by a
 subset of the network, send a standard Ethereum Transaction but include the GoQuorum-specific `privateFor`
 parameter.  `privateFor` is used to provide the list of participants for the transaction/contract.
 Each participant is identified by a Privacy Manager public key.
@@ -64,12 +63,12 @@ Example JSON RPC API call to send a private transaction:
 }
 ```
 
-See the [GoQuorum API](../api) page for details on the `sendTransaction` call, which includes some modifications to the standard Ethereum call.
+See the [GoQuorum API](../../Reference/APIs/PrivacyAPI.md) page for details on the `sendTransaction` call, which includes some modifications to the standard Ethereum call.
 
 !!! info
-    See the Contract Design Considerations sections below for important points on creating GoQuorum contracts
+    See the Contract Design Considerations sections below for important points on creating GoQuorum contracts. 
 
-## GoQuorum Contract Design Considerations
+## GoQuorum contract design considerations
 
 1. *Private contracts cannot update public contracts.*  This is because not all participants will be able to execute a private contract, and so if that contract can update a public contract, then each participant will end up with a different state for the public contract.
 2. *Once a contract has been made public, it can't later be made private.*  If you do need to make a public contract private, it would need to be deleted from the blockchain and a new private contract created.
