@@ -1,7 +1,7 @@
 ### GoQuorum FAQ
 
 ??? question "I've run into an issue with GoQuorum, where do I get support?"
-    The [GoQuorum Slack channels](https://clh7rniov2.execute-api.us-east-1.amazonaws.com/Express/) are the best place to query the community and get immediate help.
+    The [GoQuorum Slack channels](https://93ecjxb0d3.execute-api.us-east-1.amazonaws.com/Express/) are the best place to query the community and get immediate help.
  
     The GoQuorum engineering team monitors Slack as well as any issues raised on the GoQuorum GitHub repositories (e.g. [Quorum](https://github.com/jpmorganchase/quorum/), [Tessera](https://github.com/jpmorganchase/tessera), [Quorum-Examples](https://github.com/jpmorganchase/quorum-examples), etc.).  
     
