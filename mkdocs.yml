@@ -53,8 +53,8 @@ theme:
     text: 'Roboto'
     code: 'Roboto Mono'
   language: 'en'
-  logo: 'images/logo.png'
-  favicon: 'images/logo-48x48.png'
+  logo: 'images/logo.svg'
+  favicon: 'images/favicon.svg'
 nav:
   - How to:
       - Get started:
