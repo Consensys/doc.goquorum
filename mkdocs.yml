@@ -10,13 +10,12 @@
 # specific language governing permissions and limitations under the License.
 
 # Project information
-# TODO Update links and repos
 site_name: GoQuorum
 site_url: https://docs.goquorum.consensys.net/
 site_description: A permissioned implementation of Ethereum supporting data privacy
 site_author: GoQuorum community
-# TODO Update
-copyright: GoQuorum and its documentation are licensed under TBD License /
+# TODO Update license if needed
+copyright: GoQuorum is licensed under GPLv3 License /
   This documentation is maintained by <a href="https://consensys.net/">ConsenSys</a>.
 
 #extra project info and template customisation
@@ -27,18 +26,17 @@ extra:
     some displayed features may not be available in the stable release.
     You can switch to stable version using the version box at screen bottom.'
   support:
-    # TODO Update
     company: ConsenSys
-    tool: Discord
+    tool: Slack
     faq: https://consensys.net/quorum/faq
-    channel: DISCORD TO UPDATE
+    channel: https://93ecjxb0d3.execute-api.us-east-1.amazonaws.com/Express/
     email: quorum@consensys.net
     website: https://consensys.net/
+    # TODO Update
     issues: https://github.com/jpmorganchase/quorum/issues
-  # TODO Update
   google:
-    site_verification: 'TODO'
-    tag_manager: 'TODO'
+    site_verification: 'VL2MgMm7Gj-fEOH3SkAuP4eXOY7rIShFFbTI5RktuA0'
+    tag_manager: 'GTM-PMVS8WR'
 
 
 # Software Repository
