@@ -32,15 +32,15 @@
     <div class="md-header-nav__title" data-md-component="header-title">
       {% if config.site_name == page.title %}
       <div class="md-header-nav__ellipsis md-ellipsis">
-        {{ config.site_name }}
+        {% if not config.extra.logo_is_text %}{{ config.site_name }}{% endif %}
       </div>
       {% else %}
       <div class="md-header-nav__ellipsis">
           {% if config.site_name == page.title %}
-            {{ config.site_name }}
+        {% if not config.extra.logo_is_text %}{{ config.site_name }}{% endif %}
           {% else %}
             <span class="md-header-nav__topic md-ellipsis">
-              {{ config.site_name }}
+              {% if not config.extra.logo_is_text %}{{ config.site_name }}{% endif %}
             </span>
             <span class="md-header-nav__topic md-ellipsis">
               {{ page.title }}

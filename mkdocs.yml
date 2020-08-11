@@ -20,6 +20,7 @@ copyright: GoQuorum is licensed under GPLv3 License /
 
 #extra project info and template customisation
 extra:
+  logo_is_text: true
   latest_version_warning:
     url_contains: /latest/
     text: 'You are reading GoQuorum development version documentation and
