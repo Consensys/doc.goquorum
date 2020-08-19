@@ -33,6 +33,7 @@ extra:
     channel: https://93ecjxb0d3.execute-api.us-east-1.amazonaws.com/Express/
     email: quorum@consensys.net
     website: https://consensys.net/
+    lead_gen: https://consensys.net/quorum/contact-us
     # TODO Update
     issues: https://github.com/jpmorganchase/quorum/issues
   google:
