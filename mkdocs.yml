@@ -122,6 +122,7 @@ nav:
           - Decentralized App:
             - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
             - Smart Contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
+      - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
       - Cakeshop: Concepts/Cakeshop.md
   - Reference:
@@ -144,8 +145,9 @@ nav:
             - Users: Reference/Plugins/account/For-Users.md
             - Interface: Reference/Plugins/account/interface.md
           - security:
+            - Developers: Reference/Plugins/security/For-Developers.md
+            - Users: Reference/Plugins/security/For-Users.md
             - Interface: Reference/Plugins/security/interface.md
-            - Implementation: Reference/Plugins/security/implementation.md
       - GoQuorum projects: Reference/GoQuorum-Projects.md
       - Remix plugin:
           - Overview: Reference/RemixPlugin/Overview.md
@@ -258,7 +260,7 @@ plugins:
         PluggableArchitecture/Plugins/helloworld/implementation.md: Reference/Plugins/helloworld/implementation.md
         PluggableArchitecture/Plugins/helloworld/interface.md: Reference/Plugins/helloworld/interface.md
         PluggableArchitecture/Plugins/init_interface.md: Reference/Plugins/init_interface.md
-        PluggableArchitecture/Plugins/security/implementation.md: Reference/Plugins/security/implementation.md
+        PluggableArchitecture/Plugins/security/implementation.md: Reference/Plugins/security/For-Users.md
         PluggableArchitecture/Plugins/security/interface.md: Reference/Plugins/security/interface.md
         RemixPlugin/GettingStarted.md: Reference/RemixPlugin/GettingStarted.md
         RemixPlugin/Overview.md: Reference/RemixPlugin/Overview.md
