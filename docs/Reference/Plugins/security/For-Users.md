@@ -201,7 +201,7 @@ value from `MY_VAR` environment variable.
 
 ## OAuth2 Authz Server Integration
 
-Examples on how to integrate Quorum Security Plugin with an OAuth2 Authorization Server are [here](https://github.com/jpmorganchase/quorum-security-plugin-enterprise/examples).
+Examples on how to integrate Quorum Security Plugin with an OAuth2 Authorization Server are [here](https://github.com/jpmorganchase/quorum-security-plugin-enterprise/tree/master/examples).
 
 ## OAuth2 Scopes
 
