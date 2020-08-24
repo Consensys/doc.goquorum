@@ -139,7 +139,7 @@ nav:
           - Initialization interface: Reference/Plugins/init_interface.md
           - helloworld:
               - Interface: Reference/Plugins/helloworld/interface.md
-              - Implementation: Reference/Plugins/helloworld/For-Users.md
+              - Implementation: Reference/Plugins/helloworld/implementation.md
           - account:
             - Developers: Reference/Plugins/account/For-Developers.md
             - Users: Reference/Plugins/account/For-Users.md
@@ -257,7 +257,7 @@ plugins:
         PluggableArchitecture/Plugins/account/For-Developers.md: Reference/Plugins/account/For-Developers.md
         PluggableArchitecture/Plugins/account/For-Users.md: Reference/Plugins/account/For-Users.md
         PluggableArchitecture/Plugins/account/interface.md: Reference/Plugins/account/interface.md
-        PluggableArchitecture/Plugins/helloworld/implementation.md: Reference/Plugins/helloworld/For-Users.md
+        PluggableArchitecture/Plugins/helloworld/implementation.md: Reference/Plugins/helloworld/implementation.md
         PluggableArchitecture/Plugins/helloworld/interface.md: Reference/Plugins/helloworld/interface.md
         PluggableArchitecture/Plugins/init_interface.md: Reference/Plugins/init_interface.md
         PluggableArchitecture/Plugins/security/implementation.md: Reference/Plugins/security/For-Users.md
