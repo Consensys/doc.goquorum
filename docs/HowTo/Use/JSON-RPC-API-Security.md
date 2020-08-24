@@ -27,7 +27,7 @@ and Quorum Clients access control in an efficient approach.
 
 ## Configuration
 
-Please refer to [plugin implementation](../../Reference/Plugins/security/implementation.md) for more details.
+Please refer to [plugin implementation](../../Reference/Plugins/security/For-Users.md) for more details.
 
 There are also [examples](https://github.com/jpmorganchase/quorum-security-plugin-enterprise/tree/master/examples) on 
 how to configure the plugin to work with different OAuth2 Authorization servers.
