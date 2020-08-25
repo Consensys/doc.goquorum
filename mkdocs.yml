@@ -35,26 +35,27 @@ extra:
     website: https://consensys.net/
     lead_gen: https://consensys.net/quorum/contact-us
     # TODO Update
-    issues: https://github.com/jpmorganchase/quorum/issues
+    issues: https://github.com/ConsenSys/quorum/issues
   google:
     site_verification: 'VL2MgMm7Gj-fEOH3SkAuP4eXOY7rIShFFbTI5RktuA0'
     tag_manager: 'GTM-PMVS8WR'
-
+  inverted_logo: 'images/inverted_logo.svg'
 
 # Software Repository
 # TODO Update links and repos
-repo_name: jpmorganchase/quorum
-repo_url: https://github.com/jpmorganchase/quorum
+repo_name: ConsenSys/quorum
+repo_url: https://github.com/ConsenSys/quorum.git
 
 theme:
   name: material
-  custom_dir: override/custom_theme
+  custom_dir: common/custom_theme
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
   language: 'en'
   logo: 'images/logo.svg'
   favicon: 'images/favicon.svg'
+
 nav:
   - How to:
       - Get started:
