@@ -20,7 +20,7 @@ layer with enterprise support available from ConsenSys.
 You can use GoQuorum to develop enterprise applications requiring secure, high-peformance transaction
 processing in a private network. 
 
-## What do GoQuorum support? 
+## What does GoQuorum support? 
 
 GoQuorum supports common smart contract and Dapp development, deployment, and operational
 use cases, using tools such as [Truffle](http://truffleframework.com/),
