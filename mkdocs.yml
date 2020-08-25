@@ -14,7 +14,6 @@ site_name: GoQuorum
 site_url: https://docs.goquorum.consensys.net/
 site_description: A permissioned implementation of Ethereum supporting data privacy
 site_author: GoQuorum community
-# TODO Update license if needed
 copyright: GoQuorum is licensed under GPLv3 License /
   This documentation is maintained by <a href="https://consensys.net/">ConsenSys</a>.
 
@@ -34,7 +33,6 @@ extra:
     email: quorum@consensys.net
     website: https://consensys.net/
     lead_gen: https://consensys.net/quorum/contact-us
-    # TODO Update
     issues: https://github.com/ConsenSys/quorum/issues
   google:
     site_verification: 'VL2MgMm7Gj-fEOH3SkAuP4eXOY7rIShFFbTI5RktuA0'
@@ -42,7 +40,6 @@ extra:
   inverted_logo: 'images/inverted_logo.svg'
 
 # Software Repository
-# TODO Update links and repos
 repo_name: ConsenSys/quorum
 repo_url: https://github.com/ConsenSys/quorum.git
 
