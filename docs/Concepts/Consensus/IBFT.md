@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Istanbul Byzantine Fault Tolerant (IBFT) consensus is inspired by Castro-Liskov 99 [paper](http://pmg.csail.mit.edu/papers/osdi99.pdf). IBFT inherits from the original PBFT by using a 3-phase consensus, `PRE-PREPARE`, `PREPARE` and `COMMIT`. The system can tolerate at most `F` faulty nodes in a `N` validator network, where `N = 3F + 1`.  
+Istanbul Byzantine Fault Tolerant (IBFT) consensus is inspired by Castro-Liskov 99 [paper](http://pmg.csail.mit.edu/papers/osdi99.pdf). IBFT inherits from the original PBFT by using a 3-phase consensus, `PRE-PREPARE`, `PREPARE` and `COMMIT`. The system can tolerate at most `F` faulty nodes in a `N` validator network, where `N = 3F + 1`.
 
 ## Implementation
 
@@ -115,8 +115,8 @@ Istanbul BFT define the following constants
 - `PREPREPARE_MSG_CODE`: Fixed number `0`. Message code for `PREPREPARE` message.
 - `PREPARE_MSG_CODE`: Fixed number `1`. Message code for `PREPARE` message.
 - `COMMIT_MSG_CODE`: Fixed number `2`. Message code for `COMMIT` message.
-- `ROUND_CHANGE_MSG_CODE`: Fixed number `3`. Message code for `ROUND CHANGE` message 
-- `VALIDATOR_LIMIT`: Number of validators to pass an authorization or de-authorization proposal. 
+- `ROUND_CHANGE_MSG_CODE`: Fixed number `3`. Message code for `ROUND CHANGE` message
+- `VALIDATOR_LIMIT`: Number of validators to pass an authorization or de-authorization proposal.
     - Must be `floor(N / 2) + 1` to enforce majority consensus on a chain.
 
 #### Block Header
@@ -139,7 +139,7 @@ Istanbul BFT does not add new block header fields. Instead, it follows Clique in
     }
     ```
     Thus the `extraData` would be in the form of `EXTRA_VANITY | ISTANBUL_EXTRA` where `|` represents a fixed index to separate vanity and Istanbul extra data (not an actual character for separator).
-    
+
     - First `EXTRA_VANITY` bytes (fixed) may contain arbitrary proposer vanity data.
     - `ISTANBUL_EXTRA` bytes are the RLP encoded Istanbul extra data calculated from `RLP(IstanbulExtra)`, where `RLP()` is RLP encoding function, and `IstanbulExtra` is the Istanbul extra data.
         - `Validators`: The list of validators, which **must** be sorted in ascending order.
