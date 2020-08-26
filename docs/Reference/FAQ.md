@@ -3,14 +3,14 @@
 ??? question "I've run into an issue with GoQuorum, where do I get support?"
     The [GoQuorum Slack channels](https://93ecjxb0d3.execute-api.us-east-1.amazonaws.com/Express/) are the best place to query the community and get immediate help.
  
-    The GoQuorum engineering team monitors Slack as well as any issues raised on the GoQuorum GitHub repositories (e.g. [Quorum](https://github.com/jpmorganchase/quorum/), [Tessera](https://github.com/jpmorganchase/tessera), [Quorum-Examples](https://github.com/jpmorganchase/quorum-examples), etc.).  
+    The GoQuorum engineering team monitors Slack as well as any issues raised on the GoQuorum GitHub repositories (e.g. [Quorum](https://github.com/ConsenSys/quorum/), [Tessera](https://github.com/ConsenSys/tessera), [Quorum-Examples](https://github.com/ConsenSys/quorum-examples), etc.).  
     
 ??? question "How does GoQuorum achieve Transaction Privacy?"
     GoQuorum achieves Transaction Privacy by:
     
      1. Enabling transaction Senders to create a private transaction by marking who is privy to that transaction via the `privateFor` parameter
      2. Replacing the payload of a private transaction with a hash of the encrypted payload, such that the original payload is not visible to participants who are not privy to the transaction
-     3. Storing encrypted private data off-chain in a separate component called the Privacy Manager (provided by [Constellation](https://github.com/jpmorganchase/constellation) or [Tessera](https://github.com/jpmorganchase/tessera)).  The Privacy Manager distributes the encrypted data to other parties that are privy to the transaction and returns the decrypted payload to those parties 
+     3. Storing encrypted private data off-chain in a separate component called the Privacy Manager (provided by [Tessera](https://github.com/ConsenSys/tessera)).  The Privacy Manager distributes the encrypted data to other parties that are privy to the transaction and returns the decrypted payload to those parties 
     
     Please see the [Transaction and Contract Privacy](../Privacy/Overview) section for more info.
     
@@ -25,7 +25,8 @@
     The only restriction is the gas limit on the transaction. Constellation/Tessera does not have a size limit (although maybe it should be possible to set one). If anything, performing large transactions as private transactions will improve performance because most of the network only sees hash digests. In terms of performance of transferring large data blobs between geographically distributed nodes, it would be equivalent performance to PGP encrypting the file and transferring it over http/https..so very fast. If you are doing sequential transactions then of course you will have to wait for those transfers, but there is no special overhead by the payload being large if you are doing separate/concurrent transactions, subject to network bandwidth limits. Constellation/Tessera does everything in parallel.
 
 ??? question "Should I include originating node in private transaction?"
-    No, you should not. In GoQuorum, including originating node's `privateFor` will result in an error. If you would like to create a private contract that is visible to the originating node only please use this format: `privateFor: []` per https://github.com/jpmorganchase/quorum/pull/165
+    No. In GoQuorum, including originating node's `privateFor` results in an error. To create a private
+     contract that is visible to the originating node only, use this format: `privateFor: []`. 
 
 ??? question "Is it possible to run a GoQuorum node without a Transaction Manager?"
     Starting a GoQuorum node with `PRIVATE_CONFIG=ignore` (instead of `PRIVATE_CONFIG=path/to/tm.ipc`) will start the node without a Transaction Manager. The node will not broadcast matching private keys (please ensure that there is no transaction manager running for it) and will be unable to participate in any private transactions.
@@ -85,11 +86,11 @@
 
 ??? question "Why do I see "Error: Number can only safely store up to 53 bits" when using web3js with Raft?"
     As mentioned above, Raft stores the timestamp in nanoseconds, so it is too large to be held as a number in javascript.
-    You need to modify your code to take account of this. An example can be seen [here](https://github.com/jpmorganchase/quorum.js/blob/master/lib/index.js#L35).
+    You need to modify your code to take account of this. An example can be seen [here](https://github.com/ConsenSys/quorum.js/blob/master/lib/index.js#L35).
     A future GoQuorum release will address this issue.
 
 ??? info "Known Raft consensus node misconfiguration"
-    Please see https://github.com/jpmorganchase/quorum/issues/410
+    Please see https://github.com/ConsenSys/quorum/issues/410
 
 ??? question "geth 1.9.7 has the feature of stopping the node once sync is completed using `--exitwhensynced` flag. Will this work with Raft consensus?"
     `--existwhensycned` is not applicable for Raft consensus

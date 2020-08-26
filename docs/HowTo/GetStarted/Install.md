@@ -17,7 +17,7 @@ docker pull quorumengineering/tessera
 1. Clone the repository and build the source:
 
     ```bash
-    git clone https://github.com/jpmorganchase/quorum.git
+    git clone https://github.com/ConsenSys/quorum.git
     cd quorum
     make all
     ```
@@ -34,13 +34,13 @@ docker pull quorumengineering/tessera
 
 ### Tessera
 
-Follow the installation instructions on the [Tessera project page](https://github.com/jpmorganchase/tessera).
+Follow the installation instructions on the [Tessera project page](https://github.com/ConsenSys/tessera).
 
 ## As release binaries
 
 The pre-compiled release binaries for GoQuorum and Tessera can be downloaded from the following links:
 
-* [Quorum](https://github.com/jpmorganchase/quorum/releases)
-* [Tessera](https://github.com/jpmorganchase/tessera/releases)
+* [Quorum](https://github.com/ConsenSys/quorum/releases)
+* [Tessera](https://github.com/ConsenSys/tessera/releases)
 
 Once downloaded, add the binaries to `PATH` to make them easily invokable.

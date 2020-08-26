@@ -1,6 +1,6 @@
 # Cakeshop
 
-[Cakeshop](https://github.com/jpmorganchase/cakeshop) is a set of tools and APIs for working with [Ethereum](https://ethereum.org/),
+[Cakeshop](https://github.com/ConsenSys/cakeshop) is a set of tools and APIs for working with [Ethereum](https://ethereum.org/),
 packaged as a Java web application archive (WAR) that gets you up and running quickly.
 
 Cakeshop can either start up a geth node, which you can then interact with using the Cakeshop front-end,
@@ -23,8 +23,8 @@ exploring the state of the chain, and working with contracts.
 The Cakeshop package includes [Tessera](https://docs.tessera.consensys.net), a [Solidity](https://solidity.readthedocs.org/en/latest/)
 compiler, and all dependencies. 
 
-Cakeshop downloads the latest version of [GoQuorum](https://github.com/jpmorganchase/quorum)
+Cakeshop downloads the latest version of [GoQuorum](https://github.com/ConsenSys/quorum)
 and bootnode from [geth](https://github.com/ethereum/go-ethereum). To use a different version, see
-[here](https://github.com/jpmorganchase/cakeshop/blob/master/docs/configuration.md#custom-quorum-binaries). 
+[here](https://github.com/ConsenSys/cakeshop/blob/master/docs/configuration.md#custom-quorum-binaries). 
 
 [Get started with Cakeshop.](../HowTo/GetStarted/Cakeshop.md)

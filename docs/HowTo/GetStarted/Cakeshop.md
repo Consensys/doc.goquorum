@@ -7,7 +7,7 @@
 
 ## Running via Spring Boot
 
-* Download WAR file (Binary packages are available for macOS, Windows, and Linux platforms on the [releases](https://github.com/jpmorganchase/cakeshop/releases) page.
+* Download WAR file (Binary packages are available for macOS, Windows, and Linux platforms on the [releases](https://github.com/ConsenSys/cakeshop/releases) page.
 )
 * Run `java -jar cakeshop.war`
 * Navigate to [http://localhost:8080/](http://localhost:8080/)
@@ -26,7 +26,7 @@
 
 ## Running modes
 
-There are a few ways in which you can run Cakeshop (see the sections below for details on each, as well as [configuration](https://github.com/jpmorganchase/cakeshop/blob/master/docs/configuration.md#geth) page):
+There are a few ways in which you can run Cakeshop (see the sections below for details on each, as well as [configuration](https://github.com/ConsenSys/cakeshop/blob/master/docs/configuration.md#geth) page):
 
 1\. **Default mode**: _Used when you want Cakeshop to start up an Ethereum node._
 
@@ -42,7 +42,7 @@ There are a few ways in which you can run Cakeshop (see the sections below for d
 
   Cakeshop is currently designed such that a given instance of Cakeshop works directly with a single Ethereum-like node, however you can set up multiple instances of Cakeshop on the same machine (each which could either have been started in 'Default' mode or 'Attach' mode) such that each can talk to a different node.
 
-Note: you can use the Attach mode and/or Multi-Instance setup configuration to run Cakeshop on [GoQuorum](https://github.com/jpmorganchase/quorum) nodes.  See below for connecting Cakeshop to the [7nodes](https://github.com/jpmorganchase/quorum-examples/tree/master/examples/7nodes) network from the quorum-examples repo.
+Note: you can use the Attach mode and/or Multi-Instance setup configuration to run Cakeshop on [GoQuorum](https://github.com/ConsenSys/quorum) nodes.  See below for connecting Cakeshop to the [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network from the quorum-examples repo.
 
 
 #### The below commands assume you have renamed the WAR file to cakeshop.war
@@ -146,12 +146,12 @@ Although Cakeshop currently has a one-to-one mapping with the underlying Ethereu
 8. In browser window 2 open http://localhost:8081/
 
 ### Running Cakeshop on quorum-examples
-You can use the 'Attach' mode to use Cakeshop to explore the quorum-examples [7nodes](https://github.com/jpmorganchase/quorum-examples/tree/master/examples/7nodes) network.
+You can use the 'Attach' mode to use Cakeshop to explore the quorum-examples [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network.
 
 To do so:
 
-1. Follow the instructions in the [7nodes](https://github.com/jpmorganchase/quorum-examples/tree/master/examples/7nodes) example to start the 7nodes network (running vagrant up, init.sh, start.sh etc.)
-2. Follow the instructions listed under the [Attach](#attach-mode) mode as described above, using the `rpcport` of the node you want to explore as found in the 7nodes [start.sh](https://github.com/jpmorganchase/quorum-examples/blob/master/examples/7nodes/start.sh) file. Equally, follow the [Multi-Instance](#multi-instance-setup) setup to attach to more than one of the GoQuorum nodes.
+1. Follow the instructions in the [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) example to start the 7nodes network (running vagrant up, init.sh, start.sh etc.)
+2. Follow the instructions listed under the [Attach](#attach-mode) mode as described above, using the `rpcport` of the node you want to explore as found in the 7nodes [start.sh](https://github.com/ConsenSys/quorum-examples/blob/master/examples/7nodes/start.sh) file. Equally, follow the [Multi-Instance](#multi-instance-setup) setup to attach to more than one of the GoQuorum nodes.
 
 ### Confirming Cakeshop Start Up
 In all cases, Cakeshop will be running once you see the below image, which shows the Cakeshop build and url that you can access that instance of Cakeshop on:

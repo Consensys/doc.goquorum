@@ -1,5 +1,5 @@
 # GoQuorum Wizard
-[GoQuorum Wizard](https://github.com/jpmorganchase/quorum-wizard) is a command line tool that allows
+[GoQuorum Wizard](https://github.com/ConsenSys/quorum-wizard) is a command line tool that allows
 users to set up a development GoQuorum network on their local machine in less than 2 minutes.
 
 ![](../../../images/quorum-wizard.gif)
@@ -70,7 +70,7 @@ Clone this repo to your local machine.
 `quorum-wizard` to run (alternatively, you can run `node build/index.js`)
 
 ## Contributing
-[GoQuorum Wizard](https://github.com/jpmorganchase/quorum-wizard) is built on open source and we invite
+[GoQuorum Wizard](https://github.com/ConsenSys/quorum-wizard) is built on open source and we invite
 you to contribute enhancements. Upon review you will be required to complete a Contributor License Agreement (CLA)
 before we are able to merge. If you have any questions about the contribution process, please feel free to
-send an email to [info@goquorum.com](ToDo - update email).
+send an email to [quorum@consensys.net].
