@@ -108,7 +108,7 @@ to them and then find out about other peers, whom you then connect to.
 ## Adding Private Transaction Managers
 
 In this tutorial, there will be no focus on the advanced features of adding a new Private Transaction Manager (PTM).
-This tutorial uses [Tessera](https://github.com/jpmorganchase/tessera) for any examples.
+This tutorial uses [Tessera](https://github.com/ConsenSys/tessera) for any examples.
 
 Adding a new node to the PTM is relatively straight forward, but there are a lot of extra options that can be used, 
 which is what will be explained here.

@@ -31,13 +31,13 @@ or locally through the use of bash scripts to automate creation of the network.
 
 ## ![k8s-logo](../../images/qubernetes/k8s-logo.png){: style="height:20px;width:20px"} GoQuorum on Kubernetes
 
-Use [qubernetes](https://github.com/jpmorganchase/qubernetes) to run configurable N node GoQuorum networks on Kubernetes.  
+Use [qubernetes](https://github.com/ConsenSys/qubernetes) to run configurable N node GoQuorum networks on Kubernetes.  
    
-You can use [kind](https://github.com/jpmorganchase/qubernetes#quickest-start) or [Minikube](https://github.com/jpmorganchase/qubernetes/blob/master/docs/minikube-docs.md) 
+You can use [kind](https://github.com/ConsenSys/qubernetes#quickest-start) or [Minikube](https://github.com/ConsenSys/qubernetes/blob/master/docs/minikube-docs.md) 
 for local development.  For long running networks, use a cloud service (e.g. Google Kubernetes Engine, Azure KS, AWS EKS) or a self-hosted kubernetes cluster.
 
 Qubernetes supports Raft and Istanbul consensus algorithms, multiple versions, and networks with an arbitrary number of nodes.
-Also includes [examples](https://github.com/jpmorganchase/qubernetes/blob/master/docs/7nodes-on-k8s.md) ready to run on Kubernetes. 
+Also includes [examples](https://github.com/ConsenSys/qubernetes/blob/master/docs/7nodes-on-k8s.md) ready to run on Kubernetes. 
 
 ## Creating a network from scratch
 
@@ -47,6 +47,6 @@ also shows how to enable privacy and add/remove nodes as required.
 
 ## Creating a network deployed in the cloud
 
-[Quorum Cloud](https://github.com/jpmorganchase/quorum-cloud) provides an example of how a GoQuorum network
+[Quorum Cloud](https://github.com/ConsenSys/quorum-cloud) provides an example of how a GoQuorum network
 can be run on a cloud platform.  It uses Terraform to create a 7 node GoQuorum network deployed on AWS
 using AWS ECS Fargate, S3 and an EC2.

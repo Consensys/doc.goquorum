@@ -14,7 +14,7 @@ This enhancement provides a number of benefits, including:
 
 ## How it works?
 
-Each plugin exposes an implementation for a specific [plugin interface](https://github.com/jpmorganchase/quorum-plugin-definitions) (or see `Pluggable Architecture -> Plugins` for more details)
+Each plugin exposes an implementation for a specific [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions) (or see `Pluggable Architecture -> Plugins` for more details)
 Plugins are executed as a separate process and communicate with the main GoQuorum client `geth` process
 over a [gRPC](https://grpc.io/) interface.
 
@@ -59,7 +59,7 @@ that the plugin can take changes from its JSON configuration.
 
 1. Clone plugin repository
    ```bash
-   › git clone --recursive https://github.com/jpmorganchase/quorum-plugin-hello-world.git
+   › git clone --recursive https://github.com/ConsenSys/quorum-plugin-hello-world.git
    › cd quorum-plugin-hello-world
    ```
 1. Here we will use Go implementation of the plugin
@@ -74,7 +74,7 @@ that the plugin can take changes from its JSON configuration.
 
 1. Build Quorum
    ```bash
-   › git clone https://github.com/jpmorganchase/quorum.git
+   › git clone https://github.com/ConsenSys/quorum.git
    › cd quorum
    quorum› make geth
    ```

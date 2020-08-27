@@ -28,7 +28,7 @@ validator.
 ### Example
 
 You can find the resources required to run the examples in the 
-[quorum-examples](https://github.com/jpmorganchase/quorum-examples/tree/master/examples/ibft_validator_set_changes) 
+[quorum-examples](https://github.com/ConsenSys/quorum-examples/tree/master/examples/ibft_validator_set_changes) 
 repository. 
 
 1. The examples use `docker-compose` for the container definitions. If you are following along by copying the commands 
@@ -185,7 +185,7 @@ achieved by calling the `propose` RPC method with the value `false` and replacin
 ### Example
 
 You can find the resources required to run the examples in the 
-[quorum-examples](https://github.com/jpmorganchase/quorum-examples/tree/master/examples/ibft_validator_set_changes) 
+[quorum-examples](https://github.com/ConsenSys/quorum-examples/tree/master/examples/ibft_validator_set_changes) 
 repository. 
 
 1. The examples use `docker-compose` for the container definitions. If you are following along by copying the commands 
