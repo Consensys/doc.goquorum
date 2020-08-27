@@ -5,27 +5,31 @@
 - JSON file which is passed via `--plugins` flag
 - Ethereum TOML configuration file which is passed via `--config` flag
 
-```json tab="JSON"
-{
-  "baseDir": string,
-  "central": object(PluginCentralConfiguration),
-  "providers": {
-     <string>: object(PluginDefinition)
-  }
-}
-```
+=== "JSON"
 
-```toml tab="TOML"
-[Node.Plugins]
-    BaseDir = string
-    
-    [Node.Plugins.Central]
-        .. = .. from object(PluginCentralConfiguration)
-    
-    [[Node.Plugins.Providers]]
-        [[Node.Plugins.Providers.<string>]]
-        .. = .. from object(PluginDefinition)
-```
+    ```json
+    {
+      "baseDir": string,
+      "central": object(PluginCentralConfiguration),
+      "providers": {
+         <string>: object(PluginDefinition)
+      }
+    }
+    ```
+
+=== "TOML"
+
+    ```toml
+    [Node.Plugins]
+        BaseDir = string
+
+        [Node.Plugins.Central]
+            .. = .. from object(PluginCentralConfiguration)
+
+        [[Node.Plugins.Providers]]
+            [[Node.Plugins.Providers.<string>]]
+            .. = .. from object(PluginDefinition)
+    ```
 
 | Fields      | Description                                                                                                                                                                                                        |
 |:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -36,24 +40,28 @@
 
 ## `PluginCentralConfiguration`
 
-[Plugin Integrity Verification](../../Concepts/Plugins/Plugins.md#plugin-integrity-verification) uses the GoQuorum Plugin Central Server by default.  
+[Plugin Integrity Verification](../../Concepts/Plugins/Plugins.md#plugin-integrity-verification) uses the GoQuorum Plugin Central Server by default.
 Modifying this section configures your own local plugin central for Plugin Integrity Verification:
 
-```json tab="JSON"
-{
-  "baseURL": string,
-  "certFingerprint": string,
-  "publicKeyURI": string,
-  "insecureSkipTLSVerify": bool
-}
-```
+=== "JSON"
 
-```toml tab="TOML"
-BaseURL = string
-CertFingerPrint = string
-PublicKeyURI = string
-InsecureSkipTLSVerify = bool
-```
+    ```json
+    {
+      "baseURL": string,
+      "certFingerprint": string,
+      "publicKeyURI": string,
+      "insecureSkipTLSVerify": bool
+    }
+    ```
+
+=== "TOML"
+
+    ```toml
+    BaseURL = string
+    CertFingerPrint = string
+    PublicKeyURI = string
+    InsecureSkipTLSVerify = bool
+    ```
 
 | Fields                  | Description                                                                                                               |
 |:------------------------|:--------------------------------------------------------------------------------------------------------------------------|
@@ -66,19 +74,23 @@ InsecureSkipTLSVerify = bool
 
 Defines the plugin and its configuration
 
-```json tab="JSON"
-{
-  "name": string,
-  "version": string,
-  "config": file/string/array/object
-}
-```
+=== "JSON"
 
-```toml tab="TOML"
-Name = string
-Version = string
-Config = file/string/array/object
-```
+    ```json
+    {
+      "name": string,
+      "version": string,
+      "config": file/string/array/object
+    }
+    ```
+
+=== "TOML"
+
+    ```toml
+    Name = string
+    Version = string
+    Config = file/string/array/object
+    ```
 
 | Fields    | Description                                                                                                                                                                                                                                                                     |
 |:----------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
