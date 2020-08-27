@@ -143,7 +143,7 @@ A promise that resolves to the transaction receipt if the transaction was sent s
 !!!info
     This is not supported by Constellation and requires Quorum v2.2.0+
 
-[Code sample](https://github.com/jpmorganchase/quorum.js/blob/master/7nodes-test/deployContractViaHttp-externalSigningTemplate.js).
+[Code sample](https://github.com/ConsenSys/quorum.js/blob/master/7nodes-test/deployContractViaHttp-externalSigningTemplate.js).
 
 1. `storeRawRequest` to encrypt the transaction `data`
     ```js
@@ -161,4 +161,4 @@ A promise that resolves to the transaction receipt if the transaction was sent s
     ```
  
 ### Other examples
-The [7nodes-test](https://github.com/jpmorganchase/quorum.js/tree/master/7nodes-test) directory in the quorum.js project repo contains examples of quorum.js usage.  These scripts can be tested with a running [7nodes test network](https://github.com/jpmorganchase/quorum-examples/tree/master/examples/7nodes).
+The [7nodes-test](https://github.com/ConsenSys/quorum.js/tree/master/7nodes-test) directory in the quorum.js project repo contains examples of quorum.js usage.  These scripts can be tested with a running [7nodes test network](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes).
