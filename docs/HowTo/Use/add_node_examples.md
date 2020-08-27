@@ -4,7 +4,7 @@ Below are some scenarios for adding a new node into a network, with a mix of dif
 consensus algorithm, permissioning, and discovery.
 
 You can find the resources required to run the examples in the 
-[quorum-examples](https://github.com/jpmorganchase/quorum-examples/tree/master/examples/adding_nodes) repository. 
+[quorum-examples](https://github.com/ConsenSys/quorum-examples/tree/master/examples/adding_nodes) repository. 
 Checkout the repository through `git` or otherwise download all the resources your local machine to follow along.
 
 The examples use `docker-compose` for the container definitions. If you are following along by copying the commands 

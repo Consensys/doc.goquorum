@@ -1,6 +1,6 @@
 # security Plugins: For users
 
-GoQuorum offers an [official plugin implementation](https://github.com/jpmorganchase/quorum-security-plugin-enterprise)
+GoQuorum offers an [official plugin implementation](https://github.com/ConsenSys/quorum-security-plugin-enterprise)
 providing the following enterprise features to `geth` JSON RPC server:
 
 - Providing TLS configuration to HTTP and WS transports
@@ -201,7 +201,7 @@ value from `MY_VAR` environment variable.
 
 ## OAuth2 Authz Server Integration
 
-Examples on how to integrate Quorum Security Plugin with an OAuth2 Authorization Server are [here](https://github.com/jpmorganchase/quorum-security-plugin-enterprise/tree/master/examples).
+Examples on how to integrate Quorum Security Plugin with an OAuth2 Authorization Server are [here](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples).
 
 ## OAuth2 Scopes
 

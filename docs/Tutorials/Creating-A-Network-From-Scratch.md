@@ -12,7 +12,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
 
 1. On each machine build GoQuorum as described in the [Installing](../HowTo/GetStarted/Install.md) section. Ensure that PATH contains geth and bootnode
     ```
-    $ git clone https://github.com/jpmorganchase/quorum.git
+    $ git clone https://github.com/ConsenSys/quorum.git
     $ cd quorum
     $ make all
     $ export PATH=$(pwd)/build/bin:$PATH
@@ -307,16 +307,16 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
 
 1. On each machine build GoQuorum as described in the [Installing](../HowTo/GetStarted/Install.md) section. Ensure that PATH contains geth and boot node
     ```
-    $ git clone https://github.com/jpmorganchase/quorum.git
+    $ git clone https://github.com/ConsenSys/quorum.git
     $ cd quorum
     $ make all
     $ export PATH=$(pwd)/build/bin:$PATH
     ```
-2. Install [istanbul-tools](https://github.com/jpmorganchase/istanbul-tools)
+2. Install [istanbul-tools](https://github.com/ConsenSys/istanbul-tools)
     ```
     $ mkdir fromscratchistanbul
     $ cd fromscratchistanbul
-    $ git clone https://github.com/jpmorganchase/istanbul-tools.git
+    $ git clone https://github.com/ConsenSys/istanbul-tools.git
     $ cd istanbul-tools
     $ make
     ```    
@@ -631,7 +631,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     
     !!! note
         This configuration starts GoQuorum without privacy support as could be evidenced in prefix `PRIVATE_CONFIG=ignore`, please see below sections on [how to enable privacy with privacy transaction managers](#adding-privacy-transaction-manager).
-        Please note that istanbul-tools may be used to generate X number of nodes, more information is available in the [docs](https://github.com/jpmorganchase/istanbul-tools).
+        Please note that istanbul-tools may be used to generate X number of nodes, more information is available in the [docs](https://github.com/ConsenSys/istanbul-tools).
 
     Your node is now operational and you may attach to it with `geth attach node0/data/geth.ipc`. 
     
@@ -913,9 +913,9 @@ Just execute **step 4** instruction from removing a validator node.
 
 ### Tessera
 
-1. Build GoQuorum and install [Tessera](https://github.com/jpmorganchase/tessera/releases) as described in the [Installing](../HowTo/GetStarted/Install.md) section. Ensure that PATH contains geth and bootnode. Be aware of the location of the `tessera.jar` release file
+1. Build GoQuorum and install [Tessera](https://github.com/ConsenSys/tessera/releases) as described in the [Installing](../HowTo/GetStarted/Install.md) section. Ensure that PATH contains geth and bootnode. Be aware of the location of the `tessera.jar` release file
     ```
-    $ git clone https://github.com/jpmorganchase/quorum.git
+    $ git clone https://github.com/ConsenSys/quorum.git
     $ cd quorum
     $ make all
     $ export PATH=$(pwd)/build/bin:$PATH

@@ -25,6 +25,6 @@
 
 ??? question "What is an 'Ethereum-like' ledger/node?"
 
-    An 'Ethereum-like' ledger/node is one that uses the Ethereum JSON RPC API. The Ethereum clients and [GoQuorum](https://github.com/jpmorganchase/quorum) are examples.
+    An 'Ethereum-like' ledger/node is one that uses the Ethereum JSON RPC API. The Ethereum clients and [GoQuorum](https://github.com/ConsenSys/quorum) are examples.
 
     Note that if an Ethereum-forked ledger forks too far away from base Ethereum then there may be some issues with using Cakeshop on top of it.</em>
