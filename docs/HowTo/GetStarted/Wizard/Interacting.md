@@ -24,7 +24,7 @@ The network comes with some simple contracts to demonstrate the privacy features
 
 Send an example private contract from Node 1 to Node 2 (this is denoted by Node 2's public key passed via `privateFor: ["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]` in `private-contract.js`):
 ```sh
-./runscript.sh private-contract.js
+./runscript.sh private_contract.js
 ```
 Make note of the `TransactionHash` printed to the terminal.
 
