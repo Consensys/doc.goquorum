@@ -71,7 +71,7 @@ module.exports = function markdownLinkCheck(markdown, opts, callback) {
             }
         }
 
-        opts.retryOn429 = true
+        // opts.retryOn429 = true
 
         linkCheck(link, opts, function (err, result) {
             if (opts.showProgressBar) {

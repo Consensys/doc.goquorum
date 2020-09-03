@@ -125,9 +125,9 @@ workflows:
   version: 2
   default:
     jobs:
-      - build
-      - vale
-      - markdownlint
+      # - build
+      # - vale
+      # - markdownlint
       - linkchecker
   nightly:
     triggers:
