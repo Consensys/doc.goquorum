@@ -1,1 +1,29 @@
-common/build_tools/package.json
+{
+  "name": "doc.build",
+  "version": "1.0.0",
+  "description": "Doc site build tools",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test:links:check": "find . -name \\*.md ! -path \"./node_modules/*\" -exec ./node_modules/markdown-link-check/markdown-link-check -q -c common/build_tools//linkchecker/link_check_conf.json {} \\; 2>&1 | tee linkchecker.out",
+    "test:links:verify": "! grep -n '[✖]\\|ERROR' ./linkchecker.out",
+    "test:links": "npm run test:links:check && npm run test:links:verify",
+    "test": "npm run test:links"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PegaSysEng/doc.ethsigner.git"
+  },
+  "author": "Consensys/Pegasys",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://pegasys1.atlassian.net/secure/Dashboard.jspa?selectPageId=10000"
+  },
+  "homepage": "https://github.com/PegaSysEng/doc.common",
+  "dependencies": {
+    "markdown-link-check": "file:markdown-link-check",
+    "markdownlint-cli": "^0.23.2"
+  }
+}
