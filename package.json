@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/PegaSysEng/doc.common",
   "dependencies": {
-    "markdown-link-check": "file:markdown-link-check",
+    "markdown-link-check": "3.8.1",
     "markdownlint-cli": "^0.23.2"
   }
 }
