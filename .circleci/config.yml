@@ -76,9 +76,9 @@ jobs:
     executor: node_executor
     steps:
       - prepare
-      - restore_cache:
-          keys:
-            - deps-{{ checksum "./common/build_tools/package.json" }}
+#      - restore_cache:
+#          keys:
+#            - deps-{{ checksum "./common/build_tools/package.json" }}
       - run:
           name: Install dependencies
           command: |
