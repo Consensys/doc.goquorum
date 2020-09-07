@@ -47,41 +47,41 @@ Create a plugin-managed account with a new key:
 | --- | --- |
 | `config` | Plugin-specific json configuration for creating an account.  See the plugin's documentation for more info on the json config required
 
-### Example
+!!! example
 
-=== "quorum"
+    === "quorum"
 
-    ```shell
-    curl -X POST \
-         -H "Content-Type:application/json" \
-         -d '
+        ```shell
+        curl -X POST \
+             -H "Content-Type:application/json" \
+             -d '
+                {
+                    "jsonrpc":"2.0",
+                    "method":"plugin@account_newAccount",
+                    "params":[{<config>}],
+                    "id":1
+                }' \
+             http://localhost:22000
+        ```
+
+    === "js console"
+
+        ```js
+        plugin_account.newAccount({<config>})
+        ```
+
+    === "clef"
+
+        ```shell
+        echo '
             {
                 "jsonrpc":"2.0",
                 "method":"plugin@account_newAccount",
                 "params":[{<config>}],
                 "id":1
-            }' \
-         http://localhost:22000
-    ```
-
-=== "js console"
-
-    ```js
-    plugin_account.newAccount({<config>})
-    ```
-
-=== "clef"
-
-    ```shell
-    echo '
-        {
-            "jsonrpc":"2.0",
-            "method":"plugin@account_newAccount",
-            "params":[{<config>}],
-            "id":1
-        }
-    ' | nc -U /path/to/clef.ipc
-    ```
+            }
+        ' | nc -U /path/to/clef.ipc
+        ```
 
 ### plugin@account_importRawKey
 
@@ -95,34 +95,34 @@ Create a plugin-managed account from an existing private key:
 | `rawkey` | Hex-encoded account private key (without 0x prefix)
 | `config` | Plugin-specific json configuration for creating a new account.  See the plugin's documentation for more info on the json config required
 
-#### Example
+!!! example
 
-=== "quorum"
+    === "quorum"
 
-    ```shell
-    curl -X POST \
-         -H "Content-Type:application/json" \
-         -d '
-             {
-                 "jsonrpc":"2.0",
-                 "method":"plugin@account_importRawKey",
-                 "params":["<rawkey>", {<config>}],
-                 "id":1
-             }' \
-         http://localhost:22000
-    ```
+        ```shell
+        curl -X POST \
+             -H "Content-Type:application/json" \
+             -d '
+                 {
+                     "jsonrpc":"2.0",
+                     "method":"plugin@account_importRawKey",
+                     "params":["<rawkey>", {<config>}],
+                     "id":1
+                 }' \
+             http://localhost:22000
+        ```
 
-=== "js console"
+    === "js console"
 
-    ```js
-    plugin_account.importRawKey(<rawkey>, {<config>})
-    ```
+        ```js
+        plugin_account.importRawKey(<rawkey>, {<config>})
+        ```
 
-=== "clef"
+    === "clef"
 
-    ```text
-    not supported - use CLI instead
-    ```
+        ```text
+        not supported - use CLI instead
+        ```
 
 ## CLI
 

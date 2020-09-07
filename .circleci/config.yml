@@ -78,7 +78,7 @@ jobs:
       - prepare
       - restore_cache:
           keys:
-            - deps-{{ checksum "./common/build_tools/package.json" }}
+            - deps-{{ checksum "./common/build_tools/package-lock.json" }}
       - run:
           name: Install dependencies
           command: |
@@ -91,7 +91,7 @@ jobs:
       - save_cache:
           paths:
             - ./node_modules
-          key: deps-{{ checksum "./common/build_tools/package.json" }}
+          key: deps-{{ checksum "./common/build_tools/package-lock.json" }}
       - store_artifacts:
           path: ./linkchecker.out
           destination: ./linkchecker.out

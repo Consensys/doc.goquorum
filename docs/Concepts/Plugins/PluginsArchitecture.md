@@ -2,15 +2,15 @@
 
 ## Go Plugin
 
-`geth` is written in the Go programming language. [Go 1.8 introduced](https://golang.org/doc/go1.8#plugin) a new plugin architecture 
-which allows for the creation of plugins (via `plugin` build mode) and to use these plugins at runtime (via `plugin` package). 
-In order to utilize this architecture, there are strict requirements in developing plugins. 
+`geth` is written in the Go programming language. [Go 1.8 introduced](https://golang.org/doc/go1.8#plugin) a new plugin architecture
+which allows for the creation of plugins (via `plugin` build mode) and to use these plugins at runtime (via `plugin` package).
+In order to utilize this architecture, there are strict requirements in developing plugins.
 
-By using the network RPC interface, the plugin is independently built and distributed without having to rebuild `geth`. 
+By using the network RPC interface, the plugin is independently built and distributed without having to rebuild `geth`.
 Especially with gRPC interfaces, plugins can be written in different languages (see our [examples](Plugins.md#example-helloworld-plugin)).
 This makes it easy for you to build a prototype feature or even a proprietary plugin for your organization's internal use.
 
-We use HashiCorp's [`go-plugin`](https://github.com/hashicorp/go-plugin) library as it fits our asks 
+We use HashiCorp's [`go-plugin`](https://github.com/hashicorp/go-plugin) library as it fits our asks
 and it has been proven in many plugin-based production systems.
 
 ## Benefits
@@ -74,9 +74,9 @@ node "geth" <<process>> {
 
         rectangle "GRPC Stub Client1" <<grpc client>> as grpcC1
     }
-    
+
     package "Plugin Interface 2" {
-        rectangle "Plugin2" <<template>> as p2    
+        rectangle "Plugin2" <<template>> as p2
         rectangle "Gateway" <<adapter>> as p2gw
 
         interface "grpc service interface2" as grpcI2
@@ -135,7 +135,7 @@ The `PluginManager` service is registered as early as possible in the node lifec
 
 ## Plugin Reloading
 
-The `PluginManager` exposes an API (`admin_reloadPlugin`) that allows reloading a plugin. This attempts to restart the current plugin process.   
+The `PluginManager` exposes an API (`admin_reloadPlugin`) that allows reloading a plugin. This attempts to restart the current plugin process.
 
-Any changes to the plugin config after initial node start will be applied when reloading the plugin.  
+Any changes to the plugin config after initial node start will be applied when reloading the plugin.
 This is demonstrated in the [HelloWorld plugin example](../../Reference/Plugins/helloworld/interface.md).
