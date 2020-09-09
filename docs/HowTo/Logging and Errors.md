@@ -1,4 +1,5 @@
 # Logs & Errors Consolidation
+
 Although there is sufficient logging in Quorum (geth), the error messages are not always straightforward to decipher.
 This is our take on cataloguing of error messages along with possible cause and remediation actions, to serve as a first point of reference before reaching out to the support team.
 
@@ -137,12 +138,13 @@ In the event of database corruption, see instructions below for [Resolution of d
 ## Bad block issue
 
 This can occur if there was an issue when inserting a new block into the chain and is logged in the form:
+
 ```
 ########## BAD BLOCK #########
 Chain config: %v
 Number: %v
 Hash: 0x%x
-<receipt details>
+'transaction receipt'
 Error: %v
 ##############################
 ```
