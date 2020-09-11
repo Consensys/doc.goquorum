@@ -8,7 +8,7 @@ We recommended reading the [Plugins overview](../../Concepts/Plugins/Plugins.md)
 
 | Name | Version |  | Description |
 | --- | --- | --- | --- |
-| <span style="white-space:nowrap">`hashicorp-vault`</span> | `0.0.1` | <span style="white-space:nowrap">[Docs & Source](https://www.github.com/ConsenSys/quorum-account-plugin-hashicorp-vault)</span> | Enables storage of Quorum account keys in a Hashicorp Vault kv v2 engine.  Written in Go.
+| `hashicorp-vault` | `0.0.1` | [Docs & Source](https://www.github.com/ConsenSys/quorum-account-plugin-hashicorp-vault) | Enables storage of Quorum account keys in a Hashicorp Vault kv v2 engine.  Written in Go.
 
 ## Using with GoQuorum & clef
 
