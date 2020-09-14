@@ -4,6 +4,12 @@
 
 We recommended reading the [Plugins overview](../../Concepts/Plugins/Plugins.md) first to learn how to use plugins.
 
+## Available account plugins
+
+| Name | Version |  | Description |
+| --- | --- | --- | --- |
+| `hashicorp-vault` | `0.0.1` | [Docs & Source](https://www.github.com/ConsenSys/quorum-account-plugin-hashicorp-vault) | Enables storage of Quorum account keys in a Hashicorp Vault kv v2 engine.  Written in Go.
+
 ## Using with GoQuorum & clef
 
 === "Quorum"
@@ -196,4 +202,5 @@ geth account plugin list \
 ```
 
 ## Developers
+
 See [For Developers](../../Reference/Plugins/account/For-Developers.md).

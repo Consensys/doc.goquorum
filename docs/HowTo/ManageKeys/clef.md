@@ -1,11 +1,38 @@
-# Using Clef 
+# Using Clef
+
+## What is Clef?
+
+`clef` was introduced in Quorum `v2.6.0`.
+
+Clef for GoQuorum is the standard `go-ethereum` `clef` tool, with additional support for GoQuorum-specific
+features, including:
+
+* Support for private transactions
+* Ability to extend functionality with [`account` plugins](AccountPlugins.md)
+
+`clef` runs as a separate process to `geth` and provides an alternative method of managing accounts
+and signing transactions/data.  Instead of `geth` loading and using accounts directly, `geth` delegates
+account management responsibilities to `clef`.
+
+Account management will be deprecated within `geth` in the future and replaced with `clef`.
+
+Using `clef` instead of `geth` for account management has several benefits:
+
+* Users and DApps no longer have a dependency on access to a synchronised local node loaded with accounts.
+
+Transactions and DApp data can instead be signed using `clef`
+
+* Future account-related features will likely only be available in `clef` and not found in `geth`
+(e.g. [EIP-191 and EIP-712 have been implemented in `clef`, but there is no intention of implementing them in `geth`](https://github.com/ethereum/go-ethereum/pull/17789/))
+* User-experience improvements to ease use and improve security.
 
 ## Installing
 
-`geth` and all included tools (i.e. `clef`, `bootnode`, ...) can be installed to `PATH` by 
+`geth` and all included tools (i.e. `clef`, `bootnode`, ...) can be installed to `PATH` by
 [building GoQuorum from source with `make all`](../GetStarted/Install.md).
 
 Verify the installation with:
+
 ```shell
 clef help
 ```
@@ -23,7 +50,7 @@ for an overview and step-by-step guide on initialising and starting `clef`, as w
 1. As a `geth` signer
 
 !!! warning
-    In the long term, the preferred way of using `clef` will be as an external signer.  However, whilst 
+    In the long term, the preferred way of using `clef` will be as an external signer.  However, whilst
     waiting for tooling to support the `clef` API, the `go-ethereum` project have included the option
     to use `clef` as a `geth` signer.  This ensures existing tooling and user flows can remain unchanged.
     The option to use `clef` as a `geth` signer **will be deprecated** in a future release of `go-ethereum`
@@ -39,7 +66,7 @@ An example workflow would be:
 1. Start `clef` and make your accounts available to it
 1. Sign a transaction with the account by using `clef`'s `account_signTransaction` API.  `clef` will return the signed transaction.
 1. Use `eth_sendRawTransaction` or `eth_sendRawPrivateTransaction` to send the signed transaction to a GoQuorum node that does not have your accounts available to it
-1. The GoQuorum node validates the transaction and propagates it through the network for minting.  
+1. The GoQuorum node validates the transaction and propagates it through the network for minting.
 
 #### Example: List accounts
 
@@ -51,7 +78,7 @@ echo '{"id": 1, "jsonrpc": "2.0", "method": "account_list"}' | nc -U /path/to/cl
 
 ```shell
 echo '{"id": 1, "jsonrpc": "2.0", "method": "account_signData", "params": ["data/plain", "0x6038dc01869425004ca0b8370f6c81cf464213b3", "0xaaaaaa"]}' | nc -U /path/to/clef.ipc
-``` 
+```
 
 ### As a geth signer
 
@@ -61,18 +88,18 @@ Using `clef` as a `geth` signer does not require direct interaction through the 
 To use `clef` as a `geth` signer:
 
 1. Start `clef`
-1. Start `geth` with the `--signer /path/to/clef.ipc` CLI flag 
+1. Start `geth` with the `--signer /path/to/clef.ipc` CLI flag
 
 An example workflow would be:
 
 1. Start `clef` and make your accounts available to it
 1. Start `geth` and do not make your accounts available to it
-1. Use `eth_sendTransaction` to sign and submit a transaction for validation, propagation, and minting 
+1. Use `eth_sendTransaction` to sign and submit a transaction for validation, propagation, and minting
 
 ### Extending with account plugins
 
 By default, `clef` manages file-stored `keystore` accounts.  Alternative account management options
-can be enabled through the use of [`account` plugins](AccountPlugins.md).  See the 
+can be enabled through the use of [`account` plugins](AccountPlugins.md).  See the
 [Pluggable Architecture Overview](../../Concepts/Plugins/Plugins.md) for more info on using plugins with `clef`.
 
 ```shell
