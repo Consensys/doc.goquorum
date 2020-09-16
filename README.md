@@ -1,7 +1,7 @@
 <!-- # TODO Update links and repos-->
 # GoQuorum documentation [![Documentation Status](https://readthedocs.com/projects/pegasys-docgoquorum/badge/?version=latest&token=a1f890355e4d92ccefe20aeb7afd368862104746db05c15573295986f7628127)](https://pegasys-docgoquorum.readthedocs-hosted.com/en/latest/?badge=latest)
 
-[GoQuorum] is a Consensys Quorum Go client
+[GoQuorum] is a ConsenSys Quorum Go client
 
 The software sources are hosted in [GoQuorum] repository
 
