@@ -60,4 +60,4 @@ In this example, private contract is being extended from Nodes A to Node B.
 If the network is running with [Enhanced network permissioning](../Permissioning/Enhanced/EnhancedPermissionsOverview.md), then:
 
 - Initiation of contract extension can only be done by a network admin or org admin account
-- Similarly on the receiving node, contract extension can be accepted only by an network admin or org admin account
+- Similarly on the receiving node, contract extension can be accepted only by a network admin or org admin account

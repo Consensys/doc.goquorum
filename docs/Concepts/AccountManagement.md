@@ -10,4 +10,4 @@ of a public key and a private key.  The public key can be shared freely, but **t
 * The Privacy Manager uses the public key as an identifier for the target nodes of a private transaction (i.e. the `privateFor` transaction field)
 
 Key management determines how [GoQuorum](../HowTo/ManageKeys/ManagingKeys.md) and [Tessera](https://docs.tessera.consensys.net)
-stores and uses private keys.  
+store and use private keys.  
