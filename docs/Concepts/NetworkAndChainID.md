@@ -3,7 +3,7 @@
 An Ethereum network is run using a Network ID and a Chain ID.
 
 The network ID is a property of a peer, not of the chain the peer is managing. Network ID is passed in
-via the command line by `--networkid <id>`. It's purpose is to separate peers that are running under a
+via the command line by `--networkid <id>`. Its purpose is to separate peers that are running under a
 different network ID. You cannot sync with anyone who is running a node with a different network ID. 
 However, since it is trivial to change this, it is a less secure version of GoQuorum's `--permissioned` flag,
 and it only used for simple segregation.

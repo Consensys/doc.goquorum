@@ -131,7 +131,7 @@ This can occur if there was an issue during sync. There are a number of potentia
 - Insufficient resources (disk or memory)
 - Some (unknown) issue during resync
 
-The action to be taken will depend on the cause. Note that more recent versions of quorum may already include fixes to prevent some of these issues.
+The action to be taken will depend on the cause. Note that more recent versions of GoQuorum may already include fixes to prevent some of these issues.
 
 In the event of database corruption, see instructions below for [Resolution of database corruption issues](#resolution-of-database-corruption-issues).
 
@@ -157,11 +157,11 @@ The error detail gives more information as to the root cause. Here are a few pos
 - `"unknown ancestor"`: This is usually due to an issue with fast sync. Restarting the node may resolve it.
 - `"blacklisted hash"`: The cause and resolution of this is similar to the `"Found bad hash, rewinding chain"` error.
 
-Note that more recent versions of quorum may already include fixes to prevent some of these issues.
+Note that more recent versions of GoQuorum may already include fixes to prevent some of these issues.
 
 ## Resolution of database corruption issues
 
-Corruption of the database (chain data) can occur due to lack of resources, or after a 'forced' shutdown. In some cases, quorum will recover automatically or require a restart of the failing node.
+Corruption of the database (chain data) can occur due to lack of resources, or after a 'forced' shutdown. In some cases, GoQuorum will recover automatically or require a restart of the failing node.
 
 If the node does not recover then it may require the chaindata to be deleted and resynced.
 
