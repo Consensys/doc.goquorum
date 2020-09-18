@@ -184,7 +184,7 @@ API to remove a node from raft cluster
 
 #### Parameters
 
-* `raftId` : raft id of  the node to be removed from the cluster
+* `raftId` : raft id of the node to be removed from the cluster
 
 #### Returns
 

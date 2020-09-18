@@ -3,7 +3,7 @@ After following the instructions in [Getting Started](GettingStarted.md), you sh
 
 ## Start the Network
 
-If you haven't done so already, go into the network directory and run start.sh (`network/3-nodes-raft-tessera-bash` is the quickstart default, if you changed any settings the folder name will be different). 
+If you haven't done so already, go into the network directory and run start.sh (`network/3-nodes-raft-tessera-bash` is the quickstart default, if you changed any settings the folder name will be different).
 ```sh
 cd network/3-nodes-raft-tessera-bash
 ./start.sh
@@ -12,11 +12,11 @@ cd network/3-nodes-raft-tessera-bash
 Note: Run `./stop.sh` if you want to stop all GoQuorum, Tessera, and Cakeshop instances running on your machine
 
 ## Demonstrating Privacy
-The network comes with some simple contracts to demonstrate the privacy features of GoQuorum.  In this demo we:
+The network comes with some simple contracts to demonstrate the privacy features of GoQuorum. In this demo we:
 
 - Send a private transaction between nodes 1 and 2
 - Show that only nodes 1 and 2 are able to view the initial state of the contract
-- Have Node 1 update the state of the contract and, once the block containing the updated transaction is validated by the network, again verify that only nodes 1 and 2 are able to see the updated state of the contract 
+- Have Node 1 update the state of the contract and, once the block containing the updated transaction is validated by the network, again verify that only nodes 1 and 2 are able to see the updated state of the contract
 
 ## Using Geth from the Command Line
 
@@ -30,9 +30,9 @@ Make note of the `TransactionHash` printed to the terminal.
 
 ### Inspecting the GoQuorum nodes
 
-We can inspect any of the GoQuorum nodes by using `./attach.sh` to open the Geth JavaScript console.  For this demo, we will be inspecting Node 1, Node 2, and Node 3.  
+We can inspect any of the GoQuorum nodes by using `./attach.sh` to open the Geth JavaScript console. For this demo, we will be inspecting Node 1, Node 2, and Node 3.
 
-It is recommended to use separate terminal windows for each node we are inspecting.  In each terminal, ensure you are in your network's directory, then:
+It is recommended to use separate terminal windows for each node we are inspecting. In each terminal, ensure you are in your network's directory, then:
 
 - In terminal 1 run `./attach.sh 1` to attach to node 1
 - In terminal 2 run `./attach.sh 2` to attach to node 2
@@ -42,7 +42,7 @@ To look at the private transaction that was just sent, run the following command
 ```sh
 eth.getTransaction("0xe28912c5694a1b8c4944b2252d5af21724e9f9095daab47bac37b1db0340e0bf")
 ```
-where you should replace this hash with the TransactionHash that was previously printed to the terminal.  This will print something of the form:
+where you should replace this hash with the TransactionHash that was previously printed to the terminal. This will print something of the form:
 ```sh
 {
   blockHash: "0x4d6eb0d0f971b5e0394a49e36ba660c69e62a588323a873bb38610f7b9690b34",
@@ -62,19 +62,19 @@ where you should replace this hash with the TransactionHash that was previously 
 }
 ```
 
-Note the `v` field value of `"0x25"` or `"0x26"` (37 or 38 in decimal) which indicates this transaction has a private payload (input). 
+Note the `v` field value of `"0x25"` or `"0x26"` (37 or 38 in decimal) which indicates this transaction has a private payload (input).
 
 
 #### Checking the state of the contract
-For each of the 3 nodes we'll use the Geth JavaScript console to create a variable called `address` which we will assign to the address of the contract created by Node 1.  The contract address can be found in two ways:  
+For each of the 3 nodes we'll use the Geth JavaScript console to create a variable called `address` which we will assign to the address of the contract created by Node 1. The contract address can be found in two ways:
 
 - In Node 1's log file: `qdata/logs/1.log`
 - By reading the `contractAddress` param after calling `eth.getTransactionReceipt(txHash)` ([Ethereum API documentation](https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethgettransactionreceipt)) where `txHash` is the hash printed to the terminal after sending the transaction.
 
 Once you've identified the contract address, run the following command in each terminal:
 ```
-> var address = "0x1932c48b2bf8102ba33b4a6b545c32236e342f34"; //replace with your contract address 
-``` 
+> var address = "0x1932c48b2bf8102ba33b4a6b545c32236e342f34"; //replace with your contract address
+```
 
 Next we'll use ```eth.contract``` to define a contract class with the simpleStorage ABI definition in each terminal:
 ```
@@ -99,7 +99,7 @@ The function calls are now available on the contract instance and you can call t
 0
 ```
 
-So we can see nodes 1 and 2 are able to read the state of the private contract and its initial value is 42.  If you look in `private-contract.js` you will see that this was the value set when the contract was created.  Node 3 is unable to read the state. 
+So we can see nodes 1 and 2 are able to read the state of the private contract and its initial value is 42. If you look in `private-contract.js` you will see that this was the value set when the contract was created. Node 3 is unable to read the state.
 
 ### Updating the state of the contract
 

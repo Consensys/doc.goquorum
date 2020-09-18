@@ -1,11 +1,11 @@
 # GoQuorum Plugins
 
 The GoQuorum client is a modified `geth` client. One of the unique enhancements
-is the pluggable architecture which allows adding additional features as plugins to the core `geth`, 
+is the pluggable architecture which allows adding additional features as plugins to the core `geth`,
 providing extensibility, flexibility, and isolation of GoQuorum features.
 
 ## Benefits
- 
+
 This enhancement provides a number of benefits, including:
 
 1. Allowing the implementation of certain components of the GoQuorum client to be changed at configuration time.
@@ -19,14 +19,14 @@ Plugins are executed as a separate process and communicate with the main GoQuoru
 over a [gRPC](https://grpc.io/) interface.
 
 The plugin implementation must adhere to certain gRPC services defined in a `.proto` file corresponding to the plugin interface.
-Plugins can be written in different languages as gRPC provides a mechanism to generate stub code from `.proto` files. 
+Plugins can be written in different languages as gRPC provides a mechanism to generate stub code from `.proto` files.
 
 The network communication and RPC are handled automatically by the [high-level plugin library](https://github.com/hashicorp/go-plugin).
 
 ## Installing Plugins
 
 Currently plugins must be manually installed into a directory (defaults to `plugins` directory inside `geth` data directory - default can be overriden by setting `baseDir` in [plugins settings](../../HowTo/Configure/Plugins.md)).
- 
+
 ## Using Plugins
 
 [Plugins settings file](../../HowTo/Configure/Plugins.md) contains a JSON that describes what plugins to be used.
@@ -39,23 +39,23 @@ geth ... \
 
 ## Plugin Integrity Verification
 
-Plugin Central Server can be used to download and verify plugin integrity using [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy). 
-The architecture enables the same verification process locally via `--plugins.localverify` and `--plugins.publickey` flags or 
-remotely with custom plugin central - reference the [`Settings`](../../HowTo/Configure/Plugins.md) section for more information on how to support custom plugin central. 
+Plugin Central Server can be used to download and verify plugin integrity using [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy).
+The architecture enables the same verification process locally via `--plugins.localverify` and `--plugins.publickey` flags or
+remotely with custom plugin central - reference the [`Settings`](../../HowTo/Configure/Plugins.md) section for more information on how to support custom plugin central.
 
 If the flag `--plugins.skipverify` is provided at runtime the plugin verification process will be disabled.
 
 !!! warning
-    Using `--plugins.skipverify`  is not advised for production settings and it should be avoided as it introduces security risks.
+    Using `--plugins.skipverify` is not advised for production settings and it should be avoided as it introduces security risks.
 
 ## Example: `HelloWorld` plugin
 
-The plugin interface is implemented in Go and Java. In this example, `HelloWorld` plugin exposes a JSON RPC endpoint 
+The plugin interface is implemented in Go and Java. In this example, `HelloWorld` plugin exposes a JSON RPC endpoint
 to return a greeting message in the configured language.
 This plugin is [reloadable](../../Concepts/Plugins/PluginsArchitecture.md#plugin-reloading). It means
-that the plugin can take changes from its JSON configuration.  
+that the plugin can take changes from its JSON configuration.
 
-### Build plugin distribution file   
+### Build plugin distribution file
 
 1. Clone plugin repository
    ```bash
@@ -67,7 +67,7 @@ that the plugin can take changes from its JSON configuration.
    quorum-plugin-hello-world› cd go
    quorum-plugin-hello-world/go› make
    ```
-   `quorum-plugin-hello-world-1.0.0.zip` is now created in `build` directory. 
+   `quorum-plugin-hello-world-1.0.0.zip` is now created in `build` directory.
    Noticed that there's a file `hello-world-plugin-config.json` which is the JSON configuration file for the plugin.
 
 ### Start GoQuorum with plugin support

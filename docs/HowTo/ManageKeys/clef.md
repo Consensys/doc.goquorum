@@ -11,7 +11,7 @@ features, including:
 * Ability to extend functionality with [`account` plugins](AccountPlugins.md)
 
 `clef` runs as a separate process to `geth` and provides an alternative method of managing accounts
-and signing transactions/data.  Instead of `geth` loading and using accounts directly, `geth` delegates
+and signing transactions/data. Instead of `geth` loading and using accounts directly, `geth` delegates
 account management responsibilities to `clef`.
 
 Account management will be deprecated within `geth` in the future and replaced with `clef`.
@@ -50,16 +50,16 @@ for an overview and step-by-step guide on initialising and starting `clef`, as w
 1. As a `geth` signer
 
 !!! warning
-    In the long term, the preferred way of using `clef` will be as an external signer.  However, whilst
+    In the long term, the preferred way of using `clef` will be as an external signer. However, whilst
     waiting for tooling to support the `clef` API, the `go-ethereum` project have included the option
-    to use `clef` as a `geth` signer.  This ensures existing tooling and user flows can remain unchanged.
+    to use `clef` as a `geth` signer. This ensures existing tooling and user flows can remain unchanged.
     The option to use `clef` as a `geth` signer **will be deprecated** in a future release of `go-ethereum`
     once the migration of account management from `geth` to `clef` is complete.
 
 ### As an external signer
 
-Using `clef` as an external signer requires interacting with `clef` through its RPC API.  By default
-this is exposed over IPC socket.  The API can also be exposed over HTTP by using the `--rpcaddr` CLI flag.
+Using `clef` as an external signer requires interacting with `clef` through its RPC API. By default
+this is exposed over IPC socket. The API can also be exposed over HTTP by using the `--rpcaddr` CLI flag.
 
 An example workflow would be:
 
@@ -82,7 +82,7 @@ echo '{"id": 1, "jsonrpc": "2.0", "method": "account_signData", "params": ["data
 
 ### As a geth signer
 
-Using `clef` as a `geth` signer does not require direct interaction through the `clef` API.  Instead
+Using `clef` as a `geth` signer does not require direct interaction through the `clef` API. Instead
 `geth` can be used as normal and will automatically delegate to `clef`.
 
 To use `clef` as a `geth` signer:
@@ -98,8 +98,8 @@ An example workflow would be:
 
 ### Extending with account plugins
 
-By default, `clef` manages file-stored `keystore` accounts.  Alternative account management options
-can be enabled through the use of [`account` plugins](AccountPlugins.md).  See the
+By default, `clef` manages file-stored `keystore` accounts. Alternative account management options
+can be enabled through the use of [`account` plugins](AccountPlugins.md). See the
 [Pluggable Architecture Overview](../../Concepts/Plugins/Plugins.md) for more info on using plugins with `clef`.
 
 ```shell

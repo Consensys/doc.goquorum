@@ -14,7 +14,7 @@ Current examples include:
 !!! Info
     Most of the links link out to externally maintained repos. We thank all of the authors. Please contact us for any modifications or questions about the content.
 
-##  Zero Knowledge Work
+## Zero Knowledge Work
 
 ### ZSL Proof of Concept
 
@@ -22,7 +22,7 @@ The proof of concept (POC) implementation of ZSL for GoQuorum enables the issuan
 using ZSL-enabled public smart contracts (z-contracts). We refer to such digital assets as “z-tokens”.
 Z-tokens can be shielded from public view and transacted privately. Proof that a shielded transaction
 has been executed can be presented to a private contract, thereby allowing the private contract to update
-its state in response to shielded transactions that are executed using public z-contracts. 
+its state in response to shielded transactions that are executed using public z-contracts.
 
 This combination of Tessera private contracts with ZSL z-contracts, allows obligations that arise from
 a private contract, to be settled using shielded transfers of z-tokens, while maintaining full privacy and confidentiality.

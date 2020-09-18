@@ -1,8 +1,8 @@
 ---
-description: Overview of GoQuorum Architecture 
+description: Overview of GoQuorum Architecture
 ---
 
-# Architecture 
+# Architecture
 
 ![](../images/Quorum%20Design.png)
 
@@ -18,7 +18,7 @@ GoQuorum includes the following modifications to geth:
  * The block generation logic is modified to replace the `global state root` check with a `global public state root` check.
  * The block validation logic is modified to replace the ‘global state root’ in the block header with the ‘global public state root’
  * The State Patricia trie has been split into two: a public state trie and a private state trie.
- * Block validation logic is modified to handle private transactions. 
+ * Block validation logic is modified to handle private transactions.
  * Transaction creation is modified to allow for transaction data to be replaced by encrypted hashes
-   to preserve private data where required. 
- * The pricing of gas is removed. Gas itself remains. 
+   to preserve private data where required.
+ * The pricing of gas is removed. Gas itself remains.

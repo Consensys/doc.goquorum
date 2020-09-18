@@ -36,7 +36,7 @@ GoQuorum network using Raft consensus), or customizing the options to fit your n
 
 You can also provide these flags when running quorum-wizard:
 
-* `-q`, `--quickstart`  create 3 node raft network with Tessera and cakeshop (no user-input required)
+* `-q`, `--quickstart` create 3 node raft network with Tessera and cakeshop (no user-input required)
 * `-v`, `--verbose`     Turn on additional logs for debugging
 * `--version`           Show version number
 * `-h`, `--help`        Show help

@@ -3,8 +3,8 @@
 
 ## Overview
 
-Ethereum has defined a GraphQL schema as part of 
-[EIP 1767](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1767.md). To support GoQuorum private transaction data, 
+Ethereum has defined a GraphQL schema as part of
+[EIP 1767](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1767.md). To support GoQuorum private transaction data,
 a supplement schema and implementation has been added on top of the default.
 
 #### New Supplement Schema for GoQuorum

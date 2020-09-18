@@ -1,15 +1,15 @@
 # Upgrade to GoQuorum 2.6.0
 
-GoQuorum 2.6.0 upgrades the base `geth` version from 1.8.18 to 1.9.7 
-See [ethereum 1.9.0](https://blog.ethereum.org/2019/07/10/geth-v1-9-0/) for the complete list if new features added as a part of `geth` 1.9.7. 
+GoQuorum 2.6.0 upgrades the base `geth` version from 1.8.18 to 1.9.7
+See [ethereum 1.9.0](https://blog.ethereum.org/2019/07/10/geth-v1-9-0/) for the complete list if new features added as a part of `geth` 1.9.7.
 
-**Note**  `geth` 1.9.7 has several enhancements at the database layer which are part of GoQuorum 2.6.0. Hence, once migrates to 2.6.0, it cannot rollback to older version of Quourm. The recommendation is to keep the back of the data directory before upgrading to 2.6.0 which can be used to revert back to older version if necessary. 
+**Note**  `geth` 1.9.7 has several enhancements at the database layer which are part of GoQuorum 2.6.0. Hence, once migrates to 2.6.0, it cannot rollback to older version of Quourm. The recommendation is to keep the back of the data directory before upgrading to 2.6.0 which can be used to revert back to older version if necessary.
 
 A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are running on lower version of GoQuorum and thus supports node by node upgrade to GoQuorum 2.6.0. The suggested upgrade process is as described below:
 
 * Bring down the node which needs to be upgraded to GoQuorum 2.6.0. Modify the `genesis.json` file to include `istanbulBlock` and `petersburgBlock`. The values for this should be set to an appropriate value in future by when the entire network would have upgraded to GoQuorum 2.6.0. This is important as the gas calculation logic has changed in `geth` 1.9.7. Not setting this value properly can result in `Bad block error`
 
-* GoQuorum 2.6.0 has deprecated genesis attributes `maxCodeSize` and `maxCodeSizeChangeBlock`. To allow tracking of multiple `maxCodeSize` value changes, a new attribute `maxCodeSizeConfig` is added to genesis. If the `maxCodeSize` was changed multiple times, it could possibly result in `Bad block` error for any new node joining the network. The changes in GoQuorum 2.6.0 address this and enable tracking of historical changes of `maxCodeSize` in genesis and thus allow it to be changed multiple times in network life. With this change when `init` is executed in GoQuorum 2.6.0, `geth` will force usage of `maxCodeSizeConfig`. A sample example is shown below. 
+* GoQuorum 2.6.0 has deprecated genesis attributes `maxCodeSize` and `maxCodeSizeChangeBlock`. To allow tracking of multiple `maxCodeSize` value changes, a new attribute `maxCodeSizeConfig` is added to genesis. If the `maxCodeSize` was changed multiple times, it could possibly result in `Bad block` error for any new node joining the network. The changes in GoQuorum 2.6.0 address this and enable tracking of historical changes of `maxCodeSize` in genesis and thus allow it to be changed multiple times in network life. With this change when `init` is executed in GoQuorum 2.6.0, `geth` will force usage of `maxCodeSizeConfig`. A sample example is shown below.
 
 ```javascript
 "config": {

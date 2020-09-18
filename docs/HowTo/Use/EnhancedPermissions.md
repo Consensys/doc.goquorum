@@ -1,4 +1,4 @@
-# Using enhanced permissioning 
+# Using enhanced permissioning
 
 Managing the [enhanced permissioning model](../../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md)
 can be broadly categorized into the following activities:
@@ -7,25 +7,25 @@ can be broadly categorized into the following activities:
 
 Please refer to [set up](../Configure/EnhancedPermissions.md). For an existing network running with an older version of GoQuorum:
 
-* Upgrade GoQuorum to the latest version 
-* Deploy the contracts 
+* Upgrade GoQuorum to the latest version
+* Deploy the contracts
 * Execute the `init` method of `PermissionsUpgradable.sol` from the guardian account
-* Copy the `permission-config.json`  to the data directory of each node  
+* Copy the `permission-config.json` to the data directory of each node
 * Bring `geth` up in `--permissioned` mode.
 
 For a new network using the latest version of GoQuorum:
 
-* Bring up the initial set of nodes 
-* Deploy the contracts 
+* Bring up the initial set of nodes
+* Deploy the contracts
 * Execute the `init` method of `PermissionsUpgradable.sol` from the guardian account
-* Upgrade GoQuorum to the latest version 
-* Copy the `permission-config.json`  to the data directory of each node  
+* Upgrade GoQuorum to the latest version
+* Copy the `permission-config.json` to the data directory of each node
 * Bring `geth` up in `--permissioned` mode.
 
 As part of network initialization:
 
-* A network admin organization is created with the `nwAdminOrg` name specified in `permission-config.json`. All nodes which are part of `static-nodes.json` are assigned to this organization. 
-* A network admin role is created with the `nwAdminRole` name specified in the config file. 
+* A network admin organization is created with the `nwAdminOrg` name specified in `permission-config.json`. All nodes which are part of `static-nodes.json` are assigned to this organization.
+* A network admin role is created with the `nwAdminRole` name specified in the config file.
 * All accounts given in the `accounts` array of the config file are assigned the network admin role. These accounts will have the ability to propose and approve new organizations into the network.
 
 Assuming that the network was started with the `permission-config.json` given in the [set up](../Configure/EnhancedPermissions.md), and assuming the network was brought up with the `static-nodes.json` file given below:
@@ -171,11 +171,11 @@ As can be seen from the above, as a part of approval:
 
 The new node belonging to the organization can now join the network. In case the network is running in `Raft` consensus mode, before the node joins the network, please ensure that:
 
-*  The node has been added as a peer using `raft.addPeer(<<enodeId>>)`
-*  Bring up `geth` for the new node using `--raftjoinexisting` with the peer id as obtained in the above step
- 
+* The node has been added as a peer using `raft.addPeer(<<enodeId>>)`
+* Bring up `geth` for the new node using `--raftjoinexisting` with the peer id as obtained in the above step
+
 ### Organization admin managing the organization level permissions
-Once the organization is approved and the node of the organization has joined the network, the organization admin can then create sub organizations, roles, add additional nodes at organization level, add accounts to the organization and change roles of existing organization level accounts. 
+Once the organization is approved and the node of the organization has joined the network, the organization admin can then create sub organizations, roles, add additional nodes at organization level, add accounts to the organization and change roles of existing organization level accounts.
 
 To add a sub org at `ORG1` level refer to [addSubOrg API](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_addsuborg).
 ```javascript
@@ -232,7 +232,7 @@ The role `SUBADMIN` can now be assigned to an account at sub org `SUB1` for maki
 }
 ```
 
-The account `0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0` is now the admin for sub org `SUB1` and will be able to add roles, accounts and nodes to the sub org. It should be noted that the org admin account at master org level has the admin rights on all the sub organizations below. However the admin account at sub org level has control only in the sub org to which it is linked. 
+The account `0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0` is now the admin for sub org `SUB1` and will be able to add roles, accounts and nodes to the sub org. It should be noted that the org admin account at master org level has the admin rights on all the sub organizations below. However the admin account at sub org level has control only in the sub org to which it is linked.
 ```javascript
 > quorumPermission.addNewRole("ORG1.SUB1", "TRANSACT", 1, false, true,{from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
 "Action completed successfully"
@@ -441,7 +441,7 @@ When the org is suspended no transaction from any of the account linked to the o
 
 
 ### Revoking suspension of an organization
-To revoke the suspension of an org [updateOrgStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_updateorgstatus) can be called with action as 2. This will require majority approval (API [approveOrgStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_approveorgstatus) with action 2). 
+To revoke the suspension of an org [updateOrgStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_updateorgstatus) can be called with action as 2. This will require majority approval (API [approveOrgStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_approveorgstatus) with action 2).
 ```javascript
 > quorumPermission.updateOrgStatus("ORG1", 2, {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d"})
 "Action completed successfully"
@@ -459,7 +459,7 @@ To revoke the suspension of an org [updateOrgStatus](../../Reference/APIs/Permis
 }
 ```
 
-Once the revoke is approved, all accounts in the organization and sub organization will be able to transact as per role level access. 
+Once the revoke is approved, all accounts in the organization and sub organization will be able to transact as per role level access.
 
 ### Assigning admin privileges at organization and network level
 There may be a scenario where one of the accounts at the organization level needs to have network admin level permissions and be able to perform network admin activities. Similarly there can be a need to change the admin account at organization level. Both these activities can be performed by existing network admin accounts only, and will require majority approval from the network admin accounts. The API usage details are as below.

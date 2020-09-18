@@ -7,7 +7,7 @@ The permissions smart contract design follows the Proxy-Implementation-Storage p
 the implementation logic to change without changing the storage or interface layer. A brief description of the smart contracts is below:
 
 * `PermissionsUpgradable.sol`: This contract stores the address of current implementation contract and
-is owned by a guardian (an Ethereum account). Only the guardian is allowed to change the implementation contract address. 
+is owned by a guardian (an Ethereum account). Only the guardian is allowed to change the implementation contract address.
 * `PermissionsInterface.sol`: This is the interface contract and holds the interfaces for permissions
 related actions. It has no business logic and forwards requests to the current implementation contract
 * `PermissionsImplementation.sol`: This contract has the business logic for the permissions actions. It
@@ -23,12 +23,12 @@ status - `PendingApproval`, `Active`, `Suspended`, `Blacklisted` or `Revoked`
 in `PermissionsUpgradable.sol`. It stores the data of a node, its linkage to an organization or sub organization,
 and status of the node. The node can be in any one of the following status - `PendingApproval`, `Approved`, `Deactivated` or `Blacklisted`
 * `RoleManager.sol`: This contract receives requests from a valid implementation contract as defined in `PermissionsUpgradable.sol`.
-It stores data for various roles and the organization to which it is linked. The access at role level can be any one of the following: 
+It stores data for various roles and the organization to which it is linked. The access at role level can be any one of the following:
     - `Readonly` which allows only read operations
     - `Transact` which allows value transfer but no contract deployment access
     - `ContractDeploy` which allows both value transfer and contract deployment access
     - `FullAccess` which allows additional network level accesses in addition to value transfer and contract deployment
-  
+
     If a role is revoked all accounts which are linked to the role lose all access rights
 
 * `VoterManager.sol`: This contract receives requests from a valid implementation contract as defined in `PermissionsUpgradable.sol`.

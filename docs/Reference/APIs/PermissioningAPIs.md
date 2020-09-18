@@ -474,7 +474,7 @@ This api can only be executed by a network admin account and is used for tempora
 
 ### `quorumPermission_approveOrgStatus`
 
-This api can only be executed by a network admin account and is used for approving the org status change proposal.  Once majority approval is received from network admins, the org status is updated.
+This api can only be executed by a network admin account and is used for approving the org status change proposal. Once majority approval is received from network admins, the org status is updated.
 
 #### Parameters
 

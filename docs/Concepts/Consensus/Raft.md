@@ -8,7 +8,7 @@ When the `geth` binary is passed the `--raft` flag, the node will operate in "ra
 
 ## Some implementation basics
 
-!!! note 
+!!! note
     Though we use the etcd implementation of the Raft protocol, we speak of "Raft" more broadly to refer to the Raft protocol, and its use to achieve consensus for Quorum/Ethereum.
 
 Both Raft and Ethereum have their own notion of a "node":
@@ -18,7 +18,7 @@ In Raft, a node in normal operation can be a "leader", "follower" or "learner." 
 ### Leader
 - mints blocks and sends the blocks to the verifier and learner nodes
 - takes part in voting during re-election and can become verifier if it does not win majority of votes
-- the network triggers re-election if the leader node dies. 
+- the network triggers re-election if the leader node dies.
 - can add/remove learner/verifier and promote learner to verifier
 
 ### Verifier
@@ -30,10 +30,10 @@ In Raft, a node in normal operation can be a "leader", "follower" or "learner." 
 
 ### Learner
 - follows the leader
-- applies the blocks minted by the leader 
+- applies the blocks minted by the leader
 - cannot take part in voting during re-election
 - cannot become a verifier on its own
-- it needs to be promoted to be a verifier by a leader or verifier 
+- it needs to be promoted to be a verifier by a leader or verifier
 - it cannot add learner/verifier or promote learner to verifier
 - it cannot remove other learner/verifier but it can remove itself
 
@@ -48,7 +48,7 @@ Ethereum | Raft
 minter   | leader
 verifier | follower
 
-A learner node is passive node that just syncs blocks and can initiate transactions. 
+A learner node is passive node that just syncs blocks and can initiate transactions.
 
 The main reasons we co-locate the leader and minter are (1) convenience, in that Raft ensures there is only one leader at a time, and (2) to avoid a network hop from a node minting blocks to the leader, through which all Raft writes must flow. Our implementation watches Raft leadership changes -- if a node becomes a leader it will start minting, and if a node loses its leadership, it will stop minting.
 
@@ -174,7 +174,7 @@ We communicate blocks over the HTTP transport layer built in to etcd Raft. It's 
 
 GoQuorum listens on port 50400 by default for the raft transport, but this is configurable with the `--raftport` flag.
 
-Default number of peers is set to be 25. Max number of peers is configurable with the `--maxpeers N` where N is expected size of the cluster. 
+Default number of peers is set to be 25. Max number of peers is configurable with the `--maxpeers N` where N is expected size of the cluster.
 
 ## Initial configuration, and enacting membership changes
 
@@ -183,8 +183,8 @@ Currently Raft-based consensus requires that all _initial_ nodes in the cluster 
 To remove a node from the cluster, attach to a JS console and issue `raft.removePeer(raftId)`, where `raftId` is the number of the node you wish to remove. For initial nodes in the cluster, this number is the 1-indexed position of the node's enode ID in the static peers list. Once a node has been removed from the cluster, it is permanent; this raft ID can not ever re-connect to the cluster in the future, and the party must re-join the cluster with a new raft ID.
 
 * To add a verifier node to the cluster, attach to a JS console and issue `raft.addPeer(enodeId)`
-* To add a learner node to the cluster, attach to a JS console and issue `raft.addLearner(enodeId)` 
-* To promote a learner to become verifier in the cluster, attach to a JS console of leader/verifier node and issue `raft.promoteToPeer(raftId)`. 
+* To add a learner node to the cluster, attach to a JS console and issue `raft.addLearner(enodeId)`
+* To promote a learner to become verifier in the cluster, attach to a JS console of leader/verifier node and issue `raft.promoteToPeer(raftId)`.
 
 Note that like the enode IDs listed in the static peers JSON file, this enode ID should include a `raftport` querystring parameter. This call will allocate and return a raft ID that was not already in use. After `addPeer`, start the new geth node with the flag `--raftjoinexisting RAFTID` in addition to `--raft`.
 

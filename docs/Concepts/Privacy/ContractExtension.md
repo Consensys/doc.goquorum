@@ -23,7 +23,7 @@ In this example, private contract is being extended from Nodes A to Node B.
     address of this extension, and node B's PTM public key as the target receiver.
     - **1a** - Node A creates the extension contract with user given inputs and Node B's PTM public key
     - **1b** - the private transaction payload is shared with Tessera of node B.
-    - **1c** - The public state is propagated across all nodes. Nodes A and B  see an emitted log,
+    - **1c** - The public state is propagated across all nodes. Nodes A and B see an emitted log,
         and start watching the contract address that emitted the event for subsequent events that may happen
 
 1. Node A automatically approves the contract extension by virtue of creating the extension contract.

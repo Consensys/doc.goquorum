@@ -8,7 +8,7 @@ We recommended reading the [Plugins overview](../../Concepts/Plugins/Plugins.md)
 
 | Name | Version |  | Description |
 | --- | --- | --- | --- |
-| `hashicorp-vault` | `0.0.1` | [Docs & Source](https://www.github.com/ConsenSys/quorum-account-plugin-hashicorp-vault) | Enables storage of Quorum account keys in a Hashicorp Vault kv v2 engine.  Written in Go.
+| `hashicorp-vault` | `0.0.1` | [Docs & Source](https://www.github.com/ConsenSys/quorum-account-plugin-hashicorp-vault) | Enables storage of Quorum account keys in a Hashicorp Vault kv v2 engine. Written in Go.
 
 ## Using with GoQuorum & clef
 
@@ -51,7 +51,7 @@ Create a plugin-managed account with a new key:
 
 | Parameter | Description |
 | --- | --- |
-| `config` | Plugin-specific json configuration for creating an account.  See the plugin's documentation for more info on the json config required
+| `config` | Plugin-specific json configuration for creating an account. See the plugin's documentation for more info on the json config required
 
 !!! example
 
@@ -94,12 +94,12 @@ Create a plugin-managed account with a new key:
 Create a plugin-managed account from an existing private key:
 
 !!! note
-    Although this API can be used to move plugin-managed accounts between nodes, the plugin may provide a more preferable alternative.  See the plugin's documentation for more info.
+    Although this API can be used to move plugin-managed accounts between nodes, the plugin may provide a more preferable alternative. See the plugin's documentation for more info.
 
 | Parameter | Description |
 | --- | --- |
 | `rawkey` | Hex-encoded account private key (without 0x prefix)
-| `config` | Plugin-specific json configuration for creating a new account.  See the plugin's documentation for more info on the json config required
+| `config` | Plugin-specific json configuration for creating a new account. See the plugin's documentation for more info on the json config required
 
 !!! example
 
@@ -147,7 +147,7 @@ Create a plugin-managed account from an existing key:
 
 | Parameter | Description |
 | --- | --- |
-| <span style="white-space:nowrap">`plugins.account.config`</span> | Plugin-specific configuration for creating an account.  Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required.
+| <span style="white-space:nowrap">`plugins.account.config`</span> | Plugin-specific configuration for creating an account. Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required.
 
 === "json file"
 
@@ -171,7 +171,7 @@ Create a plugin-managed account from an existing private key:
 
 | Parameter | Description |
 | --- | --- |
-| <span style="white-space:nowrap">`plugins.account.config`</span> | Plugin-specific configuration for creating an account.  Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required
+| <span style="white-space:nowrap">`plugins.account.config`</span> | Plugin-specific configuration for creating an account. Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required
 | `rawkey` | Path to file containing hex-encoded account private key (without 0x prefix) (e.g. `/path/to/raw.key`)
 
 === "json file"

@@ -1,13 +1,13 @@
-### Tessera 
-[Tessera](https://docs.tessera.consensys.net) is GoQuorum's Transaction Manager.  GoQuorum privacy features depends on Tessera to Encrypt/Decrypt, and broadcast the orchestrations of a private transaction payload. 
+### Tessera
+[Tessera](https://docs.tessera.consensys.net) is GoQuorum's Transaction Manager. GoQuorum privacy features depends on Tessera to Encrypt/Decrypt, and broadcast the orchestrations of a private transaction payload.
 Tessera uses an enclave to perform the encryption/decryption of private transactions payload. The encryption keys should be stored in high secure environments such a hardware security module (HSM).
 Tessera communication with its dependencies (Enclave, GoQuorum node, Payload Storage Database, Secret Storage Service) must be secured. To ensure the privacy and authentication of the communication between Tessera the network must be configured to Certificate Based Mutual Authentication (MTLS).
 
 ### Encryption Keys
 Encryption keys is the most critical element of the privacy model, if the encryption key is compromised the network loses its privacy. Tessera support integration with Trusted Platform Modules (TPM) and Hardware Security Modules (HSM) to reduce surface attack and provide highly secure environment.
 
-### Security Checklist 
-    
+### Security Checklist
+
 !!! success "Tessera should run in independent network segment in production"
 
 !!! success "Tessera must leverage certificate based mutual authentication with its dependencies"
@@ -16,7 +16,7 @@ Encryption keys is the most critical element of the privacy model, if the encryp
 
 !!! success "Depending on the deployment model Encryption Keys must be backed-up in offline secured locations."
 
-!!! success "Secret storage service  must be in complete isolation of external network."
+!!! success "Secret storage service must be in complete isolation of external network."
 
 !!! success "Tessera connection strings must not be stored in clear text in configuration files. "
 

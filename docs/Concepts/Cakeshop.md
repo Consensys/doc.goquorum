@@ -21,10 +21,10 @@ It provides tools for managing a local blockchain node, setting up clusters,
 exploring the state of the chain, and working with contracts.
 
 The Cakeshop package includes [Tessera](https://docs.tessera.consensys.net), a [Solidity](https://solidity.readthedocs.org/en/latest/)
-compiler, and all dependencies. 
+compiler, and all dependencies.
 
 Cakeshop downloads the latest version of [GoQuorum](https://github.com/ConsenSys/quorum)
 and bootnode from [geth](https://github.com/ethereum/go-ethereum). To use a different version, see
-[here](https://github.com/ConsenSys/cakeshop/blob/master/docs/configuration.md#custom-quorum-binaries). 
+[here](https://github.com/ConsenSys/cakeshop/blob/master/docs/configuration.md#custom-quorum-binaries).
 
 [Get started with Cakeshop.](../HowTo/GetStarted/Cakeshop.md)

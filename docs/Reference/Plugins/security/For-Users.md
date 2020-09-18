@@ -8,7 +8,7 @@ providing the following enterprise features to `geth` JSON RPC server:
 
 ## Configuration
 
-One of the below blocks must be configured: 
+One of the below blocks must be configured:
 
 <pre>
 {
@@ -170,7 +170,7 @@ Below is the default configuration if not specified
 
 ### `EnvironmentAwaredValue`
 
-A regular string which allows value being read from an environment variable 
+A regular string which allows value being read from an environment variable
 by specifying an URI with `env` scheme. For example: `env://MY_VAR` will return
 value from `MY_VAR` environment variable.
 
@@ -206,8 +206,8 @@ Examples on how to integrate Quorum Security Plugin with an OAuth2 Authorization
 ## OAuth2 Scopes
 
 Scope is a mechanism to limit a client's access to protected resources
-in Quorum Client RPC server. A client can request one ore more scopes 
-from a token endpoint of an OAuth2 Provider. The access token issued to 
+in Quorum Client RPC server. A client can request one ore more scopes
+from a token endpoint of an OAuth2 Provider. The access token issued to
 the client will be limited to the scopes granted.
 
 The scope syntax is as follow:
@@ -215,11 +215,11 @@ The scope syntax is as follow:
     scope := "rpc://"rpc-string
 
     rpc-string := service-name delimiter method-name
-   
+
     service-name := string
-   
+
     delimiter := "." or "_"
-   
+
     method-name := string
 ```
 

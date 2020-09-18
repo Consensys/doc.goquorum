@@ -9,7 +9,7 @@ Docker containers exist for GoQuorum and Tessera and can be found at the [`quoru
 ```
 docker pull quorumengineering/quorum
 docker pull quorumengineering/tessera
-```    
+```
 
 ## From source
 ### GoQuorum

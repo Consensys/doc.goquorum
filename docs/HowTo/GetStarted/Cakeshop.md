@@ -34,15 +34,15 @@ There are a few ways in which you can run Cakeshop (see the sections below for d
 
 2\. **'Attach/Unmanaged' mode**: _Used when you want to attach Cakeshop to an already running Ethereum-like node._
 
-  Running Cakeshop in 'Attach' a.k.a 'unmanaged' mode will initialize Cakeshop but not start it nor start any Ethereum node.  Once Cakeshop initialization is complete you can configure it to use the RPC details of your running node . When you then start Cakeshop it will attach to your node.
+  Running Cakeshop in 'Attach' a.k.a 'unmanaged' mode will initialize Cakeshop but not start it nor start any Ethereum node. Once Cakeshop initialization is complete you can configure it to use the RPC details of your running node . When you then start Cakeshop it will attach to your node.
 
-  NOTE: if different parties on the network are using Cakeshop to deploy contracts to the network then they need to ensure they are using the same ContractRegistry address.  See details below for setting up the ContractRegistry address in this case.
+  NOTE: if different parties on the network are using Cakeshop to deploy contracts to the network then they need to ensure they are using the same ContractRegistry address. See details below for setting up the ContractRegistry address in this case.
 
 3\. **Multi-Instance Set Up**: _Used when you want to run Cakeshop on more than one node in your network._
 
   Cakeshop is currently designed such that a given instance of Cakeshop works directly with a single Ethereum-like node, however you can set up multiple instances of Cakeshop on the same machine (each which could either have been started in 'Default' mode or 'Attach' mode) such that each can talk to a different node.
 
-Note: you can use the Attach mode and/or Multi-Instance setup configuration to run Cakeshop on [GoQuorum](https://github.com/ConsenSys/quorum) nodes.  See below for connecting Cakeshop to the [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network from the quorum-examples repo.
+Note: you can use the Attach mode and/or Multi-Instance setup configuration to run Cakeshop on [GoQuorum](https://github.com/ConsenSys/quorum) nodes. See below for connecting Cakeshop to the [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network from the quorum-examples repo.
 
 
 #### The below commands assume you have renamed the WAR file to cakeshop.war
@@ -95,7 +95,7 @@ Although Cakeshop currently has a one-to-one mapping with the underlying Ethereu
 
 > ** Cakeshop ContractRegistry contract**
 
->Cakeshop deploys a ContractRegistry contract upon start up that is used to track those contracts that have been deployed to the chain using Cakeshop or the Cakeshop APIs.  When running a multi-instance setup, you'll want to ensure that each instance of Cakeshop references the same ContractRegistry contract in order that each provides a consistent view within the Contracts Explorer.
+>Cakeshop deploys a ContractRegistry contract upon start up that is used to track those contracts that have been deployed to the chain using Cakeshop or the Cakeshop APIs. When running a multi-instance setup, you'll want to ensure that each instance of Cakeshop references the same ContractRegistry contract in order that each provides a consistent view within the Contracts Explorer.
 
 >There are two cmd flags that can be set to achieve this:
 
@@ -158,6 +158,6 @@ In all cases, Cakeshop will be running once you see the below image, which shows
 
 ![image](https://raw.githubusercontent.com/jpmorganchase/cakeshop-docs/master/images/happylion.png)
 
-### Cakeshop FAQ 
+### Cakeshop FAQ
 
-See the [Cakeshop FAQ](../../Reference/CakeshopFAQ.md) for more information. 
+See the [Cakeshop FAQ](../../Reference/CakeshopFAQ.md) for more information.

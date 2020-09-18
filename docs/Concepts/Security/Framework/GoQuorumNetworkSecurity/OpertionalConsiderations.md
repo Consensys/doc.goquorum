@@ -5,7 +5,7 @@ The following parameters are of interest to be collected and analyzed:
  - Hosts access and events
  - Ethereum accounts on the network
  - Active ledger, transaction manager nodes in the network
- - Public and Private transaction rates per account in the network. 
+ - Public and Private transaction rates per account in the network.
  - Number of public Smart contracts in the network.
  - Network connections to ledger nodes and metadata.
  - Consensus protocol metadata (E.g Block creation rate, and source ...etc)

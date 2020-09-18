@@ -1,26 +1,26 @@
-**GoQuorum Node**, aka GoQuorum Client, is a thick-client whose Private Transaction feature operation depends on a Transaction Manager Client that encrypts and decrypts 
-private transactions payload. Both Quorum client and its dependencies i.e, Transaction Manager, Peers, and Enclave use traditional TCP/UDP transport layer to communicate.  
+**GoQuorum Node**, aka GoQuorum Client, is a thick-client whose Private Transaction feature operation depends on a Transaction Manager Client that encrypts and decrypts
+private transactions payload. Both Quorum client and its dependencies i.e, Transaction Manager, Peers, and Enclave use traditional TCP/UDP transport layer to communicate.
 
-As any asset in a network its security depends on multiple elements  (E.g the security of the Host, Data, and Accounts). In GoQuorum it will be the security of 
+As any asset in a network its security depends on multiple elements  (E.g the security of the Host, Data, and Accounts). In GoQuorum it will be the security of
 the Client and Transaction Manager host/host-runtime, encryption keys, Consensus runtime and Network Access Controls.
 
 ### Host Security
-Any asset in a GoQuorum network (Client Host, Transaction Manager Host, Private Transaction Storage Host, ..etc ) must be hardened following industry best practices. A host IDS should be used to detect any malicious activities on the host. Direct access to the host should not be allowed, instead a jump server should be used and access limited to small number of administrators. 
-Operating systems, software and services will have vulnerabilities. GoQuorum network hosts must implement a robust patch management program.  
+Any asset in a GoQuorum network (Client Host, Transaction Manager Host, Private Transaction Storage Host, ..etc ) must be hardened following industry best practices. A host IDS should be used to detect any malicious activities on the host. Direct access to the host should not be allowed, instead a jump server should be used and access limited to small number of administrators.
+Operating systems, software and services will have vulnerabilities. GoQuorum network hosts must implement a robust patch management program.
 
-### Client Security 
+### Client Security
 GoQuorum client instance exposes a JSON-Remote Procedure Call (RPC) interface through HTTP, Web Socket, or Inter-Process communication techniques. The JSON-RPC interfaces
 allows the remote interaction with the ledger features, and Smart Contracts. The JSON-RPC interface must be secured in order to preserve the integrity of the ledger runtime.
 
 Each client in the network must be uniquely identified. In GoQuorum this is done by using nodes identity. Node identity is represented through a public key/private key, where
-the public key identifies the node in the network. GoQuorum Smart Contract Permissioning models depends on nodes identity to authorize TCP level communication between nodes, as such securing 
+the public key identifies the node in the network. GoQuorum Smart Contract Permissioning models depends on nodes identity to authorize TCP level communication between nodes, as such securing
 the private key of a node is a paramount activity required to prevent unauthorized node from joining the network.
 
- 
+
 ### Users Security
-Blockchain technology uses public key cryptography to protect the integrity of transactions and blocks. The security of a user’s Private keys is dependent on the security operation elements implemented to 
+Blockchain technology uses public key cryptography to protect the integrity of transactions and blocks. The security of a user’s Private keys is dependent on the security operation elements implemented to
 preserve the Private key from compromise. In Ethereum Accounts Private keys are encrypted with user specified seed (password). Users password should never be saved across the ecosystem or stored in ledger host in any form.
- 
+
 ### Security Checklist
 
 #### Host

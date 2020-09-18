@@ -15,7 +15,7 @@ web3.quorum.eth.sendRawPrivateTransaction(signedTx, args);
 | param | type | required | description |
 | :---: | :---: | :---: | --- |
 | `web3` | `Object` | yes | web3 instance |
-| `apis` | `String` | no | comma-separated list of APIs to extend `web3` with.  Default is to add all APIs, i.e. `quorumjs.extend(web3, 'eth, raft, istanbul, quorumPermission')` | 
+| `apis` | `String` | no | comma-separated list of APIs to extend `web3` with. Default is to add all APIs, i.e. `quorumjs.extend(web3, 'eth, raft, istanbul, quorumPermission')` |
 
 ## Methods
 See the [Raft](../Consensus/Raft-RPC-API.md), [Istanbul](../Consensus/IBFT-RPC-API.md), [Privacy](../APIs/PrivacyAPI.md), and [Permissioning](../APIs/PermissioningAPIs.md) API documentation for API details.

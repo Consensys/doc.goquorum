@@ -1,4 +1,4 @@
-# Create a permissioned network 
+# Create a permissioned network
 
 ## 1. Initialize chain
 
@@ -67,7 +67,7 @@ node a spectator. If you have setup a bootnode then be sure to add the `--bootno
 ## Adding New Nodes
 
 Any additions to the `permissioned-nodes.json` file are dynamically picked up by the server when
-subsequent incoming/outgoing requests are made. The node does not need to be restarted in order for the changes to take effect. 
+subsequent incoming/outgoing requests are made. The node does not need to be restarted in order for the changes to take effect.
 
 ## Removing existing nodes
 
