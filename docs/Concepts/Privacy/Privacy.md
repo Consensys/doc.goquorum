@@ -48,7 +48,7 @@ If the virtual machine is in read only mode and the code tries to make a state c
 
 The following transactions are allowed:
 
-```
+```text
 1. S -> A -> B
 2. S -> (A) -> (B)
 3. S -> (A) -> [B -> C]
@@ -56,12 +56,13 @@ The following transactions are allowed:
 
 and the following transaction are unsupported:
 
-```
+```text
 1. (S) -> A
 2. (S) -> (A)
 ```
 
 where:
+
 - `S` = sender
 - `(X)` = private
 - `X` = public

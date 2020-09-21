@@ -1,4 +1,4 @@
-## Frontend
+# Frontend
 
 As any traditional application, dApps Client/Server component has to follow application security best practices.
 Its recommended to use a Secure Software Development Lifecycle (SSDLC) to implement any application.

@@ -2,7 +2,7 @@
 
 ## Getting Started
 1. Run Istanbul geth with `--rpcapi "istanbul"`
-2. `geth attach`
+1. `geth attach`
 
 ## API Reference
 

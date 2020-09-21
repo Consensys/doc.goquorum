@@ -22,17 +22,17 @@ Key Components:
 
 The tool executes the stress test profile selected and then collects the following metrics:
 
- * CPU/Memory usage for both `Quorum` & `tessera`
- * Transaction & Block count
- * Transaction processing speed
- * `Jmeter` test execution statistics
+- CPU/Memory usage for both `Quorum` & `tessera`
+- Transaction & Block count
+- Transaction processing speed
+- `Jmeter` test execution statistics
 
- These metrics could be configured to be stored in an InfluxDB or Prometheus for further analysis. Both databases integrate well with the open source dashboard editor Grafana to allow for easy creation of dashboards to visualise the data being captured from the profiling tool. Sample dashboards below:
+These metrics could be configured to be stored in an InfluxDB or Prometheus for further analysis. Both databases integrate well with the open source dashboard editor Grafana to allow for easy creation of dashboards to visualise the data being captured from the profiling tool. Sample dashboards below:
 
-### Sample Network Dashboard
+## Sample Network Dashboard
 
 ![Quorum Network Dashboard](../images/quorumDashboard.jpeg)
 
-### Sample JMeter Dashboard
+## Sample JMeter Dashboard
 
 ![JMeter Dashboard](../images/jmeterDashboard.jpeg)

@@ -9,7 +9,7 @@ of encrypted private transaction data between recipients of a private transactio
 To enable private transactions, use the `PRIVATE_CONFIG` environment variable when starting a GoQuorum
 node to provide the node with the path to the Privacy Manager's `.ipc` socket, e.g.:
 
-```shell
+```bash
 export PRIVATE_CONFIG=path/to/tm.ipc
 ```
 

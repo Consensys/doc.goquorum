@@ -139,7 +139,7 @@ In the event of database corruption, see instructions below for [Resolution of d
 
 This can occur if there was an issue when inserting a new block into the chain and is logged in the form:
 
-```
+```text
 ########## BAD BLOCK #########
 Chain config: %v
 Number: %v

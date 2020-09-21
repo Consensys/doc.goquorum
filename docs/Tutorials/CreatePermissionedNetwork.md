@@ -45,7 +45,7 @@ other peers in the network. You will first need to generate a bootnode key:
     bootnode -genkey tmp_file.txt  // this will start a bootnode with an enode address and generate a key inside a “tmp_file.txt” file`
     ```
 
-2. To later restart the bootnode using the same key (and hence use the same enode url):
+1. To later restart the bootnode using the same key (and hence use the same enode url):
 
     ``` bash
     bootnode -nodekey tmp_file.txt

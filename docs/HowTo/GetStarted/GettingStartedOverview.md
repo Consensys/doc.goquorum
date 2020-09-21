@@ -11,12 +11,13 @@ local network, to configuring and creating a full network from scratch.
 
 The easiest way to get a network up and running is by using the [GoQuorum Wizard](Wizard/GettingStarted.md).
 This command-line tool creates a local GoQuorum network that can be started and be ready for use in minutes.
+
 The wizard provides options for configuring the network and generates all the resources to run either
 in containers using `docker-compose`, or locally through the use of bash scripts.
 
 The wizard requires [NodeJS](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and runs on Linux/Mac only.
 
-```
+```bash
 npm install -g quorum-wizard
 quorum-wizard
 ```
@@ -29,7 +30,7 @@ To explore the features of GoQuorum and deploy a private contract, follow the in
 network that can be run either in a virtual-machine environment using Vagrant, in containers using docker-compose,
 or locally through the use of bash scripts to automate creation of the network.
 
-## ![k8s-logo](../../images/qubernetes/k8s-logo.png){: style="height:20px;width:20px"} GoQuorum on Kubernetes
+## GoQuorum on Kubernetes ![k8s-logo](../../images/qubernetes/k8s-logo.png){: style="height:20px;width:20px"}
 
 Use [qubernetes](https://github.com/ConsenSys/qubernetes) to run configurable N node GoQuorum networks on Kubernetes.
 

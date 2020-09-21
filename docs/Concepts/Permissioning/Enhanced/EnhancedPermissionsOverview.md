@@ -6,7 +6,7 @@ This allows for significant flexibility to manage nodes, accounts, and account-l
 An overview of the model is as depicted below:
 ![permissions mode](../../../images/PermissionsModel.png)
 
-### Key Definitions
+## Key Definitions
 
 * Network - A set of interconnected nodes representing an enterprise blockchain which contains organizations
 * Organization - A set of roles, Ethereum accounts and nodes having a variety of permissions to interact with the network

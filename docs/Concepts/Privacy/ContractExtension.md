@@ -32,28 +32,27 @@ In this example, private contract is being extended from Nodes A to Node B.
     - **2c & 2d** - Private transaction payload is shared with Tessera node B. Public state is propagated across all nodes
 
 1. Since the state sharing does not execute the transactions that generate the state
-   (in order to keep past history private), there is no proof that can be provided by the proposer
-   that the state is correct. In order to remedy this, the receiver must accept the proposal for the
-   contract as the proof. In this step, the user owning the ethereum public key of node B which was
-   marked as receiving address, approves the contract extension using GoQuorum apis
-     - **3a** - Node B submits the acceptance vote to extension contract
-     - **3c & 3d** - Private transaction payload is shared with Tessera nodes A. Public state is
-     propagated across all nodes
+    (in order to keep past history private), there is no proof that can be provided by the proposer
+    that the state is correct. In order to remedy this, the receiver must accept the proposal for the
+    contract as the proof. In this step, the user owning the ethereum public key of node B which was
+    marked as receiving address, approves the contract extension using GoQuorum apis
+    - **3a** - Node B submits the acceptance vote to extension contract
+    - **3c & 3d** - Private transaction payload is shared with Tessera nodes A. Public state is
+        propagated across all nodes
 
 1. Node A monitors for acceptance of contract extension by Node B. Once accepted
     - **4a & 4b** - Node A fetches the state of the contract and sends it as a "private transaction"
-    to Node B. It then submits the PTM hash of that state to the contract, including the recipient's
-    PTM public key.
+        to Node B. It then submits the PTM hash of that state to the contract, including the recipient's
+        PTM public key.
     - **4c** - Node A submits a transactions to mark completion of state share. This transaction emits
-    a log which will get picked up by the receiver when processing the transaction
+        a log which will get picked up by the receiver when processing the transaction
     - **4d & 4e** - Private transaction payload is shared with Tessera nodes B. Public state is
-    propagated across all nodes
+        propagated across all nodes
 
 1. Node B monitors for state share event
     - **5a** - Upon noticing the state share event as a part of block processing, node B fetches the
-    contract private state data from Tessera of node B
+        contract private state data from Tessera of node B
     - **5b** - Node B applies the fetched state to the contract address and becomes party of the private contract
-
 
 ## Note
 

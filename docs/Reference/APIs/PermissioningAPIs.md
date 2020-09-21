@@ -1,3 +1,7 @@
+---
+description: Permission APIs
+---
+
 # Permission APIs
 
 ## APIs
@@ -20,40 +24,44 @@ None
 * `subOrgList`: list of sub orgs linked to the org
 * `ultimateParent`: Master org under which the org falls
 
-#### Examples
+!!! Examples
 
-=== "JSON RPC"
+    === "JSON-RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_orgList","id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_orgList","id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {
-        fullOrgId: "INITORG",
-        level: 1,
-        orgId: "INITORG",
-        parentOrgId: "",
-        status: 2,
-        subOrgList: null,
-        ultimateParent: "INITORG"
-    }
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {
+            fullOrgId: "INITORG",
+            level: 1,
+            orgId: "INITORG",
+            parentOrgId: "",
+            status: 2,
+            subOrgList: null,
+            ultimateParent: "INITORG"
+        }
+        ```
 
-    ```javascript
-    > quorumPermission.orgList
-    [{
-        fullOrgId: "INITORG",
-        level: 1,
-        orgId: "INITORG",
-        parentOrgId: "",
-        status: 2,
-        subOrgList: null,
-        ultimateParent: "INITORG"
-    }]
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.orgList
+
+        [{
+            fullOrgId: "INITORG",
+            level: 1,
+            orgId: "INITORG",
+            parentOrgId: "",
+            status: 2,
+            subOrgList: null,
+            ultimateParent: "INITORG"
+        }]
+        ```
 
 ### `quorumPermission_acctList`
 
@@ -71,48 +79,52 @@ None
 * `roleId`: role assigned to the account
 * `status`: account status. [refer](#account-status-types) for the complete list of account status.
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_acctList","id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_acctList","id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {
-        acctId: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
-        isOrgAdmin: true,
-        orgId: "INITORG",
-        roleId: "NWADMIN",
-        status: 2
-    }, {
-        acctId: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
-        isOrgAdmin: true,
-        orgId: "INITORG",
-        roleId: "NWADMIN",
-        status: 2
-    }
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {
+            acctId: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+            isOrgAdmin: true,
+            orgId: "INITORG",
+            roleId: "NWADMIN",
+            status: 2
+        }, {
+            acctId: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
+            isOrgAdmin: true,
+            orgId: "INITORG",
+            roleId: "NWADMIN",
+            status: 2
+        }
+        ```
 
-    ```javascript
-    > quorumPermission.acctList
-    [{
-        acctId: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
-        isOrgAdmin: true,
-        orgId: "INITORG",
-        roleId: "NWADMIN",
-        status: 2
-    }, {
-        acctId: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
-        isOrgAdmin: true,
-        orgId: "INITORG",
-        roleId: "NWADMIN",
-        status: 2
-    }]
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.acctList
+
+        [{
+            acctId: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+            isOrgAdmin: true,
+            orgId: "INITORG",
+            roleId: "NWADMIN",
+            status: 2
+        }, {
+            acctId: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
+            isOrgAdmin: true,
+            orgId: "INITORG",
+            roleId: "NWADMIN",
+            status: 2
+        }]
+        ```
 
 ### `quorumPermission_nodeList`
 
@@ -128,56 +140,58 @@ None
 * `status`: status of the node. [refer](#node-status-types) for the complete list of node statuses
 * `url`: complete enode id
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_nodeList","id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_nodeList","id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {
-        orgId: "INITORG",
-        status: 2,
-        url: "enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
-    }, {
-        orgId: "INITORG",
-        status: 2,
-        url: "enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
-    }, {
-        orgId: "INITORG",
-        status: 2,
-        url: "enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
-    }, {
-        orgId: "INITORG",
-        status: 2,
-        url: "enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
-    }
-    ```
+        ```javascript
+        // Response
+        {
+            orgId: "INITORG",
+            status: 2,
+            url: "enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
+        }, {
+            orgId: "INITORG",
+            status: 2,
+            url: "enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
+        }, {
+            orgId: "INITORG",
+            status: 2,
+            url: "enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
+        }, {
+            orgId: "INITORG",
+            status: 2,
+            url: "enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
+        }
+        ```
 
-=== "geth console"
+    === "geth console"
 
-    ```javascript
-    > quorumPermission.nodeList
-    [{
-        orgId: "INITORG",
-        status: 2,
-        url: "enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
-    }, {
-        orgId: "INITORG",
-        status: 2,
-        url: "enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
-    }, {
-        orgId: "INITORG",
-        status: 2,
-        url: "enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
-    }, {
-        orgId: "INITORG",
-        status: 2,
-        url: "enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
-    }]
-    ```
+        ```javascript
+        > quorumPermission.nodeList
+        [{
+            orgId: "INITORG",
+            status: 2,
+            url: "enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
+        }, {
+            orgId: "INITORG",
+            status: 2,
+            url: "enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
+        }, {
+            orgId: "INITORG",
+            status: 2,
+            url: "enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
+        }, {
+            orgId: "INITORG",
+            status: 2,
+            url: "enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
+        }]
+        ```
 
 ### `quorumPermission_roleList`
 
@@ -196,38 +210,40 @@ None
 * `orgId`: org id to which the role is linked
 * `roleId`: unique role id
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_roleList","id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_roleList","id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {
-        access: 3,
-        active: true,
-        isAdmin: true,
-        isVoter: true,
-        orgId: "INITORG",
-        roleId: "NWADMIN"
-    }
-    ```
+        ```javascript
+        // Response
+        {
+            access: 3,
+            active: true,
+            isAdmin: true,
+            isVoter: true,
+            orgId: "INITORG",
+            roleId: "NWADMIN"
+        }
+        ```
 
-=== "geth console"
+    === "geth console"
 
-    ```javascript
-    > quorumPermission.roleList
-    [{
-        access: 3,
-        active: true,
-        isAdmin: true,
-        isVoter: true,
-        orgId: "INITORG",
-        roleId: "NWADMIN"
-    }]
-    ```
+        ```javascript
+        > quorumPermission.roleList
+        [{
+            access: 3,
+            active: true,
+            isAdmin: true,
+            isVoter: true,
+            orgId: "INITORG",
+            roleId: "NWADMIN"
+        }]
+        ```
 
 ### `quorumPermission_getOrgDetails`
 
@@ -245,104 +261,106 @@ This returns the list of accounts, nodes, roles, and sub organizations linked to
 * `subOrgList`: array of sub orgs linked to the org
 * Output: list of all accounts, nodes, roles, and sub orgs
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_getOrgDetails","params":["INITORG"],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_getOrgDetails","params":["INITORG"],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {
-      acctList: [{
-          acctId: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
-          isOrgAdmin: true,
-          orgId: "INITORG",
-          roleId: "NWADMIN",
-          status: 2
-      }, {
-          acctId: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
-          isOrgAdmin: true,
-          orgId: "INITORG",
-          roleId: "NWADMIN",
-          status: 2
-      }],
-      nodeList: [{
-          orgId: "INITORG",
-          status: 2,
-          url: "enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
-      }, {
-          orgId: "INITORG",
-          status: 2,
-          url: "enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
-      }, {
-          orgId: "INITORG",
-          status: 2,
-          url: "enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
-      }, {
-          orgId: "INITORG",
-          status: 2,
-          url: "enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
-      }],
-      roleList: [{
-          access: 3,
-          active: true,
-          isAdmin: true,
-          isVoter: true,
-          orgId: "INITORG",
-          roleId: "NWADMIN"
-      }],
-      subOrgList: null
-    }
-    ```
+        ```javascript
+        // Response
+        {
+          acctList: [{
+              acctId: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+              isOrgAdmin: true,
+              orgId: "INITORG",
+              roleId: "NWADMIN",
+              status: 2
+          }, {
+              acctId: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
+              isOrgAdmin: true,
+              orgId: "INITORG",
+              roleId: "NWADMIN",
+              status: 2
+          }],
+          nodeList: [{
+              orgId: "INITORG",
+              status: 2,
+              url: "enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
+          }, {
+              orgId: "INITORG",
+              status: 2,
+              url: "enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
+          }, {
+              orgId: "INITORG",
+              status: 2,
+              url: "enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
+          }, {
+              orgId: "INITORG",
+              status: 2,
+              url: "enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
+          }],
+          roleList: [{
+              access: 3,
+              active: true,
+              isAdmin: true,
+              isVoter: true,
+              orgId: "INITORG",
+              roleId: "NWADMIN"
+          }],
+          subOrgList: null
+        }
+        ```
 
-=== "geth console"
+    === "geth console"
 
-    ```javascript
-    > quorumPermission_getOrgDetails("INITORG")
-    {
-      acctList: [{
-          acctId: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
-          isOrgAdmin: true,
-          orgId: "INITORG",
-          roleId: "NWADMIN",
-          status: 2
-      }, {
-          acctId: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
-          isOrgAdmin: true,
-          orgId: "INITORG",
-          roleId: "NWADMIN",
-          status: 2
-      }],
-      nodeList: [{
-          orgId: "INITORG",
-          status: 2,
-          url: "enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
-      }, {
-          orgId: "INITORG",
-          status: 2,
-          url: "enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
-      }, {
-          orgId: "INITORG",
-          status: 2,
-          url: "enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
-      }, {
-          orgId: "INITORG",
-          status: 2,
-          url: "enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
-      }],
-      roleList: [{
-          access: 3,
-          active: true,
-          isAdmin: true,
-          isVoter: true,
-          orgId: "INITORG",
-          roleId: "NWADMIN"
-      }],
-      subOrgList: null
-    }
-    ```
+        ```javascript
+        > quorumPermission_getOrgDetails("INITORG")
+        {
+          acctList: [{
+              acctId: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+              isOrgAdmin: true,
+              orgId: "INITORG",
+              roleId: "NWADMIN",
+              status: 2
+          }, {
+              acctId: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
+              isOrgAdmin: true,
+              orgId: "INITORG",
+              roleId: "NWADMIN",
+              status: 2
+          }],
+          nodeList: [{
+              orgId: "INITORG",
+              status: 2,
+              url: "enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
+          }, {
+              orgId: "INITORG",
+              status: 2,
+              url: "enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
+          }, {
+              orgId: "INITORG",
+              status: 2,
+              url: "enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
+          }, {
+              orgId: "INITORG",
+              status: 2,
+              url: "enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
+          }],
+          roleList: [{
+              access: 3,
+              active: true,
+              isAdmin: true,
+              isVoter: true,
+              orgId: "INITORG",
+              roleId: "NWADMIN"
+          }],
+          subOrgList: null
+        }
+        ```
 
 ### `quorumPermission_addOrg`
 
@@ -359,50 +377,52 @@ This api can be executed by a network admin account (`from:` in transactions arg
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addOrg","params":["ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addOrg","params":["ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-=== "geth console"
+    === "geth console"
 
-    ```javascript
-    > quorumPermission.addOrg("ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
-    "Action completed successfully"
-    ```
+        ```javascript
+        > quorumPermission.addOrg("ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
+        "Action completed successfully"
+        ```
 
-If there are any pending items for approval, proposal of any new organization will fail. Also the enode id and accounts can be linked to one organization only.
+    If there are any pending items for approval, proposal of any new organization will fail. Also the enode id and accounts can be linked to one organization only.
 
-=== "geth console"
+    === "geth console"
 
-    ```javascript
-    > quorumPermission.addOrg("ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
-    Error: Pending approvals for the organization. Approve first
-        at web3.js:3143:20
-        at web3.js:6347:15
-        at web3.js:5081:36
-        at <anonymous>:1:1
+        ```javascript
+        > quorumPermission.addOrg("ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
+        Error: Pending approvals for the organization. Approve first
+            at web3.js:3143:20
+            at web3.js:6347:15
+            at web3.js:5081:36
+            at <anonymous>:1:1
 
-    > quorumPermission.addOrg("XYZ", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
-    Error: EnodeId already part of network.
-        at web3.js:3143:20
-        at web3.js:6347:15
-        at web3.js:5081:36
-        at <anonymous>:1:1
-    > quorumPermission.addOrg("XYZ", "enode://de9c2d5937e599930832cecc1df8cc90b50839bdf635c1a4e68e1dab2d001cd4a11c626e155078cc65958a72e2d72c1342a28909775edd99cc39470172cce0ac@127.0.0.1:21004?discport=0", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
-    Error: Account already in use in another organization
-        at web3.js:3143:20
-        at web3.js:6347:15
-        at web3.js:5081:36
-        at <anonymous>:1:1
-    ```
+        > quorumPermission.addOrg("XYZ", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
+        Error: EnodeId already part of network.
+            at web3.js:3143:20
+            at web3.js:6347:15
+            at web3.js:5081:36
+            at <anonymous>:1:1
+        > quorumPermission.addOrg("XYZ", "enode://de9c2d5937e599930832cecc1df8cc90b50839bdf635c1a4e68e1dab2d001cd4a11c626e155078cc65958a72e2d72c1342a28909775edd99cc39470172cce0ac@127.0.0.1:21004?discport=0", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
+        Error: Account already in use in another organization
+            at web3.js:3143:20
+            at web3.js:6347:15
+            at web3.js:5081:36
+            at <anonymous>:1:1
+        ```
 
 ### `quorumPermission_approveOrg`
 
@@ -419,24 +439,27 @@ This api can be executed by a network admin account (`from:` in transactions arg
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrg","params":["ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrg","params":["ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    quorumPermission.approveOrg("ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        quorumPermission.approveOrg("ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
+        "Action completed successfully"
+        ```
 
 ### `quorumPermission_updateOrgStatus`
 
@@ -454,23 +477,26 @@ This api can only be executed by a network admin account and is used for tempora
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateOrgStatus","params":["ABC", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
-    //Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateOrgStatus","params":["ABC", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-=== "geth console"
+        ```javascript
+        //Response
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.updateOrgStatus("ABC", 1, {from:eth.accounts[0]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.updateOrgStatus("ABC", 1, {from:eth.accounts[0]})
+        "Action completed successfully"
+        ```
 
 ### `quorumPermission_approveOrgStatus`
 
@@ -488,24 +514,26 @@ This api can only be executed by a network admin account and is used for approvi
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrgStatus","params":["ABC", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrgStatus","params":["ABC", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+            ```
 
-    //Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        //Response
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-=== "geth console"
+    === "geth console"
 
-    ```javascript
-    quorumPermission.approveOrgStatus("ABC", 1, {from: eth.accounts[0]})
-    "Action completed successfully"
-    ```
+        ```javascript
+        quorumPermission.approveOrgStatus("ABC", 1, {from: eth.accounts[0]})
+        "Action completed successfully"
+        ```
 
 When an organization is in suspended status, no transactions or contract deploy activities are allowed from any nodes linked to the org and sub organizations under it. Similarly no transactions will be allowed from any accounts linked to the organization
 
@@ -524,26 +552,29 @@ This api can be executed by a organization admin account to create a sub organiz
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addSubOrg","params":["ABC", "SUB1","", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addSubOrg","params":["ABC", "SUB1","", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.addSubOrg("ABC", "SUB1", "", {from: eth.accounts[0]})
-    "Action completed successfully"
-    ```
+    === "geth console"
 
-Few examples of adding sub org in nested hierarchy:
+        ```javascript
+        > quorumPermission.addSubOrg("ABC", "SUB1", "", {from: eth.accounts[0]})
+        "Action completed successfully"
+        ```
+
+    Few examples of adding sub org in nested hierarchy:
 
     ```javascript
     > quorumPermission.addSubOrg("ABC.SUB1", "SUB2","",  {from: eth.accounts[0]})
@@ -570,26 +601,29 @@ This api can be executed by an organization admin account to create a new role f
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNewRole","params":["ABC", "TRANSACT",1,false,false, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNewRole","params":["ABC", "TRANSACT",1,false,false, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.addNewRole("ABC", "TRANSACT", 1, false, false,{from: eth.accounts[0]})
-    "Action completed successfully"
-    > quorumPermission.addNewRole("ABC.SUB1.SUB2.SUB3", "TRANSACT", 1, false, false,{from: eth.accounts[0]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.addNewRole("ABC", "TRANSACT", 1, false, false,{from: eth.accounts[0]})
+        "Action completed successfully"
+        > quorumPermission.addNewRole("ABC.SUB1.SUB2.SUB3", "TRANSACT", 1, false, false,{from: eth.accounts[0]})
+        "Action completed successfully"
+        ```
 
 ### `quorumPermission_removeRole`
 
@@ -605,24 +639,27 @@ This api can be executed by an organization admin account to create a new role f
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_removeRole","params":["ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_removeRole","params":["ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.removeRole("ABC.SUB1.SUB2.SUB3", "TRANSACT", {from: eth.accounts[1]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.removeRole("ABC.SUB1.SUB2.SUB3", "TRANSACT", {from: eth.accounts[1]})
+        "Action completed successfully"
+        ```
 
 ### `quorumPermission_addAccountToOrg`
 
@@ -639,24 +676,27 @@ This api can be executed by an organization admin to add an account to an organi
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addAccountToOrg","params":["0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addAccountToOrg","params":["0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.addAccountToOrg("0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {from: eth.accounts[1]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.addAccountToOrg("0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {from: eth.accounts[1]})
+        "Action completed successfully"
+        ```
 
 The account can at best be linked to a single organization or sub organization and cannot belong to multiple organizations or sub organizations
 
@@ -684,24 +724,27 @@ This api can be executed by an organization admin account to assign a role to an
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_changeAccountRole","params":["0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_changeAccountRole","params":["0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.changeAccountRole("0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {from: eth.accounts[1]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.changeAccountRole("0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {from: eth.accounts[1]})
+        "Action completed successfully"
+        ```
 
 ### `quorumPermission_updateAccountStatus`
 
@@ -721,24 +764,27 @@ This api can be executed by an organization admin account to update the account 
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateAccountStatus","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateAccountStatus","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.updateAccountStatus("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", 1, {from: eth.accounts[1]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.updateAccountStatus("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", 1, {from: eth.accounts[1]})
+        "Action completed successfully"
+        ```
 
 Once a account is blacklisted it can only be recovered by network admins.
 Refer to [quorumPermission_recoverBlackListedAccount](#quorumpermission_recoverblacklistedaccount)
@@ -760,23 +806,25 @@ Post majority approval from network admin accounts, the blacklisted account will
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
+    === "JSON RPC"
 
-=== "JSON RPC"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedAccount","params":["ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedAccount","params":["ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```javascript
+        // Response
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-=== "geth console"
+    === "geth console"
 
-    ```javascript
-    > quorumPermission.recoverBlackListedAccount("ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {from: eth.accounts[1]})
-    "Action completed successfully"
-    ```
+        ```javascript
+        > quorumPermission.recoverBlackListedAccount("ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {from: eth.accounts[1]})
+        "Action completed successfully"
+        ```
 
 ### `quorumPermission_approveBlackListedAccountRecovery`
 
@@ -793,24 +841,27 @@ Once majority approvals from network admin accounts is received, the account is 
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.approveBlackListedNodeRecovery("ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {from: eth.accounts[1]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.approveBlackListedNodeRecovery("ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {from: eth.accounts[1]})
+        "Action completed successfully"
+        ```
 
 ### `quorumPermission_assignAdminRole`
 
@@ -828,23 +879,27 @@ org admin account for an organization.
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_assignAdminRole","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", "NWADMIN", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_assignAdminRole","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", "NWADMIN", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-=== "geth console"
+        ```javascript
+        // Response
 
-    ```javascript
-    > quorumPermission.assignAdminRole("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", "NWADMIN", {from: eth.accounts[0]})
-    "Action completed successfully"
-    ```
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
+
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.assignAdminRole("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", "NWADMIN", {from: eth.accounts[0]})
+        "Action completed successfully"
+        ```
 
 ### `quorumPermission_approveAdminRole`
 
@@ -861,24 +916,27 @@ role assignment to an account. The role is approved once majority approval is re
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveAdminRole","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveAdminRole","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.approveAdminRole("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8",  {from: eth.accounts[0]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.approveAdminRole("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8",  {from: eth.accounts[0]})
+        "Action completed successfully"
+        ```
 
 ### `quorumPermission_addNode`
 
@@ -895,24 +953,27 @@ organization. A node cannot be part of multiple organizations.
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNode","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNode","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.addNode("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.addNode("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
+        "Action completed successfully"
+        ```
 
 ### `quorumPermission_updateNodeStatus`
 
@@ -932,24 +993,27 @@ This api can be executed by the organization admin account to update the status 
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateNodeStatus","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateNodeStatus","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.updateNodeStatus("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",3, {from: eth.accounts[1]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.updateNodeStatus("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",3, {from: eth.accounts[1]})
+        "Action completed successfully"
+        ```
 
 Once a node is blacklisted it can only be recovered by network admins.
 Refer to [quorumPermission_recoverBlackListedNode](#quorumpermission_recoverblacklistednode)
@@ -971,24 +1035,27 @@ Post majority approval from network admin accounts, the blacklisted node will be
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedNode","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedNode","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.recoverBlackListedNode("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.recoverBlackListedNode("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
+        "Action completed successfully"
+        ```
 
 ### `quorumPermission_approveBlackListedNodeRecovery`
 
@@ -1005,24 +1072,27 @@ Once majority approvals from network admin accounts is received, the node is mar
 * `msg`: response message
 * `status`: `bool` indicating if the operation was success or failure
 
-#### Examples
+!!! example
 
-=== "JSON RPC"
+    === "JSON RPC"
 
-    ```jshelllanguage
-    // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```bash
+        // Request
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
 
-    // Response
-    {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
-    ```
+        ```javascript
+        // Response
 
-=== "geth console"
+        {"jsonrpc":"2.0","id":10,"result":"Action completed successfully"}
+        ```
 
-    ```javascript
-    > quorumPermission.approveBlackListedNodeRecovery("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
-    "Action completed successfully"
-    ```
+    === "geth console"
+
+        ```javascript
+        > quorumPermission.approveBlackListedNodeRecovery("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
+        "Action completed successfully"
+        ```
 
 ## Roles
 

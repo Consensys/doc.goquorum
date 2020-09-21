@@ -1,3 +1,7 @@
+---
+description: Clef Ethereum account manager
+---
+
 # Using Clef
 
 ## What is Clef?
@@ -11,19 +15,20 @@ features, including:
 * Ability to extend functionality with [`account` plugins](AccountPlugins.md)
 
 `clef` runs as a separate process to `geth` and provides an alternative method of managing accounts
-and signing transactions/data. Instead of `geth` loading and using accounts directly, `geth` delegates
-account management responsibilities to `clef`.
+and signing transactions/data.
 
-Account management will be deprecated within `geth` in the future and replaced with `clef`.
+Instead of `geth` loading and using accounts directly, `geth` delegates account management
+responsibilities to `clef`.
+
+!!!important
+    Account management will be deprecated within `geth` in the future and replaced with `clef`.
 
 Using `clef` instead of `geth` for account management has several benefits:
 
 * Users and DApps no longer have a dependency on access to a synchronised local node loaded with accounts.
-
-Transactions and DApp data can instead be signed using `clef`
-
+* Transactions and DApp data can instead be signed using `clef`
 * Future account-related features will likely only be available in `clef` and not found in `geth`
-(e.g. [EIP-191 and EIP-712 have been implemented in `clef`, but there is no intention of implementing them in `geth`](https://github.com/ethereum/go-ethereum/pull/17789/))
+    (for example, [EIP-191 and EIP-712 have been implemented in `clef`, but there is no intention of implementing them in `geth`](https://github.com/ethereum/go-ethereum/pull/17789/))
 * User-experience improvements to ease use and improve security.
 
 ## Installing
@@ -33,7 +38,7 @@ Transactions and DApp data can instead be signed using `clef`
 
 Verify the installation with:
 
-```shell
+```bash
 clef help
 ```
 
@@ -61,24 +66,26 @@ for an overview and step-by-step guide on initialising and starting `clef`, as w
 Using `clef` as an external signer requires interacting with `clef` through its RPC API. By default
 this is exposed over IPC socket. The API can also be exposed over HTTP by using the `--rpcaddr` CLI flag.
 
-An example workflow would be:
+!!!example
 
-1. Start `clef` and make your accounts available to it
-1. Sign a transaction with the account by using `clef`'s `account_signTransaction` API.  `clef` will return the signed transaction.
-1. Use `eth_sendRawTransaction` or `eth_sendRawPrivateTransaction` to send the signed transaction to a GoQuorum node that does not have your accounts available to it
-1. The GoQuorum node validates the transaction and propagates it through the network for minting.
+    An example workflow would be:
 
-#### Example: List accounts
+    1. Start `clef` and make your accounts available to it
+    1. Sign a transaction with the account by using `clef`'s `account_signTransaction` API.  `clef` will return the signed transaction.
+    1. Use `eth_sendRawTransaction` or `eth_sendRawPrivateTransaction` to send the signed transaction to a GoQuorum node that does not have your accounts available to it
+    1. The GoQuorum node validates the transaction and propagates it through the network for minting.
 
-```shell
-echo '{"id": 1, "jsonrpc": "2.0", "method": "account_list"}' | nc -U /path/to/clef.ipc
-```
+    === "List accounts"
 
-#### Example: Sign data
+        ```bash
+        echo '{"id": 1, "jsonrpc": "2.0", "method": "account_list"}' | nc -U /path/to/clef.ipc
+        ```
 
-```shell
-echo '{"id": 1, "jsonrpc": "2.0", "method": "account_signData", "params": ["data/plain", "0x6038dc01869425004ca0b8370f6c81cf464213b3", "0xaaaaaa"]}' | nc -U /path/to/clef.ipc
-```
+    === "Sign data"
+
+        ```bash
+        echo '{"id": 1, "jsonrpc": "2.0", "method": "account_signData", "params": ["data/plain", "0x6038dc01869425004ca0b8370f6c81cf464213b3", "0xaaaaaa"]}' | nc -U /path/to/clef.ipc
+        ```
 
 ### As a geth signer
 
@@ -102,7 +109,7 @@ By default, `clef` manages file-stored `keystore` accounts. Alternative account 
 can be enabled through the use of [`account` plugins](AccountPlugins.md). See the
 [Pluggable Architecture Overview](../../Concepts/Plugins/Plugins.md) for more info on using plugins with `clef`.
 
-```shell
+```bash
 clef --plugins file:///path/to/plugin-config.json
 ```
 

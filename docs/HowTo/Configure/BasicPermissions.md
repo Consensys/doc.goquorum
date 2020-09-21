@@ -1,9 +1,13 @@
-## Configure Basic Permissions
+---
+description: Configure Basic Permissions
+---
+
+# Configure Basic Permissions
 
 Node Permissioning is used to define:
 
 1. The nodes that a particular GoQuorum node is able to connect to
-2. The nodes that a particular GoQuorum node is able to receive connections from
+1. The nodes that a particular GoQuorum node is able to receive connections from
 
 In the [basic permissions model](../../Concepts/Permissioning/BasicNetworkPermissions.md), permissioning
 is managed at the individual node level by using the `--permissioned` command line flag when starting the node.

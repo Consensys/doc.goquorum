@@ -3,19 +3,20 @@
 GoQuorum architecture allows for end to end high availability on various i/o operations to fulfill security
 and compliance requirements. In this section we will go through an example configuration and setup:
 
-**WARNING**: Below high availability setup is an example of how to achieve end to end high availability
-using proxy server but it should be noted that this hasn't been tested in a production environment setup.
+!!!warning
+    Below high availability setup is an example of how to achieve end to end high availability
+    using proxy server but it should be noted that this hasn't been tested in a production environment setup.
 
-## GoQuorum Node Configuration Requirements:
+## GoQuorum Node Configuration Requirements
 
 - Two or more GoQuorum Nodes serve as one client node.
 - The inbound RPC requests from clients will be load balanced to one of these Quorum nodes.
 - These nodes will need to share same key for transaction signing and should have shared access to key store directory or key vaults.
 - These nodes need to share the same private state. They could either connect to local Tessera node or
-in 'full' HA setup using [proxy](#proxy-setup-on-both-quorum-nodes) running on each GoQuorum node
-listening on local ipc file and directing request to Tessera Q2T http but in both cases the Tessera node(s) share the same database.
+    in 'full' HA setup using [proxy](#proxy-setup-on-both-quorum-nodes) running on each GoQuorum node
+    listening on local ipc file and directing request to Tessera Q2T http but in both cases the Tessera node(s) share the same database.
 
-## Tessera Node Configuration Requirements:
+## Tessera Node Configuration Requirements
 
 - Separate [Proxy](#standalone-proxy-server-setup) server to redirect/mirror requests to two or more Tessera nodes
 - Two or more Tessera Nodes serve as Privacy manager for Client GoQuorum node.
@@ -23,12 +24,12 @@ listening on local ipc file and directing request to Tessera Q2T http but in bot
 - In the server config, the bindingAddress should be the local addresses (their real addresses), but 'advertisedAddress' (serverAddress) needs to be configured to be the proxy
 - Add DB replication or mirroring for Tessera private data store and the JDBC connection string to include both Primary DB and DR DB connections to facilitate auto switchover on failure.
 
-
 ??? info "Quorum HA Setup 1"
     **Quorum Tessera pair share same machine/container in this setup**
     ![Quorum Tessera HA Mode](../../images/QT_HA_1.png)
 
 ??? info "Quorum Full HA Setup "
+
     - **The change here is each Quorum and Tessera node run in separate machine/container**
     - **Proxy running on each Quorum node to listen on local ipc file and load balance request to both Tessera nodes**
     ![Quorum Tessera Full HA Mode](../../images/QT_HA_2.png)
@@ -37,10 +38,10 @@ listening on local ipc file and directing request to Tessera Q2T http but in bot
     **If HA is required only for Tessera, below setup could be adopted**
     ![Tessera HA Mode](../../images/Tessera_HA.png)
 
-
 ## Example Setup using nginx Proxy setup
 
 ### Proxy Setup on both Quorum nodes
+
 ```c
        load_module /usr/lib/nginx/modules/ngx_stream_module.so;
        error_log /home/ubuntu/nginx-error.log;
@@ -62,8 +63,8 @@ listening on local ipc file and directing request to Tessera Q2T http but in bot
        }
 ```
 
-
 ### Standalone Proxy server setup
+
 ```c
 
     load_module /usr/lib/nginx/modules/ngx_stream_module.so;
@@ -128,6 +129,3 @@ listening on local ipc file and directing request to Tessera Q2T http but in bot
                         proxy_pass http://p2p/upcheck;
       }}}
 ```
-
-
-

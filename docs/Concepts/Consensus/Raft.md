@@ -1,3 +1,7 @@
+---
+description: Raft Consensus Overview
+---
+
 # Raft Consensus Overview
 
 ## Introduction
@@ -16,12 +20,14 @@ Both Raft and Ethereum have their own notion of a "node":
 In Raft, a node in normal operation can be a "leader", "follower" or "learner." There is a single leader for the entire cluster, through which all log entries must flow through. There's also the concept of a "candidate", but only during leader election. We won't go into more detail about Raft here, because by design these details are opaque to applications built on it. A Raft network can be started with a set of verifiers and one of them would get elected as a leader when the network starts. If the leader node dies, re-election is triggered and new leader is elected by the network. Once the network is up additional verifier nodes(peers) or learner nodes can be added to this network. Brief summary of each type of nodes is given below:
 
 ### Leader
+
 - mints blocks and sends the blocks to the verifier and learner nodes
 - takes part in voting during re-election and can become verifier if it does not win majority of votes
 - the network triggers re-election if the leader node dies.
 - can add/remove learner/verifier and promote learner to verifier
 
 ### Verifier
+
 - follows the leader
 - applies the blocks minted by the leader
 - takes part in voting during re-election and can become leader if it wins majority of votes
@@ -29,6 +35,7 @@ In Raft, a node in normal operation can be a "leader", "follower" or "learner." 
 - can add/remove learner/verifier and promote learner to verifier
 
 ### Learner
+
 - follows the leader
 - applies the blocks minted by the leader
 - cannot take part in voting during re-election
@@ -60,34 +67,33 @@ When the minter creates a block, unlike in vanilla Ethereum where the block is w
 
 From the point of view of Ethereum, Raft is integrated via an implementation of the [`Service`](https://godoc.org/github.com/jpmorganchase/quorum/node#Service) interface in [`node/service.go`](https://github.com/jpmorganchase/quorum/blob/master/node/service.go): "an individual protocol that can be registered into a node". Another example of a service is [`Ethereum`](https://godoc.org/github.com/jpmorganchase/quorum/eth#Ethereum).
 
-
 ## The lifecycle of a transaction
 
 Let's follow the lifecycle of a typical transaction:
 
-#### on any node (whether minter, verifier or learner):
+### on any node (whether minter, verifier or learner)
 
 1. The transaction is submitted via an RPC call to geth.
-2. Using the existing (p2p) transaction propagation mechanism in Ethereum, the transaction is announced to all peers and, because our cluster is currently configured to use "static nodes," every transaction is sent to all peers in the cluster.
+1. Using the existing (p2p) transaction propagation mechanism in Ethereum, the transaction is announced to all peers and, because our cluster is currently configured to use "static nodes," every transaction is sent to all peers in the cluster.
 
-#### on the minter:
+### on the minter
 
-3. It reaches the minter, where it's included in the next block (see `mintNewBlock`) via the transaction pool.
-4. Block creation triggers a [`NewMinedBlockEvent`](https://godoc.org/github.com/jpmorganchase/quorum/core#NewMinedBlockEvent), which the Raft protocol manager receives via its subscription `minedBlockSub`. The `minedBroadcastLoop` (in `raft/handler.go`) puts this new block to the `ProtocolManager.blockProposalC` channel.
-5. `serveLocalProposals` is waiting at the other end of the channel. Its job is to RLP-encode blocks and propose them to Raft. Once it flows through Raft, this block will likely become the new head of the blockchain (on all nodes.)
+1. It reaches the minter, where it's included in the next block (see `mintNewBlock`) via the transaction pool.
+1. Block creation triggers a [`NewMinedBlockEvent`](https://godoc.org/github.com/jpmorganchase/quorum/core#NewMinedBlockEvent), which the Raft protocol manager receives via its subscription `minedBlockSub`. The `minedBroadcastLoop` (in `raft/handler.go`) puts this new block to the `ProtocolManager.blockProposalC` channel.
+1. `serveLocalProposals` is waiting at the other end of the channel. Its job is to RLP-encode blocks and propose them to Raft. Once it flows through Raft, this block will likely become the new head of the blockchain (on all nodes.)
 
-#### on every node:
+### on every node
 
-6. _At this point, Raft comes to consensus and appends the log entry containing our block to the Raft log. (The way this happens at the Raft layer is that the leader sends an `AppendEntries` to all followers, and they acknowledge receipt of the message. Once the leader has received a quorum of such acknowledgements, it notifies each node that this new entry has been committed permanently to the log)._
+1. _At this point, Raft comes to consensus and appends the log entry containing our block to the Raft log. (The way this happens at the Raft layer is that the leader sends an `AppendEntries` to all followers, and they acknowledge receipt of the message. Once the leader has received a quorum of such acknowledgements, it notifies each node that this new entry has been committed permanently to the log)._
 
-7. Having crossed the network through Raft, the block reaches the `eventLoop` (which processes new Raft log entries.) It has arrived from the leader through `pm.transport`, an instance of `rafthttp.Transport`.
+1. Having crossed the network through Raft, the block reaches the `eventLoop` (which processes new Raft log entries.) It has arrived from the leader through `pm.transport`, an instance of `rafthttp.Transport`.
 
-8. The block is now handled by `applyNewChainHead`. This method checks whether the block extends the chain (i.e. it's parent is the current head of the chain; see below). If it does not extend the chain, it is simply ignored as a no-op. If it does extend chain, the block is validated and then written as the new head of the chain by [`InsertChain`](https://godoc.org/github.com/jpmorganchase/quorum/core#BlockChain.InsertChain).
+1. The block is now handled by `applyNewChainHead`. This method checks whether the block extends the chain (i.e. it's parent is the current head of the chain; see below). If it does not extend the chain, it is simply ignored as a no-op. If it does extend chain, the block is validated and then written as the new head of the chain by [`InsertChain`](https://godoc.org/github.com/jpmorganchase/quorum/core#BlockChain.InsertChain).
 
-9. A [`ChainHeadEvent`](https://godoc.org/github.com/jpmorganchase/quorum/core#ChainHeadEvent) is posted to notify listeners that a new block has been accepted. This is relevant to us because:
-    * It removes the relevant transaction from the transaction pool.
-    * It removes the relevant transaction from `speculativeChain`'s `proposedTxes` (see below).
-    * It triggers `requestMinting` in (`minter.go`), telling the node to schedule the minting of a new block if any more transactions are pending.
+1. A [`ChainHeadEvent`](https://godoc.org/github.com/jpmorganchase/quorum/core#ChainHeadEvent) is posted to notify listeners that a new block has been accepted. This is relevant to us because:
+    - It removes the relevant transaction from the transaction pool.
+    - It removes the relevant transaction from `speculativeChain`'s `proposedTxes` (see below).
+    - It triggers `requestMinting` in (`minter.go`), telling the node to schedule the minting of a new block if any more transactions are pending.
 
 The transaction is now available on all nodes in the cluster with complete finality. Because Raft guarantees a single ordering of entries stored in its log, and because everything that is committed is guaranteed to remain so, there is no forking of the blockchain built upon Raft.
 
@@ -105,7 +111,7 @@ Consider the following example where this might occur, where Raft entries attemp
 
 Where `0xbeda` is the ID of new block, and `0xacaa` is the ID of its parent. Here, the initial minter (node 1) is partitioned, and node 2 takes over as the minter.
 
-```
+```text
  time                   block submissions
                    node 1                node 2
   |    [ 0xbeda Parent: 0xacaa ]
@@ -122,7 +128,7 @@ Where `0xbeda` is the ID of new block, and `0xacaa` is the ID of its parent. Her
 
 Once the partition heals, at the Raft layer node1 will resubmit `0x2c52`, and the resulting serialized log might look as follows:
 
-```
+```text
 [ 0xbeda Parent: 0xacaa - Extends! ]  (due to node 1)
 [ 0xf0ec Parent: 0xbeda - Extends! ]  (due to node 2; let's call this the "winner")
 [ 0x839c Parent: 0xf0ec - Extends! ]  (due to node 2)
@@ -160,13 +166,13 @@ There is currently no limit to the length of these speculative chains, but we pl
 
 ### State in a speculative chain
 
-* `head`: The last-created speculative block. This can be `nil` if the last-created block is already included in the blockchain.
-* `proposedTxes`: The set of transactions which have been proposed to Raft in some block, but not yet included in the blockchain.
-* `unappliedBlocks`: A queue of blocks which have been proposed to Raft but not yet committed to the blockchain.
+- `head`: The last-created speculative block. This can be `nil` if the last-created block is already included in the blockchain.
+- `proposedTxes`: The set of transactions which have been proposed to Raft in some block, but not yet included in the blockchain.
+- `unappliedBlocks`: A queue of blocks which have been proposed to Raft but not yet committed to the blockchain.
     - When minting a new block, we enqueue it at the end of this queue
     - `accept` is called to remove the oldest speculative block when it's accepted into the blockchain.
     - When an [`InvalidRaftOrdering`](https://godoc.org/github.com/jpmorganchase/quorum/raft#InvalidRaftOrdering) occurs, we unwind the queue by popping the most recent blocks from the "new end" of the queue until we find the invalid block. We must repeatedly remove these "newer" speculative blocks because they are all dependent on a block that we know has not been included in the blockchain.
-* `expectedInvalidBlockHashes`: The set of blocks which build on an invalid block, but haven't passsed through Raft yet. We remove these as we get them back. When these non-extending blocks come back through Raft we remove them from the speculative chain. We use this set as a "guard" against trying to trim the speculative chain when we shouldn't.
+- `expectedInvalidBlockHashes`: The set of blocks which build on an invalid block, but haven't passsed through Raft yet. We remove these as we get them back. When these non-extending blocks come back through Raft we remove them from the speculative chain. We use this set as a "guard" against trying to trim the speculative chain when we shouldn't.
 
 ## The Raft transport layer
 
@@ -182,9 +188,9 @@ Currently Raft-based consensus requires that all _initial_ nodes in the cluster 
 
 To remove a node from the cluster, attach to a JS console and issue `raft.removePeer(raftId)`, where `raftId` is the number of the node you wish to remove. For initial nodes in the cluster, this number is the 1-indexed position of the node's enode ID in the static peers list. Once a node has been removed from the cluster, it is permanent; this raft ID can not ever re-connect to the cluster in the future, and the party must re-join the cluster with a new raft ID.
 
-* To add a verifier node to the cluster, attach to a JS console and issue `raft.addPeer(enodeId)`
-* To add a learner node to the cluster, attach to a JS console and issue `raft.addLearner(enodeId)`
-* To promote a learner to become verifier in the cluster, attach to a JS console of leader/verifier node and issue `raft.promoteToPeer(raftId)`.
+- To add a verifier node to the cluster, attach to a JS console and issue `raft.addPeer(enodeId)`
+- To add a learner node to the cluster, attach to a JS console and issue `raft.addLearner(enodeId)`
+- To promote a learner to become verifier in the cluster, attach to a JS console of leader/verifier node and issue `raft.promoteToPeer(raftId)`.
 
 Note that like the enode IDs listed in the static peers JSON file, this enode ID should include a `raftport` querystring parameter. This call will allocate and return a raft ID that was not already in use. After `addPeer`, start the new geth node with the flag `--raftjoinexisting RAFTID` in addition to `--raft`.
 

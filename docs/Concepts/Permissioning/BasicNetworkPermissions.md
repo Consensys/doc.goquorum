@@ -12,6 +12,7 @@ file then this node can neither connect to any node nor accept any incoming conn
 
 The `permissioned-nodes.json` file follows the below pattern, which is similar to the `<data-dir>/static-nodes.json`
 file that is used to specify the list of static nodes a given node always connects to:
+
    ``` json
     [
         "enode://remoteky1@ip1:port1",
@@ -21,6 +22,7 @@ file that is used to specify the list of static nodes a given node always connec
    ```
 
 Sample file: (node id truncated for clarity)
+
    ``` json
     [
       "enode://6598638ac5b15ee386210156a43f565fa8c485924894e2f3a967207c047470@127.0.0.1:30300",

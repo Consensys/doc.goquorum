@@ -81,8 +81,9 @@ There are additional flags allowing to connect to secured Quorum node
 --rpcclitls.ciphersuites value      Customize supported cipher suites when using TLS connection. Value is a comma-separated cipher suite string
 ```
 
-E.g.: Connect to the node with `--rpcclitls.insecureskipverify` to ignore the Server's certificate validation.
-```shell
+For example connect to the node with `--rpcclitls.insecureskipverify` to ignore the Server's certificate validation.
+
+```bash
 geth attach https://localhost:22000 --rpcclitls.insecureskipverify
 geth attach wss://localhost:23000   --rpcclitls.insecureskipverify
 ```
@@ -92,7 +93,7 @@ geth attach wss://localhost:23000   --rpcclitls.insecureskipverify
 `ethclient` provides a client for Ethereum RPC API. It's also enhanced to support Quorum-specific APIs and
 ability to invoke protected APIs.
 
-**HTTP/HTTPS**
+#### HTTP/HTTPS
 
 For HTTP endpoint, the preauthenticated token is populated in `Authorization` HTTP request header for each call.
 The token value is obtained from `rpc.HttpCredentialsProviderFunc` implementation which is configured after
@@ -121,6 +122,7 @@ if err != nil {
 ```
 
 To customize TLS client configuration:
+
 ```go
 // instantiate a http.Client with custom TLS client config
 myHttpClient := ...
@@ -128,7 +130,7 @@ myHttpClient := ...
 c, err := rpc.DialHTTPWithClient("https://...", myHttpClient)
 ```
 
-**WS/WSS**
+#### WS/WSS
 
 For WS endpoint, the preauthenticated token is populated in `Authorization` HTTP request header only once
 during the handshake. The token value is obtained from `rpc.HttpCredentialsProviderFunc` implementation via
@@ -153,6 +155,7 @@ if err != nil {
 ```
 
 To customize TLS client configuration, use `rpc.DialWebsocketWithCustomTLS()` instead of `rpc.DialContext()`
+
 ```go
 // create a tls.Config
 tlsConfig := &tls.Config{...}

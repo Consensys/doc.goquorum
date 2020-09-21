@@ -14,13 +14,13 @@ We recommended reading the [Plugins overview](../../Concepts/Plugins/Plugins.md)
 
 === "Quorum"
 
-    ```shell
+    ```bash
     geth --plugins file:///path/to/plugins.json ...
     ```
 
 === "clef"
 
-    ```shell
+    ```bash
     clef --plugins file:///path/to/plugins.json ...
     ```
 
@@ -57,7 +57,7 @@ Create a plugin-managed account with a new key:
 
     === "quorum"
 
-        ```shell
+        ```bash
         curl -X POST \
              -H "Content-Type:application/json" \
              -d '
@@ -78,7 +78,7 @@ Create a plugin-managed account with a new key:
 
     === "clef"
 
-        ```shell
+        ```bash
         echo '
             {
                 "jsonrpc":"2.0",
@@ -105,7 +105,7 @@ Create a plugin-managed account from an existing private key:
 
     === "quorum"
 
-        ```shell
+        ```bash
         curl -X POST \
              -H "Content-Type:application/json" \
              -d '
@@ -134,7 +134,7 @@ Create a plugin-managed account from an existing private key:
 
 A limited CLI allows users to interact directly with `account` plugins:
 
-```shell
+```bash
 geth account plugin --help
 ```
 
@@ -151,7 +151,7 @@ Create a plugin-managed account from an existing key:
 
 === "json file"
 
-    ```shell
+    ```bash
     geth account plugin new \
         --plugins file:///path/to/plugin-config.json \
         --plugins.account.config file:///path/to/new-acct-config.json
@@ -159,7 +159,7 @@ Create a plugin-managed account from an existing key:
 
 === "inline json"
 
-    ```shell
+    ```bash
     geth account plugin new \
         --plugins file:///path/to/plugin-config.json \
         --plugins.account.config '{<json>}'
@@ -176,7 +176,7 @@ Create a plugin-managed account from an existing private key:
 
 === "json file"
 
-    ```shell
+    ```bash
     geth account plugin import \
         --plugins file:///path/to/plugin-config.json \
         --plugins.account.config file:///path/to/new-acct-config.json \
@@ -185,7 +185,7 @@ Create a plugin-managed account from an existing private key:
 
 === "inline json"
 
-    ```shell
+    ```bash
     geth account plugin import \
         --plugins file:///path/to/plugin-config.json \
         --plugins.account.config '{<json>}'
@@ -196,7 +196,7 @@ Create a plugin-managed account from an existing private key:
 
 List all plugin-managed accounts for a given config:
 
-```shell
+```bash
 geth account plugin list \
     --plugins file:///path/to/plugin-config.json
 ```

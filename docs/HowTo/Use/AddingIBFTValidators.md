@@ -16,7 +16,7 @@ Adding a new validator requires that a majority of existing validators propose t
 achieved by calling the `propose` RPC method with the value `true` and replacing the address to your required one:
 
     ```bash
-    $ geth attach /qdata/dd/geth.ipc
+     geth attach /qdata/dd/geth.ipc
 
     > istanbul.propose("0xb131288f355bc27090e542ae0be213c20350b767", true);
     null
@@ -37,14 +37,15 @@ repository.
    for more details.
 
    To set the project name, run the following:
+
    ```bash
-   $ export COMPOSE_PROJECT_NAME=addnode
+   export COMPOSE_PROJECT_NAME=addnode
    ```
 
-2. Bring up the network, which contains 7 nodes, of which 6 are validators.
+1. Bring up the network, which contains 7 nodes, of which 6 are validators.
 
     ```bash
-    $ docker-compose -f ibft-6-validators.yml up
+     docker-compose -f ibft-6-validators.yml up
     ```
 
    We will be adding the 7th node as a validator. You may notice in the logs of node 7 messages along the lines of
@@ -52,7 +53,7 @@ repository.
    the node was started up with minting enabled, but doesn't have the authority to create blocks, and so throws this
    error.
 
-3. Now we need to propose node 7 as a new proposer from the existing nodes.
+1. Now we need to propose node 7 as a new proposer from the existing nodes.
 
     !!! note
         Remember, you could do this stage before starting node 7 in your network
@@ -63,11 +64,11 @@ repository.
 
     ```bash
     # Propose node 7 from node 1
-    $ docker exec -it addnode_node1_1 geth --exec 'istanbul.propose("0xb131288f355bc27090e542ae0be213c20350b767", true);' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node1_1 geth --exec 'istanbul.propose("0xb131288f355bc27090e542ae0be213c20350b767", true);' attach /qdata/dd/geth.ipc
     null
 
     # Wait about 5 seconds, and then run:
-    $ docker exec -it addnode_node1_1 geth --exec 'istanbul.getSnapshot();' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node1_1 geth --exec 'istanbul.getSnapshot();' attach /qdata/dd/geth.ipc
     {
       epoch: 30000,
       hash: "0xf814863d809ce3a683ee0a2197b15a8152d2696fc9c4e47cd82d0bd5cdaa3e45",
@@ -97,14 +98,14 @@ repository.
    We can see that the new address has 1 vote under the `tally` section, and that one vote is described under the
    `votes` section. So we know our vote was registered!
 
-4. Let's run this from node 2 and see similar results:
+1. Let's run this from node 2 and see similar results:
 
     ```bash
-    $ docker exec -it addnode_node2_1 geth --exec 'istanbul.propose("0xb131288f355bc27090e542ae0be213c20350b767", true);' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node2_1 geth --exec 'istanbul.propose("0xb131288f355bc27090e542ae0be213c20350b767", true);' attach /qdata/dd/geth.ipc
     null
 
     # Again, you may have to wait 5 - 10 seconds for the snapshot to show the vote
-    $ docker exec -it addnode_node2_1 geth --exec 'istanbul.getSnapshot();' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node2_1 geth --exec 'istanbul.getSnapshot();' attach /qdata/dd/geth.ipc
     {
       epoch: 30000,
       hash: "0x93efcd458f3b875902a4532bb77d5e7ebb701791ea95486ecd58baf682312d74",
@@ -133,17 +134,17 @@ repository.
 
    True to form, we have the second vote registered!
 
-5. Ok, let's finally vote on nodes 3 and 4.
+1. Ok, let's finally vote on nodes 3 and 4.
 
     ```bash
-    $ docker exec -it addnode_node3_1 geth --exec 'istanbul.propose("0xb131288f355bc27090e542ae0be213c20350b767", true);' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node3_1 geth --exec 'istanbul.propose("0xb131288f355bc27090e542ae0be213c20350b767", true);' attach /qdata/dd/geth.ipc
     null
 
-    $ docker exec -it addnode_node4_1 geth --exec 'istanbul.propose("0xb131288f355bc27090e542ae0be213c20350b767", true);' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node4_1 geth --exec 'istanbul.propose("0xb131288f355bc27090e542ae0be213c20350b767", true);' attach /qdata/dd/geth.ipc
     null
     ```
 
-6. Now we have a majority of votes, let's check the snapshot again:
+1. Now we have a majority of votes, let's check the snapshot again:
 
     ```bash
     docker exec -it addnode_node1_1 geth --exec 'istanbul.getSnapshot();' attach /qdata/dd/geth.ipc
@@ -176,7 +177,7 @@ Removing a new validator requires that a majority of existing validators propose
 achieved by calling the `propose` RPC method with the value `false` and replacing the address to your required one:
 
     ```bash
-    $ geth attach /qdata/dd/geth.ipc
+     geth attach /qdata/dd/geth.ipc
 
     > istanbul.propose("0xb131288f355bc27090e542ae0be213c20350b767", false);
     null
@@ -194,21 +195,22 @@ repository.
    for more details.
 
    To set the project name, run the following:
+
    ```bash
-   $ export COMPOSE_PROJECT_NAME=addnode
+   export COMPOSE_PROJECT_NAME=addnode
    ```
 
-2. Bring up the network, which contains 7 nodes, of which 6 are validators.
+1. Bring up the network, which contains 7 nodes, of which 6 are validators.
 
     ```bash
     # Set the environment variable for docker-compose
-    $ export COMPOSE_PROJECT_NAME=addnode
+     export COMPOSE_PROJECT_NAME=addnode
 
     # Start the 7 node network, of which 6 are validators
-    $ docker-compose -f ibft-6-validators.yml up
+     docker-compose -f ibft-6-validators.yml up
     ```
 
-3. Now we need to propose node 6 as the node to remove.
+1. Now we need to propose node 6 as the node to remove.
 
     !!! note
         We need a majority of existing validators to propose the new node before the changes will take effect.
@@ -217,11 +219,11 @@ repository.
 
     ```bash
     # Propose node 7 from node 1
-    $ docker exec -it addnode_node1_1 geth --exec 'istanbul.propose("0x8157d4437104e3b8df4451a85f7b2438ef6699ff", false);' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node1_1 geth --exec 'istanbul.propose("0x8157d4437104e3b8df4451a85f7b2438ef6699ff", false);' attach /qdata/dd/geth.ipc
     null
 
     # Wait about 5 seconds, and then run:
-    $ docker exec -it addnode_node1_1 geth --exec 'istanbul.getSnapshot();' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node1_1 geth --exec 'istanbul.getSnapshot();' attach /qdata/dd/geth.ipc
     {
       epoch: 30000,
       hash: "0xba9f9b72cad90ae8aee39f352b45f21d5ed5535b4479743e3f39b231fd717792",
@@ -252,23 +254,23 @@ repository.
    `votes` section. Here, the `authorize` section is set to `false`, which is inline with our proposal to *remove* the
    validator.
 
-4. We need to get a majority, so let's run the proposal on 3 more nodes:
+1. We need to get a majority, so let's run the proposal on 3 more nodes:
 
     ```bash
-    $ docker exec -it addnode_node2_1 geth --exec 'istanbul.propose("0x8157d4437104e3b8df4451a85f7b2438ef6699ff", false);' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node2_1 geth --exec 'istanbul.propose("0x8157d4437104e3b8df4451a85f7b2438ef6699ff", false);' attach /qdata/dd/geth.ipc
     null
 
-    $ docker exec -it addnode_node3_1 geth --exec 'istanbul.propose("0x8157d4437104e3b8df4451a85f7b2438ef6699ff", false);' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node3_1 geth --exec 'istanbul.propose("0x8157d4437104e3b8df4451a85f7b2438ef6699ff", false);' attach /qdata/dd/geth.ipc
     null
 
-    $ docker exec -it addnode_node4_1 geth --exec 'istanbul.propose("0x8157d4437104e3b8df4451a85f7b2438ef6699ff", false);' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node4_1 geth --exec 'istanbul.propose("0x8157d4437104e3b8df4451a85f7b2438ef6699ff", false);' attach /qdata/dd/geth.ipc
     null
     ```
 
-5. Let's check the snapshot now all the required votes are in:
+1. Let's check the snapshot now all the required votes are in:
 
     ```bash
-    $ docker exec -it addnode_node1_1 geth --exec 'istanbul.getSnapshot();' attach /qdata/dd/geth.ipc
+     docker exec -it addnode_node1_1 geth --exec 'istanbul.getSnapshot();' attach /qdata/dd/geth.ipc
     {
       epoch: 30000,
       hash: "0x25815a32b086926875ea2c44686e4b20effabc731b2b121ebf0e0f395101eea5",

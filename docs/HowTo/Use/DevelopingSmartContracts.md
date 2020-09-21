@@ -71,4 +71,4 @@ See the [GoQuorum API](../../Reference/APIs/PrivacyAPI.md) page for details on t
 ## GoQuorum contract design considerations
 
 1. *Private contracts cannot update public contracts.* This is because not all participants will be able to execute a private contract, and so if that contract can update a public contract, then each participant will end up with a different state for the public contract.
-2. *Once a contract has been made public, it can't later be made private.* If you do need to make a public contract private, it would need to be deleted from the blockchain and a new private contract created.
+1. *Once a contract has been made public, it can't later be made private.* If you do need to make a public contract private, it would need to be deleted from the blockchain and a new private contract created.
