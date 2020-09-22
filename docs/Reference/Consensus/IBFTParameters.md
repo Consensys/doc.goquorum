@@ -29,7 +29,8 @@ Within the `genesis.json` file, there is an area for IBFT specific configuration
 configuration.
 
 The options are as follows:
-```
+
+```json
 {
     "config": {
         "istanbul": {

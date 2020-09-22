@@ -34,16 +34,16 @@
 
     ![method_call](images/method_call.png)
 
-10. To create a private contract, add your Tessera public keys one at a time to the Private For multi-select box. Press enter after inputting each one to save and select.
+1. To create a private contract, add your Tessera public keys one at a time to the Private For multi-select box. Press enter after inputting each one to save and select.
 
     ![private_add](images/private_add.png)
 
-11. Add as many peers as you want, then deploy the contract again like you did in step 7.
+1. Add as many peers as you want, then deploy the contract again like you did in step 7.
 
     ![private_multiple](images/private_multiple.png)
 
-12. After deploying and expanding the new contract, you should see the public keys that you selected in the widget. Every method call will include the selected keys automatically.
+1. After deploying and expanding the new contract, you should see the public keys that you selected in the widget. Every method call will include the selected keys automatically.
 
     ![deployed_private](images/deployed_private.png)
 
-13. Please open a github issue or reach out to us on our [Slack](https://www.goquorum.com/slack-inviter) with any feedback or questions!
+1. Please open a github issue or reach out to us on our [Slack](https://www.goquorum.com/slack-inviter) with any feedback or questions!

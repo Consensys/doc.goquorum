@@ -1,4 +1,10 @@
-### GoQuorum FAQ
+---
+description: FAQ
+---
+
+# FAQ
+
+## GoQuorum FAQ
 
 ??? question "I've run into an issue with GoQuorum, where do I get support?"
     The [GoQuorum Slack channels](https://93ecjxb0d3.execute-api.us-east-1.amazonaws.com/Express/) are the best place to query the community and get immediate help.
@@ -58,8 +64,7 @@
     | ---------------------- | ---------------------- | ---------------------- |
     | Geth v1.7.2            | Geth v1.8.12           | Geth v1.8.18           |
 
-
-### Tessera FAQ
+## Tessera FAQ
 
 ??? question "What does enabling 'disablePeerDiscovery' mean?"
     It means the node will only communicate with the nodes defined in the configuration file. Upto version 0.10.2, the nodes still accepts transactions from undiscovered nodes. From version 0.10.3 the node blocks all communication with undiscovered nodes.
@@ -67,7 +72,7 @@
 ??? info "Upgrading to Tessera version 0.10.+ from verion 0.9.+ and below"
     Due to 'database file unable to open' issue with H2 DB upgrade from version 1.4.196 direct to version 1.4.200 as explained  [here](https://github.com/h2database/h2database/issues/2263), our recommended mitigation strategy is to upgrade to version 1.4.199 first before upgrading to version 1.4.200, first upgrade to Tessera 0.10.0 before upgrading to higher versions.
 
-### Raft FAQ
+## Raft FAQ
 
 ??? question "Could you have a single- or two-node cluster? More generally, could you have an even number of nodes?"
     A cluster can tolerate failures that leave a GoQuorum (majority) available. A cluster of two nodes can't tolerate any failures, three nodes can tolerate one, and five nodes can tolerate two. Typically Raft clusters have an odd number of nodes, since an even number provides no failure tolerance benefit.
