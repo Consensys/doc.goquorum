@@ -7,7 +7,7 @@ Both GoQuorum and the Privacy Manager use user-provided asymmetric key pairs. Ea
 of a public key and a private key. The public key can be shared freely, but **the private key should never be shared**.
 
 * GoQuorum derives the account address from the public key by taking the last 20 bytes of its keccak256 hash
-* The Privacy Manager uses the public key as an identifier for the target nodes of a private transaction (i.e. the `privateFor` transaction field)
+* The Privacy Manager uses the public key as an identifier for the target nodes of a private transaction (that is the `privateFor` transaction field)
 
 Key management determines how [GoQuorum](../HowTo/ManageKeys/ManagingKeys.md) and [Tessera](https://docs.tessera.consensys.net)
 store and use private keys.

@@ -47,7 +47,7 @@ Users password should never be saved across the ecosystem or stored in ledger ho
 
 ### Host
 
-- [x] Harden GoQuorum Host Operating System (e.g remove irrelevant services, root access...etc).
+- [x] Harden GoQuorum Host Operating System (e.g remove irrelevant services, root access, …).
 
 - [x] Disable direct remote network access to GoQuorum host management interface in production.
 
@@ -65,7 +65,7 @@ Users password should never be saved across the ecosystem or stored in ledger ho
 
 - [x] Enable Secure Transport Security (TLS) to encrypt all communications from/to JSON-RPC interface to prevent data leakage and man in the middle attacks (MITM).
 
-- [x] Enable GoQuorum Enterprise JSON-RPC authorization model to enforce atomic access controls to ledger modules functionalities (for example personal.OpenWallet).
+- [x] Enable GoQuorum Enterprise JSON-RPC authorization model to enforce atomic access controls to ledger modules functionalities (for example `personal.OpenWallet`).
 
 - [x] Implement a robust Patch Management Program, and always keep the client updated to latest stable version.
 

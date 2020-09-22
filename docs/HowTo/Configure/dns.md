@@ -8,7 +8,7 @@ requires.
 
 Static nodes are nodes we keep reference to even if the node is not alive, so that is the nodes comes alive,
 then we can connect to it. Hostnames are permitted here, and are resolved once at startup. If a static peer goes offline
-and its IP address changes, then it is expected that that peer would re-establish the connection in a fully static
+and its IP address changes, then it is expected that this peer would re-establish the connection in a fully static
 network, or have discovery enabled.
 
 ## Discovery

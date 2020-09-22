@@ -22,7 +22,12 @@
     Please see the [GoQuorum Consensus](../Consensus/Consensus) and [Transaction and Contract Privacy Overview](../Privacy/Overview) pages for more info.
 
 ??? question "Are there any restrictions on the transaction size for private transactions (since they are encrypted)?"
-    The only restriction is the gas limit on the transaction. Constellation/Tessera does not have a size limit (although maybe it should be possible to set one). If anything, performing large transactions as private transactions will improve performance because most of the network only sees hash digests. In terms of performance of transferring large data blobs between geographically distributed nodes, it would be equivalent performance to PGP encrypting the file and transferring it over http/https..so very fast. If you are doing sequential transactions then of course you will have to wait for those transfers, but there is no special overhead by the payload being large if you are doing separate/concurrent transactions, subject to network bandwidth limits. Constellation/Tessera does everything in parallel.
+    The only restriction is the gas limit on the transaction.
+    Constellation/Tessera does not have a size limit (although maybe it should be possible to set one).
+    If anything, performing large transactions as private transactions will improve performance because most of the network only sees hash digests.
+    In terms of performance of transferring large data blobs between geographically distributed nodes, it would be equivalent performance to PGP encrypting the file and as fast as transferring it over http/https.
+    If you are doing sequential transactions then of course you will have to wait for those transfers, but there is no special overhead by the payload being large if you are doing separate/concurrent transactions, subject to network bandwidth limits.
+     Constellation/Tessera does everything in parallel.
 
 ??? question "Should I include originating node in private transaction?"
     No. In GoQuorum, including originating node's `privateFor` results in an error. To create a private
@@ -60,12 +65,12 @@
     It means the node will only communicate with the nodes defined in the configuration file. Upto version 0.10.2, the nodes still accepts transactions from undiscovered nodes. From version 0.10.3 the node blocks all communication with undiscovered nodes.
 
 ??? info "Upgrading to Tessera version 0.10.+ from verion 0.9.+ and below"
-    Due to 'database file unable to open' issue with H2 DB upgrade from version 1.4.196 direct to version 1.4.200 as explained  [here](https://github.com/h2database/h2database/issues/2263), our recommended mitigation strategy is to upgrade to version 1.4.199 first before upgrading to version 1.4.200 i.e., first upgrade to Tessera 0.10.0 before upgrading to higher versions.
+    Due to 'database file unable to open' issue with H2 DB upgrade from version 1.4.196 direct to version 1.4.200 as explained  [here](https://github.com/h2database/h2database/issues/2263), our recommended mitigation strategy is to upgrade to version 1.4.199 first before upgrading to version 1.4.200, first upgrade to Tessera 0.10.0 before upgrading to higher versions.
 
 ### Raft FAQ
 
 ??? question "Could you have a single- or two-node cluster? More generally, could you have an even number of nodes?"
-    A cluster can tolerate failures that leave a GoQuorum (majority) available. So a cluster of two nodes can't tolerate any failures, three nodes can tolerate one, and five nodes can tolerate two. Typically Raft clusters have an odd number of nodes, since an even number provides no failure tolerance benefit.
+    A cluster can tolerate failures that leave a GoQuorum (majority) available. A cluster of two nodes can't tolerate any failures, three nodes can tolerate one, and five nodes can tolerate two. Typically Raft clusters have an odd number of nodes, since an even number provides no failure tolerance benefit.
 
 ??? question "What happens if you don't assume minter and leader are the same node?"
     There's no hard reason they couldn't be different. We just co-locate the minter and leader as an optimization.
@@ -85,7 +90,7 @@
     With raft-based consensus we can produce far more than one block per second, which vanilla Ethereum implicitly disallows (as the default timestamp resolution is in seconds and every block must have a timestamp greater than its parent). For Raft, we store the timestamp in nanoseconds and ensure it is incremented by at least 1 nanosecond per block.
 
 ??? question "Why do I see "Error: Number can only safely store up to 53 bits" when using web3js with Raft?"
-    As mentioned above, Raft stores the timestamp in nanoseconds, so it is too large to be held as a number in javascript.
+    As mentioned above, Raft stores the timestamp in nanoseconds, so it is too large to be held as a number in JavaScript.
     You need to modify your code to take account of this. An example can be seen [here](https://github.com/ConsenSys/quorum.js/blob/master/lib/index.js#L35).
     A future GoQuorum release will address this issue.
 

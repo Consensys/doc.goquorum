@@ -28,7 +28,7 @@ docker pull quorumengineering/tessera
     make all
     ```
 
-    Binaries are placed in `$REPO_ROOT/build/bin`. Add that folder to `PATH` to make `geth` and `bootnode` easily invokable, or copy those binaries to a folder already in `PATH`, e.g. `/usr/local/bin`.
+    Binaries are placed in `$REPO_ROOT/build/bin`. Add that folder to `PATH` to make `geth` and `bootnode` easily invokable, or copy those binaries to a folder already in `PATH`, for example `/usr/local/bin`.
 
     An easy way to supplement `PATH` is to add `PATH=$PATH:/path/to/repository/build/bin` to your `~/.bashrc` or `~/.bash_aliases` file.
 

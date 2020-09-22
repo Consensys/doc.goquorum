@@ -173,11 +173,9 @@ To support offline signing of transaction. This api fills and defaults `RLP` plu
     "0xcd8ab3f6dbdb8535a44d47df9c7d8a3862fe9fb4257a2d377bdd8bface016928"
     ```
 
-
 ## JSON RPC Privacy API Reference
 
 __In addition to the JSON-RPC provided by Ethereum, GoQuorum exposes below two API calls.__
-
 
 ### eth_storageRoot
 
@@ -186,7 +184,7 @@ Returns the storage root of given address (Contract/Account etc)
 #### Parameters
 
 1. `address`: `String` - The address to fetch the storage root for in hex
-1. `block`: `String` - (optional) The block number to look at in hex (e.g. `0x15` for block 21). Uses the latest block if not specified.
+1. `block`: `String` - (optional) The block number to look at in hex (for example `0x15` for block 21). Uses the latest block if not specified.
 
 #### Returns
 
@@ -297,26 +295,26 @@ Returns the unencrypted payload from Tessera/constellation
 
 #### Parameters
 
- 1. `Object` - The transaction object to send:
-     - `from`: `String` - The address for the sending account. Uses the `web3.eth.defaultAccount` property, if not specified.
-     - `to`: `String` - (optional) The destination address of the message, left undefined for a contract-creation transaction.
-     - `value`: `Number|String|BigNumber` - (optional) The value transferred for the transaction in Wei, also the endowment if it's a contract-creation transaction.
-     - `gas`: `Number|String|BigNumber` - (optional, default: To-Be-Determined) The amount of gas to use for the transaction (unused gas is refunded).
-     - <strike>`gasPrice`: `Number|String|BigNumber` - (optional, default: To-Be-Determined) The price of gas for this transaction in wei, defaults to the mean network gas price.</strike>
-     - `data`: `String` - (optional) Either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the message, or in the case of a contract-creation transaction, the initialisation code.
-     - `input`: `String` - (optional) Either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the message, or in the case of a contract-creation transaction, the initialisation code. `input` cannot coexist with `data` if they are set to different value.
-     - `nonce`: `Number`  - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
-     - `privateFrom`: `String`  - (optional) When sending a private transaction, the sending party's base64-encoded public key to use. If not present *and* passing `privateFor`, use the default key as configured in the `TransactionManager`.
-     - `privateFor`: `List<String>`  - (optional) When sending a private transaction, an array of the recipients' base64-encoded public keys.
-     - `callbackUrl`: `String` - (optional) the URL to perform a POST request to to post the result of submitted the transaction
+1. `Object` - The transaction object to send:
+    - `from`: `String` - The address for the sending account. Uses the `web3.eth.defaultAccount` property, if not specified.
+    - `to`: `String` - (optional) The destination address of the message, left undefined for a contract-creation transaction.
+    - `value`: `Number|String|BigNumber` - (optional) The value transferred for the transaction in Wei, also the endowment if it's a contract-creation transaction.
+    - `gas`: `Number|String|BigNumber` - (optional, default: To-Be-Determined) The amount of gas to use for the transaction (unused gas is refunded).
+    - <strike>`gasPrice`: `Number|String|BigNumber` - (optional, default: To-Be-Determined) The price of gas for this transaction in wei, defaults to the mean network gas price.</strike>
+    - `data`: `String` - (optional) Either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the message, or in the case of a contract-creation transaction, the initialisation code.
+    - `input`: `String` - (optional) Either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the message, or in the case of a contract-creation transaction, the initialisation code. `input` cannot coexist with `data` if they are set to different value.
+    - `nonce`: `Number`  - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
+    - `privateFrom`: `String`  - (optional) When sending a private transaction, the sending party's base64-encoded public key to use. If not present *and* passing `privateFor`, use the default key as configured in the `TransactionManager`.
+    - `privateFor`: `List<String>`  - (optional) When sending a private transaction, an array of the recipients' base64-encoded public keys.
+    - `callbackUrl`: `String` - (optional) the URL to perform a POST request to post the result of submitted the transaction
 
 #### Returns
 
- 1. `String` - The empty hash, defined as `0x0000000000000000000000000000000000000000000000000000000000000000`
+1. `String` - The empty hash, defined as `0x0000000000000000000000000000000000000000000000000000000000000000`
 
- The callback URL receives the following object:
+The callback URL receives the following object:
 
- 1. `Object` - The result object:
+1. `Object` - The result object:
     - `id`: `String` - the identifier in the original RPC call, used to match this result to the request
     - `txHash`: `String` - the transaction hash that was generated, if successful
     - `error`: `String` - the error that occurred whilst submitting the transaction.

@@ -54,7 +54,7 @@ txnMngr.sendRawTransaction(args);
 ```js
 txnMngr.sendRawTransaction(txnParams);
 ```
-Calls Tessera's `ThirdParty` `/storeraw` API, replaces the `data` field in `txnParams` with the response (i.e. encrypted-payload hash), signs the transaction with the `from` account defined in `txnParams`, marks the transaction as private, RLP encodes the transaction in hex format, and submits the signed transaction to the blockchain with `eth_sendRawPrivateTransaction`.
+Calls Tessera's `ThirdParty` `/storeraw` API, replaces the `data` field in `txnParams` with the response (encrypted-payload hash), signs the transaction with the `from` account defined in `txnParams`, marks the transaction as private, RLP encodes the transaction in hex format, and submits the signed transaction to the blockchain with `eth_sendRawPrivateTransaction`.
 
 #### Parameters
 1. `txnParams` - The transaction to sign and send
@@ -82,7 +82,7 @@ A promise that resolves to the transaction receipt if the transaction was sent s
 txnMngr.sendRawTransactionViaSendAPI(txnParams);
 ```
 
-Calls Privacy Manager's `/send` API to encrypt txn data and send to all participant Privacy Manager nodes, replaces `data` field in `txnParams` with response (i.e. encrypted-payload hash), signs the transaction with the `from` account defined in `txnParams`, marks the transaction as private, and submits the signed transaction to the blockchain with `eth_sendRawTransaction`.
+Calls Privacy Manager's `/send` API to encrypt txn data and send to all participant Privacy Manager nodes, replaces `data` field in `txnParams` with response (encrypted-payload hash), signs the transaction with the `from` account defined in `txnParams`, marks the transaction as private, and submits the signed transaction to the blockchain with `eth_sendRawTransaction`.
 
 #### Parameters
 1. `txnParams` - The transaction to sign and send
@@ -118,7 +118,7 @@ txnMngr.storeRawRequest(data, privateFrom);
 Calls Tessera's `ThirdParty` `/storeraw` API to encrypt the provided `data` and store in preparation for a `eth_sendRawPrivateTransaction`.
 
 #### Parameters
-1. `data`: `String` - Hex encoded private transaction data (i.e. value of `data`/`input` field in the transaction)
+1. `data`: `String` - Hex encoded private transaction data (value of `data`/`input` field in the transaction)
 1. `privateFrom`: `String` - Sending party's base64-encoded public key
 
 #### Returns

@@ -4,8 +4,8 @@ description: Getting started with GoQuorum overview
 
 # Getting started overview
 
-There are several ways to get started with GoQuorum. They range from using our wizard to generate a
-local network, to configuring and creating a full network from scratch.
+You can get started with GoQuorum in multiple ways.
+They range from using our wizard to generate a local network, to configuring and creating a full network from scratch.
 
 ## GoQuorum Wizard
 
@@ -30,12 +30,12 @@ To explore the features of GoQuorum and deploy a private contract, follow the in
 network that can be run either in a virtual-machine environment using Vagrant, in containers using docker-compose,
 or locally through the use of bash scripts to automate creation of the network.
 
-## GoQuorum on Kubernetes ![k8s-logo](../../images/qubernetes/k8s-logo.png){: style="height:20px;width:20px"}
+## GoQuorum on Kubernetes
 
 Use [qubernetes](https://github.com/ConsenSys/qubernetes) to run configurable N node GoQuorum networks on Kubernetes.
 
 You can use [kind](https://github.com/ConsenSys/qubernetes#quickest-start) or [Minikube](https://github.com/ConsenSys/qubernetes/blob/master/docs/minikube-docs.md)
-for local development. For long running networks, use a cloud service (e.g. Google Kubernetes Engine, Azure KS, AWS EKS) or a self-hosted kubernetes cluster.
+for local development. For long running networks, use a cloud service (for ecample Google Kubernetes Engine, Azure KS, AWS EKS) or a self-hosted kubernetes cluster.
 
 Qubernetes supports Raft and Istanbul consensus algorithms, multiple versions, and networks with an arbitrary number of nodes.
 Also includes [examples](https://github.com/ConsenSys/qubernetes/blob/master/docs/7nodes-on-k8s.md) ready to run on Kubernetes.

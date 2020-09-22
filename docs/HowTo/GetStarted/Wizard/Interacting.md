@@ -20,7 +20,7 @@ cd network/3-nodes-raft-tessera-bash
 
 ## Demonstrating Privacy
 
-The network comes with some simple contracts to demonstrate the privacy features of GoQuorum. In this demo we:
+The network comes with some simple contracts to demonstrate the privacy features of GoQuorum. In this demo you:
 
 - Send a private transaction between nodes 1 and 2
 - Show that only nodes 1 and 2 are able to view the initial state of the contract
@@ -40,9 +40,9 @@ Take note of the `TransactionHash` printed to the terminal.
 
 ### Inspecting the GoQuorum nodes
 
-We can inspect any of the GoQuorum nodes by using `./attach.sh` to open the Geth JavaScript console. For this demo, we will be inspecting Node 1, Node 2, and Node 3.
+You can inspect any of the GoQuorum nodes by using `./attach.sh` to open the Geth JavaScript console. For this demo, you will be inspecting Node 1, Node 2, and Node 3.
 
-It is recommended to use separate terminal windows for each node we are inspecting. In each terminal, ensure you are in your network's directory, then:
+It is recommended to use separate terminal windows for each node you are inspecting. In each terminal, ensure you are in your network's directory, then:
 
 - In terminal 1 run `./attach.sh 1` to attach to node 1
 - In terminal 2 run `./attach.sh 2` to attach to node 2
@@ -79,7 +79,7 @@ Take note of the `v` field value of `"0x25"` or `"0x26"` (37 or 38 in decimal) w
 
 #### Checking the state of the contract
 
-For each of the 3 nodes we'll use the Geth JavaScript console to create a variable called `address` which we will assign to the address of the contract created by Node 1. The contract address can be found in two ways:
+For each of the 3 nodes you'll use the Geth JavaScript console to create a variable called `address` which you will assign to the address of the contract created by Node 1. The contract address can be found in two ways:
 
 - In Node 1's log file: `qdata/logs/1.log`
 - By reading the `contractAddress` param after calling `eth.getTransactionReceipt(txHash)` ([Ethereum API documentation](https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethgettransactionreceipt)) where `txHash` is the hash printed to the terminal after sending the transaction.
@@ -90,7 +90,7 @@ Once you've identified the contract address, run the following command in each t
 > var address = "0x1932c48b2bf8102ba33b4a6b545c32236e342f34"; //replace with your contract address
 ```
 
-Next we'll use ```eth.contract``` to define a contract class with the simpleStorage ABI definition in each terminal:
+Next you'll use ```eth.contract``` to define a contract class with the simpleStorage ABI definition in each terminal:
 
 ```js
 > var abi = [{"constant":true,"inputs":[],"name":"storedData","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"x","type":"uint256"}],"name":"set","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"retVal","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[{"name":"initVal","type":"uint256"}],"type":"constructor"}];
@@ -120,7 +120,7 @@ The function calls are now available on the contract instance and you can call t
     0
     ```
 
-So we can see nodes 1 and 2 are able to read the state of the private contract and its initial value is 42.
+Notice that nodes 1 and 2 are able to read the state of the private contract and its initial value is 42.
 
 If you look in `private-contract.js` you will see that this was the value set when the contract was created.
 
@@ -128,7 +128,7 @@ Node 3 is unable to read the state.
 
 ### Updating the state of the contract
 
-Next we'll have Node 1 set the state to the value `4` and verify only nodes 1 and 2 are able to view the new state.
+Next you'll have Node 1 set the state to the value `4` and verify only nodes 1 and 2 are able to view the new state.
 
 In terminal window 1 (Node 1):
 
@@ -137,7 +137,7 @@ In terminal window 1 (Node 1):
 "0xacf293b491cccd1b99d0cfb08464a68791cc7b5bc14a9b6e4ff44b46889a8f70"
 ```
 
-You can check the log files in `qdata/logs/` to see each node validating the block with this new private transaction. Once the block containing the transaction has been validated we can once again check the state from each node 1, 4, and 2.
+You can check the log files in `qdata/logs/` to see each node validating the block with this new private transaction. Once the block containing the transaction has been validated you can once again check the state from each node 1, 4, and 2.
 
 - In terminal window 1 (Node 1):
 

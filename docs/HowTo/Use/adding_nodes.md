@@ -33,11 +33,11 @@ In some cases, they may have their own options to achieve similar tasks, but mus
     7
     ```
 
-    So in this example, our new node has a Raft ID of `7`.
+    In this example, your new node has a Raft ID of `7`.
 
 1. If you are using permissioning, or discovery for Ethereum p2p, please refer [here](#extra-options).
 
-1. We now need to initialise the new node with the network's genesis configuration.
+1. You now need to initialise the new node with the network's genesis configuration.
 
     Initialising the new node is exactly the same an the original nodes.
 
@@ -48,7 +48,7 @@ In some cases, they may have their own options to achieve similar tasks, but mus
     !!! note
        Where you obtain this from will be dependent on the network. You may get it from an existing peer, or a network operator, or elsewhere entirely.
 
-1. Now we can start up the new node and let it sync with the network.
+1. Now you can start up the new node and let it sync with the network.
     The main difference now is the use of the
 `--raftjoinexisting` flag, which lets the node know that it is joining an existing network, which is handled
 differently internally.
@@ -173,7 +173,7 @@ In order to make sure the new node is accepted into the network:
     ```
 
 1. The new peer can be started, setting the `peers` configuration to mirror the existing network.
-    e.g. if there are 3 existing nodes in the network, then the new nodes configuration will look like this:
+    If there are 3 existing nodes in the network, then the new nodes configuration will look like this:
 
     ```json
     {
@@ -196,15 +196,15 @@ In order to make sure the new node is accepted into the network:
 
 ### Discovery
 
-Tessera discovery is very similar to the IP whitelist. The difference being that the IP whitelist blocks
-communications between nodes, whereas disabling discovery only affects which public keys we keep track of.
+Tessera discovery is similar to the IP whitelist. The difference being that the IP whitelist blocks
+communications between nodes, whereas disabling discovery only affects which public keys you keep track of.
 
 See the [Tessera configuration page](https://docs.tessera.consensys.net) for details on setting it up.
 
 When discovery is disabled, Tessera will only allow keys that are owned by a node in its peer list to be available to
 the users.
 
-This means that if any keys are found that are owned by a node NOT in our peer list, they are discarded and
+This means that if any keys are found that are owned by a node NOT in your peer list, they are discarded and
 private transactions cannot be sent to that public key.
 
 !!! note

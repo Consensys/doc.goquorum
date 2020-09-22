@@ -7,8 +7,8 @@ to set of initial participant nodes, need to be extended to a new node which has
 flow. Contract state extension feature addresses this requirement.
 
 It should be noted that as a part of contract state extension only the state of the contract as of the
-time of extension is shared. This means that there is no past history of the contract, and attempting
-to view past history will not yield any result, as the new recipient was not party at that time. This
+time of extension is shared. This means that there is no history of the contract, and attempting
+to view it will not yield any result, as the new recipient was not party at that time. This
 also means that events are not shared either, as the transactions are not shared and no state transitions are calculated.
 
 ## Flow
@@ -32,7 +32,7 @@ In this example, private contract is being extended from Nodes A to Node B.
     - **2c & 2d** - Private transaction payload is shared with Tessera node B. Public state is propagated across all nodes
 
 1. Since the state sharing does not execute the transactions that generate the state
-    (in order to keep past history private), there is no proof that can be provided by the proposer
+    (in order to keep history private), there is no proof that can be provided by the proposer
     that the state is correct. In order to remedy this, the receiver must accept the proposal for the
     contract as the proof. In this step, the user owning the ethereum public key of node B which was
     marked as receiving address, approves the contract extension using GoQuorum apis

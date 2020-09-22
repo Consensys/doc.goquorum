@@ -33,7 +33,7 @@ the implementation logic to change without changing the storage or interface lay
     If a role is revoked all accounts which are linked to the role lose all access rights
 
 * `VoterManager.sol`: This contract receives requests from a valid implementation contract as defined in `PermissionsUpgradable.sol`.
-    It stores the data of valid voters at network level which can approve identified activities e.g. adding a new organization to the network.
+    It stores the data of valid voters at network level which can approve identified activities, for example adding a new organization to the network.
     Any account which is linked to a predefined network admin role will be marked as a voter. Whenever a network level activity which requires
     voting is performed, a voting item is added to this contract and each voter account can vote for the activity. The activity is marked
     as `Approved` upon majority voting.

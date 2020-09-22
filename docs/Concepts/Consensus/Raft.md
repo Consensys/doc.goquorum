@@ -17,7 +17,14 @@ When the `geth` binary is passed the `--raft` flag, the node will operate in "ra
 
 Both Raft and Ethereum have their own notion of a "node":
 
-In Raft, a node in normal operation can be a "leader", "follower" or "learner." There is a single leader for the entire cluster, through which all log entries must flow through. There's also the concept of a "candidate", but only during leader election. We won't go into more detail about Raft here, because by design these details are opaque to applications built on it. A Raft network can be started with a set of verifiers and one of them would get elected as a leader when the network starts. If the leader node dies, re-election is triggered and new leader is elected by the network. Once the network is up additional verifier nodes(peers) or learner nodes can be added to this network. Brief summary of each type of nodes is given below:
+In Raft, a node in normal operation can be a "leader", "follower" or "learner".
+There is a single leader for the entire cluster, through which all log entries must flow through.
+There's also the concept of a "candidate", but only during leader election.
+We won't go into more detail about Raft here, because by design these details are opaque to applications built on it.
+A Raft network can be started with a set of verifiers and one of them would get elected as a leader when the network starts.
+If the leader node dies, re-election is triggered and new leader is elected by the network.
+Once the network is up additional verifier nodes(peers) or learner nodes can be added to this network.
+A summary of each type of nodes is given as the following:
 
 ### Leader
 
@@ -88,7 +95,7 @@ Let's follow the lifecycle of a typical transaction:
 
 1. Having crossed the network through Raft, the block reaches the `eventLoop` (which processes new Raft log entries.) It has arrived from the leader through `pm.transport`, an instance of `rafthttp.Transport`.
 
-1. The block is now handled by `applyNewChainHead`. This method checks whether the block extends the chain (i.e. it's parent is the current head of the chain; see below). If it does not extend the chain, it is simply ignored as a no-op. If it does extend chain, the block is validated and then written as the new head of the chain by [`InsertChain`](https://godoc.org/github.com/jpmorganchase/quorum/core#BlockChain.InsertChain).
+1. The block is now handled by `applyNewChainHead`. This method checks whether the block extends the chain (it's parent is the current head of the chain). If it does not extend the chain, it is simply ignored as a no-op. If it does extend chain, the block is validated and then written as the new head of the chain by [`InsertChain`](https://godoc.org/github.com/jpmorganchase/quorum/core#BlockChain.InsertChain).
 
 1. A [`ChainHeadEvent`](https://godoc.org/github.com/jpmorganchase/quorum/core#ChainHeadEvent) is posted to notify listeners that a new block has been accepted. This is relevant to us because:
     - It removes the relevant transaction from the transaction pool.
@@ -184,7 +191,7 @@ Default number of peers is set to be 25. Max number of peers is configurable wit
 
 ## Initial configuration, and enacting membership changes
 
-Currently Raft-based consensus requires that all _initial_ nodes in the cluster are configured to list the others up-front as [static peers](https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network#static-nodes). These enode ID URIs _must_ include a `raftport` querystring parameter specifying the raft port for each peer: e.g. `enode://abcd@127.0.0.1:30400?raftport=50400`. Note that the order of the enodes in the `static-nodes.json` file needs to be the same across all peers.
+Currently Raft-based consensus requires that all _initial_ nodes in the cluster are configured to list the others up-front as [static peers](https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network#static-nodes). These enode ID URIs _must_ include a `raftport` querystring parameter specifying the raft port for each peer: for example, `enode://abcd@127.0.0.1:30400?raftport=50400`. Note that the order of the enodes in the `static-nodes.json` file needs to be the same across all peers.
 
 To remove a node from the cluster, attach to a JS console and issue `raft.removePeer(raftId)`, where `raftId` is the number of the node you wish to remove. For initial nodes in the cluster, this number is the 1-indexed position of the node's enode ID in the static peers list. Once a node has been removed from the cluster, it is permanent; this raft ID can not ever re-connect to the cluster in the future, and the party must re-join the cluster with a new raft ID.
 

@@ -28,7 +28,7 @@ export COMPOSE_PROJECT_NAME=addnode
 
 An example using IBFT, no permissioning and discover enabled via a bootnode.
 
-There are no static peers in this network; instead, every node is set to talk to node 1 via the CLI flag
+This network has no static peers; instead, every node is set to talk to node 1 via the CLI flag
 `--bootnodes enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@172.16.239.11:21000`.
 
 Node 1 will forward the details of all the nodes it knows about (in this case, everyone) and they will then initiate their
@@ -94,7 +94,7 @@ own connections.
 
 1. Let's check to see if the nodes are in sync.
     If they are, they will have similar block numbers, which is enough for
-    this example; there are other ways to tell if nodes are on the same chain, for example matching block hashes.
+    this example; Other options exists to tell if nodes are on the same chain, for example matching block hashes.
 
     !!! note
         Depending on timing, the second may have an extra block or two.
@@ -187,7 +187,7 @@ own connections.
         ```
 
 And that's it. You deployed a working 6 node network, and then added a 7th node afterwards; this 7th node was able to
-read existing public data, as well as deploy its own transactions and contracts for others to see!
+read existing public data and deploy its own transactions and contracts for others to see!
 
 ## Non-permissioned RAFT with discovery disabled
 
@@ -336,7 +336,7 @@ solely based on who is listed in the nodes `static-nodes.json` file.
         ```
 
 And that's it. You deployed a working 6 node network, and then added a 7th node afterwards; this 7th node was able to
-read existing public data, as well as deploy its own transactions and contracts for others to see!
+read existing public data and deploy its own transactions and contracts for others to see!
 
 ## Permissioned RAFT with discovery disabled
 
@@ -518,7 +518,7 @@ the node must appear is others nodes' `permissioned-nodes.json` file.
         ```
 
 And that's it. You deployed a working 6 node network, and then added a 7th node afterwards; this 7th node was able to
-read existing public data, as well as deploy its own transactions and contracts for others to see!
+read existing public data and deploy its own transactions and contracts for others to see!
 
 ## Adding a Private Transaction Manager
 
@@ -600,7 +600,7 @@ IP Whitelist isn't used, nor is key discovery disabled.
    and you have a single peer to start off with, which is node 1.
 
    This is all that is needed to connect to an existing network. Shortly after starting up, Tessera
-   will ask node 1 about all it's peers, and then will keep a record of them for it's own use.
+   will request about all node 1 peers, and then will keep a record of them for it's own use.
    From then on, all the nodes will know about node 7 and can send private transactions to it.
 
 1. Let's try it! Let's send a private transaction from node 1 to the newly added node 7.

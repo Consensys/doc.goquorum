@@ -21,7 +21,7 @@ Enterprise authorization protocol integration introduces an access
 control layer that authorizes each JSON RPC invocation to an atomic
 module function level (E.g `personal_OpenWallet`) using industry
 standard [OAuth 2.0](https://tools.ietf.org/html/rfc6749)
-protocol and/or [JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519) method.
+protocol and [JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519) method.
 This feature allows managing distributed application (dApps),
 and Quorum Clients access control in an efficient approach.
 

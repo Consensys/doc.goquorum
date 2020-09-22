@@ -1,7 +1,7 @@
 # Adding and removing IBFT validators
 
 Over the lifetime of an IBFT network, validators will need to be added and removed as authorities change.
-Here we will showcase adding a new validator to an IBFT network, as well as removing an existing one.
+Here we will showcase adding a new validator to an IBFT network and removing an existing one.
 
 ## Adding a node to the validator set
 
@@ -96,7 +96,7 @@ repository.
 
    Secondly, we fetched the current snapshot, which gives us an insight into the current running state of the voting.
    We can see that the new address has 1 vote under the `tally` section, and that one vote is described under the
-   `votes` section. So we know our vote was registered!
+   `votes` section. Your vote was registered!
 
 1. Let's run this from node 2 and see similar results:
 
@@ -132,7 +132,7 @@ repository.
     }
     ```
 
-   True to form, we have the second vote registered!
+   True to form, you have the second vote registered!
 
 1. Ok, let's finally vote on nodes 3 and 4.
 
@@ -144,7 +144,7 @@ repository.
     null
     ```
 
-1. Now we have a majority of votes, let's check the snapshot again:
+1. Now you have a majority of votes, let's check the snapshot again:
 
     ```bash
     docker exec -it addnode_node1_1 geth --exec 'istanbul.getSnapshot();' attach /qdata/dd/geth.ipc
@@ -159,19 +159,19 @@ repository.
     }
     ```
 
-   We can see that the votes have now been wiped clean, ready for a new round. Additionally, the address we were adding,
+   You can see that the votes have now been wiped clean, ready for a new round. Additionally, the address you were adding,
    `0xb131288f355bc27090e542ae0be213c20350b767` now exists within the `validators` list!
    Lastly, the `unauthorized` messages that node 7 was giving before has stopped, as it now has the authority to mint
    blocks.
 
 ## Removing a node from the validator set
 
-Removing a validator is very similar to adding a node, but this time we want to propose nodes with the value `false`,
-to indicate we are deauthorising them. It does not matter whether the node is still online or not, as it doesn't
+Removing a validator is similar to adding a node, but this time you want to propose nodes with the value `false`,
+to indicate you are deauthorising them. It does not matter whether the node is still online or not, as it doesn't
 require any input from the node being removed.
 
 !!! warning
-    Be aware when removing nodes that cross the BFT boundary, e.g. going from 10 validators to 9, as this may impact the chains ability to progress if other nodes are offline
+    Be aware when removing nodes that cross the BFT boundary, that is, going from 10 validators to 9, as this may impact the chains ability to progress if other nodes are offline
 
 Removing a new validator requires that a majority of existing validators propose the new node to be removed. This is
 achieved by calling the `propose` RPC method with the value `false` and replacing the address to your required one:
@@ -210,10 +210,10 @@ repository.
      docker-compose -f ibft-6-validators.yml up
     ```
 
-1. Now we need to propose node 6 as the node to remove.
+1. Now you need to propose node 6 as the node to remove.
 
     !!! note
-        We need a majority of existing validators to propose the new node before the changes will take effect.
+        You need a majority of existing validators to propose the new node before the changes will take effect.
 
    Lets start with node 1 and see what happens:
 
@@ -246,15 +246,15 @@ repository.
     ```
 
    Let's break this down.
-   Firstly, we proposed the address `0x8157d4437104e3b8df4451a85f7b2438ef6699ff` to be removed; that is what the
+   Firstly, you proposed the address `0x8157d4437104e3b8df4451a85f7b2438ef6699ff` to be removed; that is what the
    `false` parameter is for.
 
-   Secondly, we fetched the current snapshot, which gives us an insight into the current running state of the voting.
-   We can see that the proposed address has 1 vote under the `tally` section, and that one vote is described under the
+   Secondly, you fetched the current snapshot, which gives us an insight into the current running state of the voting.
+   You can see that the proposed address has 1 vote under the `tally` section, and that one vote is described under the
    `votes` section. Here, the `authorize` section is set to `false`, which is inline with our proposal to *remove* the
    validator.
 
-1. We need to get a majority, so let's run the proposal on 3 more nodes:
+1. You need to get a majority, so let's run the proposal on 3 more nodes:
 
     ```bash
      docker exec -it addnode_node2_1 geth --exec 'istanbul.propose("0x8157d4437104e3b8df4451a85f7b2438ef6699ff", false);' attach /qdata/dd/geth.ipc
@@ -282,7 +282,7 @@ repository.
     }
     ```
 
-    The validator has been removed from the `validators` list, and we are left with the other 5 still present. You will
+    The validator has been removed from the `validators` list, and you are left with the other 5 still present. You will
     also see in the logs of node 6 a message like
     `node6_1  | WARN [01-20|11:35:52.044] Block sealing failed err=unauthorized`. This is because it is still minting
     blocks, but realises it does not have the authority to push them to any of the other nodes on the network (you will

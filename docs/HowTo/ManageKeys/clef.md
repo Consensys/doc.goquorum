@@ -33,7 +33,7 @@ Using `clef` instead of `geth` for account management has several benefits:
 
 ## Installing
 
-`geth` and all included tools (i.e. `clef`, `bootnode`, ...) can be installed to `PATH` by
+`geth` and all included tools (`clef`, `bootnode`, …) can be installed to `PATH` by
 [building GoQuorum from source with `make all`](../GetStarted/Install.md).
 
 Verify the installation with:
@@ -45,7 +45,7 @@ clef help
 ## Getting Started
 
 See [cmd/clef/tutorial.md](https://github.com/ConsenSys/quorum/blob/master/cmd/clef/tutorial.md)
-for an overview and step-by-step guide on initialising and starting `clef`, as well as configuring automation rules.
+for an overview and step-by-step guide on `clef` initialisation, startup and automation rules configuration.
 
 ## Using
 

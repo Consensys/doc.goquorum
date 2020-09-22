@@ -17,7 +17,7 @@ A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are 
 
 * GoQuorum 2.6.0 has deprecated genesis attributes `maxCodeSize` and `maxCodeSizeChangeBlock`.
     To allow tracking of multiple `maxCodeSize` value changes, a new attribute `maxCodeSizeConfig` is added to genesis.
-    If the `maxCodeSize` was changed multiple times, it could possibly result in `Bad block` error for any new node joining the network.
+    If the `maxCodeSize` was changed multiple times, it could result in `Bad block` error for any new node joining the network.
     The changes in GoQuorum 2.6.0 address this and enable tracking of historical changes of `maxCodeSize` in genesis and thus allow it to be changed multiple times in network life.
     With this change when `init` is executed in GoQuorum 2.6.0, `geth` will force usage of `maxCodeSizeConfig`.
 

@@ -35,7 +35,7 @@
 |:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `baseDir`   | A string indicating the local directory from where plugins are read. If empty, defaults to `<datadir>/plugins`. <br/> To read from arbitrary enviroment variable (e.g: `MY_BASE_DIR`), provide value `env://MY_BASE_DIR` |
 | `central`   | A configuration of the remote plugin central. See [PluginCentralConfiguration](#plugincentralconfiguration)                                                                                                        |
-| `providers` | A map of the supported plugin interfaces being used (e.g. `helloworld`), mapped to their respective plugin provider definitions (see [PluginDefinition](#plugindefinition))                                                                             |
+| `providers` | A map of the supported plugin interfaces being used (for example, `helloworld`), mapped to their respective plugin provider definitions (see [PluginDefinition](#plugindefinition))                                                                             |
 | `<string>`  | A string constant indicates the plugin interface. E.g: `helloworld`.                                                                                                                                               |
 
 ## `PluginCentralConfiguration`

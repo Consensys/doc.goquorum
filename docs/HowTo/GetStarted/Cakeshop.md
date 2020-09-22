@@ -27,7 +27,7 @@
 
 ## Running modes
 
-There are a few ways in which you can run Cakeshop (see the sections below for details on each, as well as [configuration](https://github.com/ConsenSys/cakeshop/blob/master/docs/configuration.md#geth) page):
+Cakeshop can start in multiple modes (see the sections below for details on each and [configuration](https://github.com/ConsenSys/cakeshop/blob/master/docs/configuration.md#geth) page):
 
 1. **Default mode**: _Used when you want Cakeshop to start up an Ethereum node._
     Running Cakeshop in the Default mode will start up Cakeshop and also start running a regular geth node (on a private/test network).
@@ -42,7 +42,7 @@ There are a few ways in which you can run Cakeshop (see the sections below for d
     Cakeshop is currently designed such that a given instance of Cakeshop works directly with a single Ethereum-like node, however you can set up multiple instances of Cakeshop on the same machine (each which could either have been started in 'Default' mode or 'Attach' mode) such that each can talk to a different node.
 
     !!!note
-        You can use the Attach mode and/or Multi-Instance setup configuration to run Cakeshop on [GoQuorum](https://github.com/ConsenSys/quorum) nodes. See below for connecting Cakeshop to the [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network from the quorum-examples repo.
+        You can use the Attach mode and Multi-Instance setup configuration to run Cakeshop on [GoQuorum](https://github.com/ConsenSys/quorum) nodes. See below for connecting Cakeshop to the [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network from the quorum-examples repo.
 
 !!!warning
     The following commands assume you have renamed the WAR file to cakeshop.war
@@ -87,7 +87,7 @@ There are a few ways in which you can run Cakeshop (see the sections below for d
 
 1. The dropdown menu on the top right of the page should show "Manage Nodes" if you haven't attached to any yet. Click on that to go to the Manage Nodes page.
 
-1. Click Add Node and input the RPC url of your GoQuorum node (i.e. http://localhost:22000) and the path to the Tessera P2P Party Info endpoint (i.e. http://localhost:9001/partyinfo).
+1. Click Add Node and input the RPC url of your GoQuorum node (http://localhost:22000) and the path to the Tessera P2P Party Info endpoint (http://localhost:9001/partyinfo).
 
 1. Once added, click on View to attach to the node and return to the main Cakeshop page
 

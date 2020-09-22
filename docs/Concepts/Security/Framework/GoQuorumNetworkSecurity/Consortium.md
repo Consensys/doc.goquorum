@@ -22,9 +22,9 @@ Most network operational activities are benign, but this is not true in all case
 and even in otherwise low-risk Consortium, where the membership constitutes “market power” under the antitrust
 laws, a significant percentage of the competitors in a given product or service space might be members.
 
-The potential for inadvertent mistakes, as well as the level of potential scrutiny by government regulators, is higher.
+The potential for inadvertent mistakes and the level of potential scrutiny by government regulators, is higher.
 
-In such a situation, individual members may wish to maintain tighter control over what can – and more importantly, what cannot – be done
+In such a situation, individual members may wish to maintain tighter control over what can (and more importantly, what cannot) be done
 by the organization, and its members without proper prior consensus in order to reduce the risk and liability.
 
 ## Activities

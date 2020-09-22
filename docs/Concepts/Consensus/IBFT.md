@@ -28,7 +28,7 @@ IBFT inherits from the original PBFT by using a 3-phase consensus, `PRE-PREPARE`
 
 Istanbul BFT Consensus protocol begins at Round `0` with the validators picking a proposer from themselves in a round robin fashion. The proposer will then propose a new block proposal and broadcast it along with the `PRE-PREPARE` message. Upon receiving the `PRE-PREPARE` message from the proposer, other validators validate the incoming proposal and enter the state of `PRE-PREPARED` and broadcast `PREPARE` message. This step is to make sure all validators are working on the same sequence and on the same round. When `ceil(2N/3)` of `PREPARE` messages is received by the validator from other validators, the validator switches to the state of `PREPARED` and broadcasts `COMMIT` message. This step is to inform other validators that it accepts the proposed block and is going to insert the block to the chain. Lastly, validators wait for `ceil(2N/3)` of `COMMIT` messages to enter `COMMITTED` state and then append the block to the chain.
 
-Blocks in Istanbul BFT protocol are final, which means that there are no forks and any valid block must be somewhere in the main chain. To prevent a faulty node from generating a totally different chain from the main chain, each validator appends `ceil(2N/3)` of received `COMMIT` signatures to `extraData` field in the header before inserting it into the chain. Thus all blocks are self-verifiable. However, the dynamic `extraData` would cause an issue on block hash calculation. Since the same block from different validators can have different set of `COMMIT` signatures, the same block can have different block hashes as well. To solve this, we calculate the block hash by excluding the `COMMIT` signatures part. Therefore, we can still keep the block/block hash consistency as well as put the consensus proof in the block header.
+Blocks in Istanbul BFT protocol are final, which means that there are no forks and any valid block must be somewhere in the main chain. To prevent a faulty node from generating a totally different chain from the main chain, each validator appends `ceil(2N/3)` of received `COMMIT` signatures to `extraData` field in the header before inserting it into the chain. Thus all blocks are self-verifiable. However, the dynamic `extraData` would cause an issue on block hash calculation. Since the same block from different validators can have different set of `COMMIT` signatures, the same block can have different block hashes as well. To solve this, we calculate the block hash by excluding the `COMMIT` signatures part. Therefore, we can still keep the block/block hash consistency and put the consensus proof in the block header.
 
 #### Consensus States
 
@@ -72,7 +72,7 @@ Istanbul BFT is a state machine replication algorithm. Each validator maintains 
 
 #### Round change flow
 
-- There are three conditions that would trigger `ROUND CHANGE`:
+- Three conditions can trigger `ROUND CHANGE`:
     - Round change timer expires.
     - Invalid `PREPREPARE` message.
     - Block insertion fails.
@@ -101,7 +101,7 @@ For all transactions blocks:
 - Votes are tallied live as the chain progresses (concurrent proposals allowed).
 - Proposals reaching majority consensus `VALIDATOR_LIMIT` come into effect immediately.
 - Invalid proposals are not to be penalized for client implementation simplicity.
-- A proposal coming into effect entails discarding all pending votes for that proposal (both for and against) and starts with a clean slate.
+- A proposal coming into effect entails discarding all pending votes for that proposal (both for and against).
 
 #### Future message and backlog
 
@@ -118,7 +118,7 @@ Istanbul BFT define the following constants
 - `ISTANBUL_DIGEST`: Fixed magic number `0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365` of `mixDigest` in block header for Istanbul block identification.
 - `DEFAULT_DIFFICULTY`: Default block difficulty, which is set to `0x0000000000000001`.
 - `EXTRA_VANITY`: Fixed number of extra-data prefix bytes reserved for proposer vanity.
-    - Suggested `32` bytes to retain the current extra-data allowance and/or use.
+    - Suggested `32` bytes to retain the current extra-data allowance.
 - `NONCE_AUTH`: Magic nonce number `0xffffffffffffffff` to vote on adding a validator.
 - `NONCE_DROP`: Magic nonce number `0x0000000000000000` to vote on removing a validator.
 - `UNCLE_HASH`: Always `Keccak256(RLP([]))` as uncles are meaningless outside of PoW.

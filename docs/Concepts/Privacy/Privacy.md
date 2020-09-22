@@ -20,7 +20,7 @@ Tessera is restful/stateless and can be load balanced easily.
 
 Distributed ledger protocols leverage cryptographic techniques for transaction authenticity, participant
 authentication, and historical data preservation (that is, through a chain of cryptographically hashed data).
-To achieve a separation of concerns, as well as to provide performance improvements through parallelization
+To achieve a separation of concerns and to provide performance improvements through parallelization
 of certain crypto-operations, much of the cryptographic work including symmetric key generation and data
 encryption/decryption is delegated to the enclave.
 

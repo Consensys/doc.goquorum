@@ -211,6 +211,7 @@ from a token endpoint of an OAuth2 Provider. The access token issued to
 the client will be limited to the scopes granted.
 
 The scope syntax is as follow:
+
 ```text
     scope := "rpc://"rpc-string
 

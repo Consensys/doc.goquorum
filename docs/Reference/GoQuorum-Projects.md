@@ -10,7 +10,6 @@ Current examples include:
 * Pons [backend](https://github.com/M-Bowe/pons) | [frontend](https://github.com/M-Bowe/pons-frontend): A sample Cross-Chain Trading Bridge written to run over 2 GoQuorum Chains to safely exchange ERC-20 and ERC-721 assets.
 * [Marketplace](https://github.com/lyotam/techmarketplace): Marketplace is an example application running on top of a GoQuorum network which allows users to bid for and offer virtual hackathon gear for sale in an interactive marketplace. This app is based on what was originally developed for the MLH Localhost GoQuorum workshop, which demonstrates how to run a simple Ethereum application and how to write a simple Smart Contract that interacts with the Ethereum-based network.
 
-
 !!! Info
     Most of the links link out to externally maintained repos. We thank all of the authors. Please contact us for any modifications or questions about the content.
 

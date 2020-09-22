@@ -15,7 +15,7 @@ The following parameters are of interest to be collected and analyzed:
 - Public and Private transaction rates per account in the network.
 - Number of public Smart contracts in the network.
 - Network connections to ledger nodes and metadata.
-- Consensus protocol metadata (E.g Block creation rate, and source ...etc)
+- Consensus protocol metadata (Block creation rate, and source, …)
 
 ## Security Checklist
 
@@ -27,7 +27,7 @@ The following parameters are of interest to be collected and analyzed:
     - Public and Private transaction rates per account in the network.
     - Number of public Smart contracts in the network.
     - Network connections to ledger nodes and metadata.
-    - Consensus protocol metadata (E.g Block creation rate, and source ...etc)
+    - Consensus protocol metadata (E.g Block creation rate, and source, …)
 
 - [x] Logs must be backed-up and integrity verified.
 

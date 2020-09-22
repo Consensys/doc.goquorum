@@ -170,15 +170,15 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     ```
 
 1. Edit `static-nodes.json` and add new entry for the new node you are configuring (should be last)
-   ```
+    ```
     vim new-node-2/static-nodes.json
-   .... append new-node-2's enode generated in step 1, port 21001;IP 127.0.0.1 and raft port set as 50001
+    .... append new-node-2's enode generated in step 1, port 21001;IP 127.0.0.1 and raft port set as 50001
 
-   [
+    [
      "enode://70399c3d1654c959a02b73acbdd4770109e39573a27a9b52bd391e5f79b91a42d8f2b9e982959402a97d2cbcb5656d778ba8661ec97909abc72e7bb04392ebd8@127.0.0.1:21000?discport=0&raftport=50000",
      "enode://56e81550db3ccbfb5eb69c0cfe3f4a7135c931a1bae79ea69a1a1c6092cdcbea4c76a556c3af977756f95d8bf9d7b38ab50ae070da390d3abb3d7e773099c1a9@127.0.0.1:21001?discport=0&raftport=50001"
-   ]
-   ```
+    ]
+    ```
 
 1. Initialize new node as given below:
 
@@ -324,7 +324,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     ```
      mkdir node0 node1 node2 node3 node4
     ```
-1. Change into the lead (whichever one you consider first) node's working directory and generate the setup files for X initial validator nodes by executing `istanbul setup --num X --nodes --quorum --save --verbose` **only execute this instruction once, i.e. not X times**. This command will generate several items of interest: `static-nodes.json`, `genesis.json`, and nodekeys for all the initial validator nodes which will sit in numbered directories from 0 to X-1
+1. Change into the lead (whichever one you consider first) node's working directory and generate the setup files for X initial validator nodes by executing `istanbul setup --num X --nodes --quorum --save --verbose` **only execute this instruction once, that is not X times**. This command will generate several items of interest: `static-nodes.json`, `genesis.json`, and nodekeys for all the initial validator nodes which will sit in numbered directories from 0 to X-1
     ```
      cd node0
      ../istanbul-tools/build/bin/istanbul setup --num 5 --nodes --quorum --save --verbose

@@ -38,6 +38,6 @@ who are not party to the Transaction will simply end up skipping the Transaction
 However those participants that are party to the Transaction will replace the hash with the original Payload
 before calling the EVM for execution, and their StateDB will be updated accordingly. In absence of making corresponding
 changes to the geth client, these two sets of participants would therefore end up with different StateDBs and
-not be able to reach consensus. So in order to support this bifurcation of contract state, Quorum stores the state of
+not be able to reach consensus. In order to support this bifurcation of contract state, Quorum stores the state of
 Public contracts in a Public State Trie that is globally synchronised, and it stores the state of Private contracts
 in a Private State Trie that is not synchronised globally.

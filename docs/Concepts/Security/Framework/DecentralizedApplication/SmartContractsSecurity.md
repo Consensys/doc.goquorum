@@ -101,7 +101,7 @@ Short address attacks are a side effect of the EVM accepting incorrectly padded 
 
 - [X] Ownership related events must be broadcasted to all the network participants.
 
-- [X] In a Consortium based ownership structure, changing activities that are bound to approval from consortium members before they are committed (e.g. editing Consortium structure) must have approval pending expiration date.
+- [X] In a Consortium based ownership structure, changing activities that are bound to approval from consortium members before they are committed (for example, editing Consortium structure) must have approval pending expiration date.
 
 - [X] Consortium based voting must involve real-time notification through EVM event emission.
 
@@ -161,4 +161,4 @@ Short address attacks are a side effect of the EVM accepting incorrectly padded 
 
 - [X] Multiparty contract logic action should not be dependent on a single party.
 
-- [X] Prevent token transfers to 0x0 address.
+- [X] Prevent token transfers to `0x0` address.
