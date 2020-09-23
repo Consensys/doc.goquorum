@@ -7,7 +7,7 @@ description: GoQuorum network setup wizard command line tool
 [GoQuorum Wizard](https://github.com/ConsenSys/quorum-wizard) is a command line tool that allows
 users to set up a development GoQuorum network on their local machine in less than 2 minutes.
 
-![](../../../images/quorum-wizard.gif)
+![Quorum wizard terminal demo](../../../images/quorum-wizard.gif)
 
 ## Installation
 

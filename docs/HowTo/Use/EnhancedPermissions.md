@@ -606,8 +606,3 @@ To approve the assignment of network admin role invoke [approveAdminRole](../../
     ```
 
 The above account can now perform all activities allowable by a network admin account and can participate in the approval process for any actions at network level.
-
-
-
-
-

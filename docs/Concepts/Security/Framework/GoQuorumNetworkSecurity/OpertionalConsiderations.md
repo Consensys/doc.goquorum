@@ -32,4 +32,3 @@ The following parameters are of interest to be collected and analyzed:
 - [x] Logs must be backed-up and integrity verified.
 
 - [x] An alerting system should be put in place in order to monitor consensus protocol anomalies
-

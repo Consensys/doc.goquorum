@@ -42,5 +42,3 @@ In this example, Party A and Party B are party to Transaction AB, whilst Party C
 1. The Transaction Manager's return their results to their GoQuorum nodes:
     1. Party A & B's Transaction Managers return the decrypted private transaction data to their GoQuorum nodes which can now execute the transaction as normal, thus updating their respective Private StateDB. GoQuorum discards the decrypted private transaction data once used
     1. Party C's Transaction Manager returns a 404 NOT FOUND to its GoQuorum node as it is not a recipient of the transaction. Recognising that it is not party to this private transaction, the GoQuorum node will skip the execution of the transaction, so that no changes to its Private StateDB are made
-
-

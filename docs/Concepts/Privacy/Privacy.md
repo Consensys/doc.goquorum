@@ -78,4 +78,3 @@ To overcome this issue the RPC method `eth_storageRoot(address[, blockNumber]) -
 It returns the storage root for the given address at an (optional) block number.
 If the optional block number is not given the latest block number is used.
 The storage root hash can be on or off chain compared by the parties involved.
-

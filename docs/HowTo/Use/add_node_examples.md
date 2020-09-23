@@ -46,9 +46,9 @@ own connections.
 
 1. Send in a public transaction and check it is minted.
 
-    !!! note
-        * The block creation period is set to 2 seconds, so you may have to wait upto that amount of time for the transaction to be minted.
-        * The transaction hashes will likely be different, but the contract addresses will be the same for your network.
+!!! note
+    - The block creation period is set to 2 seconds, so you may have to wait upto that amount of time for the transaction to be minted.
+    - The transaction hashes will likely be different, but the contract addresses will be the same for your network.
 
     **Send in the transaction**
 
@@ -209,7 +209,7 @@ solely based on who is listed in the nodes `static-nodes.json` file.
 1. Send in a public transaction and check it is minted.
 
     !!! note
-        * The transaction hashes will likely be different, but the contract addresses will be the same for your network.
+        The transaction hashes will likely be different, but the contract addresses will be the same for your network.
 
     **Send in the transaction**
 
@@ -359,7 +359,7 @@ the node must appear is others nodes' `permissioned-nodes.json` file.
 1. Send in a public transaction and check it is minted.
 
     !!! note
-        * The transaction hashes will likely be different, but the contract addresses will be the same for your network.
+        The transaction hashes will likely be different, but the contract addresses will be the same for your network.
 
     **Send in the transaction**
 
