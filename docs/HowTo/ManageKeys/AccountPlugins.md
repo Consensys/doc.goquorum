@@ -147,7 +147,7 @@ Create a plugin-managed account from an existing key:
 
 | Parameter | Description |
 | --- | --- |
-| <span style="white-space:nowrap">`plugins.account.config`</span> | Plugin-specific configuration for creating an account. Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required.
+| `plugins.account.config` | Plugin-specific configuration for creating an account. Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required.
 
 === "json file"
 
@@ -171,7 +171,7 @@ Create a plugin-managed account from an existing private key:
 
 | Parameter | Description |
 | --- | --- |
-| <span style="white-space:nowrap">`plugins.account.config`</span> | Plugin-specific configuration for creating an account. Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required
+| `plugins.account.config` | Plugin-specific configuration for creating an account. Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required
 | `rawkey` | Path to file containing hex-encoded account private key (without 0x prefix) (for example `/path/to/raw.key`)
 
 === "json file"
