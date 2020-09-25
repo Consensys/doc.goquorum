@@ -98,6 +98,7 @@ nav:
           - Private transaction manager: Concepts/Privacy/PrivateTransactionManager.md
           - Private transaction lifecycle: Concepts/Privacy/PrivateTransactionLifecycle.md
           - Contract extension: Concepts/Privacy/ContractExtension.md
+          - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
       - Consensus:
           - Overview: Concepts/Consensus/Overview.md
           - IBFT: Concepts/Consensus/IBFT.md
@@ -127,6 +128,7 @@ nav:
   - Reference:
       - API:
           - Privacy: Reference/APIs/PrivacyAPI.md
+          - Privacy enhancements: Reference/APIs/PrivacyEnhancementsAPIs.md
           - Permissions: Reference/APIs/PermissioningAPIs.md
           - Contract extension: Reference/APIs/ContractExtensionAPIs.md
       - Example genesis file: Reference/genesis.md
