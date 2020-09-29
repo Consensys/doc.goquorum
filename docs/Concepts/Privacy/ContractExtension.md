@@ -7,8 +7,8 @@ to set of initial participant nodes, need to be extended to a new node which has
 flow. Contract state extension feature addresses this requirement.
 
 It should be noted that as a part of contract state extension only the state of the contract as of the
-time of extension is shared. This means that there is no past history of the contract, and attempting
-to view past history will not yield any result, as the new recipient was not party at that time. This
+time of extension is shared. This means that there is no history of the contract, and attempting
+to view it will not yield any result, as the new recipient was not party at that time. This
 also means that events are not shared either, as the transactions are not shared and no state transitions are calculated.
 
 ## Flow
@@ -23,7 +23,7 @@ In this example, private contract is being extended from Nodes A to Node B.
     address of this extension, and node B's PTM public key as the target receiver.
     - **1a** - Node A creates the extension contract with user given inputs and Node B's PTM public key
     - **1b** - the private transaction payload is shared with Tessera of node B.
-    - **1c** - The public state is propagated across all nodes. Nodes A and B  see an emitted log,
+    - **1c** - The public state is propagated across all nodes. Nodes A and B see an emitted log,
         and start watching the contract address that emitted the event for subsequent events that may happen
 
 1. Node A automatically approves the contract extension by virtue of creating the extension contract.
@@ -32,28 +32,27 @@ In this example, private contract is being extended from Nodes A to Node B.
     - **2c & 2d** - Private transaction payload is shared with Tessera node B. Public state is propagated across all nodes
 
 1. Since the state sharing does not execute the transactions that generate the state
-   (in order to keep past history private), there is no proof that can be provided by the proposer
-   that the state is correct. In order to remedy this, the receiver must accept the proposal for the
-   contract as the proof. In this step, the user owning the ethereum public key of node B which was
-   marked as receiving address, approves the contract extension using GoQuorum apis
-     - **3a** - Node B submits the acceptance vote to extension contract
-     - **3c & 3d** - Private transaction payload is shared with Tessera nodes A. Public state is
-     propagated across all nodes
+    (in order to keep history private), there is no proof that can be provided by the proposer
+    that the state is correct. In order to remedy this, the receiver must accept the proposal for the
+    contract as the proof. In this step, the user owning the ethereum public key of node B which was
+    marked as receiving address, approves the contract extension using GoQuorum apis
+    - **3a** - Node B submits the acceptance vote to extension contract
+    - **3c & 3d** - Private transaction payload is shared with Tessera nodes A. Public state is
+        propagated across all nodes
 
 1. Node A monitors for acceptance of contract extension by Node B. Once accepted
     - **4a & 4b** - Node A fetches the state of the contract and sends it as a "private transaction"
-    to Node B. It then submits the PTM hash of that state to the contract, including the recipient's
-    PTM public key.
+        to Node B. It then submits the PTM hash of that state to the contract, including the recipient's
+        PTM public key.
     - **4c** - Node A submits a transactions to mark completion of state share. This transaction emits
-    a log which will get picked up by the receiver when processing the transaction
+        a log which will get picked up by the receiver when processing the transaction
     - **4d & 4e** - Private transaction payload is shared with Tessera nodes B. Public state is
-    propagated across all nodes
+        propagated across all nodes
 
 1. Node B monitors for state share event
     - **5a** - Upon noticing the state share event as a part of block processing, node B fetches the
-    contract private state data from Tessera of node B
+        contract private state data from Tessera of node B
     - **5b** - Node B applies the fetched state to the contract address and becomes party of the private contract
-
 
 ## Note
 

@@ -1,8 +1,8 @@
 ---
-description: Privacy  
+description: Privacy
 ---
 
-# Privacy 
+# Privacy
 
 In GoQuorum, privacy refers to the ability to keep transactions private between the involved participants.
 Other participants cannot access the transaction content.
@@ -11,7 +11,7 @@ Other participants cannot access the transaction content.
 
 [Tessera](https://docs.tessera.consensys.net) is private transaction manager for GoQuorum. Tessera stores and allows access
 to encrypted transaction data, and exchanges encrypted payloads with other Tessera nodes but does not
-have access to any sensitive private keys. Tessera uses the enclave for cryptographic functionality. 
+have access to any sensitive private keys. Tessera uses the enclave for cryptographic functionality.
 The enclave can optionally be hosted by the private transaction manager itself.
 
 Tessera is restful/stateless and can be load balanced easily.
@@ -20,9 +20,9 @@ Tessera is restful/stateless and can be load balanced easily.
 
 Distributed ledger protocols leverage cryptographic techniques for transaction authenticity, participant
 authentication, and historical data preservation (that is, through a chain of cryptographically hashed data).
-To achieve a separation of concerns, as well as to provide performance improvements through parallelization
+To achieve a separation of concerns and to provide performance improvements through parallelization
 of certain crypto-operations, much of the cryptographic work including symmetric key generation and data
-encryption/decryption is delegated to the enclave.  
+encryption/decryption is delegated to the enclave.
 
 The enclave works with the private transaction manager to strengthen privacy by managing the encryption
 and decryption in isolation. The enclave holds private keys and is essentially a _virtual HSM_ isolated
@@ -48,7 +48,7 @@ If the virtual machine is in read only mode and the code tries to make a state c
 
 The following transactions are allowed:
 
-```
+```text
 1. S -> A -> B
 2. S -> (A) -> (B)
 3. S -> (A) -> [B -> C]
@@ -56,12 +56,13 @@ The following transactions are allowed:
 
 and the following transaction are unsupported:
 
-```
+```text
 1. (S) -> A
 2. (S) -> (A)
 ```
 
 where:
+
 - `S` = sender
 - `(X)` = private
 - `X` = public
@@ -77,4 +78,3 @@ To overcome this issue the RPC method `eth_storageRoot(address[, blockNumber]) -
 It returns the storage root for the given address at an (optional) block number.
 If the optional block number is not given the latest block number is used.
 The storage root hash can be on or off chain compared by the parties involved.
-

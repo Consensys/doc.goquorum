@@ -1,14 +1,14 @@
 # Developing Smart Contracts
 
 GoQuorum uses standard [Solidity](https://solidity.readthedocs.io/en/develop/) for writing Smart Contracts,
-and generally, these can be designed as you would design Smart Contracts for Ethereum.  Smart Contracts can
-either be public (i.e. visible and executable by all participants on a given GoQuorum network) or private to
-one or more network participants.  Note that GoQuorum does not introduce new contract types.
+and generally, these can be designed as you would design Smart Contracts for Ethereum. Smart Contracts can
+either be public (that is, visible and executable by all participants on a given GoQuorum network) or private to
+one or more network participants. Note that GoQuorum does not introduce new contract types.
 
 ## Creating public transactions/contracts
 
 Sending a standard Ethereum-style transaction to a given network will make it viewable and executable by
-all participants on the network.  As with Ethereum, leave the `to` field empty for a contract-creation transaction.
+all participants on the network. As with Ethereum, leave the `to` field empty for a contract-creation transaction.
 
 Example JSON RPC API call to send a public transaction:
 
@@ -70,5 +70,5 @@ See the [GoQuorum API](../../Reference/APIs/PrivacyAPI.md) page for details on t
 
 ## GoQuorum contract design considerations
 
-1. *Private contracts cannot update public contracts.*  This is because not all participants will be able to execute a private contract, and so if that contract can update a public contract, then each participant will end up with a different state for the public contract.
-2. *Once a contract has been made public, it can't later be made private.*  If you do need to make a public contract private, it would need to be deleted from the blockchain and a new private contract created.
+1. *Private contracts cannot update public contracts.* This is because not all participants will be able to execute a private contract, and so if that contract can update a public contract, then each participant will end up with a different state for the public contract.
+1. *Once a contract has been made public, it can't later be made private.* If you do need to make a public contract private, it would need to be deleted from the blockchain and a new private contract created.

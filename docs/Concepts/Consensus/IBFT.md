@@ -1,8 +1,14 @@
+---
+description: IBFT Consensus Overview
+---
+
 # IBFT Consensus Overview
 
 ## Introduction
 
-Istanbul Byzantine Fault Tolerant (IBFT) consensus is inspired by Castro-Liskov 99 [paper](http://pmg.csail.mit.edu/papers/osdi99.pdf). IBFT inherits from the original PBFT by using a 3-phase consensus, `PRE-PREPARE`, `PREPARE` and `COMMIT`. The system can tolerate at most `F` faulty nodes in a `N` validator network, where `N = 3F + 1`.
+Istanbul Byzantine Fault Tolerant (IBFT) consensus is inspired by Castro-Liskov 99 [paper](http://pmg.csail.mit.edu/papers/osdi99.pdf).
+
+IBFT inherits from the original PBFT by using a 3-phase consensus, `PRE-PREPARE`, `PREPARE` and `COMMIT`. The system can tolerate at most `F` faulty nodes in a `N` validator network, where `N = 3F + 1`.
 
 ## Implementation
 
@@ -19,11 +25,13 @@ Istanbul Byzantine Fault Tolerant (IBFT) consensus is inspired by Castro-Liskov 
 - `Snapshot`: The validator voting state from last epoch.
 
 ### Consensus
+
 Istanbul BFT Consensus protocol begins at Round `0` with the validators picking a proposer from themselves in a round robin fashion. The proposer will then propose a new block proposal and broadcast it along with the `PRE-PREPARE` message. Upon receiving the `PRE-PREPARE` message from the proposer, other validators validate the incoming proposal and enter the state of `PRE-PREPARED` and broadcast `PREPARE` message. This step is to make sure all validators are working on the same sequence and on the same round. When `ceil(2N/3)` of `PREPARE` messages is received by the validator from other validators, the validator switches to the state of `PREPARED` and broadcasts `COMMIT` message. This step is to inform other validators that it accepts the proposed block and is going to insert the block to the chain. Lastly, validators wait for `ceil(2N/3)` of `COMMIT` messages to enter `COMMITTED` state and then append the block to the chain.
 
-Blocks in Istanbul BFT protocol are final, which means that there are no forks and any valid block must be somewhere in the main chain. To prevent a faulty node from generating a totally different chain from the main chain, each validator appends `ceil(2N/3)` of received `COMMIT` signatures to `extraData` field in the header before inserting it into the chain. Thus all blocks are self-verifiable. However, the dynamic `extraData` would cause an issue on block hash calculation. Since the same block from different validators can have different set of `COMMIT` signatures, the same block can have different block hashes as well. To solve this, we calculate the block hash by excluding the `COMMIT` signatures part. Therefore, we can still keep the block/block hash consistency as well as put the consensus proof in the block header.
+Blocks in Istanbul BFT protocol are final, which means that there are no forks and any valid block must be somewhere in the main chain. To prevent a faulty node from generating a totally different chain from the main chain, each validator appends `ceil(2N/3)` of received `COMMIT` signatures to `extraData` field in the header before inserting it into the chain. Thus all blocks are self-verifiable. However, the dynamic `extraData` would cause an issue on block hash calculation. Since the same block from different validators can have different set of `COMMIT` signatures, the same block can have different block hashes as well. To solve this, we calculate the block hash by excluding the `COMMIT` signatures part. Therefore, we can still keep the block/block hash consistency and put the consensus proof in the block header.
 
 #### Consensus States
+
 Istanbul BFT is a state machine replication algorithm. Each validator maintains a state machine replica in order to reach block consensus. Various states in IBFT consensus are,
 
 - `NEW ROUND`: Proposer to send new block proposal. Validators wait for `PRE-PREPARE` message.
@@ -33,7 +41,8 @@ Istanbul BFT is a state machine replication algorithm. Each validator maintains 
 - `FINAL COMMITTED`: A new block is successfully inserted into the blockchain and the validator is ready for the next round.
 - `ROUND CHANGE`: A validator is waiting for `ceil(2N/3)` of `ROUND CHANGE` messages on the same proposed round number.
 
-**State Transitions**:
+##### State Transitions
+
 ![State Transitions](../../images/IBFTStateTransition.png)
 
 - `NEW ROUND` -> `PRE-PREPARED`:
@@ -63,7 +72,7 @@ Istanbul BFT is a state machine replication algorithm. Each validator maintains 
 
 #### Round change flow
 
-- There are three conditions that would trigger `ROUND CHANGE`:
+- Three conditions can trigger `ROUND CHANGE`:
     - Round change timer expires.
     - Invalid `PREPREPARE` message.
     - Block insertion fails.
@@ -92,13 +101,14 @@ For all transactions blocks:
 - Votes are tallied live as the chain progresses (concurrent proposals allowed).
 - Proposals reaching majority consensus `VALIDATOR_LIMIT` come into effect immediately.
 - Invalid proposals are not to be penalized for client implementation simplicity.
-- A proposal coming into effect entails discarding all pending votes for that proposal (both for and against) and starts with a clean slate.
+- A proposal coming into effect entails discarding all pending votes for that proposal (both for and against).
 
 #### Future message and backlog
 
 In an asynchronous network environment, one may receive future messages which cannot be processed in the current state. For example, a validator can receive `COMMIT` messages on `NEW ROUND`. We call this kind of message a "future message." When a validator receives a future message, it will put the message into its **backlog** and try to process later whenever possible.
 
 #### Constants
+
 Istanbul BFT define the following constants
 
 - `EPOCH_LENGTH`: Default: 30000 blocks. Number of blocks after which to checkpoint and reset the pending votes.
@@ -108,7 +118,7 @@ Istanbul BFT define the following constants
 - `ISTANBUL_DIGEST`: Fixed magic number `0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365` of `mixDigest` in block header for Istanbul block identification.
 - `DEFAULT_DIFFICULTY`: Default block difficulty, which is set to `0x0000000000000001`.
 - `EXTRA_VANITY`: Fixed number of extra-data prefix bytes reserved for proposer vanity.
-    - Suggested `32` bytes to retain the current extra-data allowance and/or use.
+    - Suggested `32` bytes to retain the current extra-data allowance.
 - `NONCE_AUTH`: Magic nonce number `0xffffffffffffffff` to vote on adding a validator.
 - `NONCE_DROP`: Magic nonce number `0x0000000000000000` to vote on removing a validator.
 - `UNCLE_HASH`: Always `Keccak256(RLP([]))` as uncles are meaningless outside of PoW.
@@ -120,6 +130,7 @@ Istanbul BFT define the following constants
     - Must be `floor(N / 2) + 1` to enforce majority consensus on a chain.
 
 #### Block Header
+
 Istanbul BFT does not add new block header fields. Instead, it follows Clique in repurposing the `ethash` header fields as follows:
 
 - `nonce`: Proposer proposal regarding the account defined by the beneficiary field.
@@ -131,13 +142,15 @@ Istanbul BFT does not add new block header fields. Instead, it follows Clique in
 - `timestamp`: Must be at least the parent timestamp + `BLOCK_PERIOD`
 - `difficulty`: Must be filled with `0x0000000000000001`.
 - `extraData`: Combined field for signer vanity and RLP encoded Istanbul extra data, where Istanbul extra data contains validator list, proposer seal, and commit seals. Istanbul extra data is defined as follows:
-    ```
+
+    ```text
     type IstanbulExtra struct {
-            Validators    []common.Address 	//Validator addresses
-            Seal          []byte	        //Proposer seal 65 bytes
+            Validators    []common.Address  //Validator addresses
+            Seal          []byte            //Proposer seal 65 bytes
             CommittedSeal [][]byte          //Committed seal, 65 * len(Validators) bytes
     }
     ```
+
     Thus the `extraData` would be in the form of `EXTRA_VANITY | ISTANBUL_EXTRA` where `|` represents a fixed index to separate vanity and Istanbul extra data (not an actual character for separator).
 
     - First `EXTRA_VANITY` bytes (fixed) may contain arbitrary proposer vanity data.
@@ -147,14 +160,16 @@ Istanbul BFT does not add new block header fields. Instead, it follows Clique in
         - `CommittedSeal`: The list of commitment signature seals as consensus proof.
 
 #### Block hash, proposer seal and committed seals
+
 The Istanbul block hash calculation is different from the `ethash` block hash calculation due to the following reasons:
 
 1. The proposer needs to put proposer's seal in `extraData` to prove the block is signed by the chosen proposer.
-2. The validators need to put `ceil(2N/3)` of committed seals as consensus proof in `extraData` to prove the block has gone through consensus.
+1. The validators need to put `ceil(2N/3)` of committed seals as consensus proof in `extraData` to prove the block has gone through consensus.
 
 The calculation is still similar to the `ethash` block hash calculation, with the exception that we need to deal with `extraData`. We calculate the fields as follows:
 
 ##### Proposer seal calculation
+
 By the time of proposer seal calculation, the committed seals are still unknown, so we calculate the seal with those unknowns empty. The calculation is as follows:
 
 - `Proposer seal`: `SignECDSA(Keccak256(RLP(Header)), PrivateKey)`
@@ -163,12 +178,14 @@ By the time of proposer seal calculation, the committed seals are still unknown,
 - `extraData`: `vanity | RLP(IstanbulExtra)`, where in the `IstanbulExtra`, `CommittedSeal` and `Seal` are empty arrays.
 
 ##### Block hash calculation
+
 While calculating block hash, we need to exclude committed seals since that data is dynamic between different validators. Therefore, we make `CommittedSeal` an empty array while calculating the hash. The calculation is:
 
 - `Header`: Same as `ethash` header only with a different `extraData`.
 - `extraData`: `vanity | RLP(IstanbulExtra)`, where in the `IstanbulExtra`, `CommittedSeal` is an empty array.
 
 ##### Consensus proof
+
 Before inserting a block into the blockchain, each validator needs to collect `ceil(2N/3)` of committed seals from other validators to compose a consensus proof. Once it receives enough committed seals, it will fill the `CommittedSeal` in `IstanbulExtra`, recalculate the `extraData`, and then insert the block into the blockchain. **Note** that since committed seals can differ by different sources, we exclude that part while calculating the block hash as in the previous section.
 
 Committed seal calculation:
@@ -179,6 +196,6 @@ Committed seal is calculated by each of the validators signing the hash along wi
 - `CONCAT(Hash, COMMIT_MSG_CODE)`: Concatenate block hash and `COMMIT_MSG_CODE` bytes.
 - `PrivateKey`: Signing validator's private key.
 
-
 ## Provenance
+
 Istanbul BFT implementation in GoQuorum is based on [EIP 650](https://github.com/ethereum/EIPs/issues/650). It has been updated since the EIP was opened to resolve safety issues by introducing locking.

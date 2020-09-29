@@ -8,19 +8,19 @@ We recommended reading the [Plugins overview](../../Concepts/Plugins/Plugins.md)
 
 | Name | Version |  | Description |
 | --- | --- | --- | --- |
-| `hashicorp-vault` | `0.0.1` | [Docs & Source](https://www.github.com/ConsenSys/quorum-account-plugin-hashicorp-vault) | Enables storage of Quorum account keys in a Hashicorp Vault kv v2 engine.  Written in Go.
+| `hashicorp-vault` | `0.0.1` | [Docs & Source](https://www.github.com/ConsenSys/quorum-account-plugin-hashicorp-vault) | Enables storage of Quorum account keys in a Hashicorp Vault kv v2 engine. Written in Go.
 
 ## Using with GoQuorum & clef
 
 === "Quorum"
 
-    ```shell
+    ```bash
     geth --plugins file:///path/to/plugins.json ...
     ```
 
 === "clef"
 
-    ```shell
+    ```bash
     clef --plugins file:///path/to/plugins.json ...
     ```
 
@@ -51,13 +51,13 @@ Create a plugin-managed account with a new key:
 
 | Parameter | Description |
 | --- | --- |
-| `config` | Plugin-specific json configuration for creating an account.  See the plugin's documentation for more info on the json config required
+| `config` | Plugin-specific json configuration for creating an account. See the plugin's documentation for more info on the json config required
 
 !!! example
 
     === "quorum"
 
-        ```shell
+        ```bash
         curl -X POST \
              -H "Content-Type:application/json" \
              -d '
@@ -78,7 +78,7 @@ Create a plugin-managed account with a new key:
 
     === "clef"
 
-        ```shell
+        ```bash
         echo '
             {
                 "jsonrpc":"2.0",
@@ -94,18 +94,18 @@ Create a plugin-managed account with a new key:
 Create a plugin-managed account from an existing private key:
 
 !!! note
-    Although this API can be used to move plugin-managed accounts between nodes, the plugin may provide a more preferable alternative.  See the plugin's documentation for more info.
+    Although this API can be used to move plugin-managed accounts between nodes, the plugin may provide a preferable alternative. See the plugin's documentation for more info.
 
 | Parameter | Description |
 | --- | --- |
 | `rawkey` | Hex-encoded account private key (without 0x prefix)
-| `config` | Plugin-specific json configuration for creating a new account.  See the plugin's documentation for more info on the json config required
+| `config` | Plugin-specific json configuration for creating a new account. See the plugin's documentation for more info on the json config required
 
 !!! example
 
     === "quorum"
 
-        ```shell
+        ```bash
         curl -X POST \
              -H "Content-Type:application/json" \
              -d '
@@ -134,12 +134,12 @@ Create a plugin-managed account from an existing private key:
 
 A limited CLI allows users to interact directly with `account` plugins:
 
-```shell
+```bash
 geth account plugin --help
 ```
 
 !!! info
-    Use the `--verbosity` flag to hide log output, e.g. `geth --verbosity 1 account plugin new ...`
+    Use the `--verbosity` flag to hide log output, for example `geth --verbosity 1 account plugin new ...`
 
 ### geth account plugin new
 
@@ -147,11 +147,11 @@ Create a plugin-managed account from an existing key:
 
 | Parameter | Description |
 | --- | --- |
-| <span style="white-space:nowrap">`plugins.account.config`</span> | Plugin-specific configuration for creating an account.  Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required.
+| `plugins.account.config` | Plugin-specific configuration for creating an account. Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required.
 
 === "json file"
 
-    ```shell
+    ```bash
     geth account plugin new \
         --plugins file:///path/to/plugin-config.json \
         --plugins.account.config file:///path/to/new-acct-config.json
@@ -159,7 +159,7 @@ Create a plugin-managed account from an existing key:
 
 === "inline json"
 
-    ```shell
+    ```bash
     geth account plugin new \
         --plugins file:///path/to/plugin-config.json \
         --plugins.account.config '{<json>}'
@@ -171,12 +171,12 @@ Create a plugin-managed account from an existing private key:
 
 | Parameter | Description |
 | --- | --- |
-| <span style="white-space:nowrap">`plugins.account.config`</span> | Plugin-specific configuration for creating an account.  Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required
-| `rawkey` | Path to file containing hex-encoded account private key (without 0x prefix) (e.g. `/path/to/raw.key`)
+| `plugins.account.config` | Plugin-specific configuration for creating an account. Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required
+| `rawkey` | Path to file containing hex-encoded account private key (without 0x prefix) (for example `/path/to/raw.key`)
 
 === "json file"
 
-    ```shell
+    ```bash
     geth account plugin import \
         --plugins file:///path/to/plugin-config.json \
         --plugins.account.config file:///path/to/new-acct-config.json \
@@ -185,7 +185,7 @@ Create a plugin-managed account from an existing private key:
 
 === "inline json"
 
-    ```shell
+    ```bash
     geth account plugin import \
         --plugins file:///path/to/plugin-config.json \
         --plugins.account.config '{<json>}'
@@ -196,7 +196,7 @@ Create a plugin-managed account from an existing private key:
 
 List all plugin-managed accounts for a given config:
 
-```shell
+```bash
 geth account plugin list \
     --plugins file:///path/to/plugin-config.json
 ```
