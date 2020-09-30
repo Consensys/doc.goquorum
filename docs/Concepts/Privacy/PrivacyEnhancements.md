@@ -69,7 +69,7 @@ None of the above limitations apply to calls (read only transactions). Contract 
 
 New flag `enableEnhancedPrivacy` has been added to Tessera config defaulting to `FALSE`, and can be enabled by adding the property to the config file the same way as other features. Refer sample configuration for further details.
 
-## Enabling Privacy Enhancements in the Quorum Network
+## Enabling Privacy Enhancements in the GoQuorum Network
 
 For any given node the privacy manager (Tessera) is started first and for that reason we allow the Tessera node to be upgraded with privacy enhancements support ahead of Quorum upgrade. But when Quorum node is upgraded and geth is reinitialised with `privacyEnhancementsBlock`, Quorum node will validate the version of Tessera running and will fail to start if Tessera is not running an upgraded version. The Quorum node reports an appropriate error message in the console suggesting users to upgrade Tessera first.
 
