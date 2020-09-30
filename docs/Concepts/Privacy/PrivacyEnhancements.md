@@ -129,4 +129,13 @@ In this example we walk through the flow of a private transaction on a 'privacy 
 
 11. Both Nodes execute the transaction and compare the ACOTHs (and execution hash for `PSV`) and update the transaction receipt accordingly to mark transaction execution completion.
 
-**Note : If the EVM simulation impacts more than one contract, all contracts should have the same `PrivacyFlag`, otherwise the transaction is rejected. All contracts ACOTHs are included in the transmission and the Tessera node will create individual proofs (secure hash) for each ACOTH.**
+!!! note
+    If the EVM simulation impacts more than one contract, all contracts should have the same `PrivacyFlag`, otherwise the transaction is rejected.
+    All contracts ACOTHs are included in the transmission and the Tessera node will create individual proofs (secure hash) for each ACOTH.**
+
+*[PP]: Counter Party Protection
+*[PSV]: Private State Validation
+*[ACOTH]: Affected Contract's Original Transaction's encrypted payload Hash
+*[SP]: Standard Private
+*[EVM]: Ethereum Virtual Machine
+*[P2P]: Peer to peer
