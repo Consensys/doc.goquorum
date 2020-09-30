@@ -123,7 +123,7 @@ If the list doesn't match it will return failure on `/send` to Node A GoQuorum.
 
 1. Node A Tessera pushes to Node B Tessera the encrypted payload, ACOTH <-> proofs (secure hash) mappings (for PSV transaction it will also push the `privateFor` list and Merkle root).
 
-6. Node B Tessera computes and compares proofs (secure hash) from Node A Tessera (for `PSV` it also verifies participants list of ACOTHs against the `privateFor` list).
+1. Node B Tessera computes and compares proofs (secure hash) from Node A Tessera (for PSV it also verifies participants list of ACOTHs against the `privateFor` list).
 
 7. Node B Tessera returns a SUCCESS response to Node A Tessera - even if the compute and compare mismatched (in order to prevent Node A finding out the recipient list of a contract/transaction) but it will not store the payload/ACOTH<->Securehash mapping based on the outcome.
 
