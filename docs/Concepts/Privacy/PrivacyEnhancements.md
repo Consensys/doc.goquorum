@@ -95,7 +95,7 @@ Refer [here](PrivateTransactionLifecycle.md) to refresh about Tessera P2P commun
 
 ### Party Protection changes
 
-To prevent a non-party node from interacting with PP contracts new transactions must be submitted with `ACOTHs` and `PrivacyFlag` from Quorum to Tessera. The Tessera node would then generate proofs (a hash using new transaction ciphertext, original transaction ciphertext and original transaction master key) for each ACOTH and include a) `PrivacyFlag`, b) ACOTHs and c) ACOTH proofs (secure hashes) in the transaction payload shared between Tessera nodes.
+To prevent a non-party node from interacting with PP contracts new transactions must be submitted with `ACOTHs` and `PrivacyFlag` from GoQuorum to Tessera. The Tessera node would then generate proofs (a hash using new transaction ciphertext, original transaction ciphertext and original transaction master key) for each ACOTH and include a) `PrivacyFlag`, b) ACOTHs and c) ACOTH proofs (secure hashes) in the transaction payload shared between Tessera nodes.
 
 ### Private State Validation changes
 
