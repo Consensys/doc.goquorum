@@ -31,7 +31,7 @@ Privacy Metadata is a new structure introduced in GoQuorum. It is stored in the 
 
 Privacy Metadata Trie is a parallel trie that stores the privacy metadata (and whatever extra data we may need) for the private contracts and is linked to the private state by root hash mappings. The records in the trie are keyed by the contract address (similarly to how the contract/accounts data is stored in the state trie).
 
-Each contract(account) that is created as the result of a 'PP' or 'PSV' transaction would have such a structure attached to the privacy metadata trie as it is essential in performing checks on future transactions affecting those contracts.
+Each contract(account) that is created as the result of a PP or PSV transaction would have such a structure attached to the privacy metadata trie as it is essential in performing checks on future transactions affecting those contracts.
 
 ### Transaction simulation
 
