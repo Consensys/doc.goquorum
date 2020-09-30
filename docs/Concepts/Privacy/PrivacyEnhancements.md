@@ -23,7 +23,7 @@ This flavor uses all the verifications of counter party protection. On top of th
 
 ### Privacy Flag
 
-A new parameter `PrivacyFlag` has been added to all Quorum [send](http://docs.goquorum.com/en/latest/Getting%20Started/api/) API methods, being passed from the client to enable the privacy enhancements feature. This flag is an unsigned integer with the following values: 1 for PP (Party Protection) and 3 for PSV (Private State Validation) transactions. If the flag is missing or zero, the transaction is assumed to be a 'non-privacy enhanced' SP (Standard Private) transaction.
+A new parameter `PrivacyFlag` has been added to all GoQuorum [send](../../Reference/APIs/PrivacyAPI.md) API methods, being passed from the client to enable the privacy enhancements feature. This flag is an unsigned integer with the following values: 1 for PP and 3 for PSV transactions. If the flag is missing or zero, the transaction is assumed to be a "non-privacy enhanced" SP transaction.
 
 ### Privacy Metadata and Privacy Metadata Trie
 
