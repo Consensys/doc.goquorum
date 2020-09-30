@@ -6,13 +6,16 @@ description: API to query privacy metadata
 # Privacy Enhancements  APIs
 
 ## APIs
+
 ### `getContractPrivacyMetadata`
-The api to query the Privacy Metadata for a contract account address
+The API to query the Privacy Metadata for a contract account address
 #### Parameter
+
 * contract address
 
 #### Returns
-* `creationTxHash`: ACOTH
+
+- `creationTxHash`: ACOTH
 - `privacyFlag`: unsigned integer with `1` for PP, `3` for PSV contracts.
 
 #### Examples
