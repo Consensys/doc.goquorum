@@ -107,7 +107,7 @@ Refer [to the private transaction livecycle](PrivateTransactionLifecycle.md) doc
 
 ![](../../images/PrivacyEnhancements.png)
 
-In this example we walk through the flow of a private transaction on a 'privacy enhanced contract' between Nodes A & B.
+In this example we walk through the flow of a private transaction on a "privacy enhanced contract" between Nodes A & B.
 
 1. User pushing a private transaction from Node A private for Node B
 
