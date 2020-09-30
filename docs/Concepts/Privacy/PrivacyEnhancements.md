@@ -35,7 +35,7 @@ Each contract(account) that is created as the result of a PP or PSV transaction 
 
 ### Transaction simulation
 
-In order to discover what ACOTH(s) to attach to a transaction the quorum node simulates the execution of the proposed transaction. The result of the simulation relies on the current state of the chain.
+In order to discover what ACOTH(s) to attach to a transaction the GoQuorum node simulates the execution of the proposed transaction. The result of the simulation relies on the current state of the chain.
 The ethereum VM has been enhanced to track the contracts involved in the simulated transaction.
 At the end of the simulation the EVM can report all the created/invoked contract addresses.
 Coupled with the privacy metadata described above it is easy to translate contract addresses to ACOTHs and attach them to the proposed transaction.
