@@ -413,3 +413,7 @@ The callback URL receives the following object:
             "error":"unknown account"
         }
         ```
+
+*[PP]: Counter Party Protection
+*[PSV]: Private State Validation
+*[SP]: Standard Private
