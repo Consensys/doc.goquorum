@@ -17,7 +17,7 @@ This flavor prevents non-party interaction on a private contract but allows stat
 
 ## Private State Validation (PSV)
 
-This flavor uses all the verifications of counter party protection. On top of those it introduces further checks preventing nodes from state deviation by failing private transactions to 'self' or 'subset of nodes' by sharing the full list of recipients among all nodes which is validated against all subsequent transactions (in standard private/party protection mode only the sending node knows the list of recipients).
+This flavor uses all the verifications of counter party protection. On top of those it introduces further checks preventing nodes from state deviation by failing private transactions to "self" or "subset of nodes" by sharing the full list of recipients among all nodes which is validated against all subsequent transactions (in standard private/party protection mode only the sending node knows the list of recipients).
 
 ## Key Enhancements
 
@@ -27,7 +27,7 @@ A new parameter `PrivacyFlag` has been added to all GoQuorum [send](../../Refere
 
 ### Privacy Metadata and Privacy Metadata Trie
 
-Privacy Metadata is a new structure introduced in GoQuorum. It is stored in the quorum DB in the privacy metadata trie (which is linked to the private state via root hash mappings). The Privacy Metadata contains the ACOTH and privacyFlag.
+Privacy Metadata is a new structure introduced in GoQuorum. It is stored in the goquorum DB in the privacy metadata trie (which is linked to the private state via root hash mappings). The Privacy Metadata contains the ACOTH and privacyFlag.
 
 Privacy Metadata Trie is a parallel trie that stores the privacy metadata (and whatever extra data we may need) for the private contracts and is linked to the private state by root hash mappings. The records in the trie are keyed by the contract address (similarly to how the contract/accounts data is stored in the state trie).
 
