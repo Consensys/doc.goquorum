@@ -57,7 +57,7 @@ No interactions are allowed between the different types of private contracts/tra
 ![](../../images/PrivacyEnhancements_Contract_Interaction_Matrix.png)
 
 The privacy enhancements feature only performs it’s checks on submitted/minted transactions.
-None of the above limitations apply to calls (read only transactions) - contract method invocations that are executed locally and do not result in minted transactions.
+None of the above limitations apply to calls (read only transactions). Contract method invocations that are executed locally and do not result in minted transactions.
 
 ## Configuration Changes
 
