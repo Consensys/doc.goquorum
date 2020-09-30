@@ -41,6 +41,7 @@ At the end of the simulation the EVM can report all the created/invoked contract
 Coupled with the privacy metadata described above it is easy to translate contract addresses to ACOTHs and attach them to the proposed transaction.
 
 #### Limitations
+
 Depending on the complexity of the contracts and the throughput of the network it may happen that the state at simulation time may differ from the chain state at the time the proposed transaction is minted.
 If the state at minting time is sufficiently altered to determine different contract interactions the corresponding PP/PSV transactions would be marked as failed on all the participants.
 Furthermore, since state divergence is expected in PP contracts, it is possible (depending on contract design) for PP transactions to fail on some of the participants.
