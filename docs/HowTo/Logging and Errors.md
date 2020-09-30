@@ -19,7 +19,7 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `"Bootstrap URL invalid", "enode", url, "err", err` | One or more enode values specified on the command line for a bootstrap node, is not a valid url. | You need to provide a correct url |
 | `"Invalid smartcard daemon path", "path", path, "type", fi.Mode().String()` | This message is generated if the socket file specified for the smartcard daemon (pcscd) is not actually a socket file | Ensure that the daemon is running and the correct socket file is specified on the command line |
 | `"Failed to get signer address", "err", err` | This indicates that the public address could not be obtained for the signature on a message in an IBFT network. This is potentially an internal error or an issue with the crypto package. | Depends on the root cause in the log message - an issue ticket may need to be raised |
-| `"Failed to serialize JavaScript exception", "exception", msg, "err", err` | This is an internal error, occurring if the given message could not be serialized into a javascript message by the [Otto](https://github.com/robertkrimen/otto) JS parser. | Raise an issue ticket |
+| `"Failed to serialize JavaScript exception", "exception", msg, "err", err` | This is an internal error, occurring if the given message could not be serialized into a JavaScript message by the [Otto](https://github.com/robertkrimen/otto) JS parser. | Raise an issue ticket |
 | `"Non contiguous block insert", "number", block.Number(), "hash", block.Hash()` | Message is generated if an 'out of sequence' block is received for insertion into the chain. This usually occurs if node is out of sync or holds a corrupt chain. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `"Non contiguous receipt insert", "number", blockChain[i].Number(), "hash", blockChain[i].Hash(), "parent", blockChain[i].ParentHash()` | Message is generated if an 'out of sequence' receipt is received for insertion. This usually occurs if node is out of sync or holds corrupt data. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `"Found bad hash, rewinding chain", "number", header.Number, "hash", header.ParentHash` | Message is generated on startup if a block is found in the database with one of a set 'bad hash' values predefined in [core/blocks.go](https://github.com/ethereum/go-ethereum/blob/461291882edce0ac4a28f64c4e8725b7f57cbeae/core/blocks.go#L22). The node will rewind the chain to prior to the bad hash and resync from that point | No action should be necessary as node will rewind and recover |
@@ -139,7 +139,7 @@ In the event of database corruption, see instructions below for [Resolution of d
 
 This can occur if there was an issue when inserting a new block into the chain and is logged in the form:
 
-```
+```text
 ########## BAD BLOCK #########
 Chain config: %v
 Number: %v

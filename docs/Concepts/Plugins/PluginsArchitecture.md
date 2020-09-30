@@ -15,8 +15,6 @@ and it has been proven in many plugin-based production systems.
 
 ## Benefits
 
-There are number of benefits:
-
 - Dynamically-linked binaries (which you get when using plugins) are much smaller than statically compiled binaries.
 - We value the ability to isolate failures. E.g.: GoQuorum client would continue mining/validating even if security plugin has crashed.
 - Easily enables support for open source plugins written in languages other than Go.

@@ -1,16 +1,20 @@
-## Configure Basic Permissions
+---
+description: Configure Basic Permissions
+---
+
+# Configure Basic Permissions
 
 Node Permissioning is used to define:
 
 1. The nodes that a particular GoQuorum node is able to connect to
-2. The nodes that a particular GoQuorum node is able to receive connections from
+1. The nodes that a particular GoQuorum node is able to receive connections from
 
 In the [basic permissions model](../../Concepts/Permissioning/BasicNetworkPermissions.md), permissioning
 is managed at the individual node level by using the `--permissioned` command line flag when starting the node.
 
 If a node is started with `--permissioned` set, the node looks for a `<data-dir>/permissioned-nodes.json` file.
-This file contains the list of enodes that this node can connect to and accept connections from.  In other
-words, if permissioning is enabled, only the nodes that are listed in the `permissioned-nodes.json` file become part of the network. 
+This file contains the list of enodes that this node can connect to and accept connections from. In other
+words, if permissioning is enabled, only the nodes that are listed in the `permissioned-nodes.json` file become part of the network.
 
 If `--permissioned` is set, a `permissioned-nodes.json` file must be provided. If the flag is set but
 no nodes are present in this file, the node is unable to make any outward connections or accept any

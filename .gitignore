@@ -4,6 +4,7 @@ env/
 *.out
 node_modules/
 .circleci/process.yml
+.circleci/cat-vale.ini
 .DS_Store
 **/.DS_Store
 *.iml

@@ -1,16 +1,16 @@
 ---
-description: Overview of GoQuorum 
+description: Overview of GoQuorum
 ---
 
 # GoQuorum Enterprise Ethereum Client
 
 ## What is GoQuorum?
 
-GoQuorum is an open-source Ethereum client developed under the LGPL license and written in Go. GoQuorum 
-is an Ethereum-based protocol that runs private, permissioned networks. GoQuorum implements Proof of 
-Authority (Raft, IBFT, and Clique) consensus mechanisms. 
+GoQuorum is an open-source Ethereum client developed under the LGPL license and written in Go. GoQuorum
+is an Ethereum-based protocol that runs private, permissioned networks. GoQuorum implements Proof of
+Authority (Raft, IBFT, and Clique) consensus mechanisms.
 
-## Is GoQuorum part of ConsenSys Quorum? 
+## Is GoQuorum part of ConsenSys Quorum?
 
 Yes. [ConsenSys Quorum](https://consensys.net/quorum/developers) is the complete open source blockchain
 layer with enterprise support available from ConsenSys.
@@ -18,9 +18,9 @@ layer with enterprise support available from ConsenSys.
 ## What can you do with GoQuorum?
 
 You can use GoQuorum to develop enterprise applications requiring secure, high-peformance transaction
-processing in a private network. 
+processing in a private network.
 
-## What does GoQuorum support? 
+## What does GoQuorum support?
 
 GoQuorum supports common smart contract and Dapp development, deployment, and operational
 use cases, using tools such as [Truffle](http://truffleframework.com/),

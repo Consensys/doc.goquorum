@@ -1,17 +1,23 @@
+---
+description: GoQuorum and Tessera installation
+---
+
 # Installing
 
 GoQuorum and [Tessera](https://docs.tessera.consensys.net) can be installed and used as Docker containers, by building from source,
 or by downloading pre-built release binaries.
 
 ## As containers
+
 Docker containers exist for GoQuorum and Tessera and can be found at the [`quorumengineering` Docker repository](https://hub.docker.com/u/quorumengineering/):
 
-```
+```bash
 docker pull quorumengineering/quorum
 docker pull quorumengineering/tessera
-```    
+```
 
 ## From source
+
 ### GoQuorum
 
 1. Clone the repository and build the source:
@@ -22,7 +28,7 @@ docker pull quorumengineering/tessera
     make all
     ```
 
-    Binaries are placed in `$REPO_ROOT/build/bin`. Add that folder to `PATH` to make `geth` and `bootnode` easily invokable, or copy those binaries to a folder already in `PATH`, e.g. `/usr/local/bin`.
+    Binaries are placed in `$REPO_ROOT/build/bin`. Add that folder to `PATH` to make `geth` and `bootnode` easily invokable, or copy those binaries to a folder already in `PATH`, for example `/usr/local/bin`.
 
     An easy way to supplement `PATH` is to add `PATH=$PATH:/path/to/repository/build/bin` to your `~/.bashrc` or `~/.bash_aliases` file.
 

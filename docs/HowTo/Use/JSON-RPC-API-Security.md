@@ -7,21 +7,21 @@ The official implementation is [Quorum Security Plugin](https://github.com/Conse
 enables the GoQuorum Client to protect JSON RPC APIs with the following features:
 
 ### Native Transport Layer Security
- 
+
 The native Transport Layer Security (TLS) introduces an encryption layer
 to the JSON-RPC request/response communication channel for both HTTP,
 and Web Socket listeners. By using a simple configuration flag this
 feature allows the automatic generation of self signed certificate for
 testing environment, or a smooth integration with certificate
 authorities for enterprise deployment.
- 
+
 ### Enterprise Authorization Protocol Integration
- 
+
 Enterprise authorization protocol integration introduces an access
 control layer that authorizes each JSON RPC invocation to an atomic
-module function level (E.g `personal_OpenWallet`) using industry 
-standard [OAuth 2.0](https://tools.ietf.org/html/rfc6749) 
-protocol and/or [JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519) method. 
+module function level (E.g `personal_OpenWallet`) using industry
+standard [OAuth 2.0](https://tools.ietf.org/html/rfc6749)
+protocol and [JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519) method.
 This feature allows managing distributed application (dApps),
 and Quorum Clients access control in an efficient approach.
 
@@ -29,7 +29,7 @@ and Quorum Clients access control in an efficient approach.
 
 Please refer to [plugin implementation](../../Reference/Plugins/security/For-Users.md) for more details.
 
-There are also [examples](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples) on 
+There are also [examples](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples) on
 how to configure the plugin to work with different OAuth2 Authorization servers.
 
 ## Client Usage
@@ -39,18 +39,18 @@ authorization server. An access token could be opaque or a JWT. It's the client'
 this preauthenticated token valid during its life time.
 
 When invoking a JSON RPC API, the client must send the preauthenticated token in the `Authorization` request header field
-with `Bearer` authentication scheme. All major HTTP client libraries have extensions to allow such customization. 
+with `Bearer` authentication scheme. All major HTTP client libraries have extensions to allow such customization.
 
 ## Examples
 
-Here are some examples on how to interact with protected JSON RPC APIs: 
+Here are some examples on how to interact with protected JSON RPC APIs:
 
 ### `web3`
 
 ```js
 let Web3 = require('web3');
 let HttpHeaderProvider = require('httpheaderprovider');
-// obtain the preauthenticated bearer token 
+// obtain the preauthenticated bearer token
 // by authenticating with the authorization server
 let token = ...;
 let headers = { "Authorization": `Bearer ${token}` };
@@ -61,7 +61,7 @@ web3.setProvider(provider);
 ### `curl`
 
 ```bash
-# obtain the preauthenticated bearer token 
+# obtain the preauthenticated bearer token
 # by authenticating with the authorization server
 export TOKEN="Bearer ..."
 curl -X POST -H "Content-type: application/json" -H "Authorization: $TOKEN" \
@@ -81,10 +81,11 @@ There are additional flags allowing to connect to secured Quorum node
 --rpcclitls.ciphersuites value      Customize supported cipher suites when using TLS connection. Value is a comma-separated cipher suite string
 ```
 
-E.g.: Connect to the node with `--rpcclitls.insecureskipverify` to ignore the Server's certificate validation.
-```shell
-geth attach https://localhost:22000 --rpcclitls.insecureskipverify    
-geth attach wss://localhost:23000   --rpcclitls.insecureskipverify    
+For example connect to the node with `--rpcclitls.insecureskipverify` to ignore the Server's certificate validation.
+
+```bash
+geth attach https://localhost:22000 --rpcclitls.insecureskipverify
+geth attach wss://localhost:23000   --rpcclitls.insecureskipverify
 ```
 
 ### `ethclient`
@@ -92,14 +93,14 @@ geth attach wss://localhost:23000   --rpcclitls.insecureskipverify
 `ethclient` provides a client for Ethereum RPC API. It's also enhanced to support Quorum-specific APIs and
 ability to invoke protected APIs.
 
-**HTTP/HTTPS**
+#### HTTP/HTTPS
 
 For HTTP endpoint, the preauthenticated token is populated in `Authorization` HTTP request header for each call.
 The token value is obtained from `rpc.HttpCredentialsProviderFunc` implementation which is configured after
 `rpc.Client` is instantiated.
 
 ```go
-// obtain the preauthenticated bearer token 
+// obtain the preauthenticated bearer token
 // by authenticating with the authorization server
 token := ...
 // instantiate rpc.Client
@@ -121,21 +122,22 @@ if err != nil {
 ```
 
 To customize TLS client configuration:
+
 ```go
 // instantiate a http.Client with custom TLS client config
-myHttpClient := ... 
+myHttpClient := ...
 // instantiate rpc.Client
 c, err := rpc.DialHTTPWithClient("https://...", myHttpClient)
 ```
 
-**WS/WSS**
+#### WS/WSS
 
-For WS endpoint, the preauthenticated token is populated in `Authorization` HTTP request header only once 
-during the handshake. The token value is obtained from `rpc.HttpCredentialsProviderFunc` implementation via 
+For WS endpoint, the preauthenticated token is populated in `Authorization` HTTP request header only once
+during the handshake. The token value is obtained from `rpc.HttpCredentialsProviderFunc` implementation via
 `context.Context` when dialing.
 
 ```go
-// obtain the preauthenticated bearer token 
+// obtain the preauthenticated bearer token
 // by authenticating with the authorization server
 token := ...
 
@@ -153,6 +155,7 @@ if err != nil {
 ```
 
 To customize TLS client configuration, use `rpc.DialWebsocketWithCustomTLS()` instead of `rpc.DialContext()`
+
 ```go
 // create a tls.Config
 tlsConfig := &tls.Config{...}

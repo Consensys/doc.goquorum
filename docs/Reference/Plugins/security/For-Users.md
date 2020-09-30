@@ -8,14 +8,14 @@ providing the following enterprise features to `geth` JSON RPC server:
 
 ## Configuration
 
-One of the below blocks must be configured: 
+One of the below blocks must be configured:
 
-<pre>
+```json
 {
-    "tls": object(<a href="#tlsconfiguration">TLSConfiguration</a>),
-    "tokenValidation": object(<a href="#tokenvalidationconfiguration">TokenValidationConfiguration</a>)
+    "tls": object(TLSConfiguration),
+    "tokenValidation": object(TokenValidationConfiguration)
 }
-</pre>
+```
 
 | Fields                    | Description                                                                                                                                                                           |
 |:--------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -24,14 +24,14 @@ One of the below blocks must be configured:
 
 ### `TLSConfiguration`
 
-<pre>
+```json
 {
     "auto": bool,
-    "certFile": <a href="#environmentawaredvalue">EnvironmentAwaredValue</a>,
-    "keyFile": <a href="#environmentawaredvalue">EnvironmentAwaredValue</a>,
-    "advanced": object(<a href="#tlsadvancedconfiguration">TLSAdvancedConfiguration</a>)
+    "certFile": EnvironmentAwaredValue,
+    "keyFile": EnvironmentAwaredValue,
+    "advanced": object(TLSAdvancedConfiguration)
 }
-</pre>
+```
 
 | Fields     | Description                                                                                                                                                                                                          |
 |:-----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -42,11 +42,11 @@ One of the below blocks must be configured:
 
 ### `TLSAdvancedConfiguration`
 
-<pre>
+```json
 {
     "cipherSuites": array,
 }
-</pre>
+```
 
 | Fields         | Description                                                                                                                                                                                                                                              |
 |:---------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -54,15 +54,16 @@ One of the below blocks must be configured:
 
 ### `TokenValidationConfiguration`
 
-<pre>
+```json
 {
     "issuers": array,
-    "cache": object(<a href="#cacheconfiguration">CacheConfiguration</a>),
-    "introspect": object(<a href="#introspectionconfiguration">IntrospectionConfiguration</a>),
-    "jws": object(<a href="#jwsconfiguration">JWSConfiguration</a>),
-    "jwt": object(<a href="#jwtconfiguration">JWTConfiguration</a>),
+    "cache": object(CacheConfiguration),
+    "introspect": object(IntrospectionConfiguration),
+    "jws": object(JWSConfiguration),
+    "jwt": object(JWTConfiguration),
 }
-</pre>
+```
+
 | Fields       | Description                                                                            |
 |:-------------|:---------------------------------------------------------------------------------------|
 | `issuers`    | Array of strings specifying approved entities who issue tokens                         |
@@ -76,12 +77,12 @@ One of the below blocks must be configured:
 An LRU cache which also checks for expiration before returning the value.
 Below is the default configuration if not specified
 
-<pre>
+```json
 {
     "limit": 80,
     "expirationInSeconds": 3600
 }
-</pre>
+```
 
 | Fields                | Description                        |
 |:----------------------|:-----------------------------------|
@@ -90,13 +91,13 @@ Below is the default configuration if not specified
 
 ### `IntrospectionConfiguration`
 
-<pre>
+```json
 {
     "endpoint": string,
-    "authentication": object(<a href="#authenticationconfiguration">AuthenticationConfiguration</a>),
-    "tlsConnection": object(<a href="#tlsconnectionconfiguration">TLSConnectionConfiguration</a>)
+    "authentication": object(AuthenticationConfiguration),
+    "tlsConnection": object(TLSConnectionConfiguration)
 }
-</pre>
+```
 
 | Fields           | Description                                                   |
 |:-----------------|:--------------------------------------------------------------|
@@ -106,12 +107,12 @@ Below is the default configuration if not specified
 
 ### `AuthenticationConfiguration`
 
-<pre>
+```json
 {
     "method": string,
-    "credentials": map(string-><a href="#environmentawaredvalue">EnvironmentAwaredValue</a>)
+    "credentials": map(string->EnvironmentAwaredValue)
 }
-</pre>
+```
 
 | Fields        | Description                                                                                                                                                                                                             |
 |:--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -126,13 +127,13 @@ Below is the default configuration if not specified
 
 ### `TLSConnectionConfiguration`
 
-<pre>
+```json
 {
     "insecureSkipVerify": bool,
-    "certFile": <a href="#environmentawaredvalue">EnvironmentAwaredValue</a>,
-    "caFile": <a href="#environmentawaredvalue">EnvironmentAwaredValue</a>
+    "certFile": EnvironmentAwaredValue,
+    "caFile": EnvironmentAwaredValue
 }
-</pre>
+```
 
 | Fields               | Description                                                                                 |
 |:---------------------|:--------------------------------------------------------------------------------------------|
@@ -142,12 +143,12 @@ Below is the default configuration if not specified
 
 ### `JWSConfiguration`
 
-<pre>
+```json
 {
     "endpoint": string,
-    "tlsConnection": object(<a href="#tlsconnectionconfiguration">TLSConnectionConfiguration</a>)
+    "tlsConnection": object(TLSConnectionConfiguration)
 }
-</pre>
+```
 
 | Fields          | Description                                        |
 |:----------------|:---------------------------------------------------|
@@ -156,12 +157,12 @@ Below is the default configuration if not specified
 
 ### `JWTConfiguration`
 
-<pre>
+```json
 {
     "authorizationField": string,
     "preferIntrospection": bool
 }
-</pre>
+```
 
 | Fields                | Description                                                                           |
 |:----------------------|:--------------------------------------------------------------------------------------|
@@ -170,7 +171,7 @@ Below is the default configuration if not specified
 
 ### `EnvironmentAwaredValue`
 
-A regular string which allows value being read from an environment variable 
+A regular string which allows value being read from an environment variable
 by specifying an URI with `env` scheme. For example: `env://MY_VAR` will return
 value from `MY_VAR` environment variable.
 
@@ -206,29 +207,30 @@ Examples on how to integrate Quorum Security Plugin with an OAuth2 Authorization
 ## OAuth2 Scopes
 
 Scope is a mechanism to limit a client's access to protected resources
-in Quorum Client RPC server. A client can request one ore more scopes 
-from a token endpoint of an OAuth2 Provider. The access token issued to 
+in Quorum Client RPC server. A client can request one ore more scopes
+from a token endpoint of an OAuth2 Provider. The access token issued to
 the client will be limited to the scopes granted.
 
 The scope syntax is as follow:
+
 ```text
     scope := "rpc://"rpc-string
 
     rpc-string := service-name delimiter method-name
-   
+
     service-name := string
-   
+
     delimiter := "." or "_"
-   
+
     method-name := string
 ```
 
 ### Examples
 
-#### Protecting APIs
+!!! example "Protecting APIs"
 
-| Scope                          | Description                                                                                 |
-|:-------------------------------|:--------------------------------------------------------------------------------------------|
-| `rpc://web3.clientVersion`     | Allow access to `web3_clientVersion` API                                                    |
-| `rpc://eth_*` <br/>or `rpc://eth_`   | Allow access to all APIs under `eth` namespace                                              |
-| `rpc://*_version` <br/>or `rpc://_version` | Allow access to `version` method of all namespaces. <br/>E.g.: `net_version`, `ssh_version` |
+    | Scope                          | Description                                                                                 |
+    |:-------------------------------|:--------------------------------------------------------------------------------------------|
+    | `rpc://web3.clientVersion`     | Allow access to `web3_clientVersion` API                                                    |
+    | `rpc://eth_*` <br/>or `rpc://eth_`   | Allow access to all APIs under `eth` namespace                                              |
+    | `rpc://*_version` <br/>or `rpc://_version` | Allow access to `version` method of all namespaces. <br/>E.g.: `net_version`, `ssh_version` |
