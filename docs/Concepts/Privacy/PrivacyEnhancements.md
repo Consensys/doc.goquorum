@@ -2,7 +2,9 @@
 description: Privacy Enhancements
 ---
 
-# Overview
+# Privacy Enhancements
+
+## Overview
 
 Before Quorum 2.7.0 any node in the Quorum network could alter the state of a contract even if it never had the contract byte code (was not party to the private transaction that created the contract). The privacy enhancements feature has been developed to prevent such 'non-party' interaction. This is achieved with the introduction of the `ACOTH` which is short for "Affected Contract's Original Transaction's encrypted payload Hash".
 In order to transact with a contract a node must prove it has access (has the encrypted payload and the ability to decrypt it) to the contract's originating transaction.
