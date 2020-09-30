@@ -99,7 +99,7 @@ To prevent a non-party node from interacting with PP contracts new transactions 
 
 ### Private State Validation changes
 
-Besides the ACOTH, a PSV transaction has an execution hash (merkle root) calculated from all the affected contract(s) resulting from the transaction simulation (at the time of submission) included from Quorum to Tessera. The d) execution hash and e) list of participants are also shared between Tessera nodes.
+Besides the ACOTH, a PSV transaction has an execution hash (Merkle root) calculated from all the affected contract(s) resulting from the transaction simulation (at the time of submission) included from GoQuorum to Tessera. The d) execution hash and e) list of participants are also shared between Tessera nodes.
 
 ## Privacy Enhanced Transaction End to End Flow
 
