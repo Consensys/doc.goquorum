@@ -121,7 +121,7 @@ In this example we walk through the flow of a private transaction on a "privacy 
 In addition for PSV it would also verify the participants list against the list in each of the ACOTH transactions (as in PSV transactions the recipient list is shared across all nodes party to the transaction).
 If the list doesn't match it will return failure on `/send` to Node A GoQuorum.
 
-5. Node A Tessera pushes to Node B Tessera the encrypted payload, ACOTH <-> proofs (secure hash) mappings (for `PSV` transaction it will also push the `privateFor` list and merkle root).
+1. Node A Tessera pushes to Node B Tessera the encrypted payload, ACOTH <-> proofs (secure hash) mappings (for PSV transaction it will also push the `privateFor` list and Merkle root).
 
 6. Node B Tessera computes and compares proofs (secure hash) from Node A Tessera (for `PSV` it also verifies participants list of ACOTHs against the `privateFor` list).
 
