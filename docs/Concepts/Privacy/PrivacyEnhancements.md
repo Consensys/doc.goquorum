@@ -61,7 +61,7 @@ None of the above limitations apply to calls (read only transactions). Contract 
 
 ## Configuration Changes
 
-### Quorum
+### GoQuorum
 
 `genesis.json` file has been modified to include `privacyEnhancementsBlock`. The values for this should be set to an appropriate value in the future (and should be initialised with same value across all the nodes in the network) by when the entire network would be ready to transact with privacy enhanced contracts/transactions.
 
