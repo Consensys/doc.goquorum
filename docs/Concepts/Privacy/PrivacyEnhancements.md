@@ -84,7 +84,10 @@ If an upgraded but privacy not 'enabled' node receives a PSV or PP transaction t
 
 ### Tessera
 
-On any given node, Tessera can be upgraded to privacy enhanced release anytime but care must be taken as when to enable `enableEnhancedPrivacy` flag in Tessera config as once the flag is enabled, it will accept PSV and PP transactions and can cause the node to crash if Quorum node is not privacy enabled. The upgraded node can continue to communicate on Tessera nodes running on previous versions using `Standard Private` transactions. API versioning(add hyperlink later) to be introduced along with privacy enhancement enables the upgraded node to determine if the receiving node supports privacy enhancements or not and fail the transaction then and there.
+On any given node, Tessera can be upgraded to privacy enhanced release at anytime.
+Take care when you enable `enableEnhancedPrivacy` flag in Tessera config as it will accept PSV and PP transactions and can cause the node to crash if GoQuorum node is not privacy enabled.
+The upgraded node can continue to communicate on Tessera nodes running on previous versions using SP transactions.
+API versioning <!-- TODO: add hyperlink later --> (that will be introduced along with privacy enhancement) enables the upgraded node to determine if the receiving node supports privacy enhancements and fail the transaction if not.
 
 ## Tessera P2P communication changes
 
