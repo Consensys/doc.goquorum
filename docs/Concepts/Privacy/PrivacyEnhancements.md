@@ -1,5 +1,6 @@
 ---
-description: Privacy Enhancements
+title: Privacy Enhancements
+description: Privacy Enhancements feature prevents nodes from modifying contracts they are not party with.
 ---
 
 # Privacy Enhancements
