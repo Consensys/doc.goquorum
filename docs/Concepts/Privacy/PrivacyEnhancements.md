@@ -13,7 +13,7 @@ Two flavours of privacy enhanced transactions have been introduced: a) Counter p
 
 ## Counter Party Protection (PP)
 
-This flavor prevents non-party interaction on a private contract but allows state divergence i.e., it will allow nodes to maintain different state through private transaction to 'self' or 'subset of nodes'.
+This flavor prevents non-party interaction on a private contract but allows state divergence. That is, it will allow nodes to maintain different state through private transaction to "self" or "subset of nodes".
 
 ## Private State Validation (PSV)
 
