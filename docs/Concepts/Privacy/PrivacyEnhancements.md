@@ -73,7 +73,7 @@ New flag `enableEnhancedPrivacy` has been added to Tessera config defaulting to 
 
 For any given node the privacy manager (Tessera) is started first and for that reason we allow the Tessera node to be upgraded with privacy enhancements support ahead of GoQuorum upgrade. But when GoQuorum node is upgraded and Geth is reinitialised with `privacyEnhancementsBlock`, GoQuorum node will validate the version of Tessera running and will fail to start if Tessera is not running an upgraded version. The Quorum node reports an appropriate error message in the console suggesting users to upgrade Tessera first.
 
-If a node wants to upgrade it's Tessera to privacy enhancements release (or further) to avail other features and fixes but not ready to upgrade Quorum, it can do so by not enabling `enableEnhancedPrivacy` in Tessera config. This will allow the node to reject PP and PSV transactions from other nodes until the node is ready to support privacy enhanced contracts/transactions.
+If a node wants to upgrade it's Tessera to privacy enhancements release (or further) to avail other features and fixes but not ready to upgrade GoQuorum, it can do so by not enabling `enableEnhancedPrivacy` in Tessera config. This will allow the node to reject PP and PSV transactions from other nodes until the node is ready to support privacy enhanced contracts/transactions.
 
 ## Backward compatability
 
