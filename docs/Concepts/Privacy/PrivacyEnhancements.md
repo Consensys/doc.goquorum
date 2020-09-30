@@ -103,7 +103,7 @@ Besides the ACOTH, a PSV transaction has an execution hash (Merkle root) calcula
 
 ## Privacy Enhanced Transaction End to End Flow
 
-Refer [here](PrivateTransactionLifecycle.md) for end to end flow of 'standard' private transaction.
+Refer [to the private transaction livecycle](PrivateTransactionLifecycle.md) documentation for end to end flow of SP transaction.
 
 ![](../../images/PrivacyEnhancements.png)
 
