@@ -115,7 +115,7 @@ In this example we walk through the flow of a private transaction on a "privacy 
 
 1. Node A GoQuorum reading the `PrivacyFlag` runs an EVM transaction simulation to gather all the affected contracts and the ACOTH(s) associated to contract accounts. For PSV transactions, it also calculates an execution hash (Merkle root) from all the affected contracts resulting from the transaction simulation.
 
-3. Node A Quorum pushes the transaction payload, `PrivacyFlag`, ACOTHs (& the merkle root for `PSV`) to Node A Tessera.
+1. Node A GoQuorum pushes the transaction payload, `PrivacyFlag`, ACOTHs (& the Merkle root for PSV) to Node A Tessera.
 
 4. Node A Tessera generates proofs (secure hashes) for the ACOTHs and use them to validate that the originating party has access to all relevant transactions. In addition for `PSV` it would also verify the participants list against the list in each of the ACOTH transactions (as in `PSV` transactions the recipient list is shared across all nodes party to the transaction). If the list doesn't match it will return failure on `/send` to Node A Quorum.
 
