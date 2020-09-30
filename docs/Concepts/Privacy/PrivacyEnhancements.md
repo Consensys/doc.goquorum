@@ -127,7 +127,7 @@ If the list doesn't match it will return failure on `/send` to Node A GoQuorum.
 
 1. Node B Tessera returns a SUCCESS response to Node A Tessera - even if the compute and compare mismatched (in order to prevent Node A finding out the recipient list of a contract/transaction) but it will not store the payload/ACOTH <--> Securehash mapping based on the outcome.
 
-8. Node A Tessera returns the hash for the encrypted transaction payload to Node A Quorum
+1. Node A Tessera returns the hash for the encrypted transaction payload to Node A GoQuorum
 
 9. Node A mints the transaction across the network.
 
