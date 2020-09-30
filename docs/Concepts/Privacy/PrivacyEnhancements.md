@@ -131,7 +131,7 @@ If the list doesn't match it will return failure on `/send` to Node A GoQuorum.
 
 1. Node A mines the transaction across the network.
 
-10. Node A & Node B being party to the contract will `/receive` decrypted payload, ACOTHs (for `PSV` also merkle root) from the respective Tessera Nodes.
+1. Node A & Node B being party to the contract will `/receive` decrypted payload, ACOTHs (for PSV also Merkle root) from the respective Tessera Nodes.
 
 11. Both Nodes execute the transaction and compare the ACOTHs (and execution hash for `PSV`) and update the transaction receipt accordingly to mark transaction execution completion.
 
