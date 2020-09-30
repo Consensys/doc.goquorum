@@ -129,7 +129,7 @@ If the list doesn't match it will return failure on `/send` to Node A GoQuorum.
 
 1. Node A Tessera returns the hash for the encrypted transaction payload to Node A GoQuorum
 
-9. Node A mints the transaction across the network.
+1. Node A mines the transaction across the network.
 
 10. Node A & Node B being party to the contract will `/receive` decrypted payload, ACOTHs (for `PSV` also merkle root) from the respective Tessera Nodes.
 
