@@ -113,7 +113,7 @@ In this example we walk through the flow of a private transaction on a "privacy 
 
     - The transaction payload will include the `PrivacyFlag` with value `1` for PP and `3` for PSV contract
 
-2. Node A Quorum reading the `PrivacyFlag` runs an EVM transaction simulation to gather all the affected contracts and the ACOTH(s) associated to contract accounts. For PSV transactions, it also calculates an execution hash (merkle root) from all the affected contracts resulting from the transaction simulation.
+1. Node A GoQuorum reading the `PrivacyFlag` runs an EVM transaction simulation to gather all the affected contracts and the ACOTH(s) associated to contract accounts. For PSV transactions, it also calculates an execution hash (Merkle root) from all the affected contracts resulting from the transaction simulation.
 
 3. Node A Quorum pushes the transaction payload, `PrivacyFlag`, ACOTHs (& the merkle root for `PSV`) to Node A Tessera.
 
