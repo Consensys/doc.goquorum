@@ -27,7 +27,7 @@ A new parameter `PrivacyFlag` has been added to all GoQuorum [send](../../Refere
 
 ### Privacy Metadata and Privacy Metadata Trie
 
-Privacy Metadata is a new structure introduced in Quorum. It is stored in the quorum DB in the privacy metadata trie (which is linked to the private state - via root hash mappings). The Privacy Metadata contains the ACOTH and privacyFlag.
+Privacy Metadata is a new structure introduced in GoQuorum. It is stored in the quorum DB in the privacy metadata trie (which is linked to the private state via root hash mappings). The Privacy Metadata contains the ACOTH and privacyFlag.
 
 Privacy Metadata Trie is a parallel trie that stores the privacy metadata (and whatever extra data we may need) for the private contracts and is linked to the private state by root hash mappings. The records in the trie are keyed by the contract address (similarly to how the contract/accounts data is stored in the state trie).
 
