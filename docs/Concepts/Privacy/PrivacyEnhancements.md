@@ -79,7 +79,7 @@ If a node wants to upgrade it's Tessera to privacy enhancements release (or furt
 
 ### GoQuorum
 
-An upgraded Quorum node can coexist on a network where other nodes are running on lower version of Quorum and thus supports node by node upgrade. But it cannot support privacy enhanced contracts until all interested nodes are upgraded and privacy 'enabled'.
+An upgraded GoQuorum node can coexist on a network where other nodes are running on lower version of GoQuorum and thus supports node by node upgrade. But it cannot support privacy enhanced contracts until all interested nodes are upgraded and privacy "enabled".
 If an upgraded but privacy not 'enabled' node receives a PSV or PP transaction the node would log a `BAD BLOCK` error with “Privacy enhanced transaction received while privacy enhancements are disabled. Please check your node configuration.” error message. If the consensus algorithm is raft, the node would stop. For Istanbul, the node would keep trying to append the problematic block and reprint the above errors and it won't catch up with rest of nodes until restarted and reinitialized with the correct `privacyEnhancementsBlock`.
 
 ### Tessera
