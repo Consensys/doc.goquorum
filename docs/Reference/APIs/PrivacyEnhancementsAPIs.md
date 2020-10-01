@@ -8,15 +8,17 @@ description: API to query privacy metadata
 ## APIs
 
 ### `getContractPrivacyMetadata`
+
 The API to query the Privacy Metadata for a contract account address
+
 #### Parameter
 
 * contract address
 
 #### Returns
 
-- `creationTxHash`: ACOTH
-- `privacyFlag`: unsigned integer with `1` for PP, `3` for PSV contracts.
+* `creationTxHash`: ACOTH
+* `privacyFlag`: unsigned integer with `1` for PP, `3` for PSV contracts.
 
 #### Examples
 
@@ -50,8 +52,6 @@ The API to query the Privacy Metadata for a contract account address
           privacyFlag: 3
         }
         ```
-
-
 
 *[PP]: Counter Party Protection
 *[PSV]: Private State Validation

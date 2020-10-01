@@ -48,13 +48,13 @@ Furthermore, since state divergence is expected in PP contracts, it is possible 
 
 Concurrency may also present a problem for PSV contracts. The execution hash calculation is based on the chain state at simulation time. Submitting multiple transactions to the same PSV contract from multiple nodes concurrently is likely to result in most of the transactions failing.
 
-Considering the above we expect users to choose PP and PSV contracts/transactions **only** when the enhanced privacy is absolutely necessary (and the extra privacy benefits outweigh the potential shortfalls).
+Considering the above we expect users to choose PP and PSV contracts/transactions **only** when the enhanced privacy is necessary (and the extra privacy benefits outweigh the potential shortfalls).
 
 ### Contract/Transaction interactions
 
 No interactions are allowed between the different types of private contracts/transactions. The only type of allowed interaction is for private contracts (SP/PP/PSV) to read from public contracts.
 
-![](../../images/PrivacyEnhancements_Contract_Interaction_Matrix.png)
+![Contract interaction matrix](../../images/PrivacyEnhancements_Contract_Interaction_Matrix.png)
 
 The privacy enhancements feature only performs it’s checks on submitted/minted transactions.
 None of the above limitations apply to calls (read only transactions). In this context calls are contract method invocations that are executed locally and do not result in minted transactions.
@@ -105,7 +105,7 @@ Besides the ACOTH, a PSV transaction has an execution hash (Merkle root) calcula
 
 Refer [to the private transaction livecycle](PrivateTransactionLifecycle.md) documentation for end to end flow of SP transaction.
 
-![](../../images/PrivacyEnhancements.png)
+![Privacy enhanced transaction end to end flow](../../images/PrivacyEnhancements.png)
 
 In this example we walk through the flow of a private transaction on a "privacy enhanced contract" between Nodes A & B.
 
