@@ -100,7 +100,7 @@ description: FAQ
     A future GoQuorum release will address this issue.
 
 ??? info "Known Raft consensus node misconfiguration"
-    Please see https://github.com/ConsenSys/quorum/issues/410
+    Please see <https://github.com/ConsenSys/quorum/issues/410>
 
 ??? question "geth 1.9.7 has the feature of stopping the node once sync is completed using `--exitwhensynced` flag. Will this work with Raft consensus?"
     `--existwhensycned` is not applicable for Raft consensus

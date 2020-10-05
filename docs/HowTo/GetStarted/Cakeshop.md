@@ -56,7 +56,7 @@ Cakeshop can start in multiple modes (see the sections below for details on each
     java -jar cakeshop.war
     ```
 
-1. Open **http://localhost:8080/** in your browser (Firefox/Chrome supported)
+1. Open **<http://localhost:8080/>** in your browser (Firefox/Chrome supported)
 
 ### Attach Mode
 
@@ -83,11 +83,11 @@ Cakeshop can start in multiple modes (see the sections below for details on each
     java -jar cakeshop.war
     ```
 
-1. Open **http://localhost:8080/** in your browser (Firefox/Chrome supported)
+1. Open **<http://localhost:8080/>** in your browser (Firefox/Chrome supported)
 
 1. The dropdown menu on the top right of the page should show "Manage Nodes" if you haven't attached to any yet. Click on that to go to the Manage Nodes page.
 
-1. Click Add Node and input the RPC url of your GoQuorum node (http://localhost:22000) and the path to the Tessera P2P Party Info endpoint (http://localhost:9001/partyinfo).
+1. Click Add Node and input the RPC url of your GoQuorum node (<http://localhost:22000>) and the path to the Tessera P2P Party Info endpoint (<http://localhost:9001/partyinfo>).
 
 1. Once added, click on View to attach to the node and return to the main Cakeshop page
 
@@ -152,9 +152,9 @@ The best way to achieve this is to create separate Cakeshop folders for each nod
     CAKESHOP_SHARED_CONFIG=".." java -Dserver.port=8081 -jar cakeshop.war # Cakeshop will now be available on localhost:8081
     ```
 
-1. In browser window 1 open http://localhost:8080/
+1. In browser window 1 open <http://localhost:8080/>
 
-1. In browser window 2 open http://localhost:8081/
+1. In browser window 2 open <http://localhost:8081/>
 
 ### Running Cakeshop on quorum-examples
 
