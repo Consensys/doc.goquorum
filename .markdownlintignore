@@ -1,1 +1,4 @@
+# ignore generated files
 docs/Reference/Plugins/**/*terface.md
+# these files are copied from the Vale style repositories
+common/build_tools/vale/vale_styles/*/*.md

@@ -12,7 +12,7 @@
 
     ![quorum_tab](images/tab_icon.png)
 
-1. Input the Geth RPC url and hit enter. If you are currently running the quorum-examples 7nodes network, the first node's url is http://localhost:22000
+1. Input the Geth RPC url and hit enter. If you are currently running the quorum-examples 7nodes network, the first node's url is <http://localhost:22000>
 
     ![geth_rpc](images/geth_rpc.png)
 

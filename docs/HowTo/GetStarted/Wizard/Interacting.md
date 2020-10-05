@@ -185,7 +185,7 @@ Node 3 defaults:
 
 If you chose to include Cakeshop in your network (included in the Quickstart option), you can try to do the above steps in that UI as well.
 
-1. Open http://localhost:8999 in your browser.
+1. Open <http://localhost:8999> in your browser.
 1. Go to the Contracts tab and Deploy the contract registry
 1. Go to the Sandbox, select the SimpleStorage sample contract from the Contract Library, and deploy with Private For set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`)
 1. Go back to the main Cakeshop page, go to the Contracts tab again, and you should be able to see the contract you just deployed.
