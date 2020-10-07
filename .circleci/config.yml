@@ -63,11 +63,11 @@ jobs:
       - run:
           name: Cat config
           command: |
-            cat ./common/build_tools/vale/.vale.ini .circleci/vale.ini > .circleci/cat-vale.ini
+            cat .circleci/vale.ini >> ./common/build_tools/vale/.vale.ini
       - run:
           name: Run Vale
           command: |
-            ./bin/vale --config .circleci/cat-vale.ini --glob='*.{md}' . | tee ./vale.out
+            ./bin/vale --config ./common/build_tools/vale/.vale.ini --glob='*.{md}' . | tee ./vale.out
       - notify
       - store_artifacts:
           path: ./vale.out
