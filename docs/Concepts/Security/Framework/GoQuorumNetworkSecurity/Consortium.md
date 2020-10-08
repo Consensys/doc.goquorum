@@ -39,12 +39,12 @@ In order to build a controls to minimize a risk, the activities that are expecte
 
 - [x] Consortium member should provide a reasonable network Service-Level Agreement (SLA).
 
-- [x] Ensure Private/Public payloads data is stored in a appropiate Geographical legislation area.
+- [x] Ensure Private/Public payloads data is stored in a appropriate geographical legislation area.
 
-- [x] Document the Consortium Governance Structure, Ownership, Liability, Memberships, Activities.
+- [x] Document the Consortium Governance Structure, ownership, liability, memberships, activities.
 
 - [x] Document the Organizational, and technological requirements to join the Consortium.
 
 - [x] Ensure Consortium members be known to every participant in the network.
 
-- [x] Ensure Private/Public paylaod data is compliant with privacy policies.
+- [x] Ensure Private/Public payload data is compliant with privacy policies.

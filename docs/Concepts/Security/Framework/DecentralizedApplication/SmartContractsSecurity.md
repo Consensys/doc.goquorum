@@ -59,7 +59,7 @@ Reentrancy occurs when external contract calls are allowed to make new calls to 
 
 ### Access Control
 
-While insecure visibility settings give attackers straightforward ways to access a contract's private values or logic, access control bypasses are sometimes more subtle. These vulnerabilities can occur when contracts use the deprecated "tx.origin" to validate callers, handle extensive authorization logic with lengthy "require" and make reckless use of "delegatecall" in proxy libraries or proxy contracts.
+While insecure visibility settings give attackers straightforward ways to access a contract's private values or logic, access control bypasses are sometimes more subtle. These vulnerabilities can occur when contracts use the deprecated `tx.origin` to validate callers, handle extensive authorization logic with lengthy "require" and make reckless use of `delegatecall` in proxy libraries or proxy contracts.
 
 ### Arithmetic
 
@@ -67,7 +67,7 @@ Integer overflows and underflows are not a new class of vulnerability, but they 
 
 ### Unchecked Low Level Calls
 
-One of the more in-depth features of Solidity are the low-level functions such as call(), callcode(), delegatecall() and send(). Their error handling behaviour is quite different from other Solidity functions. The errors will not surface immediately and will not lead to the total reversal of the current execution. Instead, they will return a boolean value set to false, and the code will continue to run. This scenario could surprise developers. If the return value of such low-level calls is not checked, it could lead to "fail open" situations and other unwanted outcomes.
+One of the more in-depth features of Solidity are the low-level functions such as `call()`, `callcode()`, `delegatecall()` and `send()`. Their error handling behaviour is quite different from other Solidity functions. The errors will not surface immediately and will not lead to the total reversal of the current execution. Instead, they will return a boolean value set to false, and the code will continue to run. This scenario could surprise developers. If the return value of such low-level calls is not checked, it could lead to "fail open" situations and other unwanted outcomes.
 
 ### Bad Randomness
 

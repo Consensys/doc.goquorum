@@ -34,8 +34,8 @@ In this example, private contract is being extended from Nodes A to Node B.
 1. Since the state sharing does not execute the transactions that generate the state
     (in order to keep history private), there is no proof that can be provided by the proposer
     that the state is correct. In order to remedy this, the receiver must accept the proposal for the
-    contract as the proof. In this step, the user owning the ethereum public key of node B which was
-    marked as receiving address, approves the contract extension using GoQuorum apis
+    contract as the proof. In this step, the user owning the Ethereum public key of node B which was
+    marked as receiving address, approves the contract extension using GoQuorum APIs
     - **3a** - Node B submits the acceptance vote to extension contract
     - **3c & 3d** - Private transaction payload is shared with Tessera nodes A. Public state is
         propagated across all nodes

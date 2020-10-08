@@ -44,7 +44,7 @@ clef help
 
 ## Getting Started
 
-See [cmd/clef/tutorial.md](https://github.com/ConsenSys/quorum/blob/master/cmd/clef/tutorial.md)
+See [`cmd/clef/tutorial.md`](https://github.com/ConsenSys/quorum/blob/master/cmd/clef/tutorial.md)
 for an overview and step-by-step guide on `clef` initialisation, startup and automation rules configuration.
 
 ## Using
@@ -115,4 +115,4 @@ clef --plugins file:///path/to/plugin-config.json
 
 ## More information
 
-More information can be found in the `.md` files in the [cmd/clef directory](https://github.com/ConsenSys/quorum/tree/master/cmd/clef).
+More information can be found in the `.md` files in the [`cmd/clef directory`](https://github.com/ConsenSys/quorum/tree/master/cmd/clef).

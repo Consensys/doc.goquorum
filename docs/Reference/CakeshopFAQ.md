@@ -1,8 +1,8 @@
 ---
-description: CakeShop FAQ
+description: Cakeshop FAQ
 ---
 
-# CakeShop FAQ
+# Cakeshop FAQ
 
 ??? question "How do I call contracts or send Transactions to existing contracts?"
 

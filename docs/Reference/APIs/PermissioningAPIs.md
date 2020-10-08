@@ -16,7 +16,7 @@ None
 
 #### Returns
 
-* `fullOrgId`: complete org id including the all parent org ids separated by ".".
+* `fullOrgId`: complete org id including the all parent org ids separated by `.`.
 * `level`: level of the org in org hierarchy
 * `orgId`: organization identifier
 * `parentOrgId`: immediate parent org id

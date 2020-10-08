@@ -37,7 +37,7 @@ In this example, Party A and Party B are party to Transaction AB, whilst Party C
         1. as Party A was the sender of this transaction, it will derive the shared-key using its private key and the receiver's (B's) public key
         1. as Party B was a recipient of this transaction it will derive the shared-key using its private key and the sender's (A's) public key
     1. decrypting the tx-key with the shared-key and the encrypted data and nonce retrieved from the database
-    1. decrypting the private transaction payload with the tx-key and the encrytped data and nonce retrieved from the database
+    1. decrypting the private transaction payload with the tx-key and the encrypted data and nonce retrieved from the database
     1. returning to the Transaction Manager: the decrypted private transaction data
 1. The Transaction Manager's return their results to their GoQuorum nodes:
     1. Party A & B's Transaction Managers return the decrypted private transaction data to their GoQuorum nodes which can now execute the transaction as normal, thus updating their respective Private StateDB. GoQuorum discards the decrypted private transaction data once used

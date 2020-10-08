@@ -13,15 +13,15 @@ and compliance requirements. In this section we will go through an example confi
 - The inbound RPC requests from clients will be load balanced to one of these Quorum nodes.
 - These nodes will need to share same key for transaction signing and should have shared access to key store directory or key vaults.
 - These nodes need to share the same private state. They could either connect to local Tessera node or
-    in 'full' HA setup using [proxy](#proxy-setup-on-both-quorum-nodes) running on each GoQuorum node
-    listening on local ipc file and directing request to Tessera Q2T http but in both cases the Tessera node(s) share the same database.
+    in full HA setup using [proxy](#proxy-setup-on-both-quorum-nodes) running on each GoQuorum node
+    listening on local IPC socket and directing request to Tessera Q2T HTTP but in both cases the Tessera node(s) share the same database.
 
 ## Tessera Node Configuration Requirements
 
 - Separate [Proxy](#standalone-proxy-server-setup) server to redirect/mirror requests to two or more Tessera nodes
 - Two or more Tessera Nodes serve as Privacy manager for Client GoQuorum node.
 - These nodes share same public/private key pair (stored in password protected files or external vaults) and share same database.
-- In the server config, the bindingAddress should be the local addresses (their real addresses), but 'advertisedAddress' (serverAddress) needs to be configured to be the proxy
+- In the server configuration, the `bindingAddress` should be the local addresses (their real addresses), but `advertisedAddress` (`serverAddress`) needs to be configured to be the proxy.
 - Add DB replication or mirroring for Tessera private data store and the JDBC connection string to include both Primary DB and DR DB connections to facilitate auto switchover on failure.
 
 ??? info "Quorum HA Setup 1"
@@ -38,7 +38,7 @@ and compliance requirements. In this section we will go through an example confi
     **If HA is required only for Tessera, below setup could be adopted**
     ![Tessera HA Mode](../../images/Tessera_HA.png)
 
-## Example Setup using nginx Proxy setup
+## Example Setup using Nginx Proxy setup
 
 ### Proxy Setup on both Quorum nodes
 
@@ -129,3 +129,6 @@ and compliance requirements. In this section we will go through an example confi
                         proxy_pass http://p2p/upcheck;
       }}}
 ```
+
+*[HA]: High Availability
+*[Q2T]: Quorum-to-Tessera

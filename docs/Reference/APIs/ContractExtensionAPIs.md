@@ -10,7 +10,7 @@ The api for initiating contract extension to a new node.
 
 * `toExtend`: address of the private contract which is being extended to the new node
 * `newRecipientPtmPublicKey`: Tessera public key of the recipient node
-* `recipientAddress`: ethereum addresses which will accept the contract extension in the recipient node
+* `recipientAddress`: Ethereum addresses which will accept the contract extension in the recipient node
 * `txArgs`: standard transaction arguments with `privateFor` info of both nodes involved in contract extension
 
 #### Returns
@@ -51,7 +51,7 @@ If the contract is already under the process of extension, api call to extend it
 
 ### `quorumExtension_acceptExtension`
 
-The api for accepting the contract extension on the recipient node. This can be invoked by the ethereum address which is was given as the `recipientAddress` when creating the contract extension.
+The api for accepting the contract extension on the recipient node. This can be invoked by the Ethereum address which is was given as the `recipientAddress` when creating the contract extension.
 
 #### Parameter
 
@@ -119,7 +119,7 @@ Error: account is not acceptor of this extension request
 
 ### `quorumExtension_cancelExtension`
 
-The api for cancelling the contract extension process. This can only be invoked by the ethereum address which initaited the contract extension process.
+The api for cancelling the contract extension process. This can only be invoked by the Ethereum address which initaited the contract extension process.
 
 #### Parameter
 
@@ -152,7 +152,7 @@ The api for cancelling the contract extension process. This can only be invoked 
     "0x9e0101dd215281b33989b3ae093147e9009353bb63f531490409a628c6e87310"
     ```
 
-If the api is invoked by an ethereum address which is not the creator of the contract extension, an error is thrown.
+If the api is invoked by an Ethereum address which is not the creator of the contract extension, an error is thrown.
 
 ```javascript
 > quorumExtension.cancelExtension("0x4d3bfd7821e237ffe84209d8e638f9f309865b87", {from: "0xbdafac69ab6c5c2f1c2ba36a462c9d2fb01f877d", privateFor:["1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg"]})
@@ -175,8 +175,8 @@ None
 
 * `contractExtended`: address of the private contract getting extended
 * `creationData`: hash of extension creation data
-* `initiator`: ethereum address which initiated the contract extension
-* `recipient`: ethereum addresses which needs to approve the extension in the recipient node
+* `initiator`: Ethereum address which initiated the contract extension
+* `recipient`: Ethereum addresses which needs to approve the extension in the recipient node
 * `managementContractAddress`: contract address which manages the extension process
 * `RecipientPtmKey`: Tessera public key of the recipient node
 

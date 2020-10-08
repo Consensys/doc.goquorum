@@ -31,7 +31,7 @@ The network communication and RPC are handled automatically by the [high-level p
 
 ## Installing Plugins
 
-Currently plugins must be manually installed into a directory (defaults to `plugins` directory inside `geth` data directory - default can be overriden by setting `baseDir` in [plugins settings](../../HowTo/Configure/Plugins.md)).
+Currently plugins must be manually installed into a directory (defaults to `plugins` directory inside `geth` data directory - default can be overridden by setting `baseDir` in [plugins settings](../../HowTo/Configure/Plugins.md)).
 
 ## Using Plugins
 
@@ -58,8 +58,7 @@ If the flag `--plugins.skipverify` is provided at runtime the plugin verificatio
 
 The plugin interface is implemented in Go and Java. In this example, `HelloWorld` plugin exposes a JSON RPC endpoint
 to return a greeting message in the configured language.
-This plugin is [reloadable](../../Concepts/Plugins/PluginsArchitecture.md#plugin-reloading). It means
-that the plugin can take changes from its JSON configuration.
+This plugin can [reload](../../Concepts/Plugins/PluginsArchitecture.md#plugin-reloading) changes from its JSON configuration.
 
 ### Build plugin distribution file
 
@@ -138,7 +137,7 @@ that the plugin can take changes from its JSON configuration.
    {"jsonrpc":"2.0","id":1,"result":"Hello Quorum Plugin!"}
    ```
 
-1. Update `build/bin/hello-world-plugin-config.json` plugin config to support `es` language
+1. Update `build/bin/hello-world-plugin-config.json` plugin configuration to support `es` language
 
 1. Reload the plugin
 

@@ -100,7 +100,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     '70399c3d1654c959a02b73acbdd4770109e39573a27a9b52bd391e5f79b91a42d8f2b9e982959402a97d2cbcb5656d778ba8661ec97909abc72e7bb04392ebd8'
     ```
 
-1. Create a file called `static-nodes.json` and edit it to match this [example](permissioned-nodes.md). Your file should contain a single line for your node with your enode's id and the ports you are going to use for devp2p and raft. Ensure that this file is in your nodes data directory
+1. Create a file called `static-nodes.json` and edit it to match this [example](permissioned-nodes.md). Your file should contain a single line for your node with your enode's id and the ports you are going to use for devp2p and Raft. Ensure that this file is in your nodes data directory
 
     ```bash
      vim static-nodes.json
@@ -216,7 +216,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     INFO [06-07|16:34:39.819] Successfully wrote genesis state         database=lightchaindata                                          hash=f02d0b…ed214a
     ```
 
-1. Connect to an already running node of the chain and execute raft `addPeer` command.
+1. Connect to an already running node of the chain and execute Raft `addPeer` command.
 
     ```bash
      geth attach new-node-1/geth.ipc
@@ -247,7 +247,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     > exit
     ```
 
-1. Start your node by first creating a script as previous step and changing the ports you are going to use for Devp2p and raft.
+1. Start your node by first creating a script as previous step and changing the ports you are going to use for Devp2p and Raft.
 
     ```bash
      cp startnode1.sh startnode2.sh

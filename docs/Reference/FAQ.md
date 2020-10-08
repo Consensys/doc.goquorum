@@ -49,7 +49,7 @@ description: FAQ
     `quorumengineering/tessera:latest`
 
 ??? question "Can I create a network of GoQuorum nodes using different consensus mechanisms?"
-    Unfortunately, that is not possible. GoQuorum nodes configured with raft will only be able to work correctly with other nodes running raft consensus. This applies to all other supported consensus algorithms.
+    Unfortunately, that is not possible. GoQuorum nodes configured with Raft will only be able to work correctly with other nodes running Raft consensus. This applies to all other supported consensus algorithms.
 
 ??? info "GoQuorum version compatibility table"
     |                                     | Adding new node v2.0.x | Adding new node v2.1.x - v2.5.x |
@@ -59,10 +59,10 @@ description: FAQ
 
     **Note:** While every GoQuorum v2 client will be able to connect to any other v2 client, the usefullness will be severely degraded. <span style="color:red;">Red color</span> signifies that while connectivity is possible, <span style="color:red;">red colored</span> versions will be unable to send public or private txns to the rest of the net due to the EIP155 changes in the signer implemented in newer versions.
 
-??? info "GoQuorum to Geth version mapping"
+??? info "GoQuorum to geth version mapping"
     | GoQuorum v2.0.x - v2.1.1 | GoQuorum v2.2.0 - v2.2.1 | GoQuorum v2.2.2 - v2.5.0 |
     | ---------------------- | ---------------------- | ---------------------- |
-    | Geth v1.7.2            | Geth v1.8.12           | Geth v1.8.18           |
+    | geth v1.7.2            | geth v1.8.12           | geth v1.8.18           |
 
 ## Tessera FAQ
 
@@ -88,11 +88,11 @@ description: FAQ
 ??? question "I thought there were no forks in a Raft-based blockchain. What's the deal with "speculative minting"?"
     "Speculative chains" are not forks in the blockchain. They represent a series ("chain") of blocks that have been sent through Raft, after which each of the blocks may or may not actually end up being included in *the blockchain*.
 
-??? question "Can transactions be reversed? Since raft log entries can be disregarded as "no-ops", does this imply transaction reversal?"
-    No. When a Raft log entry containing a new block is disregarded as a "no-op", its transactions will remain in the transaction pool, and so they will be included in a future block in the chain.
+??? question "Can transactions be reversed? Since Raft log entries can be disregarded as _no-ops_, does this imply transaction reversal?"
+    No. When a Raft log entry containing a new block is disregarded as a _no-op_, its transactions will remain in the transaction pool, and so they will be included in a future block in the chain.
 
 ??? question "What's the deal with the block timestamp being stored in nanoseconds (instead of seconds, like other consensus mechanisms)?"
-    With raft-based consensus we can produce far more than one block per second, which vanilla Ethereum implicitly disallows (as the default timestamp resolution is in seconds and every block must have a timestamp greater than its parent). For Raft, we store the timestamp in nanoseconds and ensure it is incremented by at least 1 nanosecond per block.
+    With Raft-based consensus we can produce far more than one block per second, which vanilla Ethereum implicitly disallows (as the default timestamp resolution is in seconds and every block must have a timestamp greater than its parent). For Raft, we store the timestamp in nanoseconds and ensure it is incremented by at least 1 nanosecond per block.
 
 ??? question "Why do I see "Error: Number can only safely store up to 53 bits" when using web3js with Raft?"
     As mentioned above, Raft stores the timestamp in nanoseconds, so it is too large to be held as a number in JavaScript.
@@ -102,7 +102,7 @@ description: FAQ
 ??? info "Known Raft consensus node misconfiguration"
     Please see <https://github.com/ConsenSys/quorum/issues/410>
 
-??? question "geth 1.9.7 has the feature of stopping the node once sync is completed using `--exitwhensynced` flag. Will this work with Raft consensus?"
+??? question "Geth1.9.7 has the feature of stopping the node once sync is completed using `--exitwhensynced` flag. Will this work with Raft consensus?"
     `--existwhensycned` is not applicable for Raft consensus
 
 ??? question "Can I remove the statedb using `geth removedb` command and recover the statedb by syncing with other nodess in the network when running the node in Raft consensus"
