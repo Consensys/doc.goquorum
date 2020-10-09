@@ -49,7 +49,7 @@ A plugin metadata file `plugin-meta.json` must be included in the distribution Z
 `plugin-meta.json` contains a valid JSON object which has a flat structure with key value pairs.
 
 Although the JSON object can include any desired information.
-There are mandatory key value pairs which must be present.
+The following key value pairs must be present.
 
 ```json
 {
@@ -80,7 +80,7 @@ There are mandatory key value pairs which must be present.
 
 ## Advanced topics for non-Go plugins
 
-Writing non-Go plugins is well-documented in [`go-plugin` Github](https://github.com/hashicorp/go-plugin/blob/master/docs/guide-plugin-write-non-go.md).
+Writing non-Go plugins is documented in [`go-plugin` GitHub](https://github.com/hashicorp/go-plugin/blob/master/docs/guide-plugin-write-non-go.md).
 
 Some additional advanced topics are described here.
 

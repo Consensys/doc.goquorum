@@ -12,7 +12,7 @@
 
     ![quorum_tab](images/tab_icon.png)
 
-1. Input the Geth RPC url and hit enter. If you are currently running the quorum-examples 7nodes network, the first node's url is <http://localhost:22000>
+1. Input the geth RPC url and hit enter. If you are currently running the quorum-examples 7nodes network, the first node's url is <http://localhost:22000>
 
     ![geth_rpc](images/geth_rpc.png)
 
@@ -46,4 +46,4 @@
 
     ![deployed_private](images/deployed_private.png)
 
-1. Please open a github issue or reach out to us on our [Slack](https://www.goquorum.com/slack-inviter) with any feedback or questions!
+1. Please open a GitHub issue or reach out to us on our [Slack](https://www.goquorum.com/slack-inviter) with any feedback or questions!

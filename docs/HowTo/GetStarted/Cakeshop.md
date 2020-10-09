@@ -42,10 +42,10 @@ Cakeshop can start in multiple modes (see the sections below for details on each
     Cakeshop is currently designed such that a given instance of Cakeshop works directly with a single Ethereum-like node, however you can set up multiple instances of Cakeshop on the same machine (each which could either have been started in 'Default' mode or 'Attach' mode) such that each can talk to a different node.
 
     !!!note
-        You can use the Attach mode and Multi-Instance setup configuration to run Cakeshop on [GoQuorum](https://github.com/ConsenSys/quorum) nodes. See below for connecting Cakeshop to the [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network from the quorum-examples repo.
+        You can use the Attach mode and Multi-Instance setup configuration to run Cakeshop on [GoQuorum](https://github.com/ConsenSys/quorum) nodes. See below for connecting Cakeshop to the [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network from the `quorum-examples`s repo.
 
 !!!warning
-    The following commands assume you have renamed the WAR file to cakeshop.war
+    The following commands assume you have renamed the WAR file to `cakeshop.war`.
 
 ### Default Mode
 
@@ -68,7 +68,7 @@ Cakeshop can start in multiple modes (see the sections below for details on each
     java -jar cakeshop.war example
     ```
 
-1. Navigate to path/to/cakeshop/war/data/local
+1. Navigate to `path/to/cakeshop/war/data/local`
 
 1. Make the following edits to the application.properties file:
 
@@ -156,9 +156,9 @@ The best way to achieve this is to create separate Cakeshop folders for each nod
 
 1. In browser window 2 open <http://localhost:8081/>
 
-### Running Cakeshop on quorum-examples
+### Running Cakeshop on `quorum-examples`
 
-You can use the 'Attach' mode to use Cakeshop to explore the quorum-examples [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network.
+You can use the 'Attach' mode to use Cakeshop to explore the [`quorum-examples` `7nodes`](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network.
 
 To do so:
 

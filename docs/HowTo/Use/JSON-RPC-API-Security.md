@@ -27,10 +27,8 @@ and Quorum Clients access control in an efficient approach.
 
 ## Configuration
 
-Please refer to [plugin implementation](../../Reference/Plugins/security/For-Users.md) for more details.
-
-There are also [examples](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples) on
-how to configure the plugin to work with different OAuth2 Authorization servers.
+Refer to [plugin implementation](../../Reference/Plugins/security/For-Users.md) for more details
+and find [examples on how to configure the plugin to work with different OAuth2 Authorization servers](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples).
 
 ## Client Usage
 
@@ -71,7 +69,7 @@ curl -X POST -H "Content-type: application/json" -H "Authorization: $TOKEN" \
 
 ### `geth attach`
 
-There are additional flags allowing to connect to secured Quorum node
+Use additional flags to allow a secured GoQuorum node connection:
 
 ```text
 --rpcclitoken value                 RPC Client access token

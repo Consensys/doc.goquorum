@@ -4,9 +4,9 @@ description: Raft RPC API
 
 # Raft RPC API
 
-## raft_cluster
+## `raft_cluster`
 
-Returns the details of all nodes part of the raft cluster
+Returns the details of all nodes part of the Raft cluster
 
 ### Parameters
 
@@ -15,12 +15,12 @@ None
 ### Returns
 
 * `hostName`: DNS name or the host IP address
-* `nodeActive`: true if the node is active in raft cluster else false
+* `nodeActive`: true if the node is active in Raft cluster else false
 * `nodeId`: enode id of the node
 * `p2pPort`: p2p port
-* `raftId`: raft id of the node
-* `raftPort`: raft port
-* `role`: role of the node in raft GoQuorum. Can be minter/ verifier/ learner. In case there is no leader at network level it will be returned as `""`
+* `raftId`: Raft id of the node
+* `raftPort`: Raft port
+* `role`: role of the node in Raft GoQuorum. Can be minter/ verifier/ learner. In case there is no leader at network level it will be returned as `""`
 
 !!! example
 
@@ -65,9 +65,9 @@ None
         }]
         ```
 
-## raft_role
+## `raft_role`
 
-Returns the role of the current node in raft cluster
+Returns the role of the current node in Raft cluster
 
 ### Parameters
 
@@ -75,7 +75,7 @@ None
 
 ### Returns
 
-* `result`: role of the node in raft cluster. Can be minter/ verifier/ learner. In case there is no leader at network level it will be returned as `""`
+* `result`: role of the node in Raft cluster. Can be minter/ verifier/ learner. In case there is no leader at network level it will be returned as `""`
 
 !!! example
 
@@ -96,7 +96,7 @@ None
         "minter"
         ```
 
-## raft_leader
+## `raft_leader`
 
 Returns enode id of the leader node
 
@@ -138,7 +138,7 @@ None
         at <unknown>
     ```
 
-## raft_addPeer
+## `raft_addPeer`
 
 API for adding a new peer to the network.
 
@@ -148,7 +148,7 @@ API for adding a new peer to the network.
 
 ### Returns
 
-* `result`: raft id for the node being added
+* `result`: Raft id for the node being added
 
 !!! example
 
@@ -182,13 +182,13 @@ API for adding a new peer to the network.
         at <anonymous>:1:1
     ```
 
-## raft_removePeer
+## `raft_removePeer`
 
-API to remove a node from raft cluster
+API to remove a node from Raft cluster
 
 ### Parameters
 
-* `raftId` : raft id of the node to be removed from the cluster
+* `raftId` : Raft id of the node to be removed from the cluster
 
 ### Returns
 
@@ -213,7 +213,7 @@ API to remove a node from raft cluster
         null
         ```
 
-## raft_addLearner
+## `raft_addLearner`
 
 API to add a new node to the network as a learner node. The learner node syncs with network and can transact but will not be part of raft GoQuorum and hence will not provide block confirmation to minter node.
 
@@ -223,7 +223,7 @@ API to add a new node to the network as a learner node. The learner node syncs w
 
 ### Returns
 
-* `result`: raft id for the node being added
+* `result`: Raft id for the node being added
 
 !!! example
 
@@ -245,13 +245,13 @@ API to add a new node to the network as a learner node. The learner node syncs w
         5
         ```
 
-## raft_promoteToPeer
+## `raft_promoteToPeer`
 
-API for promoting a learner node to peer and thus be part of the raft GoQuorum.
+API for promoting a learner node to peer and thus be part of the Raft GoQuorum.
 
 ### Parameters
 
-* `raftId`: raft id of the node to be promoted
+* `raftId`: Raft id of the node to be promoted
 
 ### Returns
 

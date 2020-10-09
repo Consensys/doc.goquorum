@@ -1,6 +1,6 @@
 # Logs & Errors Consolidation
 
-Although there is sufficient logging in Quorum (geth), the error messages are not always straightforward to decipher.
+Although there is sufficient logging in Quorum (Geth), the error messages are not always straightforward to decipher.
 This is our take on cataloguing of error messages along with possible cause and remediation actions, to serve as first point of reference before reaching out to the support team.
 
 !!! note
@@ -13,9 +13,9 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `"operation SelfDerive not supported on external signers"` | An unsupported operation was performed by an external wallet | Contact the third party provider of the wallet |
 | `"Failed to enumerate smart card readers", "err", err` | A failure occurred when scanning for smart card wallets | The logged message should contain further error details and determine the action to take |
 | `"Failed to enumerate USB devices", "hub", hub.scheme, "vendor", hub.vendorID, "failcount", failcount, "err", err` | A failure occurred when scanning for USB wallets. The logged message should contain further error details | Depends on the error detail in the log message, if not using USB wallets then add `--nousb` to command line |
-| `"Import error", "err", err` | Message is generated when using [geth import](https://geth.ethereum.org/docs/install-and-build/backup-restore) and indicates an issue with the import file | You need to use a valid import file |
-| `"Import error", "file", arg, "err", err` | Message is generated when using [geth import](https://geth.ethereum.org/docs/install-and-build/backup-restore) and indicates an issue with the named import file | You need to use a valid import file |
-| `"Failed to retrieve signer address", "err", err` | Message is generated when using [puppeth](https://blog.ethereum.org/2017/04/14/geth-1-6-puppeth-master/) and indicates an issue with signer JSON key file | Ensure you have a valid key file |
+| `"Import error", "err", err` | Message is generated when using [`geth import`](https://geth.ethereum.org/docs/install-and-build/backup-restore) and indicates an issue with the import file | You need to use a valid import file |
+| `"Import error", "file", arg, "err", err` | Message is generated when using [`geth import`](https://geth.ethereum.org/docs/install-and-build/backup-restore) and indicates an issue with the named import file | You need to use a valid import file |
+| `"Failed to retrieve signer address", "err", err` | Message is generated when using [`puppeth`](https://blog.ethereum.org/2017/04/14/geth-1-6-puppeth-master/) and indicates an issue with signer JSON key file | Ensure you have a valid key file |
 | `"Bootstrap URL invalid", "enode", url, "err", err` | One or more enode values specified on the command line for a bootstrap node, is not a valid url. | You need to provide a correct url |
 | `"Invalid smartcard daemon path", "path", path, "type", fi.Mode().String()` | This message is generated if the socket file specified for the smartcard daemon (pcscd) is not actually a socket file | Ensure that the daemon is running and the correct socket file is specified on the command line |
 | `"Failed to get signer address", "err", err` | This indicates that the public address could not be obtained for the signature on a message in an IBFT network. This is potentially an internal error or an issue with the crypto package. | Depends on the root cause in the log message - an issue ticket may need to be raised |
@@ -97,7 +97,7 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `"bootupNetwork SetPolicy failed", "err", err` | This indicates an issue occurred when invoking `setPolicy()` on the permissions contract. | The error detail should give more information and will determine the action to be taken, but it is most likely due to misconfiguration of the permissions contract(s) |
 | `"bootupNetwork init failed", "err", err` | This indicates an issue occurred when invoking `init()` on the permissions contract. | The error detail should give more information and will determine the action to be taken, but it is most likely due to misconfiguration of the permissions contract(s) |
 | `"failed to updated network boot status", "error", err` | This indicates an issue occurred when invoking `updateNetworkBootStatus()` on the permissions contract. | The error detail should give more information and will determine the action to be taken, but it is most likely due to misconfiguration of the permissions contract(s) |
-| `"failed to get raft id", "err", err, "enodeId", enodeId` | This occurs with raft consensus, if the permission contract generates a `NodeDeactivated` event, but a raft id could not be found for the enodeId that is being removed. | Check whether the node has already been removed, if not then this may be an internal error and a ticket should be raised |
+| `"failed to get raft id", "err", err, "enodeId", enodeId` | This occurs with Raft consensus, if the permission contract generates a `NodeDeactivated` event, but a Raft id could not be found for the enodeId that is being removed. | Check whether the node has already been removed, if not then this may be an internal error and a ticket should be raised |
 | `"failed parse node id", "err", err, "enodeId", enodeId` | This occurs with clique/istanbul consensus, if the permission contract generates a `NodeDeactivated` event, but the enodeId could not be correctly parsed for the node that is being removed. | Raise an issue ticket |
 | `"Revoke role - cache is missing role", "org", evtRoleRevoked.OrgId, "role", evtRoleRevoked.RoleId` | This occurs if the permission contract generates a `RoleRevoked` event, but the specified role could not be found in the cache. | Raise an issue ticket |
 | `"can't open file", "file", fullPath, "error", err` | This indicates that the specified file could not be opened. | Check that the file exists at the given path and has read permission |
@@ -109,10 +109,10 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `"Failed to load nodes list from file", "fileName", fileName, "err", err` | This indicates that the contents of the specified file could not be unmarshalled. | Check that the file contains valid JSON |
 | `"Error writing new node info to file", "fileName", fileName, "err", err` | This indicates that the specified file could not be created. | Check that the location for this file is writeable |
 | `"unable to delegate RPC API calls to plugin", "provider", interfaceName, "error", err` | This message is generated by the plugin service if it fails to delegate an RPC call to the specified provider. | The error detail should give more information and will determine the action to be taken, however it is most likely due to misconfiguration |
-| `"error decoding pub key from enodeId", "enodeId", address.NodeId.String(), "err", err` | This occurs when adding a node for raft consensus, and the enodId could not be decoded into a public key. | Ensure the correct enodeId is specified |
-| `"failed to extend chain: %s", err.Error()` | This occurs if the node was unable to add a new block to the chain when using raft consensus. | The error detail should give more information and will determine the action to be taken. Note that it may occur during node shutdown with error detail "abort during blocks processing", in which case it can be ignored. |
-| `"error decoding block", "err", err` | This can occur on a raft node when restoring a snapshot if a block could not be decoded. | Most likely the raft snapshot is corrupt. Raft may recover, or a restart may be required; if not, the data directory to be deleted and the node resynced. |
-| `"error inserting the block into the chain", "number", block.NumberU64(), "hash", block.Hash(), "err", err` | This can occur on a raft node when restoring a snapshot if a block could not be added to the chain. The node may be out of sync or hold a corrupt chain. | The error detail should give more information. Raft may recover, or a restart may be required; if not, the data directory to be deleted and the node resynced. |
+| `"error decoding pub key from enodeId", "enodeId", address.NodeId.String(), "err", err` | This occurs when adding a node for Raft consensus, and the enodId could not be decoded into a public key. | Ensure the correct enodeId is specified |
+| `"failed to extend chain: %s", err.Error()` | This occurs if the node was unable to add a new block to the chain when using Raft consensus. | The error detail should give more information and will determine the action to be taken. Note that it may occur during node shutdown with error detail `abort during blocks processing`, in which case it can be ignored. |
+| `"error decoding block", "err", err` | This can occur on a Raft node when restoring a snapshot if a block could not be decoded. | Most likely the Raft snapshot is corrupt. Raft may recover, or a restart may be required; if not, the data directory to be deleted and the node resynced. |
+| `"error inserting the block into the chain", "number", block.NumberU64(), "hash", block.Hash(), "err", err` | This can occur on a Raft node when restoring a snapshot if a block could not be added to the chain. The node may be out of sync or hold a corrupt chain. | The error detail should give more information. Raft may recover, or a restart may be required; if not, the data directory to be deleted and the node resynced. |
 | `"RPC method " + method + " crashed: " + err)` | This indicates that an issue occurred when responding to an RPC call. | The error detail should give more information, however check that the arguments for the RPC call are correct |
 | `"Invalid smartcard socket file type", "path", scpath, "type", fi.Mode().String()` | This message is generated by [clef](https://docs.goquorum.consensys.net/en/latest/HowTo/ManageKeys/ManagingKeys/#clef) if the socket file specified for the smartcard daemon (pcscd) is not actually a socket file. | Ensure that the daemon is running and the correct socket file is specified on the clef command line |
 | `"Failed to commit preimage from trie database", "err", err` | This occurs if an error occurred when writing to the underlying database. Most likely cause is lack of resources, or corrupt database. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
@@ -122,9 +122,9 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `"Attempted to dereference the trie cache meta root"` | This occurs if an error occurred during garbage collection. | The node may need a restart |
 | `"Unhandled trie error: %v", err` | This indicates that an error occurred when retrieving data from a trie. | The error detail should give more information; it may be neccessary to follow the instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 
-## Impossible reorg issue
+## Impossible reorganisation (reorg) issue
 
-This can occur if there was an issue during sync. There are a number of potential causes:
+Impossible reorganisation issues can occur if there was an issue during sync. There are a number of potential causes:
 
 - Node was not cleanly shutdown previously, causing database corruption
 - An edge case where two sealers generate blocks at the exact same time (depends on consensus type in use)
@@ -167,4 +167,4 @@ If the node does not recover then it may require the chaindata to be deleted and
 
 The chain data can be removed by shutting down the node and running `geth removedb --datadir /path/to/data/directory`.
 
-If raft consensus is in use, then the raft logs must also be removed before restarting the node, these consist of all directories containing `raft` under the data directory.
+If Raft consensus is in use, then the Raft logs must also be removed before restarting the node, these consist of all directories containing `raft` under the data directory.
