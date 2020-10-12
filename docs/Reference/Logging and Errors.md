@@ -1,10 +1,12 @@
 # Logs & Errors Consolidation
 
-Although there is sufficient logging in Quorum (Geth), the error messages are not always straightforward to decipher.
+Although there is sufficient logging in GoQuorum (Geth), the error messages are not always straightforward to decipher.
 This is our take on cataloguing of error messages along with possible cause and remediation actions, to serve as first point of reference before reaching out to the support team.
 
 !!! note
     The log level “ERROR” is written out in uppercase as part of the log message and can be used for alert monitoring.
+
+## Reference
 
 | Message & Parameters | Cause | Action |
 | -------------------- | ----- | ------ |
@@ -121,8 +123,10 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `"Failed to write trie to disk", "err", err` | This occurs if an error occurred when writing to the underlying database. Most likely cause is lack of resources, or corrupt database. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `"Attempted to dereference the trie cache meta root"` | This occurs if an error occurred during garbage collection. | The node may need a restart |
 | `"Unhandled trie error: %v", err` | This indicates that an error occurred when retrieving data from a trie. | The error detail should give more information; it may be neccessary to follow the instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
+| `Fatal: Error starting protocol stack: can't download from Plugin Central due to: HTTP GET error: code=404, status=404 Not Found, body=The requested path was not found.. Please download the plugin manually and copy it to <dir>` | The provided plugin config does not match any available plugins in the Central server | Check `name` and `version` fields in [plugin definition config](../HowTo/Configure/Plugins.md#plugindefinition) are correct |
+| `Fatal: Error starting protocol stack: stat <dir>/Central.pgp.pk: no such file or directory` | A default public key cannot be found to [verify the integrity of plugins](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) | Create the necessary key at this path or use the `--plugins.publickey` flag to use an alternative path |
 
-## Impossible reorganisation (reorg) issue
+### Impossible reorganisation (reorg) issue
 
 Impossible reorganisation issues can occur if there was an issue during sync. There are a number of potential causes:
 
@@ -135,7 +139,7 @@ The action to be taken will depend on the cause. Note that more recent versions 
 
 In the event of database corruption, see instructions below for [Resolution of database corruption issues](#resolution-of-database-corruption-issues).
 
-## Bad block issue
+### Bad block issue
 
 This can occur if there was an issue when inserting a new block into the chain and is logged in the form:
 
@@ -159,7 +163,7 @@ The error detail gives more information as to the root cause. Here are a few pos
 
 Note that more recent versions of GoQuorum may already include fixes to prevent some of these issues.
 
-## Resolution of database corruption issues
+### Resolution of database corruption issues
 
 Corruption of the database (chain data) can occur due to lack of resources, or after a 'forced' shutdown. In some cases, GoQuorum will recover automatically or require a restart of the failing node.
 
