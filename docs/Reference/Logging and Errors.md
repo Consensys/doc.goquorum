@@ -1,4 +1,4 @@
-# Logs & Errors Consolidation
+# Logs & Errors Reference
 
 Although there is sufficient logging in GoQuorum (Geth), the error messages are not always straightforward to decipher.
 This is our take on cataloguing of error messages along with possible cause and remediation actions, to serve as first point of reference before reaching out to the support team.
@@ -26,7 +26,7 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `"Non contiguous receipt insert", "number", blockChain[i].Number(), "hash", blockChain[i].Hash(), "parent", blockChain[i].ParentHash()` | Message is generated if an 'out of sequence' receipt is received for insertion. This usually occurs if node is out of sync or holds corrupt data. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `"Found bad hash, rewinding chain", "number", header.Number, "hash", header.ParentHash` | Message is generated on startup if a block is found in the database with one of a set 'bad hash' values predefined in [core/blocks.go](https://github.com/ethereum/go-ethereum/blob/461291882edce0ac4a28f64c4e8725b7f57cbeae/core/blocks.go#L22). The node will rewind the chain to prior to the bad hash and resync from that point | No action should be necessary as node will rewind and recover |
 | `"Chain rewind was successful, resuming normal operation"` | This message is generated after the chain has been rewound following a "Found bad hash, rewinding chain" message | No action is necessary |
-| `"Impossible reorg, please file an issue", "oldnum", oldBlock.Number(), "oldhash", oldBlock.Hash(), "newnum", newBlock.Number(), "newhash", newBlock.Hash()` | This can occur if there was an issue during sync | See section on [Impossible reorg](#impossible-reorg-issue) for actions |
+| `"Impossible reorg, please file an issue", "oldnum", oldBlock.Number(), "oldhash", oldBlock.Hash(), "newnum", newBlock.Number(), "newhash", newBlock.Hash()` | This can occur if there was an issue during sync | See section on [Impossible reorg](#impossible-reorganisation-reorg-issue) for actions |
 | `"########## BAD BLOCK #########"` | This can occur if there was an issue inserting a new block into the chain | See section on [Bad block](#bad-block-issue) for actions |
 | `"Failed to commit recent state trie", "err", err` | This occurs if an error occurred when writing to the underlying database. Most likely cause is lack of resources, or corrupt database. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `"Dangling trie nodes after full cleanup"` | This occurs if the in-memory cache was not fully flushed to the underlying database during shutdown | No action is possible |
@@ -125,6 +125,8 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `"Unhandled trie error: %v", err` | This indicates that an error occurred when retrieving data from a trie. | The error detail should give more information; it may be neccessary to follow the instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `Fatal: Error starting protocol stack: can't download from Plugin Central due to: HTTP GET error: code=404, status=404 Not Found, body=The requested path was not found.. Please download the plugin manually and copy it to <dir>` | The provided plugin config does not match any available plugins in the Central server | Check `name` and `version` fields in [plugin definition config](../HowTo/Configure/Plugins.md#plugindefinition) are correct |
 | `Fatal: Error starting protocol stack: stat <dir>/Central.pgp.pk: no such file or directory` | A default public key cannot be found to [verify the integrity of plugins](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) | Create the necessary key at this path or use the `--plugins.publickey` flag to use an alternative path |
+
+## More details
 
 ### Impossible reorganisation (reorg) issue
 
