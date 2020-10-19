@@ -180,7 +180,7 @@ __In addition to the JSON-RPC provided by Ethereum, GoQuorum exposes below two A
 ### eth_storageRoot
 
 Returns the storage root hash of the specified address. If the contract is a [private contract](../../Concepts/Privacy/Privacy.md#state-verification),
-returns the storage root hash from the private state database. 
+returns the storage root hash from the private state database.
 
 #### Parameters
 
@@ -190,7 +190,7 @@ uses the latest block.
 
 #### Returns
 
-`String` - 32 Bytes storage root hash as hex string. 
+`String` - 32 Bytes storage root hash as hex string.
 
 !!! example
 

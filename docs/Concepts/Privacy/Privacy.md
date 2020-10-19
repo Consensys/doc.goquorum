@@ -75,8 +75,8 @@ To determine if nodes are in sync, the public state root hash is included in the
 Private transactions are only processed by participating nodes so it's impossible to obtain global consensus
 on the private state.
 
-To validate the private state change from a private transaction is same across all participants, 
+To validate the private state change from a private transaction is same across all participants,
 use the RPC method [`eth_storageRoot`](../../Reference/APIs/PrivacyAPI.md#eth_storageroot). Specify
-the private smart contract address and block height. 
-If the state is in sync across all participating nodes, the same 
-root hash is returned by all participating nodes and can be compared. 
+the private smart contract address and block height.
+If the state is in sync across all participating nodes, the same
+root hash is returned by all participating nodes and can be compared.
