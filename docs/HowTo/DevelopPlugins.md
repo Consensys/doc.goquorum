@@ -108,7 +108,7 @@ A plugin would need to include this certificate to its trusted certificate pool,
 generate a self-signed certificate and append the base64-encoded value of the certificate (in DER format)
 in the [handshake](https://github.com/hashicorp/go-plugin/blob/master/docs/internals.md#handshake) message.
 
-{!./PluggableArchitecture/Plugins/init_interface.md!}
+{!./Reference/Plugins/init_interface.md!}
 
 ## Examples
 
