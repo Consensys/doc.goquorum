@@ -1012,7 +1012,6 @@ Just execute **step 4** instruction from removing a validator node.
 1. Create new configuration file with newly generated keys referenced. Name it `config.json` as done in this example
 
     ```bash
-    vim config.json
     {
        "useWhiteList": false,
        "jdbc": {
