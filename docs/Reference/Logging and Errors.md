@@ -1,10 +1,12 @@
-# Logs & Errors Consolidation
+# Logs & Errors Reference
 
-Although there is sufficient logging in Quorum (Geth), the error messages are not always straightforward to decipher.
+Although there is sufficient logging in GoQuorum (Geth), the error messages are not always straightforward to decipher.
 This is our take on cataloguing of error messages along with possible cause and remediation actions, to serve as first point of reference before reaching out to the support team.
 
 !!! note
     The log level “ERROR” is written out in uppercase as part of the log message and can be used for alert monitoring.
+
+## Reference
 
 | Message & Parameters | Cause | Action |
 | -------------------- | ----- | ------ |
@@ -24,7 +26,7 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `"Non contiguous receipt insert", "number", blockChain[i].Number(), "hash", blockChain[i].Hash(), "parent", blockChain[i].ParentHash()` | Message is generated if an 'out of sequence' receipt is received for insertion. This usually occurs if node is out of sync or holds corrupt data. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `"Found bad hash, rewinding chain", "number", header.Number, "hash", header.ParentHash` | Message is generated on startup if a block is found in the database with one of a set 'bad hash' values predefined in [core/blocks.go](https://github.com/ethereum/go-ethereum/blob/461291882edce0ac4a28f64c4e8725b7f57cbeae/core/blocks.go#L22). The node will rewind the chain to prior to the bad hash and resync from that point | No action should be necessary as node will rewind and recover |
 | `"Chain rewind was successful, resuming normal operation"` | This message is generated after the chain has been rewound following a "Found bad hash, rewinding chain" message | No action is necessary |
-| `"Impossible reorg, please file an issue", "oldnum", oldBlock.Number(), "oldhash", oldBlock.Hash(), "newnum", newBlock.Number(), "newhash", newBlock.Hash()` | This can occur if there was an issue during sync | See section on [Impossible reorg](#impossible-reorg-issue) for actions |
+| `"Impossible reorg, please file an issue", "oldnum", oldBlock.Number(), "oldhash", oldBlock.Hash(), "newnum", newBlock.Number(), "newhash", newBlock.Hash()` | This can occur if there was an issue during sync | See section on [Impossible reorg](#impossible-reorganisation-reorg-issue) for actions |
 | `"########## BAD BLOCK #########"` | This can occur if there was an issue inserting a new block into the chain | See section on [Bad block](#bad-block-issue) for actions |
 | `"Failed to commit recent state trie", "err", err` | This occurs if an error occurred when writing to the underlying database. Most likely cause is lack of resources, or corrupt database. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `"Dangling trie nodes after full cleanup"` | This occurs if the in-memory cache was not fully flushed to the underlying database during shutdown | No action is possible |
@@ -85,11 +87,11 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `"Failed to persist node key: %v", err` | This occurs if the node is unable to save a newly generated node key into the file specified by the configuration. | The error detail should give more information and will determine the action to be taken |
 | `"Can't load node list file: %v", err` | This occurs if the node is unable to read static node information from the [static-nodes.json](https://geth.ethereum.org/docs/interface/peer-to-peer) (or trusted-nodes.json) file. | Check that the file exists in the expected location and that it contains valid JSON |
 | `"Node URL %s: %v", url, err` | This indicates that there is a mis-configured URL in the [static-nodes.json](https://geth.ethereum.org/docs/interface/peer-to-peer) (or trusted-nodes.json) file. | Check and correct the offending URL in the JSON file |
-| `"Read Error for permissioned-nodes.json file. This is because 'permissioned' flag is specified but no permissioned-nodes.json file is present.", "err", err` | This is self-explanatory | Either remove the `--permissioned` flag or add [permissioned-nodes.json](https://docs.goquorum.consensys.net/en/latest/HowTo/Configure/BasicPermissions/) file |
-| `"parsePermissionedNodes: Failed to access nodes", "err", err` | This indicates that the file [permissioned-nodes.json](https://docs.goquorum.consensys.net/en/latest/HowTo/Configure/BasicPermissions/) could not be read. | The error detail should give more information and will determine the action to be taken |
-| `"parsePermissionedNodes: Failed to load nodes", "err", err` | This indicates that the node information in [permissioned-nodes.json](https://docs.goquorum.consensys.net/en/latest/HowTo/Configure/BasicPermissions/) could not be unmarshalled. | Check that the contents of the file are well-formed |
-| `"parsePermissionedNodes: Node URL blank"` | This indicates that an entry in [permissioned-nodes.json](https://docs.goquorum.consensys.net/en/latest/HowTo/Configure/BasicPermissions/) has an empty node URL. | Either remove the node details or specify a valid URL |
-| `"parsePermissionedNodes: Node URL", "url", url, "err", err` | This indicates that an entry in [permissioned-nodes.json](https://docs.goquorum.consensys.net/en/latest/HowTo/Configure/BasicPermissions/) is not valid. | Check that the entry with this URL is correctly formatted |
+| `"Read Error for permissioned-nodes.json file. This is because 'permissioned' flag is specified but no permissioned-nodes.json file is present.", "err", err` | This is self-explanatory | Either remove the `--permissioned` flag or add [permissioned-nodes.json](../HowTo/Configure/BasicPermissions.md) file |
+| `"parsePermissionedNodes: Failed to access nodes", "err", err` | This indicates that the file [permissioned-nodes.json](../HowTo/Configure/BasicPermissions.md) could not be read. | The error detail should give more information and will determine the action to be taken |
+| `"parsePermissionedNodes: Failed to load nodes", "err", err` | This indicates that the node information in [permissioned-nodes.json](../HowTo/Configure/BasicPermissions.md) could not be unmarshalled. | Check that the contents of the file are well-formed |
+| `"parsePermissionedNodes: Node URL blank"` | This indicates that an entry in [permissioned-nodes.json](../HowTo/Configure/BasicPermissions.md) has an empty node URL. | Either remove the node details or specify a valid URL |
+| `"parsePermissionedNodes: Node URL", "url", url, "err", err` | This indicates that an entry in [permissioned-nodes.json](../HowTo/Configure/BasicPermissions.md) is not valid. | Check that the entry with this URL is correctly formatted |
 | `"Failed to expire nodedb items: %v", err` | This message should never be seen | Raise an issue ticket |
 | `"error encoding packet:", err` | A message could not be RLP encoded prior to sending to a peer node. | The error detail should give more information and will determine the action to be taken |
 | `"could not sign packet:", err` | A message could not be signed prior to sending to a peer node. | The error detail should give more information and will determine the action to be taken |
@@ -114,15 +116,19 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `"error decoding block", "err", err` | This can occur on a Raft node when restoring a snapshot if a block could not be decoded. | Most likely the Raft snapshot is corrupt. Raft may recover, or a restart may be required; if not, the data directory to be deleted and the node resynced. |
 | `"error inserting the block into the chain", "number", block.NumberU64(), "hash", block.Hash(), "err", err` | This can occur on a Raft node when restoring a snapshot if a block could not be added to the chain. The node may be out of sync or hold a corrupt chain. | The error detail should give more information. Raft may recover, or a restart may be required; if not, the data directory to be deleted and the node resynced. |
 | `"RPC method " + method + " crashed: " + err)` | This indicates that an issue occurred when responding to an RPC call. | The error detail should give more information, however check that the arguments for the RPC call are correct |
-| `"Invalid smartcard socket file type", "path", scpath, "type", fi.Mode().String()` | This message is generated by [clef](https://docs.goquorum.consensys.net/en/latest/HowTo/ManageKeys/ManagingKeys/#clef) if the socket file specified for the smartcard daemon (pcscd) is not actually a socket file. | Ensure that the daemon is running and the correct socket file is specified on the clef command line |
+| `"Invalid smartcard socket file type", "path", scpath, "type", fi.Mode().String()` | This message is generated by [clef](../HowTo/ManageKeys/clef.md) if the socket file specified for the smartcard daemon (pcscd) is not actually a socket file. | Ensure that the daemon is running and the correct socket file is specified on the clef command line |
 | `"Failed to commit preimage from trie database", "err", err` | This occurs if an error occurred when writing to the underlying database. Most likely cause is lack of resources, or corrupt database. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `"Failed to write flush list to disk", "err", err` | This occurs if an error occurred when writing to the underlying database. Most likely cause is lack of resources, or corrupt database. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `"Failed to commit trie from trie database", "err", err` | This occurs if an error occurred when writing to the underlying database. Most likely cause is lack of resources, or corrupt database. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `"Failed to write trie to disk", "err", err` | This occurs if an error occurred when writing to the underlying database. Most likely cause is lack of resources, or corrupt database. | See instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
 | `"Attempted to dereference the trie cache meta root"` | This occurs if an error occurred during garbage collection. | The node may need a restart |
 | `"Unhandled trie error: %v", err` | This indicates that an error occurred when retrieving data from a trie. | The error detail should give more information; it may be neccessary to follow the instructions under the section on [Resolution of database corruption issues](#resolution-of-database-corruption-issues) |
+| `Fatal: Error starting protocol stack: can't download from Plugin Central due to: HTTP GET error: code=404, status=404 Not Found, body=The requested path was not found.. Please download the plugin manually and copy it to <dir>` | The provided plugin config does not match any available plugins in the Central server | Check `name` and `version` fields in [plugin definition config](../HowTo/Configure/Plugins.md#plugindefinition) are correct |
+| `Fatal: Error starting protocol stack: stat <dir>/Central.pgp.pk: no such file or directory` | A default public key cannot be found to [verify the integrity of plugins](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) | Create the necessary key at this path or use the `--plugins.publickey` flag to use an alternative path |
 
-## Impossible reorganisation (reorg) issue
+## More details
+
+### Impossible reorganisation (reorg) issue
 
 Impossible reorganisation issues can occur if there was an issue during sync. There are a number of potential causes:
 
@@ -135,7 +141,7 @@ The action to be taken will depend on the cause. Note that more recent versions 
 
 In the event of database corruption, see instructions below for [Resolution of database corruption issues](#resolution-of-database-corruption-issues).
 
-## Bad block issue
+### Bad block issue
 
 This can occur if there was an issue when inserting a new block into the chain and is logged in the form:
 
@@ -159,7 +165,7 @@ The error detail gives more information as to the root cause. Here are a few pos
 
 Note that more recent versions of GoQuorum may already include fixes to prevent some of these issues.
 
-## Resolution of database corruption issues
+### Resolution of database corruption issues
 
 Corruption of the database (chain data) can occur due to lack of resources, or after a 'forced' shutdown. In some cases, GoQuorum will recover automatically or require a restart of the failing node.
 
