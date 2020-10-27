@@ -88,6 +88,7 @@ nav:
   - Tutorials:
       - Create network from scratch: Tutorials/Creating-A-Network-From-Scratch.md
       - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
+      - Quorum Developer Quickstart: Tutorials/Quorum-Dev-Quickstart.md
   - Concepts:
       - Architecture: Concepts/Architecture.md
       - Account management: Concepts/AccountManagement.md
