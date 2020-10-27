@@ -1,7 +1,7 @@
 # Upgrade to GoQuorum 2.6.0
 
 GoQuorum 2.6.0 upgrades the base `geth` version from 1.8.18 to 1.9.7
-See [ethereum 1.9.0](https://blog.ethereum.org/2019/07/10/geth-v1-9-0/) for the complete list if new features added as a part of `geth` 1.9.7.
+See [Ethereum 1.9.0](https://blog.ethereum.org/2019/07/10/geth-v1-9-0/) for the complete list if new features added as a part of `geth` 1.9.7.
 
 !!!note
     `geth` 1.9.7 has several enhancements at the database layer which are part of GoQuorum 2.6.0.

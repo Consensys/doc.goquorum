@@ -123,7 +123,7 @@ impl2 -up- grpcI2
 ## Discovery
 
 The GoQuorum client reads the plugin [settings](../../HowTo/Configure/Plugins.md) file to determine which plugins are going to be loaded and searches for installed plugins
-(`<name>-<version>.zip` files) in the plugin `baseDir` (defaults to `<datadir>/plugins`). If the required plugin doesnt exist in the path, GoQuorum will attempt to use the configured `plugin central` to download the plugin.
+(`<name>-<version>.zip` files) in the plugin `baseDir` (defaults to `<datadir>/plugins`). If the required plugin doesn't exist in the path, GoQuorum will attempt to use the configured `plugin central` to download the plugin.
 
 ## PluginManager
 
@@ -135,5 +135,5 @@ The `PluginManager` service is registered as early as possible in the node lifec
 
 The `PluginManager` exposes an API (`admin_reloadPlugin`) that allows reloading a plugin. This attempts to restart the current plugin process.
 
-Any changes to the plugin config after initial node start will be applied when reloading the plugin.
+Any changes to the plugin configuration after initial node start will be applied when reloading the plugin.
 This is demonstrated in the [HelloWorld plugin example](../../Reference/Plugins/helloworld/interface.md).

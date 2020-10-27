@@ -39,16 +39,16 @@ GoQuorum network using Raft consensus), or customizing the options to fit your n
 
 ## Options
 
-You can also provide these flags when running quorum-wizard:
+You can also provide these flags when running `quorum-wizard`:
 
-* `-q`, `--quickstart` create 3 node raft network with Tessera and cakeshop (no user-input required)
+* `-q`, `--quickstart` create 3 node Raft network with Tessera and Cakeshop (no user-input required)
 * `-v`, `--verbose`     Turn on additional logs for debugging
 * `--version`           Show version number
 * `-h`, `--help`        Show help
 
 !!!note
     `npx` is also way to run npm modules without the need to actually install the module.
-    Due to quorum-wizard needing to download and cache the quorum binaries during network setup,
+    Due to `quorum-wizard` needing to download and cache the quorum binaries during network setup,
     **using `npx quorum-wizard` will not work at this time.**
 
 ## Interacting with the Network
@@ -76,4 +76,4 @@ To explore the features of GoQuorum and deploy a private contract, follow the in
 [GoQuorum Wizard](https://github.com/ConsenSys/quorum-wizard) is built on open source and we invite
 you to contribute enhancements. Upon review you will be required to complete a Contributor License Agreement (CLA)
 before we are able to merge. If you have any questions about the contribution process, please feel free to
-send an email to [quorum@consensys.net].
+send an email to <mailto:quorum@consensys.net>.

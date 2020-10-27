@@ -61,7 +61,7 @@ __To support sending raw transactions in GoQuorum, the `web3.eth.sendRawPrivateT
 web3.eth.sendRawPrivateTransaction(signedTransactionData [, privateData] [, callback])
 ```
 
-Sends a pre-signed transaction. For example can be signed using: https://github.com/SilentCicero/ethereumjs-accounts
+Sends a pre-signed transaction, for example using [`SilentCicero/ethereumjs-accounts`](https://github.com/SilentCicero/ethereumjs-accounts).
 
 __Important:__ Before calling this API, a `storeraw` api need to be called first to Tessera. Instructions on how to do this can be found [here](https://docs.tessera.consensys.net).
 
@@ -181,16 +181,18 @@ __In addition to the JSON-RPC provided by Ethereum, GoQuorum exposes below two A
 
 ### eth_storageRoot
 
-Returns the storage root of given address (Contract/Account etc)
+Returns the storage root hash of the specified address. If the contract is a [private contract](../../Concepts/Privacy/Privacy.md#state-verification),
+returns the storage root hash from the private state database.
 
 #### Parameters
 
-1. `address`: `String` - The address to fetch the storage root for in hex
-1. `block`: `String` - (optional) The block number to look at in hex (for example `0x15` for block 21). Uses the latest block if not specified.
+1. `address`: `String` - The address to fetch the storage root from in hex
+1. `block`: `String` - (optional) The block number to fetch the storage root from in hex. If not specified,
+uses the latest block.
 
 #### Returns
 
-`String` - 32 Bytes storageroot hash as HEX string at latest block height. When blocknumber is given, it provides the storageroot hash at that block height.
+`String` - 32 Bytes storage root hash as hex string.
 
 !!! example
 

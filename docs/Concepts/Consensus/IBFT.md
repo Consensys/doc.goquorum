@@ -6,7 +6,7 @@ description: IBFT Consensus Overview
 
 ## Introduction
 
-Istanbul Byzantine Fault Tolerant (IBFT) consensus is inspired by Castro-Liskov 99 [paper](http://pmg.csail.mit.edu/papers/osdi99.pdf).
+Istanbul Byzantine Fault Tolerant (IBFT) consensus is inspired by [Castro-Liskov 99 paper](http://pmg.csail.mit.edu/papers/osdi99.pdf).
 
 IBFT inherits from the original PBFT by using a 3-phase consensus, `PRE-PREPARE`, `PREPARE` and `COMMIT`. The system can tolerate at most `F` faulty nodes in a `N` validator network, where `N = 3F + 1`.
 
@@ -46,7 +46,7 @@ Istanbul BFT is a state machine replication algorithm. Each validator maintains 
 ![State Transitions](../../images/IBFTStateTransition.png)
 
 - `NEW ROUND` -> `PRE-PREPARED`:
-    - **Proposer** collects transactions from txpool.
+    - **Proposer** collects transactions from `txpool`.
     - **Proposer** generates a block proposal and broadcasts it to validators. It then enters the `PRE-PREPARED` state.
     - Each **validator** enters `PRE-PREPARED` upon receiving the `PRE-PREPARE` message with the following conditions:
         - Block proposal is from the valid proposer.

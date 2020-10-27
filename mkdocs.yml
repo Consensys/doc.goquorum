@@ -85,7 +85,6 @@ nav:
           - Smart contracts: HowTo/Use/DevelopingSmartContracts.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
-      - Logging and Errors: HowTo/Logging and Errors.md
   - Tutorials:
       - Create network from scratch: Tutorials/Creating-A-Network-From-Scratch.md
       - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
@@ -150,6 +149,7 @@ nav:
             - Users: Reference/Plugins/security/For-Users.md
             - Interface: Reference/Plugins/security/interface.md
       - GoQuorum projects: Reference/GoQuorum-Projects.md
+      - Logging and Errors: Reference/Logging and Errors.md
       - Remix plugin:
           - Overview: Reference/RemixPlugin/Overview.md
           - Getting started: Reference/RemixPlugin/GettingStarted.md

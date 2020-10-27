@@ -21,7 +21,7 @@ The following parameters are of interest to be collected and analyzed:
 
 - [x] Ensure all activities of GoQuorum hosts are being logged to centralized log system
 
-- [x] Centralized log system must be able to provide query capabilites over the following parameters
+- [x] Centralized log system must be able to provide query capabilities over the following parameters
     - Ethereum accounts on the network
     - Active ledger, transaction manager nodes in the network
     - Public and Private transaction rates per account in the network.

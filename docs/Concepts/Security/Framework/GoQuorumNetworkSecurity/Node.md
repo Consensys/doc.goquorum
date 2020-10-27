@@ -59,7 +59,7 @@ Users password should never be saved across the ecosystem or stored in ledger ho
 
 - [x] Ensure host level Isolation of responsibility between GoQuorum client and its dependency (e.g do not run the transaction manager and its database in the same host)
 
-- [x] Ensure GoQuorum network hosts run with appropiate service level agreement (SLA) that can ensure a defense against non-vulnerability based denial of service.
+- [x] Ensure GoQuorum network hosts run with appropriate service level agreement (SLA) that can ensure a defense against non-vulnerability based denial of service.
 
 ### Client
 
@@ -75,7 +75,7 @@ Users password should never be saved across the ecosystem or stored in ledger ho
 
 - [x] Ensure peer discovery is appropriately set based on the consortium requirements.
 
-- [x] In Raft Based Consensus there is no guarantee a leader would not be acting maliciously, hence raft should not be used in environment where network ledger is managed by third party authorities.
+- [x] In Raft Based Consensus there is no guarantee a leader would not be acting maliciously, hence Raft should not be used in environment where network ledger is managed by third party authorities.
 
 - [x] GoQuorum clients must run with metrics collection capability in order to preserve operational security.
 

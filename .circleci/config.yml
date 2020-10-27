@@ -8,9 +8,15 @@ executors:
   python_executor:
     docker:
       - image: circleci/python:3.7.4
+        auth:
+          username: $DOCKER_USER_RO
+          password: $DOCKER_PASSWORD_RO        
   node_executor:
     docker:
       - image: circleci/node:12.9.0-stretch
+        auth:
+          username: $DOCKER_USER_RO
+          password: $DOCKER_PASSWORD_RO        
 
 commands:
   prepare:
@@ -59,15 +65,15 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            curl -sfL https://install.goreleaser.com/github.com/ValeLint/vale.sh | sh -s v1.7.1
+            curl -sfL https://install.goreleaser.com/github.com/ValeLint/vale.sh | sh -s v2.4.0
       - run:
           name: Cat config
           command: |
-            cat ./common/build_tools/vale/.vale.ini .circleci/vale.ini > .circleci/cat-vale.ini
+            cat .circleci/vale.ini >> ./common/build_tools/vale/.vale.ini
       - run:
           name: Run Vale
           command: |
-            ./bin/vale --config .circleci/cat-vale.ini --glob='*.{md}' . | tee ./vale.out
+            ./bin/vale --config ./common/build_tools/vale/.vale.ini --glob='*.{md}' . | tee ./vale.out
       - notify
       - store_artifacts:
           path: ./vale.out
@@ -133,10 +139,18 @@ workflows:
   version: 2
   default:
     jobs:
-      - build
-      - vale
-      - markdownlint
-      - linkchecker
+      - build:
+          context:
+            - dockerhub-quorumengineering-ro      
+      - vale:
+          context:
+            - dockerhub-quorumengineering-ro      
+      - markdownlint:
+          context:
+            - dockerhub-quorumengineering-ro      
+      - linkchecker:
+          context:
+            - dockerhub-quorumengineering-ro   
   nightly:
     triggers:
       - schedule: # GMT
@@ -146,4 +160,6 @@ workflows:
               only:
                 - master
     jobs:
-      - linkchecker
+      - linkchecker:
+          context:
+            - dockerhub-quorumengineering-ro            

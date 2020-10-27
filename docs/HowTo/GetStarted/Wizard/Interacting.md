@@ -26,7 +26,7 @@ The network comes with some simple contracts to demonstrate the privacy features
 - Show that only nodes 1 and 2 are able to view the initial state of the contract
 - Have Node 1 update the state of the contract and, once the block containing the updated transaction is validated by the network, again verify that only nodes 1 and 2 are able to see the updated state of the contract
 
-## Using Geth from the Command Line
+## Using geth from the Command Line
 
 ### Sending a private transaction
 
@@ -40,7 +40,7 @@ Take note of the `TransactionHash` printed to the terminal.
 
 ### Inspecting the GoQuorum nodes
 
-You can inspect any of the GoQuorum nodes by using `./attach.sh` to open the Geth JavaScript console. For this demo, you will be inspecting Node 1, Node 2, and Node 3.
+You can inspect any of the GoQuorum nodes by using `./attach.sh` to open the geth JavaScript console. For this demo, you will be inspecting Node 1, Node 2, and Node 3.
 
 It is recommended to use separate terminal windows for each node you are inspecting. In each terminal, ensure you are in your network's directory, then:
 
@@ -79,7 +79,7 @@ Take note of the `v` field value of `"0x25"` or `"0x26"` (37 or 38 in decimal) w
 
 #### Checking the state of the contract
 
-For each of the 3 nodes you'll use the Geth JavaScript console to create a variable called `address` which you will assign to the address of the contract created by Node 1. The contract address can be found in two ways:
+For each of the 3 nodes you'll use the geth JavaScript console to create a variable called `address` which you will assign to the address of the contract created by Node 1. The contract address can be found in two ways:
 
 - In Node 1's log file: `qdata/logs/1.log`
 - By reading the `contractAddress` param after calling `eth.getTransactionReceipt(txHash)` ([Ethereum API documentation](https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethgettransactionreceipt)) where `txHash` is the hash printed to the terminal after sending the transaction.
@@ -185,7 +185,7 @@ Node 3 defaults:
 
 If you chose to include Cakeshop in your network (included in the Quickstart option), you can try to do the above steps in that UI as well.
 
-1. Open http://localhost:8999 in your browser.
+1. Open <http://localhost:8999> in your browser.
 1. Go to the Contracts tab and Deploy the contract registry
 1. Go to the Sandbox, select the SimpleStorage sample contract from the Contract Library, and deploy with Private For set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`)
 1. Go back to the main Cakeshop page, go to the Contracts tab again, and you should be able to see the contract you just deployed.

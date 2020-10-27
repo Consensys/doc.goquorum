@@ -42,10 +42,10 @@ Cakeshop can start in multiple modes (see the sections below for details on each
     Cakeshop is currently designed such that a given instance of Cakeshop works directly with a single Ethereum-like node, however you can set up multiple instances of Cakeshop on the same machine (each which could either have been started in 'Default' mode or 'Attach' mode) such that each can talk to a different node.
 
     !!!note
-        You can use the Attach mode and Multi-Instance setup configuration to run Cakeshop on [GoQuorum](https://github.com/ConsenSys/quorum) nodes. See below for connecting Cakeshop to the [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network from the quorum-examples repo.
+        You can use the Attach mode and Multi-Instance setup configuration to run Cakeshop on [GoQuorum](https://github.com/ConsenSys/quorum) nodes. See below for connecting Cakeshop to the [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network from the `quorum-examples`s repo.
 
 !!!warning
-    The following commands assume you have renamed the WAR file to cakeshop.war
+    The following commands assume you have renamed the WAR file to `cakeshop.war`.
 
 ### Default Mode
 
@@ -56,7 +56,7 @@ Cakeshop can start in multiple modes (see the sections below for details on each
     java -jar cakeshop.war
     ```
 
-1. Open **http://localhost:8080/** in your browser (Firefox/Chrome supported)
+1. Open **<http://localhost:8080/>** in your browser (Firefox/Chrome supported)
 
 ### Attach Mode
 
@@ -68,7 +68,7 @@ Cakeshop can start in multiple modes (see the sections below for details on each
     java -jar cakeshop.war example
     ```
 
-1. Navigate to path/to/cakeshop/war/data/local
+1. Navigate to `path/to/cakeshop/war/data/local`
 
 1. Make the following edits to the application.properties file:
 
@@ -83,11 +83,11 @@ Cakeshop can start in multiple modes (see the sections below for details on each
     java -jar cakeshop.war
     ```
 
-1. Open **http://localhost:8080/** in your browser (Firefox/Chrome supported)
+1. Open **<http://localhost:8080/>** in your browser (Firefox/Chrome supported)
 
 1. The dropdown menu on the top right of the page should show "Manage Nodes" if you haven't attached to any yet. Click on that to go to the Manage Nodes page.
 
-1. Click Add Node and input the RPC url of your GoQuorum node (http://localhost:22000) and the path to the Tessera P2P Party Info endpoint (http://localhost:9001/partyinfo).
+1. Click Add Node and input the RPC url of your GoQuorum node (<http://localhost:22000>) and the path to the Tessera P2P Party Info endpoint (<http://localhost:9001/partyinfo>).
 
 1. Once added, click on View to attach to the node and return to the main Cakeshop page
 
@@ -152,13 +152,13 @@ The best way to achieve this is to create separate Cakeshop folders for each nod
     CAKESHOP_SHARED_CONFIG=".." java -Dserver.port=8081 -jar cakeshop.war # Cakeshop will now be available on localhost:8081
     ```
 
-1. In browser window 1 open http://localhost:8080/
+1. In browser window 1 open <http://localhost:8080/>
 
-1. In browser window 2 open http://localhost:8081/
+1. In browser window 2 open <http://localhost:8081/>
 
-### Running Cakeshop on quorum-examples
+### Running Cakeshop on `quorum-examples`
 
-You can use the 'Attach' mode to use Cakeshop to explore the quorum-examples [7nodes](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network.
+You can use the 'Attach' mode to use Cakeshop to explore the [`quorum-examples` `7nodes`](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes) network.
 
 To do so:
 

@@ -189,9 +189,9 @@ own connections.
 And that's it. You deployed a working 6 node network, and then added a 7th node afterwards; this 7th node was able to
 read existing public data and deploy its own transactions and contracts for others to see!
 
-## Non-permissioned RAFT with discovery disabled
+## Non-permissioned Raft with discovery disabled
 
-This example walks through adding a new node to a RAFT network.
+This example walks through adding a new node to a Raft network.
 
 This network does not have permissioning for the Ethereum peer-to-peer layer, and makes it connections
 solely based on who is listed in the nodes `static-nodes.json` file.
@@ -243,8 +243,8 @@ solely based on who is listed in the nodes `static-nodes.json` file.
     You created a transaction, in this case with hash `0xd1bf0c15546802e5a121f79d0d8e6f0fa45d4961ef8ab9598885d28084cfa909`,
     and then retrieved its value, which was set to be `42`.
 
-1. You need to add the new peer to the RAFT network before it joins, otherwise the existing nodes will reject it from
-    the RAFT communication layer; we also need to know what ID the new node should join with.
+1. You need to add the new peer to the Raft network before it joins, otherwise the existing nodes will reject it from
+    the Raft communication layer; we also need to know what ID the new node should join with.
 
     **Add the new node**
 
@@ -260,7 +260,7 @@ solely based on who is listed in the nodes `static-nodes.json` file.
         7
         ```
 
-   The return value is the RAFT ID of the new node. When the node joins the network for the first time, it will need
+   The return value is the Raft ID of the new node. When the node joins the network for the first time, it will need
    this ID number handy. If it was lost, you can always view the full network, including IDs, by running the
    `raft.cluster` command on an existing node.
 
@@ -338,9 +338,9 @@ solely based on who is listed in the nodes `static-nodes.json` file.
 And that's it. You deployed a working 6 node network, and then added a 7th node afterwards; this 7th node was able to
 read existing public data and deploy its own transactions and contracts for others to see!
 
-## Permissioned RAFT with discovery disabled
+## Permissioned Raft with discovery disabled
 
-This example walks through adding a new node to a RAFT network.
+This example walks through adding a new node to a Raft network.
 
 This network does have permissioning enabled for the Ethereum peer-to-peer layer; this means that for
 any Ethereum tasks, such as syncing the initial blockchain or propagating transactions,
@@ -393,8 +393,8 @@ the node must appear is others nodes' `permissioned-nodes.json` file.
     You created a transaction, in this case with hash `0xd1bf0c15546802e5a121f79d0d8e6f0fa45d4961ef8ab9598885d28084cfa909`,
     and then retrieved its value, which was set to be `42`.
 
-1. You need to add the new peer to the RAFT network before it joins, otherwise the existing nodes will reject it from
-    the RAFT communication layer; you also need to know what ID the new node should join with.
+1. You need to add the new peer to the Raft network before it joins, otherwise the existing nodes will reject it from
+    the Raft communication layer; you also need to know what ID the new node should join with.
 
     **Add the new node**
 
@@ -410,7 +410,7 @@ the node must appear is others nodes' `permissioned-nodes.json` file.
         7
         ```
 
-   The return value is the RAFT ID of the new node.
+   The return value is the Raft ID of the new node.
 
    When the node joins the network for the first time, it will need this ID number handy.
 
@@ -446,8 +446,8 @@ the node must appear is others nodes' `permissioned-nodes.json` file.
    Node 7 is unable to sync the blockchain because the other peers in the network are refusing to
    allow connections from node 7, due to it being missing in the `permissioned-nodes.json` file.
 
-   This does not affect the RAFT layer, so if node 7 was already is sync, it could still receive new blocks; this is
-   okay though, since it would be permissioned on the RAFT side by virtue of being part of the RAFT cluster.
+   This does not affect the Raft layer, so if node 7 was already is sync, it could still receive new blocks; this is
+   okay though, since it would be permissioned on the Raft side by virtue of being part of the Raft cluster.
 
 1. Let's update the permissioned nodes list on node 1, which will allow node 7 to connect to it.
 
