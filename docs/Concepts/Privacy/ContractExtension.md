@@ -16,11 +16,12 @@ also means that events are not shared either, as the transactions are not shared
 The following diagram describes the flow of contract state extension.
 ![contract state extension diagram](../../images/ContractStateExtension.png)
 
-> **Note** - For the purpose of the flow description, "all participants" in the below description refers to:
->  - For *"**Standard Private**"* type of contracts, it will be node initiating the extension and the node to which the contract is being extended
->  - For *"**Party Protection**"* & *"**State Validation**"* type of contracts, it will include all the nodes which are current participant of the contract and the new node to which it is being extended
+For the purpose of the flow description, "**all participants**" in the below description refers to:
 
-In this example, private contract is deployed between Nodes A and B is being extended from Nodes C.
+- For *"**Standard Private**"* type of contracts, it will be node initiating the extension and the node to which the contract is being extended
+- For *"**Party Protection**"* & *"**State Validation**"* type of contracts, it will include all the nodes which are current participant of the contract and the new node to which it is being extended
+
+In this example, an existing private contract deployed between Nodes A and B is being extended to  Nodes C from Node A.
 
 1. User in node A proposes the extension of the contract, citing C's Private Transaction Manager(PTM)
     public keys as private participants of this extension, node C's public Ethereum key as a receiving
@@ -43,29 +44,29 @@ In this example, private contract is deployed between Nodes A and B is being ext
     that the state is correct. In order to remedy this, the receiver must accept the proposal for the
     contract as the proof. In this step, the user owning the Ethereum public key of node C which was
     marked as receiving address, approves the contract extension using GoQuorum APIs
-     - **3a** - Node C calls its local Tessera node to encrypt the management contract address
-     - **3b** - Node C sends a private transaction to all participants with the encrypted payload from the previous step to generate a random hash for the approval process.
-     - **3c** - The private transaction is propagated to the Tessera of all participants
-     - **3d** - Node C approves the extension with the hash generated (in step 3b)
-     - **3e & 3f** - Private transaction payload is shared with Tessera of all participants. Public state is propagated across all nodes
-        
-1. Node A monitors for acceptance of contract extension by Node B. Once accepted
+    - **3a** - Node C calls its local Tessera node to encrypt the management contract address
+    - **3b** - Node C sends a private transaction to all participants with the encrypted payload from the previous step to generate a random hash for the approval process.
+    - **3c** - The private transaction is propagated to the Tessera of all participants
+    - **3d** - Node C approves the extension with the hash generated (in step 3b)
+    - **3e & 3f** - Private transaction payload is shared with Tessera of all participants. Public state is propagated across all nodes
+
+1. Node A monitors for acceptance of contract extension by Node C. Once accepted
     - **4a & 4b** - Node A fetches the state of the contract and sends it as a "private transaction"
-        to Node B. It then submits the PTM hash of that state to the contract, including the recipient's
+        to Node C. It then submits the PTM hash of that state to the contract, including the recipient's
         PTM public key.
     - **4c** - Node A submits a transactions to mark completion of state share. This transaction emits
         a log which will get picked up by the receiver when processing the transaction
-    - **4d & 4e** - Private transaction payload is shared with Tessera nodes B. Public state is
+    - **4d & 4e** - Private transaction payload is shared with Tessera nodes C. Public state is
         propagated across all nodes
 
 1. Node A & B monitors for state share event
-    - **5a** - Upon noticing the state share event as a part of block processing, node A & B update the privacy metadata for the contract being extended
-    
+    - **5a** - Upon noticing the state share event as a part of block processing, node A & B update the privacy metadata for the contract being extended. *This step will be executed only for party protection or private state validation type of contracts.*
+
 1. Node C monitors for state share event
-    - **6a** - Upon noticing the state share event as a part of block processing, node B fetches the
-        contract private state data from Tessera of node B
-    - **6b** - Node B applies the fetched state to the contract address and becomes party of the private contract
-    
+    - **6a** - Upon noticing the state share event as a part of block processing, node C fetches the
+        contract private state data from its local Tessera node
+    - **6b** - Node C applies the fetched state to the contract address and becomes party of the private contract
+
 > Steps (2a, 2b, 2c) and (3a, 3b. 3c) are required to handle data recovery of transaction manager data. In original extension design, the node accepting the extension does so by voting with a hash which is generated by sending a private transaction with management contract address as the payload to self. This hash is further verified at the time of extension to validate the rightful node for extension. In the event if the  node loses its transaction manager and has to recover transactions using resend from other nodes in the network, this self voting transaction is never recoverable. Subsequently if that node ever recovers the chain then it will never be able to process the past contract extension transactions and set state for the private contract.
 
 ## Note
