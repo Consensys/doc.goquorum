@@ -26,6 +26,7 @@ Sends a transaction to the network.
     - `nonce`: `Number`  - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
     - `privateFrom`: `String`  - (optional) When sending a private transaction, the sending party's base64-encoded public key to use. If not present *and* passing `privateFor`, use the default key as configured in the `TransactionManager`.
     - `privateFor`: `List<String>`  - (optional) When sending a private transaction, an array of the recipients' base64-encoded public keys.
+    - `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `3` for PSV
 1. `Function` - (optional) If you pass a callback the HTTP request is made asynchronous.
 
 #### Returns
@@ -69,6 +70,7 @@ __Important:__ Before calling this API, a `storeraw` api need to be called first
 1. `String` - Signed transaction data in HEX format
 1. `Object` - Private data to send
     - `privateFor`: `List<String>`  - When sending a private transaction, an array of the recipients' base64-encoded public keys.
+    - `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `3` for PSV
 1. `Function` - (optional) If you pass a callback the HTTP request is made asynchronous.
 
 #### Returns
@@ -308,6 +310,7 @@ Returns the unencrypted payload from Tessera/constellation
     - `nonce`: `Number`  - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
     - `privateFrom`: `String`  - (optional) When sending a private transaction, the sending party's base64-encoded public key to use. If not present *and* passing `privateFor`, use the default key as configured in the `TransactionManager`.
     - `privateFor`: `List<String>`  - (optional) When sending a private transaction, an array of the recipients' base64-encoded public keys.
+    - `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `3` for PSV
     - `callbackUrl`: `String` - (optional) the URL to perform a POST request to post the result of submitted the transaction
 
 #### Returns
@@ -412,3 +415,7 @@ The callback URL receives the following object:
             "error":"unknown account"
         }
         ```
+
+*[PP]: Counter Party Protection
+*[PSV]: Private State Validation
+*[SP]: Standard Private
