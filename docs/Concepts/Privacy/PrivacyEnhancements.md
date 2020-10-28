@@ -7,9 +7,9 @@ description: Privacy Enhancements feature prevents nodes from modifying contract
 
 ## Overview
 
-Before GoQuorum 2.7.0 any node in the GoQuorum network could alter the state of a contract even if it never had the contract byte code (was not party to the private transaction that created the contract). The privacy enhancements feature has been developed to prevent such "non-party" interaction. This is achieved with the introduction of the `ACOTH` which is short for "Affected Contract's Original Transaction's encrypted payload Hash".
-In order to transact with a contract a node must prove it has access (has the encrypted payload and the ability to decrypt it) to the contract's originating transaction.
-Two flavours of privacy enhanced transactions have been introduced: a) Counter party protection and b) Private state validation.
+Before GoQuorum v20.10.0 private contract implementations had to include access controls to protect against other network participants from updating the state. The privacy enhancements feature has been developed to prevent such "non-party" interaction without additional access controls. This is achieved with the introduction of the `ACOTH` which is short for "Affected Contract's Original Transaction's encrypted payload Hash". In order to transact with a contract a node must prove it has access (has the encrypted payload and the ability to decrypt it) to the contract's originating transaction.
+
+Two flavours of privacy enhanced contracts have been introduced: a) Counter party protection and b) Private state validation.
 
 ## Counter Party Protection (PP)
 
