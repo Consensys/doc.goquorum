@@ -10,7 +10,7 @@ The api for initiating contract extension to a new node.
 
 * `toExtend`: address of the private contract which is being extended to the new node
 * `newRecipientPtmPublicKey`: Tessera public key of the recipient node
-* `recipientAddress`: Ethereum addresses which will accept the contract extension in the recipient node
+* `recipientAddress`: Ethereum addresses which will approve the contract extension in the recipient node
 * `txArgs`: standard transaction arguments with `privateFor` info of both nodes involved in contract extension
 
 #### Returns
@@ -49,9 +49,9 @@ If the contract is already under the process of extension, api call to extend it
       at <anonymous>:1:1
 ```
 
-### `quorumExtension_acceptExtension`
+### `quorumExtension_approveExtension`
 
-The api for accepting the contract extension on the recipient node. This can be invoked by the Ethereum address which is was given as the `recipientAddress` when creating the contract extension.
+The api for approving the contract extension on the recipient node. This can be invoked by the Ethereum address which is was given as the `recipientAddress` when creating the contract extension.
 
 #### Parameter
 
@@ -70,7 +70,7 @@ The api for accepting the contract extension on the recipient node. This can be 
 
     ```jshelllanguage
     // Request
-    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_acceptExtension", "params":["0xb1c57951a2f3006910115eadf0f167890e99b9cb", true, {"from": "0xed9d02e382b34818e88b88a309c7fe71e65f419d", "privateFor":["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]}], "id":10}' --header "Content-Type: application/json"
+    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_approveExtension", "params":["0xb1c57951a2f3006910115eadf0f167890e99b9cb", true, {"from": "0xed9d02e382b34818e88b88a309c7fe71e65f419d", "privateFor":["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]}], "id":10}' --header "Content-Type: application/json"
 
     // Response
     {"jsonrpc":"2.0","id":10,"result":"0x8d34a594b286087f45029daad2d5a8fd42f70abb0ae2492429a256a2ba4cb0dd"}
@@ -79,7 +79,7 @@ The api for accepting the contract extension on the recipient node. This can be 
 === "geth console"
 
     ```javascript
-    > quorumExtension.acceptExtension("0x1349f3e1b8d71effb47b840594ff27da7e603d17", true ,{from: "0x0fbdc686b912d7722dc86510934589e0aaf3b55a", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
+    > quorumExtension.approveExtension("0x1349f3e1b8d71effb47b840594ff27da7e603d17", true ,{from: "0x0fbdc686b912d7722dc86510934589e0aaf3b55a", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
 
     "0x9e0101dd215281b33989b3ae093147e9009353bb63f531490409a628c6e87310"
     ```
@@ -95,7 +95,7 @@ Error: contract extension in progress for the given contract address
     at <anonymous>:1:1
 ```
 
-The recipient can accept the extension only once. Executing `quorumExtension.acceptExtension` once extension process is completed will result in the below error
+The recipient can approve the extension only once. Executing `quorumExtension.approveExtension` once extension process is completed will result in the below error
 
 ```javascript
 > quorumExtension.approveExtension("0x1349f3e1b8d71effb47b840594ff27da7e603d17", true ,{from: "0x0fbdc686b912d7722dc86510934589e0aaf3b55a", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
@@ -106,7 +106,7 @@ Error: contract extension process complete. nothing to accept
     at <anonymous>:1:1
 ```
 
-Executing `quorumExtension.acceptExtension` from an account which is other than `recipientAddress` will result in the below error:
+Executing `quorumExtension.approveExtension` from an account which is other than `recipientAddress` will result in the below error:
 
 ```javascript
 > quorumExtension.approveExtension("0x4d3bfd7821e237ffe84209d8e638f9f309865b87", true, {from: "0x0bb8aaa95b514d8bff1287c1fb58510479478b4a", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
