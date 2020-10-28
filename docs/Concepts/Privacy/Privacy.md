@@ -71,7 +71,7 @@ where:
 
 ### State verification
 
-To determine if nodes are in sync, the public state root hash is included in the block.
+To determine if nodes are in sync the public state root hash is included in the block.
 Private transactions are only processed by participating nodes so it's impossible to obtain global consensus
 on the private state.
 
@@ -80,3 +80,10 @@ use the RPC method [`eth_storageRoot`](../../Reference/APIs/PrivacyAPI.md#eth_st
 the private smart contract address and block height.
 If the state is in sync across all participating nodes, the same
 root hash is returned by all participating nodes and can be compared.
+
+#### Privacy enhancements - private state validation
+
+Automatic verification of a contract(s) state across party nodes is performed by the GoQuorum node when privacy enhancements are enabled and PSV transactions are used.
+For more details please see [Privacy Enhancements](PrivacyEnhancements.md).
+
+*[PSV]: Private State Validation
