@@ -47,41 +47,20 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     !!! note
         You could generate multiple accounts for a single node, or any number of accounts for additional nodes and pre-allocate them with funds in the genesis.json file (see below)
 
-1. Create a `genesis.json` file see example [here](../Reference/genesis.md). The `alloc` field should be pre-populated with the account you generated at previous step
+1. Create a `genesis.json` file using the example from [here](../Reference/genesis.md). The only change required to the genesis will be to add accounts generated at the previous step to the `alloc` field and to pre-fund them. For example here we are funding the accounts 679fed8f4f3ea421689136b25073c6da7973418f and c5c7b431e1629fb992eb18a79559f667228cd055 with the specified balance.
 
     ```bash
      vim genesis.json
-    ... alloc holds 'optional' accounts with a pre-funded amounts. In this example we are funding the accounts 679fed8f4f3ea421689136b25073c6da7973418f (generated from the step above) and c5c7b431e1629fb992eb18a79559f667228cd055.
     {
       "alloc": {
         "0x679fed8f4f3ea421689136b25073c6da7973418f": {
           "balance": "1000000000000000000000000000"
         },
-       "0xc5c7b431e1629fb992eb18a79559f667228cd055": {
+        "0xc5c7b431e1629fb992eb18a79559f667228cd055": {
           "balance": "2000000000000000000000000000"
         }
-    },
-     "coinbase": "0x0000000000000000000000000000000000000000",
-     "config": {
-       "homesteadBlock": 0,
-       "byzantiumBlock": 0,
-       "constantinopleBlock": 0,
-       "chainId": 10,
-       "eip150Block": 0,
-       "eip155Block": 0,
-       "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-       "eip158Block": 0,
-       "maxCodeSize": 35,
-       "maxCodeSizeChangeBlock" : 0,
-       "isQuorum": true
-     },
-     "difficulty": "0x0",
-     "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000",
-     "gasLimit": "0xE0000000",
-     "mixhash": "0x00000000000000000000000000000000000000647572616c65787365646c6578",
-     "nonce": "0x0",
-     "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-     "timestamp": "0x00"
+      },
+      <snip>
     }
     ```
 
