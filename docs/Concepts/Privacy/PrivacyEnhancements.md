@@ -5,12 +5,12 @@ description: Privacy Enhancements feature prevents nodes from modifying contract
 
 # Privacy Enhancements
 
-From GoQuorum v20.10.0, two privacy enhancements are included to prevent state divergence: 
+From GoQuorum v20.10.0, two privacy enhancements are included to prevent state divergence:
 
-* Counter party protection 
-* Private state validation 
+* Counter party protection
+* Private state validation
 
-## Counter party protection 
+## Counter party protection
 
 Counter party protection prevents non-participants sending a transaction to a
 private contract. For example, a private contract is deployed between node 1 and 2. Without counter
@@ -20,9 +20,9 @@ the private states of 1 and 2 diverge.
 
 Use the counter party protection instead of access controls on private contract implementations to protect
 against other network participants from updating the state. Counter party protection prevents non-participants
-from interacting with the private contract without additional access controls. 
+from interacting with the private contract without additional access controls.
 
-## Private state validation 
+## Private state validation
 
 Private state validation prevents state divergence when a private transaction is sent to a subset of
 the transaction participants. For example, a private contract is deployed between node 1 and 2. Without
@@ -31,10 +31,10 @@ of `[]`. The transaction changes the private state of node 1 but not node 2 and 
 1 and 2 no longer match.
 
 When using private state validation, the full participant list is shared among all participants and
-validated against all subsequent transactions. Transactions sent to a subset of participants fail. 
+validated against all subsequent transactions. Transactions sent to a subset of participants fail.
 
 In standard privacy or when only using counter party protection, only the sending node knows
-the full participant list. 
+the full participant list.
 
 ## Affected Contract Original Transaction Payload Hash
 
