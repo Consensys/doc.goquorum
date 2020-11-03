@@ -38,7 +38,7 @@ the full participant list.
 
 ## Affected Contract Original Transaction Payload Hash
 
-Counter party protection and private state validation are implemented using the Affected Contract 
+Counter party protection and private state validation are implemented using the Affected Contract
 Original Transaction Payload Hash (`ACOTH`). To transact with a private contract, a node must prove
 it has access (that is, it has the encrypted payload and the ability to decrypt it) to the originating
 transaction for the contract.
@@ -114,7 +114,7 @@ in the network) by when the entire network would be ready to transact with priva
 ### Tessera
 
 New flag `enablePrivacyEnhancements` has been added to Tessera config defaulting to `FALSE`, and can
-be enabled by adding the property to the config file the same way as other features. 
+be enabled by adding the property to the config file the same way as other features.
 Refer sample configuration for further details.
 
 ## Enabling Privacy Enhancements in the GoQuorum Network
@@ -180,7 +180,7 @@ In this example we walk through the flow of a private transaction on a "privacy 
 
 1. User pushing a private transaction from Node A private for Node B
 
-    - The transaction payload will include the `PrivacyFlag` with value `1` for PP and `3` for PSV contract
+    * The transaction payload will include the `PrivacyFlag` with value `1` for PP and `3` for PSV contract
 
 1. Node A GoQuorum reading the `PrivacyFlag` runs an EVM transaction simulation to gather all the affected
 contracts and the ACOTH(s) associated to contract accounts. For PSV transactions, it also calculates
