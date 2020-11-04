@@ -30,7 +30,7 @@ To explore the features of GoQuorum and deploy a private contract, follow the in
 network that can be run either in a virtual-machine environment using Vagrant, in containers using docker-compose,
 or locally through the use of bash scripts to automate creation of the network.
 
-## GoQuorum on Kubernetes
+## GoQuorum on Kubernetes (Qubernetes)
 
 Use [qubernetes](https://github.com/ConsenSys/qubernetes) to run configurable N node GoQuorum networks on Kubernetes.
 
