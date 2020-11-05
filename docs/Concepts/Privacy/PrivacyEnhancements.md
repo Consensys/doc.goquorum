@@ -15,8 +15,9 @@ From GoQuorum v20.10.0, two privacy enhancements are included to prevent state d
 Counter party protection prevents non-participants sending a transaction to a
 private contract. For example, a private contract is deployed between node 1 and 2. Without counter
 party protection, if node 3 discovers the private contract address, node 3 can send a transaction with
-`privateFor` set to node 2. The transaction changes the private state of node 1 but not node 2 and
-the private states of 1 and 2 diverge.
+`privateFor` set to node 2. The transaction is not applied on node 3 because it is not a participant
+in the private transaction. The transaction submitted by non-participating node 3 is applied to the
+private state on node 2. 
 
 Use the counter party protection instead of access controls on private contract implementations to protect
 against other network participants from updating the state. Counter party protection prevents non-participants
@@ -24,11 +25,12 @@ from interacting with the private contract without additional access controls.
 
 ## Private state validation
 
-Private state validation prevents state divergence when a private transaction is sent to a subset of
-the transaction participants. For example, a private contract is deployed between node 1 and 2. Without
-private state validation, node 1 can send a transaction to the private contract with a `privateFor`
+Private state validation prevents state divergence by ensuring that any private transaction
+for the contract is always sent to all participants. For example, a private contract is deployed between node 1 and 2. 
+Without private state validation, node 1 can send a transaction to the private contract with a `privateFor`
 of `[]`. The transaction changes the private state of node 1 but not node 2 and the private states of
-1 and 2 no longer match.
+1 and 2 no longer match. With private state validation, a transaction from node 1 with a `privateFor`
+of `[]` is rejected and the transaction is processed only when `privateFor` contains both 1 and 2
 
 When using private state validation, the full participant list is shared among all participants and
 validated against all subsequent transactions. Transactions sent to a subset of participants fail.
