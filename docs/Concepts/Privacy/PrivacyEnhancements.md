@@ -17,7 +17,7 @@ private contract. For example, a private contract is deployed between node 1 and
 party protection, if node 3 discovers the private contract address, node 3 can send a transaction with
 `privateFor` set to node 2. The transaction is not applied on node 3 because it is not a participant
 in the private transaction. The transaction submitted by non-participating node 3 is applied to the
-private state on node 2. 
+private state on node 2.
 
 Use the counter party protection instead of access controls on private contract implementations to protect
 against other network participants from updating the state. Counter party protection prevents non-participants
@@ -26,7 +26,7 @@ from interacting with the private contract without additional access controls.
 ## Private state validation
 
 Private state validation prevents state divergence by ensuring that any private transaction
-for the contract is always sent to all participants. For example, a private contract is deployed between node 1 and 2. 
+for the contract is always sent to all participants. For example, a private contract is deployed between node 1 and 2.
 Without private state validation, node 1 can send a transaction to the private contract with a `privateFor`
 of `[]`. The transaction changes the private state of node 1 but not node 2 and the private states of
 1 and 2 no longer match. With private state validation, a transaction from node 1 with a `privateFor`
