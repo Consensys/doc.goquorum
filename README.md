@@ -7,7 +7,6 @@ description: ConsenSys GoQuorum documentation repository overview
 Latest: [![Documentation Status](https://readthedocs.com/projects/pegasys-docgoquorum/badge/?version=latest)](https://docs.goquorum.consensys.net/en/latest/?badge=latest)
 Stable: [![Documentation Status](https://readthedocs.com/projects/pegasys-docgoquorum/badge/?version=stable)](https://docs.goquorum.consensys.net/en/stable/?badge=stable)
 
-
 [GoQuorum] is a ConsenSys Quorum Go client
 
 The software sources are hosted in [GoQuorum] repository
