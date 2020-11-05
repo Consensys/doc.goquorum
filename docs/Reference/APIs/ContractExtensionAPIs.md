@@ -4,19 +4,18 @@
 
 ### `quorumExtension_extendContract`
 
-The api for initiating contract extension to a new node.
+Start the process of extending an existing private contract to a new participant by deploying a new extension management contract to the blockchain
 
-#### Parameter
+#### Parameters
 
-* `toExtend`: address of the private contract which is being extended to the new node
-* `newRecipientPtmPublicKey`: Tessera public key of the recipient node
-* `recipientAddress`: Ethereum addresses which will approve the contract extension in the recipient node
-* `txArgs`: standard transaction arguments with `privateFor` info of both nodes involved in contract extension
+* `toExtend`: address of the private contract to extend
+* `newRecipientPtmPublicKey`: the new participant's Private Transaction Manager (PTM) (e.g. Tessera) public key
+* `recipientAddress`: the new participant's Ethereum address - the participant will later need to approve the extension using this address
+* `txArgs`: arguments for the transaction that deploys the extension management contract - `privateFor` must contain only the `newRecipientPtmPublicKey`
 
 #### Returns
 
-* `msg`: response message
-* `status`: `bool` indicating if the operation was success or failure
+* hash of the creation transaction for the new extension management contract
 
 #### Examples
 
@@ -38,31 +37,36 @@ The api for initiating contract extension to a new node.
     "0x9e0101dd215281b33989b3ae093147e9009353bb63f531490409a628c6e87310"
     ```
 
-If the contract is already under the process of extension, api call to extend it again will fail.
+#### Additional info
 
-```javascript
-> quorumExtension.extendContract("0x9aff347f193ca4560276c3322193224dcdbbe578", "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=", "0xed9d02e382b34818e88b88a309c7fe71e65f419d",{from: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
-  Error: contract extension in progress for the given contract address
+* `quorumExtension_extendContract` will fail for contracts already in the process of being extended:
+
+    ```javascript
+    > quorumExtension.extendContract("0x9aff347f193ca4560276c3322193224dcdbbe578", "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=", "0xed9d02e382b34818e88b88a309c7fe71e65f419d", {from: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
+    Error: contract extension in progress for the given contract address
       at web3.js:3143:20
       at web3.js:6347:15
       at web3.js:5081:36
       at <anonymous>:1:1
-```
+    ```
+
+* The node executing `quorumExtension_extendContract` must have also been the node to submit the contract creation transaction for the contract being extended.
+
+* If the network is using [enhanced network permissioning](../../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md), then both initiator (the `from` address in `txArgs`) and receiver (`recipientAddress`) of the extension must be network or org admin accounts
 
 ### `quorumExtension_approveExtension`
 
-The api for approving the contract extension on the recipient node. This can be invoked by the Ethereum address which is was given as the `recipientAddress` when creating the contract extension.
+Submit an approval/denial vote to the specified extension management contract.
 
-#### Parameter
+#### Parameters
 
-* `addressToVoteOn`: address of the contract extension management contract
-* `vote`: bool - `true` indicates approval and `false` disapproval. Contract extension is completed only when all voters vote true. If any participant votes `false` the extension process will be cancelled.
+* `addressToVoteOn`: address of the contract extension's management contract
+* `vote`: bool - `true` approves the extension process, `false` cancels the extension process.
+* `txArgs`: arguments for the vote submission transaction
 
 #### Returns
 
-* `msg`: response message
-* `status`: `bool` indicating if the operation was success or failure
-* `txArgs`: standard transaction arguments with `privateFor` info of all nodes involved in contract extension
+* hash of the vote submission transaction
 
 #### Examples
 
@@ -84,53 +88,42 @@ The api for approving the contract extension on the recipient node. This can be 
     "0x9e0101dd215281b33989b3ae093147e9009353bb63f531490409a628c6e87310"
     ```
 
-If the contract is already under the process of extension, api call to extend it again will fail.
+#### Additional info
 
-```javascript
-> quorumExtension.extendContract("0x1932c48b2bf8102ba33b4a6b545c32236e342f34", "1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg=", "0x0fbdc686b912d7722dc86510934589e0aaf3b55a", {from: eth.accounts[0], privateFor: ["1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg="]})
-Error: contract extension in progress for the given contract address
-    at web3.js:3143:20
-    at web3.js:6347:15
-    at web3.js:5081:36
-    at <anonymous>:1:1
-```
+* The approver (the `from` address in `txArgs`) must be the receiver of the extension (`recipientAddress` from `quorumExtension_extendContract`).
 
-The recipient can approve the extension only once. Executing `quorumExtension.approveExtension` once extension process is completed will result in the below error
+    ```javascript
+    > quorumExtension.approveExtension("0x4d3bfd7821e237ffe84209d8e638f9f309865b87", true, {from: "0x0bb8aaa95b514d8bff1287c1fb58510479478b4a", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
+    Error: account is not acceptor of this extension request
+        at web3.js:3143:20
+        at web3.js:6347:15
+        at web3.js:5081:36
+        at <anonymous>:1:1
+    ```
 
-```javascript
-> quorumExtension.approveExtension("0x1349f3e1b8d71effb47b840594ff27da7e603d17", true ,{from: "0x0fbdc686b912d7722dc86510934589e0aaf3b55a", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
-Error: contract extension process complete. nothing to accept
-    at web3.js:3143:20
-    at web3.js:6347:15
-    at web3.js:5081:36
-    at <anonymous>:1:1
-```
+* The approver cannot vote more than once:
 
-Executing `quorumExtension.approveExtension` from an account which is other than `recipientAddress` will result in the below error:
-
-```javascript
-> quorumExtension.approveExtension("0x4d3bfd7821e237ffe84209d8e638f9f309865b87", true, {from: "0x0bb8aaa95b514d8bff1287c1fb58510479478b4a", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
-Error: account is not acceptor of this extension request
-    at web3.js:3143:20
-    at web3.js:6347:15
-    at web3.js:5081:36
-    at <anonymous>:1:1
-```
+    ```javascript
+    > quorumExtension.approveExtension("0x1349f3e1b8d71effb47b840594ff27da7e603d17", true ,{from: "0x0fbdc686b912d7722dc86510934589e0aaf3b55a", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
+    Error: contract extension process complete. nothing to accept
+        at web3.js:3143:20
+        at web3.js:6347:15
+        at web3.js:5081:36
+        at <anonymous>:1:1
+    ```
 
 ### `quorumExtension_cancelExtension`
 
-The api for cancelling the contract extension process. This can only be invoked by the Ethereum address which initaited the contract extension process.
+Cancel an active contract extension. Can only be invoked by the initiator of the extension process.
 
-#### Parameter
+#### Parameters
 
-* `extensionContract`: address of the contract extension management contract
-* `vote`: bool - true indicates approval and false disapproval. Contract extension is completed only when all voters vote true
+* `extensionContract`: address of the contract extension's management contract
+* `txArgs`: arguments for the cancellation transaction
 
 #### Returns
 
-* `msg`: response message
-* `status`: `bool` indicating if the operation was success or failure
-* `txArgs`: standard transaction arguments with `privateFor` info of all nodes involved in contract extension
+* hash of the cancellation transaction
 
 #### Examples
 
@@ -152,33 +145,35 @@ The api for cancelling the contract extension process. This can only be invoked 
     "0x9e0101dd215281b33989b3ae093147e9009353bb63f531490409a628c6e87310"
     ```
 
-If the api is invoked by an Ethereum address which is not the creator of the contract extension, an error is thrown.
+#### Additional info
 
-```javascript
-> quorumExtension.cancelExtension("0x4d3bfd7821e237ffe84209d8e638f9f309865b87", {from: "0xbdafac69ab6c5c2f1c2ba36a462c9d2fb01f877d", privateFor:["1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg"]})
-Error: account is not the creator of this extension request
-    at web3.js:3143:20
-    at web3.js:6347:15
-    at web3.js:5081:36
-    at <anonymous>:1:1
-```
+* The `from` address in `txArgs` (the canceller) must be the initiator of the extension (the `from` address in `txArgs` for the `quorumExtension_extendContract` call):
+
+    ```javascript
+    > quorumExtension.cancelExtension("0x4d3bfd7821e237ffe84209d8e638f9f309865b87", {from: "0xbdafac69ab6c5c2f1c2ba36a462c9d2fb01f877d", privateFor:["1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg"]})
+    Error: account is not the creator of this extension request
+        at web3.js:3143:20
+        at web3.js:6347:15
+        at web3.js:5081:36
+        at <anonymous>:1:1
+    ```
 
 ### `quorumExtension_activeExtensionContracts`
 
-Returns the list of all active contract extensions initiated from the node
+List all active contract extensions involving this node (either as initiator or receiver).
 
-#### Parameter
+#### Parameters
 
 None
 
 #### Returns
 
+* `managementContractAddress`: address of the extension management contract
 * `contractExtended`: address of the private contract getting extended
-* `creationData`: hash of extension creation data
-* `initiator`: Ethereum address which initiated the contract extension
-* `recipient`: Ethereum addresses which needs to approve the extension in the recipient node
-* `managementContractAddress`: contract address which manages the extension process
-* `RecipientPtmKey`: Tessera public key of the recipient node
+* `creationData`: PTM hash of creation data for extension management contract
+* `initiator`: the contract extension initiator's Ethereum address
+* `recipient`: the new participant's Ethereum address - the participant will later need to approve the extension using this address
+* `recipientPtmKey`: the new participant's PTM public key
 
 #### Examples
 
@@ -189,16 +184,15 @@ None
     curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_activeExtensionContracts", "id":10}' --header "Content-Type: application/json"
 
     // Response
-    "jsonrpc":"2.0","id":10,"result":[{"contractExtended":"0x027692c7ebdc81c590250e615ab571a0d14eff2d","initiator":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","recipient":"0x0fbdc686b912d7722dc86510934589e0aaf3b55a","managementContractAddress":"0xc4e9de0bd5e0a5fd55ef5d6f2b46eba930a694a3","RecipientPtmKey":"1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg=","creationData":"Zvo1Rnrfq4phIJbzKObyCBWSXTbEJGPOq5+jDCWccnPpA7K6OvIssCMLJ54f32uuEeczeVNC46QMk52lCOWbtg=="}]}
+    "jsonrpc":"2.0","id":10,"result":[{"contractExtended":"0x027692c7ebdc81c590250e615ab571a0d14eff2d","initiator":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","recipient":"0x0fbdc686b912d7722dc86510934589e0aaf3b55a","managementContractAddress":"0xc4e9de0bd5e0a5fd55ef5d6f2b46eba930a694a3","recipientPtmKey":"1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg=","creationData":"Zvo1Rnrfq4phIJbzKObyCBWSXTbEJGPOq5+jDCWccnPpA7K6OvIssCMLJ54f32uuEeczeVNC46QMk52lCOWbtg=="}]}
     ```
 
 === "geth console"
 
     ```javascript
     > quorumExtension.activeExtensionContracts
-    > quorumExtension.activeExtensionContracts
     [{
-        RecipientPtmKey: "1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg=",
+        recipientPtmKey: "1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg=",
         contractExtended: "0x027692c7ebdc81c590250e615ab571a0d14eff2d",
         creationData: "Zvo1Rnrfq4phIJbzKObyCBWSXTbEJGPOq5+jDCWccnPpA7K6OvIssCMLJ54f32uuEeczeVNC46QMk52lCOWbtg==",
         initiator: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
@@ -206,3 +200,36 @@ None
         recipient: "0x0fbdc686b912d7722dc86510934589e0aaf3b55a"
     }]
     ```
+
+### `quorumExtension_getExtensionStatus`
+
+Get the status of a specific contract extension
+
+#### Parameters
+
+* address of extension management contract
+
+#### Returns
+
+* status of contract extension (`ACTIVE` or `DONE`)
+
+#### Examples
+
+=== "JSON RPC"
+
+    ```jshelllanguage
+    // Request
+    curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_getExtensionStatus", "params":["0x1349f3e1b8d71effb47b840594ff27da7e603d17"], "id":10}' --header "Content-Type: application/json"
+
+    // Response
+    {"jsonrpc":"2.0","id":10,"result":"DONE"}
+    ```
+
+=== "geth console"
+
+    ```javascript
+    > quorumExtension.getExtensionStatus("0x1349f3e1b8d71effb47b840594ff27da7e603d17")
+    "DONE"
+    ```
+
+*[PTM]: Private Transaction Manager (e.g. Tessera)
