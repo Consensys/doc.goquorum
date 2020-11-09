@@ -64,7 +64,7 @@ entities manage their own Kubernetes clusters A and B.
 
 1. **A** starts an initial cluster and deploys their initial nodes.
 
-    ```
+    ```bash
     > qctl init network --num 3 --consensus ibft --qversion 2.7.0 --gethparams='--rpccorsdomain="*" --rpcvhosts="*"'
     > qctl generate network --create
     > qctl deploy network
@@ -115,12 +115,12 @@ entities manage their own Kubernetes clusters A and B.
 
 2. Once the cluster is running, **A** runs `qctl` to obtain their cluster nodes in an external format.
 
-    ```yaml
+    ```bash
     > qctl ls nodes --asexternal  --node-ip=1.2.3.4 --bare
     ```
 
      If running minikube:
-    ```
+    ```bash
     > qctl ls nodes --asexternal  --node-ip=$(minikube ip) --bare
     ```
 
@@ -146,7 +146,7 @@ entities manage their own Kubernetes clusters A and B.
 4. **B** generates their initial qubernetes configuration file with the nodes that are internal and owned by
    their cluster.
 
-    ```
+    ```bash
      > qctl init --num 2 --consensus ibft --qversion 2.7.0
      > qctl generate network --create
     ```
@@ -186,7 +186,7 @@ entities manage their own Kubernetes clusters A and B.
 5. **B** adds the external nodes from **A** their config file, and the genesis.json obtained from **A**
  to their config, and regenerates the Kuberenetes network resources.
 
-    ```
+    ```bash
     > qctl generate network --update
     ```
 
@@ -238,13 +238,13 @@ entities manage their own Kubernetes clusters A and B.
 6. **B** deploys the network. The network is started but cannot connect to **A** because **A** has not
 added the external nodes from **B** yet.
 
-    ```
+    ```bash
     > qctl deploy network
     ```
 
 7. **B** runs `qctl` to obtain the external nodes information from their running cluster.
 
-    ```
+    ```bash
     > qctl ls nodes --asexternal --node-ip=2.2.3.4
     ```
 
@@ -320,12 +320,13 @@ to **A**.
 10. **A** generates the update for the Kubernetes network resources. The update leaves the current
 nodes intact, only generating the diff and, updating the configuration files as necessary.
 
-    ```
+    ```bash
     > qctl generate network --update
     ```
 
 11. **A** deploys the updated resources to its cluster.
-   ```
+
+   ```bash
    > qctl deploy network
    ```
 

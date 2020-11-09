@@ -102,7 +102,6 @@ running a node in a single cluster, the node defines:
 * Where to get the docker images
 * Consensus.
 
-
 !!! example "Minimal configuration single cluster node"
 
     ```yaml

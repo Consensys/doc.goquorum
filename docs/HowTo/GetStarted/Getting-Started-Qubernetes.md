@@ -18,13 +18,13 @@ creating and manipulating the minimal configuration, and interacting with a runn
 
 Requires golang version >  1.13.
 
-```
+```bash
 > GO111MODULE=on go get github.com/ConsenSys/qubernetes/qctl
 ```
 
 Test that `qctl` is installed properly.
 
-```
+```bash
  > qctl --help
 ```
 
@@ -39,7 +39,7 @@ Test that `qctl` is installed properly.
 
 * Kubernetes runtime. For example, minikube.
 
-    ```
+    ```bash
     > brew install minikube
     > minikube start --memory 6144
     ```
@@ -48,8 +48,8 @@ Test that `qctl` is installed properly.
 
 Two paths must be set, either as environment variable or flags to the commands:
 
-*  `QUBE_CONFIG` or `--config`. Path to the [minimal configuration](../../Concepts/Qubernetes/Qubernetes-Overview.md#minimal-configuration).
-*  `QUBE_K8S_DIR` or `--k8sdir`. Path to a directory to contain the GoQuorum and Kubernetes resources.
+* `QUBE_CONFIG` or `--config`. Path to the [minimal configuration](../../Concepts/Qubernetes/Qubernetes-Overview.md#minimal-configuration).
+* `QUBE_K8S_DIR` or `--k8sdir`. Path to a directory to contain the GoQuorum and Kubernetes resources.
 
 !!! example "Environment variables"
 
