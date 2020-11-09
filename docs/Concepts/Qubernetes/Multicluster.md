@@ -120,6 +120,7 @@ entities manage their own Kubernetes clusters A and B.
     ```
 
      If running minikube:
+
     ```bash
     > qctl ls nodes --asexternal  --node-ip=$(minikube ip) --bare
     ```
@@ -343,7 +344,8 @@ A NodePort service in Kubernetes is a way to expose a pod to the outside world v
 The NodePort is not known until deployment time, but can be obtained from the running Kubernetes cluster once it
 is up, the blue port represents the internal port used by the cluster, and the highlighted port represents the port
 that is accessible from outside the cluster.
-```
+
+```bash
 quorum-node1 NodePort  10.96.184.48  <none> ...,8545:31346/TCP,30303:32109/TCP,...   4s
 ```
 
