@@ -56,8 +56,8 @@ until the node is deployed.
 
 ## Two cluster multi-cluster example
 
-!!! note 
-    This example was tested against commit [a47da88f5c3f](https://github.com/ConsenSys/qubernetes/commit/a47da88f5c3fcacd445e32720fe5669cdbff2fc2). 
+!!! note
+    This example was tested against commit [a47da88f5c3f](https://github.com/ConsenSys/qubernetes/commit/a47da88f5c3fcacd445e32720fe5669cdbff2fc2).
 
 To add external nodes, there must be an initial cluster running. This example assumes two
 entities manage their own Kubernetes clusters A and B.
@@ -69,7 +69,7 @@ entities manage their own Kubernetes clusters A and B.
     > qctl generate network --create
     > qctl deploy network
     ```
-    
+
     Config for **A**:
 
     ```yaml
@@ -145,13 +145,13 @@ entities manage their own Kubernetes clusters A and B.
 
 4. **B** generates their initial qubernetes configuration file with the nodes that are internal and owned by
    their cluster.
-   
+
     ```
      > qctl init --num 2 --consensus ibft --qversion 2.7.0
      > qctl generate network --create
     ```
 
-    Config for **B**: 
+    Config for **B**:
 
     ```yaml
     genesis:
@@ -185,13 +185,13 @@ entities manage their own Kubernetes clusters A and B.
 
 5. **B** adds the external nodes from **A** their config file, and the genesis.json obtained from **A**
  to their config, and regenerates the Kuberenetes network resources.
- 
+
     ```
     > qctl generate network --update
     ```
 
     Updated config for **B**:
-    
+
     ```yaml
     genesis:
      consensus: istanbul
@@ -243,7 +243,7 @@ added the external nodes from **B** yet.
     ```
 
 7. **B** runs `qctl` to obtain the external nodes information from their running cluster.
-   
+
     ```
     > qctl ls nodes --asexternal --node-ip=2.2.3.4
     ```
@@ -264,9 +264,9 @@ added the external nodes from **B** yet.
 to **A**.
 
 9. **A** adds the external nodes information from **B** to the **A** configuration file.
-   
+
     Updated config for **A**:
-   
+
     ```yaml
     genesis:
      consensus: istanbul
@@ -317,9 +317,9 @@ to **A**.
        Node_Acct_Addr: 0xB4ba047619946B607dcBE6cA6E54Ff071f95c9E8
     ```
 
-10. **A** generates the update for the Kubernetes network resources. The update leaves the current 
+10. **A** generates the update for the Kubernetes network resources. The update leaves the current
 nodes intact, only generating the diff and, updating the configuration files as necessary.
-   
+
     ```
     > qctl generate network --update
     ```
@@ -349,9 +349,9 @@ quorum-node1 NodePort  10.96.184.48  <none> ...,8545:31346/TCP,30303:32109/TCP,.
 In order to access the service via the NodePort the Kubernetes Node Ip must also be known, this is the ip of the
 host running the Kubernetes node(s).
 
-!!! note 
+!!! note
 
     There are many ways to add nodes in a multi-cluster way. Qubernetes deliberately aims to be as simple as
     possible while supporting the necessary requirements.
 
-    Multi-cluster currently only supports IBFT consensus. 
+    Multi-cluster currently only supports IBFT consensus.

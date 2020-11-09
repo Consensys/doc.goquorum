@@ -13,27 +13,27 @@ context, and persistent volume size. Qubernetes includes support for Cakeshop, m
 
 ## Build Container
 
-The [qubernetes build container](https://hub.docker.com/repository/docker/quorumengineering/qubernetes): 
+The [qubernetes build container](https://hub.docker.com/repository/docker/quorumengineering/qubernetes):
 
 * Works with the minimal configuration. The minimal configuration is called `qubernetes.yaml` in the
-following examples. 
-* Generates GoQuorum resources including configuration and keys. 
-* Generates Kubernetes resources for a GoQuorum network. 
+following examples.
+* Generates GoQuorum resources including configuration and keys.
+* Generates Kubernetes resources for a GoQuorum network.
 * Can be leveraged by other projects that need to generate GoQuorum resource. For example, the
 [GoQuorum Wizard](../../HowTo/GetStarted/Wizard/GettingStarted.md) uses the build container to generate GoQuorum
 network resources, and to run Kubernetes.
 
-!!! example "Generate GoQuorum resources only `./qube-init`." 
+!!! example "Generate GoQuorum resources only `./qube-init`."
     ```
     > docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./qube-init qubernetes.yaml
     ```
 
-!!! example "Generate GoQuorum resources and Kubernetes resources for the Quorum network `./quorum-init`." 
+!!! example "Generate GoQuorum resources and Kubernetes resources for the Quorum network `./quorum-init`."
     ```
     > docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./quorum-init qubernetes.yaml
     ```
 
-!!! example "Generate or regenerate Kubernetes resources only `./qubernetes`." 
+!!! example "Generate or regenerate Kubernetes resources only `./qubernetes`."
     ```
     > docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./qubernetes qubernetes.yaml
     ```
@@ -48,11 +48,11 @@ stored in external sources.
 ## Minimal configuration
 
 Quberentes implements config as code, and runs off a minimal configuration file called `qubernetes.yaml` or
-`qubernetes-generated.yaml`. The configuration file can be created and modified: 
+`qubernetes-generated.yaml`. The configuration file can be created and modified:
 
 * Manually
 * Using the [`qctl`](https://github.com/ConsenSys/qubernetes/tree/master/qctl) command line tool. `qctl`
-enables the users to generate and manipulate the configuration file. 
+enables the users to generate and manipulate the configuration file.
 
 The minimal configuration file example for a single cluster deployment includes the parameters required by the
 genesis file, and by each node in the cluster. The consensus and versions can change between the
@@ -95,7 +95,7 @@ loading accounts with value, and setting up test contracts.
 ### Nodes
 
 The `nodes` section of the minimal configuration represents nodes running in a single cluster. When
-running a node in a single cluster, the node defines: 
+running a node in a single cluster, the node defines:
 
 * Keys for the nodes in the cluster
 * Versions to use
@@ -122,7 +122,7 @@ running a node in a single cluster, the node defines:
 
 ## qctl command line tool
 
-[qctl](../../HowTo/GetStarted/Getting-Started-Qubernetes.md) is a Golang command line tool for 
+[qctl](../../HowTo/GetStarted/Getting-Started-Qubernetes.md) is a Golang command line tool for
 creating and manipulating the minimal configuration, and interacting with a running Kubernetes network.
 
 Following the Unix philosophy, the commands intentionally only do one thing. Add the commands to

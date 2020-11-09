@@ -7,22 +7,22 @@ description: Getting started with Qubernetes (GoQuorum on Kubernetes)
 [Qubernetes](../../Concepts/Qubernetes/Qubernetes-Overview.md) is a project for generating GoQuorum network resources,
 Kubernetes GoQuorum resources, and managing and interacting with a GoQuorum Kubernetes deployment.
 
-[qctl](../../Concepts/Qubernetes/Qubernetes-Overview.md#qctl-command-line-tool) is a Golang command line tool for 
+[qctl](../../Concepts/Qubernetes/Qubernetes-Overview.md#qctl-command-line-tool) is a Golang command line tool for
 creating and manipulating the minimal configuration, and interacting with a running Kubernetes network.
 
-## Installing binaries 
+## Installing binaries
 
-[Obtain the binaries from the repository.](https://github.com/ConsenSys/qubernetes/releases) 
+[Obtain the binaries from the repository.](https://github.com/ConsenSys/qubernetes/releases)
 
 ## Go get
 
-Requires golang version >  1.13. 
+Requires golang version >  1.13.
 
 ```
 > GO111MODULE=on go get github.com/ConsenSys/qubernetes/qctl
 ```
 
-Test that `qctl` is installed properly. 
+Test that `qctl` is installed properly.
 
 ```
  > qctl --help
@@ -46,7 +46,7 @@ Test that `qctl` is installed properly.
 
 ## Starting a network
 
-Two paths must be set, either as environment variable or flags to the commands:  
+Two paths must be set, either as environment variable or flags to the commands:
 
 *  `QUBE_CONFIG` or `--config`. Path to the [minimal configuration](../../Concepts/Qubernetes/Qubernetes-Overview.md#minimal-configuration).
 *  `QUBE_K8S_DIR` or `--k8sdir`. Path to a directory to contain the GoQuorum and Kubernetes resources.
@@ -59,7 +59,7 @@ Two paths must be set, either as environment variable or flags to the commands:
     ```
 
     ```
-    > qctl init network --num 3  --consensus ibft --cakeshop --monitor 
+    > qctl init network --num 3  --consensus ibft --cakeshop --monitor
     > qctl generate network --create
     > qctl deploy network --wait
     > qctl geth exec quorum-node1 'eth.blockNumber'
