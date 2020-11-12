@@ -336,21 +336,23 @@ nodes intact, only generating the diff and, updating the configuration files as 
 
 ## Multi-cluster across namespaces using NodePorts
 
-A namespace in Kubernetes is an isolated cluster within the same running Kubernetes instance. We will walk through a
-flow of adding nodes across namespaces exposing the services via a NodePort service.
+A namespace in Kubernetes is an isolated cluster within the same running Kubernetes instance. You can
+add nodes across namespaces by exposing the services via a NodePort service.
 
-A NodePort service in Kubernetes is a way to expose a pod to the outside world via K8s_Node_IP:Node_Port
+[A NodePort service in Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport.)
+exposes a pod to the outside world via `K8s_Node_IP:Node_Port`. 
 
-The NodePort is not known until deployment time, but can be obtained from the running Kubernetes cluster once it
-is up, the blue port represents the internal port used by the cluster, and the highlighted port represents the port
-that is accessible from outside the cluster.
+The NodePort is not known until deployment time. Once the Kubernetes cluster is up, the NodePort can
+be obtained. Node ports are represented as pairs `<Internal_Port:External_Port>`. In the example below,
+`8545` represents the internal port used by the cluster, and `31346` represents the external port.
 
-```bash
-quorum-node1 NodePort  10.96.184.48  <none> ...,8545:31346/TCP,30303:32109/TCP,...   4s
-```
+!!! example "NodePort Example"
+    ```bash
+    quorum-node1 NodePort  10.96.184.48  <none> ...,8545:31346/TCP,30303:32109/TCP,...   4s
+    ```
 
-In order to access the service via the NodePort the Kubernetes Node Ip must also be known, this is the ip of the
-host running the Kubernetes node(s).
+To access the service via the NodePort the Kubernetes Node IP must also be known. The Kubernetes Node
+IP is the host running the Kubernetes nodes.
 
 !!! note
 
