@@ -340,7 +340,7 @@ A namespace in Kubernetes is an isolated cluster within the same running Kuberne
 add nodes across namespaces by exposing the services via a NodePort service.
 
 [A NodePort service in Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport.)
-exposes a pod to the outside world via `K8s_Node_IP:Node_Port`. 
+exposes a pod to the outside world via `K8s_Node_IP:Node_Port`.
 
 The NodePort is not known until deployment time. Once the Kubernetes cluster is up, the NodePort can
 be obtained. Node ports are represented as pairs `<Internal_Port:External_Port>`. In the example below,
