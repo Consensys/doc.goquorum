@@ -5,8 +5,8 @@ description: Qubernetes for multi-cluster networks
 # Qubernetes for multi-cluster networks
 
 Multi-cluster networks support high availability and connect different business units
-and companies. The following outlines using Qubernetes to manage and enable a cross-cluster GoQuorum
-Kubernetes deployment.
+and companies. The following outlines an initial way of using  Qubernetes to manage and enable a
+cross-cluster GoQuorum Kubernetes deployment.
 
 ## Nodes
 
