@@ -46,4 +46,4 @@
 
     ![deployed_private](images/deployed_private.png)
 
-1. Please open a GitHub issue or reach out to us on our [Slack](https://www.goquorum.com/slack-inviter) with any feedback or questions!
+1. Please open a GitHub issue or reach out to us on our [Slack](https://inviter.quorum.consensys.net/) with any feedback or questions!
