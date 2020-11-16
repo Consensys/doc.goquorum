@@ -23,6 +23,12 @@ following examples.
 [GoQuorum Wizard](../../HowTo/GetStarted/Wizard/GettingStarted.md) uses the build container to generate GoQuorum
 network resources, and to run Kubernetes.
 
+When running the qubernetes docker container, the minimal config file, and the `out` directory must be mounted to the container
+using the `-v` flag.
+After the container exits, the generated resources will be in mounted `out` directory on the host.
+
+Examples generating GoQuorum and K8s resources using the qubernetes container:
+
 !!! example "Generate GoQuorum resources only `./qube-init`."
     ```
     > docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./qube-init qubernetes.yaml

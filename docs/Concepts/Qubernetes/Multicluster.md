@@ -34,7 +34,7 @@ nodes running in a single cluster.
 External nodes are a multi-cluster concept for nodes outside the cluster. External nodes need
 network routes to the necessary services (GoQuorum p2p and Tessera p2p), and the node address
 if using istanbul consensus. When adding an external node, this information must be obtained from
-the external cluster.
+exposes a pod to the outside world via `K8s_Node_IP:Node_Port`.the external cluster.
 
 The [qctl](../../HowTo/GetStarted/Getting-Started-Qubernetes.md) command includes a command for exporting
 the information required to add an external node. The required information cannot always be known
@@ -114,15 +114,10 @@ entities manage their own Kubernetes clusters A and B.
     ```
 
 2. Once the cluster is running, **A** runs `qctl` to obtain their cluster nodes in an external format.
+=== "Example"
 
     ```bash
     > qctl ls nodes --asexternal  --node-ip=1.2.3.4 --bare
-    ```
-
-     If running minikube:
-
-    ```bash
-    > qctl ls nodes --asexternal  --node-ip=$(minikube ip) --bare
     ```
 
     ```yaml
@@ -138,6 +133,29 @@ entities manage their own Kubernetes clusters A and B.
     - Node_UserIdent:  quorum-node3
       Enode_Url: "enode://8a28...@1.2.3.4:31931?discport=0&raftport=50401"
       Tm_Url:  1.2.3.4:31914
+      Node_Acct_Addr: 0x7D56e937283cFD29F5772696E610dCBf35b6C777
+    ```
+
+=== "Example Minikube"
+
+    ```bash
+    > qctl ls nodes --asexternal  --node-ip=$(minikube ip) --bare
+    ```
+    note the `$MINIKUBE_IP` varibable below is used for illustration, it will be the IP of your minikube node
+    passed to the `qctl ls nodes` command via `--node-ip=$(minikube ip)`.
+    ```yaml
+    external_nodes:
+    - Node_UserIdent:  quorum-node1
+      Enode_Url: "enode://1cb6...@$MINIKUBE_IP:32044?discport=0&raftport=50401"
+      Tm_Url:  $MINIKUBE_IP:30047
+      Node_Acct_Addr: 0x60eD1973D8bEB9118f664A688B2E79a344F66954
+    - Node_UserIdent:  quorum-node2
+      Enode_Url: "enode://11d0...@$MINIKUBE_IP:32352?discport=0&raftport=50401"
+      Tm_Url:  $MINIKUBE_IP:31735
+      Node_Acct_Addr: 0x2bEa1b982A31dF3355b509303703303fCb34A0dC
+    - Node_UserIdent:  quorum-node3
+      Enode_Url: "enode://8a28...@$MINIKUBE_IP:31931?discport=0&raftport=50401"
+      Tm_Url:  $MINIKUBE_IP:31914
       Node_Acct_Addr: 0x7D56e937283cFD29F5772696E610dCBf35b6C777
     ```
 
@@ -342,12 +360,15 @@ add nodes across namespaces by exposing the services via a NodePort service.
 [A NodePort service in Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport.)
 exposes a pod to the outside world via `K8s_Node_IP:Node_Port`.
 
-The NodePort is not known until deployment time. Once the Kubernetes cluster is up, the NodePort can
-be obtained. Node ports are represented as pairs `<Internal_Port:External_Port>`. In the example below,
-`8545` represents the internal port used by the cluster, and `31346` represents the external port.
+The NodePort is not known until deployment time. Once the GoQuorum cluster has been deployed, the NodePorts will
+be assigned and can be obtained from Kubernetes, e.g. `kubectl get services` or `qctl ls url --type=nodeport`.
+
+Node ports are represented as pairs `<Internal_Port:External_Port>`. In the example below, `8545` represents the internal port used by the
+cluster, and `31346` represents the external port.
 
 !!! example "NodePort Example"
     ```bash
+    $> kubectl get services
     quorum-node1 NodePort  10.96.184.48  <none> ...,8545:31346/TCP,30303:32109/TCP,...   4s
     ```
 

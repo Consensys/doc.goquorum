@@ -39,11 +39,24 @@ Test that `qctl` is installed properly.
 
 * Kubernetes runtime. For example, minikube.
 
+See minikube full install instructions for your OS [here](https://minikube.sigs.k8s.io/docs/start/)
+
+=== "Install MacOs"
+
     ```bash
-    > brew install minikube
-    > minikube start --memory 6144
+     brew install minikube
     ```
 
+=== "Install Linux (Binary download)"
+
+    ```bash
+     curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+     sudo install minikube-linux-amd64 /usr/local/bin/minikube
+    ```
+!!! example "Start minikube"
+```
+ minikube start --memory 6144
+```
 ## Starting a network
 
 Two paths must be set, either as environment variable or flags to the commands:
@@ -75,7 +88,7 @@ Two paths must be set, either as environment variable or flags to the commands:
     > qctl geth attach quorum-node1
     ```
 
-## Interacting
+## Interacting With A Running K8s GoQuorum Network
 
 !!! example
     ```
