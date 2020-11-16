@@ -90,15 +90,24 @@ Two paths must be set, either as environment variable or flags to the commands:
 
 ## Interacting With A Running K8s GoQuorum Network
 
-!!! example
+!!! example "Listing GoQuorum nodes"
     ```
      > qctl ls nodes
      > qctl ls nodes --all
      > qctl ls nodes --enode --bare
+    ```
+!!! example "Adding and deleting nodes"
+    ```
      > qctl add node quorum-node5
      > qctl delete node quorum-node4
+    ```
+!!! example "Test (simple) contract"
+    ```
      > qctl test contract quorum-node1
      > qctl test contract quorum-node1 --private
+    ```
+!!! example "Executing a geth command"
+    ```
      > qctl geth exec quorum-node1 'eth.blockNumber'
     ```
 
