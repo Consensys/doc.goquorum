@@ -50,7 +50,7 @@ It is recommended to use separate terminal windows for each node you are inspect
 
 To look at the private transaction that was just sent, run the following command in one of the terminals:
 
-```bash
+```javascript
 eth.getTransaction("0xe28912c5694a1b8c4944b2252d5af21724e9f9095daab47bac37b1db0340e0bf")
 ```
 
