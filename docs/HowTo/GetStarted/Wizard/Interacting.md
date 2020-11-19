@@ -112,7 +112,6 @@ The function calls are now available on the contract instance and you can call t
     42
     ```
 
-
 - In terminal window 2 (Node 2):
 
     ```js
