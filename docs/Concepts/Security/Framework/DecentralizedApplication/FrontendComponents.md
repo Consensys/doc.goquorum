@@ -1,7 +1,7 @@
 # Frontend
 
 As any traditional application, dApps Client/Server component has to follow application security best practices.
-Its recommended to use a Secure Software Development Lifecycle (SSDLC) to implement any application.
+It's recommended to use a Secure Software Development Lifecycle (SSDLC) to implement any application.
 In general Secure Development Lifecycle include the following phases :
 
 - Risk Assessment Phase.

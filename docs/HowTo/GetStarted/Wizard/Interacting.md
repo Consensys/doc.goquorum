@@ -54,7 +54,8 @@ To look at the private transaction that was just sent, run the following command
 eth.getTransaction("0xe28912c5694a1b8c4944b2252d5af21724e9f9095daab47bac37b1db0340e0bf")
 ```
 
-where you should replace this hash with the TransactionHash that was previously printed to the terminal. This will print something of the form:
+where you should replace this hash with the TransactionHash that was previously printed to the terminal.
+This will print a result of the form:
 
 ```json
 {
@@ -87,14 +88,14 @@ For each of the 3 nodes you'll use the geth JavaScript console to create a varia
 Once you've identified the contract address, run the following command in each terminal:
 
 ```js
-> var address = "0x1932c48b2bf8102ba33b4a6b545c32236e342f34"; //replace with your contract address
+var address = "0x1932c48b2bf8102ba33b4a6b545c32236e342f34"; //replace with your contract address
 ```
 
 Next you'll use ```eth.contract``` to define a contract class with the simpleStorage ABI definition in each terminal:
 
 ```js
-> var abi = [{"constant":true,"inputs":[],"name":"storedData","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"x","type":"uint256"}],"name":"set","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"retVal","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[{"name":"initVal","type":"uint256"}],"type":"constructor"}];
-> var private = eth.contract(abi).at(address)
+var abi = [{"constant":true,"inputs":[],"name":"storedData","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"x","type":"uint256"}],"name":"set","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"retVal","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[{"name":"initVal","type":"uint256"}],"type":"constructor"}];
+var private = eth.contract(abi).at(address)
 ```
 
 The function calls are now available on the contract instance and you can call those methods on the contract. Let's start by examining the initial value of the contract to make sure that only nodes 1 and 2 can see the initialized value.
@@ -102,21 +103,37 @@ The function calls are now available on the contract instance and you can call t
 - In terminal window 1 (Node 1):
 
     ```js
-    > private.get()
+    private.get()
+    ```
+
+    Result is:
+
+    ```js
     42
     ```
+
 
 - In terminal window 2 (Node 2):
 
     ```js
-    > private.get()
+    private.get()
+    ```
+
+    Result is:
+
+    ```js
     42
     ```
 
 - In terminal window 3 (Node 3):
 
     ```js
-    > private.get()
+    private.get()
+    ```
+
+    Result is:
+
+    ```js
     0
     ```
 
@@ -133,7 +150,12 @@ Next you'll have Node 1 set the state to the value `4` and verify only nodes 1 a
 In terminal window 1 (Node 1):
 
 ```js
-> private.set(4,{from:eth.accounts[0],privateFor:["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]});
+private.set(4,{from:eth.accounts[0],privateFor:["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]});
+```
+
+Result is:
+
+```js
 "0xacf293b491cccd1b99d0cfb08464a68791cc7b5bc14a9b6e4ff44b46889a8f70"
 ```
 
@@ -142,21 +164,36 @@ You can check the log files in `qdata/logs/` to see each node validating the blo
 - In terminal window 1 (Node 1):
 
 ```js
-> private.get()
+private.get()
+```
+
+Result is:
+
+```js
 4
 ```
 
 - In terminal window 2 (Node 2):
 
 ```js
-> private.get()
+private.get()
+```
+
+Result is:
+
+```js
 4
 ```
 
 - In terminal window 3 (Node 3):
 
 ```js
-> private.get()
+private.get()
+```
+
+Result is:
+
+```js
 0
 ```
 

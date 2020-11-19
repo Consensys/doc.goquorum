@@ -9,7 +9,7 @@
 
 * Download WAR file (Binary packages are available for macOS, Windows, and Linux platforms on the [releases](https://github.com/ConsenSys/cakeshop/releases) page.)
 * Run `java -jar cakeshop.war`
-* Navigate to [http://localhost:8080/](http://localhost:8080/)
+* Navigate to <http://localhost:8080/>
 
 !!!note
     when running in Windows, -Dgeth.node=geth must be specified as Quorum is not yet available on Windows OS*
@@ -20,10 +20,10 @@
 * Put in `/webapps` folder of your app server
 * Add Java system property `-Dspring.profiles.active=local` to startup script (`setenv.sh` for tomcat)
 * Start app server
-* Navigate to [http://localhost:8080/](http://localhost:8080/) (default port is usually 8080)
+* Navigate to <http://localhost:8080/> (default port is usually 8080)
 
 !!!note
-    when running in Windows, -Dgeth.node=geth must be specified as Quorum is not yet available on Windows OS*
+    when running in Windows, `-Dgeth.node=geth` must be specified as Quorum is not yet available on Windows OS*
 
 ## Running modes
 
@@ -49,10 +49,15 @@ Cakeshop can start in multiple modes (see the sections below for details on each
 
 ### Default Mode
 
-1. In a terminal run:
+1. In a terminal window, navigate to `path/to/cakeshop/war`:
 
     ```bash
-    cd path/to/cakeshop/war
+    cd <path/to/cakeshop/war>
+    ```
+
+1. In `path/to/cakeshop/war`, run:
+
+    ```bash
     java -jar cakeshop.war
     ```
 
@@ -60,17 +65,24 @@ Cakeshop can start in multiple modes (see the sections below for details on each
 
 ### Attach Mode
 
-1. In a terminal window run:
+1. In a terminal window, navigate to `path/to/cakeshop/war`:
 
     ```bash
-    cd path/to/cakeshop/war
-    # The 'example' arg below will unpack the war file and set up the cakeshop data folders but will not actually start a node
+    cd <path/to/cakeshop/war>
+    ```
+
+1. In `path/to/cakeshop/war`, run:
+
+    ```bash
     java -jar cakeshop.war example
     ```
 
+    !!! warning
+        This command will unpack the war file and set up the cakeshop data folders but will not actually start a node
+
 1. Navigate to `path/to/cakeshop/war/data/local`
 
-1. Make the following edits to the application.properties file:
+1. Make the following edits to the `application.properties` file:
 
     ```properties
     geth.auto.start=false
@@ -83,7 +95,7 @@ Cakeshop can start in multiple modes (see the sections below for details on each
     java -jar cakeshop.war
     ```
 
-1. Open **<http://localhost:8080/>** in your browser (Firefox/Chrome supported)
+1. Open <http://localhost:8080/> in your browser (Firefox/Chrome supported)
 
 1. The dropdown menu on the top right of the page should show "Manage Nodes" if you haven't attached to any yet. Click on that to go to the Manage Nodes page.
 
@@ -107,7 +119,7 @@ The best way to achieve this is to create separate Cakeshop folders for each nod
 
     There are two cmd flags that can be set to achieve this:
 
-    * `CAKESHOP_SHARED_CONFIG` (<em>recommended</em>): When this flag is set, Cakeshop will try to load a file called 'shared.properties' and read the ContractRegistry address from it. If the file doesn't exist, Cakeshop will deploy the ContractRegistry contract, create this file and store the address in the file.
+    * `CAKESHOP_SHARED_CONFIG` (*recommended*): When this flag is set, Cakeshop will try to load a file called 'shared.properties' and read the ContractRegistry address from it. If the file doesn't exist, Cakeshop will deploy the ContractRegistry contract, create this file and store the address in the file.
 
         === "Usage"
 
@@ -123,7 +135,7 @@ The best way to achieve this is to create separate Cakeshop folders for each nod
 
     ```bash
     mkdir myNetwork && cd myNetwork
-    cp path/to/cakeshop/download /myNetwork
+    cp <path/to/cakeshop/download> /myNetwork
     cd myNetwork
     mkdir node1 node2
     cd node1
