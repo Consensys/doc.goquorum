@@ -6,18 +6,18 @@ description: Extend module
 
 The `extend` module of quorum.js allows Quorum-specific APIs to be added to an instance of `web3`.
 
-## Example
+!!!example
 
-```js
-const Web3 = require("web3");
-const quorumjs = require("quorum-js");
+    ```js
+    const Web3 = require("web3");
+    const quorumjs = require("quorum-js");
 
-const web3 = new Web3("http://localhost:22000");
+    const web3 = new Web3("http://localhost:22000");
 
-quorumjs.extend(web3);
+    quorumjs.extend(web3);
 
-web3.quorum.eth.sendRawPrivateTransaction(signedTx, args);
-```
+    web3.quorum.eth.sendRawPrivateTransaction(signedTx, args);
+    ```
 
 ## Parameters
 

@@ -129,7 +129,7 @@ The api for approving the contract extension on the recipient node. This can be 
         at <anonymous>:1:1
     ```
 
-    The recipient can approve the extension only once. Executing `quorumExtension.approveExtension` once extension process is completed will result in the below error
+    The recipient can approve the extension only once. Executing `quorumExtension.approveExtension` once extension process is completed will result in the below error:
 
     Command:
 

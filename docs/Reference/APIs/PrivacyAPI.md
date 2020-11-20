@@ -122,10 +122,17 @@ To support offline signing of transaction. This api fills and defaults `RLP` plu
 - `tx` : transaction object
 
 !!! example
-    An example of signing and sending a private transaction is as shown below. The transaction depicted below deploys a simple storage contract with an initial value of 42
+    An example using Geth console for signing and sending a private transaction is as shown below. The transaction depicted below deploys a simple storage contract with an initial value of 42:
+
+    Command:
 
     ```javascript
-    > a = eth.fillTransaction({from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", data: "0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a", gas: 0x47b760, privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+    a = eth.fillTransaction({from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", data: "0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a", gas: 0x47b760, privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+    ```
+
+    Result:
+
+    ```json
     {
       raw: "0xf84d02808347b7608080b84075902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d6258080",
       tx: {
@@ -145,12 +152,39 @@ To support offline signing of transaction. This api fills and defaults `RLP` plu
 
     Once the transaction object is returned, explicitly set `tx.from` and sign the transaction.
 
+    Command:
+
     ```javascript
-    > a.tx.from = "0xed9d02e382b34818e88b88a309c7fe71e65f419d"
+    a.tx.from = "0xed9d02e382b34818e88b88a309c7fe71e65f419d"
+    ```
+
+    Result:
+
+    ```json
     "0xed9d02e382b34818e88b88a309c7fe71e65f419d"
-    > a.tx.privateFor=["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]
+    ```
+
+    Command:
+
+    ```javascript
+    a.tx.privateFor=["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]
+    ```
+
+    Result:
+
+    ```json
     ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]
-    > b = eth.signTransaction(a.tx)
+    ```
+
+    Command:
+
+    ```javascript
+    b = eth.signTransaction(a.tx)
+    ```
+
+    Result:
+
+    ```json
     {
       raw: "0xf88d02808347b7608080b84075902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d637a04ff24fa99cdf3cfbaec698857c006240aa79331432d7ddb86209ec7b0010097da071f42224ee42a35872ca13fa6ffa3f7f6e550f1edecc750cc0a3ea638bf05ed9",
       tx: {
@@ -168,10 +202,15 @@ To support offline signing of transaction. This api fills and defaults `RLP` plu
     }
     ```
 
-    Call `eth.sendRawPrivateTransaction` to send the transaction to intended recipients
+    Call `eth.sendRawPrivateTransaction` to send the transaction to intended recipients:
 
     ```javascript
-    > eth.sendRawPrivateTransaction(b.raw, {privateFor:["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+    eth.sendRawPrivateTransaction(b.raw, {privateFor:["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+    ```
+
+    Result:
+
+    ```json
     "0xcd8ab3f6dbdb8535a44d47df9c7d8a3862fe9fb4257a2d377bdd8bface016928"
     ```
 
@@ -187,8 +226,8 @@ returns the storage root hash from the private state database.
 #### Parameters
 
 1. `address`: `String` - The address to fetch the storage root from in hex
-1. `block`: `String` - (optional) The block number to fetch the storage root from in hex. If not specified,
-uses the latest block.
+1. `block`: `String` - (optional) The block number to fetch the storage root from in hex.
+    If not specified, uses the latest block.
 
 #### Returns
 
@@ -235,7 +274,6 @@ uses the latest block.
     === "Request"
 
         ```bash
-
         curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc": "2.0", "method": "eth_storageRoot", "params":["0x1349f3e1b8d71effb47b840594ff27da7e603d17", "0x2"], "id": 67}'
         ```
 
@@ -255,7 +293,8 @@ Returns the unencrypted payload from Tessera/constellation
 
 #### Parameters
 
-1. `id`: `String` - the HEX formatted generated Sha3-512 hash of the encrypted payload from the Private Transaction Manager. This is seen in the transaction as the `input` field
+1. `id`: `String` - the HEX formatted generated Sha3-512 hash of the encrypted payload from the Private Transaction Manager.
+    This is seen in the transaction as the `input` field
 
 #### Returns
 
