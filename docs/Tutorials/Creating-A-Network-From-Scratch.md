@@ -1576,7 +1576,7 @@ Just execute **step 4** instruction from removing a validator node.
 
     Advertised public node key will be in the `new-node-1.pub` file.
 
-    Tessera offers a lot of configuration flexibility, please refer to the [Configuration](../../Privacy/Tessera/Configuration/Configuration%20Overview) section under Tessera for complete and up to date configuration options.
+    Tessera offers a lot of configuration flexibility, please refer to the [Tessera documentation site configuration section](https://docs.tessera.consensys.net/HowTo/Configure/Tessera/) for complete and up to date configuration options.
 
     Your node is now operational and you can attach to it with `geth attach new-node-1/geth.ipc` to send private transactions.
 
