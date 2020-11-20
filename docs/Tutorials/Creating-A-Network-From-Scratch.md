@@ -32,6 +32,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     ```bash
      geth --datadir new-node-1 account new
     ```
+
     Result:
 
     ```text
@@ -1335,7 +1336,7 @@ Just execute **step 4** instruction from removing a validator node.
     Copy Tessera jar to your desired destination and rename it as `tessera.jar`:
 
     ```bash
-    $ mv tessera-app-0.9.2-app.jar tessera.jar
+    mv tessera-app-0.9.2-app.jar tessera.jar
     ```
 
 1. Generate new keys using `java -jar /path-to-tessera/tessera.jar -keygen -filename new-node-1`
