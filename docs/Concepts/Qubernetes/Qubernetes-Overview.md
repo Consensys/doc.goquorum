@@ -29,19 +29,19 @@ After the container exits, the generated resources will be in mounted `out` dire
 
 Examples generating GoQuorum and K8s resources using the qubernetes container:
 
-!!! footnote "Generate GoQuorum resources only `./qube-init`."
+!!! example "Generate GoQuorum resources only `./qube-init`."
     ```
-    > docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./qube-init qubernetes.yaml
-    ```
-
-!!! footnote "Generate GoQuorum resources and Kubernetes resources for the Quorum network `./quorum-init`."
-    ```
-    > docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./quorum-init qubernetes.yaml
+    docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./qube-init qubernetes.yaml
     ```
 
-!!! footnote "Generate or regenerate Kubernetes resources only `./qubernetes`."
+!!! example "Generate GoQuorum resources and Kubernetes resources for the Quorum network `./quorum-init`."
     ```
-    > docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./qubernetes qubernetes.yaml
+    docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./quorum-init qubernetes.yaml
+    ```
+
+!!! example "Generate or regenerate Kubernetes resources only `./qubernetes`."
+    ```
+    docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./qubernetes qubernetes.yaml
     ```
 
 !!! note "Config as code"
