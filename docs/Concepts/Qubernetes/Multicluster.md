@@ -43,7 +43,7 @@ until the node is deployed.
 
 !!! example "Exporting external node information"
     ```
-    > qctl ls nodes --asexternal
+    qctl ls nodes --asexternal
     ```
 
     ```yaml
@@ -65,9 +65,9 @@ entities manage their own Kubernetes clusters A and B.
 1. **A** starts an initial cluster and deploys their initial nodes.
 
     ```bash
-    > qctl init network --num 3 --consensus ibft --qversion 2.7.0 --gethparams='--rpccorsdomain="*" --rpcvhosts="*"'
-    > qctl generate network --create
-    > qctl deploy network
+    qctl init network --num 3 --consensus ibft --qversion 2.7.0 --gethparams='--rpccorsdomain="*" --rpcvhosts="*"'
+    qctl generate network --create
+    qctl deploy network
     ```
 
     Config for **A**:
@@ -114,50 +114,54 @@ entities manage their own Kubernetes clusters A and B.
     ```
 
 2. Once the cluster is running, **A** runs `qctl` to obtain their cluster nodes in an external format.
-=== "Example"
 
-    ```bash
-    > qctl ls nodes --asexternal  --node-ip=1.2.3.4 --bare
-    ```
+    === "Example"
+        ```bash
+        qctl ls nodes --asexternal  --node-ip=1.2.3.4 --bare
+        ```
 
-    ```yaml
-    external_nodes:
-    - Node_UserIdent:  quorum-node1
-      Enode_Url: "enode://1cb6...@1.2.3.4:32044?discport=0&raftport=50401"
-      Tm_Url:  1.2.3.4:30047
-      Node_Acct_Addr: 0x60eD1973D8bEB9118f664A688B2E79a344F66954
-    - Node_UserIdent:  quorum-node2
-      Enode_Url: "enode://11d0...@1.2.3.4:32352?discport=0&raftport=50401"
-      Tm_Url:  1.2.3.4:31735
-      Node_Acct_Addr: 0x2bEa1b982A31dF3355b509303703303fCb34A0dC
-    - Node_UserIdent:  quorum-node3
-      Enode_Url: "enode://8a28...@1.2.3.4:31931?discport=0&raftport=50401"
-      Tm_Url:  1.2.3.4:31914
-      Node_Acct_Addr: 0x7D56e937283cFD29F5772696E610dCBf35b6C777
-    ```
+    === "Result"
+        ```yaml
+        external_nodes:
+        - Node_UserIdent:  quorum-node1
+          Enode_Url: "enode://1cb6...@1.2.3.4:32044?discport=0&raftport=50401"
+          Tm_Url:  1.2.3.4:30047
+          Node_Acct_Addr: 0x60eD1973D8bEB9118f664A688B2E79a344F66954
+        - Node_UserIdent:  quorum-node2
+          Enode_Url: "enode://11d0...@1.2.3.4:32352?discport=0&raftport=50401"
+          Tm_Url:  1.2.3.4:31735
+          Node_Acct_Addr: 0x2bEa1b982A31dF3355b509303703303fCb34A0dC
+        - Node_UserIdent:  quorum-node3
+          Enode_Url: "enode://8a28...@1.2.3.4:31931?discport=0&raftport=50401"
+          Tm_Url:  1.2.3.4:31914
+          Node_Acct_Addr: 0x7D56e937283cFD29F5772696E610dCBf35b6C777
+        ```
 
-=== "Example Minikube"
-
-    ```bash
-    > qctl ls nodes --asexternal  --node-ip=$(minikube ip) --bare
-    ```
-    note the `$MINIKUBE_IP` varibable below is used for illustration, it will be the IP of your minikube node
-    passed to the `qctl ls nodes` command via `--node-ip=$(minikube ip)`.
-    ```yaml
-    external_nodes:
-    - Node_UserIdent:  quorum-node1
-      Enode_Url: "enode://1cb6...@$MINIKUBE_IP:32044?discport=0&raftport=50401"
-      Tm_Url:  $MINIKUBE_IP:30047
-      Node_Acct_Addr: 0x60eD1973D8bEB9118f664A688B2E79a344F66954
-    - Node_UserIdent:  quorum-node2
-      Enode_Url: "enode://11d0...@$MINIKUBE_IP:32352?discport=0&raftport=50401"
-      Tm_Url:  $MINIKUBE_IP:31735
-      Node_Acct_Addr: 0x2bEa1b982A31dF3355b509303703303fCb34A0dC
-    - Node_UserIdent:  quorum-node3
-      Enode_Url: "enode://8a28...@$MINIKUBE_IP:31931?discport=0&raftport=50401"
-      Tm_Url:  $MINIKUBE_IP:31914
-      Node_Acct_Addr: 0x7D56e937283cFD29F5772696E610dCBf35b6C777
-    ```
+    === "Example Minikube"
+        ```bash
+        qctl ls nodes --asexternal  --node-ip=$(minikube ip) --bare
+        ```
+    
+    === "Result"
+        
+        The `$MINIKUBE_IP` varibable below is the IP of your minikube node
+        passed to the `qctl ls nodes` command using `--node-ip=$(minikube ip)`.
+        
+        ```yaml
+        external_nodes:
+        - Node_UserIdent:  quorum-node1
+          Enode_Url: "enode://1cb6...@$MINIKUBE_IP:32044?discport=0&raftport=50401"
+          Tm_Url:  $MINIKUBE_IP:30047
+          Node_Acct_Addr: 0x60eD1973D8bEB9118f664A688B2E79a344F66954
+        - Node_UserIdent:  quorum-node2
+          Enode_Url: "enode://11d0...@$MINIKUBE_IP:32352?discport=0&raftport=50401"
+          Tm_Url:  $MINIKUBE_IP:31735
+          Node_Acct_Addr: 0x2bEa1b982A31dF3355b509303703303fCb34A0dC
+        - Node_UserIdent:  quorum-node3
+          Enode_Url: "enode://8a28...@$MINIKUBE_IP:31931?discport=0&raftport=50401"
+          Tm_Url:  $MINIKUBE_IP:31914
+          Node_Acct_Addr: 0x7D56e937283cFD29F5772696E610dCBf35b6C777
+        ```
 
 3. **A** shares the external node information by copying and pasting the output of the previous command,
    and the `genesis.json` with **B**.
@@ -166,8 +170,8 @@ entities manage their own Kubernetes clusters A and B.
    their cluster.
 
     ```bash
-     > qctl init --num 2 --consensus ibft --qversion 2.7.0
-     > qctl generate network --create
+     qctl init --num 2 --consensus ibft --qversion 2.7.0
+     qctl generate network --create
     ```
 
     Config for **B**:
@@ -206,7 +210,7 @@ entities manage their own Kubernetes clusters A and B.
  to their config, and regenerates the Kuberenetes network resources.
 
     ```bash
-    > qctl generate network --update
+    qctl generate network --update
     ```
 
     Updated config for **B**:
@@ -258,13 +262,13 @@ entities manage their own Kubernetes clusters A and B.
 added the external nodes from **B** yet.
 
     ```bash
-    > qctl deploy network
+    qctl deploy network
     ```
 
 7. **B** runs `qctl` to obtain the external nodes information from their running cluster.
 
     ```bash
-    > qctl ls nodes --asexternal --node-ip=2.2.3.4
+    qctl ls nodes --asexternal --node-ip=2.2.3.4
     ```
 
     ```yaml
@@ -339,14 +343,14 @@ to **A**.
 10. **A** generates the update for the Kubernetes network resources. The update leaves the current
 nodes intact, only generating the diff and, updating the configuration files as necessary.
 
-    ```bash
-    > qctl generate network --update
-    ```
+   ```bash
+   qctl generate network --update
+   ```
 
 11. **A** deploys the updated resources to its cluster.
 
    ```bash
-   > qctl deploy network
+   qctl deploy network
    ```
 
    The clusters can now connect and there is a
@@ -373,7 +377,7 @@ cluster, and `31346` represents the external port.
 
 !!! example "NodePort Example"
     ```bash
-    $> kubectl get services
+    kubectl get services
     quorum-node1 NodePort  10.96.184.48  <none> ...,8545:31346/TCP,30303:32109/TCP,...   4s
     ```
 
