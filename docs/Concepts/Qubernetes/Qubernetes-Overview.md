@@ -44,12 +44,11 @@ Examples generating GoQuorum and K8s resources using the qubernetes container:
     > docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./qubernetes qubernetes.yaml
     ```
 
-## Config as code
-
-Config as code is a core concept for DevOps and automating deployments. When config as code is implemented,
-configuration files accurately describe the state of the system. More specifically,
-everything the system needs to know about must be in the configuration file and not guessed at or
-stored in external sources.
+!!! note "Config as code"
+    Config as code is a core concept for DevOps and automating deployments. When config as code is implemented,
+    configuration files accurately describe the state of the system. More specifically,
+    everything the system needs to know about must be in the configuration file and not guessed at or
+    stored in external sources.
 
 ## Minimal configuration
 
