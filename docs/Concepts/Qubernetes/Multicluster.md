@@ -141,12 +141,12 @@ entities manage their own Kubernetes clusters A and B.
         ```bash
         qctl ls nodes --asexternal  --node-ip=$(minikube ip) --bare
         ```
-    
+
     === "Result"
-        
+
         The `$MINIKUBE_IP` varibable below is the IP of your minikube node
         passed to the `qctl ls nodes` command using `--node-ip=$(minikube ip)`.
-        
+
         ```yaml
         external_nodes:
         - Node_UserIdent:  quorum-node1
@@ -366,10 +366,10 @@ exposes a pod to the outside world via `K8s_Node_IP:Node_Port`.
 
 The NodePort is not known until deployment time. When the GoQuorum cluster is deployed, the NodePort
 is assigned and can be obtained from Kubernetes.
- 
+
 !!! example "Obtain NodePort"
     ```bash
-    kubectl get services` or `qctl ls url --type=nodeport   
+    kubectl get services` or `qctl ls url --type=nodeport
     ```
 
 Node ports are represented as pairs `<Internal_Port:External_Port>`. In the example below, `8545` represents the internal port used by the
