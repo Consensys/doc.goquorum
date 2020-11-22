@@ -343,15 +343,15 @@ to **A**.
 10. **A** generates the update for the Kubernetes network resources. The update leaves the current
 nodes intact, only generating the diff and, updating the configuration files as necessary.
 
-   ```bash
-   qctl generate network --update
-   ```
+    ```bash
+    qctl generate network --update
+    ```
 
 11. **A** deploys the updated resources to its cluster.
 
-   ```bash
-   qctl deploy network
-   ```
+    ```bash
+    qctl deploy network
+    ```
 
    The clusters can now connect and there is a
    GoQuorum Kubernetes network spanning multiple clusters.
