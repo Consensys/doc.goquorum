@@ -12,7 +12,7 @@
 * Navigate to <http://localhost:8080/>
 
 !!!note
-    when running in Windows, -Dgeth.node=geth must be specified as Quorum is not yet available on Windows OS*
+    when running in Windows, `-Dgeth.node=geth` must be specified as Quorum is not yet available on Windows OS*
 
 ## Running via App Server
 

@@ -45,25 +45,13 @@ Start the process of extending an existing private contract to a new participant
         "0x9e0101dd215281b33989b3ae093147e9009353bb63f531490409a628c6e87310"
         ```
 
-    If the contract is already under the process of extension, api call to extend it again will fail.
+!!!error "Frequent issues"
+    * It's impossible to extend a contract already being extended, the following error will be returned:
 
-    Command:
+          ```text
+          Error: contract extension in progress for the given contract address
+          ```
 
-    ```javascript
-    quorumExtension.extendContract("0x9aff347f193ca4560276c3322193224dcdbbe578", "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=", "0xed9d02e382b34818e88b88a309c7fe71e65f419d",{from: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
-    ```
-
-    Response:
-
-    ```text
-    Error: contract extension in progress for the given contract address
-      at web3.js:3143:20
-      at web3.js:6347:15
-      at web3.js:5081:36
-      at <anonymous>:1:1
-    ```
-
-!!!important
     * You must execute `quorumExtension_extendContract` from the node who created the contract initially.
     * If the network is using [enhanced network permissioning](../../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md),
         then both initiator (the `from` address in `txArgs`) and receiver (`recipientAddress`)
@@ -111,57 +99,27 @@ Submit an approval/denial vote to the specified extension management contract.
         "0x9e0101dd215281b33989b3ae093147e9009353bb63f531490409a628c6e87310"
         ```
 
-    If the contract is already under the process of extension, api call to extend it again will fail.
+!!!error "Frequent issues"
 
-    Command:
+    * If the contract is already under the process of extension, api call to extend it again will fail:
 
-    ```javascript
-    quorumExtension.extendContract("0x1932c48b2bf8102ba33b4a6b545c32236e342f34", "1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg=", "0x0fbdc686b912d7722dc86510934589e0aaf3b55a", {from: eth.accounts[0], privateFor: ["1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg="]})
-    ```
+        ```text
+        Error: contract extension in progress for the given contract address
+        ```
 
-    Response:
+    * The recipient can approve the extension only once.
 
-    ```text
-    Error: contract extension in progress for the given contract address
-        at web3.js:3143:20
-        at web3.js:6347:15
-        at web3.js:5081:36
-        at <anonymous>:1:1
-    ```
+        Executing `quorumExtension.approveExtension` once extension process is completed will result in the following error:
 
-    The recipient can approve the extension only once. Executing `quorumExtension.approveExtension` once extension process is completed will result in the below error:
+        ```text
+        Error: contract extension process complete. nothing to accept
+        ```
 
-    Command:
+    * The approver (the `from` address in `txArgs`) must be the receiver of the extension (`recipientAddress` from `quorumExtension_extendContract`):
 
-    ```javascript
-    quorumExtension.approveExtension("0x1349f3e1b8d71effb47b840594ff27da7e603d17", true ,{from: "0x0fbdc686b912d7722dc86510934589e0aaf3b55a", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
-    ```
-
-    Response:
-
-    ```text
-    Error: contract extension process complete. nothing to accept
-        at web3.js:3143:20
-        at web3.js:6347:15
-        at web3.js:5081:36
-        at <anonymous>:1:1
-    ```
-
-    The approver (the `from` address in `txArgs`) must be the receiver of the extension (`recipientAddress` from `quorumExtension_extendContract`).
-
-    ```javascript
-    quorumExtension.approveExtension("0x4d3bfd7821e237ffe84209d8e638f9f309865b87", true, {from: "0x0bb8aaa95b514d8bff1287c1fb58510479478b4a", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
-    ```
-
-    Response:
-
-    ```text
-    Error: account is not acceptor of this extension request
-        at web3.js:3143:20
-        at web3.js:6347:15
-        at web3.js:5081:36
-        at <anonymous>:1:1
-    ```
+        ```text
+        Error: account is not acceptor of this extension request
+        ```
 
 ### `quorumExtension_cancelExtension`
 
@@ -204,21 +162,17 @@ Cancel an active contract extension. Can only be invoked by the initiator of the
         "0x9e0101dd215281b33989b3ae093147e9009353bb63f531490409a628c6e87310"
         ```
 
-    The `from` address in `txArgs` (the canceller) must be the initiator of the extension (the `from` address in `txArgs` for the `quorumExtension_extendContract` call):
+!!!error "Frequent issues"
 
-    ```javascript
-    quorumExtension.cancelExtension("0x4d3bfd7821e237ffe84209d8e638f9f309865b87", {from: "0xbdafac69ab6c5c2f1c2ba36a462c9d2fb01f877d", privateFor:["1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg"]})
-    ```
+    * The canceller must be the same as the initiator of the extension:
 
-    Response:
+        `from` address in `txArgs` must be the same as the address of the initiator of the extension
+        (the `from` address in `txArgs` for the `quorumExtension_extendContract` call)
+        or it will result in the following error:
 
-    ```text
-    Error: account is not the creator of this extension request
-        at web3.js:3143:20
-        at web3.js:6347:15
-        at web3.js:5081:36
-        at <anonymous>:1:1
-    ```
+        ```text
+        Error: account is not the creator of this extension request
+        ```
 
 ### `quorumExtension_activeExtensionContracts`
 
@@ -288,7 +242,7 @@ Get the status of a specific contract extension
 
     === "JSON RPC"
         Command:
-        
+
         ```bash
         curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_getExtensionStatus", "params":["0x1349f3e1b8d71effb47b840594ff27da7e603d17"], "id":10}' --header "Content-Type: application/json"
         ```
@@ -301,7 +255,7 @@ Get the status of a specific contract extension
 
     === "geth console"
         Command:
-  
+
         ```javascript
         quorumExtension.getExtensionStatus("0x1349f3e1b8d71effb47b840594ff27da7e603d17")
         ```
