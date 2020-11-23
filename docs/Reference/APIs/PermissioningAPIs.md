@@ -128,7 +128,7 @@ None
 
 ### `quorumPermission_nodeList`
 
-Returms the list of nodes part of the network
+Returns the list of nodes permissioned in the network
 
 #### Parameters
 
@@ -627,7 +627,7 @@ This api can be executed by an organization admin account to create a new role f
 
 ### `quorumPermission_removeRole`
 
-This api can be executed by an organization admin account to create a new role for the organization.
+This api can be executed by an organization admin account to remove a role from the organization.
 
 #### Parameters
 
