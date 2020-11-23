@@ -52,7 +52,7 @@ Examples generating GoQuorum and K8s resources using the qubernetes container:
 
 ## Minimal configuration
 
-Quberentes implements config as code, and runs off a minimal configuration file called `qubernetes.yaml` or
+Qubernetes implements config as code, and runs off a minimal configuration file called `qubernetes.yaml` or
 `qubernetes-generated.yaml`. The configuration file can be created and modified:
 
 * Manually
