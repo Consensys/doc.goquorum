@@ -59,6 +59,7 @@ nav:
           - Overview: HowTo/GetStarted/GettingStartedOverview.md
           - Install: HowTo/GetStarted/Install.md
           - With Cakeshop: HowTo/GetStarted/Cakeshop.md
+          - With Qubernetes (K8s):  HowTo/GetStarted/Getting-Started-Qubernetes.md
           - Upgrade to 2.6.0: HowTo/GetStarted/migration.md
           - With GoQuorum Wizard:
               - Get started: HowTo/GetStarted/Wizard/GettingStarted.md
@@ -125,6 +126,9 @@ nav:
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
       - Cakeshop: Concepts/Cakeshop.md
+      - Qubernetes:
+          - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
+          - Multi-cluster: Concepts/Qubernetes/Multicluster.md
   - Reference:
       - API:
           - Privacy: Reference/APIs/PrivacyAPI.md
