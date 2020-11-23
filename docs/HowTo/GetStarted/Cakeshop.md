@@ -169,7 +169,7 @@ To do so:
 
 In all cases, Cakeshop will be running once you see the below image, which shows the Cakeshop build and url that you can access that instance of Cakeshop on:
 
-![image](https://raw.githubusercontent.com/jpmorganchase/cakeshop-docs/master/images/happylion.png)
+![image](https://raw.githubusercontent.com/ConsenSys/cakeshop-docs/master/images/happylion.png)
 
 ### Cakeshop FAQ
 
