@@ -87,7 +87,8 @@ nav:
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
   - Tutorials:
-      - Create network from scratch: Tutorials/Creating-A-Network-From-Scratch.md
+      - Create a network using IBFT: Tutorials/Create-IBFT-Netwok.md
+      - Create a network using Raft: Tutorials/Create-a-Raft-network.md
       - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
       - Quorum Developer Quickstart: Tutorials/Quorum-Dev-Quickstart.md
   - Concepts:
@@ -274,4 +275,4 @@ plugins:
         quorum.js/Overview.md: Reference/quorum.js/Overview.md
         quorum.js/RawTransactionManager.md: Reference/quorum.js/RawTransactionManager.md
         quorum.js/extend.md: Reference/quorum.js/extend.md
-        Getting Started/Creating-A-Network-From-Scratch.md: Tutorials/Creating-A-Network-From-Scratch.md
+        Getting Started/Creating-A-Network-From-Scratch.md: Tutorials/Create-IBFT-Network.md
