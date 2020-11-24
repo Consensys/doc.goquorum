@@ -9,7 +9,7 @@ description: FAQ
 ??? question "I've run into an issue with GoQuorum, where do I get support?"
     The [GoQuorum Slack channels](https://inviter.quorum.consensys.net/) are the best place to query the community and get immediate help.
 
-    The GoQuorum engineering team monitors Slack as well as any issues raised on the GoQuorum GitHub repositories (e.g. [Quorum](https://github.com/ConsenSys/quorum/), [Tessera](https://github.com/ConsenSys/tessera), [Quorum-Examples](https://github.com/ConsenSys/quorum-examples), etc.).
+    The GoQuorum engineering team monitors Slack as well as any issues raised on the GoQuorum GitHub repositories (for example [Quorum](https://github.com/ConsenSys/quorum/), [Tessera](https://github.com/ConsenSys/tessera), [Quorum-Examples](https://github.com/ConsenSys/quorum-examples), etc.).
 
 ??? question "How does GoQuorum achieve Transaction Privacy?"
     GoQuorum achieves Transaction Privacy by:
@@ -36,8 +36,8 @@ description: FAQ
      Constellation/Tessera does everything in parallel.
 
 ??? question "Should I include originating node in private transaction?"
-    No. In GoQuorum, including originating node's `privateFor` results in an error. To create a private
-     contract that is visible to the originating node only, use this format: `privateFor: []`.
+    No. In GoQuorum, including originating node's `privateFor` results in an error.
+    To create a private contract that is visible to the originating node only, use this format: `privateFor: []`.
 
 ??? question "Is it possible to run a GoQuorum node without a Transaction Manager?"
     Starting a GoQuorum node with `PRIVATE_CONFIG=ignore` (instead of `PRIVATE_CONFIG=path/to/tm.ipc`) will start the node without a Transaction Manager. The node will not broadcast matching private keys (please ensure that there is no transaction manager running for it) and will be unable to participate in any private transactions.
@@ -61,8 +61,8 @@ description: FAQ
 
 ??? info "GoQuorum to geth version mapping"
     | GoQuorum v2.0.x - v2.1.1 | GoQuorum v2.2.0 - v2.2.1 | GoQuorum v2.2.2 - v2.5.0 |
-    | ---------------------- | ---------------------- | ---------------------- |
-    | geth v1.7.2            | geth v1.8.12           | geth v1.8.18           |
+    |--------------------------|--------------------------|--------------------------|
+    | geth v1.7.2              | geth v1.8.12             | geth v1.8.18             |
 
 ## Tessera FAQ
 
@@ -70,7 +70,7 @@ description: FAQ
     It means the node will only communicate with the nodes defined in the configuration file. Upto version 0.10.2, the nodes still accepts transactions from undiscovered nodes. From version 0.10.3 the node blocks all communication with undiscovered nodes.
 
 ??? info "Upgrading to Tessera version 0.10.+ from verion 0.9.+ and below"
-    Due to 'database file unable to open' issue with H2 DB upgrade from version 1.4.196 direct to version 1.4.200 as explained  [here](https://github.com/h2database/h2database/issues/2263), our recommended mitigation strategy is to upgrade to version 1.4.199 first before upgrading to version 1.4.200, first upgrade to Tessera 0.10.0 before upgrading to higher versions.
+    Due to 'database file unable to open' issue with H2 DB upgrade from version 1.4.196 direct to version 1.4.200 as explained  [in H2 database issue #2263](https://github.com/h2database/h2database/issues/2263), our recommended mitigation strategy is to upgrade to version 1.4.199 first before upgrading to version 1.4.200, first upgrade to Tessera 0.10.0 before upgrading to higher versions.
 
 ## Raft FAQ
 
@@ -96,7 +96,7 @@ description: FAQ
 
 ??? question "Why do I see "Error: Number can only safely store up to 53 bits" when using web3js with Raft?"
     As mentioned above, Raft stores the timestamp in nanoseconds, so it is too large to be held as a number in JavaScript.
-    You need to modify your code to take account of this. An example can be seen [here](https://github.com/ConsenSys/quorum.js/blob/master/lib/index.js#L35).
+    You need to modify your code to take account of this. An example can be seen in [Quorum.js source code](https://github.com/ConsenSys/quorum.js/blob/master/lib/index.js#L35).
     A future GoQuorum release will address this issue.
 
 ??? info "Known Raft consensus node misconfiguration"
