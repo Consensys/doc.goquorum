@@ -4,6 +4,8 @@ description: Creating a network using IBFT consensus
 
 # Create a private network using the IBFT consensus protocol
 
+## Create an initial 5 nodes network
+
 1. On each machine build GoQuorum as described in the [Installing](../HowTo/GetStarted/Install.md) section. Ensure that PATH contains geth and boot node:
 
     ```bash
@@ -495,7 +497,7 @@ description: Creating a network using IBFT consensus
     geth attach node0/data/geth.ipc
     ```
 
-### Adding additional validator
+## Adding additional validator
 
 1. Create a working directory for the new node that needs to be added
 
@@ -747,7 +749,7 @@ description: Creating a network using IBFT consensus
     36467 ttys003    0:00.32 geth attach node3/data/geth.ipc
     ```
 
-### Removing validators
+## Removing validators
 
 1. Attach Geth console to a running validator and run `istanbul.getValidators()` and identify the address of the validator that needs to be removed:
 
@@ -840,11 +842,11 @@ description: Creating a network using IBFT consensus
     kill 36485
     ```
 
-### Adding non-validator node
+## Adding non-validator node
 
 Same instructions as adding validator node **excluding** step 3 which proposes the node as validator.
 
-### Removing non-validator node
+## Removing non-validator node
 
 Just execute **step 4** instruction from removing a validator node.
 
