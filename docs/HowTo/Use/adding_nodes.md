@@ -26,10 +26,17 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 ### Raft
 
-1. On an *existing* node, add the new peer to the Raft network
+1. On an *existing* node, add the new peer to the Raft network.
+
+    In Geth console, run:
 
     ```js
-    > raft.addPeer("enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407")
+    raft.addPeer("enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407")
+    ```
+
+    Result is:
+
+    ```js
     7
     ```
 
@@ -173,7 +180,8 @@ In order to make sure the new node is accepted into the network:
     ```
 
 1. The new peer can be started, setting the `peers` configuration to mirror the existing network.
-    If there are 3 existing nodes in the network, then the new nodes configuration will look like this:
+    If there are 3 existing nodes in the network, then the new nodes configuration will
+    look like the following:
 
     ```json
     {
@@ -223,7 +231,8 @@ In order to make sure the new node is accepted into the network:
     ```
 
 1. The new peer can be started, setting the `peers` configuration to mirror the existing network.
-    Foer example, if there are 3 existing nodes in the network, then the new nodes configuration will look like this:
+    Foer example, if there are 3 existing nodes in the network, then the new nodes configuration will
+    look like the following:
 
     ```json
     {

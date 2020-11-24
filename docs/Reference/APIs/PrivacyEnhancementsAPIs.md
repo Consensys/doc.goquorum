@@ -41,7 +41,7 @@ The API to query the Privacy Metadata for a contract account address
     === "Request"
 
         ```javascript
-        > eth.getContractPrivacyMetadata("0x1932c48b2bf8102ba33b4a6b545c32236e342f34");
+        eth.getContractPrivacyMetadata("0x1932c48b2bf8102ba33b4a6b545c32236e342f34");
         ```
 
     === "Response"
