@@ -20,7 +20,7 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 - [GoQuorum installed](../GetStarted/Install.md)
 - [Tessera](https://docs.tessera.consensys.net)
-- [A running network](../../Tutorials/Create-IBFT-Netwok.md)
+- [A running network](../../Tutorials/Create-IBFT-Network.md)
 
 ## Adding GoQuorum nodes
 
