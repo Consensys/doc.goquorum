@@ -39,7 +39,7 @@ Currently plugins must be manually installed into a directory (defaults to `plug
 Then start `geth` using the `--plugins` command line option:
 
 ```bash
-geth <other marameters> \
+geth <other parameters> \
      --plugins file:///<path>/<to>/plugins.json
 ```
 
