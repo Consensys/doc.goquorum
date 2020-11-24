@@ -45,6 +45,11 @@ description: Creating a network using IBFT consensus
 
     ```json
     validators
+    ```
+
+    Result:
+
+    ```json
     {
         "Address": "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d",
         "Nodekey": "fe2725c4e8f7617764b845e8d939a65c664e7956eb47ed7d934573f16488efc1",
