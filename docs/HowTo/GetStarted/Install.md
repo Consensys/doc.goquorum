@@ -7,6 +7,15 @@ description: GoQuorum and Tessera installation
 GoQuorum and [Tessera](https://docs.tessera.consensys.net) can be installed and used as Docker containers, by building from source,
 or by downloading pre-built release binaries.
 
+## As release binaries
+
+The pre-compiled release binaries for GoQuorum and Tessera can be downloaded from the following links:
+
+* [Quorum](https://github.com/ConsenSys/quorum/releases)
+* [Tessera](https://github.com/ConsenSys/tessera/releases)
+
+Once downloaded, add the binaries to `PATH` to make them easily invokable.
+
 ## As containers
 
 Docker containers exist for GoQuorum and Tessera and can be found at the [`quorumengineering` Docker repository](https://hub.docker.com/u/quorumengineering/):
@@ -41,12 +50,3 @@ docker pull quorumengineering/tessera
 ### Tessera
 
 Follow the installation instructions on the [Tessera project page](https://github.com/ConsenSys/tessera).
-
-## As release binaries
-
-The pre-compiled release binaries for GoQuorum and Tessera can be downloaded from the following links:
-
-* [Quorum](https://github.com/ConsenSys/quorum/releases)
-* [Tessera](https://github.com/ConsenSys/tessera/releases)
-
-Once downloaded, add the binaries to `PATH` to make them easily invokable.

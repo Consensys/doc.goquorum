@@ -1,483 +1,10 @@
 ---
-description: Creating a network from scratch tutorial
+description: Creating a network using IBFT consensus
 ---
 
-# Creating a network from scratch
+# Create a private network using the IBFT consensus protocol
 
-This section details easy to follow step by step instructions of how to setup one or more GoQuorum nodes from scratch.
-
-Let's go through step by step instructions to setup a GoQuorum node with Raft consensus.
-
-## GoQuorum with Raft consensus
-
-1. On each machine build GoQuorum as described in the [Installing](../HowTo/GetStarted/Install.md) section. Ensure that PATH contains geth and bootnode
-
-    ```bash
-     git clone https://github.com/ConsenSys/quorum.git
-     cd quorum
-     make all
-     export PATH=$(pwd)/build/bin:$PATH
-    ```
-
-1. Create a working directory which will be the base for the new node(s) and change into it
-
-    ```bash
-     mkdir fromscratch
-     cd fromscratch
-     mkdir new-node-1
-    ```
-
-1. Generate one or more accounts for this node and take down the account address. A funded account may be required depending what you are trying to accomplish
-
-    ```bash
-     geth --datadir new-node-1 account new
-    ```
-
-    Result:
-
-    ```text
-    INFO [06-07|14:52:18.742] Maximum peer count                       ETH=25 LES=0 total=25
-    Your new account is locked with a password. Please give a password. Do not forget this password.
-    Passphrase:
-    Repeat passphrase:
-    Address: {679fed8f4f3ea421689136b25073c6da7973418f}
-
-    Please note the keystore file generated inside new-node-1 includes the address in the last part of its filename.
-
-    ls new-node-1/keystore
-    UTC--2019-06-17T09-29-06.665107000Z--679fed8f4f3ea421689136b25073c6da7973418f
-    ```
-
-    !!! note
-        You could generate multiple accounts for a single node, or any number of accounts for additional nodes and pre-allocate them with funds in the genesis.json file (see below)
-
-1. Copy the [sample `genesis.json`](../Reference/genesis.md) and change accounts with accounts
-    generated at the previous step to the `alloc` field and pre-fund them.
-
-    !!!example
-        Fragment example of funding the accounts 679fed8f4f3ea421689136b25073c6da7973418f and c5c7b431e1629fb992eb18a79559f667228cd055 with the specified balance.
-
-        ```json
-        {
-          "alloc": {
-            "0x679fed8f4f3ea421689136b25073c6da7973418f": {
-              "balance": "1000000000000000000000000000"
-            },
-            "0xc5c7b431e1629fb992eb18a79559f667228cd055": {
-              "balance": "2000000000000000000000000000"
-            }
-          },
-          ...
-        }
-        ```
-
-1. Generate node key and copy it into datadir
-
-    ```bash
-     bootnode --genkey=nodekey
-     cp nodekey new-node-1/
-    ```
-
-1. Execute below command to display enode id of the new node
-
-    ```bash
-     bootnode --nodekey=new-node-1/nodekey --writeaddress > new-node-1/enode
-     cat new-node-1/enode
-    ```
-
-    Result:
-
-    ```text
-    70399c3d1654c959a02b73acbdd4770109e39573a27a9b52bd391e5f79b91a42d8f2b9e982959402a97d2cbcb5656d778ba8661ec97909abc72e7bb04392ebd8
-    ```
-
-1. Copy [`static-nodes.json`](permissioned-nodes.md).
-    Your file should contain a single line for your node with your enode's ID and the ports you are going to use for devp2p and Raft.
-    Ensure that this file is in your node `new-node-1` data directory.
-
-    Paste the following fragment below lines with enode generated in previous step, port 21000;IP 127.0.0.1 and raft port set as 50000:
-
-    ```json
-    [
-      "enode://70399c3d1654c959a02b73acbdd4770109e39573a27a9b52bd391e5f79b91a42d8f2b9e982959402a97d2cbcb5656d778ba8661ec97909abc72e7bb04392ebd8@127.0.0.1:21000?discport=0&raftport=50000"
-    ]
-    ```
-
-1. Initialize new node with below command.
-
-    ```bash
-     geth --datadir new-node-1 init genesis.json
-    ```
-
-    Result:
-
-    ```text
-    INFO [06-07|15:45:17.508] Maximum peer count                       ETH=25 LES=0 total=25
-    INFO [06-07|15:45:17.516] Allocated cache and file handles         database=/Users/username/new-node-1/geth/chaindata cache=16 handles=16
-    INFO [06-07|15:45:17.524] Writing custom genesis block
-    INFO [06-07|15:45:17.524] Persisted trie from memory database      nodes=1 size=152.00B time=75.344µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
-    INFO [06-07|15:45:17.525] Successfully wrote genesis state         database=chaindata                              hash=ec0542…9665bf
-    INFO [06-07|15:45:17.525] Allocated cache and file handles         database=/Users/username/new-node-1/geth/lightchaindata cache=16 handles=16
-    INFO [06-07|15:45:17.527] Writing custom genesis block
-    INFO [06-07|15:45:17.527] Persisted trie from memory database      nodes=1 size=152.00B time=60.76µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
-    INFO [06-07|15:45:17.527] Successfully wrote genesis state         database=lightchaindata                              hash=ec0542…9665bf
-    ```
-
-1. Start your node by first creating a `startnode1.sh` script as the following:
-
-    ```bash
-    #!/bin/bash
-    PRIVATE_CONFIG=ignore nohup geth --datadir new-node-1 --nodiscover --verbosity 5 --networkid 31337 --raft --raftport 50000 --rpc --rpcaddr 0.0.0.0 --rpcport 22000 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port 21000 >> node.log 2>&1 &
-    ```
-
-    then make it executable and start it:
-
-    ```bash
-    chmod +x startnode1.sh
-    ./startnode1.sh
-    ```
-
-    !!! note
-        This configuration starts GoQuorum without privacy support as could be evidenced in prefix `PRIVATE_CONFIG=ignore`, please see below sections on [how to enable privacy with privacy transaction managers](#adding-privacy-transaction-manager).
-
-    Your node is now operational.
-
-    Attach a Geth console to it with the following command:
-
-    ```bash
-     geth attach new-node-1/geth.ipc
-    ```
-
-    Result:
-
-    ```text
-    Welcome to the Geth JavaScript console!
-
-    instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
-    coinbase: 0xedf53f5bf40c99f48df184441137659aed899c48
-    at block: 0 (Thu, 01 Jan 1970 01:00:00 BST)
-     datadir: /Users/username/fromscratch/new-node-1
-     modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 raft:1.0 rpc:1.0 txpool:1.0 web3:1.0
-    ```
-
-    The `>` character in the console indicates the prompt. You can type commands after this character.
-
-    Run the following commands:
-
-    ```javascript
-    raft.cluster
-    ```
-
-    Result:
-
-    ```json
-    [{
-        ip: "127.0.0.1",
-        nodeId: "a5596803caebdc9c5326e1a0775563ad8e4aa14aa3530f0ae16d3fd8d7e48bc0b81342064e22094ab5d10303ab5721650af561f2bcdc54d705f8b6a8c07c94c3",
-        p2pPort: 21000,
-        raftId: 1,
-        raftPort: 50000
-    }]
-    ```
-
-    Command:
-
-    ```javascript
-    raft.leader
-    ```
-
-    Result:
-
-    ```json
-    "a5596803caebdc9c5326e1a0775563ad8e4aa14aa3530f0ae16d3fd8d7e48bc0b81342064e22094ab5d10303ab5721650af561f2bcdc54d705f8b6a8c07c94c3"
-    ```
-
-    Command:
-
-    ```javascript
-    raft.role
-    ```
-
-    Result:
-
-    ```json
-    "minter"
-    ```
-
-    Exit the console:
-
-    ```javascript
-    exit
-    ```
-
-### Adding additional node
-
-1. Complete steps 1, 2, 5, and 6 from the previous guide
-
-    ```bash
-    mkdir new-node-2
-    bootnode --genkey=nodekey2
-    cp nodekey2 new-node-2/nodekey
-    bootnode --nodekey=new-node-2/nodekey --writeaddress
-    ```
-
-    Node ID is displayed:
-
-    ```text
-    56e81550db3ccbfb5eb69c0cfe3f4a7135c931a1bae79ea69a1a1c6092cdcbea4c76a556c3af977756f95d8bf9d7b38ab50ae070da390d3abb3d7e773099c1a9
-    ```
-
-1. Retrieve current chains `genesis.json` and `static-nodes.json`.
-    `static-nodes.json` should be placed into new nodes data dir
-
-    ```bash
-     cp static-nodes.json new-node-2
-    ```
-
-1. Edit `static-nodes.json` and add new entry for the new node you are configuring (should be last)
-
-    Append new-node-2's enode generated in step 1, port 21001;IP 127.0.0.1 and raft port set as 50001:
-
-    ```json
-    [
-     "enode://70399c3d1654c959a02b73acbdd4770109e39573a27a9b52bd391e5f79b91a42d8f2b9e982959402a97d2cbcb5656d778ba8661ec97909abc72e7bb04392ebd8@127.0.0.1:21000?discport=0&raftport=50000",
-     "enode://56e81550db3ccbfb5eb69c0cfe3f4a7135c931a1bae79ea69a1a1c6092cdcbea4c76a556c3af977756f95d8bf9d7b38ab50ae070da390d3abb3d7e773099c1a9@127.0.0.1:21001?discport=0&raftport=50001"
-    ]
-    ```
-
-1. Initialize new node as given below:
-
-    ```bash
-     geth --datadir new-node-2 init genesis.json
-    ```
-
-    Result:
-
-    ```text
-    INFO [06-07|16:34:39.805] Maximum peer count                       ETH=25 LES=0 total=25
-    INFO [06-07|16:34:39.814] Allocated cache and file handles         database=/Users/username/fromscratch/new-node-2/geth/chaindata cache=16 handles=16
-    INFO [06-07|16:34:39.816] Writing custom genesis block
-    INFO [06-07|16:34:39.817] Persisted trie from memory database      nodes=1 size=152.00B time=59.548µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
-    INFO [06-07|16:34:39.817] Successfully wrote genesis state         database=chaindata                                          hash=f02d0b…ed214a
-    INFO [06-07|16:34:39.817] Allocated cache and file handles         database=/Users/username/fromscratch/new-node-2/geth/lightchaindata cache=16 handles=16
-    INFO [06-07|16:34:39.819] Writing custom genesis block
-    INFO [06-07|16:34:39.819] Persisted trie from memory database      nodes=1 size=152.00B time=43.733µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
-    INFO [06-07|16:34:39.819] Successfully wrote genesis state         database=lightchaindata                                          hash=f02d0b…ed214a
-    ```
-
-1. Connect to an already running node of the chain and execute Raft `addPeer` command.
-
-    ```bash
-    geth attach new-node-1/geth.ipc
-    ```
-
-    Result:
-
-    ```text
-    Welcome to the Geth JavaScript console!
-
-    instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
-    coinbase: 0xedf53f5bf40c99f48df184441137659aed899c48
-    at block: 0 (Thu, 01 Jan 1970 01:00:00 BST)
-     datadir: /Users/username/fromscratch/new-node-1
-     modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 raft:1.0 rpc:1.0 txpool:1.0 web3:1.0
-    ```
-
-    The `>` character in the console indicates the prompt. You can type commands after this character.
-
-    Run the following commands:
-
-    ```javascript
-    raft.addPeer('enode://56e81550db3ccbfb5eb69c0cfe3f4a7135c931a1bae79ea69a1a1c6092cdcbea4c76a556c3af977756f95d8bf9d7b38ab50ae070da390d3abb3d7e773099c1a9@127.0.0.1:21001?discport=0&raftport=50001')
-    ```
-
-    Result:
-
-    ```json
-    2
-    ```
-
-    Command:
-
-    ```javascript
-    raft.cluster
-    ```
-
-    Result:
-
-    ```json
-    [{
-        ip: "127.0.0.1",
-        nodeId: "56e81550db3ccbfb5eb69c0cfe3f4a7135c931a1bae79ea69a1a1c6092cdcbea4c76a556c3af977756f95d8bf9d7b38ab50ae070da390d3abb3d7e773099c1a9",
-        p2pPort: 21001,
-        raftId: 2,
-        raftPort: 50001
-    }, {
-        ip: "127.0.0.1",
-        nodeId: "70399c3d1654c959a02b73acbdd4770109e39573a27a9b52bd391e5f79b91a42d8f2b9e982959402a97d2cbcb5656d778ba8661ec97909abc72e7bb04392ebd8",
-        p2pPort: 21000,
-        raftId: 1,
-        raftPort: 50000
-    }]
-    ```
-
-    Exit the console:
-
-    ```javascript
-    exit
-    ```
-
-1. Start your node by first creating a script as previous step and changing the ports you are going to use for Devp2p and Raft.
-
-    ```bash
-     cp startnode1.sh startnode2.sh
-    ```
-
-    Edit file like the following:
-
-    ```bash
-    #!/bin/bash
-    PRIVATE_CONFIG=ignore nohup geth --datadir new-node-2 --nodiscover --verbosity 5 --networkid 31337 --raft --raftport 50001 --raftjoinexisting 2 --rpc --rpcaddr 0.0.0.0 --rpcport 22001 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port 21001 2>>node2.log &
-    ```
-
-    Run the node:
-
-    ```bash
-     ./startnode2.sh
-    ```
-
-1. Optional: share new `static-nodes.json` with all other chain participants
-
-    ```bash
-     cp new-node-2/static-nodes.json new-node-1
-    ```
-
-    Your additional node is now operational and is part of the same chain as the previously set up node.
-
-### Removing node
-
-1. Connect to an already running node of the chain and execute `raft.cluster` and get the `RAFT_ID` corresponding to the node that needs to be removed
-1. Run `raft.removePeer(RAFT_ID)`
-1. Stop the `geth` process corresponding to the node that was removed:
-
-    ```bash
-    geth attach new-node-1/geth.ipc
-    ```
-
-    Result:
-
-    ```text
-    Welcome to the Geth JavaScript console!
-
-    instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
-    coinbase: 0xedf53f5bf40c99f48df184441137659aed899c48
-    at block: 0 (Thu, 01 Jan 1970 01:00:00 BST)
-     datadir: /Users/username/fromscratch/new-node-1
-     modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 raft:1.0 rpc:1.0 txpool:1.0 web3:1.0
-    ```
-
-    The `>` character in the console indicates the prompt. You can type commands after this character.
-
-    Run the following commands:
-
-    ```javascript
-    raft.cluster
-    ```
-
-    Result:
-
-    ```json
-    [{
-        ip: "127.0.0.1",
-        nodeId: "56e81550db3ccbfb5eb69c0cfe3f4a7135c931a1bae79ea69a1a1c6092cdcbea4c76a556c3af977756f95d8bf9d7b38ab50ae070da390d3abb3d7e773099c1a9",
-        p2pPort: 21001,
-        raftId: 2,
-        raftPort: 50001
-    }, {
-        ip: "127.0.0.1",
-        nodeId: "a5596803caebdc9c5326e1a0775563ad8e4aa14aa3530f0ae16d3fd8d7e48bc0b81342064e22094ab5d10303ab5721650af561f2bcdc54d705f8b6a8c07c94c3",
-        p2pPort: 21000,
-        raftId: 1,
-        raftPort: 50000
-    }]
-    ```
-
-    Command:
-
-    ```javascript
-    raft.removePeer(2)
-    ```
-
-    Result:
-
-    ```json
-    null
-    ```
-
-    Command:
-
-    ```javascript
-    raft.cluster
-    ```
-
-    Result:
-
-    ```json
-    [{
-        ip: "127.0.0.1",
-        nodeId: "a5596803caebdc9c5326e1a0775563ad8e4aa14aa3530f0ae16d3fd8d7e48bc0b81342064e22094ab5d10303ab5721650af561f2bcdc54d705f8b6a8c07c94c3",
-        p2pPort: 21000,
-        raftId: 1,
-        raftPort: 50000
-    }]
-    ```
-
-    Exit the console:
-
-    ```javascript
-    exit
-    ```
-
-    Run the following shell commands:
-
-    ```bash
-    ps | grep geth
-    ```
-
-    Result:
-
-    ```text
-      PID TTY           TIME CMD
-    10554 ttys000    0:00.01 -bash
-     9125 ttys002    0:00.50 -bash
-    10695 ttys002    0:31.42 geth --datadir new-node-1 --nodiscover --verbosity 5 --networkid 31337 --raft --raftport 50000 --rpc --rpcaddr 0.0.0.0 --rpcport 22000 --rpcapi admin,db,eth,debug,miner,net,shh,txpoo
-    10750 ttys002    0:01.94 geth --datadir new-node-2 --nodiscover --verbosity 5 --networkid 31337 --raft --raftport 50001 --raftjoinexisting 2 --rpc --rpcaddr 0.0.0.0 --rpcport 22001 --rpcapi admin,db,eth,debu
-    ```
-
-    Kill the geth process:
-
-    ```bash
-    kill 10750
-    ```
-
-    Check that the process is gone:
-
-    ```bash
-    ps
-    ```
-
-    Result:
-
-    ```text
-      PID TTY           TIME CMD
-    10554 ttys000    0:00.01 -bash
-     9125 ttys002    0:00.51 -bash
-    10695 ttys002    0:31.76 geth --datadir new-node-1 --nodiscover --verbosity 5 --networkid 31337 --raft --raftport 50000 --rpc --rpcaddr 0.0.0.0 --rpcport 22000 --rpcapi admin,db,eth,debug,miner,net,shh,txpoo
-    ```
-
-    PID 10750 is gone.
-
-## GoQuorum with Istanbul BFT consensus
+## Create an initial 5 nodes network
 
 1. On each machine build GoQuorum as described in the [Installing](../HowTo/GetStarted/Install.md) section. Ensure that PATH contains geth and boot node:
 
@@ -504,15 +31,21 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     mkdir node0 node1 node2 node3 node4
     ```
 
-1. Change into the lead (whichever one you consider first) node's working directory.
-    Generate the setup files for X initial validator nodes by executing `istanbul setup --num X --nodes --quorum --save --verbose`.
+1. Change into the lead (whichever one you consider first) node's working directory and generate the
+    setup files for X initial validator nodes by executing `istanbul setup --num X --nodes --quorum --save --verbose`
     **only execute this instruction once, that is not X times**.
-    This command will generate several items of interest: `static-nodes.json`, `genesis.json`,
-    and nodekeys for all the initial validator nodes which will sit in numbered directories from 0 to X-1
+    This command will generate several important items:
+    `static-nodes.json`, `genesis.json`, and node keys for all the initial validator nodes which will
+    sit in numbered directories from 0 to X-1.
 
     ```bash
-     cd node0
-     ../istanbul-tools/build/bin/istanbul setup --num 5 --nodes --quorum --save --verbose
+    cd node0
+    ../istanbul-tools/build/bin/istanbul setup --num 5 --nodes --quorum --save --verbose
+    ```
+
+    Result:
+
+    ```json
     validators
     ```
 
@@ -545,7 +78,6 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
         "NodeInfo": "enode://e53e92e5a51ac2685b0406d0d3c62288b53831c3b0f492b9dc4bc40334783702cfa74c49b836efa2761edde33a3282704273b2453537b855e7a4aeadcccdb43e@0.0.0.0:30303?discport=0"
     }
 
-
     static-nodes.json
     [
         "enode://dd333ec28f0a8910c92eb4d336461eea1c20803eed9cf2c056557f986e720f8e693605bba2f4e8f289b1162e5ac7c80c914c7178130711e393ca76abc1d92f57@0.0.0.0:30303?discport=0",
@@ -554,7 +86,6 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
         "enode://3fe0ff0dd2730eaac7b6b379bdb51215b5831f4f48fa54a24a0298ad5ba8c2a332442948d53f4cd4fd28f373089a35e806ef722eb045659910f96a1278120516@0.0.0.0:30303?discport=0",
         "enode://e53e92e5a51ac2685b0406d0d3c62288b53831c3b0f492b9dc4bc40334783702cfa74c49b836efa2761edde33a3282704273b2453537b855e7a4aeadcccdb43e@0.0.0.0:30303?discport=0"
     ]
-
 
     genesis.json
     {
@@ -917,7 +448,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     PRIVATE_CONFIG=ignore nohup geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22004 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30304 2>>node.log &
     ```
 
-    Go back to your terminal and check if other geth nodes are running:
+    Go back to the terminal and check if other geth nodes are running:
 
     ```bash
     ps | grep geth
@@ -966,7 +497,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     geth attach node0/data/geth.ipc
     ```
 
-### Adding additional validator
+## Adding additional validator
 
 1. Create a working directory for the new node that needs to be added
 
@@ -1218,7 +749,7 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     36467 ttys003    0:00.32 geth attach node3/data/geth.ipc
     ```
 
-### Removing validators
+## Removing validators
 
 1. Attach Geth console to a running validator and run `istanbul.getValidators()` and identify the address of the validator that needs to be removed:
 
@@ -1311,11 +842,11 @@ Let's go through step by step instructions to setup a GoQuorum node with Raft co
     kill 36485
     ```
 
-### Adding non-validator node
+## Adding non-validator node
 
 Same instructions as adding validator node **excluding** step 3 which proposes the node as validator.
 
-### Removing non-validator node
+## Removing non-validator node
 
 Just execute **step 4** instruction from removing a validator node.
 
