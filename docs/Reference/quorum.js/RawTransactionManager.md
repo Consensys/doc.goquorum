@@ -6,29 +6,29 @@ description: RawTransactionManager module
 
 The `RawTransactionManager` module of quorum.js provides access to private transaction APIs that require a connection to a [Privacy Manager](../../Concepts/Privacy/PrivateTransactionManager.md).
 
-## Example
+!!!example
 
-```js
-const Web3 = require("web3");
-const quorumjs = require("quorum-js");
+    ```js
+    const Web3 = require("web3");
+    const quorumjs = require("quorum-js");
 
-const web3 = new Web3("http://localhost:22000");
+    const web3 = new Web3("http://localhost:22000");
 
-const tlsOptions = {
-    key: fs.readFileSync("./cert.key"),
-    clcert: fs.readFileSync("./cert.pem"),
-    cacert: fs.readFileSync("./cacert.pem"),
-    allowInsecure: false
-};
-const enclaveOptions = {
-    privateUrl: "http://localhost:9081",
-    tlsSettings: tlsOptions
-};
+    const tlsOptions = {
+        key: fs.readFileSync("./cert.key"),
+        clcert: fs.readFileSync("./cert.pem"),
+        cacert: fs.readFileSync("./cacert.pem"),
+        allowInsecure: false
+    };
+    const enclaveOptions = {
+        privateUrl: "http://localhost:9081",
+        tlsSettings: tlsOptions
+    };
 
-const txnMngr = quorumjs.RawTransactionManager(web3, enclaveOptions);
+    const txnMngr = quorumjs.RawTransactionManager(web3, enclaveOptions);
 
-txnMngr.sendRawTransaction(args);
-```
+    txnMngr.sendRawTransaction(args);
+    ```
 
 ## Parameters
 

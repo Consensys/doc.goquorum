@@ -32,7 +32,7 @@ docker pull quorumengineering/tessera
 1. Clone the repository and build the source:
 
     ```bash
-    git clone https://github.com/ConsenSys/quorum.git
+    git clone https://github.com/Consensys/quorum.git
     cd quorum
     make all
     ```

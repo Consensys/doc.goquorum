@@ -1,5 +1,5 @@
 ---
-description: Creating a network using Raft consensus 
+description: Creating a network using Raft consensus
 ---
 
 # Create a private network using the Raft consensus protocol
@@ -15,20 +15,20 @@ A private network provides a configurable network for testing. This private netw
 ## Prerequisites
 
 * [GoQuorum](../HowTo/GetStarted/Install.md#as-release-binaries). Ensure that `PATH` contains `geth`
-  and `bootnode`. 
+  and `bootnode`.
 
 !!! tip
-    GoQuorum is a fork of [geth](https://geth.ethereum.org/). GoQuorum uses the `geth` command to start 
-    GoQuorum nodes. 
+    GoQuorum is a fork of [geth](https://geth.ethereum.org/). GoQuorum uses the `geth` command to start
+    GoQuorum nodes.
 
 ## Steps
 
 Listed on the right-hand side of the page are the steps to create a private network using Raft
 with two nodes.
 
-### 1. Create directories 
+### 1. Create directories
 
-Create directories for your private network and two nodes: 
+Create directories for your private network and two nodes:
 
 ```bash
 Raft-Network/
@@ -38,7 +38,7 @@ Raft-Network/
 │   ├── data
 ```
 
-### 2. Create genesis file 
+### 2. Create genesis file
 
 Copy the following configuration file definition to a file called `raftGenesis.json` and save it
 in the `Raft-Network` directory:
@@ -98,8 +98,8 @@ In the `Node-1` directory, generate a node key and copy the key into the data di
 bootnode --genkey=nodekey
 cp nodekey data/
 ```
-    
-### 4. Add node to static nodes file 
+
+### 4. Add node to static nodes file
 
 In the `Node-1` directory, display the enode ID for node 1.
 
@@ -118,14 +118,14 @@ Copy the following to a file called `static-nodes.json` in the `Node-1/data` dir
 
 Replace the `<EnodeID>` placeholder with the enode ID returned by the `bootnode` command. 
 
-=== "Example" 
+=== "Example"
     ```bash
     [
       "enode://212655378f4f48ec6aa57648f9bd4ab86b596553a0825d68ae34ad55176920b0ae06bf68fd682633b0ef3662cbe68a06166aa3053077b93fd4afa9cf8855ea0b@127.0.0.1:21000?discport=0&raftport=50000"
     ]
     ```
 
-### 5. Initialize node 1 
+### 5. Initialize node 1
 
 In the `Node-1` directory, initialize node 1.
 
@@ -133,31 +133,31 @@ In the `Node-1` directory, initialize node 1.
 geth --datadir data init ../raftGenesis.json
 ```
 
-### 6. Start node 1 
+### 6. Start node 1
 
-In the `Node-1` directory, start node 1. 
+In the `Node-1` directory, start node 1.
 
 ```bash
 PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --verbosity 5 --networkid 31337 --raft --raftport 50000 --rpc --rpcaddr 0.0.0.0 --rpcport 22000 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port 21000
 ```
 
-The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled. 
+The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled.
 
-### 7. Attach to node 1 
+### 7. Attach to node 1
 
 In another terminal in the `Node-1` directory, attach to your node.
-    
+
 ```bash
 geth attach data/geth.ipc
 ```
 
-Use the Raft `cluster` command to view the cluster details. 
+Use the Raft `cluster` command to view the cluster details.
 
-=== "Command" 
+=== "Command"
     ```bash
     raft.cluster
     ```
-    
+
 === "Result"
     ```bash
     [{
@@ -171,10 +171,10 @@ Use the Raft `cluster` command to view the cluster details.
     }]
     ```
 
-### 8. Generate node key for node 2 
+### 8. Generate node key for node 2
 
 In another terminal in the `Node-2` directory, generate a node key for node 2 and copy the key to the
-data directory. 
+data directory.
 
 ```bash
 bootnode --genkey=nodekey
@@ -195,7 +195,7 @@ In the `Node-2` directory, display the enode ID for node 2.
 bootnode --nodekey=nodekey --writeaddress
 ```
 
-Add the node 2 enode ID to `static-nodes.json` with a different host port and Raft port. 
+Add the node 2 enode ID to `static-nodes.json` with a different host port and Raft port.
 
 === "static-nodes.json"
     ```bash
@@ -205,7 +205,7 @@ Add the node 2 enode ID to `static-nodes.json` with a different host port and Ra
     ]
     ```
 
-=== "Example" 
+=== "Example"
     ```bash
     [
       "enode://212655378f4f48ec6aa57648f9bd4ab86b596553a0825d68ae34ad55176920b0ae06bf68fd682633b0ef3662cbe68a06166aa3053077b93fd4afa9cf8855ea0b@127.0.0.1:21000?discport=0&raftport=50000",
@@ -213,12 +213,12 @@ Add the node 2 enode ID to `static-nodes.json` with a different host port and Ra
     ]
     ```
 
-!!! tip "GoQuorum peers and Raft peers" 
+!!! tip "GoQuorum peers and Raft peers"
 
     The  `static-nodes.json` file defines the GoQuorum peers only. The node must also be added as a
     member of the Raft cluster using the Raft `addPeer` command.
 
-### 10. Initialize node 2 
+### 10. Initialize node 2
 
 In the `Node-2` directory, initialize node 2.
 
@@ -228,7 +228,7 @@ geth --datadir data init ../raftGenesis.json
 
 ### 11. Add node 2 as a Raft peer to node 1
 
-In the terminal attached to node 1, use the Raft `addPeer` command to add node 2. 
+In the terminal attached to node 1, use the Raft `addPeer` command to add node 2.
 
 === "Command"
     ```bash
@@ -246,9 +246,9 @@ In the terminal attached to node 1, use the Raft `addPeer` command to add node 2
     ```
 
 !!! important
-    The Raft ID is returned by `addPeer` must be specified when starting node 2. 
+    The Raft ID is returned by `addPeer` must be specified when starting node 2.
 
-Use the Raft `cluster` command to confirm cluster now has two nodes. 
+Use the Raft `cluster` command to confirm cluster now has two nodes.
 
 === "Command"
     ```bash
@@ -276,11 +276,11 @@ Use the Raft `cluster` command to confirm cluster now has two nodes.
 
 In the `Node-2` directory, start node 2 using the same command as for node 1 except:
 
-* Specify different ports for DevP2P, RPC, and Raft. 
-* Specify the Raft ID using the `--raftjoinexisting` option. 
+* Specify different ports for DevP2P, RPC, and Raft.
+* Specify the Raft ID using the `--raftjoinexisting` option.
 
 ```bash
 PRIVATE_CONFIG=ignore geth  --datadir data --nodiscover --verbosity 5 --networkid 31337 --raft --raftjoinexisting 2 --raftport 50001 --rpc --rpcaddr 0.0.0.0 --rpcport 22001 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port 21001
 ```
 
-Node 2 connects to node 1. 
+Node 2 connects to node 1.

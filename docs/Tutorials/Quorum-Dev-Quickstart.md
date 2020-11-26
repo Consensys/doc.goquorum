@@ -1,6 +1,6 @@
 ---
 title: Quorum Developer Quickstart
-description: Rapidly generate local Quorum blockchain networks.
+description: Helps to generate local GoQuorum and Ethereum blockchain networks.
 ---
 
 # Quorum Developer Quickstart
