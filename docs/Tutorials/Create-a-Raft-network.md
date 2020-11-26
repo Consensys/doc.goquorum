@@ -116,7 +116,7 @@ Copy the following to a file called `static-nodes.json` in the `Node-1/data` dir
     ]
     ```
 
-Replace the `<EnodeID>` placeholder with the enode ID returned by the `bootnode` command. 
+Replace the `<EnodeID>` placeholder with the enode ID returned by the `bootnode` command.
 
 === "Example"
     ```bash
