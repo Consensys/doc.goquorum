@@ -107,7 +107,7 @@ In the `Node-1` directory, display the enode ID for node 1.
 bootnode --nodekey=nodekey --writeaddress
 ```
 
-Copy the following to a file called `static-nodes.json` in the `Node-1/data` directory: 
+Copy the following to a file called `static-nodes.json` in the `Node-1/data` directory.  
 
 === "static-nodes.json"
     ```bash
@@ -115,6 +115,8 @@ Copy the following to a file called `static-nodes.json` in the `Node-1/data` dir
       "enode://<EnodeID>@127.0.0.1:21000?discport=0&raftport=50000"
     ]
     ```
+
+Replace the `<EnodeID>` placeholder with the enode ID returned by the `bootnode` command. 
 
 === "Example" 
     ```bash
