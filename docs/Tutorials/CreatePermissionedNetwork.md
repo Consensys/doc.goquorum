@@ -2,9 +2,9 @@
 description: Create a permissioned network
 ---
 
-# Create a permissioned network with basic permissioning 
+# Create a permissioned network with basic permissioning
 
-The following steps create a permissioned network with [basic permissioning](../Concepts/Permissioning/BasicNetworkPermissions.md). 
+The following steps create a permissioned network with [basic permissioning](../Concepts/Permissioning/BasicNetworkPermissions.md).
 
 ## 1. Initialize chain
 
@@ -89,6 +89,6 @@ request is made from the dropped node ids, it is rejected as part of that new re
 
 ## Enhanced permissioning
 
-[Enhanced network permissioning](Enhanced/EnhancedPermissionsOverview.md) uses a smart contract permissioning
-model. Enhanced permissioning enables significant flexibility to manage nodes, accounts, and account-level
-access controls.
+[Enhanced network permissioning](../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md)
+uses a smart contract permissioning model. Enhanced permissioning enables significant flexibility to
+manage nodes, accounts, and account-level access controls.

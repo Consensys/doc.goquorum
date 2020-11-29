@@ -31,8 +31,6 @@ with 5 nodes.
 The [`istanbul-tools`](https://github.com/ConsenSys/istanbul-tools) repository contains tools for
 configuring IBFT networks.
 
-Install Istanbul tools.
-
 ```bash
 git clone https://github.com/ConsenSys/istanbul-tools.git
 cd istanbul-tools
