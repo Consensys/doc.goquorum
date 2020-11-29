@@ -26,7 +26,7 @@ A private network provides a configurable network for testing. This private netw
 Listed on the right-hand side of the page are the steps to create a private network using IBFT
 with 5 nodes.
 
-### 1. Install Istanbul tools 
+### 1. Install Istanbul tools
 
 The [`istanbul-tools`](https://github.com/ConsenSys/istanbul-tools) repository contains tools for
 configuring IBFT networks.
@@ -37,9 +37,9 @@ cd istanbul-tools
 make
 ```
 
-### 2. Create directories 
+### 2. Create directories
 
-Create directories for your private network and 5 nodes. 
+Create directories for your private network and 5 nodes.
 
 ```bash
 IBFT-Network/
@@ -63,10 +63,10 @@ In the `IBFT-Network` directory, generate keys and configuration for 5 nodes.
 <path to istanbul-tools>/istanbul-tools/build/bin/istanbul setup --num 5 --nodes --quorum --save --verbose
 ```
 
-Node keys for 5 nodes, a `static-nodes.json` files, and a `genesis.json` files are generated. 
+Node keys for 5 nodes, a `static-nodes.json` files, and a `genesis.json` files are generated.
 
-!!! example "Result" 
-    
+!!! example "Result"
+
     ```bash
     validators
     {
@@ -94,7 +94,7 @@ Node keys for 5 nodes, a `static-nodes.json` files, and a `genesis.json` files a
      "Nodekey": "dfdda5e2c8cedaa4468baaa46b619f5e227a7f07c4b6163edaf197991461490d",
      "NodeInfo": "enode://7fa183662285993efaf7a59e303ec5543bbcd09cb2883e7611d9576ed90f3bcf0400b70af11c5266e5110eebe8afd4e817437bde574d686f440df1ec85822add@0.0.0.0:30303?discport=0"
     }
-    
+
     static-nodes.json
     [
      "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@0.0.0.0:30303?discport=0",
@@ -103,7 +103,7 @@ Node keys for 5 nodes, a `static-nodes.json` files, and a `genesis.json` files a
      "enode://80a98f66d243c6604cda0e1c722eed3d9e080591c81710eec70794e0909e58661f4863e29a7a63bf7fb9387afc8609df37bacbf3d5c523d97bf598c3470840f5@0.0.0.0:30303?discport=0",
      "enode://7fa183662285993efaf7a59e303ec5543bbcd09cb2883e7611d9576ed90f3bcf0400b70af11c5266e5110eebe8afd4e817437bde574d686f440df1ec85822add@0.0.0.0:30303?discport=0"
     ]
-    
+
     genesis.json
     {
         "config": {
@@ -154,7 +154,7 @@ Node keys for 5 nodes, a `static-nodes.json` files, and a `genesis.json` files a
     }
     ```
 
-Directory structure after generating keys and configuration files. 
+Directory structure after generating keys and configuration files.
 
 ```bash
 IBFT-Network/
@@ -180,13 +180,13 @@ IBFT-Network/
 ├── Node-4
 │   ├── data
 ├── static-nodes.json
-``` 
+```
 
-### 4. Update IP and port numbers 
+### 4. Update IP and port numbers
 
-Update the IP and port numbers for all initial validator nodes in `static-nodes.json`. 
+Update the IP and port numbers for all initial validator nodes in `static-nodes.json`.
 
-!!! example 
+!!! example
 
     ```json
     [
@@ -200,7 +200,7 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
 
 ### 5. Copy static nodes file and node keys to each node
 
-Copy the `static-nodes.json` to the data directory for each node. 
+Copy the `static-nodes.json` to the data directory for each node.
 
 ```bash
 cp static-nodes.json Node-0/data/
@@ -210,7 +210,7 @@ cp static-nodes.json Node-3/data/
 cp static-nodes.json Node-4/data/
 ```
 
-Copy the `nodekey` file for each node to the data directory for each node. 
+Copy the `nodekey` file for each node to the data directory for each node.
 
 ```bash
 cp 0/nodekey Node-0/data
@@ -220,15 +220,15 @@ cp 3/nodekey Node-3/data
 cp 4/nodekey Node-4/data
 ```
 
-### 6. Initialize nodes 
+### 6. Initialize nodes
 
-In each node directory (that is, `Node-0`, `Node-1`, `Node-2`, `Node-3`, and `Node-4`), initalize each node. 
+In each node directory (that is, `Node-0`, `Node-1`, `Node-2`, `Node-3`, and `Node-4`), initalize each node.
 
 ```bash
 geth --datadir data init ../genesis.json
 ```
 
-### 7. Start node 0 
+### 7. Start node 0
 
 In the `Node-0` directory, start the first node.  
 
@@ -289,4 +289,4 @@ view the validator addresses.
 
 ### Next
 
-[Add and remove validators](Adding-removing-IBFT-validators.md). 
+[Add and remove validators](Adding-removing-IBFT-validators.md).
