@@ -47,8 +47,15 @@ As part of network initialization:
 
     then the network will have the following configuration once it has started up:
 
-    ```js
-    > quorumPermission.orgList
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.orgList
+    ```
+
+    Result is:
+
+    ```json
     [{
         fullOrgId: "ADMINORG",
         level: 1,
@@ -58,7 +65,17 @@ As part of network initialization:
         subOrgList: null,
         ultimateParent: "ADMINORG"
     }]
-    > quorumPermission.getOrgDetails("ADMINORG")
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.getOrgDetails("ADMINORG")
+    ```
+
+    Result is:
+
+    ```json
     {
       acctList: [{
           acctId: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
@@ -113,8 +130,15 @@ The APIs for [proposing](../../Reference/APIs/PermissioningAPIs.md#quorumpermiss
 !!!example
     An example to propose and approve an organization by name `ORG1` is as shown below:
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.addOrg("ORG1", "enode://de9c2d5937e599930832cecc1df8cc90b50839bdf635c1a4e68e1dab2d001cd4a11c626e155078cc65958a72e2d72c1342a28909775edd99cc39470172cce0ac@127.0.0.1:21004?discport=0", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d"})
+    quorumPermission.addOrg("ORG1", "enode://de9c2d5937e599930832cecc1df8cc90b50839bdf635c1a4e68e1dab2d001cd4a11c626e155078cc65958a72e2d72c1342a28909775edd99cc39470172cce0ac@127.0.0.1:21004?discport=0", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
     ```
 
@@ -122,8 +146,15 @@ The APIs for [proposing](../../Reference/APIs/PermissioningAPIs.md#quorumpermiss
 
     List the org status using the following command:
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.orgList[1]
+    quorumPermission.orgList[1]
+    ```
+
+    Result is:
+
+    ```json
     {
         fullOrgId: "ORG1",
         level: 1,
@@ -137,10 +168,29 @@ The APIs for [proposing](../../Reference/APIs/PermissioningAPIs.md#quorumpermiss
 
     The network admin accounts can then approve the proposed organizations and once the majority approval is achieved, the organization status is updated as `Approved`
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.approveOrg("ORG1", "enode://de9c2d5937e599930832cecc1df8cc90b50839bdf635c1a4e68e1dab2d001cd4a11c626e155078cc65958a72e2d72c1342a28909775edd99cc39470172cce0ac@127.0.0.1:21004?discport=0", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e"})
+    quorumPermission.approveOrg("ORG1", "enode://de9c2d5937e599930832cecc1df8cc90b50839bdf635c1a4e68e1dab2d001cd4a11c626e155078cc65958a72e2d72c1342a28909775edd99cc39470172cce0ac@127.0.0.1:21004?discport=0", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.orgList[1]
+    ```
+
+
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.orgList[1]
+    ```
+
+    Result is:
+
+    ```json
     {
         fullOrgId: "ORG1",
         level: 1,
@@ -154,8 +204,15 @@ The APIs for [proposing](../../Reference/APIs/PermissioningAPIs.md#quorumpermiss
 
     The details of the new organization approved are as below:
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.getOrgDetails("ORG1")
+    quorumPermission.getOrgDetails("ORG1")
+    ```
+
+    Result is:
+
+    ```json
     {
         acctList: [{
             acctId: "0x0638e1574728b6d862dd5d3a3e0942c3be47d996",
@@ -202,10 +259,27 @@ To add a sub org at `ORG1` level refer to [addSubOrg API](../../Reference/APIs/P
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.addSubOrg("ORG1", "SUB1", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0", {from: eth.accounts[0]})
+    quorumPermission.addSubOrg("ORG1", "SUB1", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0", {from: eth.accounts[0]})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.getOrgDetails("ORG1.SUB1")
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.getOrgDetails("ORG1.SUB1")
+    ```
+
+    Result is:
+
+    ```json
     {
       acctList: null,
       nodeList: [{
@@ -228,10 +302,27 @@ Refer to [addNewRole API](../../Reference/APIs/PermissioningAPIs.md#quorumpermis
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.addNewRole("ORG1.SUB1", "SUBADMIN", 3, false, true,{from: eth.accounts[0]})
+    quorumPermission.addNewRole("ORG1.SUB1", "SUBADMIN", 3, false, true,{from: eth.accounts[0]})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > eth.accounts[0]
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    eth.accounts[0]
+    ```
+
+    Result is:
+
+    ```json
     "0x0638e1574728b6d862dd5d3a3e0942c3be47d996"
     ```
 
@@ -239,10 +330,27 @@ The role `SUBADMIN` can now be assigned to an account at sub org `SUB1` for maki
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.addAccountToOrg("0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0", "ORG1.SUB1", "SUBADMIN", {from: "0x0638e1574728b6d862dd5d3a3e0942c3be47d996"})
+    quorumPermission.addAccountToOrg("0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0", "ORG1.SUB1", "SUBADMIN", {from: "0x0638e1574728b6d862dd5d3a3e0942c3be47d996"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.getOrgDetails("ORG1.SUB1")
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.getOrgDetails("ORG1.SUB1")
+    ```
+
+    Result is:
+
+    ```json
     {
       acctList: [{
           acctId: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0",
@@ -272,10 +380,27 @@ The role `SUBADMIN` can now be assigned to an account at sub org `SUB1` for maki
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.addNewRole("ORG1.SUB1", "TRANSACT", 1, false, true,{from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
+    quorumPermission.addNewRole("ORG1.SUB1", "TRANSACT", 1, false, true,{from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.getOrgDetails("ORG1.SUB1").roleList
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.getOrgDetails("ORG1.SUB1").roleList
+    ```
+
+    Result is:
+
+    ```json
     [{
         access: 3,
         active: true,
@@ -302,11 +427,27 @@ To add an account to an organization refer to [addAccountToOrg API](../../Refere
 
 !!!example
 
-    ```javascript
-    > quorumPermission.addAccountToOrg("0x283f3b8989ec20df621166973c93b56b0f4b5455", "ORG1.SUB1", "SUBADMIN", {from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
-    "Action completed successfully"
-    > quorumPermission.getOrgDetails("ORG1.SUB1").acctList
+    Run the following command in Geth console:
 
+    ```javascript
+    quorumPermission.addAccountToOrg("0x283f3b8989ec20df621166973c93b56b0f4b5455", "ORG1.SUB1", "SUBADMIN", {from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
+    ```
+
+    Result is:
+
+    ```json
+    "Action completed successfully"
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.getOrgDetails("ORG1.SUB1").acctList
+    ```
+
+    Result is:
+
+    ```json
     [{
         acctId: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0",
         isOrgAdmin: true,
@@ -326,10 +467,27 @@ To suspend an account [updateAccountStatus](../../Reference/APIs/PermissioningAP
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.updateAccountStatus("ORG1.SUB1", "0x283f3b8989ec20df621166973c93b56b0f4b5455", 1, {from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
+    quorumPermission.updateAccountStatus("ORG1.SUB1", "0x283f3b8989ec20df621166973c93b56b0f4b5455", 1, {from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.getOrgDetails("ORG1.SUB1").acctList
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.getOrgDetails("ORG1.SUB1").acctList
+    ```
+
+    Result is:
+
+    ```json
     [{
         acctId: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0",
         isOrgAdmin: true,
@@ -349,11 +507,27 @@ To revoke suspension of an account [updateAccountStatus](../../Reference/APIs/Pe
 
 !!!example
 
-    ```javascript
-    > quorumPermission.updateAccountStatus("ORG1.SUB1", "0x283f3b8989ec20df621166973c93b56b0f4b5455", 2, {from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
-    "Action completed successfully"
-    > quorumPermission.getOrgDetails("ORG1.SUB1").acctList
+    Run the following command in Geth console:
 
+    ```javascript
+    quorumPermission.updateAccountStatus("ORG1.SUB1", "0x283f3b8989ec20df621166973c93b56b0f4b5455", 2, {from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
+    ```
+
+    Result is:
+
+    ```json
+    "Action completed successfully"
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.getOrgDetails("ORG1.SUB1").acctList
+    ```
+
+    Result is:
+
+    ```json
     [{
         acctId: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0",
         isOrgAdmin: true,
@@ -375,11 +549,27 @@ Once exclude, no further activity will be possible on the account.
 
 !!!example
 
-    ```javascript
-    > quorumPermission.updateAccountStatus("ORG1.SUB1", "0x283f3b8989ec20df621166973c93b56b0f4b5455", 3, {from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
-    "Action completed successfully"
-    > quorumPermission.getOrgDetails("ORG1.SUB1").acctList
+    Run the following command in Geth console:
 
+    ```javascript
+    quorumPermission.updateAccountStatus("ORG1.SUB1", "0x283f3b8989ec20df621166973c93b56b0f4b5455", 3, {from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
+    ```
+
+    Result is:
+
+    ```json
+    "Action completed successfully"
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.getOrgDetails("ORG1.SUB1").acctList
+    ```
+
+    Result is:
+
+    ```json
     [{
         acctId: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0",
         isOrgAdmin: true,
@@ -399,10 +589,27 @@ To [add Nodes](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_addnod
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.addNode("ORG1.SUB1", "enode://eacaa74c4b0e7a9e12d2fe5fee6595eda841d6d992c35dbbcc50fcee4aa86dfbbdeff7dc7e72c2305d5a62257f82737a8cffc80474c15c611c037f52db1a3a7b@127.0.0.1:21005?discport=0", {from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
+    quorumPermission.addNode("ORG1.SUB1", "enode://eacaa74c4b0e7a9e12d2fe5fee6595eda841d6d992c35dbbcc50fcee4aa86dfbbdeff7dc7e72c2305d5a62257f82737a8cffc80474c15c611c037f52db1a3a7b@127.0.0.1:21005?discport=0", {from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.getOrgDetails("ORG1.SUB1").nodeList
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.getOrgDetails("ORG1.SUB1").nodeList
+    ```
+
+    Result is:
+
+    ```json
     [{
         orgId: "ORG1.SUB1",
         status: 2,
@@ -420,8 +627,15 @@ To deactivate a node the API can be invoked with action with value `1`.
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.getOrgDetails("ORG1.SUB1").nodeList
+    quorumPermission.getOrgDetails("ORG1.SUB1").nodeList
+    ```
+
+    Result is:
+
+    ```json
     [{
         orgId: "ORG1.SUB1",
         status: 2,
@@ -437,10 +651,27 @@ To activate the node back invoke [updateNodeStatus](../../Reference/APIs/Permiss
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.updateNodeStatus("ORG1.SUB1", "enode://eacaa74c4b0e7a9e12d2fe5fee6595eda841d6d992c35dbbcc50fcee4aa86dfbbdeff7dc7e72c2305d5a62257f82737a8cffc80474c15c611c037f52db1a3a7b@127.0.0.1:21005?discport=0",2, {from:"0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
+    quorumPermission.updateNodeStatus("ORG1.SUB1", "enode://eacaa74c4b0e7a9e12d2fe5fee6595eda841d6d992c35dbbcc50fcee4aa86dfbbdeff7dc7e72c2305d5a62257f82737a8cffc80474c15c611c037f52db1a3a7b@127.0.0.1:21005?discport=0",2, {from:"0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.getOrgDetails("ORG1.SUB1").nodeList
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.getOrgDetails("ORG1.SUB1").nodeList
+    ```
+
+    Result is:
+
+    ```json
     [{
         orgId: "ORG1.SUB1",
         status: 2,
@@ -458,8 +689,15 @@ Once excludeded the node will never be able join the network again.
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.getOrgDetails("ORG1.SUB1").nodeList
+    quorumPermission.getOrgDetails("ORG1.SUB1").nodeList
+    ```
+
+    Result is:
+
+    ```json
     [{
         orgId: "ORG1.SUB1",
         status: 2,
@@ -489,10 +727,27 @@ This can be invoked only by the network admin accounts and will require majority
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.updateOrgStatus("ORG1", 1, {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d"})
+    quorumPermission.updateOrgStatus("ORG1", 1, {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.orgList[2]
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.orgList[2]
+    ```
+
+    Result is:
+
+    ```json
     {
       fullOrgId: "ORG1",
       level: 1,
@@ -512,10 +767,27 @@ Once approved the org status is marked as suspended.
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.approveOrgStatus("ORG1", 1, {from: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e"})
+    quorumPermission.approveOrgStatus("ORG1", 1, {from: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.orgList[2]
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.orgList[2]
+    ```
+
+    Result is:
+
+    ```json
     {
       fullOrgId: "ORG1",
       level: 1,
@@ -539,12 +811,39 @@ This will require majority approval (API [approveOrgStatus](../../Reference/APIs
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.updateOrgStatus("ORG1", 2, {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d"})
+    quorumPermission.updateOrgStatus("ORG1", 2, {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.approveOrgStatus("ORG1", 2, {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d"})
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.approveOrgStatus("ORG1", 2, {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.orgList[0]
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.orgList[0]
+    ```
+
+    Result is:
+
+    ```json
     {
       fullOrgId: "ORG1.SUB1",
       level: 2,
@@ -575,10 +874,27 @@ To assign network admin or org admin role to an account invoke [assignAdminRole]
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.assignAdminRole("ORG1", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", "ADMIN", {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d"})
+    quorumPermission.assignAdminRole("ORG1", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", "ADMIN", {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d"})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.acctList[3]
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.acctList[3]
+    ```
+
+    Result is:
+
+    ```json
     {
       acctId: "0x0638e1574728b6d862dd5d3a3e0942c3be47d996",
       isOrgAdmin: true,
@@ -592,10 +908,27 @@ To approve the assignment of network admin role invoke [approveAdminRole](../../
 
 !!!example
 
+    Run the following command in Geth console:
+
     ```javascript
-    > quorumPermission.approveAdminRole("ORG1", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
+    quorumPermission.approveAdminRole("ORG1", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
+    ```
+
+    Result is:
+
+    ```json
     "Action completed successfully"
-    > quorumPermission.acctList[4]
+    ```
+
+    Run the following command in Geth console:
+
+    ```javascript
+    quorumPermission.acctList[4]
+    ```
+
+    Result is:
+
+    ```json
     {
       acctId: "0x0638e1574728b6d862dd5d3a3e0942c3be47d996",
       isOrgAdmin: true,

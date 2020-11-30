@@ -36,11 +36,15 @@ own connections.
 
 1. Bring up an initial network of 6 nodes.
 
-    ```bash
-    # Ensure any old network is removed
-    docker-compose -f ibft-non-perm-bootnode.yml down
+    Ensure any old network is removed:
 
-    # Bring up 6 nodes
+    ```bash
+    docker-compose -f ibft-non-perm-bootnode.yml down
+    ```
+
+    Bring up 6 nodes:
+
+    ```bash
     docker-compose -f ibft-non-perm-bootnode.yml up node1 node2 node3 node4 node5 node6
     ```
 
@@ -198,11 +202,15 @@ solely based on who is listed in the nodes `static-nodes.json` file.
 
 1. Bring up an initial network of 6 nodes.
 
-    ```bash
-    # Ensure any old network is removed
-    docker-compose -f raft-non-perm-nodiscover.yml down
+    Ensure any old network is removed
 
-    # Bring up 6 nodes
+    ```bash
+    docker-compose -f raft-non-perm-nodiscover.yml down
+    ```
+
+    Bring up 6 nodes
+
+    ```bash
     docker-compose -f raft-non-perm-nodiscover.yml up node1 node2 node3 node4 node5 node6
     ```
 
@@ -347,12 +355,15 @@ any Ethereum tasks, such as syncing the initial blockchain or propagating transa
 the node must appear is others nodes' `permissioned-nodes.json` file.
 
 1. Bring up an initial network of 6 nodes.
+    Ensure any old network is removed
 
     ```bash
-    # Ensure any old network is removed
     docker-compose -f raft-perm-nodiscover.yml down
+    ```
 
-    # Bring up 6 nodes
+    Bring up 6 nodes
+
+    ```bash
     docker-compose -f raft-perm-nodiscover.yml up node1 node2 node3 node4 node5 node6
     ```
 
@@ -420,8 +431,9 @@ the node must appear is others nodes' `permissioned-nodes.json` file.
     the node know to not bootstrap a new network from the contents of `static-nodes.json`, but to connect to an existing
     node there are fetch any bootstrap information.
 
+    Bring up node 7
+
     ```bash
-    # Bring up node 7
     QUORUM_GETH_ARGS="--raftjoinexisting 7" docker-compose -f raft-non-perm-nodiscover.yml up node7
     ```
 
@@ -529,11 +541,15 @@ IP Whitelist isn't used, nor is key discovery disabled.
 
 1. Start up the initial 6 node network.
 
-    ```bash
-    # Ensure any old network is removed
-    docker-compose -f tessera-add.yml down
+    Ensure any old network is removed
 
-    # Bring up 6 nodes
+    ```bash
+    docker-compose -f tessera-add.yml down
+    ```
+
+    Bring up 6 nodes
+
+    ```bash
     docker-compose -f tessera-add.yml up node1 node2 node3 node4 node5 node6
     ```
 
@@ -573,11 +589,10 @@ IP Whitelist isn't used, nor is key discovery disabled.
         ```
 
 1. Let's first bring up node 7, then you can inspect what is happening and the configuration used.
+    Bring up node 7
 
     ```bash
-    # Bring up node 7
     docker-compose -f tessera-add.yml up node7
-
     docker exec -it addnode_node7_1 cat /qdata/tm/tessera-config.json
     ```
 

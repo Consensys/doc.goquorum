@@ -126,9 +126,7 @@ Create a plugin-managed account from an existing private key:
 
     === "clef"
 
-        ```text
-        not supported - use CLI instead
-        ```
+        Not supported, use CLI instead
 
 ## CLI
 
