@@ -42,92 +42,91 @@ and compliance requirements. In this section we will go through an example confi
 
 ### Proxy Setup on both Quorum nodes
 
-```c
-       load_module /usr/lib/nginx/modules/ngx_stream_module.so;
-       error_log /home/ubuntu/nginx-error.log;
-       events { }
-       http {
-           # Quorum-to-Tessera http
-           upstream q2t {
-                   server url1:port1;
-                   server url2:port2;
-               }
-           server {
-                   listen unix:/home/ubuntu/tm.ipc;
-                   location / {
-                           # Below is added to avoid transaction failure if partyinfo gets out of sync.
-                           proxy_next_upstream error timeout http_404 non_idempotent;
-                           proxy_pass http://q2t;
-                   }
-           }
+```nginx
+load_module /usr/lib/nginx/modules/ngx_stream_module.so;
+error_log /home/ubuntu/nginx-error.log;
+events { }
+http {
+   # Quorum-to-Tessera http
+   upstream q2t {
+           server url1:port1;
+           server url2:port2;
        }
+   server {
+           listen unix:/home/ubuntu/tm.ipc;
+           location / {
+                   # Below is added to avoid transaction failure if partyinfo gets out of sync.
+                   proxy_next_upstream error timeout http_404 non_idempotent;
+                   proxy_pass http://q2t;
+           }
+   }
+}
 ```
 
 ### Standalone Proxy server setup
 
-```c
+```nginx
+load_module /usr/lib/nginx/modules/ngx_stream_module.so;
 
-    load_module /usr/lib/nginx/modules/ngx_stream_module.so;
+error_log /home/ubuntu/nginx-error.log;
+events { }
+stream {
+#Quorum json-rpc
+    upstream quorum {
+            server url1:port1;
+            server url2:port2 backup;
+    }
+    server {
+            listen 22000;
+            proxy_pass quorum;
+    }
+  }
+http {
 
-    error_log /home/ubuntu/nginx-error.log;
-    events { }
-    stream {
-    #Quorum json-rpc
-        upstream quorum {
-                server url1:port1;
-                server url2:port2 backup;
-        }
-        server {
-                listen 22000;
-                proxy_pass quorum;
-        }
-      }
-    http {
+    # Third-party server
+    upstream thirdparty {
+            server url1:port1;
+            server url2:port2;
+    }
+    server {
+            listen 9081;
+            location / {
+                    proxy_next_upstream error timeout http_404 non_idempotent;
+                    proxy_pass http://thirdparty;
+            }
+    }
+    # Peer-to-peer server
+    upstream p2p {
+            server url1:port1;
+            server url2:port2;
+    }
+    upstream p2p-mirror {
+            server url1:port1;
+            server url2:port2 backup;
+    }
+    server {
+            listen 9001;
 
-        # Third-party server
-        upstream thirdparty {
-                server url1:port1;
-                server url2:port2;
-        }
-        server {
-                listen 9081;
-                location / {
-                        proxy_next_upstream error timeout http_404 non_idempotent;
-                        proxy_pass http://thirdparty;
-                }
-        }
-        # Peer-to-peer server
-        upstream p2p {
-                server url1:port1;
-                server url2:port2;
-        }
-        upstream p2p-mirror {
-                server url1:port1;
-                server url2:port2 backup;
-        }
-        server {
-                listen 9001;
-
-                location /resend {
-                        proxy_pass http://p2p/resend;
-                }
-                location /push {
-                        proxy_pass http://p2p/push;
-                }
-                location /partyinfo {
-                        mirror /partyinfo-mirror;
-                        proxy_pass http://p2p-mirror/partyinfo;
-                }
-                location /partyinfo-mirror {
-                        internal;
-                        proxy_pass url2:port2/partyinfo;
-                }
-                location /partyinfo/validate {
-                        proxy_pass http://p2p/partyinfo/validate;
-                }
-                location /upcheck {
-                        proxy_pass http://p2p/upcheck;
-      }}}
+            location /resend {
+                    proxy_pass http://p2p/resend;
+            }
+            location /push {
+                    proxy_pass http://p2p/push;
+            }
+            location /partyinfo {
+                    mirror /partyinfo-mirror;
+                    proxy_pass http://p2p-mirror/partyinfo;
+            }
+            location /partyinfo-mirror {
+                    internal;
+                    proxy_pass url2:port2/partyinfo;
+            }
+            location /partyinfo/validate {
+                    proxy_pass http://p2p/partyinfo/validate;
+            }
+            location /upcheck {
+                    proxy_pass http://p2p/upcheck;
+  }}}
 ```
 
 *[HA]: High Availability

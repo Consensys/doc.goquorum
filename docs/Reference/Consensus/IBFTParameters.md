@@ -28,7 +28,7 @@ The default value is `10000`.
 Within the `genesis.json` file, there is an area for IBFT specific configuration, much like a Clique network
 configuration.
 
-The options are as follows:
+The options are as displayed in the following configuration fragment:
 
 ```json
 {

@@ -26,18 +26,29 @@ None
 
     === "JSON RPC"
 
-        ```jshelllanguage
-        // Request
-        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_cluster", "id":10}' --header "Content-Type: application/json"
+        Request:
 
-        // Response
+        ```bash
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_cluster", "id":10}' --header "Content-Type: application/json"
+        ```
+
+        Response:
+
+        ```json
         {"jsonrpc":"2.0","id":10,"result":[{"raftId":1,"nodeId":"ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef","p2pPort":21000,"raftPort":50401,"hostname":"127.0.0.1","role":"minter","nodeActive":true},{"raftId":3,"nodeId":"579f786d4e2830bbcc02815a27e8a9bacccc9605df4dc6f20bcc1a6eb391e7225fff7cb83e5b4ecd1f3a94d8b733803f2f66b7e871961e7b029e22c155c3a778","p2pPort":21002,"raftPort":50403,"hostname":"127.0.0.1","role":"verifier","nodeActive":true},{"raftId":2,"nodeId":"0ba6b9f606a43a95edc6247cdb1c1e105145817be7bcafd6b2c0ba15d58145f0dc1a194f70ba73cd6f4cdd6864edc7687f311254c7555cc32e4d45aeb1b80416","p2pPort":21001,"raftPort":50402,"hostname":"127.0.0.1","role":"verifier","nodeActive":true}]}
         ```
 
     === "geth console"
 
+        Request:
+
         ```javascript
-        > raft.cluster
+        raft.cluster
+        ```
+
+        Response:
+
+        ```json
         [{
             hostname: "127.0.0.1",
             nodeActive: true,
@@ -81,18 +92,29 @@ None
 
     === "JSON RPC"
 
-        ```jshelllanguage
-        // Request
-        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_role", "id":10}' --header "Content-Type: application/json"
+        Request:
 
-        // Response
+        ```bash
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_role", "id":10}' --header "Content-Type: application/json"
+        ```
+
+        Response:
+
+        ```json
         {"jsonrpc":"2.0","id":10,"result":"verifier"}
         ```
 
     === "geth console"
 
+        Request:
+
         ```javascript
-        > raft.role
+        raft.role
+        ```
+
+        Response:
+
+        ```json
         "minter"
         ```
 
@@ -112,25 +134,35 @@ None
 
     === "JSON RPC"
 
-        ```jshelllanguage
-        // Request
-        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_leader", "id":10}' --header "Content-Type: application/json"
+        Request:
 
-        // Response
+        ```bash
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_leader", "id":10}' --header "Content-Type: application/json"
+        ```
+
+        Response:
+
+        ```json
         {"jsonrpc":"2.0","id":10,"result":"ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef"}
         ```
 
     === "geth console"
 
+        Request:
+
         ```javascript
-        > raft.leader
+        raft.leader
+        ```
+
+        Response:
+
+        ```json
         "ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef"
         ```
 
     If there is no leader at the network level, the call to the api will result in the following error:
 
-    ```javascript
-    > raft.leader
+    ```text
     Error: no leader is currently elected
         at web3.js:3143:20
         at web3.js:6347:15
@@ -153,19 +185,29 @@ API for adding a new peer to the network.
 !!! example
 
     === "JSON RPC"
+        Request:
 
-        ```jshelllanguage
-        // Request
+        ```bash
         curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_addPeer","params": ["enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405"], "id":10}' --header "Content-Type: application/json"
+        ```
 
-        // Response
+        Response:
+
+        ```json
         {"jsonrpc":"2.0","id":10,"result":5}
         ```
 
     === "geth console"
 
+        Request:
+
         ```javascript
-        > raft.addPeer("enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405")
+        raft.addPeer("enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405")
+        ```
+
+        Response:
+
+        ```json
         5
         ```
 
@@ -173,8 +215,7 @@ API for adding a new peer to the network.
 
     If the node being added is already part of the network the of the network, the following error is thrown:
 
-    ```javascript
-    > raft.addPeer("enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405")
+    ```text
     Error: node with this enode has already been added to the cluster: f06c06f1e958cb2edf90d8bfb912de287f9b047b4228436e94b5b78e3ee16171
         at web3.js:3143:20
         at web3.js:6347:15
@@ -197,19 +238,28 @@ API to remove a node from Raft cluster
 !!! example
 
     === "JSON RPC"
+        Request:
 
-        ```jshelllanguage
-        // Request
+        ```bash
         curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_removePeer","params": [4], "id":10}' --header "Content-Type: application/json"
+        ```
 
-        // Response
+        Response:
+
+        ```json
         {"jsonrpc":"2.0","id":10,"result":null}
         ```
 
     === "geth console"
+        Request:
 
         ```javascript
-        > raft.removePeer(4)
+        raft.removePeer(4)
+        ```
+
+        Response:
+
+        ```json
         null
         ```
 
@@ -228,20 +278,29 @@ API to add a new node to the network as a learner node. The learner node syncs w
 !!! example
 
     === "JSON RPC"
+        Request:
 
-        ```jshelllanguage
-        // Request
+        ```bash
         curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_addLearner","params": ["enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405"], "id":10}' --header "Content-Type: application/json"
+        ```
 
-        // Response
+        Response:
+
+        ```json
         {"jsonrpc":"2.0","id":10,"result":5}
 
         ```
 
     === "geth console"
+        Request:
 
         ```javascript
-        > raft.addLearner("enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405")
+        raft.addLearner("enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405")
+        ```
+
+        Response:
+
+        ```json
         5
         ```
 
@@ -260,19 +319,27 @@ API for promoting a learner node to peer and thus be part of the Raft GoQuorum.
 !!! example
 
     === "JSON RPC"
+        Request:
 
-        ```jshelllanguage
-        // Request
+        ```bash
         curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_promoteToPeer","params": [4], "id":10}' --header "Content-Type: application/json"
+        ```
 
-        // Response
-        {// Response
+        Response:
+
+        ```json
          {"jsonrpc":"2.0","id":10,"result":true}
         ```
 
     === "geth console"
+        Request:
 
         ```javascript
-        > raft.promoteToPeer(4)
+        raft.promoteToPeer(4)
+        ```
+
+        Response:
+
+        ```json
         true
         ```
