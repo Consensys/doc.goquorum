@@ -8,12 +8,12 @@ description: Sending private transactions
 
 * [Privacy-enabled network as configured in tutorial](Create-Privacy-enabled-network.md).
 
-## Steps 
+## Steps
 
 Listed on the right-hand side of the page are the steps to create a private contract, deploy the contract,
 and send a private transaction.
 
-## 1. Create private contract 
+## 1. Create private contract
 
 In the `Node-0` directory, copy and paste the following to a file called `private-config.js`. Replace
 the placeholder for `privateFor` with the `tessera1.pub` key.
@@ -45,16 +45,16 @@ var simple = simpleContract.new(42, {from:web3.eth.accounts[0], data: bytecode, 
 
 ## 2. Create run script
 
-In the `Node-0` directory, create a script called `runscript.sh`. 
+In the `Node-0` directory, create a script called `runscript.sh`.
 
 ```bash
 #!/bin/bash
 geth --exec 'loadScript("./private-contract.js")' --datadir=data attach ipc:/<path to IBFT-network>/IBFT-network/Node-0/data/geth.ipc
 ```
 
-## 3. Create account 
+## 3. Create account
 
-In the `Node-0` directory, create an account. 
+In the `Node-0` directory, create an account.
 
 ```bash
 /geth --datadir data account new
@@ -68,7 +68,7 @@ Accounts are locked by default and must be unlocked before sending the transacti
 geth attach geth.ipc
 ```
 
-Display the accounts. 
+Display the accounts.
 
 ```javascript
 eth.accounts
@@ -76,28 +76,28 @@ eth.accounts
 
 Unlock the account using the account key displayed by `eth.accounts`.
 
-=== "Unlock" 
+=== "Unlock"
      ```javascript
      personal.unlockAccount("<account key>")
      ```
 
-=== "Example" 
+=== "Example"
     ```javascript
     personal.unlockAccount("0x0bc37b7dc68c24aee9d49fab70bb20cb8c6154c2")
-    ```    
+    ```
 
-Type in the account password when prompted. 
+Type in the account password when prompted.
 
 ## 5. Send the private transaction
 
 Run the script created in step 2. The contract is deployed and a private transaction sent from node
-1 to node 2. 
+1 to node 2.
 
 ```javascript
 loadScript("private-contract.js")
 ```
 
-The GoQuorum logs for node 0 and node 1 display the transaction submission and receipt. 
+The GoQuorum logs for node 0 and node 1 display the transaction submission and receipt.
 
 === "Node 0"
     ```bash

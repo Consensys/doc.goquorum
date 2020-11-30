@@ -44,23 +44,23 @@ IBFT-Network/
 
 ### 2. Generate Tessera keys
 
-In the `Tessera-0` directory, generate keys. 
+In the `Tessera-0` directory, generate keys.
 
 ```bash
 java -jar /<path-to-tessera>/tessera.jar -keygen -filename tessera0
 ```
 
-Press enter both times you are prompted for a password. 
+Press enter both times you are prompted for a password.
 
 The private and public key are created in files called `tessera0.key` and `tessera0.pub`.
 
 !!! caution
-    In a production environment, ensure keys are secured appropriately. 
+    In a production environment, ensure keys are secured appropriately.
 
-### 3. Create configuration file 
+### 3. Create configuration file
 
 In the `Tessera-0` directory, create a configuration file called `config.json`. Copy and paste the
-the configuration below into the file. 
+the configuration below into the file.
 
 ```json
 {
@@ -117,7 +117,7 @@ the configuration below into the file.
 
 ### 4. Create Tessera-1 keys
 
-In `Tessera-1`, generate keys in the same way as for `Tessera-0`. 
+In `Tessera-1`, generate keys in the same way as for `Tessera-0`.
 
 ```bash
 java -jar /<path-to-tessera>/tessera.jar -keygen -filename tessera1
@@ -181,23 +181,23 @@ the configuration below into the file. Different ports are specified for Tessera
 }
 ```
 
-### 6. Start Tessera-0
+### 6. Start Tessera 0
 
-In the `Tessera-0` directory, start Tessera 0. 
-
-```bash
-java -jar <path to Tessera>/tessera.jar -configfile config.json
-```
-
-### 7. Start Tessera-1
-
-In the `Tessera-1` directory, start Tessera 1. 
+In the `Tessera-0` directory, start Tessera 0.
 
 ```bash
 java -jar <path to Tessera>/tessera.jar -configfile config.json
 ```
 
-### 8. Start GoQuorum node 0. 
+### 7. Start Tessera 1
+
+In the `Tessera-1` directory, start Tessera 1.
+
+```bash
+java -jar <path to Tessera>/tessera.jar -configfile config.json
+```
+
+### 8. Start GoQuorum node 0
 
 In the `Node-0` directory, start start GoQuorum node 0 specifying the Tessera 0 node to attach to.
 
