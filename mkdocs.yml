@@ -89,8 +89,9 @@ nav:
   - Tutorials:
       - Create a network using IBFT: Tutorials/Create-IBFT-Network.md
       - Adding and removing IBFT validators: Tutorials/Adding-removing-IBFT-validators.md
-      - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
       - Create a network using Raft: Tutorials/Create-a-Raft-network.md
+      - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
+      - Send private transactions: Tutorials/Send-private-transaction.md
       - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
       - Quorum Developer Quickstart: Tutorials/Quorum-Dev-Quickstart.md
   - Concepts:
