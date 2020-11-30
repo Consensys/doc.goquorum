@@ -42,9 +42,9 @@ responseHeaderTimeout = 5
 
 Where:
 
-- optional `dialTimeout` is timeout when connecting to socket (seconds), default = 1 second
-- optional `requestTimeout` is timeout for the write to the socket (seconds), default = 5 seconds
-- optional `responseHeaderTimeout` is timeout for reading a response from the socket (seconds), default = 5 seconds
+* optional `dialTimeout` is timeout when connecting to socket (seconds), default = 1 second
+* optional `requestTimeout` is timeout for the write to the socket (seconds), default = 5 seconds
+* optional `responseHeaderTimeout` is timeout for reading a response from the socket (seconds), default = 5 seconds
 
 Out of these timeouts, the only one that might require changing from default is `responseHeaderTimeout`,
 which may need to be increased in the event of slow transaction manager responses.
