@@ -215,6 +215,6 @@ In the `Node-1` directory, start start GoQuorum node 1 specifying the Tessera 1 
 
 ```bash
 PRIVATE_CONFIG=/<path to IBFT-network>/IBFT-network/Tessera-1/tm.ipc geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22001 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30301
-``` 
+```
 
 Your node can now [send and receive private transactions](Send-private-transaction.md).
