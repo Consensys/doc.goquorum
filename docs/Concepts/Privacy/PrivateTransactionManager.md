@@ -35,7 +35,7 @@ export PRIVATE_CONFIG=path/to/ipc-config-file.toml
 
 Configuration file provides the ability to configure timeouts for the ipc socket.
 
-!!! example
+!!! example "Example ipc-config-file.toml"
 
     ```toml
     socket = "tm.ipc"
