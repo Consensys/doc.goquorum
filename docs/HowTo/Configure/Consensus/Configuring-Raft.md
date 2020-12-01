@@ -18,7 +18,7 @@ The enode IDs must include a `raftport` querystring parameter specifying the Raf
 
 ## Adding Raft members
 
-To add a verifier node to the cluster, attach to a JS console and issue `raft.addPeer(enodeId)`. 
+To add a verifier node to the cluster, attach to a JS console and issue `raft.addPeer(enodeId)`.
 
 To add a learner node to the cluster, attach to a JS console and issue `raft.addLearner(enodeId)`.
 

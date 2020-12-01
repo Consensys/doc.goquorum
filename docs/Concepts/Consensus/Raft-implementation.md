@@ -107,16 +107,16 @@ occurs, the state of the speculative chain is updated.
 
 ### State in a speculative chain
 
-- `head`: The last-created speculative block. Is `nil` if the last-created block is already included in the blockchain.
-- `proposedTxes`: The set of transactions that have been proposed to Raft in some block, but not yet included in the blockchain.
-- `unappliedBlocks`: A queue of blocks which have been proposed to Raft but not yet committed to the blockchain.
-    - When minting a new block, we enqueue it at the end of this queue.
-    - `accept` is called to remove the oldest speculative block when it's accepted into the blockchain.
-    - When an [`InvalidRaftOrdering`](https://godoc.org/github.com/ConsenSys/quorum/raft#InvalidRaftOrdering) event
+* `head`: The last-created speculative block. Is `nil` if the last-created block is already included in the blockchain.
+* `proposedTxes`: The set of transactions that have been proposed to Raft in some block, but not yet included in the blockchain.
+* `unappliedBlocks`: A queue of blocks which have been proposed to Raft but not yet committed to the blockchain.
+    * When minting a new block, we enqueue it at the end of this queue.
+    * `accept` is called to remove the oldest speculative block when it's accepted into the blockchain.
+    * When an [`InvalidRaftOrdering`](https://godoc.org/github.com/ConsenSys/quorum/raft#InvalidRaftOrdering) event
     occurs, the queue is unwound by popping the most recent blocks from the new end of the queue until we find the invalid block.
     The newer speculative blocks are repeatedly removed because they are all dependent on a block that
     has not been included in the chain.
-- `expectedInvalidBlockHashes`: The set of blocks that build on an invalid block, but haven't yet passed
+* `expectedInvalidBlockHashes`: The set of blocks that build on an invalid block, but haven't yet passed
 through Raft. When the non-extending blocks come back through Raft, they are removed them from the
 speculative chain. `expectedInvalidBlockHashes` is a guard against trying to trim the speculative chain
 when it shouldn't be.

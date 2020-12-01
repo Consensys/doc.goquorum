@@ -10,7 +10,7 @@ GoQuorum implements [Raft](https://raft.github.io) consensus using the [etcd](ht
 [implementation](https://github.com/coreos/etcd/tree/master/raft).
 
 Use Raft for closed-membership/consortium settings where:
- 
+
 * Byzantine fault tolerance is not required.
 * Faster block times (that is, milliseconds rather than seconds) and transaction finality are required.
 
@@ -24,13 +24,13 @@ Raft consensus does not create unnecessary empty blocks, and effectively creates
 ## Raft nodes
 
 The concept of Raft nodes and Ethereum nodes are distinct.
- 
+
 A Raft node can be a:
- 
+
 * Leader
 * Follower (also called verifier or peer)
 * Learner.
- 
+
 A cluster has one leader and all log entries flow through the leader.
 
 Additional follower nodes or learner nodes can be added to a running network.
