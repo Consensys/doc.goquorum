@@ -55,7 +55,6 @@ Configuration file provides the ability to configure timeouts for the IPC socket
     * optional `requestTimeout` is timeout for the write to the socket (seconds), default = 5 seconds
     * optional `responseHeaderTimeout` is timeout for reading a response from the socket (seconds), default = 5 seconds
 
-
 !!! note
 
     You can increase `responseHeaderTimeout` if transaction manager responses are too slow.
