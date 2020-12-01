@@ -31,7 +31,7 @@ Raft entries attempting to extend the chain are denoted as:
 `[ 0xbeda Parent: 0xacaa ]`
 
 Where:
- 
+
 * `0xbeda` is the ID of new block
 * `0xacaa` is the ID of the parent of the new block.
 
