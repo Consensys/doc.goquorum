@@ -9,7 +9,7 @@ users to set up a development GoQuorum network on their local machine in less th
 
 ![GoQuorum wizard terminal demo](../../../images/wizard/quorum-wizard.gif)
 
-## Using Quorum Wizard
+## Using GoQuorum Wizard
 
 GoQuorum Wizard is written in Javascript and designed to be run as a global NPM module from the command line. Make sure you have [Node.js/NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed (version 10 or higher).
 

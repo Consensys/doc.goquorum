@@ -28,7 +28,7 @@ Once you have selected this tool and started the network, the Reporting UI can b
 
 ![Splunk](../../../images/splunk.png)
 
-[Splunk](https://splunkbase.splunk.com/app/4866/#/details) is a third-party monitoring solution that works with Quorum. If you add Splunk to your network (docker-compose only), all logs will be directed to the local Splunk container. From there, you can search through the logs, see network metrics, and create custom dashboards with the data that you are interested in.
+[Splunk](https://splunkbase.splunk.com/app/4866/#/details) is a third-party monitoring solution that works with GoQuorum. If you add Splunk to your network (docker-compose only), all logs will be directed to the local Splunk container. From there, you can search through the logs, see network metrics, and create custom dashboards with the data that you are interested in.
 
 Once you have selected this tool and started the network, the Splunk UI will be accessible at [http://localhost:8000](http://localhost:8000)
 
@@ -36,6 +36,6 @@ Once you have selected this tool and started the network, the Splunk UI will be 
 
 ![Prometheus](../../../images/prometheus.png)
 
-[Prometheus](https://prometheus.io) is a third-party metrics and monitoring solution that works with Quorum. If you add Prometheus to your network (kubernetes only), you will be able to generate graphs based on network data. You can also point your own instance of Grafana to Prometheus to get a quick dashboard with blocks/transactions per second, cpu and memory usage, network information, and more.
+[Prometheus](https://prometheus.io) is a third-party metrics and monitoring solution that works with GoQuorum. If you add Prometheus to your network (kubernetes only), you will be able to generate graphs based on network data. You can also point your own instance of Grafana to Prometheus to get a quick dashboard with blocks/transactions per second, cpu and memory usage, network information, and more.
 
 Once you have selected this tool and started the network, run the getEndpoints.sh script to get the endpoint for the Prometheus UI.
