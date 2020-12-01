@@ -65,6 +65,7 @@ nav:
               - Get started: HowTo/GetStarted/Wizard/GettingStarted.md
               - Interacting: HowTo/GetStarted/Wizard/Interacting.md
       - Configure:
+          - Raft consensus: HowTo/Configure/Consensus/Configuring-Raft.md
           - Genesis file: HowTo/Configure/GenesisOptions.md
           - High availability: HowTo/Configure/HighAvailability.md
           - Permissions:
@@ -106,7 +107,10 @@ nav:
       - Consensus:
           - Overview: Concepts/Consensus/Overview.md
           - IBFT: Concepts/Consensus/IBFT.md
-          - Raft: Concepts/Consensus/Raft.md
+          - Raft:
+              - Overview: Concepts/Consensus/Raft.md
+              - Lifecyle Raft transaction: Concepts/Consensus/Lifecycle-Raft-transaction.md
+              - Implementation: Concepts/Consensus/Raft-implementation.md
       - Permissioning:
           - Overview: Concepts/Permissioning/PermissionsOverview.md
           - Basic permissions: Concepts/Permissioning/BasicNetworkPermissions.md
