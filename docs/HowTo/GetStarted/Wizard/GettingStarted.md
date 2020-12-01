@@ -15,7 +15,7 @@ GoQuorum Wizard is written in Javascript and designed to be run as a global NPM 
 
 Using npx to run the wizard without the need to install:
 
-```
+```sh
 npx quorum-wizard
 ```
 
@@ -65,13 +65,14 @@ You can also provide these flags when running quorum-wizard:
 
 ## Interacting with the Network
 
-To explore the features of GoQuorum and deploy a private contract, follow the instructions on [Interacting with the Network](../Interacting/).
+To explore the features of GoQuorum and deploy a private contract, follow the instructions on [Interacting with the Network](Interacting.md).
 
 ## Tools
 
-The wizard provides the option to deploy some useful tools alongside your network. Learn more on the [Tools page](../Tools/).
+The wizard provides the option to deploy some useful tools alongside your network. Learn more on the [Tools page](Tools.md).
 
 ## Developing
+
 Clone this repo to your local machine.
 
 `npm install` to get all the dependencies.
@@ -85,7 +86,9 @@ Clone this repo to your local machine.
 `quorum-wizard` to run (alternatively, you can run `node build/index.js`)
 
 ## Contributing
+
 GoQuorum Wizard is built on open source and we invite you to contribute enhancements. Upon review you will be required to complete a Contributor License Agreement (CLA) before we are able to merge. If you have any questions about the contribution process, please feel free to send an email to [info@goquorum.com](mailto:info@goquorum.com).
 
 ## Getting Help
+
 Stuck at some step? Please join our <a href="https://www.goquorum.com/slack-inviter" target="_blank" rel="noopener">Slack community</a> for support.
