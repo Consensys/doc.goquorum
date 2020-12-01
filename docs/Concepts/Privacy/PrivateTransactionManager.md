@@ -12,11 +12,13 @@ The Private Transaction Manager has two distinct components:
 * Enclave
 
 To enable private transactions, use the `PRIVATE_CONFIG` environment variable when starting a GoQuorum
-node to provide the path to the Privacy Manager's `.ipc` socket. There are two ways to do this, which are described below.
+node to provide the path to the Privacy Manager's `.ipc` socket.
+
+Use the `PRIVATE_CONFIG` environment variable either with a direct path to the IPC socket or with a path to a configuration file as explained in the following sections. 
 
 ## Direct IPC connection configuration
 
-This is the normal method for specifying the IPC socket:
+This is the basic method for specifying the IPC socket:
 
 ```bash
 export PRIVATE_CONFIG=path/to/tm.ipc
@@ -24,13 +26,13 @@ export PRIVATE_CONFIG=path/to/tm.ipc
 
 ## Using an IPC connection configuration file
 
-Alternatively, a TOML configuration file can be used to specify the details of the IPC socket:
+Use a TOML configuration file can to specify more options of the IPC socket:
 
 ```bash
 export PRIVATE_CONFIG=path/to/ipc-config-file.toml
 ```
 
-Using this method allows the configuration of timeouts for the ipc socket. Here is an example of the TOML file:
+Configuration file provides the ability to configure timeouts for the ipc socket.
 
 ```toml
 socket = "tm.ipc"
