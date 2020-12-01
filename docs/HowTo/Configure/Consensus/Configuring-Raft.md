@@ -9,7 +9,7 @@ To enable Raft consensus, specify the `--raft` command line option when starting
 Raft requires that all initial nodes in the cluster are configured as [static peers](https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network#static-nodes).
 The order of the enode IDs in the `static-nodes.json` file must be the same across all peers.
 
-The enode IDs must include a `raftport` querystring parameter specifying the Raft port for each peer. 
+The enode IDs must include a `raftport` querystring parameter specifying the Raft port for each peer.
 
 !!! example
     ```bash
@@ -20,17 +20,17 @@ The enode IDs must include a `raftport` querystring parameter specifying the Raf
 
 To add a verifier node to the cluster, attach to a JS console and issue `raft.addPeer(enodeId)`. 
 
-To add a learner node to the cluster, attach to a JS console and issue `raft.addLearner(enodeId)`. 
+To add a learner node to the cluster, attach to a JS console and issue `raft.addLearner(enodeId)`.
 
-To promote a learner to a verifier in the cluster, attach to a JS console of a leader or verifier node 
+To promote a learner to a verifier in the cluster, attach to a JS console of a leader or verifier node
 and issue `raft.promoteToPeer(raftId)`.
 
 The enode ID must include a `raftport` querystring parameter like the [enode IDs in the `static-nodes.json`
-file](#configuring-raft-consensus). 
+file](#configuring-raft-consensus).
 
 The `addPeer` and `addLearner` calls allocate and return a Raft ID not already in use. After `addPeer`
 or `addLearner`, start the new GoQuorum node with the `--raftjoinexisting RAFTID` command line option
-in addition to `--raft`. Replace `RAFTID` with the Raft ID returned by `addPeer` or `addLearner`. 
+in addition to `--raft`. Replace `RAFTID` with the Raft ID returned by `addPeer` or `addLearner`.
 
 ## Removing Raft members
 
@@ -42,11 +42,11 @@ the node must specify a new Raft ID returned by `addPeer` or `addLearner`.
 
 ## Minting frequency
 
-By default, blocks are minted no more frequently than every 50ms. When transactions arrive: 
+By default, blocks are minted no more frequently than every 50ms. When transactions arrive:
 
-* If it has been at least 50ms since the last block, a new block is minted immediately. 
+* If it has been at least 50ms since the last block, a new block is minted immediately.
 * If it has been less that 50ms, a new block is minted 50ms after the previous block was minted. Waiting
-prevents Raft being flooeded with block. 
+prevents Raft being flooded with blocks.
 
 The rate limiting achieves a balance between transaction throughput and latency.
 
@@ -54,7 +54,7 @@ Configure the minting frequency using the `--raftblocktime` command line option 
 
 ## Raft transport layer
 
-Blocks are communicated over the HTTP transport layer built into [etcd Raft](https://github.com/coreos/etcd). 
+Blocks are communicated over the HTTP transport layer built into [etcd Raft](https://github.com/coreos/etcd).
 
 By default, GoQuorum listens on port 50400 for the Raft transport. Use the `--raftport` command line
 option to change the port.

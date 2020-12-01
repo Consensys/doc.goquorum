@@ -4,14 +4,14 @@ description: Lifecycle of a transaction when using Raft consensus
 
 # Lifecycle of a transaction in Raft
 
-# On any node (minter, follower, or learner)
+## On any node (minter, follower, or learner)
 
 1. The transaction is submitted using an RPC call to GoQuorum.
 1. Using the P2P protocol, the transaction is announced
 to all peers. Raft clusters use static nodes so every transaction
 is sent to all peers in the cluster.
 
-### On the minter
+## On the minter
 
 1. When the transaction reaches the minter, the transaction is included in the next block (see `mintNewBlock`)
 via the transaction pool.
@@ -22,7 +22,7 @@ puts the new block to the `ProtocolManager.blockProposalC` channel.
 blocks and proposes the blocks to Raft. Once the block flows through Raft, this block most likely becomes
 the new head of the blockchain (on all nodes).
 
-### On every node
+## On every node
 
 1. Raft reaches consensus and appends the log entry containing the block to the Raft
 log. At the Raft layer, the leader sends an `AppendEntries` to all
