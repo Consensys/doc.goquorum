@@ -4,7 +4,7 @@ description: Additional tools for GoQuorum network setup wizard command line too
 
 # GoQuorum Wizard Tools
 
-When using the Simple and Custom Network options in the wizard, you are give the option to deploy some tools alongside your network:
+When using the Simple and Custom Network options in the wizard, you can deploy some tools alongside your network:
 
 ![Wizard Tools Selection](../../../images/wizard/WizardTools.png)
 
@@ -12,7 +12,7 @@ When using the Simple and Custom Network options in the wizard, you are give the
 
 ![Cakeshop](../../../images/console.png)
 
-[Cakeshop](https://github.com/ConsenSys/cakeshop) is Quorum's official block explorer and node monitoring tool. You can use it to inspect blocks, deploy contracts, manage peers, and more.
+[Cakeshop](https://github.com/ConsenSys/cakeshop) is GoQuorum's official block explorer and node monitoring tool. You can use it to inspect blocks, deploy contracts, manage peers, and more.
 
 Once you have selected this tool and started the network, it can be accessed at [http://localhost:8999](http://localhost:8999)
 

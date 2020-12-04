@@ -87,7 +87,9 @@ Clone this repo to your local machine.
 
 ## Contributing
 
-GoQuorum Wizard is built on open source and we invite you to contribute enhancements. Upon review you will be required to complete a Contributor License Agreement (CLA) before we are able to merge. If you have any questions about the contribution process, please feel free to send an email to [info@goquorum.com](mailto:info@goquorum.com).
+GoQuorum Wizard is built on open source and we invite you to contribute enhancements.
+Upon review you will be required to complete a Contributor License Agreement (CLA) before we are able to merge.
+If you have any questions about the contribution process, please feel free to send an email to [quorum@consensys.net](mailto:quorum@consensys.net).
 
 ## Getting Help
 
