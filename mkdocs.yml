@@ -277,4 +277,4 @@ plugins:
         quorum.js/Overview.md: Reference/quorum.js/Overview.md
         quorum.js/RawTransactionManager.md: Reference/quorum.js/RawTransactionManager.md
         quorum.js/extend.md: Reference/quorum.js/extend.md
-        Getting Started/Creating-A-Network-From-Scratch.md: Tutorials/Create-IBFT-Network.md
+        Tutorials/Creating-A-Network-From-Scratch.md: Tutorials/Create-IBFT-Network.md
