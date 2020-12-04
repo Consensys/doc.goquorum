@@ -4,7 +4,7 @@ description: Interact with a GoQuorum network created using the wizard
 
 # Interacting with the Network
 
-After following the instructions in [Getting Started](GettingStarted.md), you should have a fully generated local Quorum network. Here are some ways you can interact with the network to try out the features of Quorum.
+After following the instructions in [Getting Started](GettingStarted.md), you should have a fully generated local GoQuorum network. Here are some ways you can interact with the network to try out the features of GoQuorum.
 
 ## Start the Network
 
