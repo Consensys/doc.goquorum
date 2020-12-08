@@ -226,7 +226,7 @@ PRIVATE_CONFIG=/<path to IBFT network>/IBFT-network/Tessera-1/tm.ipc geth --data
 ### 10. Start nodes 2, 3, and 4
 
 In new terminal for each node in each node directory, start the remaining nodes using the same command
-as in the IBFT tutorial. Nodes 2, 3, and 4 do not have an attached Tessera node. 
+as in the IBFT tutorial. Nodes 2, 3, and 4 do not have an attached Tessera node.
 
 === "Node 2"
     ```bash

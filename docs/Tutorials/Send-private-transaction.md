@@ -18,7 +18,7 @@ and send a private transaction.
 
 In the `Node-0` directory, copy and paste the following to a file called `private-contract.js`. On row
 11, replace the placeholder for `privateFor` with the base64 content of the `tessera1.pub` key file.
-For example, `1oRj9qpgnNhr/ZUggeMXnXsWMuVgedS6gfimpEVt+EQ=`. 
+For example, `1oRj9qpgnNhr/ZUggeMXnXsWMuVgedS6gfimpEVt+EQ=`.
 
 ```javascript hl_lines="11" linenums="1"
 a = eth.accounts[0]
@@ -103,7 +103,7 @@ The GoQuorum logs for node 0 indicate the private transaction was sent.
     TRACE[12-08|13:53:09.381] after simulation                         affectedCATxHashes=map[] merkleRoot=000000…000000 privacyFlag=0 error=nil
     INFO [12-08|13:53:09.629] sent private signed tx                   data=606060…00002a hash=f93744…407111 privatefrom= privatefor="[yrrHrbeaXzZCYJ4DPXrunvms1/jy5zDvoH5KnNyW4VE=]" affectedCATxHashes=map[] merkleroot=000000…000000 privacyflag=0
     DEBUG[12-08|13:53:09.629] Handle Private Transaction finished      took=249.112348ms
-    INFO [12-08|13:53:09.630] Private transaction signing with QuorumPrivateTxSigner 
+    INFO [12-08|13:53:09.630] Private transaction signing with QuorumPrivateTxSigner
     ```
 
 The Tessera logs indicate the transaction payload was distributed and received.
