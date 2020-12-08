@@ -266,13 +266,41 @@ except specifying different ports for DevP2P and RPC.
     PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22004 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30304
     ```
 
-### 7. Attach to node 0
+### 9. Attach to node 0
 
 In another terminal in the `Node-0` directory, attach to node 0.
 
 ```bash
 geth attach data/geth.ipc
 ```
+
+### 10. Check peer count 
+
+Use the JavaScript console to check the peer count.
+
+=== "Command"
+    ```bash
+    net.peerCount
+    ```
+
+=== "Result"
+    ```bash
+    4
+    ```
+
+!!! tip
+    If the peer count is 0, check the [`static-nodes.json` was updated with the correct port numbers](#4-update-ip-and-port-numbers)
+    and [copied to the `data` directory for each node](#5-copy-static-nodes-file-and-node-keys-to-each-node).
+    
+    The enode ID displayed in the logs on startup must match the enode listed in `static-nodes.json`
+    for each node including the port number specified using [`--port` on startup](#8-start-node-1-2-3-and-4).
+    The log message is:    
+    
+    ```
+    INFO [12-08|10:44:55.044] Started P2P networking   self="enode://a54bc6e32febe789f9d2da61b370c1cd269ef7a6fdb0ea26b7c3767f56265c4e40e81bfb6e4e1aff56d2a9a8bcae5bfc168f106c2ca81b8eb3dfe09445718629@127.0.0.1:30301?discport=0"
+    ```
+
+### 11. List current validators
 
 Use the Istanbul [`getValidators`](../Reference/Consensus/IBFT-RPC-API.md#istanbulgetvalidators) command to
 view the validator addresses.
