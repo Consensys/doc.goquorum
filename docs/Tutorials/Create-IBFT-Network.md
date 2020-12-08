@@ -238,7 +238,7 @@ PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 
 
 The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled.
 
-### 8. Start node 1, 2, 3, and 4
+### 8. Start nodes 1, 2, 3, and 4
 
 In new terminal for each node in each node directory, start the remaining nodes using the same command
 except specifying different ports for DevP2P and RPC.  

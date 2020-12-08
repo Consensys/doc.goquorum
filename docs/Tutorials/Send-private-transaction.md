@@ -6,7 +6,8 @@ description: Sending private transactions
 
 ## Prerequisites
 
-* [Privacy-enabled network as configured in tutorial](Create-Privacy-enabled-network.md).
+* [Privacy-enabled network running as configured in tutorial](Create-Privacy-enabled-network.md). The
+nodes must be running.
 
 ## Steps
 
@@ -15,10 +16,11 @@ and send a private transaction.
 
 ## 1. Create private contract
 
-In the `Node-0` directory, copy and paste the following to a file called `private-config.js`. Replace
-the placeholder for `privateFor` with the `tessera1.pub` key.
+In the `Node-0` directory, copy and paste the following to a file called `private-contract.js`. On row
+11, replace the placeholder for `privateFor` with the base64 content of the `tessera1.pub` key file.
+For example, `1oRj9qpgnNhr/ZUggeMXnXsWMuVgedS6gfimpEVt+EQ=`. 
 
-```javascript
+```javascript hl_lines="11" linenums="1"
 a = eth.accounts[0]
 web3.eth.defaultAccount = a;
 
@@ -43,26 +45,18 @@ var simple = simpleContract.new(42, {from:web3.eth.accounts[0], data: bytecode, 
 });
 ```
 
-## 2. Create run script
-
-In the `Node-0` directory, create a script called `runscript.sh`.
-
-```bash
-#!/bin/bash
-geth --exec 'loadScript("./private-contract.js")' --datadir=data attach ipc:/<path to IBFT-network>/IBFT-network/Node-0/data/geth.ipc
-```
-
-## 3. Create account
+## 2. Create account
 
 In the `Node-0` directory, create an account.
 
 ```bash
-/geth --datadir data account new
+geth --datadir data account new
 ```
 
-## 4. Unlock account
+## 3. Unlock account
 
-Accounts are locked by default and must be unlocked before sending the transaction.
+Accounts are locked by default and must be unlocked before sending the transaction. Use the Geth
+console to display and unlock the account.
 
 ```bash
 geth attach geth.ipc
@@ -88,24 +82,49 @@ Unlock the account using the account key displayed by `eth.accounts`.
 
 Type in the account password when prompted.
 
-## 5. Send the private transaction
+!!! tip
+    By default, accounts remain unlocked for 5 minutes. After 5 minutes, the account is relocked.
 
-Run the script created in step 2. The contract is deployed and a private transaction sent from node
-1 to node 2.
+## 4. Send the private transaction
+
+In the Geth console, run `loadScript` to deploy the contract and
+send a private transaction from node 1 to node 2.
 
 ```javascript
 loadScript("private-contract.js")
 ```
 
-The GoQuorum logs for node 0 and node 1 display the transaction submission and receipt.
+The GoQuorum logs for node 0 indicate the private transaction was sent.
 
 === "Node 0"
     ```bash
-    INFO [11-30|15:47:16.817] Submitted contract creation              fullhash=0x3a554484aaa5bee8e03995d994960751b551ff88b0ed76509482e668b2dd6150 to=0x76A16Dff1E50c1cD84198DE7Cbb8473F544f5C65
-    INFO [11-30|15:47:16.817] QUORUM-CHECKPOINT                        name=TX-CREATED              tx=0x3a554484aaa5bee8e03995d994960751b551ff88b0ed76509482e668b2dd6150 to=0x76A16Dff1E50c1cD84198DE7Cbb8473F544f5C65
+    DEBUG[12-08|13:53:09.380] sending private tx                       txnType=3 data=606060…00002a privatefrom= privatefor="[yrrHrbeaXzZCYJ4DPXrunvms1/jy5zDvoH5KnNyW4VE=]" privacyFlag=0
+    DEBUG[12-08|13:53:09.381] Simulated Execution EVM call finished    runtime=594ns
+    TRACE[12-08|13:53:09.381] after simulation                         affectedCATxHashes=map[] merkleRoot=000000…000000 privacyFlag=0 error=nil
+    INFO [12-08|13:53:09.629] sent private signed tx                   data=606060…00002a hash=f93744…407111 privatefrom= privatefor="[yrrHrbeaXzZCYJ4DPXrunvms1/jy5zDvoH5KnNyW4VE=]" affectedCATxHashes=map[] merkleroot=000000…000000 privacyflag=0
+    DEBUG[12-08|13:53:09.629] Handle Private Transaction finished      took=249.112348ms
+    INFO [12-08|13:53:09.630] Private transaction signing with QuorumPrivateTxSigner 
+    ```
+
+The Tessera logs indicate the transaction payload was distributed and received.
+
+=== "Node 0"
+    ```bash
+    2020-12-08 13:53:09.390 [qtp1487391298-33] INFO  c.q.tessera.q2t.TransactionResource - Enter Request : POST : /send
+    2020-12-08 13:53:09.525 [pool-5-thread-1] INFO  c.q.tessera.q2t.RestPayloadPublisher - Publishing message to http://localhost:9003/
+    2020-12-08 13:53:09.616 [pool-5-thread-1] INFO  c.q.tessera.q2t.RestPayloadPublisher - Published to http://localhost:9003/
+    2020-12-08 13:53:09.622 [qtp1487391298-33] INFO  c.q.tessera.q2t.TransactionResource - Exit Request : POST : /send
+    2020-12-08 13:53:09.622 [qtp1487391298-33] INFO  c.q.tessera.q2t.TransactionResource - Response for send : 201 Created
     ```
 
 === "Node 1"
     ```bash
-    INFO [11-30|15:47:18.381] QUORUM-CHECKPOINT                        name=TX-COMPLETED tx=0x3a554484aaa5bee8e03995d994960751b551ff88b0ed76509482e668b2dd6150 time=3.431831ms
+    2020-12-08 13:53:09.548 [qtp1564775175-89] INFO  c.q.tessera.p2p.TransactionResource - Enter Request : POST : /push
+    2020-12-08 13:53:09.614 [qtp1564775175-89] INFO  c.q.t.t.TransactionManagerImpl - Stored payload with hash +TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ==
+    2020-12-08 13:53:09.615 [qtp1564775175-89] INFO  c.q.tessera.p2p.TransactionResource - Exit Request : POST : /push
+    2020-12-08 13:53:09.615 [qtp1564775175-89] INFO  c.q.tessera.p2p.TransactionResource - Response for push : 201 Created
+    2020-12-08 13:53:12.024 [qtp1527084496-36] INFO  c.q.tessera.q2t.TransactionResource - Enter Request : GET : /transaction/+TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ==
+    2020-12-08 13:53:12.047 [qtp1527084496-36] INFO  c.q.t.t.TransactionManagerImpl - Lookup transaction +TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ==
+    2020-12-08 13:53:12.088 [qtp1527084496-36] INFO  c.q.tessera.q2t.TransactionResource - Exit Request : GET : /transaction/+TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ==
+    2020-12-08 13:53:12.088 [qtp1527084496-36] INFO  c.q.tessera.q2t.TransactionResource - Response for transaction/+TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ== : 200 OK
     ```
