@@ -2,216 +2,130 @@
 description: Raft Consensus Overview
 ---
 
-# Raft Consensus Overview
+# Raft consensus protocol
 
-## Introduction
+Raft consensus has faster blocktimes, transaction finality, and on-demand block creation.
 
-GoQuorum includes an implementation of a [Raft](https://raft.github.io)-based consensus mechanism (using [etcd](https://github.com/coreos/etcd)'s [Raft implementation](https://github.com/coreos/etcd/tree/master/raft)) as an alternative to Ethereum's default proof-of-work.
+GoQuorum implements [Raft](https://raft.github.io) consensus using the [etcd](https://github.com/coreos/etcd)
+[implementation](https://github.com/coreos/etcd/tree/master/raft).
 
-This is useful for closed-membership/consortium settings where byzantine fault tolerance is not a requirement, and there is a desire for faster block times (on the order of milliseconds instead of seconds) and transaction finality (the absence of forking).
+Use Raft for closed-membership/consortium settings where:
 
-This consensus mechanism does not "unnecessarily" create empty blocks, and effectively creates blocks "on-demand."
+* Byzantine fault tolerance is not required.
+* Faster block times (that is, milliseconds rather than seconds) and transaction finality are required.
 
-When the `geth` binary is passed the `--raft` flag, the node will operate in "Raft mode."
-
-## Some implementation basics
+Raft consensus does not create unnecessary empty blocks, and effectively creates blocks on-demand.
 
 !!! note
-    Though we use the etcd implementation of the Raft protocol, we speak of Raft more broadly to refer to the Raft protocol, and its use to achieve consensus for GoQuorum/Ethereum.
+    GoQuorum implements the [etcd implementation of the Raft protocol](https://github.com/coreos/etcd).
+    In the GoQuorum documentation, the term Raft is used to refer to the Raft protocol, and using
+    Raft to achieve consensus in GoQuorum networks.
 
-Both Raft and Ethereum have their own notion of a "node":
+## Raft nodes
 
-In Raft, a node in normal operation can be a _leader_, _follower_ or _learner_.
-A cluster has only one leader, through which all log entries must flow.
-The concept of a _candidate_ only exists during leader election.
-We won't go into more detail about Raft here, because by design these details are opaque to applications built on it.
-A Raft network can be started with a set of verifiers and one of them would get elected as a leader when the network starts.
-If the leader node dies, re-election is triggered and new leader is elected by the network.
-Once the network is up additional verifier nodes (peers) or learner nodes can be added to this network.
-A summary of each type of nodes is given as the following:
+The concept of Raft nodes and Ethereum nodes are distinct.
+
+A Raft node can be a:
+
+* Leader
+* Follower (also called verifier or peer)
+* Learner.
+
+A cluster has one leader and all log entries flow through the leader.
+
+Additional follower nodes or learner nodes can be added to a running network.
+
+!!! note "Leader election"
+
+    By design, the implementation details of Raft leader elections are opaque to applications built
+    on networks using Raft.
+
+    A candidate exists only during leader election.
+    A Raft network is started with a set of verifiers and one verifier is elected as a leader when the
+    network starts. If the leader node fails, a re-election is triggered and new leader elected by the network.
 
 ### Leader
 
-- mints blocks and sends the blocks to the verifier and learner nodes
-- takes part in voting during re-election and can become verifier if it does not win majority of votes
-- the network triggers re-election if the leader node dies.
-- can add/remove learner/verifier and promote learner to verifier
+A leader node:
 
-### Verifier
+* Mints and sends blocks to the follower and learner nodes.
+* Participates in voting during re-election and becomes a follower if it does not win majority of votes.
+* Can add and remove learner and follower nodes.
+* Can promote learner nodes to follower.
 
-- follows the leader
-- applies the blocks minted by the leader
-- takes part in voting during re-election and can become leader if it wins majority of votes
-- sends confirmation to leader
-- can add/remove learner/verifier and promote learner to verifier
+If the leader node fails, re-election is triggered.
+
+### Follower
+
+A follower node:
+
+* Follows the leader.
+* Applies the blocks minted by the leader.
+* Participates in voting during re-election and becomes a leader if it wins majority of votes.
+* Sends acknowledgements to the leader.
+* Can add and remove learner and follower nodes.
+* Can promote learner nodes to follower.
 
 ### Learner
 
-- follows the leader
-- applies the blocks minted by the leader
-- cannot take part in voting during re-election
-- cannot become a verifier on its own
-- it needs to be promoted to be a verifier by a leader or verifier
-- it cannot add learner/verifier or promote learner to verifier
-- it cannot remove other learner/verifier but it can remove itself
+A learner node:
 
-It should be noted that when a node is added or removed as a verifier (peer), it impacts the Raft quorum.
+* Follows the leader.
+* Applies the blocks minted by the leader.
+* Cannot take part in voting during re-election.
+* Must be promoted to be a follower by a leader or follower.
+* Cannot add learner and follower nodes or promote learner nodes to follower.
+* Cannot remove other learner and follower nodes.
+* Can remove itself.
 
-However adding a node as learner does not change the Raft quorum.
+## Raft quorum
 
-Hence its recommended that when a new node is added to a long running network, the node is first added as a learner. Once the learner node syncs fully with the network, it can then be promoted to become a verifier.
+Adding or removing a follower, changes the Raft quorum. Adding or removing a learner does not
+change the Raft quorum.
 
-In vanilla Ethereum, there is no such thing as a _leader_, _learner_ or _follower_. It's possible for any node in the network to mine a new block -- which is akin to being the leader for that round.
+When a node is added to a long running network, we recommend the node is added
+as a learner. The learner node can be promoted once the node is fully synchronized with
+the network.
 
-In Raft-based consensus, we impose a one-to-one correspondence between Raft and Ethereum nodes: each Ethereum node is also a Raft node, and by convention, the leader of the Raft cluster is the only Ethereum node that should mine (or "mint") new blocks. A minter is responsible for bundling transactions into a block just like an Ethereum miner, but does not present a proof of work.
+## Raft and Ethereum nodes
+
+In Ethereum networks using Proof of Work consensus, any node in the network can mine a new block. That is,
+there are not leader, follower, or learner nodes.
+
+In Raft, there is a one-to-one correspondence between Raft and Ethereum nodes. Each Ethereum node is
+also a Raft node. The leader of the Raft cluster is the only Ethereum node that mints new blocks.
+A minter is responsible for including transactions in a block like an Ethereum miner, but does not
+present a proof of work.
 
 Ethereum | Raft
 -------- | ----
 minter   | leader
 verifier | follower
 
-A learner node is passive node that just syncs blocks and can initiate transactions.
+A learner node is passive node that synchronizes blocks and submits transactions.
 
-The main reasons we co-locate the leader and minter are (1) convenience, in that Raft ensures there is only one leader at a time, and (2) to avoid a network hop from a node minting blocks to the leader, through which all Raft writes must flow. Our implementation watches Raft leadership changes -- if a node becomes a leader it will start minting, and if a node loses its leadership, it will stop minting.
+Reasons for co-locating the leader and minter include:
 
-An observant reader might note that during Raft leadership transitions, there could be a small period of time where more than one node might assume that it has minting duties; we detail how correctness is preserved in the [chain extension, races, and correctness](#chain-extension-races-and-correctness) section.
+* Convenience. Raft ensures there is only one leader at a time.
+* To avoid a network hop from a node minting blocks to the leader through which all Raft writes must flow.
 
-We use the existing Ethereum p2p transport layer to communicate transactions between nodes, but we communicate blocks only through the Raft transport layer. They are created by the minter and flow from there to the rest of the cluster, always in the same order, via Raft.
+The GoQuorum implementation watches Raft leadership changes. If a node
+becomes a leader, it starts minting. If a node loses leadership, it stops minting.
 
-When the minter creates a block, unlike in vanilla Ethereum where the block is written to the database and immediately considered the new head of the chain, we only insert the block or set it to be the new head of the chain once the block has flown through Raft. All nodes will extend the chain together in lock-step as they "apply" their Raft log.
+## Raft communication
 
-From the point of view of Ethereum, Raft is integrated via an implementation of the
-[`Service`](https://godoc.org/github.com/ConsenSys/quorum/node#Service) interface in
-[`node/service.go`](https://github.com/ConsenSys/quorum/blob/master/node/service.go):
-"an individual protocol that can be registered into a node." Another example of a service
-is [`Ethereum`](https://godoc.org/github.com/ConsenSys/quorum/eth#Ethereum).
+Raft uses the Ethereum P2P transport layer to propagate transactions between nodes. Blocks are
+communicated only through the Raft transport layer. Blocks are created by the minter and flow from
+the minter to the rest of the cluster, always in the same order, via Raft.
 
-## The lifecycle of a transaction
+When a minter creates a block, the block is not inserted and set as the new
+head of the chain until the block has flown through Raft. All nodes extend the chain together in
+lock-step when they apply the Raft log.
 
-Let's follow the lifecycle of a typical transaction:
+## Raft configuration
 
-### on any node (whether minter, verifier or learner)
-
-1. The transaction is submitted via an RPC call to geth.
-1. Using the existing (p2p) transaction propagation mechanism in Ethereum, the transaction is announced to all peers and, because our cluster is currently configured to use "static nodes," every transaction is sent to all peers in the cluster.
-
-### on the minter
-
-1. It reaches the minter, where it's included in the next block (see `mintNewBlock`) via the transaction pool.
-1. Block creation triggers a [`NewMinedBlockEvent`](https://godoc.org/github.com/ConsenSys/quorum/core#NewMinedBlockEvent), which the Raft protocol manager receives via its subscription `minedBlockSub`. The `minedBroadcastLoop` (in `raft/handler.go`) puts this new block to the `ProtocolManager.blockProposalC` channel.
-1. `serveLocalProposals` is waiting at the other end of the channel. Its job is to RLP-encode blocks and propose them to Raft. Once it flows through Raft, this block will likely become the new head of the blockchain (on all nodes.)
-
-### on every node
-
-1. _At this point, Raft comes to consensus and appends the log entry containing our block to the Raft log. (The way this happens at the Raft layer is that the leader sends an `AppendEntries` to all followers, and they acknowledge receipt of the message. Once the leader has received a quorum of such acknowledgements, it notifies each node that this new entry has been committed permanently to the log)._
-
-1. Having crossed the network through Raft, the block reaches the `eventLoop` (which processes new Raft log entries.) It has arrived from the leader through `pm.transport`, an instance of `rafthttp.Transport`.
-
-1. The block is now handled by `applyNewChainHead`. This method checks whether the block extends the chain (it's parent is the current head of the chain). If it does not extend the chain, it is simply ignored as a no-op. If it does extend chain, the block is validated and then written as the new head of the chain by [`InsertChain`](https://godoc.org/github.com/ConsenSys/quorum/core#BlockChain.InsertChain).
-
-1. A [`ChainHeadEvent`](https://godoc.org/github.com/ConsenSys/quorum/core#ChainHeadEvent) is posted to notify listeners that a new block has been accepted. This is relevant to us because:
-    - It removes the relevant transaction from the transaction pool.
-    - It removes the relevant transaction from `speculativeChain`'s `proposedTxes` (see below).
-    - It triggers `requestMinting` in (`minter.go`), telling the node to schedule the minting of a new block if any more transactions are pending.
-
-The transaction is now available on all nodes in the cluster with complete finality. Because Raft guarantees a single ordering of entries stored in its log, and because everything that is committed is guaranteed to remain so, there is no forking of the blockchain built upon Raft.
-
-## Chain extension, races, and correctness
-
-Raft is responsible for reaching consensus on which blocks should be accepted into the chain. In the simplest possible scenario, every subsequent block that passes through Raft becomes the new head of the chain.
-
-However, there are rare scenarios in which we can encounter a new block that has passed through Raft that we can not crown as the new head of the chain. In these cases, when applying the Raft log in-order, if we come across a block whose parent is not currently the head of the chain, we simply skip the log entry as a no-op.
-
-The most common case where this can occur is during leadership changes. The leader can be thought of as a recommendation or proxy for who should mint -- and it is generally true that there is only a single minter -- but we do not rely on the maximum of one concurrent minter for correctness. During such a transition it's possible that two nodes are both minting for a short period of time. In this scenario there will be a race, the first block that successfully extends the chain will win, and the loser of the race will be ignored.
-
-Consider the following example where this might occur, where Raft entries attempting to extend the chain are denoted like:
-
-`[ 0xbeda Parent: 0xacaa ]`
-
-Where `0xbeda` is the ID of new block, and `0xacaa` is the ID of its parent. Here, the initial minter (node 1) is partitioned, and node 2 takes over as the minter.
-
-```text
- time                   block submissions
-                   node 1                node 2
-  |    [ 0xbeda Parent: 0xacaa ]
-  |
-  |   -- 1 is partitioned; 2 takes over as leader/minter --
-  |
-  |    [ 0x2c52 Parent: 0xbeda ] [ 0xf0ec Parent: 0xbeda ]
-  |                              [ 0x839c Parent: 0xf0ec ]
-  |
-  |   -- 1 rejoins --
-  |
-  v                              [ 0x8b37 Parent: 0x839c ]
-```
-
-Once the partition heals, at the Raft layer node1 will resubmit `0x2c52`, and the resulting serialized log might look as follows:
-
-```text
-[ 0xbeda Parent: 0xacaa - Extends! ]  (due to node 1)
-[ 0xf0ec Parent: 0xbeda - Extends! ]  (due to node 2; let's call this the "winner")
-[ 0x839c Parent: 0xf0ec - Extends! ]  (due to node 2)
-[ 0x2c52 Parent: 0xbeda - NO-OP.   ]  (due to node 1; let's call this the "loser")
-[ 0x8b37 Parent: 0x839c - Extends! ]  (due to node 2)
-```
-
-Due to being serialized after the "winner," the "loser" entry will not extend the chain, because its parent (`0xbeda`) is no longer at the head of the chain when we apply the entry. The "winner" extended the same parent (`0xbeda`) earlier (and then `0x839c` extended it further.)
-
-Note that each block is accepted by Raft and serialized in the log, and that this "Extends"/"No-op" designation occurs at a higher level in our implementation. From Raft's point of view, each log entry is valid, but at the GoQuorum-Raft level, we choose which entries will be "used," and will actually extend the chain. This chain extension logic is deterministic: the same exact behavior will occur on every single node in the cluster, keeping the blockchain in sync.
-
-Also note how our approach differs from the "longest valid chain" (LVC) mechanism from vanilla Ethereum. LVC is used to resolve forks in a network that is eventually consistent. Because we use Raft, the state of the blockchain is strongly consistent. There can not be forks in the Raft setting. Once a block has been added as the new head of the chain, it is done so for the entire cluster, and it is permanent.
-
-## Minting frequency
-
-As a default, we mint blocks no more frequently than every 50ms. When new transactions come in we will mint a new block immediately (so latency is low), but we will only mint a block if it's been at least 50ms since the last block (so we don't flood Raft with blocks). This rate limiting achieves a balance between transaction throughput and latency.
-
-This default of 50ms is configurable via the `--raftblocktime` flag to geth.
-
-## Speculative minting
-
-One of the ways our approach differs from vanilla Ethereum is that we introduce a new concept of "speculative minting." This is not strictly required for the core functionality of Raft-based Ethereum consensus, but rather it is an optimization that affords lower latency between blocks (or: faster transaction "finality.")
-
-It takes some time for a block to flow through Raft (consensus) and become the head of the chain. If we synchronously waited for a block to become the new head of the chain before creating the new block, any transactions that we receive would take more time to make it into the chain.
-
-In speculative minting we allow the creation of a new block (and its proposal to Raft) before its parent has made it all the way through Raft and into the blockchain.
-
-Since this can happen repeatedly, these blocks (which each have a reference to their parent block) can form a sort of chain. We call this a "speculative chain."
-
-During the course of operation that a speculative chain forms, we keep track of the subset of transactions in the pool that we have already put into blocks (in the speculative chain) that have not yet made it into the blockchain (and whereupon a [`core.ChainHeadEvent`](https://godoc.org/github.com/ConsenSys/quorum/core#ChainHeadEvent) occurs.) These are called "proposed transactions" (see `speculative_chain.go`).
-
-Per the presence of "races" (as we detail above), it is possible that a block somewhere in the middle of a speculative chain ends up not making into the chain. In this scenario an [`InvalidRaftOrdering`](https://godoc.org/github.com/ConsenSys/quorum/raft#InvalidRaftOrdering) event will occur, and we clean up the state of the speculative chain accordingly.
-
-These speculative chains currently have no length limit, but we plan to add support for this in the future. As a consequence, a minter can currently create arbitrarily many blocks back-to-back in a scenario where Raft stops making progress.
-
-### State in a speculative chain
-
-- `head`: The last-created speculative block. This can be `nil` if the last-created block is already included in the blockchain.
-- `proposedTxes`: The set of transactions which have been proposed to Raft in some block, but not yet included in the blockchain.
-- `unappliedBlocks`: A queue of blocks which have been proposed to Raft but not yet committed to the blockchain.
-    - When minting a new block, we enqueue it at the end of this queue
-    - `accept` is called to remove the oldest speculative block when it's accepted into the blockchain.
-    - When an [`InvalidRaftOrdering`](https://godoc.org/github.com/ConsenSys/quorum/raft#InvalidRaftOrdering) occurs, we unwind the queue by popping the most recent blocks from the "new end" of the queue until we find the invalid block. We must repeatedly remove these "newer" speculative blocks because they are all dependent on a block that we know has not been included in the blockchain.
-- `expectedInvalidBlockHashes`: The set of blocks which build on an invalid block, but haven't passsed through Raft yet. We remove these as we get them back. When these non-extending blocks come back through Raft we remove them from the speculative chain. We use this set as a "guard" against trying to trim the speculative chain when we shouldn't.
-
-## The Raft transport layer
-
-We communicate blocks over the HTTP transport layer built in to etcd Raft. It's also (at least theoretically) possible to use the p2p protocol built-in to Ethereum as a transport for Raft. In our testing we found the default etcd HTTP transport to be more reliable than the p2p (at least as implemented in geth) under high load.
-
-GoQuorum listens on port 50400 by default for the Raft transport, but this is configurable with the `--raftport` flag.
-
-Default number of peers is set to be 25. Max number of peers is configurable with the `--maxpeers N` where N is expected size of the cluster.
-
-## Initial configuration, and enacting membership changes
-
-Currently Raft-based consensus requires that all _initial_ nodes in the cluster are configured to list the others up-front as [static peers](https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network#static-nodes). These enode ID URIs _must_ include a `raftport` querystring parameter specifying the Raft port for each peer: for example, `enode://abcd@127.0.0.1:30400?raftport=50400`. Note that the order of the enodes in the `static-nodes.json` file needs to be the same across all peers.
-
-To remove a node from the cluster, attach to a JS console and issue `raft.removePeer(raftId)`, where `raftId` is the number of the node you wish to remove. For initial nodes in the cluster, this number is the 1-indexed position of the node's enode ID in the static peers list. Once a node has been removed from the cluster, it is permanent; this Raft ID can not ever re-connect to the cluster in the future, and the party must re-join the cluster with a new Raft ID.
-
-- To add a verifier node to the cluster, attach to a JS console and issue `raft.addPeer(enodeId)`
-- To add a learner node to the cluster, attach to a JS console and issue `raft.addLearner(enodeId)`
-- To promote a learner to become verifier in the cluster, attach to a JS console of leader/verifier node and issue `raft.promoteToPeer(raftId)`.
-
-Note that like the enode IDs listed in the static peers JSON file, this enode ID should include a `raftport` querystring parameter. This call will allocate and return a Raft ID that was not already in use. After `addPeer`, start the new geth node with the flag `--raftjoinexisting RAFTID` in addition to `--raft`.
+* [How to configure Raft](../../HowTo/Configure/Consensus/Configuring-Raft.md)
+* [Create a Raft network from scratch](../../Tutorials/Create-a-Raft-network.md)
 
 ## FAQ
 

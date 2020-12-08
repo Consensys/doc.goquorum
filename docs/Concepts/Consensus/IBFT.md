@@ -4,6 +4,9 @@ description: IBFT Consensus Overview
 
 # IBFT Consensus Overview
 
+A PBFT-inspired consensus algorithm with immediate transaction finality, by AMIS.
+See this [technical web article](https://medium.com/getamis/istanbul-bft-ibft-c2758b7fe6ff).
+
 ## Introduction
 
 Istanbul Byzantine Fault Tolerant (IBFT) consensus is inspired by [Castro-Liskov 99 paper](http://pmg.csail.mit.edu/papers/osdi99.pdf).
