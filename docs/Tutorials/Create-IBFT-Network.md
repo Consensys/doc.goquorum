@@ -274,7 +274,7 @@ In another terminal in the `Node-0` directory, attach to node 0.
 geth attach data/geth.ipc
 ```
 
-### 10. Check peer count 
+### 10. Check peer count
 
 Use the JavaScript console to check the peer count.
 
@@ -291,7 +291,7 @@ Use the JavaScript console to check the peer count.
 !!! tip
     If the peer count is 0, check the [`static-nodes.json` was updated with the correct port numbers](#4-update-ip-and-port-numbers)
     and [copied to the `data` directory for each node](#5-copy-static-nodes-file-and-node-keys-to-each-node).
-    
+
     The enode ID displayed in the logs on startup must match the enode listed in `static-nodes.json`
     for each node including the port number specified using [`--port` on startup](#8-start-node-1-2-3-and-4).
     The log message is:    
