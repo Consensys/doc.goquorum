@@ -56,7 +56,7 @@ or zero, the transaction is assumed to be a "non-privacy enhanced" SP transactio
 
 ### Privacy Metadata and Privacy Metadata Trie
 
-Privacy Metadata is a new structure introduced in GoQuorum. It is stored in the goquorum DB in the privacy
+Privacy Metadata is a new structure introduced in GoQuorum. It is stored in the GoQuorum DB in the privacy
 metadata trie (which is linked to the private state via root hash mappings). The Privacy Metadata contains
 the ACOTH and privacyFlag.
 
@@ -73,7 +73,7 @@ affecting those contracts.
 
 In order to discover what ACOTH(s) to attach to a transaction the GoQuorum node simulates the execution
 of the proposed transaction. The result of the simulation relies on the current state of the chain.
-The ethereum VM has been enhanced to track the contracts involved in the simulated transaction.
+The Ethereum VM has been enhanced to track the contracts involved in the simulated transaction.
 At the end of the simulation the EVM can report all the created/invoked contract addresses.
 Coupled with the privacy metadata described above it is easy to translate contract addresses to ACOTHs
 and attach them to the proposed transaction.
@@ -138,10 +138,10 @@ the node is ready to support privacy enhanced contracts/transactions.
 
 An upgraded GoQuorum node can coexist on a network where other nodes are running on lower version of
 GoQuorum and thus supports node by node upgrade. But it cannot support privacy enhanced contracts until
-all interested nodes are upgraded and privacy "enabled".
+all interested nodes are upgraded and privacy is enabled.
 If an upgraded but privacy not "enabled" node receives a PSV or PP transaction the node would log a
 `BAD BLOCK` error with “Privacy enhanced transaction received while privacy enhancements are disabled.
-Please check your node configuration.” error message. If the consensus algorithm is raft, the node would stop.
+Please check your node configuration.” error message. If the consensus algorithm is Raft, the node would stop.
 For Istanbul, the node would keep trying to append the problematic block and reprint the above errors and
 it won't catch up with rest of nodes until restarted and reinitialized with the correct `privacyEnhancementsBlock`.
 

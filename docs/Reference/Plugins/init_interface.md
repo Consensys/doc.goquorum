@@ -22,7 +22,7 @@ RPC service to initialize the plugin after plugin process is started successfull
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Init | [PluginInitialization.Request](#proto_common.PluginInitialization.Request) | [PluginInitialization.Response](#proto_common.PluginInitialization.Response) |  |
+| Init | [`PluginInitialization.Request`](#proto_common.PluginInitialization.Request) | [`PluginInitialization.Response`](#proto_common.PluginInitialization.Response) |  |
 
  <!-- end services -->
 

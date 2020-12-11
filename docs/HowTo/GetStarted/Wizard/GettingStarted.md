@@ -32,11 +32,11 @@ Note: Many installations of npm don't have permission to install global modules 
 
 ## Dependencies
 
-Here are the dependencies (in addition to NodeJS 10+) that are required depending on the mode that you run the wizard in:
+Here are the dependencies (in addition to Nodejs 10+) that are required depending on the mode that you run the wizard in:
 
 Bash:
 
-- Java (when running Tessera and/or Cakeshop)
+- Java (when running Tessera or Cakeshop)
 
 Docker Compose:
 
@@ -55,7 +55,7 @@ You can also provide these flags when running quorum-wizard:
 
 | Flags | Effect |
 | - | - |
-| `-q`, `--quickstart` | Create 3 node raft network with tessera and cakeshop (no user-input required) |
+| `-q`, `--quickstart` | Create 3 node Raft network with Tessera and Cakeshop (no user-input required) |
 | `generate --config <PATH>` | Generate a network from an existing config.json file |
 | `-r`, `--registry <REGISTRY>` | Use a custom docker registry (instead of registry.hub.docker.com) |
 | `-o`, `--outputPath <PATH>` | Set the output path. Wizard will place all generated files into this folder. Defaults to the location where Wizard is run |
@@ -89,7 +89,7 @@ Clone this repo to your local machine.
 
 GoQuorum Wizard is built on open source and we invite you to contribute enhancements.
 Upon review you will be required to complete a Contributor License Agreement (CLA) before we are able to merge.
-If you have any questions about the contribution process, please feel free to send an email to [quorum@consensys.net](mailto:quorum@consensys.net).
+If you have any questions about the contribution process, please feel free to send an email to [`quorum@consensys.net`](mailto:quorum@consensys.net).
 
 ## Getting Help
 

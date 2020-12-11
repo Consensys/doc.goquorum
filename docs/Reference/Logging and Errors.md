@@ -128,7 +128,7 @@ This is our take on cataloguing of error messages along with possible cause and 
 | `Fatal: Error starting protocol stack: can't download from Plugin Central due to: HTTP GET error: code=404, status=404 Not Found, body=The requested path was not found.. Please download the plugin manually and copy it to <dir>` | The provided plugin config does not match any available plugins in the Central server | Check `name` and `version` fields in [plugin definition config](../HowTo/Configure/Plugins.md#plugindefinition) are correct |
 | `Fatal: Error starting protocol stack: stat <dir>/Central.pgp.pk: no such file or directory` | A default public key cannot be found to [verify the integrity of plugins](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) | Create the necessary key at this path or use the `--plugins.publickey` flag to use an alternative path |
 | `"plugins: unable to create reader due to %s", err` | An issue occurred when reading the plugin config file specified with `--plugin`. | Ensure the correct config file name is specified on the command line and [contents are correct](../Concepts/Plugins/Plugins.md#plugin-integrity-verification). The logged message will contain further details which may help. |
-| `"plugins: unable to resolve plugin base dir due to %s", err` | There is an issue with the value of `baseDir` in the plugin config file specified with `--plugin`. | Ensure the `baseDir` value is correct in the [config file](../Concepts/Plugins/Plugins.md#plugin-integrity-verification). The logged message will contain further details which may help. |
+| `"plugins: unable to resolve plugin base dir due to %s", err` | Incorrect value of `baseDir` in the plugin config file specified with `--plugin`. | Ensure the `baseDir` value is correct in the [config file](../Concepts/Plugins/Plugins.md#plugin-integrity-verification). The logged message will contain further details which may help. |
 | `"Plugin failed to start", "error", err, "took", time.Since(startTime)` | GoQuorum failed to start a configured plugin. | Ensure that all vaues in the [config file](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) are correct and that any required separate plugin processes are running. The logged message will contain further details which may help. |
 | `"Error parsing version components from the tessera version: %s. Unable to extract transaction manager features.", version` | GoQuorum is configured to use Tessera as the transaction manager, but failed to parse the API version number returned by the running Tessera process. | This is most likely due to using an older version of Tessera, prior to v1.0. You should upgrade your Tessera (note that geth will continue to run, but some privacy features may not be available). |
 | `"Error invoking the tessera /version/api API: %v.", err` | GoQuorum is configured to use Tessera as the transaction manager, but failed to retrieve the API version number from the running Tessera process. | This is most likely due to using an older version of Tessera, prior to v1.0. You should upgrade your Tessera (note that geth will continue to run, but some privacy features may not be available). |
@@ -139,7 +139,9 @@ This is our take on cataloguing of error messages along with possible cause and 
 
 ### Impossible reorganisation (reorg) issue
 
-Impossible reorganisation issues can occur if there was an issue during sync. There are a number of potential causes:
+Impossible reorganisation issues can occur if there was an issue during sync.
+
+Possible causes are:
 
 - Node was not cleanly shutdown previously, causing database corruption
 - An edge case where two sealers generate blocks at the exact same time (depends on consensus type in use)

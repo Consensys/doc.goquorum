@@ -78,7 +78,7 @@ Cakeshop can start in multiple modes (see the sections below for details on each
     ```
 
     !!! warning
-        This command will unpack the war file and set up the cakeshop data folders but will not actually start a node
+        This command will unpack the war file and set up the Cakeshop data folders but will not actually start a node
 
 1. Navigate to `path/to/cakeshop/war/data/local`
 
