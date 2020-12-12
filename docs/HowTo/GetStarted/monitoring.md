@@ -19,9 +19,9 @@ Use GoQuorum `--metrics` and  `--pprof` [command line options](#command-line-opt
 
 Use GoQuorum [`--metric.influxdb` command line option and associated flags](#command-line-options) to push the metrics data to [InfluxDB](https://www.influxdata.com/products/influxdb-overview/).
 
-The complete list of flags are as given below:
+### Command line options
 
-```bash
+```text
 LOGGING AND DEBUGGING OPTIONS:
   --pprof                             Enable the pprof HTTP server
   --pprofaddr value                   pprof HTTP server listening interface (default: "127.0.0.1")
@@ -38,7 +38,9 @@ METRICS AND STATS OPTIONS:
   --metrics.influxdb.tags value       Comma-separated InfluxDB tags (key/values) attached to all measurements (default: "host=localhost")
 ```
 
-**!!NOTE** `pprof` http end point should not be exposed to public internet as this can be used to trigger resource intensive operations
+!!!note
+    Do not expose `pprof` HTTP end point to public Internet!
+    This end point can be used to trigger resource intensive operations.
 
 ## Metrics Visualization
 
