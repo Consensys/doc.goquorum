@@ -43,7 +43,7 @@ METRICS AND STATS OPTIONS:
 GoQuorum metrics data can be visualised with many dashboard tools.
 The following screenshots are from [Grafana](https://grafana.com/).
 
-![dashboard-1](../../images/dashboard_grafana_1.png)
+![Grafana system, network and chain infos screenshot](../../images/dashboard_grafana_1.png)
 
 ![dashboard-1](../../images/dashboard_grafana_2.png)
 
