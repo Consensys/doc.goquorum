@@ -47,4 +47,5 @@ The following screenshots are from [Grafana](https://grafana.com/).
 
 ![Grafana detailed chain infos screenshot](../../images/dashboard_grafana_2.png)
 
-*The above dashboards were built with minor changes to [this](https://github.com/karalabe/geth-prometheus)*
+!!!note
+    The above dashboards are inspired by [`karalabe/geth-prometheus` project](https://github.com/karalabe/geth-prometheus).
