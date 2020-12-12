@@ -40,7 +40,8 @@ METRICS AND STATS OPTIONS:
 
 ## Metrics Visualization
 
-The metrics data collected can be easily exposed to different visualization tools. Shown below are the GoQuorum monitoring dashboard with [Grafana](https://grafana.com/).
+GoQuorum metrics data can be visualised with many dashboard tools.
+The following screenshots are from [Grafana](https://grafana.com/).
 
 ![dashboard-1](../../images/dashboard_grafana_1.png)
 
