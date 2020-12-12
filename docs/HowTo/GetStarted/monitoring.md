@@ -38,7 +38,7 @@ METRICS AND STATS OPTIONS:
   --metrics.influxdb.tags value       Comma-separated InfluxDB tags (key/values) attached to all measurements (default: "host=localhost")
 ```
 
-!!!note
+!!!warning
     Do not expose `pprof` HTTP end point to public Internet!
     This end point can be used to trigger resource intensive operations.
 
