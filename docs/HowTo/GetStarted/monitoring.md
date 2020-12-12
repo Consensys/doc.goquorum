@@ -8,7 +8,8 @@ This page explains how to configure a GoQuorum node to provide enhanced metrics 
 
 ## Metrics Collection
 
-For node monitoring, the first step is to gather the metrics data and expose the gathered data for consumption by the monitoring tools. GoQuroum node can be instructed to gather metrics data and expose the same to external world via [ExpVars](https://golang.org/pkg/expvar/), [InfluxDB](https://www.influxdata.com/products/influxdb-overview/) or [Prometheus](https://prometheus.io/)
+Node monitoring requires to collect metrics data and expose them to the monitoring tools.
+GoQuorum node can collect and expose the data to [ExpVars](https://golang.org/pkg/expvar/), [InfluxDB](https://www.influxdata.com/products/influxdb-overview/) or [Prometheus](https://prometheus.io/)
 
 * Bringing up GoQuorum node with `--metrics --pprof` will expose the metrics data in `expvar` format at `http://127.0.0.1:6060/debug/metrics`
 
