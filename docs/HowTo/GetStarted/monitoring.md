@@ -15,7 +15,7 @@ GoQuorum node can collect and expose the data to [ExpVars](https://golang.org/pk
 
 * Bringing up GoQuorum node with `--metrics --pprof` will also expose the metrics data in Prometheus format at `http://127.0.0.1:6060/debug/metrics/prometheus`
 
-* The metrics data can be pushed to [InfluxDB](https://www.influxdata.com/products/influxdb-overview/) by bringing the node up with `--metric.influxdb` and related flags.
+* Use GoQuorum [`--metric.influxdb` command line option and associated flags](#command-line-options) to push the metrics data to [InfluxDB](https://www.influxdata.com/products/influxdb-overview/).
 
 The complete list of flags are as given below:
 
