@@ -11,11 +11,13 @@ This page explains how to configure a GoQuorum node to provide enhanced metrics 
 Node monitoring requires to collect metrics data and expose them to the monitoring tools.
 GoQuorum node can collect and expose the data to [ExpVars](https://golang.org/pkg/expvar/), [InfluxDB](https://www.influxdata.com/products/influxdb-overview/) or [Prometheus](https://prometheus.io/)
 
-* Bringing up GoQuorum node with `--metrics --pprof` will expose the metrics data in `expvar` format at `http://127.0.0.1:6060/debug/metrics`
+Use GoQuorum `--metrics` and  `--pprof` [command line options](#command-line-options) to expose the metrics data:
 
-* Bringing up GoQuorum node with `--metrics --pprof` will also expose the metrics data in Prometheus format at `http://127.0.0.1:6060/debug/metrics/prometheus`
+* In ExpVar format at `http://127.0.0.1:6060/debug/metrics`
 
-* Use GoQuorum [`--metric.influxdb` command line option and associated flags](#command-line-options) to push the metrics data to [InfluxDB](https://www.influxdata.com/products/influxdb-overview/).
+* In Prometheus format at `http://127.0.0.1:6060/debug/metrics/prometheus`
+
+Use GoQuorum [`--metric.influxdb` command line option and associated flags](#command-line-options) to push the metrics data to [InfluxDB](https://www.influxdata.com/products/influxdb-overview/).
 
 The complete list of flags are as given below:
 
