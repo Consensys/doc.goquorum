@@ -4,7 +4,7 @@ GoQuorum version 2.6.0 upgraded to Geth version 1.9.7.
 Upgrade adds the ability to collect enhanced metrics which can then be used in different visualization tools for node monitoring.
 Refer to [Geth v1.9.0](https://blog.ethereum.org/2019/07/10/geth-v1-9-0/) for complete list of added features.
 
-This page summarizes ways in which a GoQuorum node can be brought up to collect enhanced metrics and thus enable node monitoring.
+This page explains how to configure a GoQuorum node to provide enhanced metrics and enable monitoring.
 
 ## Metrics Collection
 
