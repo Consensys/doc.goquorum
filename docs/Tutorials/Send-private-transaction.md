@@ -16,8 +16,8 @@ and send a private transaction.
 
 ## 1. Create private contract
 
-In the `Node-0` directory, copy and paste the following to a file called `private-contract.js`. On row
-11, replace the placeholder for `privateFor` with the base64 content of the `tessera1.pub` key file.
+In the `Node-0` directory, copy and paste the following to a file called `private-contract.js`. On the
+highlighted line, replace the placeholder for `privateFor` with the base64 content of the `tessera1.pub` key file.
 For example, `1oRj9qpgnNhr/ZUggeMXnXsWMuVgedS6gfimpEVt+EQ=`.
 
 ```javascript hl_lines="11" linenums="1"
