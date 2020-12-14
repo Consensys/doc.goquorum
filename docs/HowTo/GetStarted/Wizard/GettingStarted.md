@@ -89,7 +89,8 @@ Clone this repo to your local machine.
 
 GoQuorum Wizard is built on open source and we invite you to contribute enhancements.
 Upon review, you will be required to complete a Contributor License Agreement (CLA) before we are able to merge.
-If you have any questions about the contribution process, please feel free to ask the [GoQuorum Slack community].
+If you have any questions about the contribution process, you can get
+them answered by the [GoQuorum Slack community].
 
 ## Getting Help
 
