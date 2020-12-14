@@ -61,6 +61,7 @@ nav:
           - With Cakeshop: HowTo/GetStarted/Cakeshop.md
           - With Qubernetes (K8s):  HowTo/GetStarted/Getting-Started-Qubernetes.md
           - Upgrade to 2.6.0: HowTo/GetStarted/migration.md
+          - Monitoring a GoQuorum node: HowTo/GetStarted/monitoring.md
           - With GoQuorum Wizard:
               - Get started: HowTo/GetStarted/Wizard/GettingStarted.md
               - Interacting: HowTo/GetStarted/Wizard/Interacting.md
