@@ -265,7 +265,7 @@ API to remove a node from Raft cluster
 
 ## `raft_addLearner`
 
-API to add a new node to the network as a learner node. The learner node syncs with network and can transact but will not be part of raft GoQuorum and hence will not provide block confirmation to minter node.
+API to add a new node to the network as a learner node. The learner node syncs with network and can transact but is not part of Raft GoQuorum and does not provide block confirmation to minter node.
 
 ### Parameters
 

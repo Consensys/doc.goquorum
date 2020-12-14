@@ -29,7 +29,7 @@ extra:
     company: ConsenSys
     tool: Slack
     faq: https://consensys.net/quorum/faq
-    channel: https://93ecjxb0d3.execute-api.us-east-1.amazonaws.com/Express/
+    channel: https://www.goquorum.com/slack-inviter
     email: quorum@consensys.net
     website: https://consensys.net/
     lead_gen: https://consensys.net/quorum/contact-us

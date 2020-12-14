@@ -121,7 +121,7 @@ repository.
 
     Returns `null`.
 
-    Again, you may have to wait 5 - 10 seconds for the snapshot to show the vote
+    Again, you may have to wait 5--10 seconds for the snapshot to show the vote
 
     ```bash
     docker exec -it addnode_node2_1 geth --exec 'istanbul.getSnapshot();' attach /qdata/dd/geth.ipc

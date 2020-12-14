@@ -9,7 +9,7 @@ Start the process of extending an existing private contract to a new participant
 #### Parameters
 
 * `toExtend`: address of the private contract to extend
-* `newRecipientPtmPublicKey`: the new participant's Private Transaction Manager (PTM) (e.g. Tessera) public key
+* `newRecipientPtmPublicKey`: the new participant's Private Transaction Manager (PTM) (for example, Tessera) public key
 * `recipientAddress`: the new participant's Ethereum address - the participant will later need to approve the extension using this address
 * `txArgs`: arguments for the transaction that deploys the extension management contract - `privateFor` must contain only the `newRecipientPtmPublicKey`
 
@@ -266,4 +266,4 @@ Get the status of a specific contract extension
         "DONE"
         ```
 
-*[PTM]: Private Transaction Manager (e.g. Tessera)
+*[PTM]: Private Transaction Manager (for example, Tessera)
