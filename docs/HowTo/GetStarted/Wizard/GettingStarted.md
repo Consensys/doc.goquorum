@@ -88,9 +88,11 @@ Clone this repo to your local machine.
 ## Contributing
 
 GoQuorum Wizard is built on open source and we invite you to contribute enhancements.
-Upon review you will be required to complete a Contributor License Agreement (CLA) before we are able to merge.
-If you have any questions about the contribution process, please feel free to send an email to [`quorum@consensys.net`](mailto:quorum@consensys.net).
+Upon review, you will be required to complete a Contributor License Agreement (CLA) before we are able to merge.
+If you have any questions about the contribution process, please feel free to ask the [GoQuorum Slack community].
 
 ## Getting Help
 
-Stuck at some step? Please join our <a href="https://www.goquorum.com/slack-inviter" target="_blank" rel="noopener">Slack community</a> for support.
+Stuck at some step? Please join our [GoQuorum Slack community] for support.
+
+[GoQuorum Slack community]: https://www.goquorum.com/slack-inviter
