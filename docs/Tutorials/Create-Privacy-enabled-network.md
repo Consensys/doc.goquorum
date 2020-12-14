@@ -203,7 +203,7 @@ java -jar <path to Tessera>/tessera.jar -configfile config.json
 
 ### 8. Start GoQuorum node 0
 
-In the `Node-0` directory, start start GoQuorum node 0 specifying the Tessera 0 node to attach to.
+In the `Node-0` directory, start GoQuorum node 0 specifying the Tessera 0 node to attach to.
 Replace `<path to IBFT network>` with the path to your network.
 
 ```bash
@@ -216,7 +216,7 @@ PRIVATE_CONFIG=/<path to IBFT network>/IBFT-network/Tessera-0/tm.ipc geth --data
 
 ### 9. Start GoQuorum node 1
 
-In the `Node-1` directory, start start GoQuorum node 1 specifying the Tessera 1 node to attach to.
+In the `Node-1` directory, start GoQuorum node 1 specifying the Tessera 1 node to attach to.
 Replace `<path to IBFT network>` with the path to your network.
 
 ```bash
