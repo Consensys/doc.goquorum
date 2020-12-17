@@ -3,27 +3,84 @@
 ## Pre-requisites
 
 * Supply `--multitenancy` command line flag to GoQuorum
-* Configure [JSON RPC Security plugin](../../HowTo/Use/JSON-RPC-API-Security/#configuration) for GoQuorum
+* Configure [JSON RPC Security plugin](../JSON-RPC-API-Security/#configuration) for GoQuorum
 * Use Tessera version `20.10.1` and above
 
 ## Network Topology
 
-A network can consist of multitenant nodes and single-tenant nodes.
-More than one authorization servers can be used in the network.
+A network can consist of multitenant nodes and single-tenant nodes. One or more independent authorization servers can be used 
+to protect multitenant nodes, however one multitenant node can only be protected by one authorization server.
 
-## Typical Use Case
+## Example
 
-`J Organization`
-    * `J Investment`
-    * `J Settlemment`
-    * `J Audit`
-`G Organization`
-    * `G Investment`
-    * `G Settlemment`
-    * `G Research`
-    * `G Audit`
-`D Organization`
-    * `D Investment`
+This section outlines an example of how multitenancy can be setup. A network operator can 
+reference on how to entitle `scope` values for each client in an authorization server for each tenant.
+A GoQuorum network contains 4 nodes, 2 of which are multitenant nodes, assuming those are `Node1` and `Node2`.
+
+!!! note
+    A node consists of GoQuorum client and Tessera Private Transaction Manager.
+    <br/><br/>
+    We name Privacy Manager key pairs (for example, `J_K1` or `G_K1`) for easy referencing. In reality, their values are the pubic keys being used
+    in `privateFor` and `privateFrom` fields.
+
+Privacy Manager key pairs are allocated as below:
+
+* `Node1` manages `J_K1`, `J_K2`, `G_K1` and `G_K3`
+* `Node2` manages `G_K2`, `D_K1`
+
+Tenants are assigned to multitenant nodes as below:
+
+* `J Organization` owns `J_K1` and `J_K2`; hence has its tenancy on `Node1`
+* `G Organization` owns `G_K1`, `G_K2` and `G_K3`; hence has its tenancy on `Node1` and `Node2`
+* `D Organization` owns `D_K1`; hence has its tenancy on `Node2`
+
+In practice, `J Organization`, `G Organization` and `D Organization` may decide to allocate keys to their
+departments, hence the security model could be as below:
+
+* `J Organization` has:
+    * `J Investment` owning `J_K1`
+    * `J Settlement` owning `J_K2`
+    * `J Audit` having READ access to contracts in which `J_K1` and `J_K2` are participants
+* `G Organization` has:
+    * `G Investment` owning `G_K1`
+    * `G Settlement` owning `G_K2`
+    * `G Research` owning `G_K3`
+    * `G Audit` having READ access to contracts in which `G_K1`, `G_K2` and `G_K3` are participants
+* `D Organization` has:
+    * `D Investment` owning `D_K1`
+
+Each authorization server has its own configuration steps and client onboarding process. 
+A network operator's responsibility is to implement the above security model in the authorization server by 
+defining [custom scopes](../../../Concepts/Multitenancy/Overview/#access-token-scope) and granting them to target clients. 
+
+A custom scope representing __`J Investment` owning `J_K1`__,
+<br/>where `J_K1=8SjRHlUBe4hAmTk3KDeJ96RhN+s10xRrHDrxEi1O5W0=`, 
+<br/>would be 
+
+```
+private://0x0/_/contracts?owned.eoa=0x0&from.tm=8SjRHlUBe4hAmTk3KDeJ96RhN%2bs10xRrHDrxEi1O5W0%3d
+```
+
+Custom scopes representing __`J Audit` having READ access to contracts in which `J_K1` and `J_K2` are participants__, 
+<br/>where `J_K1=8SjRHlUBe4hAmTk3KDeJ96RhN+s10xRrHDrxEi1O5W0=`
+<br/>and `J_K2=2T7xkjblN568N1QmPeElTjoeoNT4tkWYOJYxSMDO5i0=`,
+<br/>would be
+
+```
+private://0x0/read/contracts?owned.eoa=0x0&from.tm=8SjRHlUBe4hAmTk3KDeJ96RhN%2bs10xRrHDrxEi1O5W0%3d&from.tm=2T7xkjblN568N1QmPeElTjoeoNT4tkWYOJYxSMDO5i0%3d
+```
+
+!!! important
+    Apart from granting above scopes, client must also be granted scopes which specify access to the JSON RPC APIs. 
+    <br/>
+    Please refer to [JSON RPC Security plugin](../../../Reference/Plugins/security/For-Users/#oauth2-scopes) for details.
+
+In summary, in order to reflect the above security model, typical scopes being granted to `J Investment` would be the following
+
+```
+rpc://eth_*
+private://0x0/_/contracts?owned.eoa=0x0&from.tm=8SjRHlUBe4hAmTk3KDeJ96RhN%2bs10xRrHDrxEi1O5W0%3d
+```
 
 ## Supported JSON RPC APIs
 

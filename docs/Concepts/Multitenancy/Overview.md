@@ -6,7 +6,9 @@ This model has been proven to be economically costly for service providers to ru
 
 Multitenancy aims to be able to serve multiple tenants from a single GoQuorum node. We introduce access controls
 in order to protect states owned by each tenant. Tenants will have `scope` to peform particular actions on particular
-data and anything outside this `scope` should be inaccessible to the tenant.
+data and anything outside this `scope` should be inaccessible to the tenant. Operators who access GoQuorum node via IPC socket 
+have access to all states and not restricted by any `scope`, however, accessing via HTTP/HTTPS/WS/WSS would require 
+scoped access token like tenants.
 
 !!! info "State Isolation"
     Only private states are logically isolated whereas public state is publicly available to all tenants.
@@ -20,6 +22,10 @@ We leverage the [JSON RPC Security](../../../HowTo/Use/JSON-RPC-API-Security/)
 feature in GoQuorum to reuse the authorization flow which allows pre-authenticated access token
 containing authorized `scope` being passed to multitenancy checks. Please refer to [Access Token Scope](#access-token-scope) for 
 more details.
+
+```plantuml
+
+```
 
 In order to enable multitenancy support for a node:
 
