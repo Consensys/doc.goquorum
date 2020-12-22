@@ -25,6 +25,8 @@ to rapidly generate local Quorum blockchain networks.
 You can use GoQuorum to develop enterprise applications requiring secure, high-peformance transaction
 processing in a private network.
 
+Learn about [use cases for Enterprise Ethereum](https://consensys.net/blockchain-use-cases/case-studies/).
+
 ## What does GoQuorum support?
 
 GoQuorum supports common smart contract and Dapp development, deployment, and operational
