@@ -1319,7 +1319,7 @@ Once majority approvals from network admin accounts is received, the node is mar
 
 ### `quorumPermission_transactionAllowed`
 
-This api checks if the account initiating the transction has sufficient permissions to execute the transaction
+This api checks if the account initiating the transaction has sufficient permissions to execute the transaction
 
 #### Parameters
 
@@ -1360,7 +1360,7 @@ This api checks if the account initiating the transction has sufficient permissi
 
 ### `quorumPermission_connectionAllowed`
 
-This api checks if the given enode is permissioned to join network
+This api checks if the given enode is allowed to join network
 
 #### Parameters
 
