@@ -1360,7 +1360,7 @@ This api checks if the account initiating the transction has sufficient permissi
 
 ### `quorumPermission_connectionAllowed`
 
-This api checks if the given enode is permissioned to join network
+This api checks if the given enode is allowed to join network
 
 #### Parameters
 
