@@ -4,7 +4,7 @@
 
 * Supply `--multitenancy` command line flag to GoQuorum
 * Configure [JSON RPC Security plugin](../JSON-RPC-API-Security/#configuration) for GoQuorum
-* Use Tessera version `20.10.1` and above
+* Use Tessera version `20.10.2` and above
 
 ## Network Topology
 
@@ -20,7 +20,7 @@ A GoQuorum network contains 4 nodes, 2 of which are multitenant nodes, assuming 
 !!! note
     A node consists of GoQuorum client and Tessera Private Transaction Manager.
     <br/><br/>
-    We name Privacy Manager key pairs (for example, `J_K1` or `G_K1`) for easy referencing. In reality, their values are the pubic keys being used
+    We name Privacy Manager key pairs for easy referencing, for example: `J_K1` or `G_K1`. In reality, their values are the pubic keys being used
     in `privateFor` and `privateFrom` fields.
 
 Privacy Manager key pairs are allocated as below:
@@ -113,4 +113,11 @@ to make sure the authorization model is reflected accurately.
 
 ### GoQuorum
 
+Multitenancy introduces new improvements on how GoQuorum storing data so it can be used to protect
+tenant states. This requires re-syncing a node to be multitenant. 
+
 ### Tessera
+
+Tenants own one or more Privacy Manager key pairs. Public keys are used to address private transactions.
+Please refer to [Tesesra documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Keys/)
+for more detail on how Tessera manages multiple key pairs.

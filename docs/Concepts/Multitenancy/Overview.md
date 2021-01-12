@@ -15,16 +15,52 @@ scoped access token like tenants.
 
 In a classic scenario, an organization usually represents a tenant. Each organization is conformed 
 to departments and each department of users. In the organization, each user owns one or more 
-Privacy Manager key pairs authorized to transact with. A network operator administers authorization entitlements
+Privacy Manager key pairs authorized to transact with. A network operator administers entitlements
 for each organization using the Network Authorization Server. 
 
 We leverage the [JSON RPC Security](../../../HowTo/Use/JSON-RPC-API-Security/)
-feature in GoQuorum to reuse the authorization flow which allows pre-authenticated access token
-containing authorized `scope` being passed to multitenancy checks. Please refer to [Access Token Scope](#access-token-scope) for 
+feature in GoQuorum to reuse the authorization flow which allows pre-authenticated access token &#128196;
+containing authorized `scope` being passed to multitenancy checks :shield:. Please refer to [Access Token Scope](#access-token-scope) for 
 more details.
 
 ```plantuml
+skinparam shadowing false
+skinparam monochrome true
+skinparam nodesep 20
+skinparam ranksep 20
+scale 1.0
 
+left to right direction
+
+rectangle "<&people> J Organization" as ta
+rectangle "<&people> G Organization" as tb
+
+node "GoQuorum" as goquorum {
+  rectangle "<size:16><&shield></size>\n\nA\n\nP\n\nI\n" as api
+  rectangle "<size:16><&shield></size>\n\nE\n\nV\n\nM\n" as evm
+  together {
+    database "Public State" as publicstate { 
+    }
+    database "<size:16><&lock-locked></size> Private State" as privatestate { 
+    }
+  }
+}
+
+api -[hidden]- evm
+evm -[hidden]- publicstate
+
+rectangle "<b>Tessera</b>\n\n<&key> J Organization\n<&key> G Organization" as tessera
+
+rectangle "<size:18><&cog></size> Authorization Server" as authServer
+
+
+ta -- api: <&document> JSON RPC
+tb -- api: <&document> JSON RPC
+
+authServer -- ta
+authServer -- tb
+
+goquorum -- tessera
 ```
 
 In order to enable multitenancy support for a node:
@@ -40,7 +76,7 @@ the [JSON RPC Security plugin](../../HowTo/Use/JSON-RPC-API-Security/#configurat
   whereas `plugins.json` is the [plugin settings file](../../HowTo/Configure/Plugins/) which contains JSON RPC Security plugin definition.
   Please refer to [this](../../HowTo/Configure/Plugins/#plugindefinition) on how to define a plugin
   and this on [how to configure](../../Reference/Plugins/security/For-Users/#configuration) JSON RPC Security plugin.
-* For Tessera, use version `20.10.1` and above
+* For Tessera, use version `20.10.2` and above
 
 ## Access Token Scope
 
