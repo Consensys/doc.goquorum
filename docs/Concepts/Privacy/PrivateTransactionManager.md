@@ -11,15 +11,16 @@ The Private Transaction Manager has two distinct components:
 * Transaction Manager
 * Enclave
 
-Enable private transactions with the `PRIVATE_CONFIG` environment variable when starting a GoQuorum
-node.
+Enable private transactions using any of the following methods when starting a GoQuorum node:
+ - Set the `PRIVATE_CONFIG` environment variable to specify a direct IPC connection to the private transaction manager.
+ - Set the `PRIVATE_CONFIG` environment variable to a TOML configuration file that specifies the private transaction manager connection.
+ - Use command line parameters to specify the private transaction manager connection.
 
-Use this `PRIVATE_CONFIG` environment variable either with a direct path to the Privacy Manager's `.ipc` socket
-or with a path to a TOML configuration file as explained in the following sections.
+These options will be explained in detail in the sections below.
 
 ## Direct IPC connection configuration
 
-This is the default method for specifying an IPC socket.
+This is the default method for specifying the path to an `.ipc` socket file created by the private transaction manager.
 
 Use this method if you want to use an IPC socket for the connection, with default timeout values.
 
@@ -42,25 +43,21 @@ A configuration file is only necessary for an IPC socket connection if you need 
 !!! example "Example ipc-config-file.toml"
 
     ```toml
-    [socketConfig]
     socket = "tm.ipc"
     workdir = "path/to/ipc/file"
+    timeout = 5
     dialTimeout = 1
-    requestTimeout = 5
-    responseHeaderTimeout = 5
     ```
 
     Where:
 
-    * optional `dialTimeout` is timeout when connecting to socket (seconds), default = 1 second
-    * optional `requestTimeout` is timeout for the write to the socket (seconds), default = 5 seconds
-    * optional `responseHeaderTimeout` is timeout for reading a response from the socket (seconds), default = 5 seconds
+    * optional `timeout` is overall timeout when sending messages (seconds), zero disables timeout, default = 5 seconds
+    * optional `dialTimeout` is timeout for connecting to the socket (seconds), default = 1 second
 
 !!! note
 
-    You can increase `responseHeaderTimeout` if transaction manager responses are too slow.
-
-    `dialTimeout` and `requestTimeout` rarely need changes and can work with the default values.
+    You can increase `timeout` if transaction manager responses are too slow.
+    `dialTimeout` rarely need to be changed and can work with the default values.
 
 #### HTTP connection
 
@@ -71,17 +68,15 @@ For production environments, you should enable TLS on the connection, as describ
 !!! example "Example http-config-file.toml"
 
     ```toml
-    [httpConfig]
-    url = "HTTP://127.0.0.1:9101"
-    clientTimeout = 10
-    writeBufferSize = 4096
-    readBufferSize = 4096
-    tls = "OFF"
+    httpUrl = "HTTP://127.0.0.1:9101"
+    timeout = 5
+    httpWriteBufferSize = 4096
+    httpReadBufferSize = 4096
     ```
 
     Where:
 
-    * optional `clientTimeout` is timeout for overall client call (seconds), zero means timeout disabled, default = 10 seconds
+    * optional `timeout` is overall timeout when sending messages (seconds), zero disables timeout, default = 5 seconds
     * optional `writeBufferSize` is size of the write buffer (bytes), if zero or unspecified then uses http.Transport default
     * optional `readBufferSize` is size of the read buffer (bytes), if zero or unspecified then uses http.Transport default
 
@@ -92,20 +87,62 @@ Using an `https` url, and changing the `tls` flag to `STRICT` in the HTTP config
 !!! example "Example http-config-file.toml"
 
     ```toml
-    [httpConfig]
-    url = "HTTPS://127.0.0.1:9101"
-    idleConnTimeout = 10
-    writeBufferSize = 4096
-    readBufferSize = 4096
-    tls = "STRICT"
-    rootCA = "/path/to/ca-root.cert.pem"
-    clientCert = "/path/to/client.cert.pem"
-    clientKey = "/path/to/client.key.pem"
-    clientTimeout = 10
+    httpUrl = "HTTPS://127.0.0.1:9101"
+    tlsMode = "STRICT"
+    tlsRootCA = "/path/to/ca-root.cert.pem"
+    tlsClientCert = "/path/to/client-ca-chain.cert.pem"
+    tlsClientKey = "/path/to/client.key.pem"
+    timeout = 5
+    httpIdleConnTimeout = 10
+    httpWriteBufferSize = 4096
+    httpReadBufferSize = 4096
     ```
 
     Where:
 
-    * optional `rootCA` is file containing root CA certificate
-    * optional `clientCert` is file containing client certificate
-    * optional `clientKey` is file containing client certificate private key
+    * `tlsRootCA` is any combination of comma separated files/directories containing root CA certificates, defaults to host's certificates
+    * `tlsClientCert` is file containing client certificate
+    * `tlsClientKey` is file containing client certificate private key
+
+## Using command line parameters
+
+The command line parameters listed below can be used to specify the connection to the Transaction Manager.
+Note that these can be used in conjunction with the other options given above,
+in which case the command line parameters will override any others.
+
+Specifying the connection type using either of the following:
+- `--ptm.socket path/to/ipc/file`       Path to the ipc file when using a unix domain socket for the private transaction manager connection
+- `--ptm.url value`                     URL when using http connection to private transaction manager
+
+Using TLS encryption over an HTTP connection:
+- `--ptm.tls.mode value`                If "off" then TLS disabled (default). If "strict" then will use TLS for http connection to private transaction manager
+- `--ptm.tls.rootca value`              Any combination of comma separated files/directories containing root CA certificates (defaults to host's certificates)
+- `--ptm.tls.clientcert value`          Path to file containing client certificate (or chain of certs) for TLS connection to private transaction manager
+- `--ptm.tls.clientkey value`           Path to file containing client's private key for TLS connection to private transaction manager
+- `--ptm.tls.insecureskipverify`        Disable verification of server's TLS certificate on connection to private transaction manager
+
+Adjusting timeouts etc:
+- `--ptm.timeout value`                 Timeout (seconds) for the private transaction manager connection. Zero value means timeout disabled. (default: 0)
+- `--ptm.dialtimeout value`             Dial timeout (seconds) for the private transaction manager connection. Zero value means timeout disabled. (default: 0)
+- `--ptm.http.idletimeout value`        Idle timeout (seconds) for private transaction manager http connection. Zero value means timeout disabled. (default: 0)
+- `--ptm.http.writebuffersize value`    Size of the write buffer (bytes) for private transaction manager http connection. Zero value uses http.Transport default. (default: 0)
+- `--ptm.http.readbuffersize value`     Size of the read buffer (bytes) for private transaction manager http connection. Zero value uses http.Transport default. (default: 0)
+
+
+!!! example "Example IPC connection"
+
+    ```bash
+    geth <other parameters> \
+         --ptm.socket qdata/c1/tm.ipc
+    ```
+
+!!! example "Example TLS connection"
+
+    ```bash
+    geth <other parameters> \
+         --ptm.url "https://127.0.0.1:9101" \
+         --ptm.tls.mode "strict" \
+         --ptm.tls.rootca "path/to/certfile.pem,dir/with/cert/files/" \
+         --ptm.tls.clientcert "path/to/client.cert.pem" \
+         --ptm.tls.clientkey "path/to/client.key.pem" \
+    ```
