@@ -12,9 +12,10 @@ The Private Transaction Manager has two distinct components:
 * Enclave
 
 Enable private transactions using any of the following methods when starting a GoQuorum node:
- - Set the `PRIVATE_CONFIG` environment variable to specify a direct IPC connection to the private transaction manager.
- - Set the `PRIVATE_CONFIG` environment variable to a TOML configuration file that specifies the private transaction manager connection.
- - Use command line parameters to specify the private transaction manager connection.
+
+* Set the `PRIVATE_CONFIG` environment variable to specify a direct IPC connection to the private transaction manager.
+* Set the `PRIVATE_CONFIG` environment variable to a TOML configuration file that specifies the private transaction manager connection.
+* Use command line parameters to specify the private transaction manager connection.
 
 These options will be explained in detail in the sections below.
 
