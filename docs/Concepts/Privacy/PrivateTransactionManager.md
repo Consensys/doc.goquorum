@@ -114,7 +114,7 @@ Command line parameters can also be used to configure the connection to the Tran
 Note that these can be used in conjunction with the other options given above,
 in which case the command line parameters will override any others.
 
-#### Examples
+### Examples
 
 === "Unix IPC socket connection"
 
@@ -156,7 +156,7 @@ in which case the command line parameters will override any others.
              --ptm.tls.clientkey "path/to/client.key.pem" \
         ```
 
-#### Full description of the command line parameters
+### Full description of the command line parameters
 
 `--ptm.socket path/to/ipc/file`
 
