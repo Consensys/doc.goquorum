@@ -180,11 +180,11 @@ Idle timeout (seconds) for the private transaction manager connection. Zero valu
 
 `--ptm.http.writebuffersize value`
 
-Size of the write buffer (bytes) for the private transaction manager connection. Zero value (default) uses http.Transport default.
+Size of the write buffer (bytes) for the private transaction manager connection. Zero value (default) uses `http.Transport` default.
 
 `--ptm.http.readbuffersize value`
 
-Size of the read buffer (bytes) for the private transaction manager connection. Zero value (default) uses http.Transport default.
+Size of the read buffer (bytes) for the private transaction manager connection. Zero value (default) uses `http.Transport` default.
 
 `--ptm.tls.mode value`
 
