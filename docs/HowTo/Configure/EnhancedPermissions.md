@@ -14,6 +14,7 @@ are described below:
 
         ```json
         {
+            "permissionModel": "v2",
             "upgradableAddress": "0x1932c48b2bf8102ba33b4a6b545c32236e342f34",
             "interfaceAddress": "0x4d3bfd7821e237ffe84209d8e638f9f309865b87",
             "implAddress": "0xfe0602d820f42800e3ef3f89e1c39cd15f78d283",
@@ -31,6 +32,7 @@ are described below:
         }
         ```
 
+        * `permissionModel` is the permission model to be used. Can be v1 or v2.
         * `upgradableAddress` is the address of deployed contract `PermissionsUpgradable.sol`
         * `interfaceAddress` is the address of deployed contract `PermissionsInterface.sol`
         * `implAddress` is the address of deployed contract `PermissionsImplementation.sol`
