@@ -17,7 +17,7 @@ Enable private transactions using any of the following methods when starting a G
 * Set the `PRIVATE_CONFIG` environment variable to a TOML configuration file that specifies the private transaction manager connection.
 * Use command line parameters to specify the private transaction manager connection.
 
-These options will be explained in detail in the sections below.
+These options will be explained in detail in the following sections.
 
 ## Direct IPC connection configuration
 
@@ -63,8 +63,11 @@ export PRIVATE_CONFIG=path/to/connection-config-file.toml
 === "HTTP connection"
 
     This allows quorum to connect to a private transaction manager using http.
-    This should only be used for development purposes, due to a lack of security on the connection.
-    For production environments, you should enable TLS on the connection, as described in the next section.
+
+    !!! warning
+
+        This should only be used for development purposes, due to a lack of security on the connection.
+        For production environments, you should enable TLS on the connection, as described in the next section.
 
     !!! example "Example http-config-file.toml"
 
@@ -107,25 +110,11 @@ export PRIVATE_CONFIG=path/to/connection-config-file.toml
 
 ## Using command line parameters
 
-The command line parameters listed below can be used to configure the connection to the Transaction Manager.
+Command line parameters can also be used to configure the connection to the Transaction Manager.
 Note that these can be used in conjunction with the other options given above,
 in which case the command line parameters will override any others.
 
-```text
-QUORUM PRIVATE TRANSACTION MANAGER OPTIONS:
-  --ptm.socket value                  Path to the ipc file when using unix domain socket for the private transaction manager connection
-  --ptm.url value                     URL when using http connection to private transaction manager
-  --ptm.timeout value                 Timeout (seconds) for the private transaction manager connection. Zero value means timeout disabled. (default: 0)
-  --ptm.dialtimeout value             Dial timeout (seconds) for the private transaction manager connection. Zero value means timeout disabled. (default: 0)
-  --ptm.http.idletimeout value        Idle timeout (seconds) for the private transaction manager connection. Zero value means timeout disabled. (default: 0)
-  --ptm.http.writebuffersize value    Size of the write buffer (bytes) for the private transaction manager connection. Zero value uses http.Transport default. (default: 0)
-  --ptm.http.readbuffersize value     Size of the read buffer (bytes) for the private transaction manager connection. Zero value uses http.Transport default. (default: 0)
-  --ptm.tls.mode value                If "off" then TLS disabled (default). If "strict" then will use TLS for http connection to private transaction manager
-  --ptm.tls.rootca value              Path to file containing root CA certificate for TLS connection to private transaction manager (defaults to host's certificates)
-  --ptm.tls.clientcert value          Path to file containing client certificate (or chain of certs) for TLS connection to private transaction manager
-  --ptm.tls.clientkey value           Path to file containing client's private key for TLS connection to private transaction manager
-  --ptm.tls.insecureskipverify        Disable verification of server's TLS certificate on connection to private transaction manager
-```
+#### Examples
 
 === "Unix IPC socket connection"
 
@@ -166,3 +155,53 @@ QUORUM PRIVATE TRANSACTION MANAGER OPTIONS:
              --ptm.tls.clientcert "path/to/client.cert.pem" \
              --ptm.tls.clientkey "path/to/client.key.pem" \
         ```
+
+#### Full description of the command line parameters
+
+`--ptm.socket path/to/ipc/file`
+
+Path to the ipc file when using a unix domain socket for the private transaction manager connection.
+
+`--ptm.url value`
+
+URL when using http/https connection to private transaction manager.
+
+`--ptm.timeout value`
+
+Timeout (seconds) for communication over the private transaction manager connection. Zero value means timeout disabled (default = 5 seconds).
+
+`--ptm.dialtimeout value`
+
+Dial timeout (seconds) for the private transaction manager connection. Zero value means timeout disabled (default = 1 second).
+
+`--ptm.http.idletimeout value`
+
+Idle timeout (seconds) for the private transaction manager connection. Zero value means timeout disabled (default = 10 seconds).
+
+`--ptm.http.writebuffersize value`
+
+Size of the write buffer (bytes) for the private transaction manager connection. Zero value (default) uses http.Transport default.
+
+`--ptm.http.readbuffersize value`
+
+Size of the read buffer (bytes) for the private transaction manager connection. Zero value (default) uses http.Transport default.
+
+`--ptm.tls.mode value`
+
+If `off` then TLS is disabled (default). If `strict` then will use TLS for https connection to private transaction manager.
+
+`--ptm.tls.rootca path/to/rootca_pem_file`
+
+Path to file containing root CA certificate for TLS connection to private transaction manager. If this is not specified then uses host's certificates (default).
+
+`--ptm.tls.clientcert path/to/client_cert_pem_file`
+
+Path to file containing client certificate (or chain of certs) for TLS connection to private transaction manager. This is required if server is configured to use two-way authentication.
+
+`--ptm.tls.clientkey path/to/client_key_pem_file`
+
+Path to file containing client's private key for TLS connection to private transaction manager. This is required if server is configured to use two-way authentication.
+
+`--ptm.tls.insecureskipverify`
+
+Disable verification of server's TLS certificate on connection to private transaction manager.
