@@ -3,17 +3,17 @@
 ## Pre-requisites
 
 * Supply `--multitenancy` command line flag to GoQuorum
-* Configure [JSON RPC Security plugin](../JSON-RPC-API-Security/#configuration) for GoQuorum
-* Use Tessera version `20.10.2` and above
+* Configure [JSON RPC Security plugin](JSON-RPC-API-Security.md#configuration) for GoQuorum
+* Use Tessera version `20.10.2` or above
 
 ## Network Topology
 
-A network can consist of multitenant nodes and single-tenant nodes. One or more independent authorization servers can be used 
+A network can consist of multitenant nodes and single-tenant nodes. One or more independent authorization servers can be used
 to protect multitenant nodes, however one multitenant node can only be protected by one authorization server.
 
-## Example
+## Sample Network Setup
 
-This section outlines an example of how multitenancy can be setup. A network operator can 
+This section outlines an example of how multitenancy can be setup. A network operator can
 reference on how to entitle `scope` values for each client in an authorization server for each tenant.
 A GoQuorum network contains 4 nodes, 2 of which are multitenant nodes, assuming those are `Node1` and `Node2`.
 
@@ -49,35 +49,35 @@ departments, hence the security model could be as below:
 * `D Organization` has:
     * `D Investment` owning `D_K1`
 
-Each authorization server has its own configuration steps and client onboarding process. 
-A network operator's responsibility is to implement the above security model in the authorization server by 
-defining [custom scopes](../../../Concepts/Multitenancy/Overview/#access-token-scope) and granting them to target clients. 
+Each authorization server has its own configuration steps and client onboarding process.
+A network operator's responsibility is to implement the above security model in the authorization server by
+defining [custom scopes](../../Concepts/Multitenancy/Overview.md#access-token-scope) and granting them to target clients.
 
 A custom scope representing __`J Investment` owning `J_K1`__,
-<br/>where `J_K1=8SjRHlUBe4hAmTk3KDeJ96RhN+s10xRrHDrxEi1O5W0=`, 
-<br/>would be 
+<br/>where `J_K1=8SjRHlUBe4hAmTk3KDeJ96RhN+s10xRrHDrxEi1O5W0=`,
+<br/>would be
 
-```
+```text
 private://0x0/_/contracts?owned.eoa=0x0&from.tm=8SjRHlUBe4hAmTk3KDeJ96RhN%2bs10xRrHDrxEi1O5W0%3d
 ```
 
-Custom scopes representing __`J Audit` having READ access to contracts in which `J_K1` and `J_K2` are participants__, 
+Custom scopes representing __`J Audit` having READ access to contracts in which `J_K1` and `J_K2` are participants__,
 <br/>where `J_K1=8SjRHlUBe4hAmTk3KDeJ96RhN+s10xRrHDrxEi1O5W0=`
 <br/>and `J_K2=2T7xkjblN568N1QmPeElTjoeoNT4tkWYOJYxSMDO5i0=`,
 <br/>would be
 
-```
+```text
 private://0x0/read/contracts?owned.eoa=0x0&from.tm=8SjRHlUBe4hAmTk3KDeJ96RhN%2bs10xRrHDrxEi1O5W0%3d&from.tm=2T7xkjblN568N1QmPeElTjoeoNT4tkWYOJYxSMDO5i0%3d
 ```
 
 !!! important
-    Apart from granting above scopes, client must also be granted scopes which specify access to the JSON RPC APIs. 
+    Apart from granting above scopes, client must also be granted scopes which specify access to the JSON RPC APIs.
     <br/>
-    Please refer to [JSON RPC Security plugin](../../../Reference/Plugins/security/For-Users/#oauth2-scopes) for details.
+    Please refer to [JSON RPC Security plugin](../../Reference/Plugins/security/For-Users.md#oauth2-scopes) for details.
 
 In summary, in order to reflect the above security model, typical scopes being granted to `J Investment` would be the following
 
-```
+```text
 rpc://eth_*
 private://0x0/_/contracts?owned.eoa=0x0&from.tm=8SjRHlUBe4hAmTk3KDeJ96RhN%2bs10xRrHDrxEi1O5W0%3d
 ```
@@ -114,10 +114,10 @@ to make sure the authorization model is reflected accurately.
 ### GoQuorum
 
 Multitenancy introduces new improvements on how GoQuorum storing data so it can be used to protect
-tenant states. This requires re-syncing a node to be multitenant. 
+tenant states. This requires re-syncing a node to be multitenant.
 
 ### Tessera
 
 Tenants own one or more Privacy Manager key pairs. Public keys are used to address private transactions.
-Please refer to [Tesesra documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Keys/)
+Please refer to [Tesesra keys configuration documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Keys/)
 for more detail on how Tessera manages multiple key pairs.

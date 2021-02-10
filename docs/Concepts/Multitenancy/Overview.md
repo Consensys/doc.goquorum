@@ -6,21 +6,21 @@ This model has been proven to be economically costly for service providers to ru
 
 Multitenancy aims to be able to serve multiple tenants from a single GoQuorum node. We introduce access controls
 in order to protect states owned by each tenant. Tenants will have `scope` to peform particular actions on particular
-data and anything outside this `scope` should be inaccessible to the tenant. Operators who access GoQuorum node via IPC socket 
-have access to all states and not restricted by any `scope`, however, accessing via HTTP/HTTPS/WS/WSS would require 
+data and anything outside this `scope` should be inaccessible to the tenant. Operators who access GoQuorum node via IPC socket
+have access to all states and not restricted by any `scope`, however, accessing via HTTP/HTTPS/WS/WSS would require
 scoped access token like tenants.
 
 !!! info "State Isolation"
     Only private states are logically isolated whereas public state is publicly available to all tenants.
 
-In a classic scenario, an organization usually represents a tenant. Each organization is conformed 
-to departments and each department of users. In the organization, each user owns one or more 
+In a classic scenario, an organization usually represents a tenant. Each organization is conformed
+to departments and each department of users. In the organization, each user owns one or more
 Privacy Manager key pairs authorized to transact with. A network operator administers entitlements
-for each organization using the Network Authorization Server. 
+for each organization using the Network Authorization Server.
 
-We leverage the [JSON RPC Security](../../../HowTo/Use/JSON-RPC-API-Security/)
+We leverage the [JSON RPC Security](../../HowTo/Use/JSON-RPC-API-Security.md)
 feature in GoQuorum to reuse the authorization flow which allows pre-authenticated access token &#128196;
-containing authorized `scope` being passed to multitenancy checks :shield:. Please refer to [Access Token Scope](#access-token-scope) for 
+containing authorized `scope` being passed to multitenancy checks :shield:. Please refer to [Access Token Scope](#access-token-scope) for
 more details.
 
 ```plantuml
@@ -39,9 +39,9 @@ node "GoQuorum" as goquorum {
   rectangle "<size:16><&shield></size>\n\nA\n\nP\n\nI\n" as api
   rectangle "<size:16><&shield></size>\n\nE\n\nV\n\nM\n" as evm
   together {
-    database "Public State" as publicstate { 
+    database "Public State" as publicstate {
     }
-    database "<size:16><&lock-locked></size> Private State" as privatestate { 
+    database "<size:16><&lock-locked></size> Private State" as privatestate {
     }
   }
 }
@@ -66,29 +66,31 @@ goquorum -- tessera
 In order to enable multitenancy support for a node:
 
 * For GoQuorum, a command line flag `--multitenancy` must be provided and
-the [JSON RPC Security plugin](../../HowTo/Use/JSON-RPC-API-Security/#configuration) must be configured.
+the [JSON RPC Security plugin](../../HowTo/Use/JSON-RPC-API-Security.md#configuration) must be configured.
   For example, starting a typical multitenant GoQuorum node would look like the below:
-  ```
+
+  ```shell
   geth <other parameters> \
       --multitenancy \
       --plugins file:///<path>/<to>/plugins.json
   ```
-  whereas `plugins.json` is the [plugin settings file](../../HowTo/Configure/Plugins/) which contains JSON RPC Security plugin definition.
-  Please refer to [this](../../HowTo/Configure/Plugins/#plugindefinition) on how to define a plugin
-  and this on [how to configure](../../Reference/Plugins/security/For-Users/#configuration) JSON RPC Security plugin.
-* For Tessera, use version `20.10.2` and above
+
+  whereas `plugins.json` is the [plugin settings file](../../HowTo/Configure/Plugins.md) which contains JSON RPC Security plugin definition.
+  Please refer to [this](../../HowTo/Configure/Plugins.md#plugindefinition) on how to define a plugin
+  and this on [how to configure](../../Reference/Plugins/security/For-Users.md#configuration) JSON RPC Security plugin.
+* Use Tessera version `20.10.2` or above
 
 ## Access Token Scope
 
-JSON RPC Security plugin enables `geth` JSON RPC API server to be an OAuth2-compliant resource server. 
-A client must first obtain a pre-authenticated access token from an authorization server then 
+JSON RPC Security plugin enables `geth` JSON RPC API server to be an OAuth2-compliant resource server.
+A client must first obtain a pre-authenticated access token from an authorization server then
 presents the access token (via `Authorization` HTTP request header) when calling an API.
 
 The value of the scope encoded in an access token (in case of JWT) or in an introspection response
-(in case of OAuth2 Token Introspection API) contains [RPC scope](../../Reference/Plugins/security/For-Users/#oauth2-scopes)
+(in case of OAuth2 Token Introspection API) contains [RPC scope](../../Reference/Plugins/security/For-Users.md#oauth2-scopes)
 and tenant scope which has the following URL-based syntax:
 
-```
+```text
     "private://0x0/_/contracts?owned.eoa=0x0&from.tm=[tm-pubkey]"
 ```
 
@@ -96,13 +98,13 @@ in which:
 
 * `tm-pubkey`: URL-encoded value of the Privacy Manager public key
 
-For example, a client owns two Privacy Manager public keys `PUBKEY1` and `PUBKEY2`, 
+For example, a client owns two Privacy Manager public keys `PUBKEY1` and `PUBKEY2`,
 an authorization server operator would setup and grant the following scopes to the client:
 
-```
+```text
     private://0x0/_/contracts?owned.eoa=0x0&from.tm=PUBKEY1
     private://0x0/_/contracts?owned.eoa=0x0&from.tm=PUBKEY2
 ```
 
 A client presenting an access token containing the above scopes has the full access (read/write/create)
-to private contracts in which `PUBKEY1` and/or `PUBKEY2` are the participants.
+to private contracts in which `PUBKEY1` and `PUBKEY2` are the participants.
