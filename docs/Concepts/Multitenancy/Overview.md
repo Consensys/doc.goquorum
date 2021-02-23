@@ -1,27 +1,17 @@
-# Multitenancy
+# Multi-tenancy
 
-In a typical network, also known as a single-tenant network, each tenant uses its own GoQuorum
-and Tessera node. Tessera may be configured to manage multiple key pairs which are solely owned by one tenant.
-This model has been proven to be economically costly for service providers to run and scale as more tenants joining the network.
+In a typical network, each participant (tenant) uses its own GoQuorum and Tessera node. Tessera can
+be configured to manage multiple key pairs which are owned by one tenant. This model is costly to
+run and scale as more tenants join the network.
 
-Multitenancy aims to be able to serve multiple tenants from a single GoQuorum node. We introduce access controls
-in order to protect states owned by each tenant. Tenants will have `scope` to peform particular actions on particular
-data and anything outside this `scope` should be inaccessible to the tenant. Operators who access GoQuorum node via IPC socket
-have access to all states and not restricted by any `scope`, however, accessing via HTTP/HTTPS/WS/WSS would require
-scoped access token like tenants.
+[Multi-tenancy] allows multiple tenants to use the same GoQuorum node, with access controls ensuring
+isolation of tenant data. Tenants can only perform actions on data within their [scope]. Operators
+who access the GoQuorum node using an IPC socket have access to all states, and are not restricted
+by any [scope]. Accessing a node using HTTP/HTTPS/WS/WSS requires [scoped access tokens].
 
 !!! info "State Isolation"
-    Only private states are logically isolated whereas public state is publicly available to all tenants.
-
-In a classic scenario, an organization usually represents a tenant. Each organization is conformed
-to departments and each department of users. In the organization, each user owns one or more
-Privacy Manager key pairs authorized to transact with. A network operator administers entitlements
-for each organization using the Network Authorization Server.
-
-We leverage the [JSON RPC Security](../../HowTo/Use/JSON-RPC-API-Security.md)
-feature in GoQuorum to reuse the authorization flow which allows pre-authenticated access token &#128196;
-containing authorized `scope` being passed to multitenancy checks :shield:. Please refer to [Access Token Scope](#access-token-scope) for
-more details.
+    Only private states are logically isolated whereas the public state is publicly available to all
+    tenants.
 
 ```plantuml
 skinparam shadowing false
@@ -62,43 +52,52 @@ authServer -- tb
 
 goquorum -- tessera
 ```
+In this scenario, an organization represents a tenant with multiple departments, and
+users within the departments. Each user owns one or more privacy manager key pairs. A network
+operator administers entitlements for each organization using the Authorization Server.
 
-In order to enable multitenancy support for a node:
+[JSON RPC security](../../HowTo/Use/JSON-RPC-API-Security.md) features are used to manage the
+authorization flow in which multi-tenancy checks are performed on [pre-authenticated access
+tokens with the authorized scope].
 
-* For GoQuorum, a command line flag `--multitenancy` must be provided and
-the [JSON RPC Security plugin](../../HowTo/Use/JSON-RPC-API-Security.md#configuration) must be configured.
-  For example, starting a typical multitenant GoQuorum node would look like the below:
+## Enable multi-tenancy
 
-  ```shell
-  geth <other parameters> \
-      --multitenancy \
-      --plugins file:///<path>/<to>/plugins.json
-  ```
+!!! important
 
-  whereas `plugins.json` is the [plugin settings file](../../HowTo/Configure/Plugins.md) which contains JSON RPC Security plugin definition.
-  Please refer to [this](../../HowTo/Configure/Plugins.md#plugindefinition) on how to define a plugin
-  and this on [how to configure](../../Reference/Plugins/security/For-Users.md#configuration) JSON RPC Security plugin.
-* Use Tessera version `20.10.2` or above
+    Multi-tenancy requires [Tessera] version `20.10.2` or later.
+
+To enable multi-tenancy, configure the the [JSON RPC Security plugin](../../HowTo/Use/JSON-RPC-API-Security.md#configuration)
+and start GoQuorum with the `--multitenancy` command line option:
+
+```shell
+geth <other parameters> \
+    --multitenancy \
+    --plugins file:///<path>/<to>/plugins.json
+```
+
+In the command, `plugins.json` is the [plugin settings file](../../HowTo/Configure/Plugins.md) that
+contains the [JSON RPC Security plugin definition](../../HowTo/Configure/Plugins.md#plugindefinition).
+View the [security plugins documentation] for more information about how to configure the JSON RPC
+Security plugin.
 
 ## Access Token Scope
 
-JSON RPC Security plugin enables `geth` JSON RPC API server to be an OAuth2-compliant resource server.
-A client must first obtain a pre-authenticated access token from an authorization server then
-presents the access token (via `Authorization` HTTP request header) when calling an API.
+The JSON RPC Security plugin enables the `geth` JSON RPC API server to be an OAuth2-compliant
+resource server. A client must first obtain a pre-authenticated access token from an authorization
+server, then present the access token (using an `Authorization` HTTP request header) when calling an
+API.
 
-The value of the scope encoded in an access token (in case of JWT) or in an introspection response
-(in case of OAuth2 Token Introspection API) contains [RPC scope](../../Reference/Plugins/security/For-Users.md#oauth2-scopes)
+The value of the scope encoded in an access token (in case of JWT), or introspection response
+(in the case of the OAuth2 Token Introspection API) contains the [RPC scope](../../Reference/Plugins/security/For-Users.md#oauth2-scopes)
 and tenant scope which has the following URL-based syntax:
 
 ```text
     "private://0x0/_/contracts?owned.eoa=0x0&from.tm=[tm-pubkey]"
 ```
 
-in which:
+In the syntax, `tm-pubkey` is the URL-encoded value of the Privacy Manager public key.
 
-* `tm-pubkey`: URL-encoded value of the Privacy Manager public key
-
-For example, a client owns two Privacy Manager public keys `PUBKEY1` and `PUBKEY2`,
+For example, for a client that owns two Privacy Manager public keys `PUBKEY1` and `PUBKEY2`,
 an authorization server operator would setup and grant the following scopes to the client:
 
 ```text
@@ -106,5 +105,13 @@ an authorization server operator would setup and grant the following scopes to t
     private://0x0/_/contracts?owned.eoa=0x0&from.tm=PUBKEY2
 ```
 
-A client presenting an access token containing the above scopes has the full access (read/write/create)
-to private contracts in which `PUBKEY1` and `PUBKEY2` are the participants.
+A client presenting an access token containing the above scopes has full access (read/write/create)
+to private contracts in which `PUBKEY1` and `PUBKEY2` are participants.
+
+<!--links-->
+[Multi-tenancy]: ../../HowTo/Use/Multitenancy.md
+[scope]: #access-token-scope
+[scoped access tokens]: #access-token-scope
+[pre-authenticated access tokens with the authorized scope]: #access-token-scope
+[security plugins documentation]: ../../Reference/Plugins/security/For-Users.md#configuration
+[Tessera]: https://docs.tessera.consensys.net/en/stable/
