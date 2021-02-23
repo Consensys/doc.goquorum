@@ -52,6 +52,7 @@ authServer -- tb
 
 goquorum -- tessera
 ```
+
 In this scenario, an organization represents a tenant with multiple departments, and
 users within the departments. Each user owns one or more privacy manager key pairs. A network
 operator administers entitlements for each organization using the Authorization Server.
@@ -66,7 +67,7 @@ tokens with the authorized scope].
 
     Multi-tenancy requires [Tessera] version `20.10.2` or later.
 
-To enable multi-tenancy, configure the the [JSON RPC Security plugin](../../HowTo/Use/JSON-RPC-API-Security.md#configuration)
+To enable multi-tenancy, configure the [JSON RPC Security plugin](../../HowTo/Use/JSON-RPC-API-Security.md#configuration)
 and start GoQuorum with the `--multitenancy` command line option:
 
 ```shell
