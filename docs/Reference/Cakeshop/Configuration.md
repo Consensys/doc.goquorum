@@ -1,6 +1,6 @@
 # Cakeshop Configuration
 
-Cakeshop follows standard [Spring Boot configuration patterns](https://docs.spring.io/spring-boot/docs/2.3.7.RELEASE/reference/html/spring-boot-features.html#boot-features-external-config), so you may provide an `application.properties` in the location where you are running cakeshop to customize some settings of cakeshop.
+Cakeshop follows standard [Spring Boot configuration patterns](https://docs.spring.io/spring-boot/docs/2.3.7.RELEASE/reference/html/spring-boot-features.html#boot-features-external-config), so you may provide an `application.properties` in the location where you are running Cakeshop to customize some of its settings.
 
 You may also override config options via Java system properties passed via `java -D<prop>=<val>`:
 
@@ -16,7 +16,7 @@ Alternatively, you may provide an initial set of nodes in a JSON file that Cakes
 
 The format of the JSON file is as follows:
 
-```
+```json
 [
   {
     "name": "node1",
@@ -39,6 +39,7 @@ The format of the JSON file is as follows:
 The rpcUrl field should be the RPC endpoint on the GoQuorum (geth) node, and the transactionManagerUrl should be the Tessera 3rd Party API endpoint.
 
 Provide the location of the initial nodes file through application.properties or by using the `-D` flag mentioned above.
+
 ```sh
 # inside application.properties
 cakeshop.initialnodes=path/to/nodes.json
@@ -63,14 +64,14 @@ spring.datasource.password=sdk
 Some other options that may be customized in application.properties:
 
 ```sh
-# some systems don't call the nodejs binary 'node', in that change you can change this value
+# some systems don't call the Nodejs binary 'node', in that change you can change this value
 nodejs.binary=node
 
-# if you are migrating from an older version of cakeshop, you can migrate registered contracts
-# from the old smart contract storage to the cakeshop database
+# if you are migrating from an older version of Cakeshop, you can migrate registered contracts
+# from the old smart contract storage to the Cakeshop database
 contract.registry.addr=0xCONTRACT_ADDRESS_HERE
 
-# if you are using the quorum reporting engine, you may tell cakeshop the location of its rpc and ui endpoints.
+# if you are using the quorum reporting engine, you may tell Cakeshop the location of its rpc and ui endpoints.
 cakeshop.reporting.rpc=http://localhost:4000
 cakeshop.reporting.ui=http://localhost:3000
 
