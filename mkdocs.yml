@@ -86,6 +86,7 @@ nav:
           - Adding IBFT validators: HowTo/Use/AddingIBFTValidators.md
           - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
           - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
+          - Multi-tenancy: HowTo/Use/Multitenancy.md
           - Smart contracts: HowTo/Use/DevelopingSmartContracts.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
@@ -133,6 +134,7 @@ nav:
           - Decentralized App:
             - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
             - Smart Contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
+      - Multi-tenancy: Concepts/Multitenancy/Overview.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
       - Cakeshop: Concepts/Cakeshop.md
