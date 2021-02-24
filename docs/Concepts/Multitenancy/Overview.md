@@ -81,6 +81,23 @@ contains the [JSON RPC Security plugin definition](../../HowTo/Configure/Plugins
 View the [security plugins documentation] for more information about how to configure the JSON RPC
 Security plugin.
 
+!!! example
+
+    If [quorum-security-plugin-enterprise](https://github.com/ConsenSys/quorum-security-plugin-enterprise) is used, `plugins.json`
+    will look like the below
+
+    ```json
+    {
+        "providers": {
+            "security": {
+                "name":"quorum-security-plugin-enterprise",
+                "version":"0.1.1",
+                "config": "/path/to/config.json"
+            }
+        }
+    }
+    ```
+
 ## Access Token Scope
 
 The JSON RPC Security plugin enables the `geth` JSON RPC API server to be an OAuth2-compliant
@@ -115,4 +132,4 @@ to private contracts in which `PUBKEY1` and `PUBKEY2` are participants.
 [scoped access tokens]: #access-token-scope
 [pre-authenticated access tokens with the authorized scope]: #access-token-scope
 [security plugins documentation]: ../../Reference/Plugins/security/For-Users.md#configuration
-[Tessera]: https://docs.tessera.consensys.net/en/stable/
+[Tessera]: https://docs.tessera.consensys.net
