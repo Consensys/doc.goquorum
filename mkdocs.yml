@@ -61,7 +61,6 @@ nav:
           - With Cakeshop: HowTo/GetStarted/Cakeshop.md
           - With Qubernetes (K8s):  HowTo/GetStarted/Getting-Started-Qubernetes.md
           - Upgrade to 2.6.0: HowTo/GetStarted/migration.md
-          - Monitoring a GoQuorum node: HowTo/GetStarted/monitoring.md
           - With GoQuorum Wizard:
               - Get started: HowTo/GetStarted/Wizard/GettingStarted.md
               - Interacting: HowTo/GetStarted/Wizard/Interacting.md
@@ -80,6 +79,9 @@ nav:
           - Overview: HowTo/ManageKeys/ManagingKeys.md
           - Using clef: HowTo/ManageKeys/clef.md
           - Using account plugins: HowTo/ManageKeys/AccountPlugins.md
+      - Monitor nodes:
+          - Monitor a GoQuorum node: HowTo/Monitor/monitoring.md
+          - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md      
       - Use:
           - Adding nodes to network: HowTo/Use/adding_nodes.md
           - Adding nodes examples: HowTo/Use/add_node_examples.md
