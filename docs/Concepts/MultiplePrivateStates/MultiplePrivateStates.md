@@ -26,7 +26,7 @@ Any RPC API call must be accompanied by a private state identifier or authorizat
 
 ### Tessera Resident Groups
 
-MPS uses the concept of [Tessera Resident Groups] (is the group concept going to be added to the Tessera docs???) to map tenants to private states. 
+MPS uses the concept of Tessera Resident Groups to map tenants to private states. 
 During Tessera startup, `residentGroups` are validated to check each tessera key is part of a single resident group. Any key not part of a configured group is added to the default "private" resident group.
 
 ``` json

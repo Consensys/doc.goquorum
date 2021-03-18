@@ -107,9 +107,6 @@ Once a key is added to a resident group, it should remain in that group.
 * Tessera needs to be restarted to load the new key. When Tessera starts, if the new key was generated but not added to a resident group it will be put in the default "private" resident group.
 * Updates to the Authorization Server should be made to provide the new Tenant access to the private state defined in the `residentGroups` configuration.
 
-## Removing a Tenant from an Multi-tenant Node
-
-It may be the case that a tenant on an Multi-tenant node wants to move to its own standalone node and should be removed from the Multi-tenant node. What happens here????
 
 [scope values]: ../../Concepts/MultiplePrivateStates/Multitenancy.md#Access-Token-Scope
 [custom scopes]: ../../Concepts/MultiplePrivateStates/Multitenancy.md#Access-Token-Scope
