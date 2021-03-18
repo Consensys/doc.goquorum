@@ -58,7 +58,6 @@ nav:
       - Get started:
           - Overview: HowTo/GetStarted/GettingStartedOverview.md
           - Install: HowTo/GetStarted/Install.md
-          - With Cakeshop: HowTo/GetStarted/Cakeshop.md
           - With Qubernetes (K8s):  HowTo/GetStarted/Getting-Started-Qubernetes.md
           - Upgrade to 2.6.0: HowTo/GetStarted/migration.md
           - With GoQuorum Wizard:
@@ -81,7 +80,7 @@ nav:
           - Using account plugins: HowTo/ManageKeys/AccountPlugins.md
       - Monitor nodes:
           - Monitor a GoQuorum node: HowTo/Monitor/monitoring.md
-          - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md      
+          - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md
       - Use:
           - Adding nodes to network: HowTo/Use/adding_nodes.md
           - Adding nodes examples: HowTo/Use/add_node_examples.md
@@ -169,6 +168,9 @@ nav:
             - Interface: Reference/Plugins/security/interface.md
       - GoQuorum projects: Reference/GoQuorum-Projects.md
       - Logging and Errors: Reference/Logging and Errors.md
+      - Cakeshop:
+          - Getting started: Reference/Cakeshop/GettingStarted.md
+          - Configuration: Reference/Cakeshop/Configuration.md
       - Remix plugin:
           - Overview: Reference/RemixPlugin/Overview.md
           - Getting started: Reference/RemixPlugin/GettingStarted.md
@@ -177,7 +179,6 @@ nav:
           - extend API: Reference/quorum.js/extend.md
           - RawTransactionManager API: Reference/quorum.js/RawTransactionManager.md
       - FAQ: Reference/FAQ.md
-      - Cakeshop FAQ: Reference/CakeshopFAQ.md
 
 markdown_extensions:
   - toc:
@@ -256,7 +257,8 @@ plugins:
         Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/EnhancedPermissions.md
         Quorum Features/dns.md: HowTo/Configure/dns.md
         PluggableArchitecture/PluginDevelopment.md: HowTo/DevelopPlugins.md
-        Cakeshop/Getting started.md: HowTo/GetStarted/Cakeshop.md
+        HowTo/GetStarted/Cakeshop.md: Reference/Cakeshop/GettingStarted.md
+        Cakeshop/Getting started.md: Reference/Cakeshop/GettingStarted.md
         Getting Started/Getting Started Overview.md: HowTo/GetStarted/GettingStartedOverview.md
         Getting Started/Installing.md: HowTo/GetStarted/Install.md
         Wizard/GettingStarted.md: HowTo/GetStarted/Wizard/GettingStarted.md
@@ -271,7 +273,8 @@ plugins:
         Privacy/Contract-Extension/ContractExtension apis.md: Reference/APIs/ContractExtensionAPIs.md
         Permissioning/Enhanced Permissions Model/Permissioning apis.md: Reference/APIs/PermissioningAPIs.md
         Getting Started/api.md: Reference/APIs/PrivacyAPI.md
-        Cakeshop/Cakeshop FAQ.md: Reference/CakeshopFAQ.md
+        Reference/CakeshopFAQ.md: Reference/Cakeshop/GettingStarted.md
+        Cakeshop/Cakeshop FAQ.md: Reference/Cakeshop/GettingStarted.md
         FAQ.md: Reference/FAQ.md
         Getting Started/Quorum-Examples.md: Reference/GoQuorum-Projects.md
         PluggableArchitecture/Plugins/account/For-Developers.md: Reference/Plugins/account/For-Developers.md
