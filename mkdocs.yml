@@ -60,7 +60,6 @@ nav:
           - Install: HowTo/GetStarted/Install.md
           - With Qubernetes (K8s):  HowTo/GetStarted/Getting-Started-Qubernetes.md
           - Upgrade to 2.6.0: HowTo/GetStarted/migration.md
-          - Monitoring a GoQuorum node: HowTo/GetStarted/monitoring.md
           - With GoQuorum Wizard:
               - Get started: HowTo/GetStarted/Wizard/GettingStarted.md
               - Interacting: HowTo/GetStarted/Wizard/Interacting.md
@@ -79,12 +78,16 @@ nav:
           - Overview: HowTo/ManageKeys/ManagingKeys.md
           - Using clef: HowTo/ManageKeys/clef.md
           - Using account plugins: HowTo/ManageKeys/AccountPlugins.md
+      - Monitor nodes:
+          - Monitor a GoQuorum node: HowTo/Monitor/monitoring.md
+          - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md      
       - Use:
           - Adding nodes to network: HowTo/Use/adding_nodes.md
           - Adding nodes examples: HowTo/Use/add_node_examples.md
           - Adding IBFT validators: HowTo/Use/AddingIBFTValidators.md
           - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
           - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
+          - Multi-tenancy: HowTo/Use/Multitenancy.md
           - Smart contracts: HowTo/Use/DevelopingSmartContracts.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
@@ -132,6 +135,7 @@ nav:
           - Decentralized App:
             - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
             - Smart Contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
+      - Multi-tenancy: Concepts/Multitenancy/Overview.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
       - Cakeshop: Concepts/Cakeshop.md
@@ -286,3 +290,4 @@ plugins:
         quorum.js/RawTransactionManager.md: Reference/quorum.js/RawTransactionManager.md
         quorum.js/extend.md: Reference/quorum.js/extend.md
         Tutorials/Creating-A-Network-From-Scratch.md: Tutorials/Create-IBFT-Network.md
+        HowTo/GetStarted/monitoring.md: HowTo/Monitor/monitoring.md
