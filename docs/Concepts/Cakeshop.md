@@ -10,9 +10,11 @@ Cakeshop can be connected to Ethereum-like nodes, such as Quorum, which you can 
 Out of the box you get:
 
 * **Blockchain Explorer** - view transactions, blocks and contracts, and see historical contract state at a point in time
+* **Contract Registry** - keep track of deployed contracts, along with their code, interfaces, and state
 * **Node Info** - view the overall status of your network
-* **Peer Management** - easily discover, add and remove peers
-* **Solidity Sandbox** - develop, compile, deploy and interact with Solidity smart contracts
+* **Peer Management** - easily discover, add, and remove peers
+* **Enhanced Permissions UI** - manage smart contract-based [Enhanced Permissioning](./Permissioning/Enhanced/EnhancedPermissionsOverview.md)
+* **Solidity Sandbox** - develop, compile, deploy, and interact with Solidity smart contracts
 
 It provides tools for connecting to multiple nodes, managing peers and permissions,
 exploring the state of the chain, and working with contracts.
@@ -20,4 +22,4 @@ exploring the state of the chain, and working with contracts.
 The Cakeshop package includes a [Solidity](https://solidity.readthedocs.org/en/latest/)
 compiler, and all dependencies.
 
-[Get started with Cakeshop.](../Reference/Cakeshop/Overview.md)
+[Get started with Cakeshop.](../Reference/Cakeshop/GettingStarted.md)
