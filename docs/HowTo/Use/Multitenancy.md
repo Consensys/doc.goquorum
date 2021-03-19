@@ -108,6 +108,6 @@ Once a key is added to a resident group, it should remain in that group.
 * Updates to the Authorization Server should be made to provide the new Tenant access to the private state defined in the `residentGroups` configuration.
 
 
-[scope values]: ../../Concepts/MultiplePrivateStates/Multitenancy.md#Access-Token-Scope
-[custom scopes]: ../../Concepts/MultiplePrivateStates/Multitenancy.md#Access-Token-Scope
+[scope values]: ../../Concepts/Multitenancy/Multitenancy.md#Access-Token-Scope
+[custom scopes]: ../../Concepts/Multitenancy/Multitenancy.md#Access-Token-Scope
 [Tessera]: https://docs.tessera.consensys.net

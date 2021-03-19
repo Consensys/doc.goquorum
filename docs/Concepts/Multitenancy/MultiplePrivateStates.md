@@ -155,7 +155,7 @@ Returns the private state the user is operating on
 
 <!--links-->
 [supporting multiple tenants on a single node]: Multitenancy.md
-[setup residentGroups in Tessera]: ../../HowTo/Use/MultitenancyMPS.md#Tessera-Setup
+[setup residentGroups in Tessera]: ../../HowTo/Use/Multitenancy.md#Tessera-Setup
 [steps for migration]: #Migration-Guides
 [retrieved from Tessera]: #Tessera-Q2T-Communication-Changes
 [Tessera]: https://docs.tessera.consensys.net
