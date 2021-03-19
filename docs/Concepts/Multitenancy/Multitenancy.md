@@ -135,7 +135,7 @@ A client presenting an access token containing the above scopes has full access 
 to private contracts on private states `PS1` and `PS2` using any self or node managed Ethereum Accounts.
 
 <!--links-->
-[Multi-tenancy via Multiple Private States]: ../../HowTo/Use/MultitenancyMPS.md
+[Multi-tenancy via Multiple Private States]: ../../HowTo/Use/Multitenancy.md
 [configuration changes needed for MPS]: MultiplePrivateStates.md#Configuration-Changes
 [MPS enabled]: MultiplePrivateStates.md#Enable-Multiple-Private-States
 [Authentication Server setup]: #Enterprise-Authorization-Server
