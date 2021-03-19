@@ -18,7 +18,7 @@ only be protected by one authorization server.
 This section outlines an example of how multi-tenancy can be set up. A network operator must
 configure [scope values] for each user in an authorization server, for each tenant.
 This example network contains 4 nodes.
-Multi-tenant `Node1` is shared between tenant `J` and `G` (`isMPS=true`)
+Multi-tenant `Node1` is shared between tenant `J` and `G` (`isMPS=true`) and 
 Standalone `Node2` is used by tenant `D` alone (`isMPS=false`)
 
 !!! note

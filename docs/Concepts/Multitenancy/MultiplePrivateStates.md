@@ -28,6 +28,7 @@ Any RPC API call must be accompanied by a private state identifier or authorizat
 
 MPS uses the concept of Tessera Resident Groups to map tenants to private states. 
 During Tessera startup, `residentGroups` are validated to check each tessera key is part of a single resident group. Any key not part of a configured group is added to the default "private" resident group.
+During Quorum startup, the `residentGroups` are [retrieved from Tessera] and kept in memory in GoQuorum.
 
 ``` json
 "residentGroups": [
@@ -80,7 +81,7 @@ If both Tessera and GoQuorum are upgraded but not configured to run MPS, the nod
 ## Tessera Q2T Communication Changes
 
 MPS introduces a new QT2 endpoint `/residentGroups` to return the resident groups defined in Tessera.
-This endpoint is invoked at GoQuorum startup to retrieve all resident groups.  These details are kept in memory in quorum, so the [Private State Manager] is able to resolve these resident groups to the corresponding private state.
+This endpoint is invoked at GoQuorum startup to retrieve all resident groups.  These details are kept in memory in GoQuorum, so the [Private State Manager] is able to resolve these resident groups to the corresponding private state.
 
 ## Accessing a Private State
 
@@ -128,9 +129,9 @@ for more information about how Tessera manages multiple key pairs.
 
 #### MPS node upgrade
 
-Tessera will need to be rebuilt from the privacy managers of the standalone nodes it will now support. All transactions from the privacy managers will need to be merged into the new Tessera storage. Provide specific details to how this is achieved????
+Tessera will need to be rebuilt from the privacy managers of the standalone nodes it will now support. All transactions from the privacy managers will need to be merged into the new Tessera storage.
 
-The Tessera configuration file needs to be updated to contain the relevant residentGroups. The `residentGroups` should be configured so that each Tenant has their own private state. This will provide an experience equivalent to when the tenants were running their separate nodes.
+The Tessera configuration file needs to be updated to contain the relevant `residentGroups`. The `residentGroups` should be configured so that each Tenant has their own private state. This will provide an equivalent experience to when the tenants were running their separate nodes.
 
 #### Standalone node upgrade
 
@@ -156,6 +157,7 @@ Returns the private state the user is operating on
 [supporting multiple tenants on a single node]: Multitenancy.md
 [setup residentGroups in Tessera]: ../../HowTo/Use/MultitenancyMPS.md#Tessera-Setup
 [steps for migration]: #Migration-Guides
+[retrieved from Tessera]: #Tessera-Q2T-Communication-Changes
 [Tessera]: https://docs.tessera.consensys.net
 [Tessera Resident Groups]: https://docs.tessera.consensys.net
 [Private State Manager]: #Private-State-Manager
