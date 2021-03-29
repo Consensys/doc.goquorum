@@ -275,6 +275,7 @@ plugins:
         Getting Started/api.md: Reference/APIs/PrivacyAPI.md
         Reference/CakeshopFAQ.md: Reference/Cakeshop/GettingStarted.md
         Cakeshop/Cakeshop FAQ.md: Reference/Cakeshop/GettingStarted.md
+        Cakeshop/Overview.md: Reference/Cakeshop/GettingStarted.md
         FAQ.md: Reference/FAQ.md
         Getting Started/Quorum-Examples.md: Reference/GoQuorum-Projects.md
         PluggableArchitecture/Plugins/account/For-Developers.md: Reference/Plugins/account/For-Developers.md
