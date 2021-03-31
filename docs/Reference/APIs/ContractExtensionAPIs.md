@@ -63,9 +63,9 @@ Submit an approval/denial vote to the specified extension management contract.
 
 #### Parameters
 
-* `addressToVoteOn`: address of the contract extension's management contract
+* `addressToVoteOn`: address of the contract extension's management contract (this can be found using `quorumExtension_activeExtensionContracts`)
 * `vote`: bool - `true` approves the extension process, `false` cancels the extension process.
-* `txArgs`: arguments for the vote submission transaction
+* `txArgs`: arguments for the vote submission transaction - `privateFor` must contain the public key of the node that initiated the contract extension
 
 #### Returns
 
@@ -90,7 +90,7 @@ Submit an approval/denial vote to the specified extension management contract.
         Command:
 
         ```javascript
-        quorumExtension.approveExtension("0x1349f3e1b8d71effb47b840594ff27da7e603d17", true ,{from: "0x0fbdc686b912d7722dc86510934589e0aaf3b55a", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
+        quorumExtension.approveExtension("0xb1c57951a2f3006910115eadf0f167890e99b9cb", true ,{from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", privateFor:["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]})
         ```
 
         Response:
