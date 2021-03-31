@@ -42,7 +42,7 @@ Start the process of extending an existing private contract to a new participant
         Response:
 
         ```json
-        "0x9e0101dd215281b33989b3ae093147e9009353bb63f531490409a628c6e87310"
+        "0xceffe8051d098920ac84e33b8a05c48180ed9b26581a6a06ce9874a1bf1502bd"
         ```
 
 !!!error "Frequent issues"
@@ -63,7 +63,7 @@ Submit an approval/denial vote to the specified extension management contract.
 
 #### Parameters
 
-* `addressToVoteOn`: address of the contract extension's management contract (this can be found using `quorumExtension_activeExtensionContracts`)
+* `addressToVoteOn`: address of the contract extension's management contract (this can be found using [`quorumExtension_activeExtensionContracts`](#quorumextension_activeextensioncontracts))
 * `vote`: bool - `true` approves the extension process, `false` cancels the extension process.
 * `txArgs`: arguments for the vote submission transaction - `privateFor` must contain the public key of the node that initiated the contract extension
 
@@ -96,7 +96,7 @@ Submit an approval/denial vote to the specified extension management contract.
         Response:
 
         ```json
-        "0x9e0101dd215281b33989b3ae093147e9009353bb63f531490409a628c6e87310"
+        "0x8d34a594b286087f45029daad2d5a8fd42f70abb0ae2492429a256a2ba4cb0dd"
         ```
 
 !!!error "Frequent issues"
@@ -159,7 +159,7 @@ Cancel an active contract extension. Can only be invoked by the initiator of the
         Response:
 
         ```json
-        "0x9e0101dd215281b33989b3ae093147e9009353bb63f531490409a628c6e87310"
+        "0xb43da7dbeae5347df86c6933786b8c536b4622463b577a990d4c87214845d16a"
         ```
 
 !!!error "Frequent issues"
