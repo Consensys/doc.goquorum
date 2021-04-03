@@ -67,7 +67,8 @@ A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are 
     * When a node is migrated to this version, `geth` by default will create the `ancient` data folder
         and start moving blocks below the immutability threshold (default: 3162240) into the ancient data.
 
-        If you do not want this movement to happen, use `--immutabilitythreshold` to set the immutability
+        If you do not want this movement to happen, use
+        [`--immutabilitythreshold`](../../Reference/CLI-Syntax.md#immutabilitythreshold] to set the immutability
         threshold to an appropriate value while bringing up `geth`.
 
     * `geth 1.9.7` by default does not allow keystore based accounts to be unlocked in the start up process.

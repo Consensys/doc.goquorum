@@ -4,7 +4,7 @@ description: Configuring Raft consensus
 
 # Configuring Raft consensus
 
-To enable Raft consensus, specify the `--raft` command line option when starting GoQuorum.
+To enable Raft consensus, specify the [`--raft`](../../../Reference/CLI-Syntax.md#raft) command line option when starting GoQuorum.
 
 Raft requires that all initial nodes in the cluster are configured as [static peers](https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network#static-nodes).
 The order of the enode IDs in the `static-nodes.json` file must be the same across all peers.
@@ -28,9 +28,11 @@ and issue `raft.promoteToPeer(raftId)`.
 The enode ID must include a `raftport` querystring parameter like the [enode IDs in the `static-nodes.json`
 file](#configuring-raft-consensus).
 
-The `addPeer` and `addLearner` calls allocate and return a Raft ID not already in use. After `addPeer`
-or `addLearner`, start the new GoQuorum node with the `--raftjoinexisting RAFTID` command line option
-in addition to `--raft`. Replace `RAFTID` with the Raft ID returned by `addPeer` or `addLearner`.
+The `addPeer` and `addLearner` calls allocate and return a Raft ID not already in use.
+After `addPeer` or `addLearner`, start the new GoQuorum node with the
+[`--raftjoinexisting`](../../../Reference/CLI-Syntax.md#raftjoinexisting) command line option in addition to
+[`--raft`](../../../Reference/CLI-Syntax.md#raft).
+Use the Raft ID returned by `addPeer` or `addLearner` as the argument for `--raftjoinexisting`.
 
 ## Removing Raft members
 
@@ -50,14 +52,15 @@ prevents Raft being flooded with blocks.
 
 The rate limiting achieves a balance between transaction throughput and latency.
 
-Configure the minting frequency using the `--raftblocktime` command line option when starting GoQuorum.
+Configure the minting frequency using the [`--raftblocktime`](../../../Reference/CLI-Syntax.md#raftblocktime)
+command line option when starting GoQuorum.
 
 ## Raft transport layer
 
 Blocks are communicated over the HTTP transport layer built into [etcd Raft](https://github.com/coreos/etcd).
 
-By default, GoQuorum listens on port 50400 for the Raft transport. Use the `--raftport` command line
-option to change the port.
+By default, GoQuorum listens on port 50400 for the Raft transport. Use the
+[`--raftport`](../../../Reference/CLI-Syntax.md#raftport) command line option to change the port.
 
 By default, the number of peers is 25. Use the `--maxpeers N` command line option to configure the
 maximum number of peers where N is expected size of the cluster.

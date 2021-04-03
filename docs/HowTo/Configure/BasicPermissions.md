@@ -10,7 +10,8 @@ Node Permissioning is used to define:
 1. The nodes that a particular GoQuorum node is able to receive connections from
 
 In the [basic permissions model](../../Concepts/Permissioning/BasicNetworkPermissions.md), permissioning
-is managed at the individual node level by using the `--permissioned` command line flag when starting the node.
+is managed at the individual node level by using the [`--permissioned`](../../Reference/CLI-Syntax.md#permissioned)
+command line flag when starting the node.
 
 If a node is started with `--permissioned` set, the node looks for a `<data-dir>/permissioned-nodes.json` file.
 This file contains the list of enodes that this node can connect to and accept connections from. In other

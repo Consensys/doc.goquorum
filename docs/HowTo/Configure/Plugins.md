@@ -2,7 +2,7 @@
 
 `geth` can load plugins from:
 
-- JSON file which is passed via `--plugins` flag
+- JSON file which is passed via [`--plugins`](../../Reference/CLI-Syntax.md#plugins) flag
 - Ethereum TOML configuration file which is passed via `--config` flag
 
 === "JSON"
