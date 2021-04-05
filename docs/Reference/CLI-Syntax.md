@@ -63,7 +63,7 @@ The default is 3162240.
     --istanbul.blockperiod 5
     ```
 
-Minimum time between two consecutive blocks' timestamps in seconds.
+Minimum time between two consecutive [IBFT](../Concepts/Consensus/IBFT.md) blocks' timestamps in seconds.
 Setting the block period determines how quickly blocks should be minted by the validators.
 It is used for validation of block times by all nodes, so should not be changed after deciding a value for the network.
 
@@ -83,8 +83,8 @@ The default is 1.
     --istanbul.requesttimeout 12000
     ```
 
-Minimum request timeout for each IBFT round in milliseconds.
-The request timeout is the timeout at which IBFT will seek to trigger a new round if the previous one did not complete.
+Minimum request timeout for each [IBFT](../Concepts/Consensus/IBFT.md) round in milliseconds.
+The request timeout is the timeout at which IBFT triggers a new round if the previous one did not complete.
 This period increases as the timeout is hit more often.
 
 The default is 10000.
@@ -103,7 +103,7 @@ The default is 10000.
     --multitenancy
     ```
 
-If included, [multi-tenancy](../Concepts/Multitenancy/Overview.md) is enabled for the node.
+If included, [multi-tenancy](../Concepts/Multitenancy/Overview.md) is enabled.
 This requires the [JSON RPC Security plugin](../HowTo/Use/JSON-RPC-API-Security.md) to also be configured.
 
 ### `permissioned`

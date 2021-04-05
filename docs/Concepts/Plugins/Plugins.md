@@ -57,8 +57,7 @@ verification process is disabled.
 
 !!! warning
 
-    We do not recommend using [`--plugins.skipverify`](../../Reference/CLI-Syntax.md#pluginsskipverify) for production
-    settings as it introduces security risks.
+    We do not recommend using `--plugins.skipverify` for production settings as it introduces security risks.
 
 ## Example: `HelloWorld` plugin
 
