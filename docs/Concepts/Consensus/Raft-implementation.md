@@ -4,12 +4,6 @@ description: Raft implementation details
 
 # Raft implementation in Ethereum
 
-In GoQuorum, Raft is integrated via an implementation of the
-[`Service`](https://godoc.org/github.com/ConsenSys/quorum/node#Service) interface in
-[`node/service.go`](https://github.com/ConsenSys/quorum/blob/master/node/service.go). The Service
-interface implements an individual protocol that can be registered into a node. [`Ethereum`](https://godoc.org/github.com/ConsenSys/quorum/eth#Ethereum)
-is also implemented using the Service interface.
-
 ## Chain extension and races
 
 Raft is responsible for reaching consensus on which blocks should be accepted into the chain. In the
