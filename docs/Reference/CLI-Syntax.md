@@ -64,10 +64,11 @@ The default is 3162240.
     ```
 
 Minimum time between two consecutive [IBFT](../Concepts/Consensus/IBFT.md) blocks' timestamps in seconds.
-Setting the block period determines how quickly blocks should be minted by the validators.
-It is used for validation of block times by all nodes, so should not be changed after deciding a value for the network.
+Setting the block period determines how quickly blocks should be minted by the validators. The default is 1.
 
-The default is 1.
+!!! warning
+
+    Do not update this value after starting the network because this option is used by nodes to validate block times.
 
 ### `istanbul.requesttimeout`
 
@@ -103,7 +104,7 @@ The default is 10000.
     --multitenancy
     ```
 
-If included, [multi-tenancy](../Concepts/Multitenancy/Overview.md) is enabled.
+Enables [multi-tenancy](../Concepts/Multitenancy/Overview.md).
 This requires the [JSON RPC Security plugin](../HowTo/Use/JSON-RPC-API-Security.md) to also be configured.
 
 ### `permissioned`
@@ -120,7 +121,7 @@ This requires the [JSON RPC Security plugin](../HowTo/Use/JSON-RPC-API-Security.
     --permissioned
     ```
 
-If included, [basic network permissioning](../Concepts/Permissioning/BasicNetworkPermissions.md) is enabled.
+Enables [basic network permissioning](../Concepts/Permissioning/BasicNetworkPermissions.md).
 The node allows only a defined list of nodes to connect.
 
 ### `plugins`
@@ -154,7 +155,7 @@ Use this to configure [plugins](../Concepts/Plugins/Plugins.md).
     --plugins.localverify
     ```
 
-If included, [plugin integrity](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) is verified from the
+Verifies [plugin integrity](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) from the
 local file system.
 This requires a plugin signature file and PGP public key file to be available.
 
@@ -190,7 +191,7 @@ This flag is only valid if [`--plugins.localverify`](#pluginslocalverify) is set
     --plugins.skipverify
     ```
 
-If included, the [plugin verification](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) process is disabled.
+Disables the [plugin verification](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) process.
 
 ### `raft`
 
@@ -206,7 +207,7 @@ If included, the [plugin verification](../Concepts/Plugins/Plugins.md#plugin-int
     --raft
     ```
 
-If included, [Raft](../Concepts/Consensus/Raft.md) is used for consensus.
+Enables [Raft](../Concepts/Consensus/Raft.md) for consensus.
 
 ### `raftblocktime`
 
@@ -239,7 +240,7 @@ The default is 50.
     --raftdnsenable
     ```
 
-If included, [DNS resolution of peers](../HowTo/Configure/dns.md) is enabled.
+Enables [DNS resolution of peers](../HowTo/Configure/dns.md).
 
 ### `raftjoinexisting`
 
@@ -273,5 +274,5 @@ The default is 0.
     --raftport 50500
     ```
 
-The port to bind for the [Raft transport](../HowTo/Configure/Consensus/Configuring-Raft.md#raft-transport-layer).
+Port to bind for the [Raft transport](../HowTo/Configure/Consensus/Configuring-Raft.md#raft-transport-layer).
 The default is 50400.

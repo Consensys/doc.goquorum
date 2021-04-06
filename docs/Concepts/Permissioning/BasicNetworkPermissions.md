@@ -2,12 +2,12 @@
 
 Basic Network Permissioning is a feature that controls which nodes can connect to a given node and also
 to which nodes the given node can dial out to. It is managed at the individual node level by providing the
-[`--permissioned`](../../Reference/CLI-Syntax.md#permissioned) command line flag when starting the node.
+[`--permissioned`](../../Reference/CLI-Syntax.md#permissioned) command line option when starting the node.
 
-If the `--permissioned` flag is set, the node looks for a file named `<data-dir>/permissioned-nodes.json`.
+If the `--permissioned` option is set, the node looks for a file named `<data-dir>/permissioned-nodes.json`.
 This file contains the whitelist of enodes that this node can connect to and accept connections from. Therefore,
 with permissioning enabled, only the nodes that are listed in the `permissioned-nodes.json` file become
-part of the network. If the `--permissioned` flag is specified but no nodes are added to the `permissioned-nodes.json`
+part of the network. If the `--permissioned` option is specified but no nodes are added to the `permissioned-nodes.json`
 file then this node can neither connect to any node nor accept any incoming connections.
 
 The `permissioned-nodes.json` file follows the below pattern, which is similar to the `<data-dir>/static-nodes.json`

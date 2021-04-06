@@ -69,7 +69,7 @@ A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are 
 
         If you do not want this movement to happen, use
         [`--immutabilitythreshold`](../../Reference/CLI-Syntax.md#immutabilitythreshold] to set the immutability
-        threshold to an appropriate value while bringing up `geth`.
+        threshold to an appropriate value when starting `geth`.
 
     * `geth 1.9.7` by default does not allow keystore based accounts to be unlocked in the start up process.
         `geth` will crash if the unlock is attempted as a part of start up.

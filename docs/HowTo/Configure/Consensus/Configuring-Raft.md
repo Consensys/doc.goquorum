@@ -30,8 +30,8 @@ file](#configuring-raft-consensus).
 
 The `addPeer` and `addLearner` calls allocate and return a Raft ID not already in use.
 After `addPeer` or `addLearner`, start the new GoQuorum node with the
-[`--raftjoinexisting`](../../../Reference/CLI-Syntax.md#raftjoinexisting) command line option in addition to
-[`--raft`](../../../Reference/CLI-Syntax.md#raft).
+[`--raftjoinexisting`](../../../Reference/CLI-Syntax.md#raftjoinexisting) and
+[`--raft`](../../../Reference/CLI-Syntax.md#raft) command line options.
 Use the Raft ID returned by `addPeer` or `addLearner` as the argument for `--raftjoinexisting`.
 
 ## Removing Raft members

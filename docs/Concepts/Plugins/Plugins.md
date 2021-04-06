@@ -52,12 +52,12 @@ The architecture enables the same verification process locally via
 remotely with custom plugin central - reference the [`Settings`](../../HowTo/Configure/Plugins.md) section for more
 information on how to support custom plugin central.
 
-If the flag [`--plugins.skipverify`](../../Reference/CLI-Syntax.md#pluginsskipverify) is provided at runtime the plugin
-verification process is disabled.
+To disable the plugin verification process, use the
+[`--plugins.skipverify`](../../Reference/CLI-Syntax.md#pluginsskipverify) command line option.
 
 !!! warning
 
-    We do not recommend using `--plugins.skipverify` for production settings as it introduces security risks.
+    Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.
 
 ## Example: `HelloWorld` plugin
 
