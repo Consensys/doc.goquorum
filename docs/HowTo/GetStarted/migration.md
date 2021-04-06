@@ -58,11 +58,11 @@ A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are 
 
 !!! Note
 
-    * **freezerdb** - `geth` 1.9.7 brings in the feature of freezer db where in block data beyond certain
-        threshold is moved to a different file based storage area. The location for freezerdb can be provided
-        by geth command lines arguments:
+    * **freezerdb** - `geth` 1.9.7 introduces the feature of freezerdb where block data beyond a certain
+        threshold is moved to a different file-based storage area. The location for freezerdb can be provided
+        by the `geth` command lines option:
 
-        `--datadir.ancient <value>` Data directory for ancient chain segments (default = inside chaindata)
+        `--datadir.ancient <value>` - Data directory for ancient chain segments (default = inside `chaindata`)
 
     * When a node is migrated to this version, `geth` by default will create the `ancient` data folder
         and start moving blocks below the immutability threshold (default: 3162240) into the ancient data.
@@ -71,8 +71,8 @@ A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are 
         [`--immutabilitythreshold`](../../Reference/CLI-Syntax.md#immutabilitythreshold] to set the immutability
         threshold to an appropriate value when starting `geth`.
 
-    * `geth 1.9.7` by default does not allow keystore based accounts to be unlocked in the start up process.
-        `geth` will crash if the unlock is attempted as a part of start up.
-        To enable account unlocking explicitly use `--allow-insecure-unlock`:
+    * `geth` 1.9.7 by default does not allow keystore-based accounts to be unlocked in the startup process.
+        `geth` will crash if the unlock is attempted as a part of startup.
+        To enable account unlocking, use `--allow-insecure-unlock`:
 
-        `--allow-insecure-unlock ` Allow insecure account unlocking when account-related RPCs are exposed by http.
+        `--allow-insecure-unlock` - Allow insecure account unlocking when account-related RPCs are exposed by HTTP.
