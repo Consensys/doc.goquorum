@@ -81,6 +81,6 @@ A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are 
 
         This is due to an upstream bug where non-graceful restart causes  gap between leveldb and freezerdb.
 
-        This can be avoided by either running the node with `gcmode=archive`  or restarting the node gracefully ( `kill / docker stop & start`).
+        This can be avoided by either running the node with `gcmode=archive`  or restarting the node gracefully (`kill / docker stop & start`).
 
         This has been fixed in GoQuorum v21.4.0 (from upstream `geth` 1.9.20).
