@@ -83,5 +83,4 @@ A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are 
 
         This can be avoided by either running the node with `gcmode=archive`  or restarting the node gracefully ( `kill / docker stop & start`).
 
-        This will be fixed in the future when Quorum is upgraded to `geth` 1.9.20 as this issue has been fixed in upstream (`geth` 1.9.20).
-        
+        This has been fixed in GoQuorum v21.4.0 (from upstream `geth` 1.9.20).
