@@ -76,14 +76,13 @@ A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are 
 
         `--allow-insecure-unlock ` Allow insecure account unlocking when account-related RPCs are exposed by http.
 
-    * **Failure to sync up**
-      Quorum 2.6.0 can fail to sync up with `missing parent` error under the following scenario:
-      In a Quorum network running with gcmode=full and block height exceeding immutability threshold(with blocks in freezerdb), if a node is restarted non-gracefully(kill -9/docker kill & start) then it can fail to sync up with its peers with `missing parent` error.
+    * **Failure to sync up** - GoQuorum 2.6.0 can fail to sync up with `missing parent` error under the following scenario:
+        In a GoQuorum network running with `gcmode=full` and block height exceeding immutability threshold (with blocks in freezerdb), if a node is restarted non-gracefully (`kill -9/docker kill & start`) then it can fail to sync up with its peers with `missing parent` error.
 
-      This is due to an upstream bug where non-graceful restart causes  gap between leveldb and freezerdb.
+        This is due to an upstream bug where non-graceful restart causes  gap between leveldb and freezerdb.
 
-      This can be avoided by either running the node with gcmode=archive  or restarting the node gracefully( kill / docker stop & start).
+        This can be avoided by either running the node with `gcmode=archive`  or restarting the node gracefully ( `kill / docker stop & start`).
 
-      This will be fixed in the future when Quorum is upgraded to geth-19.20 as this issue has been fixed in upstream (geth-1.9.20).
+        This will be fixed in the future when Quorum is upgraded to `geth` 1.9.20 as this issue has been fixed in upstream (`geth` 1.9.20).
 
 
