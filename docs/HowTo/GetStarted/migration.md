@@ -60,7 +60,7 @@ A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are 
 
     * **freezerdb** - `geth` 1.9.7 introduces the feature of freezerdb where block data beyond a certain
         threshold is moved to a different file-based storage area. The location for freezerdb can be provided
-        by the `geth` command lines option:
+        by the `geth` command line option:
 
         `--datadir.ancient <value>` - Data directory for ancient chain segments (default = inside `chaindata`)
 

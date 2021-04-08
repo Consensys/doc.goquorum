@@ -48,7 +48,7 @@ geth <other parameters> \
 Plugin Central Server can be used to download and verify plugin integrity using [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy).
 The architecture enables the same verification process locally via
 [`--plugins.localverify`](../../Reference/CLI-Syntax.md#pluginslocalverify) and
-[`--plugins.publickey`](../../Reference/CLI-Syntax.md#pluginspublickey) flags or
+[`--plugins.publickey`](../../Reference/CLI-Syntax.md#pluginspublickey) options or
 remotely with custom plugin central - reference the [`Settings`](../../HowTo/Configure/Plugins.md) section for more
 information on how to support custom plugin central.
 

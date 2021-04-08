@@ -105,7 +105,7 @@ The default is 10000.
     ```
 
 Enables [multi-tenancy](../Concepts/Multitenancy/Overview.md).
-This requires the [JSON RPC Security plugin](../HowTo/Use/JSON-RPC-API-Security.md) to also be configured.
+This requires the [JSON-RPC Security plugin](../HowTo/Use/JSON-RPC-API-Security.md) to also be configured.
 
 ### `permissioned`
 
@@ -175,7 +175,7 @@ This requires a plugin signature file and PGP public key file to be available.
 
 URI of the PGP public key for local
 [plugin verification](../Concepts/Plugins/Plugins.md#plugin-integrity-verification).
-This flag is only valid if [`--plugins.localverify`](#pluginslocalverify) is set.
+This option is only valid if [`--plugins.localverify`](#pluginslocalverify) is set.
 
 ### `plugins.skipverify`
 
