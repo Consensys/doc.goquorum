@@ -75,3 +75,12 @@ A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are 
         To enable account unlocking explicitly use `--allow-insecure-unlock`:
 
         `--allow-insecure-unlock ` Allow insecure account unlocking when account-related RPCs are exposed by http.
+
+    * **Failure to sync up** - GoQuorum 2.6.0 can fail to sync up with `missing parent` error under the following scenario:
+        In a GoQuorum network running with `gcmode=full` and block height exceeding immutability threshold (with blocks in freezerdb), if a node is restarted non-gracefully (`kill -9/docker kill & start`) then it can fail to sync up with its peers with `missing parent` error.
+
+        This is due to an upstream bug where non-graceful restart causes  gap between leveldb and freezerdb.
+
+        This can be avoided by either running the node with `gcmode=archive`  or restarting the node gracefully (`kill / docker stop & start`).
+
+        This has been fixed in GoQuorum v21.4.0 (from upstream `geth` 1.9.20).
