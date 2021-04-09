@@ -25,10 +25,11 @@ This reference describes the syntax of the GoQuorum Command Line Interface (CLI)
 === "Command Line"
 
     ```bash
-    --allowedfutureblocktime 2
+    --allowedfutureblocktime 1
     ```
 
-Maximum time from current time, in seconds, allowed for blocks before they're considered future blocks.
+Maximum time from current time allowed for blocks before they're considered future blocks, in seconds.
+This allows nodes to be slightly out of sync without receiving "Mining too far in the future" messages.
 The default is 0.
 
 ### `immutabilitythreshold`
@@ -157,7 +158,7 @@ Use this to configure [plugins](../Concepts/Plugins/Plugins.md).
 
 Verifies [plugin integrity](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) from the
 local file system.
-This requires a plugin signature file and PGP public key file to be available.
+This requires a plugin signature file and [PGP public key file](#pluginspublickey) to be available.
 
 ### `plugins.publickey`
 
