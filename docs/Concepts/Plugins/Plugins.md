@@ -36,7 +36,7 @@ Currently plugins must be manually installed into a directory (defaults to `plug
 ## Using Plugins
 
 [Plugins settings file](../../HowTo/Configure/Plugins.md) contains a JSON that describes what plugins to be used.
-Then start `geth` using the `--plugins` command line option:
+Then start `geth` using the [`--plugins`](../../Reference/CLI-Syntax.md#plugins) command line option:
 
 ```bash
 geth <other parameters> \
@@ -46,13 +46,18 @@ geth <other parameters> \
 ## Plugin Integrity Verification
 
 Plugin Central Server can be used to download and verify plugin integrity using [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy).
-The architecture enables the same verification process locally via `--plugins.localverify` and `--plugins.publickey` flags or
-remotely with custom plugin central - reference the [`Settings`](../../HowTo/Configure/Plugins.md) section for more information on how to support custom plugin central.
+The architecture enables the same verification process locally via
+[`--plugins.localverify`](../../Reference/CLI-Syntax.md#pluginslocalverify) and
+[`--plugins.publickey`](../../Reference/CLI-Syntax.md#pluginspublickey) options or
+remotely with custom plugin central - reference the [`Settings`](../../HowTo/Configure/Plugins.md) section for more
+information on how to support custom plugin central.
 
-If the flag `--plugins.skipverify` is provided at runtime the plugin verification process will be disabled.
+To disable the plugin verification process, use the
+[`--plugins.skipverify`](../../Reference/CLI-Syntax.md#pluginsskipverify) command line option.
 
 !!! warning
-    Using `--plugins.skipverify` is not advised for production settings and it should be avoided as it introduces security risks.
+
+    Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.
 
 ## Example: `HelloWorld` plugin
 

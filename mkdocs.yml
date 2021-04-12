@@ -143,6 +143,7 @@ nav:
           - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md
   - Reference:
+      - Command Line Options: Reference/CLI-Syntax.md
       - API:
           - Privacy: Reference/APIs/PrivacyAPI.md
           - Privacy enhancements: Reference/APIs/PrivacyEnhancementsAPIs.md
