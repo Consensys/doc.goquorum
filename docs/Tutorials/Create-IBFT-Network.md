@@ -57,7 +57,7 @@ IBFT-Network/
 
 ### 3. Generate keys and configuration
 
-In the `IBFT-Network` directory, generate keys and configuration for 5 nodes.  
+In the `IBFT-Network` directory, generate keys and configuration for 5 nodes.
 
 ```bash
 <path to istanbul-tools>/istanbul-tools/build/bin/istanbul setup --num 5 --nodes --quorum --save --verbose
@@ -132,20 +132,20 @@ Node keys for 5 nodes, a `static-nodes.json` files, and a `genesis.json` files a
         "mixHash": "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
         "coinbase": "0x0000000000000000000000000000000000000000",
         "alloc": {
-            "608e7dfbbb6ebcc24fabeb67b3597b166b114142": {
-                "balance": "0x446c3b15f9926687d2c40534fdb564000000000000"
+            "fe3b557e8fb62b89f4916b721be55ceb828dbd73": {
+              "privateKey": "8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63",
+              "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
+              "balance": "0xad78ebc5ac6200000"
             },
-            "66f976d16c906b1b7e0e110d6950b109f146120f": {
-                "balance": "0x446c3b15f9926687d2c40534fdb564000000000000"
+            "627306090abaB3A6e1400e9345bC60c78a8BEf57": {
+              "privateKey": "c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3",
+              "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
+              "balance": "90000000000000000000000"
             },
-            "85ceceb205c67da0029d6852f0fc486b4324b5dc": {
-                "balance": "0x446c3b15f9926687d2c40534fdb564000000000000"
-            },
-            "c20f68dfb6b3707ec2ee5b4c1f5ca9e10e560d7b": {
-                "balance": "0x446c3b15f9926687d2c40534fdb564000000000000"
-            },
-            "c5db99d2cd30fd3ab58fe2738a3513c6ccdb0d2b": {
-                "balance": "0x446c3b15f9926687d2c40534fdb564000000000000"
+            "f17f52151EbEF6C7334FAD080c5704D77216b732": {
+              "privateKey": "ae6ae8e5ccbfb04590405997ee2d52d2b330726137b875053c36d94e974d162f",
+              "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
+              "balance": "90000000000000000000000"
             }
         },
         "number": "0x0",
@@ -230,7 +230,7 @@ geth --datadir data init ../genesis.json
 
 ### 7. Start node 0
 
-In the `Node-0` directory, start the first node.  
+In the `Node-0` directory, start the first node.
 
 ```bash
 PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22000 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30300
@@ -241,7 +241,7 @@ The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enable
 ### 8. Start nodes 1, 2, 3, and 4
 
 In new terminal for each node in each node directory, start the remaining nodes using the same command
-except specifying different ports for DevP2P and RPC.  
+except specifying different ports for DevP2P and RPC.
 
 !!!important
     The DevP2P port numbers must match the port numbers in [`static-nodes.json`](#4-update-ip-and-port-numbers).
@@ -294,8 +294,8 @@ Use the JavaScript console to check the peer count.
 
     The enode ID displayed in the logs on startup must match the enode listed in `static-nodes.json`
     for each node including the port number specified using [`--port` on startup](#8-start-node-1-2-3-and-4).
-    The log message is:    
-    
+    The log message is:
+
     ```
     INFO [12-08|10:44:55.044] Started P2P networking   self="enode://a54bc6e32febe789f9d2da61b370c1cd269ef7a6fdb0ea26b7c3767f56265c4e40e81bfb6e4e1aff56d2a9a8bcae5bfc168f106c2ca81b8eb3dfe09445718629@127.0.0.1:30301?discport=0"
     ```

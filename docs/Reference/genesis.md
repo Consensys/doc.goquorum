@@ -3,20 +3,20 @@
 ``` json
 {
   "alloc": {
-    "0xed9d02e382b34818e88b88a309c7fe71e65f419d": {
-      "balance": "1000000000000000000000000000"
+    "fe3b557e8fb62b89f4916b721be55ceb828dbd73": {
+      "privateKey": "8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63",
+      "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
+      "balance": "0xad78ebc5ac6200000"
     },
-    "0xca843569e3427144cead5e4d5999a3d0ccf92b8e": {
-      "balance": "1000000000000000000000000000"
+    "627306090abaB3A6e1400e9345bC60c78a8BEf57": {
+      "privateKey": "c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3",
+      "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
+      "balance": "90000000000000000000000"
     },
-    "0x0fbdc686b912d7722dc86510934589e0aaf3b55a": {
-      "balance": "1000000000000000000000000000"
-    },
-    "0x9186eb3d20cbd1f5f992a950d808c4495153abd5": {
-      "balance": "1000000000000000000000000000"
-    },
-    "0x0638e1574728b6d862dd5d3a3e0942c3be47d996": {
-      "balance": "1000000000000000000000000000"
+    "f17f52151EbEF6C7334FAD080c5704D77216b732": {
+      "privateKey": "ae6ae8e5ccbfb04590405997ee2d52d2b330726137b875053c36d94e974d162f",
+      "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
+      "balance": "90000000000000000000000"
     }
   },
   "coinbase": "0x0000000000000000000000000000000000000000",
