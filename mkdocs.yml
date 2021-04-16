@@ -216,8 +216,18 @@ markdown_extensions:
 plugins:
   - search:
       lang: 'en'
-      separator: '[\s]+'
+      separator: '[\s\-\.\_]+'
   - markdownextradata
+  - exclude:
+      glob:
+        - global/*
+  - git-revision-date-localized:
+      locale: en
+  - minify:
+      minify_html: true
+      minify_js: true
+      htmlmin_opts:
+        remove_comments: true
   - redirects:
       redirect_maps:
         # Configure redirects using key:value pairs:
