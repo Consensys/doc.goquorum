@@ -149,7 +149,7 @@ nav:
           - Privacy enhancements: Reference/APIs/PrivacyEnhancementsAPIs.md
           - Permissions: Reference/APIs/PermissioningAPIs.md
           - Contract extension: Reference/APIs/ContractExtensionAPIs.md
-      - Example genesis file: Reference/genesis.md
+      - Example Genesis File: Reference/genesis.md
       - Consensus:
           - IBFT Parameters: Reference/Consensus/IBFTParameters.md
           - IBFT RPC API: Reference/Consensus/IBFT-RPC-API.md
@@ -167,12 +167,13 @@ nav:
             - Developers: Reference/Plugins/security/For-Developers.md
             - Users: Reference/Plugins/security/For-Users.md
             - Interface: Reference/Plugins/security/interface.md
-      - GoQuorum projects: Reference/GoQuorum-Projects.md
+      - Accounts for Testing: Reference/Accounts-for-Testing.md
+      - GoQuorum Projects: Reference/GoQuorum-Projects.md
       - Logging and Errors: Reference/Logging and Errors.md
       - Cakeshop:
           - Getting started: Reference/Cakeshop/GettingStarted.md
           - Configuration: Reference/Cakeshop/Configuration.md
-      - Remix plugin:
+      - Remix Plugin:
           - Overview: Reference/RemixPlugin/Overview.md
           - Getting started: Reference/RemixPlugin/GettingStarted.md
       - quorum.js:

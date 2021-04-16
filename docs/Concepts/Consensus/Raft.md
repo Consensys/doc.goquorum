@@ -78,11 +78,13 @@ A learner node:
 * Cannot remove other learner and follower nodes.
 * Can remove itself.
 
+<!-- vale off -->
 ## Raft quorum
 
 Adding or removing a follower, changes the Raft quorum. Adding or removing a learner does not
 change the Raft quorum.
 
+<!-- vale on -->
 When a node is added to a long running network, we recommend the node is added
 as a learner. The learner node can be promoted once the node is fully synchronized with
 the network.
