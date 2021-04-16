@@ -9,6 +9,8 @@ New `security` plugins can be developed to customize protection of JSON API serv
 
 To simplify the development of new `security` plugins the following `security` plugin SDKs are available:
 
+<!-- vale off -->
 | Name | Language |
 | --- | --- |
 | [quorum-security-plugin-sdk-go](https://www.github.com/ConsenSys/quorum-security-plugin-sdk-go) | [Go](https://golang.org)
+<!-- vale on -->

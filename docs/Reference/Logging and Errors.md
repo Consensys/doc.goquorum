@@ -1,6 +1,6 @@
 # Logs & Errors Reference
 
-Although there is sufficient logging in GoQuorum (Geth), the error messages are not always straightforward to decipher.
+Although there is sufficient logging in GoQuorum (`geth`), the error messages are not always straightforward to decipher.
 This is our take on cataloguing of error messages along with possible cause and remediation actions, to serve as first point of reference before reaching out to the support team.
 
 !!! note
