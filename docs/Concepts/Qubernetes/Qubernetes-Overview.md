@@ -148,6 +148,7 @@ scripts to automate the complete network creation and other tasks.
 
 !!! example "Adding a 2.7.0 node to test the upgrade"
     ```bash
+
     qctl "adding a 2.7.0 node to the 2.6.0 network"
     qctl add node --qversion 2.7.0 quorum-node4
     qctl generate network --update
@@ -157,6 +158,7 @@ scripts to automate the complete network creation and other tasks.
     qctl test contracts quorum-node4
 
     sleep 1
+
     ```
 
 !!! example "Show all node information and delete network"
