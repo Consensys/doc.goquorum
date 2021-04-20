@@ -53,12 +53,10 @@ Speed bumps introduce a delay in the action execution allowing time to act if ac
 
 ## Common Contract Vulnerabilities
 
-<!-- vale off -->
 ### Reentrancy
 
 Reentrancy occurs when external contract calls are allowed to make new calls to the calling contract before the initial execution is complete. For a function, this means that the contract state may change in the middle of its execution as a result of a call to an untrusted contract, or the use of a low-level function with an external address.
 
-<!-- vale on -->
 ### Access Control
 
 While insecure visibility settings give attackers straightforward ways to access a contract's private values or logic, access control bypasses are sometimes more subtle. These vulnerabilities can occur when contracts use the deprecated `tx.origin` to validate callers, handle extensive authorization logic with lengthy "require" and make reckless use of `delegatecall` in proxy libraries or proxy contracts.

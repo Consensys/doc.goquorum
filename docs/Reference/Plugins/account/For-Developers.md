@@ -9,8 +9,6 @@ New `account` plugins can be developed to extend the supported account managemen
 
 To simplify the development of new `account` plugins the following `account` plugin SDKs are available:
 
-<!-- vale off -->
 | Name | Language |
 | --- | --- |
 | [quorum-account-plugin-sdk-go](https://github.com/ConsenSys/quorum-account-plugin-sdk-go) | [Go](https://golang.org)
-<!-- vale on -->

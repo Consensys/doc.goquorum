@@ -24,13 +24,11 @@ the new head of the blockchain (on all nodes).
 
 ## On every node
 
-<!-- vale off -->
 1. Raft reaches consensus and appends the log entry containing the block to the Raft
 log. At the Raft layer, the leader sends an `AppendEntries` to all
 followers, and all followers acknowledge receipt of the message. Once the leader has received a quorum of
 acknowledgements, the leader notifies each node that the new entry has been committed permanently to the log.
 
-<!-- vale on -->
 1. Having crossed the network through Raft, the block reaches the `eventLoop`. `eventLoop` processes Raft
 log entries. The block arrives from the leader through `pm.transport`, an instance of `rafthttp.Transport`.
 
