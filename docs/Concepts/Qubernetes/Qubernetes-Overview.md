@@ -34,7 +34,7 @@ Examples generating GoQuorum and K8s resources using the qubernetes container:
     docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./qube-init qubernetes.yaml
     ```
 
-!!! example "Generate GoQuorum resources and Kubernetes resources for the Quorum network `./quorum-init`."
+!!! example "Generate GoQuorum resources and Kubernetes resources for the GoQuorum network `./quorum-init`."
     ```
     docker run --rm -it -v $(pwd)/qubernetes.yaml:/qubernetes/qubernetes.yaml -v $(pwd)/out:/qubernetes/out  quorumengineering/qubernetes ./quorum-init qubernetes.yaml
     ```
@@ -126,7 +126,7 @@ running a node in a single cluster, the node defines:
 
 ## qctl command line tool
 
-[qctl](../../HowTo/GetStarted/Getting-Started-Qubernetes.md) is a Golang command line tool for
+[qctl](../../HowTo/GetStarted/Getting-Started-Qubernetes.md) is a golang command line tool for
 creating and manipulating the minimal configuration, and interacting with a running Kubernetes network.
 
 Following the Unix philosophy, the commands intentionally only do one thing. Add the commands to
@@ -148,6 +148,7 @@ scripts to automate the complete network creation and other tasks.
 
 !!! example "Adding a 2.7.0 node to test the upgrade"
     ```bash
+
     qctl "adding a 2.7.0 node to the 2.6.0 network"
     qctl add node --qversion 2.7.0 quorum-node4
     qctl generate network --update
@@ -157,6 +158,7 @@ scripts to automate the complete network creation and other tasks.
     qctl test contracts quorum-node4
 
     sleep 1
+
     ```
 
 !!! example "Show all node information and delete network"

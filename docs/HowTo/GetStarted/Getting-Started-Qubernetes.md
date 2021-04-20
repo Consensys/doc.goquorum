@@ -7,7 +7,7 @@ description: Getting started with Qubernetes (GoQuorum on Kubernetes)
 [Qubernetes](../../Concepts/Qubernetes/Qubernetes-Overview.md) is a project for generating GoQuorum network resources,
 Kubernetes GoQuorum resources, and managing and interacting with a GoQuorum Kubernetes deployment.
 
-[qctl](../../Concepts/Qubernetes/Qubernetes-Overview.md#qctl-command-line-tool) is a Golang command line tool for
+[qctl](../../Concepts/Qubernetes/Qubernetes-Overview.md#qctl-command-line-tool) is a golang command line tool for
 creating and manipulating the minimal configuration, and interacting with a running Kubernetes network.
 
 ## Installing binaries

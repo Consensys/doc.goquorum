@@ -55,7 +55,7 @@ geth --datadir data account new
 
 ## 3. Unlock account
 
-Accounts are locked by default and must be unlocked before sending the transaction. Use the Geth
+Accounts are locked by default and must be unlocked before sending the transaction. Use the `geth`
 console to display and unlock the account.
 
 ```bash
@@ -87,7 +87,7 @@ Type in the account password when prompted.
 
 ## 4. Send the private transaction
 
-In the Geth console, run `loadScript` to deploy the contract and
+In the `geth` console, run `loadScript` to deploy the contract and
 send a private transaction from node 1 to node 2.
 
 ```javascript
