@@ -62,7 +62,9 @@ The `genesis.json` file has been modified to include `isMPS`.  This value should
 
 ### Tessera
 
-The new field `residentGroups` can be added to the Tessera config to define group access to specific private states.  View how to [setup residentGroups in Tessera] for further information.  If the node is running as a standalone node (`isMPS=false`), configuration of `residentGroups` is not necessary.
+A new flag `enableMultiplePrivateStates` has been added to Tessera config defaulting to `false`, and can be enabled by adding the property to the config file the same way as other features. Quorum will not start if `isMPS=true` and `enableMultiplePrivateStates=false`.
+
+In addition, a new field `residentGroups` can be added to the Tessera config to define group access to specific private states.  If `enableMultiplePrivateStates=true`, `residentGroups` must be properly configured in order for Tessera to start. View how to [setup residentGroups in Tessera] for further information.  If the node is running as a standalone node (`isMPS=false`), configuration of `residentGroups` is not necessary.
 
 ## Upgrading a Node to MPS
 
@@ -137,7 +139,7 @@ The Tessera configuration file needs to be updated to contain the relevant `resi
 
 It may be the case that a tenant of a node wants to upgrade their node to support MPS but continue running as the only tenant.
 
-In this case, the Tenant's Tessera version will need to be upgraded. No `residentGroups` will need to be added to the configuration since there is only one Tenant on the node. All of the Tenant's public keys will be automatically added to the default "private" resident group upon Tessera startup.
+In this case, the Tenant's Tessera version will need to be upgraded and `residentGroups` must be configured. In the case of a single tenant, the `residentGroups` should be configured so that there is one private state that contains all of the Tenant's Tessera keys.
 
 ## MPS APIs
 

@@ -4,7 +4,8 @@
 
 * Set `isMPS=true` in GoQuorum genesis.config
 * Configure the [JSON RPC Security plugin](JSON-RPC-API-Security.md#configuration)
-* Use [Tessera] version `20.10.3` or later and configure `residentGroups`
+* Use [Tessera] version `20.10.3` or later
+* Add `enableMultiplePrivateStates=true` and configure `residentGroups` in the Tessera config
 * Run GoQuorum with `--multitenancy` flag
 
 ## Network Topology
@@ -75,7 +76,7 @@ psi://J?self.eoa=0x0
 
 ### Tessera Setup
 
-In addition to configuring the Authorization Server, the Tessera config file must be updated to contain `residentGroups` for the multi-tenant nodes.
+In addition to configuring the Authorization Server, the Tessera config file must be updated to contain the new flag `enableMultiplePrivateStates=true` as well as `residentGroups` for the multi-tenant nodes.
 
 In the above setup, the `residentGroups` configuration of `Node1` would be:
 
@@ -94,17 +95,18 @@ In the above setup, the `residentGroups` configuration of `Node1` would be:
 ]
 ```
 
-`Node2` does not need to add `residentGroups` to its Tessera config file because it has only one tenant, and therefore all of it's keys will be added to a default "private" group automatically.
-
 During Tessera startup, `residentGroups` are validated to check that each key is part of a single resident group.
-If a key is not configured to be a part of a resident group it is automatically added to the default "private" resident group.
-Once a key is added to a resident group, it should remain in that group.
+Once a key is added to a resident group, it must remain in that group.
+
+Tessera will not start if `residentGroups` is not configured correctly and `enableMultiplePrivateStates=true`.
+
+In the above setup, `Node2` is being run as a legacy standalone node with `isMPS=false`. No additional configuration changes are required in Tessera.
 
 ## Adding a new Tenant to Multi-tenant Node
 
 * Network Admin executes Tessera keygen to generate the new key
 * The Tessera config file must be updated to include the new key in a resident group.
-* Tessera needs to be restarted to load the new key. When Tessera starts, if the new key was generated but not added to a resident group it will be put in the default "private" resident group.
+* Tessera needs to be restarted to load the new key. When Tessera starts, if the new key was generated but not added to a resident group the startup will fail.
 * Updates to the Authorization Server should be made to provide the new Tenant access to the private state defined in the `residentGroups` configuration.
 
 
