@@ -59,6 +59,21 @@ To disable the plugin verification process, use the
 
     Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.
 
+!!! important
+
+    Before `21.4.1`, Quorum's default configuration is to use Bintray as the Plugin Central Server to distribute the official plugins.
+    As Bintray is into sunset on May 1st 2020, please [configure](../../HowTo/Configure/Plugins.md#plugincentralconfiguration) plugin central as below 
+    to override the default:
+    ```json
+    {
+        "central": {
+            "baseURL": "https://provisional-plugins-repo.quorum.consensys.net",
+            "publicKeyURI": ".pgp/Central.pgp.pk"
+        },
+        ...
+    }
+    ```
+
 ## Example: `HelloWorld` plugin
 
 The plugin interface is implemented in Go and Java. In this example, `HelloWorld` plugin exposes a JSON RPC endpoint

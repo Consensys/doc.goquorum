@@ -50,7 +50,9 @@ Modifying this section configures your own local plugin central for Plugin Integ
       "baseURL": string,
       "certFingerprint": string,
       "publicKeyURI": string,
-      "insecureSkipTLSVerify": bool
+      "insecureSkipTLSVerify": bool,
+      "pluginDistPathTemplate": string,
+      "pluginSigPathTemplate": string
     }
     ```
 
@@ -61,6 +63,8 @@ Modifying this section configures your own local plugin central for Plugin Integ
     CertFingerPrint = string
     PublicKeyURI = string
     InsecureSkipTLSVerify = bool
+    PluginDistPathTemplate = string
+    PluginSigPathTemplate = string
     ```
 
 | Fields                  | Description                                                                                                               |
@@ -69,6 +73,8 @@ Modifying this section configures your own local plugin central for Plugin Integ
 | `certFingerprint`       | A string containing hex representation of the http server public key finger print <br/>to be used for certificate pinning |
 | `publicKeyURI`          | A string defining the location of the PGP public key <br/>to be used to perform the signature verification                |
 | `insecureSkipTLSVerify` | If true, **do not** verify the server's certificate chain and host name                                                   |
+| `pluginDistPathTemplate`| A string defining the path template to the plugin distribution file. <br/>The value is a string that is a Go text template. <br/>The self-explanatory variables are \{\{.Name\}\}, \{\{.Version\}\}, \{\{.OS\}\} and \{\{.Arch\}\} |
+| `pluginSigPathTemplate` | A string defining the path template to the plugin sha256 signature file. <br/> The value is a string that is a Go text template. <br/>The self-explanatory variables are \{\{.Name\}\}, \{\{.Version\}\}, \{\{.OS\}\} and \{\{.Arch\}\} |
 
 ## `PluginDefinition`
 
