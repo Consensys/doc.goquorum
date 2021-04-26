@@ -110,6 +110,6 @@ In the above setup, `Node2` is being run as a legacy standalone node with `isMPS
 * Updates to the Authorization Server should be made to provide the new Tenant access to the private state defined in the `residentGroups` configuration.
 
 
-[scope values]: ../../Concepts/Multitenancy/Multitenancy.md#Access-Token-Scope
-[custom scopes]: ../../Concepts/Multitenancy/Multitenancy.md#Access-Token-Scope
+[scope values]: ../../Concepts/Multitenancy/Multitenancy.md#access-token-scope
+[custom scopes]: ../../Concepts/Multitenancy/Multitenancy.md#access-token-scope
 [Tessera]: https://docs.tessera.consensys.net

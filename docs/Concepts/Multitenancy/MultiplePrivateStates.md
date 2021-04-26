@@ -26,8 +26,8 @@ Any RPC API call must be accompanied by a private state identifier or authorizat
 
 ### Tessera Resident Groups
 
-MPS uses the concept of Tessera Resident Groups to map tenants to private states. 
-During Tessera startup, `residentGroups` are validated to check each tessera key is part of a single resident group. Any key not part of a configured group is added to the default "private" resident group.
+MPS uses the concept of [Tessera Resident Groups] to map tenants to private states. 
+During Tessera startup, `residentGroups` are validated to check each tessera key is part of a single resident group. Every Tessera key must be in a resident group for Tessera to start.
 During Quorum startup, the `residentGroups` are [retrieved from Tessera] and kept in memory in GoQuorum.
 
 ``` json
@@ -131,7 +131,7 @@ for more information about how Tessera manages multiple key pairs.
 
 #### MPS node upgrade
 
-Tessera will need to be rebuilt from the privacy managers of the standalone nodes it will now support. All transactions from the privacy managers will need to be merged into the new Tessera storage.
+Tessera will need to be rebuilt from the privacy managers of the standalone nodes it will now support. All transactions from the privacy managers will need to be merged into the new Tessera storage. Learn more about [how to merge Tesseras].
 
 The Tessera configuration file needs to be updated to contain the relevant `residentGroups`. The `residentGroups` should be configured so that each Tenant has their own private state. This will provide an equivalent experience to when the tenants were running their separate nodes.
 
@@ -157,9 +157,10 @@ Returns the private state the user is operating on
 
 <!--links-->
 [supporting multiple tenants on a single node]: Multitenancy.md
-[setup residentGroups in Tessera]: ../../HowTo/Use/Multitenancy.md#Tessera-Setup
-[steps for migration]: #Migration-Guides
-[retrieved from Tessera]: #Tessera-Q2T-Communication-Changes
+[setup residentGroups in Tessera]: ../../HowTo/Use/Multitenancy.md#tessera-setup
+[steps for migration]: #migration-guides
+[retrieved from Tessera]: #tessera-q2t-communication-changes
 [Tessera]: https://docs.tessera.consensys.net
-[Tessera Resident Groups]: https://docs.tessera.consensys.net
-[Private State Manager]: #Private-State-Manager
+[Private State Manager]: #private-state-manager
+[Tessera Resident Groups]: https://docs.tessera.consensys.net/en/stable/Concepts/privacy-groups.md
+[how to merge Tesseras]: https://docs.tessera.consensys.net/en/stable/HowTo/Migrate/migration-multitenancy.md
