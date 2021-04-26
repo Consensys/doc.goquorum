@@ -61,8 +61,8 @@ To disable the plugin verification process, use the
 
 !!! important
 
-    Before `21.4.1`, Quorum's default configuration is to use Bintray as the Plugin Central Server to distribute the official plugins.
-    As Bintray is into sunset on May 1st 2020, please [configure](../../HowTo/Configure/Plugins.md#plugincentralconfiguration) plugin central as below 
+    Before GoQuorum `21.4.1`, the default Plugin Central Server configuration used Bintray to distribute the official plugins.
+    As Bintray will stop working on May 1st 2020, [configure plugin central](../../HowTo/Configure/Plugins.md#plugincentralconfiguration) to use ConsenSys Cloudsmith repository
     to override the default:
     ```json
     {
