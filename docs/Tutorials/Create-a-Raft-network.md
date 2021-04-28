@@ -107,7 +107,7 @@ In the `Node-1` directory, display the enode ID for node 1.
 bootnode --nodekey=nodekey --writeaddress
 ```
 
-Copy the following to a file called `static-nodes.json` in the `Node-1/data` directory.  
+Copy the following to a file called `static-nodes.json` in the `Node-1/data` directory.
 
 === "static-nodes.json"
     ```bash
@@ -284,3 +284,8 @@ PRIVATE_CONFIG=ignore geth  --datadir data --nodiscover --verbosity 5 --networki
 ```
 
 Node 2 connects to node 1.
+
+!!! important
+
+    In order for a Raft network to work, 51% of the peers must be up and running.
+    We recommend having an odd number of at least 3 peers in a network.
