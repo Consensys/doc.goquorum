@@ -4,7 +4,7 @@ description: Extend module
 
 # Extend module
 
-The `extend` module of quorum.js allows Quorum-specific APIs to be added to an instance of `web3`.
+The `extend` module of `quorum.js` allows Quorum-specific APIs to be added to an instance of `web3`.
 
 !!!example
 

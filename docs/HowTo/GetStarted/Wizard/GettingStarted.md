@@ -51,7 +51,7 @@ Kubernetes:
 
 ## Options
 
-You can also provide these flags when running quorum-wizard:
+You can also provide these flags when running `quorum-wizard`:
 
 | Flags | Effect |
 | - | - |

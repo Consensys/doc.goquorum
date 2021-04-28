@@ -1,8 +1,8 @@
 # Monitoring Quorum Node
 
-GoQuorum version 2.6.0 upgraded to Geth version 1.9.7.
+GoQuorum version 2.6.0 upgraded to `geth` version 1.9.7.
 Upgrade adds the ability to collect enhanced metrics which can then be used in different visualization tools for node monitoring.
-Refer to [Geth v1.9.0](https://blog.ethereum.org/2019/07/10/geth-v1-9-0/) for complete list of added features.
+Refer to [`geth` v1.9.0](https://blog.ethereum.org/2019/07/10/geth-v1-9-0/) for complete list of added features.
 
 This page explains how to configure a GoQuorum node to provide enhanced metrics and enable monitoring.
 
@@ -26,7 +26,7 @@ LOGGING AND DEBUGGING OPTIONS:
   --pprof                             Enable the pprof HTTP server
   --pprofaddr value                   pprof HTTP server listening interface (default: "127.0.0.1")
   --pprofport value                   pprof HTTP server listening port (default: 6060)
-  
+
 METRICS AND STATS OPTIONS:
   --metrics                           Enable metrics collection and reporting
   --metrics.expensive                 Enable expensive metrics collection and reporting

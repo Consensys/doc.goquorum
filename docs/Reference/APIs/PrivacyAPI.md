@@ -122,7 +122,7 @@ To support offline signing of transaction. This api fills and defaults `RLP` plu
 - `tx` : transaction object
 
 !!! example
-    An example using Geth console for signing and sending a private transaction is as shown below. The transaction depicted below deploys a simple storage contract with an initial value of 42:
+    An example using `geth` console for signing and sending a private transaction is as shown below. The transaction depicted below deploys a simple storage contract with an initial value of 42:
 
     Command:
 

@@ -123,7 +123,7 @@ Refer sample configuration for further details.
 
 For any given node the privacy manager (Tessera) is started first and for that reason we allow the Tessera
 node to be upgraded with privacy enhancements support ahead of GoQuorum upgrade. But when GoQuorum node
-is upgraded and Geth is reinitialised with `privacyEnhancementsBlock`, GoQuorum node will validate the
+is upgraded and `geth` is reinitialized with `privacyEnhancementsBlock`, GoQuorum node will validate the
 version of Tessera running and will fail to start if Tessera is not running an upgraded version. The
 GoQuorum node reports an appropriate error message in the console suggesting users to upgrade Tessera first.
 
