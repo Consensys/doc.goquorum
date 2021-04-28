@@ -124,8 +124,8 @@ nav:
           - Decentralized App:
             - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
             - Smart Contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
-      - Multitenancy: 
-            - MultiplePrivateStates: Concepts/Multitenancy/MultiplePrivateStates.md
+      - Multitenancy:
+            - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
             - Multitenancy: Concepts/Multitenancy/Multitenancy.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md

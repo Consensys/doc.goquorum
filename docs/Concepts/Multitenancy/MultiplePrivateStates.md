@@ -26,7 +26,7 @@ Any RPC API call must be accompanied by a private state identifier or authorizat
 
 ### Tessera Resident Groups
 
-MPS uses the concept of [Tessera Resident Groups] to map tenants to private states. 
+MPS uses the concept of [Tessera Resident Groups] to map tenants to private states.
 During Tessera startup, `residentGroups` are validated to check each tessera key is part of a single resident group. Every Tessera key must be in a resident group for Tessera to start.
 During Quorum startup, the `residentGroups` are [retrieved from Tessera] and kept in memory in GoQuorum.
 
@@ -82,7 +82,7 @@ If both Tessera and GoQuorum are upgraded but not configured to run MPS, the nod
 
 ## Tessera Q2T Communication Changes
 
-MPS introduces a new QT2 endpoint `/residentGroups` to return the resident groups defined in Tessera.
+MPS introduces a new QT2 endpoint `/groups/resident` to return the resident groups defined in Tessera.
 This endpoint is invoked at GoQuorum startup to retrieve all resident groups.  These details are kept in memory in GoQuorum, so the [Private State Manager] is able to resolve these resident groups to the corresponding private state.
 
 ## Accessing a Private State
@@ -143,16 +143,9 @@ In this case, the Tenant's Tessera version will need to be upgraded and `residen
 
 ## MPS APIs
 
-### quorum_privateStates
+### eth_getPSI
 
-Returns the list of private states accessible to the user.
-
-On a standalone node it returns the complete list of private states available on the node.
-On a Multi-tenant node it only returns the private state(s) the current user is authorized to access
-
-### quorum_currentState
-
-Returns the private state the user is operating on
+Returns the private state the user is operating on.
 
 
 <!--links-->
