@@ -59,6 +59,21 @@ To disable the plugin verification process, use the
 
     Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.
 
+!!! important
+
+    Before GoQuorum `21.4.1`, the default Plugin Central Server configuration used Bintray to distribute the official plugins.
+    As Bintray will stop working on May 1st 2020, [configure plugin central](../../HowTo/Configure/Plugins.md#plugincentralconfiguration) to use ConsenSys Cloudsmith repository
+    to override the default:
+    ```json
+    {
+        "central": {
+            "baseURL": "https://provisional-plugins-repo.quorum.consensys.net",
+            "publicKeyURI": ".pgp/Central.pgp.pk"
+        },
+        ...
+    }
+    ```
+
 ## Example: `HelloWorld` plugin
 
 The plugin interface is implemented in Go and Java. In this example, `HelloWorld` plugin exposes a JSON RPC endpoint
