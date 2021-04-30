@@ -58,7 +58,7 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 1. Now you can start up the new node and let it sync with the network.
     The main difference now is the use of the [`--raftjoinexisting`](../../Reference/CLI-Syntax.md#raftjoinexisting)
-    flag, which lets the node know that it is joining an existing network, which is handled differently internally.
+    flag, which lets the node know that it is joining an existing network.
     The Raft ID obtained in step 1 is passed as a parameter to this flag:
 
     ```bash
@@ -70,7 +70,7 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 !!! important
 
-    In order for a Raft network to work, 51% of the peers must be up and running.
+    For a Raft network to work, 51% of the peers must be up and running.
     We recommend having an odd number of at least 3 peers in a network.
 
 ### IBFT/Clique

@@ -16,7 +16,7 @@ The enode IDs must include a `raftport` querystring parameter specifying the Raf
     `enode://abcd@127.0.0.1:30400?raftport=50400`
     ```
 
-In order for the Raft network to work, 51% of the peers must be up and running.
+For the Raft network to work, 51% of the peers must be up and running.
 We recommend having an odd number of at least 3 peers in the network.
 
 ## Adding Raft members

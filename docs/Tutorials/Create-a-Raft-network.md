@@ -287,5 +287,5 @@ Node 2 connects to node 1.
 
 !!! important
 
-    In order for a Raft network to work, 51% of the peers must be up and running.
+    For a Raft network to work, 51% of the peers must be up and running.
     We recommend having an odd number of at least 3 peers in a network.
