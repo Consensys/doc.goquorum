@@ -284,3 +284,8 @@ PRIVATE_CONFIG=ignore geth  --datadir data --nodiscover --verbosity 5 --networki
 ```
 
 Node 2 connects to node 1.
+
+!!! important
+
+    For a Raft network to work, 51% of the peers must be up and running.
+    We recommend having an odd number of at least 3 peers in a network.
