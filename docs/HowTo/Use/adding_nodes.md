@@ -75,7 +75,7 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 ### IBFT/Clique
 
-Adding nodes to an IBFT/Clique network is a bit simpler, as it only needs to configure itself rather then be
+Adding nodes to an IBFT/Clique network is a bit simpler, as it only needs to configure itself rather than be
 pre-allocated on the network (permissioning aside).
 
 1. Initialize the new node with the network's genesis configuration.
@@ -88,7 +88,7 @@ pre-allocated on the network (permissioning aside).
 
     !!! note
 
-        Where you obtain this from will be dependent on the network. You may get it from an existing peer, or a network operator, or elsewhere entirely.
+        Where you obtain the genesis file from will be dependent on the network. You may get it from an existing peer, or a network operator, or elsewhere entirely.
 
 1. If you are using permissioning or peer-to-peer discovery, see the [extra options](#extra-options).
 
