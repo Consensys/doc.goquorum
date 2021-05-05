@@ -12,7 +12,7 @@ Retrieves the state of an address at a given block.
 
 #### Parameters
 
-* `address`: Account address to retrieve the state of.
+* `address`: Account address of the state to retrieve.
 
 * `blockNr`: Integer representing a block number or one of the string tags `latest` (the last block mined) or `pending`
   (the last block mined plus pending transactions).
@@ -23,7 +23,7 @@ Retrieves the state of an address at a given block.
 
 !!! Example
 
-    === "curl HTTP"
+    === "JSON RPC"
 
         ```bash
         curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"debug_dumpAddress","params":["0xfff7ac99c8e4feb60c9750054bdc14ce1857f181", 10],"id":15}' --header "Content-Type: application/json"
