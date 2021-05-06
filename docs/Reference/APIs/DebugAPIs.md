@@ -14,7 +14,7 @@ Retrieves the state of an address at a given block.
 
 * `address`: Account address of the state to retrieve.
 
-* `blockNr`: Integer representing a block number or one of the string tags `latest` (the last block mined) or `pending`
+* `blockNumber`: Integer representing a block number or one of the string tags `latest` (the last block mined) or `pending`
   (the last block mined plus pending transactions).
 
 #### Returns
