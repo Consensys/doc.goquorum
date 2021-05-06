@@ -149,6 +149,7 @@ nav:
           - Privacy enhancements: Reference/APIs/PrivacyEnhancementsAPIs.md
           - Permissions: Reference/APIs/PermissioningAPIs.md
           - Contract extension: Reference/APIs/ContractExtensionAPIs.md
+          - Debug: Reference/APIs/DebugAPIs.md
       - Example Genesis File: Reference/genesis.md
       - Consensus:
           - IBFT Parameters: Reference/Consensus/IBFTParameters.md
