@@ -144,12 +144,7 @@ nav:
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md
   - Reference:
       - Command Line Options: Reference/CLI-Syntax.md
-      - API:
-          - Privacy: Reference/APIs/PrivacyAPI.md
-          - Privacy enhancements: Reference/APIs/PrivacyEnhancementsAPIs.md
-          - Permissions: Reference/APIs/PermissioningAPIs.md
-          - Contract extension: Reference/APIs/ContractExtensionAPIs.md
-          - Debug: Reference/APIs/DebugAPIs.md
+      - GoQuorum API Methods: Reference/API-Methods.md
       - Example Genesis File: Reference/genesis.md
       - Consensus:
           - IBFT Parameters: Reference/Consensus/IBFTParameters.md

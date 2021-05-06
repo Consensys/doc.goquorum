@@ -11,56 +11,54 @@ This reference describes the GoQuorum JSON-RPC API methods.
     GoQuorum is based on [Geth Go Ethereum client](https://geth.ethereum.org/) but only the GoQuorum-specific API methods are listed here. Visit the
     [Go Ethereum documentation](https://geth.ethereum.org/docs/rpc/server) to view the Geth API methods.
 
-## `ADMIN` methods
+## Contract Extension methods
 
-The `ADMIN` API methods provide administrative functionality to manage your node.
+### `quorumExtension_extendContract`
 
-!!! note
-
-    The `ADMIN` API methods are not enabled by default for JSON-RPC. To enable the `ADMIN` API
-    methods, use the [`--rpc-http-api`](CLI/CLI-Syntax.md#rpc-http-api) or
-    [`--rpc-ws-api`](CLI/CLI-Syntax.md#rpc-ws-api) options.
-
-### `admin_addPeer`
-
-Adds a [static node](../HowTo/Find-and-Connect/Static-Nodes.md).
-
-!!! caution
-
-    If connections are timing out, ensure the node ID in the
-    [enode URL](../Concepts/Node-Keys.md#enode-url) is correct.
+Starts the process of extending an existing private contract to a new participant by deploying a new extension
+management contract to the blockchain.
 
 #### Parameters
 
-`string` : [Enode URL](../Concepts/Node-Keys.md#enode-url) of peer to add
+* `toExtend`: address of the private contract to extend
+* `newRecipientPtmPublicKey`: the new participant's Private Transaction Manager (PTM) (for example, Tessera) public key
+* `recipientAddress`: the new participant's Ethereum address - the participant will later need to approve the extension
+  using this address
+* `txArgs`: arguments for the transaction that deploys the extension management contract - `privateFor` must contain
+  only the `newRecipientPtmPublicKey`
 
 #### Returns
 
-`result` : `boolean` - `true` if peer added or `false` if peer already a
-[static node](../HowTo/Find-and-Connect/Static-Nodes.md).
+`result` : *data* - hash of the creation transaction for the new extension management contract
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"admin_addPeer","params":["enode://f59c0ab603377b6ec88b89d5bb41b98fc385030ab1e4b03752db6f7dab364559d92c757c13116ae6408d2d33f0138e7812eb8b696b2a22fe3332c4b5127b22a3@127.0.0.1:30304"],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"admin_addPeer","params":["enode://f59c0ab603377b6ec88b89d5bb41b98fc385030ab1e4b03752db6f7dab364559d92c757c13116ae6408d2d33f0138e7812eb8b696b2a22fe3332c4b5127b22a3@127.0.0.1:30304"],"id":1}
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"quorumExtension_extendContract","params":["0x9aff347f193ca4560276c3322193224dcdbbe578","BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=","0xed9d02e382b34818e88b88a309c7fe71e65f419d",{"from":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e","value":"0x0","privateFor":["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="],"privacyFlag":1}],"id":15}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
 
         ```json
         {
-          "jsonrpc": "2.0",
-          "id": 1,
-          "result": true
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"0xceffe8051d098920ac84e33b8a05c48180ed9b26581a6a06ce9874a1bf1502bd"
         }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumExtension.extendContract("0x9aff347f193ca4560276c3322193224dcdbbe578", "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=", "0xed9d02e382b34818e88b88a309c7fe71e65f419d",{from: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "0xceffe8051d098920ac84e33b8a05c48180ed9b26581a6a06ce9874a1bf1502bd"
         ```
 
 ### `admin_changeLogLevel`
