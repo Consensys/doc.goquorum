@@ -24,5 +24,4 @@ configuration requirements for GoQuorum and Tessera.
 - Add database replication or mirroring for Tessera private data, the JDBC connection must include
     primary and disaster recovery database connections to facilitate auto switchover on failure.
 
-*[HA]: High Availability
-[Quorum-to-Tessera (Q2T) server configuration]: https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TesseraAPI/
+[Quorum-to-Tessera (Q2T) server configuration]: https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TesseraAPI
