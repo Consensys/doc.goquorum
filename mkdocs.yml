@@ -145,6 +145,7 @@ nav:
   - Reference:
       - Command Line Options: Reference/CLI-Syntax.md
       - GoQuorum API Methods: Reference/API-Methods.md
+      - Permissioning Types: Reference/Permissioning-Types.md
       - Example Genesis File: Reference/genesis.md
       - Consensus:
           - IBFT Parameters: Reference/Consensus/IBFTParameters.md

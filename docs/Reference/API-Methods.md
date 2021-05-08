@@ -21,15 +21,18 @@ management contract to the blockchain.
 #### Parameters
 
 * `toExtend`: address of the private contract to extend
+
 * `newRecipientPtmPublicKey`: the new participant's Private Transaction Manager (PTM) (for example, Tessera) public key
+
 * `recipientAddress`: the new participant's Ethereum address - the participant will later need to approve the extension
   using this address
+
 * `txArgs`: arguments for the transaction that deploys the extension management contract - `privateFor` must contain
   only the `newRecipientPtmPublicKey`
 
 #### Returns
 
-`result` : *data* - hash of the creation transaction for the new extension management contract
+`result`: *data* - hash of the creation transaction for the new extension management contract
 
 !!! example
 
@@ -61,228 +64,150 @@ management contract to the blockchain.
         "0xceffe8051d098920ac84e33b8a05c48180ed9b26581a6a06ce9874a1bf1502bd"
         ```
 
-### `admin_changeLogLevel`
+!!!error "Frequent issues"
 
-Changes the log level without restarting Besu. You can change the log level for all logs, or you
-can change the log level for specific packages or classes.
+    * It's impossible to extend a contract already being extended, the following error will be returned:
 
-You can specify only one log level per RPC call.
+          ```text
+          Error: contract extension in progress for the given contract address
+          ```
 
-#### Parameters
+    * You must execute `quorumExtension_extendContract` from the node who created the contract initially.
 
-`level` - [Log level](CLI/CLI-Syntax.md#logging)
+    * If the network is using
+      [enhanced network permissioning](../../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md), then both
+      initiator (the `from` address in `txArgs`) and receiver (`recipientAddress`) of the extension must be network or
+      org admin accounts.
 
-`log_filter`: `Array` - Packages or classes to change the log level for. Optional.
+### `quorumExtension_approveExtension`
 
-#### Returns
-
-`result` : `Success` if the log level has changed, otherwise `error`.
-
-!!! example
-
-    The following example changes the debug level for specified classes to `DEBUG`.
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0", "method":"admin_changeLogLevel", "params":["DEBUG", ["org.hyperledger.besu.ethereum.eth.manager","org.hyperledger.besu.ethereum.p2p.rlpx.connections.netty.ApiHandler"]], "id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0", "method":"admin_changeLogLevel", "params":["DEBUG", ["org.hyperledger.besu.ethereum.eth.manager","org.hyperledger.besu.ethereum.p2p.rlpx.connections.netty.ApiHandler"]], "id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-         "jsonrpc": "2.0",
-         "id": 1,
-         "result": "Success"
-        }
-        ```
-
-    The following example changes the debug level of all logs to `WARN`.
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"admin_changeLogLevel","params":["WARN"], "id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"admin_changeLogLevel","params":["WARN"], "id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-         "jsonrpc": "2.0",
-         "id": 1,
-         "result": "Success"
-        }
-        ```
-
-### `admin_generateLogBloomCache`
-
-Generates cached log bloom indexes for blocks. APIs such as [`eth_getLogs`](#eth_getlogs) and
-[`eth_getFilterLogs`](#eth_getfilterlogs) use the cache for improved performance.
-
-!!! tip
-
-    Manually executing `admin_generateLogBloomCache` is not required unless the
-    [`--auto-log-bloom-caching-enabled`](CLI/CLI-Syntax.md#auto-log-bloom-caching-enabled) command
-    line option was set to false.
-
-!!! note
-
-    Each index file contains 100000 blocks. The last fragment of blocks less than 100000 are not
-    indexed.
+Submits an approval/denial vote to the specified extension management contract.
 
 #### Parameters
 
-`integer` - Block to start generating indexes.
+* `addressToVoteOn`: address of the contract extension's management contract (this can be found using
+  [`quorumExtension_activeExtensionContracts`](#quorumextension_activeextensioncontracts))
 
-`integer` - Block to stop generating indexes.
+* `vote`: *boolean* - `true` approves the extension process, `false` cancels the extension process
+
+* `txArgs`: arguments for the vote submission transaction - `privateFor` must contain the public key of the node that
+  initiated the contract extension
 
 #### Returns
 
-`result` : *object* - Log bloom index details:
-
-* `quantity` : `startBlock` - Starting block for the last requested cache generation.
-* `quantity` : `endBlock` - Ending block for the last requested cache generation.
-* `quantity` : `currentBlock` - The most recent block added to the cache.
-* `boolean` : `indexing` - `true` if indexing is in progress.
-* `boolean` : `true` indicates acceptance of the request from this call to generate the cache.
+`result`: *data* - hash of the vote submission transaction
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST --data '{jsonrpc":"2.0","method":"admin_generateLogBloomCache", "params":["0x0", "0x10000"], "id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"admin_generateLogBloomCache", "params":["0x0", "0x10000"], "id":1}
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_approveExtension", "params":["0xb1c57951a2f3006910115eadf0f167890e99b9cb", true, {"from": "0xed9d02e382b34818e88b88a309c7fe71e65f419d", "privateFor":["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]}], "id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
 
         ```json
         {
-          "jsonrpc": "2.0",
-          "id": 1,
-          "result": {
-            "startBlock": "0x0",
-            "endBlock": "0x10000",
-            "currentBlock": "0x0",
-            "indexing": true,
-            "requestAccepted": true
-          }
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"0x8d34a594b286087f45029daad2d5a8fd42f70abb0ae2492429a256a2ba4cb0dd"
         }
         ```
 
-### `admin_logsRemoveCache`
+    === "geth console request"
 
-Removes cache files for the specified range of blocks.
+        ```javascript
+        quorumExtension.approveExtension("0xb1c57951a2f3006910115eadf0f167890e99b9cb", true ,{from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", privateFor:["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "0x8d34a594b286087f45029daad2d5a8fd42f70abb0ae2492429a256a2ba4cb0dd"
+        ```
+
+!!!error "Frequent issues"
+
+    * If the contract is already under the process of extension, a call to extend it again will fail:
+
+        ```text
+        Error: contract extension in progress for the given contract address
+        ```
+
+    * The recipient can approve the extension only once.
+
+        Executing `quorumExtension.approveExtension` once the extension process is completed will result in the
+        following error:
+
+        ```text
+        Error: contract extension process complete. nothing to accept
+        ```
+
+    * The approver (the `from` address in `txArgs`) must be the receiver of the extension (`recipientAddress` from
+      `quorumExtension_extendContract`):
+
+        ```text
+        Error: account is not acceptor of this extension request
+        ```
+
+### `quorumExtension_cancelExtension`
+
+Cancels an active contract extension. This can only be invoked by the initiator of the extension process.
 
 #### Parameters
 
-`fromBlock` - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
+* `extensionContract`: address of the contract extension's management contract
 
-`toBlock` - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
-
-You can skip a parameter by using an empty string, `""`. If you specify:
-
-* No parameters, the call removes cache files for all blocks.
-* Only `fromBlock`, the call removes cache files for the specified block.
-* Only `toBlock`, the call removes cache files from the genesis block to the specified block.
+* `txArgs`: arguments for the cancellation transaction
 
 #### Returns
 
-`result` - `Cache Removed` status or `error`.
+`result`: *data* - hash of the cancellation transaction
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"admin_logsRemoveCache","params":["1", "100"], "id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"admin_logsRemoveCache","params":["1", "100"], "id":1}
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"quorumExtension_cancelExtension","params":["0x622aff909c081783613c9d3f5f4c47be78b310ac",{"from":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e","value":"0x0","privateFor":["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="],"privacyFlag":1}],"id":63}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
 
         ```json
         {
-          "jsonrpc": "2.0",
-          "id": 1,
-          "result": {
-            "Status": "Cache Removed"
-          }
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"0xb43da7dbeae5347df86c6933786b8c536b4622463b577a990d4c87214845d16a"
         }
         ```
 
-### `admin_logsRepairCache`
+    === "geth console request"
 
-Repairs cached logs by fixing all segments starting with the specified block number.
-
-#### Parameters
-
-`quantity` - Decimal index of the starting block to fix. If left empty, the head block
-is used as the starting point.
-
-#### Returns
-
-`result` -  Status of the repair request. Either `Started`, or `Already running`.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"admin_logsRepairCache","params":["1200"], "id":1}' http://127.0.0.1:8545
+        ```javascript
+        quorumExtension.cancelExtension("0x622aff909c081783613c9d3f5f4c47be78b310ac",{"from":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e","value":"0x0","privateFor": ["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
         ```
 
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"admin_logsRepairCache","params":["1200"], "id":1}
-        ```
-
-    === "JSON result"
+    === "geth console result"
 
         ```json
-        {
-          "jsonrpc": "2.0",
-          "id": 1,
-          "result": {
-            "Status": "Started"
-          }
-        }
+        "0xb43da7dbeae5347df86c6933786b8c536b4622463b577a990d4c87214845d16a"
         ```
 
-### `admin_nodeInfo`
+!!!error "Frequent issues"
 
-Returns networking information about the node. The information includes general information about
-the node and specific information from each running Ethereum sub-protocol (for example, `eth`).
+    * The canceller (`from` address in `txArgs`) must be the same as the initiator of the extension (the `from` address
+      in `txArgs` for the [`quorumExtension_extendContract`](#quorumextension_extendcontract) call) or it will result in
+      the following error:
+
+        ```text
+        Error: account is not the creator of this extension request
+        ```
+
+### `quorumExtension_activeExtensionContracts`
+
+Lists all active contract extensions involving this node (either as initiator or receiver).
 
 #### Parameters
 
@@ -290,499 +215,588 @@ None
 
 #### Returns
 
-`result` : Node object
+`result`: *array* - list of contract extension objects with the following fields:
 
-Properties of the node object are:
+* `managementContractAddress`: address of the extension management contract
 
-* `enode` - [Enode URL](../Concepts/Node-Keys.md#enode-url) of the node.
-* `listenAddr` - Host and port for the node.
-* `name` - Client name.
-* `id` - [Node public key](../Concepts/Node-Keys.md#node-public-key).
-* `ports` - Peer discovery and listening
-  [ports](../HowTo/Find-and-Connect/Managing-Peers.md#port-configuration).
-* `protocols` - List of objects containing information for each Ethereum sub-protocol.
+* `contractExtended`: address of the private contract getting extended
 
-!!! note
+* `creationData`: PTM hash of creation data for extension management contract
 
-    If the node is running locally, the host of the `enode` and `listenAddr` display as `[::]` in
-    the result. When advertising externally, the external address displayed for the `enode` and
-    `listenAddr` is defined by [`--nat-method`](../HowTo/Find-and-Connect/Specifying-NAT.md).
+* `initiator`: the contract extension initiator's Ethereum address
+
+* `recipient`: the new participant's Ethereum address - the participant will later need to approve the extension using
+  this address
+
+* `recipientPtmKey`: the new participant's PTM public key
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"admin_nodeInfo","params":[],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"admin_nodeInfo","params":[],"id":1}
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_activeExtensionContracts", "id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
 
         ```json
         {
-            "jsonrpc": "2.0",
-            "id": 1,
+          "jsonrpc":"2.0",
+          "id":10,
+          "result": [
+            {
+              "managementContractAddress":"0xc4e9de0bd5e0a5fd55ef5d6f2b46eba930a694a3",
+              "contractExtended":"0x027692c7ebdc81c590250e615ab571a0d14eff2d",
+              "creationData":"Zvo1Rnrfq4phIJbzKObyCBWSXTbEJGPOq5+jDCWccnPpA7K6OvIssCMLJ54f32uuEeczeVNC46QMk52lCOWbtg==",
+              "initiator":"0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+              "recipient":"0x0fbdc686b912d7722dc86510934589e0aaf3b55a",
+              "recipientPtmKey":"1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg="
+            }
+          ]
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumExtension.activeExtensionContracts
+        ```
+
+    === "geth console result"
+
+        ```json
+        [{
+            "managementContractAddress":"0xc4e9de0bd5e0a5fd55ef5d6f2b46eba930a694a3",
+            "contractExtended":"0x027692c7ebdc81c590250e615ab571a0d14eff2d",
+            "creationData":"Zvo1Rnrfq4phIJbzKObyCBWSXTbEJGPOq5+jDCWccnPpA7K6OvIssCMLJ54f32uuEeczeVNC46QMk52lCOWbtg==",
+            "initiator":"0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+            "recipient":"0x0fbdc686b912d7722dc86510934589e0aaf3b55a",
+            "recipientPtmKey":"1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg="
+        }]
+        ```
+
+### `quorumExtension_getExtensionStatus`
+
+Retrieves the status of the specified contract extension.
+
+#### Parameters
+
+`managementContractAddress`: address of the extension management contract
+
+#### Returns
+
+`result`: status of contract extension (`ACTIVE` or `DONE`)
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_getExtensionStatus", "params":["0x1349f3e1b8d71effb47b840594ff27da7e603d17"], "id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"DONE"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumExtension.getExtensionStatus("0x1349f3e1b8d71effb47b840594ff27da7e603d17")
+        ```
+
+    === "geth console result"
+
+        ```json
+        "DONE"
+        ```
+
+## Debug methods
+
+### `debug_dumpAddress`
+
+Retrieves the state of an address at a given block.
+
+#### Parameters
+
+* `address`: account address of the state to retrieve
+
+* `blockNumber`: integer representing a block number or one of the string tags `latest` (the last block mined) or `pending`
+  (the last block mined plus pending transactions)
+
+#### Returns
+
+`result`: state of the account address
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"debug_dumpAddress","params":["0xfff7ac99c8e4feb60c9750054bdc14ce1857f181", 10],"id":15}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result": {
+            "balance":"49358640978154672",
+            "code":"",
+            "codeHash":"c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+            "nonce":2,
+            "root":"56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+            "storage": {}
+          }
+        }
+        ```
+
+## Permission methods
+
+### `quorumPermission_orgList`
+
+Returns a list of all organizations with the status of each organization in the network.
+
+#### Parameters
+
+None
+
+#### Returns
+
+`result`: *array* - list of organization objects with the following fields:
+
+* `fullOrgId`: complete organization ID including the all parent organization IDs separated by `.`
+
+* `level`: level of the organization in the organization hierarchy
+
+* `orgId`: organization ID
+
+* `parentOrgId`: immediate parent organization ID
+
+* `status`: [organization status](Permissioning-Types.md#organization-status-types)
+
+* `subOrgList`: list of sub-organizations linked to the organization
+
+* `ultimateParent`: master organization under which the organization falls
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_orgList","id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":51,
+          "result": [
+            {
+              "fullOrgId":"INITORG",
+              "level":1,
+              "orgId":"INITORG",
+              "parentOrgId":"",
+              "status":2,
+              "subOrgList":null,
+              "ultimateParent":"INITORG"
+            }
+          ]
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.orgList
+        ```
+
+    === "geth console result"
+
+        ```json
+        [{
+            "fullOrgId":"INITORG",
+            "level":1,
+            "orgId":"INITORG",
+            "parentOrgId":"",
+            "status":2,
+            "subOrgList":null,
+            "ultimateParent":"INITORG"
+        }]
+        ```
+
+### `quorumPermission_acctList`
+
+Returns a list of permissioned accounts in the network.
+
+#### Parameters
+
+None
+
+#### Returns
+
+`result`: *array* - list of permissioned account objects with the following fields:
+
+* `acctId`: account UD
+
+* `isOrgAdmin`: indicates if the account is admin account for the organization
+
+* `orgId`: organization ID
+
+* `roleId`: role assigned to the account
+
+* `status`: [account status](Permissioning-Types.md#account-status-types)
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_acctList","id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":53,
+          "result": [
+            {
+              "acctId":"0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+              "isOrgAdmin":true,
+              "orgId":"INITORG",
+              "roleId":"NWADMIN",
+              "status":2
+            },
+            {
+              "acctId":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
+              "isOrgAdmin":true,
+              "orgId":"INITORG",
+              "roleId":"NWADMIN",
+              "status":2
+            }
+          ]
+        }
+        ```
+
+        === "geth console request"
+
+        ```javascript
+        quorumPermission.acctList
+        ```
+
+        === "geth console result"
+
+        ```json
+        [{
+          "acctId":"0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+          "isOrgAdmin":true,
+          "orgId":"INITORG",
+          "roleId":"NWADMIN",
+          "status":2
+        }, {
+          "acctId":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
+          "isOrgAdmin":true,
+          "orgId":"INITORG",
+          "roleId":"NWADMIN",
+          "status":2
+        }]
+        ```
+
+### `quorumPermission_nodeList`
+
+Returns a list of permissioned nodes in the network.
+
+#### Parameters
+
+None
+
+#### Returns
+
+`result`: *array* - list of permissioned node objects with the following fields:
+
+* `orgId`: organization ID to which the node belongs
+
+* `status`: [node status](Permissioning-Types.md#node-status-types)
+
+* `url`: complete enode ID
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_nodeList","id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":53,
+          "result": [
+            {
+              "orgId":"INITORG",
+              "status":2,
+              "url":"enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
+            },
+            {
+              "orgId":"INITORG",
+              "status":2,
+              "url":"enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
+            },
+            {
+              "orgId":"INITORG",
+              "status":2,
+              "url":"enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
+            },
+            {
+              "orgId":"INITORG",
+              "status":2,
+              "url":"enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
+            }
+          ]
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.nodeList
+        ```
+
+    === "geth console result"
+
+        ```json
+        [{
+          "orgId":"INITORG",
+          "status":2,
+          "url":"enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
+        }, {
+          "orgId":"INITORG",
+          "status":2,
+          "url":"enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
+        }, {
+          "orgId":"INITORG",
+          "status":2,
+          "url":"enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
+        }, {
+          "orgId":"INITORG",
+          "status":2,
+          "url":"enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
+        }]
+        ```
+
+### `quorumPermission_roleList`
+
+Returns a list of roles in the network.
+
+#### Parameters
+
+None
+
+#### Returns
+
+`result`: *array* - list of role objects with the following fields:
+
+* `access`: [account access](Permissioning-Types.md#account-access-types)
+
+* `active`: indicates if the role is active or not
+
+* `isAdmin`: indicates if the role is organization admin role
+
+* `isVoter`: indicates if the role is enabled for voting - applicable only for network admin role
+
+* `orgId`: organization ID to which the role is linked
+
+* `roleId`: unique role ID
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_roleList","id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result": [
+            {
+              "access":3,
+              "active":true,
+              "isAdmin":true,
+              "isVoter":true,
+              "orgId":"INITORG",
+              "roleId":"NWADMIN"
+            }
+          ]
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.roleList
+        ```
+
+    === "geth console result"
+
+        ```json
+        [{
+          "access":3,
+          "active":true,
+          "isAdmin":true,
+          "isVoter":true,
+          "orgId":"INITORG",
+          "roleId":"NWADMIN"
+        }]
+        ```
+
+### `quorumPermission_getOrgDetails`
+
+Returns lists of accounts, nodes, roles, and sub-organizations linked to the specified organization.
+
+#### Parameters
+
+`orgId`: organization or sub-organization ID
+
+#### Returns
+
+`result`: *objects* - the following lists:
+
+* `acctList`: list of accounts
+
+* `nodeList`: list of nodes
+
+* `roleList`: list of roles
+
+* `subOrgList`: list of sub-organizations
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_getOrgDetails","params":["INITORG"],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+            "jsonrpc":"2.0",
+            "id":1,
             "result": {
-                "enode": "enode://87ec35d558352cc55cd1bf6a472557797f91287b78fe5e86760219124563450ad1bb807e4cc61e86c574189a851733227155551a14b9d0e1f62c5e11332a18a3@[::]:30303",
-                "listenAddr": "[::]:30303",
-                "name": "besu/v1.0.1-dev-0d2294a5/osx-x86_64/oracle-java-1.8",
-                "id": "87ec35d558352cc55cd1bf6a472557797f91287b78fe5e86760219124563450ad1bb807e4cc61e86c574189a851733227155551a14b9d0e1f62c5e11332a18a3",
-                "ports": {
-                    "discovery": 30303,
-                    "listener": 30303
-                },
-                "protocols": {
-                    "eth": {
-                        "config": {
-                            "chainId": 2018,
-                            "homesteadBlock": 0,
-                            "daoForkBlock": 0,
-                            "daoForkSupport": true,
-                            "eip150Block": 0,
-                            "eip155Block": 0,
-                            "eip158Block": 0,
-                            "byzantiumBlock": 0,
-                            "constantinopleBlock": 0,
-                            "constantinopleFixBlock": 0,
-                            "ethash": {
-                                "fixeddifficulty": 100
-                            }
-                        },
-                        "difficulty": 78536,
-                        "genesis": "0x43ee12d45470e57c86a0dfe008a5b847af9e372d05e8ba8f01434526eb2bea0f",
-                        "head": "0xc6677651f16d07ae59cab3a5e1f0b814ed2ec27c00a93297b2aa2e29707844d9",
-                        "network": 2018
-                    }
-                }
+              "acctList": [{
+                  "acctId":"0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+                  "isOrgAdmin":true,
+                  "orgId":"INITORG",
+                  "roleId":"NWADMIN",
+                  "status":2
+              }, {
+                  "acctId":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
+                  "isOrgAdmin":true,
+                  "orgId":"INITORG",
+                  "roleId":"NWADMIN",
+                  "status":2
+              }],
+              "nodeList": [{
+                  "orgId":"INITORG",
+                  "status":2,
+                  "url":"enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
+              }, {
+                  "orgId":"INITORG",
+                  "status":2,
+                  "url":"enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
+              }, {
+                  "orgId":"INITORG",
+                  "status":2,
+                  "url":"enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
+              }, {
+                  "orgId":"INITORG",
+                  "status":2,
+                  "url":"enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
+              }],
+              "roleList": [{
+                  "access":3,
+                  "active":true,
+                  "isAdmin":true,
+                  "isVoter":true,
+                  "orgId":"INITORG",
+                  "roleId":"NWADMIN"
+              }],
+              "subOrgList":null
             }
         }
         ```
 
-### `admin_peers`
+    === "geth console request"
 
-Returns networking information about connected remote nodes.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : *array* of *objects* - Object returned for each remote node.
-
-Properties of the remote node object are:
-
-* `version` - P2P protocol version.
-* `name` - Client name.
-* `caps` - List of Ethereum sub-protocol capabilities.
-* `network` - Local and remote addresses established at time of bonding with the peer. The remote
-  address might not match the hex value for `port`. The remote address depends on which node
-  initiated the connection.
-* `port` - Port on the remote node on which P2P discovery is listening.
-* `id` - Node public key. Excluding the `0x` prefix, the node public key is the ID in the
-  [enode URL](../Concepts/Node-Keys.md#enode-url) `enode://<id ex 0x>@<host>:<port>`.
-* `protocols` - [Current state of peer](../HowTo/Find-and-Connect/Managing-Peers.md#monitoring-peer-connections)
-including `difficulty` and `head`. `head` is the hash of the highest known block for the peer.
-* `enode` - Enode URL of the remote node.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"admin_peers","params":[],"id":1}' http://127.0.0.1:8545
+        ```javascript
+        quorumPermission_getOrgDetails("INITORG")
         ```
 
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"admin_peers","params":[],"id":1}
-        ```
-
-    === "JSON result"
+    === "geth console result"
 
         ```json
         {
-           "jsonrpc": "2.0",
-           "id": 1,
-           "result": [
-             {
-               "version": "0x5",
-               "name": "besu/v20.10.4-dev-0905d1b2/osx-x86_64/adoptopenjdk-java-11",
-               "caps": [
-                 "eth/62",
-                 "eth/63",
-                 "eth/64",
-                 "eth/65",
-                 "IBF/1"
-               ],
-               "network": {
-                 "localAddress": "192.168.1.229:50115",
-                 "remoteAddress": "168.61.153.255:40303"
-               },
-               "port": "0x765f",
-               "id": "0xe143eadaf670d49afa3327cae2e655b083f5a89dac037c9af065914a9f8e6bceebcfe7ae2258bd22a9cd18b6a6de07b9790e71de49b78afa456e401bd2fb22fc",
-               "protocols": {
-                 "eth": {
-                   "difficulty": "0x1ac",
-                   "head": "0x964090ae9277aef43f47f1b8c28411f162243d523118605f0b1231dbfdf3611a",
-                   "version": 65
-                 }
-               },
-               "enode": "enode://e143eadaf670d49afa3327cae2e655b083f5a89dac037c9af065914a9f8e6bceebcfe7ae2258bd22a9cd18b6a6de07b9790e71de49b78afa456e401bd2fb22fc@127.0.0.1:30303"
-             }
-           ]
-        }
-        ```
-
-### `admin_removePeer`
-
-Removes a [static node](../HowTo/Find-and-Connect/Static-Nodes.md).
-
-#### Parameters
-
-`string` : [Enode URL](../Concepts/Node-Keys.md#enode-url) of peer to remove.
-
-#### Returns
-
-`result` : `boolean` - `true` if peer removed or `false` if peer not a
-[static node](../HowTo/Find-and-Connect/Static-Nodes.md)).
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"admin_removePeer","params":["enode://f59c0ab603377b6ec88b89d5bb41b98fc385030ab1e4b03752db6f7dab364559d92c757c13116ae6408d2d33f0138e7812eb8b696b2a22fe3332c4b5127b22a3@127.0.0.1:30304"],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"admin_removePeer","params":["enode://f59c0ab603377b6ec88b89d5bb41b98fc385030ab1e4b03752db6f7dab364559d92c757c13116ae6408d2d33f0138e7812eb8b696b2a22fe3332c4b5127b22a3@127.0.0.1:30304"],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc": "2.0",
-          "id": 1,
-          "result": true
-        }
-        ```
-
-## `WEB3` methods
-
-The `WEB3` API methods provide functionality for the Ethereum ecosystem.
-
-### `web3_clientVersion`
-
-Returns the current client version.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : *string* - Current client version.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : "besu/<version>"
-        }
-        ```
-
-### `web3_sha3`
-
-Returns a [SHA3](https://en.wikipedia.org/wiki/SHA-3) hash of the specified data. The result value
-is a [Keccak-256](https://keccak.team/keccak.html) hash, not the standardized SHA3-256.
-
-#### Parameters
-
-`DATA` - Data to convert to a SHA3 hash.
-
-#### Returns
-
-`result` (*DATA*) - SHA3 result of the input data.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"web3_sha3","params":["0x68656c6c6f20776f726c00"],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"web3_sha3","params":["0x68656c6c6f20776f726c00"],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : "0x5e39a0a66544c0668bde22d61c47a8710000ece931f13b84d3b2feb44ec96d3f"
-        }
-        ```
-
-## `NET` methods
-
-The `NET` API methods provide network-related information.
-
-### `net_version`
-
-Returns the [network ID](../Concepts/NetworkID-And-ChainID.md).
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : *string* - Current network ID.
-
-| Network ID | Chain | Network | Description
-|------------|-------|---------|-------------------------------|
-| `1`        | ETH   | Mainnet | Main Ethereum network         |
-| `3`        | ETH   | Ropsten | PoW test network              |
-| `4`        | ETH   | Rinkeby | PoA test network using Clique |
-| `5`        | ETH   | Goerli  | PoA test network using Clique |
-| `2018`     | ETH   | Dev     | PoW development network       |
-| `1`        | ETC   | Classic | Main Ethereum Classic network |
-| `7`        | ETC   | Mordor  | PoW test network              |
-| `6`        | ETC   | Kotti   | PoA test network using Clique |
-| `212`      | ETC   | Astor   | PoW test network              |
-
-!!! note
-
-    For almost all networks network ID and chain ID are the same.
-
-    The only networks in the table above with different network and chain IDs are
-    Classic with a chain ID of `61` and Mordor with a chain ID of `63`.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"net_version","params":[],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"net_version","params":[],"id":53}
-        ```
-
-    === "JSON result for Mainnet"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 51,
-          "result" : "1"
-        }
-        ```
-
-    === "JSON result for Ropsten"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : "3"
-        }
-        ```
-
-### `net_listening`
-
-Whether the client is actively listening for network connections.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` (*BOOLEAN*) - `true` if the client is actively listening for network connections;
-otherwise `false`.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"net_listening","params":[],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"net_listening","params":[],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : true
-        }
-        ```
-
-### `net_peerCount`
-
-Returns the number of peers currently connected to the client.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : *integer* - Number of connected peers in hexadecimal.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"net_peerCount","params":[],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"net_peerCount","params":[],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : "0x5"
-        }
-        ```
-
-### `net_enode`
-
-Returns the [enode URL](../Concepts/Node-Keys.md#enode-url).
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : *string* - [Enode URL](../Concepts/Node-Keys.md#enode-url) of the node.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"net_enode","params":[],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"net_enode","params":[],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 1,
-          "result" : "enode://6a63160d0ccef5e4986d270937c6c8d60a9a4d3b25471cda960900d037c61988ea14da67f69dbfb3497c465d0de1f001bb95598f74b68a39a5156a608c42fa1b@127.0.0.1:30303"
-        }
-        ```
-
-### `net_services`
-
-Returns enabled services (for example, `jsonrpc`) and the host and port for each service.
-
-!!! note
-
-    The [`--nat-method`](../CLI/CLI-Syntax/#nat-method) setting affects the JSON-RPC and P2P host and port values, but not the metrics host and port values.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : *objects* - Enabled services.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"net_services","params":[],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"net_services","params":[],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "result": {
-                "jsonrpc": {
-                    "host": "127.0.0.1",
-                    "port": "8545"
-                },
-                "p2p" : {
-                    "host" : "127.0.0.1",
-                    "port" : "30303"
-                },
-                "metrics" : {
-                    "host": "127.0.0.1",
-                    "port": "9545"
-                }
-            }
+          "acctList": [{
+              "acctId":"0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+              "isOrgAdmin":true,
+              "orgId":"INITORG",
+              "roleId":"NWADMIN",
+              "status":2
+          }, {
+              "acctId":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
+              "isOrgAdmin":true,
+              "orgId":"INITORG",
+              "roleId":"NWADMIN",
+              "status":2
+          }],
+          "nodeList": [{
+              "orgId":"INITORG",
+              "status":2,
+              "url":"enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
+          }, {
+              "orgId":"INITORG",
+              "status":2,
+              "url":"enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
+          }, {
+              "orgId":"INITORG",
+              "status":2,
+              "url":"enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
+          }, {
+              "orgId":"INITORG",
+              "status":2,
+              "url":"enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
+          }],
+          "roleList": [{
+              "access":3,
+              "active":true,
+              "isAdmin":true,
+              "isVoter":true,
+              "orgId":"INITORG",
+              "roleId":"NWADMIN"
+          }],
+          "subOrgList":null
         }
         ```
 
@@ -7185,13 +7199,4 @@ Enabled APIs.
         ```
 
 <!-- Links -->
-[schema]: https://github.com/hyperledger/besu/blob/master/ethereum/api/src/main/resources/schema.graphqls
-[eth_sendRawTransaction or eth_call]: ../HowTo/Send-Transactions/Transactions.md#eth_call-or-eth_sendrawtransaction
-[transaction]: https://ropsten.etherscan.io/tx/0xfc766a71c406950d4a4955a340a092626c35083c64c7be907060368a5e6811d6
-[add or remove a signer with the specified address]: ../HowTo/Configure/Consensus-Protocols/Clique.md#adding-and-removing-signers
-[signers for the specified block]: ../HowTo/Configure/Consensus-Protocols/Clique.md#adding-and-removing-signers
-[add or remove a validator]: ../HowTo/Configure/Consensus-Protocols/IBFT.md#adding-and-removing-validators
-[permissions configuration file]: ../HowTo/Limit-Access/Local-Permissioning.md#permissions-configuration-file
-[group of sender and recipients]: ../Concepts/Privacy/Privacy-Groups.md#enterprise-ethereum-alliance-privacy
-
-*[EEA]: Enterprise Ethereum Alliance
+*[PTM]: Private Transaction Manager (for example, Tessera)
