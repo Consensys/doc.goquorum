@@ -800,1064 +800,34 @@ Returns lists of accounts, nodes, roles, and sub-organizations linked to the spe
         }
         ```
 
-## `ETH` methods
+### `quorumPermission_addOrg`
 
-The `ETH` API methods allow you to interact with the blockchain.
+Proposes a new organization into the network.
+This method can be called by a network admin account.
 
-!!! note
+If there are any pending items for approval, proposal of any new organization will fail.
+Also, the enode ID and account ID can only be linked to one organization.
 
-    Methods with an equivalent [GraphQL](../HowTo/Interact/APIs/GraphQL.md) query include a GraphQL
-    request and result in the method example. The parameter and result descriptions apply to the
-    JSON-RPC requests. The GraphQL specification is defined in the [schema].
+#### Parameter
 
-### `eth_syncing`
+* `orgId`: unique organization ID
 
-Returns an object with data about the synchronization status, or `false` if not synchronizing.
+* `enodeId`: complete enode ID
 
-#### Parameters
-
-None
+* `accountId`: account which will be the organization admin account
 
 #### Returns
 
-`result` : *Object|Boolean* - Object with synchronization status data or `false` if not
-synchronizing:
+* `msg`: response message
 
-* `startingBlock` : *quantity* - Index of the highest block on the blockchain when the network
-  synchronization starts.
-* `currentBlock` : *quantity* - Index of the latest block (also known as the best block) for the
-  current node. This is the same index that [`eth_blockNumber`](#eth_blocknumber) returns.
-* `highestBlock`: *quantity* - Index of the highest known block in the peer network (that is, the
-  highest block so far discovered among peer nodes). This is the same value as `currentBlock` if
-  the current node has no peers.
-* `pulledStates`: *quantity* - If fast synchronizing, the number of state entries fetched so far,
-  or `null` if this is not known or not relevant. If full synchronizing or fully synchronized, this
-  field is not returned.
-* `knownStates`: *quantity* - If fast synchronizing, the number of states the node knows of so
-  far, or `null` if this is not known or not relevant. If full synchronizing or fully synchronized,
-  this field is not returned.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":51}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":51}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 51,
-          "result" : {
-            "startingBlock" : "0x0",
-            "currentBlock" : "0x1518",
-            "highestBlock" : "0x9567a3",
-            "pulledStates" : "0x203ca",
-            "knownStates" : "0x200636"
-          }
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{syncing{startingBlock currentBlock highestBlock pulledStates knownStates}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          syncing {
-            startingBlock
-            currentBlock
-            highestBlock
-            pulledStates
-            knownStates
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```json
-        {
-          "data" : {
-            "syncing" : {
-              "startingBlock" : 0,
-              "currentBlock" : 5400,
-              "highestBlock" : 9791395,
-              "pullStates" : 132042,
-              "knownStates" : 2098742
-            }
-          }
-        }
-        ```
-
-### `eth_chainId`
-
-Returns the [chain ID](../Concepts/NetworkID-And-ChainID.md).
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : *quantity* - Chain ID, in hexadecimal.
+* `status`: `boolean` - indicates if the operation was a success or failure
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":51}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":51}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 51,
-          "result" : "0x7e2"
-        }
-        ```
-
-### `eth_protocolVersion`
-
-Returns current Ethereum protocol version.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : *quantity* - Ethereum protocol version.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_protocolVersion","params":[],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_protocolVersion","params":[],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc": "2.0",
-          "id": 1,
-          "result": "0x3f"
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{protocolVersion}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          protocolVersion
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```json
-        {
-          "data" : {
-            "protocolVersion" : 63
-          }
-        }
-        ```
-
-### `eth_coinbase`
-
-Returns the client coinbase address. The coinbase address is the account to pay mining rewards to.
-
-To set a coinbase address, start Besu with the `--miner-coinbase` option set to a valid Ethereum
-account address. You can get the Ethereum account address from a client such as MetaMask or
-Etherscan. For example:
-
-!!!example
-
-    ```bash
-    besu --miner-coinbase="0xfe3b557e8fb62b89f4916b721be55ceb828dbd73" --rpc-http-enabled
-    ```
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : *data* - Coinbase address.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_coinbase","params":[],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_coinbase","params":[],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : "0xfe3b557e8fb62b89f4916b721be55ceb828dbd73"
-        }
-        ```
-
-### `eth_mining`
-
-Whether the client is actively mining new blocks. Besu pauses mining while the client synchronizes
-with the network regardless of command settings or methods called.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` (*BOOLEAN*) - `true` if the client is actively mining new blocks, otherwise `false`.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_mining","params":[],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_mining","params":[],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : true
-        }
-        ```
-
-### `eth_hashrate`
-
-Returns the number of hashes per second with which the node is mining.
-
-When the stratum server is enabled, this method returns the cumulative hashrate of all sealers
-reporting their hashrate.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : `quantity` - Number of hashes per second.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_hashrate","params":[],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_hashrate","params":[],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "result": "0x12b"
-        }
-        ```
-
-### `eth_gasPrice`
-
-Returns a percentile gas unit price for the most recent blocks, in Wei. By default,
-the last 100 blocks are examined and the 50th percentile gas unit price (that is, the median value)
-is returned.
-
-If there are no blocks, the value for [`--min-gas-price`](CLI/CLI-Syntax.md#min-gas-price) is returned.
-The value returned is restricted to values between [`--min-gas-price`](CLI/CLI-Syntax.md#min-gas-price)
-and [`--api-gas-price-max`](CLI/CLI-Syntax.md#api-gas-price-max). By default, 1000 Wei and
-500GWei.
-
-Use the [`--api-gas-price-blocks`](CLI/CLI-Syntax.md#api-gas-price-blocks), [`--api-gas-price-percentile`](CLI/CLI-Syntax.md#api-gas-price-percentile)
-, and [`--api-gas-price-max`](CLI/CLI-Syntax.md#api-gas-price-max) command line
-options to configure the `eth_gasPrice` default values.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : `quantity` - Percentile gas unit price for the most recent blocks, in Wei, as a hexadecimal value.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : "0x3e8"
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{gasPrice}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          gasPrice
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```json
-        {
-          "data" : {
-            "gasPrice" : "0x3e8"
-          }
-        }
-        ```
-
-### `eth_accounts`
-
-Returns a list of account addresses a client owns.
-
-!!!note
-
-    This method returns an empty object because Besu
-    [doesn't support key management](../HowTo/Send-Transactions/Account-Management.md) inside the
-    client.
-
-    To provide access to your key store and and then sign transactions, use
-    [EthSigner](http://docs.ethsigner.consensys.net/en/latest/) with Besu.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`Array of data` : List of 20-byte account addresses owned by the client.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_accounts","params":[],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_accounts","params":[],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : [ ]
-        }
-        ```
-
-### `eth_blockNumber`
-
-Returns the index corresponding to the block number of the current chain head.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : *QUANTITY* - Hexadecimal integer representing the index corresponding to the block
-number of the current chain head.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":51}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":51}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 51,
-          "result" : "0x2377"
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{block{number}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          block {
-            number
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "block" : {
-              "number" : 16221
-            }
-          }
-        }
-        ```
-
-### `eth_getBalance`
-
-Returns the account balance of the specified address.
-
-#### Parameters
-
-`DATA` - 20-byte account address from which to retrieve the balance.
-
-`QUANTITY|TAG` - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
-
-#### Returns
-
-`result` : *QUANTITY* - Current balance, in wei, as a hexadecimal value.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0xfe3b557e8fb62b89f4916b721be55ceb828dbd73", "latest"],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getBalance","params":["0xfe3b557e8fb62b89f4916b721be55ceb828dbd73", "latest"],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : "0x1cfe56f3795885980000"
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{ account ( address: \"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\") { balance } }"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          account(address: "0xfe3b557e8fb62b89f4916b721be55ceb828dbd73") {
-            balance
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data": {
-            "account": {
-              "balance": "0x1ce96a1ffe7620d00000"
-            }
-          }
-        }
-        ```
-
-### `eth_getMinerDataByBlockHash`
-
-Returns miner data for the specified block.
-
-#### Parameters
-
-`data` - 32 byte block hash.
-
-#### Returns
-
-`result`: `object` - [Miner data](API-Objects.md#miner-data-object).
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method": "eth_getMinerDataByBlockHash","params": ["0xbf137c3a7a1ebdfac21252765e5d7f40d115c2757e4a4abee929be88c624fdb7"],"id": 1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method": "eth_getMinerDataByBlockHash","params": ["0xbf137c3a7a1ebdfac21252765e5d7f40d115c2757e4a4abee929be88c624fdb7"],"id": 1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc": "2.0",
-          "id": 1,
-          "result": {
-            "netBlockReward": "0x47c6f3739f3da800",
-            "staticBlockReward": "0x4563918244f40000",
-            "transactionFee": "0x38456548220800",
-            "uncleInclusionReward": "0x22b1c8c1227a000",
-            "uncleRewards": [
-              {
-                "hash": "0x2422d43b4f72e19faf4368949a804494f67559405046b39c6d45b1bd53044974",
-                "coinbase": "0x0c062b329265c965deef1eede55183b3acb8f611"
-              }
-             ],
-             "coinbase": "0xb42b6c4a95406c78ff892d270ad20b22642e102d",
-             "extraData": "0xd583010502846765746885676f312e37856c696e7578",
-             "difficulty": "0x7348c20",
-             "totalDifficulty": "0xa57bcfdd96"
-          }
-        }
-        ```
-
-### `eth_getMinerDataByBlockNumber`
-
-Returns miner data for the specified block.
-
-#### Parameters
-
-`quantity|tag` - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
-
-#### Returns
-
-`result`: `object` - [Miner data](API-Objects.md#miner-data-object).
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method": "eth_getMinerDataByBlockNumber","params": ["0x7689D2"],"id": 1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method": "eth_getMinerDataByBlockNumber","params": ["0x7689D2"],"id": 1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc": "2.0",
-          "id": 1,
-          "result": {
-            "netBlockReward": "0x47c6f3739f3da800",
-            "staticBlockReward": "0x4563918244f40000",
-            "transactionFee": "0x38456548220800",
-            "uncleInclusionReward": "0x22b1c8c1227a000",
-            "uncleRewards": [
-              {
-                "hash": "0x2422d43b4f72e19faf4368949a804494f67559405046b39c6d45b1bd53044974",
-                "coinbase": "0x0c062b329265c965deef1eede55183b3acb8f611"
-              }
-             ],
-             "coinbase": "0xb42b6c4a95406c78ff892d270ad20b22642e102d",
-             "extraData": "0xd583010502846765746885676f312e37856c696e7578",
-             "difficulty": "0x7348c20",
-             "totalDifficulty": "0xa57bcfdd96"
-          }
-        }
-        ```
-
-### `eth_getProof`
-
-Returns the account and storage values of the specified account, including the Merkle proof.
-
-The API allows IoT devices or mobile apps which are unable to run light clients to verify responses
-from untrusted sources, by using a trusted block hash.
-
-#### Parameters
-
-`DATA` - 20-byte address of the account or contract.
-
-`ARRAY` - Array of 32-byte storage keys to generate proofs for.
-
-`QUANTITY|TAG` - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
-
-#### Returns
-
-`result`: *Object* - Account details:
-
-* `balance`:`Quantity` - Account balance.
-* `codeHash`:`Data, 32-byte` - Hash of the account code.
-* `nonce`:`Quantity` - Number of transactions sent from the account.
-* `storageHash`:`Data, 32-byte` - SHA3 of the `storageRoot`.
-* `accountProof`:`Array` - RLP-encoded Merkle tree nodes, starting with the `stateRoot`.
-* `storageProof`:`Array`- Storage entries. Each entry is an object that displays:
-    * `key`:`Quantity` - Storage key.
-    * `value`:`Quantity` - Storage value.
-    * `proof`:`Array` - RLP-encoded Merkle tree nodes, starting with the `storageHash`.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method": "eth_getProof","params": [
-        "0a8156e7ee392d885d10eaa86afd0e323afdcd95", ["0x0000000000000000000000000000000000000000000000000000000000000347"], "latest"],"id": 1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method": "eth_getProof","params": [
-        "0a8156e7ee392d885d10eaa86afd0e323afdcd95", ["0x0000000000000000000000000000000000000000000000000000000000000347"], "latest"],"id": 1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc": "2.0",
-          "id": 1,
-          "result": {
-            "accountProof": [
-              "0xf90211a0...608d898380",
-              "0xf90211a0...ec33f19580",
-              "0xf901d1a0...9e55584480",
-              "0xf8718080...18e5777142"
-            ],
-            "address": "0x0a8156e7ee392d885d10eaa86afd0e323afdcd95",
-            "balance": "0x0",
-            "codeHash": "0x2b6975dcaf69f9bb9a3b30bb6a37b305ce440250bf0dd2f23338cb18e5777142",
-            "nonce": "0x5f",
-            "storageHash": "0x917688de43091589aa58c1dfd315105bc9de4478b9ba7471616a4d8a43d46203",
-            "storageProof": [
-              {
-                "key": "0x0000000000000000000000000000000000000000000000000000000000000347",
-                "value": "0x0",
-                "proof": [
-                  "0xf90211a0...5176779280",
-                  "0xf901f1a0...c208d86580",
-                  "0xf8d180a0...1ce6808080"
-                ]
-              }
-            ]
-          }
-        }
-        ```
-
-### `eth_getStorageAt`
-
-Returns the value of a storage position at a specified address.
-
-#### Parameters
-
-`DATA` - A 20-byte storage address.
-
-`QUANTITY` - Integer index of the storage position.
-
-`QUANTITY|TAG` - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
-
-#### Returns
-
-`result` : *DATA* - The value at the specified storage position.
-
-!!! example
-
-    Calculating the correct position depends on the storage you want to retrieve.
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method": "eth_getStorageAt","params": ["0x‭3B3F3E‬","0x0","latest"],"id": 53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method": "eth_getStorageAt","params": ["0x‭3B3F3E‬","0x0","latest"],"id": 53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : "0x0000000000000000000000000000000000000000000000000000000000000000"
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{account(address: \"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\") {storage(slot: \"0x04\")}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          account(address: "0xfe3b557e8fb62b89f4916b721be55ceb828dbd73") {
-            storage(slot: "0x04")
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "account" : {
-              "storage" : "0x0000000000000000000000000000000000000000000000000000000000000000"
-            }
-          }
-        }
-        ```
-
-### `eth_getTransactionCount`
-
-Returns the number of transactions sent from a specified address. Use the `pending` tag to get the
-next account nonce not used by any pending transactions.
-
-#### Parameters
-
-`data` - 20-byte account address.
-
-`quantity|tag` - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
-
-#### Returns
-
-`result` : *quantity* - Integer representing the number of transactions sent from the specified
-address.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0xc94770007dda54cF92009BFF0dE90c06F603a09f","latest"],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["0xc94770007dda54cF92009BFF0dE90c06F603a09f","latest"],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 1,
-          "result" : "0x1"
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{ account (address:\"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\"){transactionCount}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          account(address: "0xfe3b557e8fb62b89f4916b721be55ceb828dbd73") {
-            transactionCount
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "account" : {
-              "transactionCount" : 5
-            }
-          }
-        }
-        ```
-
-### `eth_getBlockTransactionCountByHash`
-
-Returns the number of transactions in the block matching the given block hash.
-
-#### Parameters
-
-`data` - 32-byte block hash.
-
-#### Returns
-
-`result` : `quantity` - Integer representing the number of transactions in the specified block,
-or `null` if no matching block hash is found.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockTransactionCountByHash","params":["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getBlockTransactionCountByHash","params":["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : null
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{block(hash:\"0xe455c14f757b0b9b67774baad1be1c180a4c1657df52259dbb685bf375408097\"){transactionCount}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          block(hash: "0xe455c14f757b0b9b67774baad1be1c180a4c1657df52259dbb685bf375408097") {
-            transactionCount
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "block" : {
-              "transactionCount" : 1
-            }
-          }
-        }
-        ```
-
-### `eth_getBlockTransactionCountByNumber`
-
-Returns the number of transactions in a block matching the specified block number.
-
-#### Parameters
-
-`QUANTITY|TAG` - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
-
-#### Returns
-
-`result` : *QUANTITY* - Integer representing the number of transactions in the specified block,
-or `null` if no matching block number is found.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockTransactionCountByNumber","params":["0xe8"],"id":51}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getBlockTransactionCountByNumber","params":["0xe8"],"id":51}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 51,
-          "result" : "0x8"
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{block(number:232){transactionCount}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          block(number: 232) {
-            transactionCount
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "block" : {
-              "transactionCount" : 1
-            }
-          }
-        }
-        ```
-
-### `eth_getUncleByBlockHashAndIndex`
-
-Returns uncle specified by block hash and index.
-
-#### Parameters
-
-`data` - 32-byte block hash.
-
-`quantity` - Index of the uncle.
-
-#### Returns
-
-`result` : [Block object](API-Objects.md#block-object)
-
-!!! note
-
-    Uncles do not contain individual transactions.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getUncleByBlockHashAndIndex","params":["0xc48fb64230a82f65a08e7280bd8745e7fea87bc7c206309dee32209fe9a985f7", "0x0"],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getUncleByBlockHashAndIndex","params":["0xc48fb64230a82f65a08e7280bd8745e7fea87bc7c206309dee32209fe9a985f7", "0x0"],"id":1}
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addOrg","params":["ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1865,118 +835,78 @@ Returns uncle specified by block hash and index.
         ```json
         {
           "jsonrpc":"2.0",
-          "id":1,
-          "result":{
-            "difficulty":"0x76b123df93230",
-            "extraData":"0x50505945206e616e6f706f6f6c2e6f7267",
-            "gasLimit":"0x7a121d",
-            "gasUsed":"0x7a0175",
-            "hash":"0xc20189c0b1a4a23116ab3b177e929137f6e826f17fc4c2e880e7258c620e9817",
-            "logsBloom":"0x890086c024487ca422be846a201a10e41bc2882902312116c1119609482031e9c000e2a708004a10281024028020c505727a12570c4810121c59024490b040894406a1c23c37a0094810921da3923600c71c03044b40924280038d07ab91964a008084264a01641380798840805a284cce201a8026045451002500113a00de441001320805ca2840037000111640d090442c11116d2112948084240242340400236ce81502063401dcc214b9105194d050884721c1208800b20501a4201400276004142f118e60808284506979a86e050820101c170c185e2310005205a82a2100382422104182090184800c02489e033440218142140045801c024cc1818485",
-            "miner":"0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5",
-            "mixHash":"0xf557cc827e058862aa3ea1bd6088fb8766f70c0eac4117c56cf85b7911f82a14",
-            "nonce":"0xd320b48904347cdd",
-            "number":"0x768964",
-            "parentHash":"0x98d752708b3677df8f439c4529f999b94663d5494dbfc08909656db3c90f6255",
-            "receiptsRoot":"0x0f838f0ceb73368e7fc8d713a7761e5be31e3b4beafe1a6875a7f275f82da45b",
-            "sha3Uncles":"0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
-            "size":"0x21a",
-            "stateRoot":"0xa0c7d4fca79810c89c517eff8dadb9c6d6f4bcc27c2edfb301301e1cf7dec642",
-            "timestamp":"0x5cdcbba6",
-            "totalDifficulty":"0x229ad33cabd4c40d23d",
-            "transactionsRoot":"0x866e38e91d01ef0387b8e07ccf35cd910224271ccf2b7477b8c8439e8b70f365",
-            "uncles":[]
-          }
+          "id":10,
+          "result":"Action completed successfully"
         }
         ```
 
-    === "curl GraphQL"
+    === "geth console request"
 
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{block(hash:\"0xc48fb64230a82f65a08e7280bd8745e7fea87bc7c206309dee32209fe9a985f7\"){ ommerAt(index: 0) {difficulty extraData gasLimit gasUsed hash logsBloom mixHash nonce number receiptsRoot stateRoot timestamp totalDifficulty transactionsRoot}}}"}' http://localhost:8547/graphql
+        ```javascript
+        quorumPermission.addOrg("ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
         ```
 
-    === "GraphQL"
+    === "geth console result"
 
-        ```bash
-        {
-          block(hash: "0xc48fb64230a82f65a08e7280bd8745e7fea87bc7c206309dee32209fe9a985f7") {
-            ommerAt(index: 0) {
-              difficulty
-              extraData
-              gasLimit
-              gasUsed
-              hash
-              logsBloom
-              mixHash
-              nonce
-              number
-              receiptsRoot
-              stateRoot
-              timestamp
-              totalDifficulty
-              transactionsRoot
-            }
-          }
-        }
+        ```json
+        "Action completed successfully"
         ```
 
-    === "GraphQL result"
+    === "geth console pending error"
 
-        ```bash
-        {
-          "data": {
-            "block": {
-              "difficulty": "0x1",
-              "extraData": "0xf882a00000000000000000000000000000000000000000000000000000000000000000d5949811ebc35d7b06b3fa8dc5809a1f9c52751e1deb808400000000f843b8418e98ef756acdae1e510b1df4b507b7af04eb3802db7fa0f3e73e7d0721b3645e76f4eb3d0dbf0de75620c4405bd5a663247cdd9616482c883053856d857f884a01",
-              "gasLimit": 4700000,
-              "gasUsed": 0,
-              "hash": "0x0efe67972b982eb6be5df84e5238eb07475f86afa8a7de708f6a13ac0ff60d6c",
-              "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-              "mixHash": "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
-              "nonce": "0x0000000000000000",
-              "number": 200,
-              "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-              "stateRoot": "0xd650578a04b39f50cc979155f4510ec28c2c0a7c1e5fdbf84609bc7b1c430f48",
-              "timestamp": "0x5cd109fb",
-              "totalDifficulty": "0xc9",
-              "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
-            }
-          }
-        }
+        ```text
+        Error: Pending approvals for the organization. Approve first
+            at web3.js:3143:20
+            at web3.js:6347:15
+            at web3.js:5081:36
+            at <anonymous>:1:1
         ```
 
-### `eth_getUncleByBlockNumberAndIndex`
+    === "geth console enode ID error"
 
-Returns uncle specified by block number and index.
+        ```text
+        Error: EnodeId already part of network.
+            at web3.js:3143:20
+            at web3.js:6347:15
+            at web3.js:5081:36
+            at <anonymous>:1:1
+        ```
+
+    === "geth console account error"
+
+        ```text
+        Error: Account already in use in another organization
+            at web3.js:3143:20
+            at web3.js:6347:15
+            at web3.js:5081:36
+            at <anonymous>:1:1
+        ```
+
+### `quorumPermission_approveOrg`
+
+Approves the specified proposed organization into the network.
+This method can be called by a network admin account.
 
 #### Parameters
 
-`quantity|tag` - Index of the block, or one of the string tags `latest`, `earliest`, or `pending`,
-as described in [Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
+* `orgId`: unique organization ID
 
-`quantity` - Index of the uncle.
+* `enodeId`: complete enode ID
+
+* `accountId`: account which will be the organization admin account
 
 #### Returns
 
-`result` : [Block object](API-Objects.md#block-object)
+* `msg`: response message
 
-!!! note
-
-    Uncles do not contain individual transactions.
+* `status`: `boolean` - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getUncleByBlockNumberAndIndex","params":["0x7689D2", "0x0"],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getUncleByBlockNumberAndIndex","params":["0x7689D2", "0x0"],"id":1}
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrg","params":["ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1984,98 +914,613 @@ as described in [Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#b
         ```json
         {
           "jsonrpc":"2.0",
-          "id":1,
-          "result":{
-            "difficulty":"0x77daec467bf93",
-            "extraData":"0x50505945206e616e6f706f6f6c2e6f7267",
-            "gasLimit":"0x7a121d",
-            "gasUsed":"0x7a0f7b",
-            "hash":"0x42d83ae9c0743f4b1f9c61ff7ea8b164c1bab3627decd49233760680be006ecf",
-            "logsBloom":"0x888200800000340120220008640200500408006100038400100581c000080240080a0014e8002010080004088040004022402a000c18010001400100002a041141a0610a0052900600041018c0002a0003090020404c00206010010513d00020005380124e08050480710000000108401012b0901c1424006000083a10a8c1040100a0440081050210124400040044304070004001100000012600806008061d0320800000b40042160600002480000000800000c0002100200940801c000820800048024904710000400640490026000a44300309000286088010c2300060003011380006400200812009144042204810209020410a84000410520c08802941",
-            "miner":"0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5",
-            "mixHash":"0xf977fcdb52868be410b75ef2becc35cc312f13ab0a6ce400ecd9d445f66fa3f2",
-            "nonce":"0x628b28403bf1e3d3",
-            "number":"0x7689d0",
-            "parentHash":"0xb32cfdfbf4adb05d30f02fcc6fe039cc6666402142954051c1a1cb9cc91aa11e",
-            "receiptsRoot":"0x9c7c8361d1a24ea2841432234c81974a9920d3eba2b2b1c496b5f925a95cb4ac",
-            "sha3Uncles":"0x7d972aa1b182b7e93f1db043f03fbdbfac6874fe7e67e162141bcc0aefa6336b",
-            "size":"0x21a",
-            "stateRoot":"0x74e97b77813146344d75acb5a52a006cc6dfaca678a10fb8a484a8443e919272",
-            "timestamp":"0x5cdcc0a7",
-            "totalDifficulty":"0x229b0583b4bd2698ca0",
-            "transactionsRoot":"0x1d21626afddf05e5866de66ca3fcd98f1caf5357eba0cc6ec675606e116a891b",
-            "uncles":[]
-          }
+          "id":10,
+          "result":"Action completed successfully"
         }
         ```
 
-    === "curl GraphQL"
+    === "geth console request"
 
-         ```bash
-         curl -X POST -H "Content-Type: application/json" --data '{ "query": "{block(number:2587){ ommerAt(index: 0) {difficulty extraData gasLimit gasUsed hash logsBloom mixHash nonce number receiptsRoot stateRoot timestamp totalDifficulty transactionsRoot}}}"}' http://localhost:8547/graphql
-         ```
+        ```javascript
+        quorumPermission.approveOrg("ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
+        ```
 
-    === "GraphQL"
+    === "geth console result"
 
-         ```bash
-         {
-           block(number: 2587) {
-             ommerAt(index: 0) {
-               difficulty
-               extraData
-               gasLimit
-               gasUsed
-               hash
-               logsBloom
-               mixHash
-               nonce
-               number
-               receiptsRoot
-               stateRoot
-               timestamp
-               totalDifficulty
-               transactionsRoot
-             }
-           }
-         }
-         ```
+        ```json
+        "Action completed successfully"
+        ```
 
-    === "GraphQL result"
+### `quorumPermission_updateOrgStatus`
 
-         ```bash
-         {
-           "data" : {
-             "block" : {
-               "ommerAt" : null
-             }
-           }
-         }
-         ```
-
-### `eth_getUncleCountByBlockHash`
-
-Returns the number of uncles in a block from a block matching the given block hash.
+Temporarily suspends the specified organization or re-enables the specified suspended organization.
+This method can be called by a network admin account.
+This can only be performed for the master organization and requires majority approval from network admins.
 
 #### Parameters
 
-`DATA` - 32-byte block hash.
+* `orgId`: organization ID
+
+* `action`:
+  * 1 - for suspending an organization
+  * 2 - for activating a suspended organization
 
 #### Returns
 
-`result` : *QUANTITY* - Integer representing the number of uncles in the specified block.
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
 
 !!! example
 
     === "curl HTTP"
 
         ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getUncleCountByBlockHash","params":["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"],"id":1}' http://127.0.0.1:8545
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateOrgStatus","params":["ABC", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
-    === "wscat WS"
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.updateOrgStatus("ABC", 1, {from:eth.accounts[0]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_approveOrgStatus`
+
+Approves an organization status change proposal.
+This method can be called by a network admin account.
+Once majority approval is received from network admins, the organization status is updated.
+
+When an organization is in suspended status, no transactions or contract deployment activities are allowed from any
+nodes linked to the organization and sub-organizations under it.
+Similarly, no transactions will be allowed from any accounts linked to the organization.
+
+#### Parameters
+
+* `orgId`: organization ID
+
+* `action`:
+  * 1 - for approving organization suspension
+  * 2 - for approving activation of a suspended organization
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP request"
 
         ```bash
-        {"jsonrpc":"2.0","method":"eth_getUncleCountByBlockHash","params":["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"],"id":1}
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrgStatus","params":["ABC", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.approveOrgStatus("ABC", 1, {from: eth.accounts[0]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_addSubOrg`
+
+Creates a sub-organization under the master organization.
+This method can be called by an organization admin account.
+
+#### Parameters
+
+* `parentOrgId`: parent organization ID under which the sub-organization is being added
+
+!!! note
+
+    The parent organization ID should contain the complete organization hierarchy from master organization ID to the
+    immediate parent.
+    The organization hierarchy is separated by `.`.
+    For example, if master organization `ABC` has a sub-organization `SUB1`, then while creating the sub-organization at
+    `SUB1` level, the parent organization should be given as `ABC.SUB1`.
+
+* `subOrgId`: sub-organization ID
+* `enodeId`: complete enode ID of the node linked to the sub-organization ID
+
+#### Returns
+
+* `msg`: response message
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addSubOrg","params":["ABC", "SUB1","", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.addSubOrg("ABC", "SUB1", "", {from: eth.accounts[0]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_addNewRole`
+
+Creates a new role for the organization.
+This method can be called by an organization admin account.
+
+#### Parameters
+
+* `orgId`: organization ID for which the role is being created
+
+* `roleId`: unique role ID
+
+* `accountAccess`: [account level access](Permissioning-Types.md#account-access-types)
+
+* `isVoter`: `boolean` - indicates if the role is a voting role
+
+* `isAdminRole`: `boolean` - indicates if the role is an admin role
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNewRole","params":["ABC", "TRANSACT",1,false,false, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.addNewRole("ABC", "TRANSACT", 1, false, false,{from: eth.accounts[0]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_removeRole`
+
+Removes the specified role from an organization.
+This method can be called by an organization admin account.
+
+#### Parameters
+
+* `orgId`: organization or sub-organization ID to which the role belongs
+
+* `roleId`: role ID
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_removeRole","params":["ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.removeRole("ABC.SUB1.SUB2.SUB3", "TRANSACT", {from: eth.accounts[1]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_addAccountToOrg`
+
+Adds an account to an organization and assigns a role to the account.
+This method can be called by an organization admin account.
+
+The account can only be linked to a single organization or sub-organization.
+
+#### Parameters
+
+* `acctId`: organization or sub-organization ID to which the role belongs
+
+* `orgId`: organization ID
+
+* `roleId`: role ID
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addAccountToOrg","params":["0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id": 10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.addAccountToOrg("0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {from: eth.accounts[1]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+    === "geth console error"
+
+        ```text
+        Error: Account already in use in another organization
+          at web3.js:3143:20
+          at web3.js:6347:15
+          at web3.js:5081:36
+          at <anonymous>:1:1
+        ```
+
+### `quorumPermission_changeAccountRole`
+
+Assigns a role to the specified account.
+This method can be called by n organization admin account.
+
+#### Parameters
+
+* `acctId`: account ID
+
+* `orgId`: organization ID
+
+* `roleId`: new role ID to be assigned to the account
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_changeAccountRole","params":["0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id": 10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.changeAccountRole("0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {from: eth.accounts[1]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_updateAccountStatus`
+
+Updates the status of the specified account.
+This method can be called by an organization admin account.
+
+#### Parameters
+
+* `orgId`: organization or sub-organization ID to which the account belongs
+
+* `acctId`: account ID
+
+* `action`:
+  * 1 - for suspending the account
+  * 2 - for activating a suspended account
+  * 3 - for denylisting an account
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateAccountStatus","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id": 10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.updateAccountStatus("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", 1, {from: eth.accounts[1]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_recoverBlackListedAccount`
+
+Initiates the recovery of the specified denylisted (blacklisted) account.
+This method can be called by a network admin account.
+Once majority approval from network admin accounts is received, the denylisted account is marked as active.
+
+#### Parameters
+
+* `orgId`: organization or sub-organization ID to which the node belongs
+
+* `acctId`: denylisted account ID
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedAccount","params":["ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id": 10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.recoverBlackListedAccount("ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {from: eth.accounts[1]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_approveBlackListedAccountRecovery`
+
+Approves the recovery of the specified denylisted (blacklisted) account.
+This method can be called by a network admin account.
+Once majority approval from network admin accounts is received, the account is marked as active.
+
+#### Parameters
+
+* `orgId`: organization or sub-organization ID to which the node belongs
+
+* `acctId`: denylisted account ID
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id": 10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.approveBlackListedNodeRecovery("ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {from: eth.accounts[1]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_assignAdminRole`
+
+Adds a new account as network admin or changes the organization admin account for an organization.
+This method can be called by a network admin account.
+
+#### Parameters
+
+* `orgId`: organization ID to which the account belongs
+
+* `acctId`: account ID
+
+* `roleId`: new role ID to be assigned to the account - this can be the network admin role or an organization admin role only
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_assignAdminRole","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", "NWADMIN", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id": 10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.assignAdminRole("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", "NWADMIN", {from: eth.accounts[0]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_approveAdminRole`
+
+Approves the organization admin or network admin role assignment to an account.
+This method can be called by a network admin account.
+The role is approved once majority approval is received.
+
+#### Parameters
+
+* `orgId`: organization ID to which the account belongs
+
+* `acctId`: account ID
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveAdminRole","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -2083,37 +1528,305 @@ Returns the number of uncles in a block from a block matching the given block ha
         ```json
         {
           "jsonrpc" : "2.0",
-          "id" : 1,
-          "result" : 0x0
+          "id": 10,
+          "result":"Action completed successfully"
         }
         ```
 
-    === "curl GraphQL"
+    === "geth console request"
 
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{block(hash:\"0x65c08d792e4192b9ece6b6f2390da7da464208b22d88490be8add9373917b426\"){ommerCount}}"}' http://localhost:8547/graphql
+        ```javascript
+        quorumPermission.approveAdminRole("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8",  {from: eth.accounts[0]})
         ```
 
-    === "GraphQL"
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_addNode`
+
+Adds a node to the specified organization or sub-organization.
+This method can be called by an organization admin account.
+A node cannot be part of multiple organizations.
+
+#### Parameters
+
+* `orgId`: organization or sub-organization ID to which the node belongs
+
+* `enodeId`: complete enode ID
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP"
 
         ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNode","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
         {
-          block(hash: "0x65c08d792e4192b9ece6b6f2390da7da464208b22d88490be8add9373917b426") {
-            ommerCount
-          }
+          "jsonrpc" : "2.0",
+          "id": 10,
+          "result":"Action completed successfully"
         }
         ```
 
-    === "GraphQL result"
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.addNode("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_updateNodeStatus`
+
+Updates the status of the specified node.
+This method can be called by an organization admin account.
+
+#### Parameters
+
+* `orgId`: organization or sub-organization ID to which the node belongs
+
+* `enodeId`: complete enode ID
+
+* `action`:
+  * 1 - for deactivating the node
+  * 2 - for activating a deactivated node
+  * 3 - for denylisting a node
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP"
 
         ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateNodeStatus","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
         {
-          "data" : {
-            "block" : {
-              "ommerCount" : 2
-            }
-          }
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"Action completed successfully"
         }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.updateNodeStatus("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",3, {from: eth.accounts[1]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_recoverBlackListedNode`
+
+Initiates the recovery of the specified denylisted (blacklisted) node.
+This method can be called by a network admin account.
+Once majority approval from network admin accounts is received, the denylisted node is marked as active.
+
+#### Parameters
+
+* `orgId`: organization or sub-organization ID to which the node belongs
+
+* `enodeId`: complete enode ID
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedNode","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.recoverBlackListedNode("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_approveBlackListedNodeRecovery`
+
+Approves the recovery of the specified denylisted (blacklisted) node.
+This method can be called by a network admin account.
+Once majority approval from network admin accounts is received, the denylisted node is marked as active.
+
+#### Parameters
+
+* `orgId`: organization or sub-organization ID to which the node belongs
+
+* `enodeId`: complete enode ID
+
+#### Returns
+
+* `msg`: response message
+
+* `status`: `boolean` - indicates if the operation was a success or failure
+
+!!! example
+
+    === "curl HTTP"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"Action completed successfully"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.approveBlackListedNodeRecovery("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
+        ```
+
+    === "geth console result"
+
+        ```json
+        "Action completed successfully"
+        ```
+
+### `quorumPermission_transactionAllowed`
+
+Checks if the account initiating the transaction has sufficient permissions to execute the transaction.
+
+#### Parameters
+
+* `txArgs`: transaction arguments object
+
+#### Returns
+
+* `status`: `boolean` - indicates if transaction is allowed or not
+
+!!! example
+
+    === "curl HTTP"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_transactionAllowed", "params":[ {"from":"0xf2cd20ed7904c103ce2ca0ef73fb77539930c59f"}],"id":50}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":true
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.transactionAllowed({from: eth.accounts[0]}
+        ```
+
+    === "geth console result"
+
+        ```json
+        true
+        ```
+
+### `quorumPermission_connectionAllowed`
+
+Checks if the specified node is allowed to join the network.
+
+#### Parameters
+
+* `enodeId`: enode ID
+
+* `ipAddress`: IP address of the node
+
+* `portNum`: port number
+
+#### Returns
+
+* `status`: `boolean` - indicating if the connection is allowed or not
+
+!!! example
+
+    === "curl HTTP"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_connectionAllowed", "params":[ "239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf", "127.0.0.1", 21006],"id":50}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":true
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        quorumPermission.connectionAllowed("579f786d4e2830bbcc02815a27e8a9bacccc9605df4dc6f20bcc1a6eb391e7225fff7cb83e5b4ecd1f3a94d8b733803f2f66b7e871961e7b029e22c155c3a778", "127.0.0.1", 21003)
+        ```
+
+    === "geth console result"
+
+        ```json
+        true
         ```
 
 ### `eth_getUncleCountByBlockNumber`
@@ -2179,1619 +1892,6 @@ of the string tags `latest`, `earliest`, or `pending`, as described in
               "ommerCount" : 0
             }
           }
-        }
-        ```
-
-### `eth_getCode`
-
-Returns the code of the smart contract at the specified address. Besu stores compiled smart
-contract code as a hexadecimal value.
-
-#### Parameters
-
-`DATA` - 20-byte contract address.
-
-`QUANTITY|TAG` - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
-
-#### Returns
-
-`result` : *DATA* - Code stored at the specified address.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getCode","params":["0xa50a51c09a5c451c52bb714527e1974b686d8e77", "latest"],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getCode","params":["0xa50a51c09a5c451c52bb714527e1974b686d8e77", "latest"],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-            "jsonrpc": "2.0",
-            "id": 53,
-            "result": "0x60806040526004361060485763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633fa4f2458114604d57806355241077146071575b600080fd5b348015605857600080fd5b50605f6088565b60408051918252519081900360200190f35b348015607c57600080fd5b506086600435608e565b005b60005481565b60008190556040805182815290517f199cd93e851e4c78c437891155e2112093f8f15394aa89dab09e38d6ca0727879181900360200190a1505600a165627a7a723058209d8929142720a69bde2ab3bfa2da6217674b984899b62753979743c0470a2ea70029"
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{"query": "{account(address: \"0xa50a51c09a5c451c52bb714527e1974b686d8e77\"){ code }}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          account(address: "0xa50a51c09a5c451c52bb714527e1974b686d8e77") {
-            code
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "account" : {
-              "code" : "0x60806040526004361060485763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633fa4f2458114604d57806355241077146071575b600080fd5b348015605857600080fd5b50605f6088565b60408051918252519081900360200190f35b348015607c57600080fd5b506086600435608e565b005b60005481565b60008190556040805182815290517f199cd93e851e4c78c437891155e2112093f8f15394aa89dab09e38d6ca0727879181900360200190a1505600a165627a7a723058209d8929142720a69bde2ab3bfa2da6217674b984899b62753979743c0470a2ea70029"
-            }
-          }
-        }
-        ```
-
-### `eth_sendRawTransaction`
-
-Sends a [signed transaction](../HowTo/Send-Transactions/Transactions.md).
-A transaction can send ether, deploy a contract, or interact with a contract.
-Set the maximum transaction fee for transactions using the [`--rpc-tx-feecap`](CLI/CLI-Syntax.md#rpc-tx-feecap) CLI option.
-
-You can interact with contracts using `eth_sendRawTransaction` or [`eth_call`](#eth_call).
-
-To avoid exposing your private key, create signed transactions offline and send the signed
-transaction data using `eth_sendRawTransaction`.
-
-!!!important
-
-    Besu does not implement [`eth_sendTransaction`](../HowTo/Send-Transactions/Account-Management.md).
-
-    [EthSigner](https://docs.ethsigner.consensys.net/) provides transaction signing and implements
-    [`eth_sendTransaction`](https://docs.ethsigner.consensys.net/Using-EthSigner/Using-EthSigner/#eth_sendtransaction).
-
-#### Parameters
-
-`data` -  Signed transaction serialized to hexadecimal format. For example:
-
-`params: ["0xf869018203e882520894f17f52151ebef6c7334fad080c5704d77216b732881bc16d674ec80000801ba02da1c48b670996dcb1f447ef9ef00b33033c48a4fe938f420bec3e56bfd24071a062e0aa78a81bf0290afbc3a9d8e9a068e6d74caa66c5e0fa8a46deaae96b0833"]`
-
-!!! note
-
-    [Creating and Sending Transactions](../HowTo/Send-Transactions/Transactions.md) includes
-    examples of creating signed transactions using the
-    [web3.js](https://github.com/ethereum/web3.js/) library.
-
-#### Returns
-
-`result` : `data` - 32-byte transaction hash.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_sendRawTransaction","params":["0xf869018203e882520894f17f52151ebef6c7334fad080c5704d77216b732881bc16d674ec80000801ba02da1c48b670996dcb1f447ef9ef00b33033c48a4fe938f420bec3e56bfd24071a062e0aa78a81bf0290afbc3a9d8e9a068e6d74caa66c5e0fa8a46deaae96b0833"],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_sendRawTransaction","params":["0xf869018203e882520894f17f52151ebef6c7334fad080c5704d77216b732881bc16d674ec80000801ba02da1c48b670996dcb1f447ef9ef00b33033c48a4fe938f420bec3e56bfd24071a062e0aa78a81bf0290afbc3a9d8e9a068e6d74caa66c5e0fa8a46deaae96b0833"],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "id":1,
-          "jsonrpc": "2.0",
-          "result": "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
-        }
-        ```
-
-    === "curl GraphQL"
-
-         ```bash
-         curl -X POST -H "Content-Type: application/json" --data '{ "query": "mutation {sendRawTransaction(data: \"0xf869018203e882520894f17f52151ebef6c7334fad080c5704d77216b732881bc16d674ec80000801ba02da1c48b670996dcb1f447ef9ef00b33033c48a4fe938f420bec3e56bfd24071a062e0aa78a81bf0290afbc3a9d8e9a068e6d74caa66c5e0fa8a46deaae96b0833\")}"}' http://localhost:8547/graphql
-         ```
-
-    === "GraphQL"
-
-         ```bash
-         mutation {
-           sendRawTransaction(data: "0xf869018203e882520894f17f52151ebef6c7334fad080c5704d77216b732881bc16d674ec80000801ba02da1c48b670996dcb1f447ef9ef00b33033c48a4fe938f420bec3e56bfd24071a062e0aa78a81bf0290afbc3a9d8e9a068e6d74caa66c5e0fa8a46deaae96b0833")
-         }
-         ```
-
-    === "GraphQL result"
-
-         ```json
-         {
-           "data" : {
-             "sendRawTransaction" : "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
-           }
-         }
-         ```
-
-### `eth_call`
-
-Invokes a contract function locally and does not change the state of the blockchain.
-
-You can interact with contracts using [`eth_sendRawTransaction`](#eth_sendrawtransaction) or `eth_call`.
-
-If revert reason is enabled with [`--revert-reason-enabled`](CLI/CLI-Syntax.md#revert-reason-enabled),
-the `eth_call` error response includes the [revert reason](../HowTo/Send-Transactions/Revert-Reason.md).
-
-#### Parameters
-
-*OBJECT* - [Transaction call object](API-Objects.md#transaction-call-object).
-
-*QUANTITY|TAG* - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
-
-!!! note
-
-    By default, `eth_call` does not fail if the sender account has an insufficient balance. This is done by setting the balance of the account to a large amount of ether. To enforce balance rules, set the [`strict` parameter](API-Objects.md#transaction-call-object) in the transaction call object to `true`.
-
-#### Returns
-
-`result` - `data` - Return value of the executed contract.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x69498dd54bd25aa0c886cf1f8b8ae0856d55ff13","value":"0x1"}, "latest"],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0x69498dd54bd25aa0c886cf1f8b8ae0856d55ff13","value":"0x1"}, "latest"],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-            "jsonrpc": "2.0",
-            "id": 53,
-            "result": "0x"
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{block {number call (data : {from : \"0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b\", to: \"0x69498dd54bd25aa0c886cf1f8b8ae0856d55ff13\", data :\"0x12a7b914\"}){data status}}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          block {
-            number
-            call(data: {from: "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b", to: "0x69498dd54bd25aa0c886cf1f8b8ae0856d55ff13", data: "0x12a7b914"}) {
-              data
-              status
-            }
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```json
-        {
-          "data" : {
-            "block" : {
-              "number" : 17449,
-              "call" : {
-                "data" : "0x",
-                "status" : 1
-              }
-            }
-          }
-        }
-        ```
-
-### `eth_estimateGas`
-
-Returns an estimate of the gas required for a transaction to complete. The estimation process
-does not use gas and the transaction is not added to the blockchain. The resulting estimate can be
-greater than the amount of gas the transaction ends up using, for reasons including EVM mechanics
-and node performance.
-
-The `eth_estimateGas` call does not send a transaction. You must call
-[`eth_sendRawTransaction`](#eth_sendrawtransaction) to execute the transaction.
-
-If revert reason is enabled with [`--revert-reason-enabled`](CLI/CLI-Syntax.md#revert-reason-enabled),
-the `eth_estimateGas` error response includes the [revert reason](../HowTo/Send-Transactions/Revert-Reason.md).
-
-#### Parameters
-
-For `eth_estimateGas`, all fields are optional because setting a gas limit
-is irrelevant to the estimation process (unlike transactions, in which gas limits apply).
-
-`object` - [Transaction call object](API-Objects.md#transaction-call-object).
-
-#### Returns
-
-`result` : `quantity` -  Amount of gas used.
-
-!!! example "Example of cost estimate of a value transaction"
-
-    The following example returns an estimate of 21000 wei (`0x5208`) for the transaction.
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_estimateGas","params":[{"from":"0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73","to":"0x44Aa93095D6749A706051658B970b941c72c1D53","value":"0x1"}],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_estimateGas","params":[{"from":"0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73","to":"0x44Aa93095D6749A706051658B970b941c72c1D53","value":"0x1"}],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : "0x5208"
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{block{estimateGas (data: {from :\"0x6295ee1b4f6dd65047762f924ecd367c17eabf8f\", to :\"0x8888f1f195afa192cfee860698584c030f4c9db1\"})}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          block {
-            estimateGas(data: {from: "0x6295ee1b4f6dd65047762f924ecd367c17eabf8f", to: "0x8888f1f195afa192cfee860698584c030f4c9db1"})
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "block" : {
-              "estimateGas" : 21000
-            }
-          }
-        }
-        ```
-
-!!! example "Example of cost estimate of deploying a simple storage smart contract"
-
-    The following example request estimates the cost of deploying a simple storage smart contract to
-    the network. The data field contains the hash of the compiled contract you want to deploy. (You can
-    get the compiled contract hash from your IDE, for example, **Remix > Compile tab > details >
-    WEB3DEPLOY**.) The result is 113355 wei.
-
-    === "curl HTTP request"
-
-        ```bash
-         curl -X POST \
-            http://127.0.0.1:8545 \
-            -H 'Content-Type: application/json' \
-            -d '{
-              "jsonrpc": "2.0",
-              "method": "eth_estimateGas",
-              "params": [{
-                "from": "0x8bad598904ec5d93d07e204a366d084a80c7694e",
-                "data": "0x608060405234801561001057600080fd5b5060e38061001f6000396000f3fe6080604052600436106043576000357c0100000000000000000000000000000000000000000000000000000000900480633fa4f24514604857806355241077146070575b600080fd5b348015605357600080fd5b50605a60a7565b6040518082815260200191505060405180910390f35b348015607b57600080fd5b5060a560048036036020811015609057600080fd5b810190808035906020019092919050505060ad565b005b60005481565b806000819055505056fea165627a7a7230582020d7ad478b98b85ca751c924ef66bcebbbd8072b93031073ef35270a4c42f0080029"
-              }],
-              "id": 1
-            }'
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "result": "0x1bacb"
-        }
-        ```
-
-### `eth_getBlockByHash`
-
-Returns information about the block by hash.
-
-#### Parameters
-
-`DATA` - 32-byte hash of a block.
-
-`Boolean` - If `true`, returns the full [transaction objects](API-Objects.md#transaction-object);
-if `false`, returns the transaction hashes.
-
-#### Returns
-
-`result` : *OBJECT* - [Block object](API-Objects.md#block-object) , or `null` when there is no
-block.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":["0xd5f1812548be429cbdc6376b29611fc49e06f1359758c4ceaaa3b393e2239f9c", false],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getBlockByHash","params":["0xd5f1812548be429cbdc6376b29611fc49e06f1359758c4ceaaa3b393e2239f9c", false],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : {
-            "number" : "0x68b3",
-            "hash" : "0xd5f1812548be429cbdc6376b29611fc49e06f1359758c4ceaaa3b393e2239f9c",
-            "mixHash" : "0x24900fb3da77674a861c428429dce0762707ecb6052325bbd9b3c64e74b5af9d",
-            "parentHash" : "0x1f68ac259155e2f38211ddad0f0a15394d55417b185a93923e2abe71bb7a4d6d",
-            "nonce" : "0x378da40ff335b070",
-            "sha3Uncles" : "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
-            "logsBloom" : "0x00000000000000100000004080000000000500000000000000020000100000000800001000000004000001000000000000000800040010000020100000000400000010000000000000000040000000000000040000000000000000000000000000000400002400000000000000000000000000000004000004000000000000840000000800000080010004000000001000000800000000000000000000000000000000000800000000000040000000020000000000000000000800000400000000000000000000000600000400000000002000000000000000000000004000000000000000100000000000000000000000000000000000040000900010000000",
-            "transactionsRoot" : "0x4d0c8e91e16bdff538c03211c5c73632ed054d00a7e210c0eb25146c20048126",
-            "stateRoot" : "0x91309efa7e42c1f137f31fe9edbe88ae087e6620d0d59031324da3e2f4f93233",
-            "receiptsRoot" : "0x68461ab700003503a305083630a8fb8d14927238f0bc8b6b3d246c0c64f21f4a",
-            "miner" : "0xb42b6c4a95406c78ff892d270ad20b22642e102d",
-            "difficulty" : "0x66e619a",
-            "totalDifficulty" : "0x1e875d746ae",
-            "extraData" : "0xd583010502846765746885676f312e37856c696e7578",
-            "size" : "0x334",
-            "gasLimit" : "0x47e7c4",
-            "gasUsed" : "0x37993",
-            "timestamp" : "0x5835c54d",
-            "uncles" : [ ],
-            "transactions" : [ "0xa0807e117a8dd124ab949f460f08c36c72b710188f01609595223b325e58e0fc", "0xeae6d797af50cb62a596ec3939114d63967c374fa57de9bc0f4e2b576ed6639d" ]
-          }
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{block (hash : \"0xb0efed1fc9326fee967cb2d845d4ebe57c5350a0670c8e86f8052dea6f219f92\") {number transactions{hash} timestamp difficulty totalDifficulty gasUsed gasLimit hash nonce ommerCount logsBloom mixHash ommerHash extraData stateRoot receiptsRoot transactionCount transactionsRoot}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          block(hash: "0xb0efed1fc9326fee967cb2d845d4ebe57c5350a0670c8e86f8052dea6f219f92") {
-            number
-            transactions {
-              hash
-            }
-            timestamp
-            difficulty
-            totalDifficulty
-            gasUsed
-            gasLimit
-            hash
-            nonce
-            ommerCount
-            logsBloom
-            mixHash
-            ommerHash
-            extraData
-            stateRoot
-            receiptsRoot
-            transactionCount
-            transactionsRoot
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "block" : {
-              "number" : 17607,
-              "transactions" : [ ],
-              "timestamp" : "0x5cdbdfb5",
-              "difficulty" : "0x1",
-              "totalDifficulty" : "0x44c8",
-              "gasUsed" : 0,
-              "gasLimit" : 4700000,
-              "hash" : "0xb0efed1fc9326fee967cb2d845d4ebe57c5350a0670c8e86f8052dea6f219f92",
-              "nonce" : "0x0000000000000000",
-              "ommerCount" : 0,
-              "logsBloom" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-              "mixHash" : "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
-              "ommerHash" : "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
-              "extraData" : "0xf882a00000000000000000000000000000000000000000000000000000000000000000d5949811ebc35d7b06b3fa8dc5809a1f9c52751e1deb808400000000f843b841fae6d25da0b91e3e88669d0a765c98479d86d53e9ea1f3fb6b36d7ff22fa622a3da0c49c20e5562c774e90acae8ad487936f6b6019cd8a782db684693cba1e9800",
-              "stateRoot" : "0xa7086c266aed46cd3bc45579178f8acb36d9d147de575a3ecbf8c7e6f1c737fc",
-              "receiptsRoot" : "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-              "transactionCount" : 0,
-              "transactionsRoot" : "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
-            }
-          }
-        }
-        ```
-
-### `eth_getBlockByNumber`
-
-Returns information about a block by block number.
-
-#### Parameters
-
-`QUANTITY|TAG` - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
-
-`Boolean` - If `true`, returns the full [transaction objects](API-Objects.md#transaction-object);
-if `false`, returns only the hashes of the transactions.
-
-#### Returns
-
-`result` : *OBJECT* - [Block object](API-Objects.md#block-object) , or `null` when there is no
-block.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x68B3", true],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x68B3", true],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 1,
-          "result" : {
-            "number" : "0x68b3",
-            "hash" : "0xd5f1812548be429cbdc6376b29611fc49e06f1359758c4ceaaa3b393e2239f9c",
-            "mixHash" : "0x24900fb3da77674a861c428429dce0762707ecb6052325bbd9b3c64e74b5af9d",
-            "parentHash" : "0x1f68ac259155e2f38211ddad0f0a15394d55417b185a93923e2abe71bb7a4d6d",
-            "nonce" : "0x378da40ff335b070",
-            "sha3Uncles" : "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
-            "logsBloom" : "0x00000000000000100000004080000000000500000000000000020000100000000800001000000004000001000000000000000800040010000020100000000400000010000000000000000040000000000000040000000000000000000000000000000400002400000000000000000000000000000004000004000000000000840000000800000080010004000000001000000800000000000000000000000000000000000800000000000040000000020000000000000000000800000400000000000000000000000600000400000000002000000000000000000000004000000000000000100000000000000000000000000000000000040000900010000000",
-            "transactionsRoot" : "0x4d0c8e91e16bdff538c03211c5c73632ed054d00a7e210c0eb25146c20048126",
-            "stateRoot" : "0x91309efa7e42c1f137f31fe9edbe88ae087e6620d0d59031324da3e2f4f93233",
-            "receiptsRoot" : "0x68461ab700003503a305083630a8fb8d14927238f0bc8b6b3d246c0c64f21f4a",
-            "miner" : "0xb42b6c4a95406c78ff892d270ad20b22642e102d",
-            "difficulty" : "0x66e619a",
-            "totalDifficulty" : "0x1e875d746ae",
-            "extraData" : "0xd583010502846765746885676f312e37856c696e7578",
-            "size" : "0x334",
-            "gasLimit" : "0x47e7c4",
-            "gasUsed" : "0x37993",
-            "timestamp" : "0x5835c54d",
-            "uncles" : [ ],
-            "transactions" : [ ]
-          }
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{ "query": "{block (number : 100) {transactions{hash} timestamp difficulty totalDifficulty gasUsed gasLimit hash nonce ommerCount logsBloom mixHash ommerHash extraData stateRoot receiptsRoot transactionCount transactionsRoot ommers{hash} ommerAt(index : 1){hash} miner{address} account(address: \"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\"){balance} parent{hash} }}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          block(number: 100) {
-            transactions {
-              hash
-            }
-            timestamp
-            difficulty
-            totalDifficulty
-            gasUsed
-            gasLimit
-            hash
-            nonce
-            ommerCount
-            logsBloom
-            mixHash
-            ommerHash
-            extraData
-            stateRoot
-            receiptsRoot
-            transactionCount
-            transactionsRoot
-            ommers {
-              hash
-            }
-            ommerAt(index: 1) {
-              hash
-            }
-            miner {
-              address
-            }
-            account(address: "0xfe3b557e8fb62b89f4916b721be55ceb828dbd73") {
-              balance
-            }
-            parent {
-              hash
-            }
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "block" : {
-              "transactions" : [ ],
-              "timestamp" : "0x5cd10933",
-              "difficulty" : "0x1",
-              "totalDifficulty" : "0x65",
-              "gasUsed" : 0,
-              "gasLimit" : 4700000,
-              "hash" : "0x63b3ea2bc37fec8f82680eb823652da6af8acebb4f6c4d0ff659c55be473c8b0",
-              "nonce" : "0x0000000000000000",
-              "ommerCount" : 0,
-              "logsBloom" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-              "mixHash" : "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
-              "ommerHash" : "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
-              "extraData" : "0xf882a00000000000000000000000000000000000000000000000000000000000000000d5949811ebc35d7b06b3fa8dc5809a1f9c52751e1deb808400000000f843b8414d877d8d0ced37ea138fab55a978f3740367a24a31731322ecdc3368f11e0d4966c9ce17ae59a76fb94eb436e8a386868f6bd6b0a5678e58daf49f5dd940558b00",
-              "stateRoot" : "0xd650578a04b39f50cc979155f4510ec28c2c0a7c1e5fdbf84609bc7b1c430f48",
-              "receiptsRoot" : "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-              "transactionCount" : 0,
-              "transactionsRoot" : "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-              "ommers" : [ ],
-              "ommerAt" : null,
-              "miner" : {
-                "address" : "0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb"
-              },
-              "account" : {
-                "balance" : "0xad0f47f269cbf31ac"
-              },
-              "parent" : {
-                "hash" : "0x7bca25e1fa5e395fd6029eb496a70b6b5495843976bf9e49b993c723ded29d9e"
-              }
-            }
-          }
-        }
-        ```
-
-### `eth_getTransactionByHash`
-
-Returns transaction information for the specified transaction hash.
-
-#### Parameters
-
-`DATA` - 32-byte transaction hash.
-
-#### Returns
-
-Object - [Transaction object](API-Objects.md#transaction-object), or `null` when there is no
-transaction.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["0xa52be92809541220ee0aaaede6047d9a6c5d0cd96a517c854d944ee70a0ebb44"],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["0xa52be92809541220ee0aaaede6047d9a6c5d0cd96a517c854d944ee70a0ebb44"],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 53,
-          "result" : {
-            "blockHash" : "0x510efccf44a192e6e34bcb439a1947e24b86244280762cbb006858c237093fda",
-            "blockNumber" : "0x422",
-            "chainId": 2018,
-            "from" : "0xfe3b557e8fb62b89f4916b721be55ceb828dbd73",
-            "gas" : "0x5208",
-            "gasPrice" : "0x3b9aca00",
-            "hash" : "0xa52be92809541220ee0aaaede6047d9a6c5d0cd96a517c854d944ee70a0ebb44",
-            "input" : "0x",
-            "nonce" : "0x1",
-            "publicKey": "0x3a514176466fa815ed481ffad09110a2d344f6c9b78c1d14afc351c3a51be33d8072e77939dc03ba44790779b7a1025baf3003f6732430e20cd9b76d953391b3",
-            "raw": "0xf8641d018304cb2f946295ee1b4f6dd65047762f924ecd367c17eabf8f0a84e8beef5b1ca011232cac2f935ab8dd5d5972438fde90e05d0dd620860b42886e7d54dc5c4a0ca03dd467b5faa6e5a0f3c22a5396fefa5b03f07d8114d8434e0e1493736aad8d0e",
-            "to" : "0x627306090abab3a6e1400e9345bc60c78a8bef57",
-            "transactionIndex" : "0x0",
-            "value" : "0x4e1003b28d9280000",
-            "v" : "0xfe7",
-            "r" : "0x84caf09aefbd5e539295acc67217563438a4efb224879b6855f56857fa2037d3",
-            "s" : "0x5e863be3829812c81439f0ae9d8ecb832b531d651fb234c848d1bf45e62be8b9"
-          }
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{"query": "{transaction(hash : \"0x03d80b9ca0a71435399a268609d6d7896f7155d2147cc22b780672bcb59b170d\") { block{hash} gas gasPrice hash nonce value from {address} to {address} status}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          transaction(hash: "0x03d80b9ca0a71435399a268609d6d7896f7155d2147cc22b780672bcb59b170d") {
-            block {
-              hash
-            }
-            gas
-            gasPrice
-            hash
-            nonce
-            value
-            from {
-              address
-            }
-            to {
-              address
-            }
-            status
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "transaction" : {
-              "block" : {
-                "hash" : "0xb1ef35744bade6980c3a933024b2557a8c724a19e5fdd2116bac712aa5e57198"
-              },
-              "gas" : 21000,
-              "gasPrice" : "0x2540be400",
-              "hash" : "0x03d80b9ca0a71435399a268609d6d7896f7155d2147cc22b780672bcb59b170d",
-              "nonce" : 6,
-              "value" : "0x8ac7230489e80000",
-              "from" : {
-                "address" : "0xfe3b557e8fb62b89f4916b721be55ceb828dbd73"
-              },
-              "to" : {
-                "address" : "0x9d8f8572f345e1ae53db1dfa4a7fce49b467bd7f"
-              },
-              "status" : 1
-            }
-          }
-        }
-        ```
-
-### `eth_getTransactionByBlockHashAndIndex`
-
-Returns transaction information for the specified block hash and transaction index position.
-
-#### Parameters
-
-`DATA` - 32-byte hash of a block.
-
-`QUANTITY` - Integer representing the transaction index position.
-
-#### Returns
-
-Object - [Transaction object](API-Objects.md#transaction-object), or `null` when there is no
-transaction.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getTransactionByBlockHashAndIndex","params":["0xbf137c3a7a1ebdfac21252765e5d7f40d115c2757e4a4abee929be88c624fdb7", "0x2"], "id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getTransactionByBlockHashAndIndex","params":["0xbf137c3a7a1ebdfac21252765e5d7f40d115c2757e4a4abee929be88c624fdb7", "0x2"], "id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 1,
-          "result" : {
-            "blockHash" : "0xbf137c3a7a1ebdfac21252765e5d7f40d115c2757e4a4abee929be88c624fdb7",
-            "blockNumber" : "0x1442e",
-            "chainId": 2018,
-            "from" : "0x70c9217d814985faef62b124420f8dfbddd96433",
-            "gas" : "0x3d090",
-            "gasPrice" : "0x57148a6be",
-            "hash" : "0xfc766a71c406950d4a4955a340a092626c35083c64c7be907060368a5e6811d6",
-            "input" : "0x51a34eb8000000000000000000000000000000000000000000000029b9e659e41b780000",
-            "nonce" : "0x2cb2",
-            "publicKey": "0x3a514176466fa815ed481ffad09110a2d344f6c9b78c1d14afc351c3a51be33d8072e77939dc03ba44790779b7a1025baf3003f6732430e20cd9b76d953391b3",
-            "raw": "0xf86401018304cb2f946295ee1b4f6dd65047762f924ecd367c17eabf8f0a8412a7b9141ba0ed2e0f715eccaab4362c19c1cf35ad8031ab1cabe71ada3fe8b269fe9d726712a06691074f289f826d23c92808ae363959eb958fb7a91fc721875ece4958114c65",
-            "to" : "0xcfdc98ec7f01dab1b67b36373524ce0208dc3953",
-            "transactionIndex" : "0x2",
-            "value" : "0x0",
-            "v" : "0x2a",
-            "r" : "0xa2d2b1021e1428740a7c67af3c05fe3160481889b25b921108ac0ac2c3d5d40a",
-            "s" : "0x63186d2aaefe188748bfb4b46fb9493cbc2b53cf36169e8501a5bc0ed941b484"
-          }
-         }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{"query": "{ block(hash: \"0x9270651f9c6fa36232c379d0ecf69b519383aa275815a65f1e03114346668f69\") { transactionAt(index: 0) {block{hash}  hash } } }"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          block(hash: "0x9270651f9c6fa36232c379d0ecf69b519383aa275815a65f1e03114346668f69") {
-            transactionAt(index: 0) {
-              block {
-                hash
-              }
-              hash
-            }
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "block" : {
-              "transactionAt" : {
-                "block" : {
-                  "hash" : "0x9270651f9c6fa36232c379d0ecf69b519383aa275815a65f1e03114346668f69"
-                },
-                "hash" : "0x5f5366af89e8777d5ae62a1af94a0876bdccbc22417bed0aff361eefa3e37f86"
-              }
-            }
-          }
-        }
-        ```
-
-### `eth_getTransactionByBlockNumberAndIndex`
-
-Returns transaction information for the specified block number and transaction index position.
-
-#### Parameters
-
-`QUANTITY|TAG` - Integer representing a block number or one of the string tags `latest`,
-`earliest`, or `pending`, as described in
-[Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter).
-
-`QUANTITY` - The transaction index position.
-
-#### Returns
-
-Object - [Transaction object](API-Objects.md#transaction-object), or `null` when there is no
-transaction.
-
-!!! example
-
-    This request returns the third transaction in the 82990 block on the Ropsten testnet. You can
-    also view this [block](https://ropsten.etherscan.io/txs?block=82990) and [transaction] on
-    Etherscan.
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getTransactionByBlockNumberAndIndex","params":["82990", "0x2"], "id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getTransactionByBlockNumberAndIndex","params":["82990", "0x2"], "id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 1,
-          "result" : {
-            "blockHash" : "0xbf137c3a7a1ebdfac21252765e5d7f40d115c2757e4a4abee929be88c624fdb7",
-            "blockNumber" : "0x1442e",
-            "chainId": 2018,
-            "from" : "0x70c9217d814985faef62b124420f8dfbddd96433",
-            "gas" : "0x3d090",
-            "gasPrice" : "0x57148a6be",
-            "hash" : "0xfc766a71c406950d4a4955a340a092626c35083c64c7be907060368a5e6811d6",
-            "input" : "0x51a34eb8000000000000000000000000000000000000000000000029b9e659e41b780000",
-            "nonce" : "0x2cb2",
-            "publicKey": "0x3a514176466fa815ed481ffad09110a2d344f6c9b78c1d14afc351c3a51be33d8072e77939dc03ba44790779b7a1025baf3003f6732430e20cd9b76d953391b3",
-            "raw": "0xf86401018304cb2f946295ee1b4f6dd65047762f924ecd367c17eabf8f0a8412a7b9141ba0ed2e0f715eccaab4362c19c1cf35ad8031ab1cabe71ada3fe8b269fe9d726712a06691074f289f826d23c92808ae363959eb958fb7a91fc721875ece4958114c65",
-            "to" : "0xcfdc98ec7f01dab1b67b36373524ce0208dc3953",
-            "transactionIndex" : "0x2",
-            "value" : "0x0",
-            "v" : "0x2a",
-            "r" : "0xa2d2b1021e1428740a7c67af3c05fe3160481889b25b921108ac0ac2c3d5d40a",
-            "s" : "0x63186d2aaefe188748bfb4b46fb9493cbc2b53cf36169e8501a5bc0ed941b484"
-          }
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{"query": "{block(number:20303) {transactionAt(index: 0) {block{hash} hash}}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          block(number: 20303) {
-            transactionAt(index: 0) {
-              block {
-                hash
-              }
-              hash
-            }
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "block" : {
-              "transactionAt" : {
-              "block" : {
-                "hash" : "0x9270651f9c6fa36232c379d0ecf69b519383aa275815a65f1e03114346668f69"
-              },
-              "hash" : "0x5f5366af89e8777d5ae62a1af94a0876bdccbc22417bed0aff361eefa3e37f86"
-              }
-            }
-          }
-        }
-        ```
-
-### `eth_getTransactionReceipt`
-
-Returns the receipt of a transaction by transaction hash. Receipts for pending transactions are not
-available.
-
-If you enabled [revert reason](../HowTo/Send-Transactions/Revert-Reason.md), the receipt includes
-available revert reasons in the response.
-
-#### Parameters
-
-`DATA` - 32-byte hash of a transaction.
-
-#### Returns
-
-`Object` - [Transaction receipt object](API-Objects.md#transaction-receipt-object), or `null` when
-there is no receipt.
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0x504ce587a65bdbdb6414a0c6c16d86a04dd79bfcc4f2950eec9634b30ce5370f"],"id":53}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0x504ce587a65bdbdb6414a0c6c16d86a04dd79bfcc4f2950eec9634b30ce5370f"],"id":53}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "result": {
-                "blockHash": "0xe7212a92cfb9b06addc80dec2a0dfae9ea94fd344efeb157c41e12994fcad60a",
-                "blockNumber": "0x50",
-                "contractAddress": null,
-                "cumulativeGasUsed": "0x5208",
-                "from": "0x627306090abab3a6e1400e9345bc60c78a8bef57",
-                "gasUsed": "0x5208",
-                "logs": [],
-                "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-                "status": "0x1",
-                "to": "0xf17f52151ebef6c7334fad080c5704d77216b732",
-                "transactionHash": "0xc00e97af59c6f88de163306935f7682af1a34c67245e414537d02e422815efc3",
-                "transactionIndex": "0x0"
-            }
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{"query": "{transaction(hash: \"0x5f5366af89e8777d5ae62a1af94a0876bdccbc22417bed0aff361eefa3e37f86\") {block{hash logsBloom} hash createdContract{address} cumulativeGasUsed gas gasUsed logs{topics} from{address} to{address} index}}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          transaction(hash: "0x5f5366af89e8777d5ae62a1af94a0876bdccbc22417bed0aff361eefa3e37f86") {
-            block {
-              hash
-              logsBloom
-            }
-            hash
-            createdContract {
-              address
-            }
-            cumulativeGasUsed
-            gas
-            gasUsed
-            logs {
-              topics
-            }
-            from {
-              address
-            }
-            to {
-              address
-            }
-            index
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data" : {
-            "transaction" : {
-              "block" : {
-                "hash" : "0x9270651f9c6fa36232c379d0ecf69b519383aa275815a65f1e03114346668f69",
-                "logsBloom" : "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-              },
-              "hash" : "0x5f5366af89e8777d5ae62a1af94a0876bdccbc22417bed0aff361eefa3e37f86",
-              "createdContract" : null,
-              "cumulativeGasUsed" : 21000,
-              "gas" : 21000,
-              "gasUsed" : 21000,
-              "logs" : [ ],
-              "from" : {
-                "address" : "0xfe3b557e8fb62b89f4916b721be55ceb828dbd73"
-              },
-              "to" : {
-                "address" : "0x9d8f8572f345e1ae53db1dfa4a7fce49b467bd7f"
-              },
-              "index" : 0
-            }
-          }
-        }
-        ```
-
-### `eth_newFilter`
-
-Creates a [log filter](../Concepts/Events-and-Logs.md). To poll for logs associated with the
-created filter, use [`eth_getFilterChanges`](#eth_getfilterchanges). To get all logs associated with
-the filter, use [`eth_getFilterLogs`](#eth_getfilterlogs).
-
-#### Parameters
-
-`Object` - [Filter options object](API-Objects.md#filter-options-object).
-
-!!! note
-
-    `fromBlock` and `toBlock` in the filter options object default to `latest`.
-
-#### Returns
-
-`data` - Filter ID.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_newFilter","params":[{"fromBlock":"earliest", "toBlock":"latest", "topics":[]}],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_newFilter","params":[{"fromBlock":"earliest", "toBlock":"latest", "topics":[]}],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "result": "0x1ddf0c00989044e9b41cc0ae40272df3"
-        }
-        ```
-
-### `eth_newBlockFilter`
-
-Creates a filter to retrieve new block hashes. To poll for new blocks, use
-[`eth_getFilterChanges`](#eth_getfilterchanges).
-
-#### Parameters
-
-None
-
-#### Returns
-
-`data` - Filter ID.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_newBlockFilter","params":[],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_newBlockFilter","params":[],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "result": "0x9d78b6780f844228b96ecc65a320a825"
-        }
-        ```
-
-### `eth_newPendingTransactionFilter`
-
-Creates a filter to retrieve new pending transactions hashes. To poll for new pending transactions,
-use [`eth_getFilterChanges`](#eth_getfilterchanges).
-
-#### Parameters
-
-None
-
-#### Returns
-
-`data` - Filter ID.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_newPendingTransactionFilter","params":[],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_newPendingTransactionFilter","params":[],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "result": "0x443d6a77c4964707a8554c92f7e4debd"
-        }
-        ```
-
-### `eth_uninstallFilter`
-
-Uninstalls a filter with the specified ID. When a filter is no longer required, call this method.
-
-Filters time out when not requested by [`eth_getFilterChanges`](#eth_getfilterchanges) or [`eth_getFilterLogs`](#eth_getfilterlogs) for 10
-minutes.
-
-#### Parameters
-
-`data` - Filter ID.
-
-#### Returns
-
-`Boolean` - `true` if the filter was successfully uninstalled, otherwise `false`.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_uninstallFilter","params":["0x70355a0b574b437eaa19fe95adfedc0a"],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_uninstallFilter","params":["0x70355a0b574b437eaa19fe95adfedc0a"],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 1,
-          "result" : true
-        }
-        ```
-
-### `eth_getFilterChanges`
-
-Polls the specified filter and returns an array of changes that have occurred since the last poll.
-
-#### Parameters
-
-`data` - Filter ID.
-
-#### Returns
-
-`result` : `Array of Object` - If nothing changed since the last poll, an empty list. Otherwise:
-
-* For filters created with `eth_newBlockFilter`, returns block hashes.
-* For filters created with `eth_newPendingTransactionFilter`, returns transaction hashes.
-* For filters created with `eth_newFilter`, returns [log objects](API-Objects.md#log-object).
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getFilterChanges","params":["0xf8bf5598d9e04fbe84523d42640b9b0e"],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getFilterChanges","params":["0xf8bf5598d9e04fbe84523d42640b9b0e"],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-
-        Example result from a filter created with `eth_newBlockFilter`:
-        {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "result": [
-                "0xda2bfe44bf85394f0d6aa702b5af89ae50ae22c0928c18b8903d9269abe17e0b",
-                "0x88cd3a37306db1306f01f7a0e5b25a9df52719ad2f87b0f88ee0e6753ed4a812",
-                "0x4d4c731fe129ff32b425e6060d433d3fde278b565bbd1fd624d5a804a34f8786"
-            ]
-        }
-
-        Example result from a filter created with `eth_newPendingTransactionFilter`:
-        {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "result": [
-                "0x1e977049b6db09362da09491bee3949d9362080ce3f4fc19721196d508580d46",
-                "0xa3abc4b9a4e497fd58dc59cdff52e9bb5609136bcd499e760798aa92802769be"
-            ]
-        }
-
-        Example result from a filter created with `eth_newFilter`:
-
-        {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "result": [
-                {
-                    "logIndex": "0x0",
-                    "removed": false,
-                    "blockNumber": "0x233",
-                    "blockHash": "0xfc139f5e2edee9e9c888d8df9a2d2226133a9bd87c88ccbd9c930d3d4c9f9ef5",
-                    "transactionHash": "0x66e7a140c8fa27fe98fde923defea7562c3ca2d6bb89798aabec65782c08f63d",
-                    "transactionIndex": "0x0",
-                    "address": "0x42699a7612a82f1d9c36148af9c77354759b210b",
-                    "data": "0x0000000000000000000000000000000000000000000000000000000000000004",
-                    "topics": [
-                        "0x04474795f5b996ff80cb47c148d4c5ccdbe09ef27551820caa9c2f8ed149cce3"
-                    ]
-                },
-                {
-                    "logIndex": "0x0",
-                    "removed": false,
-                    "blockNumber": "0x238",
-                    "blockHash": "0x98b0ec0f9fea0018a644959accbe69cd046a8582e89402e1ab0ada91cad644ed",
-                    "transactionHash": "0xdb17aa1c2ce609132f599155d384c0bc5334c988a6c368056d7e167e23eee058",
-                    "transactionIndex": "0x0",
-                    "address": "0x42699a7612a82f1d9c36148af9c77354759b210b",
-                    "data": "0x0000000000000000000000000000000000000000000000000000000000000007",
-                    "topics": [
-                        "0x04474795f5b996ff80cb47c148d4c5ccdbe09ef27551820caa9c2f8ed149cce3"
-                    ]
-                }
-            ]
-        }
-
-        ```
-
-### `eth_getFilterLogs`
-
-Returns an array of [logs](../Concepts/Events-and-Logs.md) for the specified filter.
-
-Leave the [`--auto-log-bloom-caching-enabled`](CLI/CLI-Syntax.md#auto-log-bloom-caching-enabled)
-command line option at the default value of `true` to improve log retrieval performance.
-
-!!! note
-
-    `eth_getFilterLogs` is only used for filters created with `eth_newFilter`. To specify a filter
-    object and get logs without creating a filter, use `eth_getLogs` .
-
-#### Parameters
-
-`data` - Filter ID.
-
-#### Returns
-
-`array` - [Log objects](API-Objects.md#log-object).
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getFilterLogs","params":["0x5ace5de3985749b6a1b2b0d3f3e1fb69"],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getFilterLogs","params":["0x5ace5de3985749b6a1b2b0d3f3e1fb69"],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 1,
-          "result" : [ {
-            "logIndex" : "0x0",
-            "removed" : false,
-            "blockNumber" : "0xb3",
-            "blockHash" : "0xe7cd776bfee2fad031d9cc1c463ef947654a031750b56fed3d5732bee9c61998",
-            "transactionHash" : "0xff36c03c0fba8ac4204e4b975a6632c862a3f08aa01b004f570cc59679ed4689",
-            "transactionIndex" : "0x0",
-            "address" : "0x2e1f232a9439c3d459fceca0beef13acc8259dd8",
-            "data" : "0x0000000000000000000000000000000000000000000000000000000000000003",
-            "topics" : [ "0x04474795f5b996ff80cb47c148d4c5ccdbe09ef27551820caa9c2f8ed149cce3" ]
-          }, {
-            "logIndex" : "0x0",
-            "removed" : false,
-            "blockNumber" : "0xb6",
-            "blockHash" : "0x3f4cf35e7ed2667b0ef458cf9e0acd00269a4bc394bb78ee07733d7d7dc87afc",
-            "transactionHash" : "0x117a31d0dbcd3e2b9180c40aca476586a648bc400aa2f6039afdd0feab474399",
-            "transactionIndex" : "0x0",
-            "address" : "0x2e1f232a9439c3d459fceca0beef13acc8259dd8",
-            "data" : "0x0000000000000000000000000000000000000000000000000000000000000005",
-            "topics" : [ "0x04474795f5b996ff80cb47c148d4c5ccdbe09ef27551820caa9c2f8ed149cce3" ]
-          } ]
-        }
-        ```
-
-### `eth_getLogs`
-
-Returns an array of [logs](../Concepts/Events-and-Logs.md) matching a specified filter object.
-
-Leave the [`--auto-log-bloom-caching-enabled`](CLI/CLI-Syntax.md#auto-log-bloom-caching-enabled)
-command line option at the default value of `true` to improve log retrieval performance.
-
-!!! attention
-
-    Using `eth_getLogs` to get the logs from a large range of blocks, especially an entire chain from its genesis block, can cause Besu to hang and never return a response. We recommend splitting one large query into multiple ones for better performance.
-
-#### Parameters
-
-`Object` - [Filter options object](API-Objects.md#filter-options-object).
-
-#### Returns
-
-`array` - [Log objects](API-Objects.md#log-object).
-
-!!! example
-
-    === "curl HTTP"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getLogs","params":[{"fromBlock":"earliest", "toBlock":"latest", "address": "0x2e1f232a9439c3d459fceca0beef13acc8259dd8", "topics":[]}], "id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getLogs","params":[{"fromBlock":"earliest", "toBlock":"latest", "address": "0x2e1f232a9439c3d459fceca0beef13acc8259dd8", "topics":[]}], "id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc" : "2.0",
-          "id" : 1,
-          "result" : [ {
-            "logIndex" : "0x0",
-            "removed" : false,
-            "blockNumber" : "0xb3",
-            "blockHash" : "0xe7cd776bfee2fad031d9cc1c463ef947654a031750b56fed3d5732bee9c61998",
-            "transactionHash" : "0xff36c03c0fba8ac4204e4b975a6632c862a3f08aa01b004f570cc59679ed4689",
-            "transactionIndex" : "0x0",
-            "address" : "0x2e1f232a9439c3d459fceca0beef13acc8259dd8",
-            "data" : "0x0000000000000000000000000000000000000000000000000000000000000003",
-            "topics" : [ "0x04474795f5b996ff80cb47c148d4c5ccdbe09ef27551820caa9c2f8ed149cce3" ]
-          }, {
-            "logIndex" : "0x0",
-            "removed" : false,
-            "blockNumber" : "0xb6",
-            "blockHash" : "0x3f4cf35e7ed2667b0ef458cf9e0acd00269a4bc394bb78ee07733d7d7dc87afc",
-            "transactionHash" : "0x117a31d0dbcd3e2b9180c40aca476586a648bc400aa2f6039afdd0feab474399",
-            "transactionIndex" : "0x0",
-            "address" : "0x2e1f232a9439c3d459fceca0beef13acc8259dd8",
-            "data" : "0x0000000000000000000000000000000000000000000000000000000000000005",
-            "topics" : [ "0x04474795f5b996ff80cb47c148d4c5ccdbe09ef27551820caa9c2f8ed149cce3" ]
-          } ]
-        }
-        ```
-
-    === "curl GraphQL"
-
-        ```bash
-        curl -X POST -H "Content-Type: application/json" --data '{"query": "{logs(filter:{fromBlock: 1486000, toBlock: 1486010, addresses: [\"0x7ef66b77759e12caf3ddb3e4aff524e577c59d8d\"], topics: [[\"0x8a22ee899102a366ac8ad0495127319cb1ff2403cfae855f83a89cda1266674d\"]]}) {index topics data account{address} transaction{hash} }}"}' http://localhost:8547/graphql
-        ```
-
-    === "GraphQL"
-
-        ```bash
-        {
-          logs(filter: {fromBlock: 1486000, toBlock: 1486010, addresses: ["0x7ef66b77759e12caf3ddb3e4aff524e577c59d8d"], topics: [["0x8a22ee899102a366ac8ad0495127319cb1ff2403cfae855f83a89cda1266674d"]]}) {
-            index
-            topics
-            data
-            account {
-              address
-            }
-            transaction {
-              hash
-            }
-          }
-        }
-        ```
-
-    === "GraphQL result"
-
-        ```bash
-        {
-          "data": {
-            "logs": [
-              {
-                "index": 0,
-                "topics": [
-                  "0x8a22ee899102a366ac8ad0495127319cb1ff2403cfae855f83a89cda1266674d",
-                  "0x0000000000000000000000000000000000000000000000000000000000000004",
-                  "0x0000000000000000000000000000000000000000000000000000000000508918"
-                ],
-                "data": "0xa5a04999ec29a8bd19ce32b859280ef9dbb464d846be06f64a1b1012ec08ab03",
-                "account": {
-                  "address": "0x7ef66b77759e12caf3ddb3e4aff524e577c59d8d"
-                },
-                "transaction": {
-                  "hash": "0x36a2186344c6a32760e7700fdf3685936220876c51ff39d071eb48c17f7e802f"
-                }
-              },
-              {
-                "index": 0,
-                "topics": [
-                  "0x8a22ee899102a366ac8ad0495127319cb1ff2403cfae855f83a89cda1266674d",
-                  "0x0000000000000000000000000000000000000000000000000000000000000003",
-                  "0x0000000000000000000000000000000000000000000000000000000000648c72"
-                ],
-                "data": "0x0ee96b660ad82c8010c90760a03edfbb40b4af5e3634a8c214e4ac7fa1f61492",
-                "account": {
-                  "address": "0x7ef66b77759e12caf3ddb3e4aff524e577c59d8d"
-                },
-                "transaction": {
-                  "hash": "0x9e2cc9e84a9e78839d6f4b591dfd98cc7a454a8ee3cd6ccd0a18e662e22d3818"
-                }
-              }
-            ]
-          }
-        }
-        ```
-
-### `eth_getWork`
-
-Returns the hash of the current block, the seed hash, and the required target boundary condition.
-
-#### Parameters
-
-None
-
-#### Returns
-
-`result` : Array with the following fields:
-
-* `DATA`, 32 Bytes - Hash of the current block header (pow-hash).
-* `DATA`, 32 Bytes - The seed hash used for the DAG.
-* `DATA`, 32 Bytes - The required target boundary condition: 2^256 / difficulty.
-* `QUANTITY` - Hexadecimal integer representing the current block number.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getWork","params":[],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0","method":"eth_getWork","params":[],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc": "2.0",
-          "id": 1,
-          "result": [
-            "0xce5e32ca59cb86799a1879e90150b2c3b882852173e59865e9e79abb67a9d636",
-            "0x0000000000000000000000000000000000000000000000000000000000000000",
-            "0x00a3d70a3d70a3d70a3d70a3d70a3d70a3d70a3d70a3d70a3d70a3d70a3d70a3",
-            "0x42"
-          ]
-        }
-        ```
-
-### `eth_submitHashrate`
-
-Submits the mining hashrate.
-
-Used by mining software such as [Ethminer](https://github.com/ethereum-mining/ethminer).
-
-#### Parameters
-
-* DATA, 32 Bytes - Hexadecimal string representation of the hash rate.
-* DATA, 32 Bytes - Random hexadecimal ID identifying the client.
-
-#### Returns
-
-`result: Boolean`, `true` if submission is successful, otherwise `false`.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0", "method":"eth_submitHashrate", "params":["0x0000000000000000000000000000000000000000000000000000000000500000", "0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c"],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0", "method":"eth_submitHashrate", "params":["0x0000000000000000000000000000000000000000000000000000000000500000", "0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c"],"id":1}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "jsonrpc":"2.0",
-          "id":1,
-          "result": true
-        }
-        ```
-
-### `eth_submitWork`
-
-Submits a Proof of Work (Ethash) solution.
-
-Used by mining software such as [Ethminer](https://github.com/ethereum-mining/ethminer).
-
-#### Parameters
-
-* DATA, 8 Bytes - Retrieved nonce.
-* DATA, 32 Bytes - Hash of the block header (PoW-hash).
-* DATA, 32 Bytes - Mix digest.
-
-#### Returns
-
-`result: Boolean`, `true` if the provided solution is valid, otherwise `false`.
-
-!!! example
-
-    === "curl HTTP request"
-
-        ```bash
-        curl -X POST --data '{"jsonrpc":"2.0", "method":"eth_submitWork", "params":["0x0000000000000001", "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef", "0xD1GE5700000000000000000000000000D1GE5700000000000000000000000000"],"id":1}' http://127.0.0.1:8545
-        ```
-
-    === "wscat WS request"
-
-        ```bash
-        {"jsonrpc":"2.0", "method":"eth_submitWork", "params":["0x0000000000000001", "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef", "0xD1GE5700000000000000000000000000D1GE5700000000000000000000000000"],"id":73}
-        ```
-
-    === "JSON result"
-
-        ```json
-        {
-          "id":1,
-          "jsonrpc":"2.0",
-          "result": true
         }
         ```
 
