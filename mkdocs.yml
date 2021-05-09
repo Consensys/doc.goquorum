@@ -109,6 +109,7 @@ nav:
           - Private transaction lifecycle: Concepts/Privacy/PrivateTransactionLifecycle.md
           - Contract extension: Concepts/Privacy/ContractExtension.md
           - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
+          - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
       - Consensus:
           - Overview: Concepts/Consensus/Overview.md
           - IBFT: Concepts/Consensus/IBFT.md
