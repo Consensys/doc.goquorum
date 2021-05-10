@@ -75,7 +75,7 @@ management contract to the blockchain.
     * You must execute `quorumExtension_extendContract` from the node who created the contract initially.
 
     * If the network is using
-      [enhanced network permissioning](../../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md), then both
+      [enhanced network permissioning](../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md), then both
       initiator (the `from` address in `txArgs`) and receiver (`recipientAddress`) of the extension must be network or
       org admin accounts.
 
@@ -2107,7 +2107,7 @@ The following example uses `geth` console for signing and sending a private tran
 ### `eth_storageRoot`
 
 Returns the storage root hash of the specified address.
-If the contract is a [private contract](../../Concepts/Privacy/Privacy.md#state-verification), returns the storage root
+If the contract is a [private contract](../Concepts/Privacy/Privacy.md#state-verification), returns the storage root
 hash from the private state database.
 
 #### Parameters
@@ -2232,13 +2232,13 @@ The callback URL receives the following object:
 
     For the RPC call and the immediate response:
 
-    === "Request"
+    === "curl HTTP request"
 
         ```bash
         curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendTransactionAsync","params":[{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data": "0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":"0x47b760","privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":67}'
         ```
 
-    === "Response"
+    === "JSON result"
 
         ```json
         {
@@ -2251,13 +2251,13 @@ The callback URL receives the following object:
     If you provide the callback URL, you receive the following response after submitting the transaction. This example
     assumes a webserver that can be accessed by calling http://localhost:8080 has been set up to accept POST requests:
 
-    === "Request"
+    === "curl HTTP request"
 
         ```bash
         curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendTransactionAsync","params":[{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data":"0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":"0x47b760","privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="],"callbackUrl":"http://localhost:8080"}],"id":67}'
         ```
 
-    === "Response"
+    === "JSON result"
 
         ```json
         {
