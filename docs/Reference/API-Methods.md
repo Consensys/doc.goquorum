@@ -2887,7 +2887,7 @@ Promotes the specified learner node to peer and thus to be part of the Raft clus
         ```
 
     === "JSON result"
-s
+
         ```json
         {
           "jsonrpc":"2.0",
