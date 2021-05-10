@@ -24,8 +24,8 @@ management contract to the blockchain.
 
 * `newRecipientPtmPublicKey`: the new participant's Private Transaction Manager (PTM) (for example, Tessera) public key
 
-* `recipientAddress`: the new participant's Ethereum address - the participant will later need to approve the extension
-  using this address
+* `recipientAddress`: the new participant's Ethereum address - the participant must later approve the extension using
+  this address
 
 * `txArgs`: arguments for the transaction that deploys the extension management contract - `privateFor` must contain
   only the `newRecipientPtmPublicKey`
@@ -64,9 +64,9 @@ management contract to the blockchain.
         "0xceffe8051d098920ac84e33b8a05c48180ed9b26581a6a06ce9874a1bf1502bd"
         ```
 
-!!!error "Frequent issues"
+!!! error "Frequent issues"
 
-    * It's impossible to extend a contract already being extended, the following error will be returned:
+    * If you attempt to extend a contract in the process of being extended, the following error is returned:
 
           ```text
           Error: contract extension in progress for the given contract address
@@ -102,7 +102,7 @@ Submits an approval/denial vote to the specified extension management contract.
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_approveExtension", "params":["0xb1c57951a2f3006910115eadf0f167890e99b9cb", true, {"from": "0xed9d02e382b34818e88b88a309c7fe71e65f419d", "privateFor":["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]}], "id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_approveExtension","params":["0xb1c57951a2f3006910115eadf0f167890e99b9cb",true,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","privateFor":["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -118,7 +118,7 @@ Submits an approval/denial vote to the specified extension management contract.
     === "geth console request"
 
         ```javascript
-        quorumExtension.approveExtension("0xb1c57951a2f3006910115eadf0f167890e99b9cb", true ,{from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", privateFor:["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]})
+        quorumExtension.approveExtension("0xb1c57951a2f3006910115eadf0f167890e99b9cb",true,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","privateFor":["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]})
         ```
 
     === "geth console result"
@@ -127,18 +127,17 @@ Submits an approval/denial vote to the specified extension management contract.
         "0x8d34a594b286087f45029daad2d5a8fd42f70abb0ae2492429a256a2ba4cb0dd"
         ```
 
-!!!error "Frequent issues"
+!!! error "Frequent issues"
 
-    * If the contract is already under the process of extension, a call to extend it again will fail:
+    * If you attempt to extend a contract in the process of being extended, the following error is returned:
 
         ```text
         Error: contract extension in progress for the given contract address
         ```
 
     * The recipient can approve the extension only once.
-
-        Executing `quorumExtension.approveExtension` once the extension process is completed will result in the
-        following error:
+      Executing `quorumExtension.approveExtension` once the extension process is completed results in the
+      following error:
 
         ```text
         Error: contract extension process complete. nothing to accept
@@ -186,7 +185,7 @@ Cancels an active contract extension. This can only be invoked by the initiator 
     === "geth console request"
 
         ```javascript
-        quorumExtension.cancelExtension("0x622aff909c081783613c9d3f5f4c47be78b310ac",{"from":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e","value":"0x0","privateFor": ["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
+        quorumExtension.cancelExtension("0x622aff909c081783613c9d3f5f4c47be78b310ac",{"from":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e","value":"0x0","privateFor":["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
         ```
 
     === "geth console result"
@@ -195,11 +194,11 @@ Cancels an active contract extension. This can only be invoked by the initiator 
         "0xb43da7dbeae5347df86c6933786b8c536b4622463b577a990d4c87214845d16a"
         ```
 
-!!!error "Frequent issues"
+!!! error "Frequent issues"
 
     * The canceller (`from` address in `txArgs`) must be the same as the initiator of the extension (the `from` address
-      in `txArgs` for the [`quorumExtension_extendContract`](#quorumextension_extendcontract) call) or it will result in
-      the following error:
+      in `txArgs` for the [`quorumExtension_extendContract`](#quorumextension_extendcontract) call) or the following
+      error is returned:
 
         ```text
         Error: account is not the creator of this extension request
@@ -225,8 +224,7 @@ None
 
 * `initiator`: the contract extension initiator's Ethereum address
 
-* `recipient`: the new participant's Ethereum address - the participant will later need to approve the extension using
-  this address
+* `recipient`: the new participant's Ethereum address - the participant must later approve the extension using this address
 
 * `recipientPtmKey`: the new participant's PTM public key
 
@@ -293,7 +291,7 @@ Retrieves the status of the specified contract extension.
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_getExtensionStatus", "params":["0x1349f3e1b8d71effb47b840594ff27da7e603d17"], "id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_getExtensionStatus","params":["0x1349f3e1b8d71effb47b840594ff27da7e603d17"],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -340,7 +338,7 @@ Retrieves the state of an address at a given block.
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"debug_dumpAddress","params":["0xfff7ac99c8e4feb60c9750054bdc14ce1857f181", 10],"id":15}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"debug_dumpAddress","params":["0xfff7ac99c8e4feb60c9750054bdc14ce1857f181",10],"id":15}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -355,10 +353,257 @@ Retrieves the state of an address at a given block.
             "codeHash":"c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
             "nonce":2,
             "root":"56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
-            "storage": {}
+            "storage":{}
           }
         }
         ```
+
+## IBFT methods
+
+To use the IBFT API:
+
+1. Run Istanbul `geth` with `--rpcapi "istanbul"`.
+
+2. Run `geth attach`.
+
+### `istanbul.candidates`
+
+Returns the current candidates which the node tries to vote in or out.
+
+#### Parameters
+
+None
+
+#### Returns
+
+*map[string] boolean* - current candidates map
+
+!!! example "`geth` console request"
+
+        ```js
+        istanbul.candidates
+        ```
+
+### `istanbul.discard`
+
+Drops a currently running candidate, stopping the validator from casting further votes (either for or against).
+
+#### Parameters
+
+`address`: *string* - address of the candidate
+
+!!! example "`geth` console request"
+
+        ```js
+        istanbul.discard(address)
+        ```
+
+### `istanbul.getSnapshot`
+
+Retrieves the state snapshot at the specified block number.
+
+#### Parameters
+
+`blockNumber`: *number* or *string* - integer representing a block number, the string tag `latest` (the last block
+mined), or `nil` (same as `latest`)
+
+#### Returns
+
+*object* - snapshot object
+
+!!! example "`geth` console request"
+
+    ```js
+    istanbul.getSnapshot(blockNumber)
+    ```
+
+### `istanbul.getSnapshotAtHash`
+
+Retrieves the state snapshot at the specified block hash.
+
+#### Parameters
+
+`blockHash`: *string* - block hash
+
+#### Returns
+
+*object* - snapshot object
+
+!!! example "`geth` console request"
+
+    ```js
+    istanbul.getSnapshotAtHash(blockHash)
+    ```
+
+### `istanbul.getValidators`
+
+Retrieves the list of authorized validators at the specified block number.
+
+#### Parameters
+
+`blockNumber`: *number* or *string* - integer representing a block number, the string tag `latest` (the last block
+mined), or `nil` (same as `latest`)
+
+#### Returns
+
+*array* of *strings* - list of validator addresses
+
+!!! example "`geth` console request"
+
+    ```js
+    istanbul.getValidators(blockNumber)
+    ```
+
+### `istanbul.getValidatorsAtHash`
+
+Retrieves the list of authorized validators at the specified block hash.
+
+#### Parameters
+
+`blockHash`: *string* - block hash
+
+#### Returns
+
+*array* of *strings* - list of validator addresses
+
+!!! example "`geth` console request"
+
+    ```js
+    istanbul.getValidatorsAtHash(blockHash)
+    ```
+
+### `istanbul.propose`
+
+Injects a new authorization candidate that the validator attempts to push through.
+If a majority of the validators vote the candidate in/out, the candidate is added/removed in the validator set.
+
+#### Parameters
+
+* `address`: *string* - address of candidate
+
+* `auth`: *boolean* - `true` votes the candidate in and `false` votes out
+
+!!! example "`geth` console request"
+
+    ```js
+    istanbul.propose(address, auth)
+    ```
+
+### `istanbul.nodeAddress`
+
+Retrieves the public address that is used to sign proposals, which is derived from the node's `nodekey`.
+
+#### Parameters
+
+None
+
+#### Returns
+
+*string* - node's public signing address
+
+!!! example "`geth` console request"
+
+    ```js
+    istanbul.nodeAddress()
+    ```
+
+### `istanbul.getSignersFromBlock`
+
+Retrieves the public addresses whose seals are included in the specified block number.
+This means that they participated in the consensus for this block and attested to its validity.
+
+#### Parameters
+
+`blockNumber`: *number* - (optional) block number to retrieve; defaults to current block
+
+#### Returns
+
+*object* - result object with the following fields:
+
+* `number`: *number* - retrieved block's number
+
+* `hash`: *string* - retrieved block's hash
+
+* `author`: *string* - address of the block proposer
+
+* `committers`: *array* of *strings* - list of all addresses whose seal appears in this block
+
+!!! example "`geth` console request"
+
+    ```js
+    istanbul.getSignersFromBlock(blockNumber)
+    ```
+
+### `istanbul.getSignersFromBlockByHash`
+
+Retrieves the public addresses whose seals are included in the specified block number.
+This means that they participated in the consensus for this block and attested to its validity.
+
+#### Parameters
+
+`blockHash`: *string* - hash of the block to retrieve (required)
+
+#### Returns
+
+*object* - result object with the following fields:
+
+* `number`: *number* - retrieved block's number
+
+* `hash`: *string* - retrieved block's hash
+
+* `author`: *string* - address of the block proposer
+
+* `committers`: *array* of *strings* - list of all addresses whose seal appears in this block
+
+!!! example "`geth` console request"
+
+    ```js
+    istanbul.getSignersFromBlockByHash(blockHash)
+    ```
+
+### `istanbul.status`
+
+Returns the signing status of blocks for the specified block range.
+
+#### Parameters
+
+* `startBlockNumber`: *number* - start block number
+
+* `endBlockNumber`: *number* - end block number
+
+If the start block and end block numbers are not provided, the status of the last 64 blocks is returned.
+
+#### Returns
+
+*object* - result object with the following fields:
+
+* `numBlocks`: *number* - number of blocks for which sealer activity is retrieved
+
+* `sealerActivity`: *map[string] number* - key is the validator and value is the number of blocks sealed by the validator
+
+!!! example "`geth` console request"
+
+    ```js
+    istanbul.status(startBlockNumber,endBlockNumber)
+    ```
+
+### `istanbul.isValidator`
+
+Indicates if this node is the validator for the specified block number.
+
+#### Parameters
+
+`blockNumber`: *number* - (optional) block number; defaults to latest block number
+
+#### Returns
+
+*boolean* - `true` if this node is the validator for the given `blockNumber`, otherwise `false`
+
+!!! example "`geth` console request"
+
+    ```js
+    istanbul.isValidator(blockNumber)
+    ```
 
 ## Permission methods
 
@@ -402,17 +647,15 @@ None
         {
           "jsonrpc":"2.0",
           "id":51,
-          "result": [
-            {
-              "fullOrgId":"INITORG",
-              "level":1,
-              "orgId":"INITORG",
-              "parentOrgId":"",
-              "status":2,
-              "subOrgList":null,
-              "ultimateParent":"INITORG"
-            }
-          ]
+          "result": [{
+            "fullOrgId":"INITORG",
+            "level":1,
+            "orgId":"INITORG",
+            "parentOrgId":"",
+            "status":2,
+            "subOrgList":null,
+            "ultimateParent":"INITORG"
+          }]
         }
         ```
 
@@ -426,13 +669,13 @@ None
 
         ```json
         [{
-            "fullOrgId":"INITORG",
-            "level":1,
-            "orgId":"INITORG",
-            "parentOrgId":"",
-            "status":2,
-            "subOrgList":null,
-            "ultimateParent":"INITORG"
+          "fullOrgId":"INITORG",
+          "level":1,
+          "orgId":"INITORG",
+          "parentOrgId":"",
+          "status":2,
+          "subOrgList":null,
+          "ultimateParent":"INITORG"
         }]
         ```
 
@@ -472,22 +715,19 @@ None
         {
           "jsonrpc":"2.0",
           "id":53,
-          "result": [
-            {
-              "acctId":"0xed9d02e382b34818e88b88a309c7fe71e65f419d",
-              "isOrgAdmin":true,
-              "orgId":"INITORG",
-              "roleId":"NWADMIN",
-              "status":2
-            },
-            {
-              "acctId":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
-              "isOrgAdmin":true,
-              "orgId":"INITORG",
-              "roleId":"NWADMIN",
-              "status":2
-            }
-          ]
+          "result": [{
+            "acctId":"0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+            "isOrgAdmin":true,
+            "orgId":"INITORG",
+            "roleId":"NWADMIN",
+            "status":2
+          }, {
+            "acctId":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
+            "isOrgAdmin":true,
+            "orgId":"INITORG",
+            "roleId":"NWADMIN",
+            "status":2
+          }]
         }
         ```
 
@@ -547,28 +787,23 @@ None
         {
           "jsonrpc":"2.0",
           "id":53,
-          "result": [
-            {
-              "orgId":"INITORG",
-              "status":2,
-              "url":"enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
-            },
-            {
-              "orgId":"INITORG",
-              "status":2,
-              "url":"enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
-            },
-            {
-              "orgId":"INITORG",
-              "status":2,
-              "url":"enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
-            },
-            {
-              "orgId":"INITORG",
-              "status":2,
-              "url":"enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
-            }
-          ]
+          "result": [{
+            "orgId":"INITORG",
+            "status":2,
+            "url":"enode://72c0572f7a2492cffb5efc3463ef350c68a0446402a123dacec9db5c378789205b525b3f5f623f7548379ab0e5957110bffcf43a6115e450890f97a9f65a681a@127.0.0.1:21000?discport=0"
+          }, {
+            "orgId":"INITORG",
+            "status":2,
+            "url":"enode://7a1e3b5c6ad614086a4e5fb55b6fe0a7cf7a7ac92ac3a60e6033de29df14148e7a6a7b4461eb70639df9aa379bd77487937bea0a8da862142b12d326c7285742@127.0.0.1:21001?discport=0"
+          }, {
+            "orgId":"INITORG",
+            "status":2,
+            "url":"enode://5085e86db5324ca4a55aeccfbb35befb412def36e6bc74f166102796ac3c8af3cc83a5dec9c32e6fd6d359b779dba9a911da8f3e722cb11eb4e10694c59fd4a1@127.0.0.1:21002?discport=0"
+          }, {
+            "orgId":"INITORG",
+            "status":2,
+            "url":"enode://28a4afcf56ee5e435c65b9581fc36896cc684695fa1db83c9568de4353dc6664b5cab09694d9427e9cf26a5cd2ac2fb45a63b43bb24e46ee121f21beb3a7865e@127.0.0.1:21003?discport=0"
+          }]
         }
         ```
 
@@ -638,16 +873,14 @@ None
         {
           "jsonrpc":"2.0",
           "id":1,
-          "result": [
-            {
-              "access":3,
-              "active":true,
-              "isAdmin":true,
-              "isVoter":true,
-              "orgId":"INITORG",
-              "roleId":"NWADMIN"
-            }
-          ]
+          "result": [{
+            "access":3,
+            "active":true,
+            "isAdmin":true,
+            "isVoter":true,
+            "orgId":"INITORG",
+            "roleId":"NWADMIN"
+          }]
         }
         ```
 
@@ -805,7 +1038,7 @@ Returns lists of accounts, nodes, roles, and sub-organizations linked to the spe
 Proposes a new organization into the network.
 This method can be called by a network admin account.
 
-If there are any pending items for approval, proposal of any new organization will fail.
+If there are any pending items for approval, proposal of any new organization fails.
 Also, the enode ID and account ID can only be linked to one organization.
 
 #### Parameter
@@ -814,20 +1047,20 @@ Also, the enode ID and account ID can only be linked to one organization.
 
 * `enodeId`: complete enode ID
 
-* `accountId`: account which will be the organization admin account
+* `accountId`: account to be the organization admin account
 
 #### Returns
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addOrg","params":["ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addOrg","params":["ABC","enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404","0x0638e1574728b6d862dd5d3a3e0942c3be47d996",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -843,43 +1076,13 @@ Also, the enode ID and account ID can only be linked to one organization.
     === "geth console request"
 
         ```javascript
-        quorumPermission.addOrg("ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
+        quorumPermission.addOrg("ABC","enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404","0x0638e1574728b6d862dd5d3a3e0942c3be47d996",{from: eth.accounts[0]})
         ```
 
     === "geth console result"
 
         ```json
         "Action completed successfully"
-        ```
-
-    === "geth console pending error"
-
-        ```text
-        Error: Pending approvals for the organization. Approve first
-            at web3.js:3143:20
-            at web3.js:6347:15
-            at web3.js:5081:36
-            at <anonymous>:1:1
-        ```
-
-    === "geth console enode ID error"
-
-        ```text
-        Error: EnodeId already part of network.
-            at web3.js:3143:20
-            at web3.js:6347:15
-            at web3.js:5081:36
-            at <anonymous>:1:1
-        ```
-
-    === "geth console account error"
-
-        ```text
-        Error: Account already in use in another organization
-            at web3.js:3143:20
-            at web3.js:6347:15
-            at web3.js:5081:36
-            at <anonymous>:1:1
         ```
 
 ### `quorumPermission_approveOrg`
@@ -893,20 +1096,20 @@ This method can be called by a network admin account.
 
 * `enodeId`: complete enode ID
 
-* `accountId`: account which will be the organization admin account
+* `accountId`: account to be the organization admin account
 
 #### Returns
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrg","params":["ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrg","params":["ABC","enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404","0x0638e1574728b6d862dd5d3a3e0942c3be47d996",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -922,7 +1125,7 @@ This method can be called by a network admin account.
     === "geth console request"
 
         ```javascript
-        quorumPermission.approveOrg("ABC", "enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: eth.accounts[0]})
+        quorumPermission.approveOrg("ABC","enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404","0x0638e1574728b6d862dd5d3a3e0942c3be47d996",{"from":eth.accounts[0]})
         ```
 
     === "geth console result"
@@ -942,21 +1145,23 @@ This can only be performed for the master organization and requires majority app
 * `orgId`: organization ID
 
 * `action`:
+
     * 1 - for suspending an organization
+
     * 2 - for activating a suspended organization
 
 #### Returns
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
     === "curl HTTP"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateOrgStatus","params":["ABC", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateOrgStatus","params":["ABC",1,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -972,7 +1177,7 @@ This can only be performed for the master organization and requires majority app
     === "geth console request"
 
         ```javascript
-        quorumPermission.updateOrgStatus("ABC", 1, {from:eth.accounts[0]})
+        quorumPermission.updateOrgStatus("ABC",1,{"from":eth.accounts[0]})
         ```
 
     === "geth console result"
@@ -989,28 +1194,30 @@ Once majority approval is received from network admins, the organization status 
 
 When an organization is in suspended status, no transactions or contract deployment activities are allowed from any
 nodes linked to the organization and sub-organizations under it.
-Similarly, no transactions will be allowed from any accounts linked to the organization.
+Similarly, no transactions are allowed from any accounts linked to the organization.
 
 #### Parameters
 
 * `orgId`: organization ID
 
 * `action`:
+
     * 1 - for approving organization suspension
+
     * 2 - for approving activation of a suspended organization
 
 #### Returns
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean*` - indicates if the operation was a success or failure
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrgStatus","params":["ABC", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrgStatus","params":["ABC",1,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1026,7 +1233,7 @@ Similarly, no transactions will be allowed from any accounts linked to the organ
     === "geth console request"
 
         ```javascript
-        quorumPermission.approveOrgStatus("ABC", 1, {from: eth.accounts[0]})
+        quorumPermission.approveOrgStatus("ABC",1,{"from":eth.accounts[0]})
         ```
 
     === "geth console result"
@@ -1053,19 +1260,21 @@ This method can be called by an organization admin account.
     `SUB1` level, the parent organization should be given as `ABC.SUB1`.
 
 * `subOrgId`: sub-organization ID
+
 * `enodeId`: complete enode ID of the node linked to the sub-organization ID
 
 #### Returns
 
 * `msg`: response message
-* `status`: `boolean` - indicates if the operation was a success or failure
+
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addSubOrg","params":["ABC", "SUB1","", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addSubOrg","params":["ABC","SUB1","",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1081,7 +1290,7 @@ This method can be called by an organization admin account.
     === "geth console request"
 
         ```javascript
-        quorumPermission.addSubOrg("ABC", "SUB1", "", {from: eth.accounts[0]})
+        quorumPermission.addSubOrg("ABC","SUB1","",{"from":eth.accounts[0]})
         ```
 
     === "geth console result"
@@ -1111,14 +1320,14 @@ This method can be called by an organization admin account.
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNewRole","params":["ABC", "TRANSACT",1,false,false, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNewRole","params":["ABC","TRANSACT",1,false,false,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1134,7 +1343,7 @@ This method can be called by an organization admin account.
     === "geth console request"
 
         ```javascript
-        quorumPermission.addNewRole("ABC", "TRANSACT", 1, false, false,{from: eth.accounts[0]})
+        quorumPermission.addNewRole("ABC","TRANSACT",1,false,false,{"from":eth.accounts[0]})
         ```
 
     === "geth console result"
@@ -1158,14 +1367,14 @@ This method can be called by an organization admin account.
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_removeRole","params":["ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_removeRole","params":["ABC","TRANSACT",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1181,7 +1390,7 @@ This method can be called by an organization admin account.
     === "geth console request"
 
         ```javascript
-        quorumPermission.removeRole("ABC.SUB1.SUB2.SUB3", "TRANSACT", {from: eth.accounts[1]})
+        quorumPermission.removeRole("ABC.SUB1.SUB2.SUB3","TRANSACT",{"from":eth.accounts[1]})
         ```
 
     === "geth console result"
@@ -1209,14 +1418,14 @@ The account can only be linked to a single organization or sub-organization.
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addAccountToOrg","params":["0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addAccountToOrg","params":["0xf017976fdf1521de2e108e63b423380307f501f8","ABC","TRANSACT",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1224,7 +1433,7 @@ The account can only be linked to a single organization or sub-organization.
         ```json
         {
           "jsonrpc":"2.0",
-          "id": 10,
+          "id":10,
           "result":"Action completed successfully"
         }
         ```
@@ -1232,23 +1441,13 @@ The account can only be linked to a single organization or sub-organization.
     === "geth console request"
 
         ```javascript
-        quorumPermission.addAccountToOrg("0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {from: eth.accounts[1]})
+        quorumPermission.addAccountToOrg("0xf017976fdf1521de2e108e63b423380307f501f8","ABC","TRANSACT",{"from":eth.accounts[1]})
         ```
 
     === "geth console result"
 
         ```json
         "Action completed successfully"
-        ```
-
-    === "geth console error"
-
-        ```text
-        Error: Account already in use in another organization
-          at web3.js:3143:20
-          at web3.js:6347:15
-          at web3.js:5081:36
-          at <anonymous>:1:1
         ```
 
 ### `quorumPermission_changeAccountRole`
@@ -1268,14 +1467,14 @@ This method can be called by n organization admin account.
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_changeAccountRole","params":["0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_changeAccountRole","params":["0xf017976fdf1521de2e108e63b423380307f501f8","ABC","TRANSACT",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1283,7 +1482,7 @@ This method can be called by n organization admin account.
         ```json
         {
           "jsonrpc":"2.0",
-          "id": 10,
+          "id":10,
           "result":"Action completed successfully"
         }
         ```
@@ -1291,7 +1490,7 @@ This method can be called by n organization admin account.
     === "geth console request"
 
         ```javascript
-        quorumPermission.changeAccountRole("0xf017976fdf1521de2e108e63b423380307f501f8", "ABC", "TRANSACT", {from: eth.accounts[1]})
+        quorumPermission.changeAccountRole("0xf017976fdf1521de2e108e63b423380307f501f8","ABC","TRANSACT",{"from":eth.accounts[1]})
         ```
 
     === "geth console result"
@@ -1312,22 +1511,25 @@ This method can be called by an organization admin account.
 * `acctId`: account ID
 
 * `action`:
+
     * 1 - for suspending the account
-    * 2 - for activating a suspended account
-    * 3 - for denylisting an account
+
+    * 2 - for activating the suspended account
+
+    * 3 - for denylisting the account
 
 #### Returns
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateAccountStatus","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", 1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateAccountStatus","params":["ABC","0xf017976fdf1521de2e108e63b423380307f501f8",1,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1335,7 +1537,7 @@ This method can be called by an organization admin account.
         ```json
         {
           "jsonrpc":"2.0",
-          "id": 10,
+          "id":10,
           "result":"Action completed successfully"
         }
         ```
@@ -1343,7 +1545,7 @@ This method can be called by an organization admin account.
     === "geth console request"
 
         ```javascript
-        quorumPermission.updateAccountStatus("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", 1, {from: eth.accounts[1]})
+        quorumPermission.updateAccountStatus("ABC","0xf017976fdf1521de2e108e63b423380307f501f8",1,{"from":eth.accounts[1]})
         ```
 
     === "geth console result"
@@ -1368,14 +1570,14 @@ Once majority approval from network admin accounts is received, the denylisted a
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedAccount","params":["ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedAccount","params":["ABC.SUB1.SUB2.SUB3","0xf017976fdf1521de2e108e63b423380307f501f8",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1383,7 +1585,7 @@ Once majority approval from network admin accounts is received, the denylisted a
         ```json
         {
           "jsonrpc":"2.0",
-          "id": 10,
+          "id":10,
           "result":"Action completed successfully"
         }
         ```
@@ -1391,7 +1593,7 @@ Once majority approval from network admin accounts is received, the denylisted a
     === "geth console request"
 
         ```javascript
-        quorumPermission.recoverBlackListedAccount("ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {from: eth.accounts[1]})
+        quorumPermission.recoverBlackListedAccount("ABC.SUB1.SUB2.SUB3","0xf017976fdf1521de2e108e63b423380307f501f8",{"from":eth.accounts[1]})
         ```
 
     === "geth console result"
@@ -1416,14 +1618,14 @@ Once majority approval from network admin accounts is received, the account is m
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3","0xf017976fdf1521de2e108e63b423380307f501f8",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1431,7 +1633,7 @@ Once majority approval from network admin accounts is received, the account is m
         ```json
         {
           "jsonrpc":"2.0",
-          "id": 10,
+          "id":10,
           "result":"Action completed successfully"
         }
         ```
@@ -1439,7 +1641,7 @@ Once majority approval from network admin accounts is received, the account is m
     === "geth console request"
 
         ```javascript
-        quorumPermission.approveBlackListedNodeRecovery("ABC.SUB1.SUB2.SUB3", "0xf017976fdf1521de2e108e63b423380307f501f8", {from: eth.accounts[1]})
+        quorumPermission.approveBlackListedNodeRecovery("ABC.SUB1.SUB2.SUB3","0xf017976fdf1521de2e108e63b423380307f501f8",{"from":eth.accounts[1]})
         ```
 
     === "geth console result"
@@ -1465,14 +1667,14 @@ This method can be called by a network admin account.
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_assignAdminRole","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", "NWADMIN", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_assignAdminRole","params":["ABC","0xf017976fdf1521de2e108e63b423380307f501f8","NWADMIN",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1480,7 +1682,7 @@ This method can be called by a network admin account.
         ```json
         {
           "jsonrpc":"2.0",
-          "id": 10,
+          "id":10,
           "result":"Action completed successfully"
         }
         ```
@@ -1488,7 +1690,7 @@ This method can be called by a network admin account.
     === "geth console request"
 
         ```javascript
-        quorumPermission.assignAdminRole("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", "NWADMIN", {from: eth.accounts[0]})
+        quorumPermission.assignAdminRole("ABC","0xf017976fdf1521de2e108e63b423380307f501f8","NWADMIN",{"from":eth.accounts[0]})
         ```
 
     === "geth console result"
@@ -1513,22 +1715,22 @@ The role is approved once majority approval is received.
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveAdminRole","params":["ABC", "0xf017976fdf1521de2e108e63b423380307f501f8", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveAdminRole","params":["ABC","0xf017976fdf1521de2e108e63b423380307f501f8",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
 
         ```json
         {
-          "jsonrpc" : "2.0",
-          "id": 10,
+          "jsonrpc":"2.0",
+          "id":10,
           "result":"Action completed successfully"
         }
         ```
@@ -1536,7 +1738,7 @@ The role is approved once majority approval is received.
     === "geth console request"
 
         ```javascript
-        quorumPermission.approveAdminRole("ABC", "0xf017976fdf1521de2e108e63b423380307f501f8",  {from: eth.accounts[0]})
+        quorumPermission.approveAdminRole("ABC","0xf017976fdf1521de2e108e63b423380307f501f8",{"from":eth.accounts[0]})
         ```
 
     === "geth console result"
@@ -1561,22 +1763,22 @@ A node cannot be part of multiple organizations.
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNode","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNode","params":["ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
 
         ```json
         {
-          "jsonrpc" : "2.0",
-          "id": 10,
+          "jsonrpc":"2.0",
+          "id":10,
           "result":"Action completed successfully"
         }
         ```
@@ -1584,7 +1786,7 @@ A node cannot be part of multiple organizations.
     === "geth console request"
 
         ```javascript
-        quorumPermission.addNode("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
+        quorumPermission.addNode("ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",{"from":eth.accounts[1]})
         ```
 
     === "geth console result"
@@ -1605,22 +1807,25 @@ This method can be called by an organization admin account.
 * `enodeId`: complete enode ID
 
 * `action`:
+
     * 1 - for deactivating the node
-    * 2 - for activating a deactivated node
-    * 3 - for denylisting a node
+
+    * 2 - for activating the deactivated node
+
+    * 3 - for denylisting the node
 
 #### Returns
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateNodeStatus","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",1, {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateNodeStatus","params":["ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",1,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1636,7 +1841,7 @@ This method can be called by an organization admin account.
     === "geth console request"
 
         ```javascript
-        quorumPermission.updateNodeStatus("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",3, {from: eth.accounts[1]})
+        quorumPermission.updateNodeStatus("ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",3,{"from":eth.accounts[1]})
         ```
 
     === "geth console result"
@@ -1661,14 +1866,14 @@ Once majority approval from network admin accounts is received, the denylisted n
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedNode","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedNode","params":["ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1684,7 +1889,7 @@ Once majority approval from network admin accounts is received, the denylisted n
     === "geth console request"
 
         ```javascript
-        quorumPermission.recoverBlackListedNode("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
+        quorumPermission.recoverBlackListedNode("ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",{"from":eth.accounts[1]})
         ```
 
     === "geth console result"
@@ -1709,14 +1914,14 @@ Once majority approval from network admin accounts is received, the denylisted n
 
 * `msg`: response message
 
-* `status`: `boolean` - indicates if the operation was a success or failure
+* `status`: *boolean* - indicates if the operation was a success or failure
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1732,7 +1937,7 @@ Once majority approval from network admin accounts is received, the denylisted n
     === "geth console request"
 
         ```javascript
-        quorumPermission.approveBlackListedNodeRecovery("ABC.SUB1.SUB2.SUB3", "enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407", {from: eth.accounts[1]})
+        quorumPermission.approveBlackListedNodeRecovery("ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",{"from":eth.accounts[1]})
         ```
 
     === "geth console result"
@@ -1751,14 +1956,14 @@ Checks if the account initiating the transaction has sufficient permissions to e
 
 #### Returns
 
-* `status`: `boolean` - indicates if transaction is allowed or not
+* `status`: *boolean* - indicates if transaction is allowed or not
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_transactionAllowed", "params":[ {"from":"0xf2cd20ed7904c103ce2ca0ef73fb77539930c59f"}],"id":50}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_transactionAllowed","params":[{"from":"0xf2cd20ed7904c103ce2ca0ef73fb77539930c59f"}],"id":50}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1774,7 +1979,7 @@ Checks if the account initiating the transaction has sufficient permissions to e
     === "geth console request"
 
         ```javascript
-        quorumPermission.transactionAllowed({from: eth.accounts[0]}
+        quorumPermission.transactionAllowed({"from":eth.accounts[0]}
         ```
 
     === "geth console result"
@@ -1797,14 +2002,14 @@ Checks if the specified node is allowed to join the network.
 
 #### Returns
 
-* `status`: `boolean` - indicates if the connection is allowed or not
+* `status`: *boolean* - indicates if the connection is allowed or not
 
 !!! example
 
-    === "curl HTTP"
+    === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_connectionAllowed", "params":[ "239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf", "127.0.0.1", 21006],"id":50}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_connectionAllowed","params":["239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf","127.0.0.1",21006],"id":50}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1820,7 +2025,7 @@ Checks if the specified node is allowed to join the network.
     === "geth console request"
 
         ```javascript
-        quorumPermission.connectionAllowed("579f786d4e2830bbcc02815a27e8a9bacccc9605df4dc6f20bcc1a6eb391e7225fff7cb83e5b4ecd1f3a94d8b733803f2f66b7e871961e7b029e22c155c3a778", "127.0.0.1", 21003)
+        quorumPermission.connectionAllowed("579f786d4e2830bbcc02815a27e8a9bacccc9605df4dc6f20bcc1a6eb391e7225fff7cb83e5b4ecd1f3a94d8b733803f2f66b7e871961e7b029e22c155c3a778","127.0.0.1",21003)
         ```
 
     === "geth console result"
@@ -1888,13 +2093,13 @@ the contract address after the transaction is mined.
 
 !!! example
 
-    === "syntax"
+    === "Syntax"
 
         ```js
         web3.eth.sendTransaction(transactionObject [, callback])
         ```
 
-    === "JavaScript example"
+    === "Example"
 
         ```js
         // compiled solidity source code using https://chriseth.github.io/cpp-ethereum/
@@ -1943,13 +2148,13 @@ the contract address after the transaction is mined.
 
 !!! example
 
-    === "syntax"
+    === "Syntax"
 
         ```js
         web3.eth.sendRawPrivateTransaction(signedTransactionData [, privateData] [, callback])
         ```
 
-    === "JavaScript example"
+    === "Example"
 
         ```js
         var Tx = require('ethereumjs-tx');
@@ -1977,8 +2182,8 @@ the contract address after the transaction is mined.
 ### `eth.fillTransaction`
 
 Supports offline signing of transaction.
-Fills and defaults `RLP` plus `json`.
 This can be used to fill and sign both public and private transactions.
+Defaults to `RLP` plus `json`.
 
 #### Parameters
 
@@ -2000,7 +2205,7 @@ This can be used to fill and sign both public and private transactions.
 
 * `raw`: `RLP` encoded bytes for the passed transaction object
 
-* `tx` : transaction object
+* `tx`: transaction object
 
 The following example uses `geth` console for signing and sending a private transaction.
 
@@ -2008,41 +2213,41 @@ The following example uses `geth` console for signing and sending a private tran
 
     The following transaction deploys a simple storage contract with an initial value of 42.
 
-    === "command"
+    === "geth console request"
 
         ```javascript
-        a = eth.fillTransaction({from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", data: "0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a", gas: 0x47b760, privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+        a = eth.fillTransaction({"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data":"0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":0x47b760,"privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
         ```
 
-    === "result"
+    === "geth console result"
 
         ```json
         {
-          raw: "0xf84d02808347b7608080b84075902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d6258080",
-          tx: {
-            gas: "0x47b760",
-            gasPrice: "0x0",
-            hash: "0xc0bbb6326ebafb7b0b18cf85d7b93e73ec8ae72b1c8d043d77d7ac5fecd9ccb5",
-            input: "0x75902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d6",
-            nonce: "0x2",
-            r: "0x0",
-            s: "0x0",
-            to: null,
-            v: "0x25",
-            value: "0x0"
+          "raw":"0xf84d02808347b7608080b84075902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d6258080",
+          "tx": {
+            "gas":"0x47b760",
+            "gasPrice":"0x0",
+            "hash":"0xc0bbb6326ebafb7b0b18cf85d7b93e73ec8ae72b1c8d043d77d7ac5fecd9ccb5",
+            "input":"0x75902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d6",
+            "nonce":"0x2",
+            "r":"0x0",
+            "s":"0x0",
+            "to":null,
+            "v":"0x25",
+            "value":"0x0"
           }
         }
         ```
 
     Once the transaction object is returned, set `tx.from`:
 
-    === "command"
+    === "geth console request"
 
         ```javascript
         a.tx.from = "0xed9d02e382b34818e88b88a309c7fe71e65f419d"
         ```
 
-    === "result"
+    === "geth console result"
 
         ```json
         "0xed9d02e382b34818e88b88a309c7fe71e65f419d"
@@ -2050,13 +2255,13 @@ The following example uses `geth` console for signing and sending a private tran
 
     Set `tx.privatefor`:
 
-    === "command"
+    === "geth console request"
 
         ```javascript
         a.tx.privateFor = ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]
         ```
 
-    === "result"
+    === "geth console result"
 
         ```json
         ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]
@@ -2064,41 +2269,41 @@ The following example uses `geth` console for signing and sending a private tran
 
     Sign the transaction:
 
-    === "command"
+    === "geth console request"
 
         ```javascript
         b = eth.signTransaction(a.tx)
         ```
 
-    === "result"
+    === "geth console result"
 
         ```json
         {
-          raw: "0xf88d02808347b7608080b84075902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d637a04ff24fa99cdf3cfbaec698857c006240aa79331432d7ddb86209ec7b0010097da071f42224ee42a35872ca13fa6ffa3f7f6e550f1edecc750cc0a3ea638bf05ed9",
-          tx: {
-            gas: "0x47b760",
-            gasPrice: "0x0",
-            hash: "0x1fa98e808d711ffadfce90c4db088057e3d5efd668883be0755f158349dc274b",
-            input: "0x75902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d6",
-            nonce: "0x2",
-            r: "0x4ff24fa99cdf3cfbaec698857c006240aa79331432d7ddb86209ec7b0010097d",
-            s: "0x71f42224ee42a35872ca13fa6ffa3f7f6e550f1edecc750cc0a3ea638bf05ed9",
-            to: null,
-            v: "0x37",
-            value: "0x0"
+          "raw":"0xf88d02808347b7608080b84075902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d637a04ff24fa99cdf3cfbaec698857c006240aa79331432d7ddb86209ec7b0010097da071f42224ee42a35872ca13fa6ffa3f7f6e550f1edecc750cc0a3ea638bf05ed9",
+          "tx": {
+            "gas":"0x47b760",
+            "gasPrice":"0x0",
+            "hash":"0x1fa98e808d711ffadfce90c4db088057e3d5efd668883be0755f158349dc274b",
+            "input":"0x75902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d6",
+            "nonce":"0x2",
+            "r":"0x4ff24fa99cdf3cfbaec698857c006240aa79331432d7ddb86209ec7b0010097d",
+            "s":"0x71f42224ee42a35872ca13fa6ffa3f7f6e550f1edecc750cc0a3ea638bf05ed9",
+            "to":null,
+            "v":"0x37",
+            "value":"0x0"
           }
         }
         ```
 
-    Call `eth.sendRawPrivateTransaction` to send the transaction to intended recipients:
+    Call [`eth.sendRawPrivateTransaction`](#ethsendrawprivatetransaction) to send the transaction to intended recipients:
 
-    === "command"
+    === "geth console request"
 
         ```javascript
-        eth.sendRawPrivateTransaction(b.raw, {privateFor:["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+        eth.sendRawPrivateTransaction(b.raw,{"privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
         ```
 
-    === "result"
+    === "geth console result"
 
         ```json
         "0xcd8ab3f6dbdb8535a44d47df9c7d8a3862fe9fb4257a2d377bdd8bface016928"
@@ -2172,7 +2377,7 @@ this is seen in the transaction as the `input` field.
 ### `eth_sendTransactionAsync`
 
 Sends a transaction to the network asynchronously.
-This will return immediately, potentially before the transaction has been submitted to the transaction pool.
+This returns immediately, potentially before the transaction has been submitted to the transaction pool.
 A callback can be provided to receive the result of submitting the transaction; a server must be set up to receive POST
 requests at the given URL.
 
@@ -2224,18 +2429,21 @@ the contract address after the transaction is mined.
 The callback URL receives the following object:
 
 * *object* - result object with the following fields:
+
     * `id`: *string* - ID in the original RPC call, used to match this result to the request
+
     * `txHash`: *string* - transaction hash that was generated, if successful
+
     * `error`: *string* - error that occurred while submitting the transaction
 
 !!! example
 
-    For the RPC call and the immediate response:
+    The call and the immediate response:
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendTransactionAsync","params":[{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data": "0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":"0x47b760","privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":67}'
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendTransactionAsync","params":[{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data":"0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":"0x47b760","privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":67}'
         ```
 
     === "JSON result"
@@ -2248,8 +2456,9 @@ The callback URL receives the following object:
         }
         ```
 
-    If you provide the callback URL, you receive the following response after submitting the transaction. This example
-    assumes a webserver that can be accessed by calling http://localhost:8080 has been set up to accept POST requests:
+    If you provide the callback URL, you receive the following response after submitting the transaction.
+    This example assumes a webserver that can be accessed by calling http://localhost:8080 has been set up to accept
+    POST requests:
 
     === "curl HTTP request"
 
@@ -2268,7 +2477,7 @@ The callback URL receives the following object:
 
 ### `getContractPrivacyMetadata`
 
-Queries the Privacy Metadata for the specified contract account address.
+Queries the privacy metadata for the specified contract account address.
 
 #### Parameter
 
@@ -2314,6 +2523,366 @@ Queries the Privacy Metadata for the specified contract account address.
           "creationTxHash":[246,124,116,139,190,217,33,16,203,102,81,13,65,58,249,145,68,180,67,79,163,37,119,27,99,35,247,240,12,53,25,45,47,134,16,118,246,128,97,237,45,50,79,97,78,221,47,1 89,11,165,238,36,8,187,66,64,42,135,108,75,41,85,152,183],
           "privacyFlag":3
         }
+        ```
+
+## Raft methods
+
+### `raft_cluster`
+
+Returns the details of all nodes part of the Raft cluster.
+
+#### Parameters
+
+None
+
+#### Returns
+
+*array* - list of node objects with the following fields:
+
+* `hostName`: DNS name or the host IP address
+
+* `nodeActive`: `true` if the node is active in Raft cluster, otherwise `false`
+
+* `nodeId`: enode ID of the node
+
+* `p2pPort`: p2p port
+
+* `raftId`: Raft ID of the node
+
+* `raftPort`: Raft port
+
+* `role`: role of the node in the Raft cluster (minter/verifier/learner); `""` if there is no leader at the network level
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_cluster","id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result": [{
+            "raftId":1,
+            "nodeId":"ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef",
+            "p2pPort":21000,
+            "raftPort":50401,
+            "hostname":"127.0.0.1",
+            "role":"minter",
+            "nodeActive":true
+          }, {
+            "raftId":3,
+            "nodeId":"579f786d4e2830bbcc02815a27e8a9bacccc9605df4dc6f20bcc1a6eb391e7225fff7cb83e5b4ecd1f3a94d8b733803f2f66b7e871961e7b029e22c155c3a778",
+            "p2pPort":21002,
+            "raftPort":50403,
+            "hostname":"127.0.0.1",
+            "role":"verifier",
+            "nodeActive":true
+          }, {
+            "raftId":2,
+            "nodeId":"0ba6b9f606a43a95edc6247cdb1c1e105145817be7bcafd6b2c0ba15d58145f0dc1a194f70ba73cd6f4cdd6864edc7687f311254c7555cc32e4d45aeb1b80416",
+            "p2pPort":21001,
+            "raftPort":50402,
+            "hostname":"127.0.0.1",
+            "role":"verifier",
+            "nodeActive":true
+          }]
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        raft.cluster
+        ```
+
+    === "geth console result"
+
+        ```json
+        [{
+          "hostname":"127.0.0.1",
+          "nodeActive":true,
+          "nodeId":"0ba6b9f606a43a95edc6247cdb1c1e105145817be7bcafd6b2c0ba15d58145f0dc1a194f70ba73cd6f4cdd6864edc7687f311254c7555cc32e4d45aeb1b80416",
+          "p2pPort":21001,
+          "raftId":2,
+          "raftPort":50402,
+          "role":"verifier"
+        }, {
+          "hostname":"127.0.0.1",
+          "nodeActive":true,
+          "nodeId":"579f786d4e2830bbcc02815a27e8a9bacccc9605df4dc6f20bcc1a6eb391e7225fff7cb83e5b4ecd1f3a94d8b733803f2f66b7e871961e7b029e22c155c3a778",
+          "p2pPort":21002,
+          "raftId":3,
+          "raftPort":50403,
+          "role":"verifier"
+        }, {
+          "hostname":"127.0.0.1",
+          "nodeActive":true,
+          "nodeId":"ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef",
+          "p2pPort":21000,
+          "raftId":1,
+          "raftPort":50401,
+          "role":"minter"
+        }]
+        ```
+
+### `raft_role`
+
+Returns the role of the current node in the Raft cluster.
+
+#### Parameters
+
+None
+
+#### Returns
+
+`result`: role of the node in the Raft cluster (minter/verifier/learner); `""` if there is no leader at the network level
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_role","id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"verifier"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        raft.role
+        ```
+
+    === "geth console result"
+
+        ```json
+        "minter"
+        ```
+
+### `raft_leader`
+
+Returns the enode ID of the leader node.
+
+#### Parameters
+
+None
+
+#### Returns
+
+`result`: enode ID of the leader, or an error message if there is no leader
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_leader","id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":"ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef"
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        raft.leader
+        ```
+
+    === "geth console result"
+
+        ```json
+        "ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef"
+        ```
+
+### `raft_addPeer`
+
+Adds a new peer to the network.
+
+#### Parameters
+
+`enodeId`: enode ID of the node to be added to the network
+
+#### Returns
+
+`result`: Raft ID for the node being added, or an error message if the node is already part of the network
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_addPeer","params":["enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405"],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":5
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        raft.addPeer("enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405")
+        ```
+
+    === "geth console result"
+
+        ```json
+        5
+        ```
+
+### `raft_removePeer`
+
+Removes a peer from the Raft cluster.
+
+#### Parameters
+
+`raftId`: Raft ID of the peer to be removed from the cluster
+
+#### Returns
+
+`result`: null
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_removePeer","params":[4],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":null
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        raft.removePeer(4)
+        ```
+
+    === "geth console result"
+
+        ```json
+        null
+        ```
+
+### `raft_addLearner`
+
+Adds a new node to the network as a learner node.
+The learner node syncs with the network and can transact, but isn't part of the Raft cluster and doesn't provide block
+confirmation to the minter node.
+
+#### Parameters
+
+`enodeId`: enode ID of the node to add
+
+#### Returns
+
+`result`: Raft ID for the node being added
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_addLearner","params":["enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405"],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":5
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        raft.addLearner("enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405")
+        ```
+
+    === "geth console result"
+
+        ```json
+        5
+        ```
+
+### `raft_promoteToPeer`
+
+Promotes a learner node to peer and thus to be part of the Raft cluster.
+
+#### Parameters
+
+`raftId`: Raft ID of the node to be promoted
+
+#### Returns
+
+`result`: *boolean* - `true` if the node is promoted, otherwise `false`
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_promoteToPeer","params":[4],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result":true
+        }
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        raft.promoteToPeer(4)
+        ```
+
+    === "geth console result"
+
+        ```json
+        true
         ```
 
 <!-- Links -->

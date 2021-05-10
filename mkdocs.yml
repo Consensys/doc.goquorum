@@ -279,7 +279,7 @@ plugins:
         How-To-Guides/adding_nodes.md: HowTo/Use/adding_nodes.md
         Getting Started/graphql.md: HowTo/Use/graphql.md
         How-To-Guides/import-export.md: HowTo/Use/import-export.md
-        Privacy/Contract-Extension/ContractExtension apis.md: Reference/APIs/ContractExtensionAPIs.md
+        Privacy/Contract-Extension/ContractExtension apis.md: Reference/API-methods.md#contract-extension-methods
         Permissioning/Enhanced Permissions Model/Permissioning apis.md: Reference/APIs/PermissioningAPIs.md
         Getting Started/api.md: Reference/APIs/PrivacyAPI.md
         Reference/CakeshopFAQ.md: Reference/Cakeshop/GettingStarted.md

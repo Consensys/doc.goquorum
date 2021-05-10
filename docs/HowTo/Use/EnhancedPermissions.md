@@ -125,7 +125,9 @@ Once the network is up, the network admin accounts can then propose a new organi
 
 Majority approval from the network admin accounts is required before an organization is approved.
 
-The APIs for [proposing](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_addorg) and [approving](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_approveorg) an organization are documented in [permission APIs](../../Reference/APIs/PermissioningAPIs.md).
+The APIs for [proposing](../../Reference/API-Methods.md#quorumpermission_addorg) and
+[approving](../../Reference/API-Methods.md#quorumpermission_approveorg) an organization are documented in
+[permission APIs](../../Reference/API-Methods.md#permission-methods).
 
 !!!example
     An example to propose and approve an organization by name `ORG1` is as shown below:
@@ -255,7 +257,8 @@ Once the organization is approved and the node of the organization has joined th
 * add accounts to the organization.
 * change roles of existing organization level accounts.
 
-To add a sub org at `ORG1` level refer to [addSubOrg API](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_addsuborg).
+Use [`quorumPermission_addSubOrg`](../../Reference/API-Methods.md#quorumpermission_addsuborg) to add a sub org at `ORG1`
+level.
 
 !!!example
 
@@ -292,13 +295,14 @@ To add a sub org at `ORG1` level refer to [addSubOrg API](../../Reference/APIs/P
     }
     ```
 
-For adding a sub org the enode id is not mandatory.
+The enode ID is not mandatory for adding a sub-organization.
 
-For the newly created sub org if the org admin desires to add an administration account, the org admin account will have to first create a role with `isAdmin` flag as `Y` and then assign this role to the account which belongs to the sub org.
+If the organization admin wants to add an administration account for the newly created sub-organization, the
+organization admin account must first create a role using
+[`quorumPermission_addNewRole`](../../Reference/API-Methods.md#quorumpermission_addnewrole) with `isAdmin` flag as `Y`,
+then assign this role to the account which belongs to the sub-organization.
 
-Once assigned the account will act as org admin at sub org level.
-
-Refer to [addNewRole API](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_addnewrole).
+Once assigned, the account will act as organization admin at the sub-organization level.
 
 !!!example
 
@@ -419,11 +423,13 @@ The role `SUBADMIN` can now be assigned to an account at sub org `SUB1` for maki
     ```
 
 !!!note
-    The org admin account at master org level has the admin rights on all the children sub organizations.
 
-    However the admin account at sub org level has control only in the sub org to which it is linked.
+    The organization admin account at the master organization level has the admin rights on all the children
+    sub-organizations.
+    However, the admin account at the sub-organization level has control only in its sub-organization.
 
-To add an account to an organization refer to [addAccountToOrg API](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_addaccounttoorg).
+To add an account to an organization, use
+[`quorumPermission_addAccountToOrg`](../../Reference/API-Methods.md#quorumpermission_addaccounttoorg).
 
 !!!example
 
@@ -463,7 +469,9 @@ To add an account to an organization refer to [addAccountToOrg API](../../Refere
     }]
     ```
 
-To suspend an account [updateAccountStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_updateaccountstatus) API can be invoked with action with value `1`:
+To suspend an account, use
+[`quorumPermission_updateAccountStatus`](../../Reference/API-Methods.md#quorumpermission_updateaccountstatus) with
+`action` set to 1.
 
 !!!example
 
@@ -503,7 +511,9 @@ To suspend an account [updateAccountStatus](../../Reference/APIs/PermissioningAP
     }]
     ```
 
-To revoke suspension of an account [updateAccountStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_updateaccountstatus) API can be invoked with action with value `2`:
+To revoke suspension of an account, use
+[`quorumPermission_updateAccountStatus`](../../Reference/API-Methods.md#quorumpermission_updateaccountstatus)
+with `action` set to 2.
 
 !!!example
 
@@ -543,7 +553,9 @@ To revoke suspension of an account [updateAccountStatus](../../Reference/APIs/Pe
     }]
     ```
 
-To [exclude an account updateAccountStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_updateaccountstatus) API can be invoked with action with value `3`.
+To exclude an account, use
+[`quorumPermission_updateAccountStatus`](../../Reference/API-Methods.md#quorumpermission_updateaccountstatus) with
+`action` set to 3.
 
 Once exclude, no further activity will be possible on the account.
 
@@ -585,7 +597,8 @@ Once exclude, no further activity will be possible on the account.
     }]
     ```
 
-To [add Nodes](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_addnode) at organization and sub organization level by the org admin.
+To add nodes at the organization and sub-organization level, use
+[`quorumPermission_addNode`](../../Reference/API-Methods.md#quorumpermission_addnode).
 
 !!!example
 
@@ -621,9 +634,9 @@ To [add Nodes](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_addnod
     }]
     ```
 
-Org admin can manage the status of the nodes by using [updateNodeStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_updatenodestatus) API.
-
-To deactivate a node the API can be invoked with action with value `1`.
+To manage the status of the nodes, use
+[`quorumPermission_updateNodeStatus`](../../Reference/API-Methods.md#quorumpermission_updatenodestatus).
+To deactivate a node, call the method with `action` set to 1.
 
 !!!example
 
@@ -647,7 +660,9 @@ To deactivate a node the API can be invoked with action with value `1`.
     }]
     ```
 
-To activate the node back invoke [updateNodeStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_updatenodestatus) API with action with value `2`.
+To re-activate a node, use
+[`quorumPermission_updateNodeStatus`](../../Reference/API-Methods.md#quorumpermission_updatenodestatus) with `action`
+set to 2.
 
 !!!example
 
@@ -683,9 +698,9 @@ To activate the node back invoke [updateNodeStatus](../../Reference/APIs/Permiss
     }]
     ```
 
-To exclude a node invoke [updateNodeStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_updatenodestatus) API with action value `3`.
-
-Once excludeded the node will never be able join the network again.
+To exclude a node, use
+[`quorumPermission_updateNodeStatus`](../../Reference/API-Methods.md#quorumpermission_updatenodestatus) with `action`
+set to 3. Once excluded, a node can't re-join the network.
 
 !!!example
 
@@ -721,9 +736,9 @@ Further:
 
 ### Suspending an organization temporarily
 
-If there is a need to temporarily suspend all activities of an organization [updateOrgStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_updateorgstatus) API can be invoked with action value `1`.
-
-This can be invoked only by the network admin accounts and will require majority voting.
+If you need to temporarily suspend all activities of an organization, use
+[`quorumPermission_updateOrgStatus`](../../Reference/API-Methods.md#quorumpermission_updateorgstatus) with
+`action` set to `. This can be invoked only by network admin accounts and requires majority approval.
 
 !!!example
 
@@ -759,11 +774,11 @@ This can be invoked only by the network admin accounts and will require majority
     }
     ```
 
-To approve the org, suspension majority approval from other network admin accounts is required.
+To approve an organization, use
+[`quorumPermission_approveOrgStatus`](../../Reference/API-Methods.md#quorumpermission_approveorgstatus).
 
-The api for the same is [approveOrgStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_approveorgstatus).
-
-Once approved the org status is marked as suspended.
+Suspending an organization requires majority approval from other network admin accounts.
+Once approved the organization status is marked as suspended.
 
 !!!example
 
@@ -805,9 +820,12 @@ However, the nodes linked to the organization will be active and will be syncing
 
 ### Revoking suspension of an organization
 
-To revoke the suspension of an org [updateOrgStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_updateorgstatus) can be called with action value `2`.
-
-This will require majority approval (API [approveOrgStatus](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_approveorgstatus) with action value `2`).
+To revoke the suspension of an organization, use
+[`quorumPermission_updateOrgStatus`](../../Reference/API-Methods.md#quorumpermission_updateorgstatus) with `action` set
+to 2.
+Revoking an organization's suspension requires majority approval (using
+[`quorumPermission_approveOrgStatus`](../../Reference/API-Methods.md#quorumpermission_approveorgstatus) with `action`
+set to 2).
 
 !!!example
 
@@ -870,7 +888,8 @@ majority approval from the network admin accounts.
 
 #### API usage details
 
-To assign network admin or org admin role to an account invoke [assignAdminRole](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_assignadminrole).
+To assign a network admin or organization admin role to an account, use
+[`quorumPermission_assignAdminRole`](../../Reference/API-Methods.md#quorumpermission_assignadminrole).
 
 !!!example
 
@@ -904,7 +923,8 @@ To assign network admin or org admin role to an account invoke [assignAdminRole]
     }
     ```
 
-To approve the assignment of network admin role invoke [approveAdminRole](../../Reference/APIs/PermissioningAPIs.md#quorumpermission_approveadminrole) API.
+To approve the assignment of a network admin role, use
+[`quorumPermission_approveAdminRole`](../../Reference/API-Methods.md#quorumpermission_approveadminrole).
 
 !!!example
 
