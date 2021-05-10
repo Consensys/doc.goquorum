@@ -18,8 +18,8 @@ Use GoQuorum `--metrics`, `--pprof`, `--pprofaddr` and `pprofport`
 (where applicable, the default port is 6060) [command line options], and set the scraper endpoints
 to the following:
 
-* In ExpVar format at `http://127.0.0.1:6060/debug/metrics`
-* In Prometheus format at `http://127.0.0.1:6060/debug/metrics/prometheus`
+- In ExpVar format at `http://127.0.0.1:6060/debug/metrics`
+- In Prometheus format at `http://127.0.0.1:6060/debug/metrics/prometheus`
 
 !!! critical "Security warning"
 
@@ -29,7 +29,7 @@ to the following:
 
 Use `--metric.influxdb` and associated [command line options] to push metrics data to [InfluxDB].
 
-!!! note "Exerpt of Geth command line options"
+!!! note "Exerpt of geth command line options"
 
     ```text
     LOGGING AND DEBUGGING OPTIONS:
