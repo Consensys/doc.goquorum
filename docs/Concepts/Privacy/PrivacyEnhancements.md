@@ -49,10 +49,11 @@ transaction for the contract.
 
 ### Privacy Flag
 
-A new parameter `PrivacyFlag` has been added to all GoQuorum [send](../../Reference/APIs/PrivacyAPI.md)
-API methods, being passed from the client to enable the privacy enhancements feature. This flag is an
-unsigned integer with the following values: 1 for PP and 3 for PSV transactions. If the flag is missing
-or zero, the transaction is assumed to be a "non-privacy enhanced" SP transaction.
+A new parameter `PrivacyFlag` has been added to all GoQuorum
+[`send` API methods](../../Reference/API-Methods.md#privacy-methods), being passed from the client to enable the privacy
+enhancements feature.
+This flag is an unsigned integer set to 1 for PP and 3 for PSV transactions.
+If the flag is missing or zero, the transaction is assumed to be a "non-privacy enhanced" SP transaction.
 
 ### Privacy Metadata and Privacy Metadata Trie
 

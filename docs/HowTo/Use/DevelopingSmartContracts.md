@@ -30,7 +30,8 @@ Example JSON RPC API call to send a public transaction:
 }
 ```
 
-See the [GoQuorum API](../../Reference/APIs/PrivacyAPI.md) page for details on the `sendTransaction` call, which includes some modifications to the standard Ethereum call.
+See the [`eth.sendTransaction`](../../Reference/API-Methods.md#ethsendtransaction) description, which includes some
+modifications to the standard Ethereum call.
 
 !!! info
     See the Contract Design Considerations sections below for important points on creating GoQuorum contracts.
@@ -63,7 +64,8 @@ Example JSON RPC API call to send a private transaction:
 }
 ```
 
-See the [GoQuorum API](../../Reference/APIs/PrivacyAPI.md) page for details on the `sendTransaction` call, which includes some modifications to the standard Ethereum call.
+See the [`eth.sendTransaction`](../../Reference/API-Methods.md#ethsendtransaction) description, which includes some
+modifications to the standard Ethereum call.
 
 !!! info
     See the Contract Design Considerations sections below for important points on creating GoQuorum contracts.
