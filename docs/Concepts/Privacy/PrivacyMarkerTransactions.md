@@ -7,8 +7,7 @@ description: Privacy Marker Transactions are an alternative method of processing
 
 GoQuorum v21.??.? introduces a new method for processing private transactions, which can be used instead of the 'legacy' private transaction flow.
 This makes use of a new type of public transaction referred to as a "Privacy Marker Transaction".
-The privacy marker transaction is distributed across the network, instead of the private transaction.
-The private transaction itself is only available to the participants.
+The privacy marker transaction is distributed across the network, instead of the private transaction and the private transaction is only available to the participants.
 
 This functionality is enabled using a new command line flag and genesis flag (see [Configuration Changes]).
 
@@ -21,7 +20,7 @@ The advantages of using a Privacy Marker Transaction over a standard Private Tra
 The Privacy Marker Transaction makes use of a new precompiled contract held in GoQuorum.
 
 !!! info "Precompile Address"
-    A new API method [eth_getPrivacyPrecompileAddress] has been added to retrieve the address of the precompile.
+    A new API method [eth_getPrivacyPrecompileAddress] has been added for retrieving the address of the precompile.
 
 ## Transaction submission when using standard private transactions
 
@@ -67,42 +66,38 @@ Non-green boxes show the new steps required.
 
 ![creating privacy marker txn comparison](../../images/CreatingExternallySignedPrivateTxn_Comparison.png)
 
-Note that when using privacy marker transactions,
-the final step of retrieving the private transaction receipt uses the new API method [eth_getPrivateTransactionReceipt].
+Note that the final step of retrieving the private transaction receipt uses the new API method [eth_getPrivateTransactionReceipt].
 
 ## New API Methods
 
-### eth_getPrivateTransaction
+See [Privacy Marker API] for full details of these methods.
 
-Input: Private marker transaction hash
+### eth_getPrivateTransactionByHash
 
-Output: Private transaction
+Retrieves details of a private transaction.
 
-!!! note
-    Goes to Tessera to retrieve the private data associated with the privacy marker transaction,
-    so needs Tessera online at time of transaction retrieval.
+* Input: Hash for privacy marker transaction
+* Output: Private transaction (or nil, if caller is not a participant)
 
 ### eth_getPrivateTransactionReceipt
 
-Input: Private marker transaction hash
+Retrieves the receipt for a private transaction.
 
-Output: Private transaction receipt
+* Input: Hash for privacy marker transaction
+* Output: Private transaction receipt (or nil, if caller is not a participant)
 
 ### eth_distributePrivateTransaction
 
-Input: Serialised private transaction, Private for parameters
+Send a private transaction to the local private transaction manager, for distribution to participants.
 
-Output: Tessera hash to put in marker tx
-
-!!! note
-    Two step process:
-
-    1. Performs the same as eth_sendRawPrivateTransaction (simulation and calling `/sendsignedtx`), but doesn’t submit private transaction to txpool.
-    2. Sends the private transaction to Tessera to generate a hash, which will be put in the privacy marker transaction.
+* Input: Serialised private transaction, PrivateFor parameter
+* Output: Tessera hash to put in privacy marker transaction
 
 ### eth_getPrivacyPrecompileAddress
 
-Output: Contract address for the privacy precompile
+Get address of the privacy precompile, to be used as the 'To' address for privacy marker transactions.
+
+* Output: Contract address for the privacy precompile
 
 ## GoQuorum Configuration Changes
 
@@ -130,5 +125,6 @@ The flag should be initialised with same value across all the nodes.
 
 <!--links-->
 [Configuration Changes]: #goquorum-configuration-changes
-[eth_getPrivacyPrecompileAddress]: #eth_getprivacyprecompileaddress
 [eth_getPrivateTransactionReceipt]: #eth_getprivatetransactionreceipt
+[eth_getPrivacyPrecompileAddress]: #eth_getprivacyprecompileaddress
+[Privacy Marker API]: ../../Reference/APIs/PrivacyMarkerTransactionAPI.md
