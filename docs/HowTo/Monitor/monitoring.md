@@ -29,7 +29,7 @@ to the following:
 
 Use `--metric.influxdb` and associated [command line options] to push metrics data to [InfluxDB].
 
-!!! note "Exerpt of geth command line options"
+!!! note "Excerpt of geth command line options"
 
     ```text
     LOGGING AND DEBUGGING OPTIONS:
