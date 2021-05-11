@@ -50,7 +50,7 @@ Use `--metric.influxdb` and associated [command line options] to push metrics da
 
 ## Visualize collected data
 
-GoQuorum metrics data can be visualised with many dashboard tools. We provide a
+GoQuorum metrics data can be visualized with many dashboard tools. We provide a
 [goQuourm dashboard](https://grafana.com/grafana/dashboards/14360) that can be imported into your
 instance of Grafana.
 
