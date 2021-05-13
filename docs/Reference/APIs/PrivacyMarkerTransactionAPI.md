@@ -137,7 +137,9 @@ This API method is used by clients when creating externally signed private trans
 #### Parameters
 
 * serialised private transaction
-* privateFor parameter
+* privacy data object:
+  - `privateFor`: `List<String>`  - an array of the recipients' base64-encoded public keys.
+  - `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `3` for PSV
 
 #### Returns
 

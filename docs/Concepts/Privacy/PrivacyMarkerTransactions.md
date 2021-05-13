@@ -90,7 +90,7 @@ Retrieves the receipt for a private transaction.
 
 Send a private transaction to the local private transaction manager, for distribution to participants.
 
-* Input: Serialised private transaction, PrivateFor parameter
+* Input: Serialised private transaction, privacy data
 * Output: Tessera hash to put in privacy marker transaction
 
 ### eth_getPrivacyPrecompileAddress
