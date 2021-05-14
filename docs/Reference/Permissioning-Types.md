@@ -9,20 +9,19 @@ This reference describes account access and status types for
 
 ## Account access types
 
-The following table indicates the numeric value for each account access type.
-
-|   AccessType   | Value |
-|:--------------:|:-----:|
-|    ReadOnly    |   0   |
-|    Transact    |   1   |
-| ContractDeploy |   2   |
-|   FullAccess   |   3   |
-
 When setting the account access, the system checks if the account setting the access has
-sufficient privileges to perform the activity.
+sufficient privileges to grant account access.
 
-* Accounts with `FullAccess` can grant any access type (`FullAccess`, `Transact`, `ContractDeploy`
-  or `ReadOnly`) to any other account.
+The following table indicates the numeric value and granting privileges for each account access type.
+
+|   AccessType   | Value | Granting Privileges                    |
+|:--------------:|:-----:|:--------------------------------------:|
+|    ReadOnly    |   0   | none                                   |
+|    Transact    |   1   | Transact and ReadOnly                  |
+| ContractDeploy |   2   | ContractDeploy, Transact, and ReadOnly |
+|   FullAccess   |   3   | any                                    |
+
+* Accounts with `FullAccess` can grant any access type.
 
 * Accounts with `ContractDeploy` can grant only `Transact`, `ContractDeploy` or `ReadOnly` access to other accounts.
 
