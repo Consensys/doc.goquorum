@@ -8,7 +8,7 @@ description: Privacy Marker Transactions are an alternative method of processing
 ## Overview
 
 GoQuorum v21.??.? introduces a new method for processing private transactions, which can be used instead of the normal private transaction flow.
-This makes use of a new type of public transaction referred to as a "Privacy Marker Transaction" (PMT).
+This makes use of a new type of public transaction referred to as a *privacy marker transaction (PMT)*.
 Only the public privacy marker transaction is added to the chain.  The private transaction is stored in the [Privacy Manager (Tessera)](PrivateTransactionManager.md) and is only available to the participants.
 
 This functionality is enabled using a new command line flag and genesis flag (see [Configuration Changes]).
@@ -21,8 +21,106 @@ The advantages of using a Privacy Marker Transaction over a normal Private Trans
 
 The Privacy Marker Transaction makes use of a new precompiled contract held in GoQuorum.
 
+## Concepts
+
+### Privacy Marker Transaction
+
+A public transaction with the following properties:
+
+* `to` = [privacy precompile] address
+* `input`/`data` = sender address + Tessera hash of encrypted [internal private transaction]
+* `contractAddress` (in receipt, if contract creation transaction) = null
+* `logs` & `logsBloom` (in receipt) = empty
+
+```json
+> eth.getTransaction("0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79")
+{
+  ...
+  blockNumber: 121,
+  hash: "0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79",
+  from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+  to: "0x000000000000000000000000000000000000007e",
+  input: "0xed9d02e382b34818e88b88a309c7fe71e65f419dd174e0b4ddc86936479655ec5c218530c0270afcff1c337caa81e12610f2182d95c642bf297d65592078d7c5509dc0cb0d3c01ea1a5bc4110c004603702d3d8c",
+  nonce: 2,
+  r: "0x35ea14362403065174863c07d8de5e9f85c365f19ddde7f907f44ebacba6f63a",
+  s: "0x1d3c2a8b8342fc086501a9e95361430b221d80e2f4076b6c37f52dac47fff0f0",
+  v: "0x38",
+  transactionIndex: 0,
+  ...
+}
+> eth.getTransactionReceipt("0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79")
+{
+  ...
+  blockNumber: 121,
+  transactionHash: "0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79",
+  contractAddress: null,
+  from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+  to: "0x000000000000000000000000000000000000007e",
+  logs: [],
+  logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  status: "0x1",
+  transactionIndex: 0,
+  ...
+}
+```
+
+### Internal Private Transaction
+
+Each privacy marker transaction has a corresponding internal private transaction.  The content of this private transaction is the same as the content of a normal private transaction.
+
+Only the hash of the encrypted internal private transaction is stored on chain (as part of the `data` field of the privacy marker transaction).  The internal private transaction is stored, encrypted, in each participant's Tessera.  As a result, the internal private transaction is only available to participants of the private transaction.
+
+At execution time, GoQuorum retrieves the internal private transaction from Tessera. See [Flows] for more information.
+
+[New APIs](../../Reference/APIs/PrivacyMarkerTransactionAPI.md) have been added to enable clients to retrieve the decrypted internal private transaction and corresponding receipt.
+
+```json
+> eth.getPrivateTransaction("0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79")
+{
+  ...
+  blockNumber: 121,
+  hash: "0xbf71ea018f64b6449319b733baa188f5f1e6093306604004cf30d1688c940865",
+  from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+  to: null,
+  input: "0x15b446504790aec35713ebf947490e8674a018958ced63841ebe1ffc447ce52f2c8654f6affb907d5a744606293f6e9f4cf4a210a44041b5ec3696e01d917f3a",
+  nonce: 3,
+  r: "0x32d982ba0a48083821c0ff013119dce988205a2699485e7a4019911030bddabc",
+  s: "0x41870f25243701e4187bb24b69d71b711de6cac742445e0cef501d0705119f1a",
+  v: "0x25",
+  transactionIndex: 0,
+  ...
+}
+> eth.getPrivateTransactionReceipt("0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79")
+{
+  blockNumber: 121,
+  transactionHash: "0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79",
+  contractAddress: "0xd9d64b7dc034fafdba5dc2902875a67b5d586420",
+  from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+  to: null,
+  logs: [{
+    ...,
+    address: "0xd9d64b7dc034fafdba5dc2902875a67b5d586420",
+    blockNumber: 121,
+    data: "0x000000000000000000000000000000000000000000000000000000000000000a",
+    logIndex: 0,
+    topics: ["0x6c2b4666ba8da5a95717621d879a77de725f3d816709b9cbe9f059b8f875e284"],
+    transactionHash: "0xbf71ea018f64b6449319b733baa188f5f1e6093306604004cf30d1688c940865",
+    transactionIndex: 0,
+    ...
+  }],
+  logsBloom: "0x00000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000400000000000000000000000001000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  status: "0x1",
+  transactionIndex: 0,
+  ...
+}
+```
+
+### Privacy Precompile Contract
+
 !!! info "Precompile Address"
-    A new API method [eth_getPrivacyPrecompileAddress] has been added for retrieving the address of the precompile.
+    The [eth_getPrivacyPrecompileAddress] can be used by clients to get the address of the privacy precompile.
+
+A precompile contract that retrieves the internal private transaction from Tessera and executes it.
 
 ## Flows
 
