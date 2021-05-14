@@ -2218,7 +2218,7 @@ Defaults to `RLP` plus `json`.
 
 #### Returns
 
-* `raw`: *data* - `RLP` encoded bytes for the passed transaction object
+* `raw`: *data* - `RLP`-encoded bytes for the passed transaction object
 
 * `tx`: *object* - transaction object
 
