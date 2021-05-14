@@ -146,8 +146,8 @@ A precompile contract that retrieves the internal private transaction from Tesse
 
 ![private txn current flow](../../images/PrivateTxn_NewFlow.png)
 
-1. Signed private transaction sent to GoQuorum, to be signed on the node.
-2. Entire private transaction serialised to JSON and sent to Tessera with details of participant parties.
+1. Private transaction sent to GoQuorum, to be signed on the node. (Steps 1 - 4 in [Normal private transactions] are carried out as before)
+2. Signed private transaction serialised to JSON and sent to Tessera with details of participant parties.
 3. Private transaction encrypted and distributed to participants.
 4. Hash of encrypted private transaction returned to GoQuorum.  Privacy marker transaction is created, with `data` field set to hash. Privacy marker transaction signed by GoQuorum.
 5. Privacy marker transaction is distributed throughout the network.
@@ -161,7 +161,7 @@ The privacy marker transaction is processed in the same way as a standard public
 Since the `to` value in the privacy marker transaction is the address of the privacy precompile contract, that contract will be called.
 
 1. Public privacy marker transaction is processed.
-2. Precompile is called with the transaction data, which is the hash of the encrypted private transaction.
+2. Privacy precompile is called with the transaction data, which is the hash of the encrypted private transaction.
 3. The decrypted private transaction is retrieved from Tessera.
 4. Action depends on whether the node is a participant:
     1. Participant node: recursive call to `ApplyTransaction`, this time to process the private transaction.  The decrypted `data` of the private transaction is retrieved from Tessera, and the private transaction executed.
@@ -186,7 +186,7 @@ See [Privacy Marker API].
 ### Genesis Configuration
 
 The `genesis.json` file has been modified to support the `quorumPrecompilesV1Block` flag.
-This flag defines the fork block at which the precompiled contract used by privacy marker transactions is enabled.  Once the fork block is reached the node can process and use privacy marker transactions.
+This flag defines the fork block at which the privacy precompile contract is enabled and made available.  Once the fork block is reached the node can process and use privacy marker transactions.
 
 The value for this flag should be set to an appropriate future block number, by when the entire network is expected to have been upgraded to GoQuorum versions that support the privacy precompile.
 
@@ -229,7 +229,7 @@ Use the same APIs as usual, such as `eth_sendTransaction`.  If `privateFor` is p
 1. Create the private transaction, replacing the `data` value with the hash of the encrypted private transaction payload from Tessera.
 1. Externally sign the private transaction.
 1. Use `eth_distributePrivateTransaction` (see [Privacy Marker API] for more details) to encrypt the signed private transaction and share with all participants.
-1. Create the privacy marker transaction, with `data` value equal to `from` + hash returned by `eth_distributePrivateTransaction`
+1. Create the privacy marker transaction, with `data` value equal to `from` + hash returned by `eth_distributePrivateTransaction`.
 1. Send the privacy marker transaction using the same APIs as usual, such as `eth_sendTransaction`.
 
 <!--links-->
@@ -241,3 +241,4 @@ Use the same APIs as usual, such as `eth_sendTransaction`.  If `privateFor` is p
 [privacy precompile]: #privacy-precompile-contract
 [internal private transaction]: #internal-private-transaction
 [Flows]: #flows
+[Normal private transactions]: #normal-private-transactions
