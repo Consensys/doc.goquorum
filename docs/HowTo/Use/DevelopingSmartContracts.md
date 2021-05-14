@@ -30,7 +30,7 @@ Example JSON RPC API call to send a public transaction:
 }
 ```
 
-See the [`eth.sendTransaction`](../../Reference/API-Methods.md#ethsendtransaction) description, which includes some
+See the [`eth_sendTransaction`](../../Reference/API-Methods.md#ethsendtransaction) description, which includes some
 modifications to the standard Ethereum call.
 
 !!! info
@@ -64,7 +64,7 @@ Example JSON RPC API call to send a private transaction:
 }
 ```
 
-See the [`eth.sendTransaction`](../../Reference/API-Methods.md#ethsendtransaction) description, which includes some
+See the [`eth_sendTransaction`](../../Reference/API-Methods.md#ethsendtransaction) description, which includes some
 modifications to the standard Ethereum call.
 
 !!! info

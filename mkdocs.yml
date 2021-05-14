@@ -304,6 +304,7 @@ plugins:
         Reference/APIs/PrivacyEnhancementsAPIs.md: Reference/API-Methods.md
         Reference/APIs/PermissioningAPIs.md: Reference/API-Methods.md
         Reference/APIs/ContractExtensionAPIs.md: Reference/API-Methods.md
+        Reference/APIs/DebugAPIs.md: Reference/API-Methods.md
         Reference/Consensus/IBFTParameters.md: Reference/IBFTParameters.md
         Reference/Consensus/IBFT-RPC-API.md: Reference/API-Methods.md
         Reference/Consensus/Raft-RPC-API.md: Reference/API-Methods.md

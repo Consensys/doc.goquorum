@@ -1136,7 +1136,8 @@ This method can be called by a network admin account.
 
 Temporarily suspends the specified organization or re-activates the specified suspended organization.
 This method can be called by a network admin account.
-This can only be performed for the master organization and requires majority approval from network admins.
+This can only be performed for the master organization and requires the majority of network admins to
+[approve](#quorumpermission_approveorgstatus).
 
 #### Parameters
 
@@ -1188,7 +1189,7 @@ This can only be performed for the master organization and requires majority app
 
 Approves an organization status change proposal.
 This method can be called by a network admin account.
-Once majority approval is received from network admins, the organization status is updated.
+Once a majority of the network admins approve the status update, the organization status is updated.
 
 When an organization is in suspended status, no transactions or contract deployment activities are allowed from any
 nodes linked to the organization and sub-organizations under it.
@@ -1556,7 +1557,8 @@ This method can be called by an organization admin account.
 
 Initiates the recovery of the specified denylisted (blacklisted) account.
 This method can be called by a network admin account.
-Once majority approval from network admin accounts is received, the denylisted account is marked as active.
+Once a majority of the network admins [approve](#quorumpermission_approveblacklistedaccountrecovery), the denylisted
+account is marked as active.
 
 #### Parameters
 
@@ -1604,7 +1606,7 @@ Once majority approval from network admin accounts is received, the denylisted a
 
 Approves the recovery of the specified denylisted (blacklisted) account.
 This method can be called by a network admin account.
-Once majority approval from network admin accounts is received, the account is marked as active.
+Once a majority of the network admins approve, the account is marked as active.
 
 #### Parameters
 
@@ -1702,7 +1704,7 @@ This method can be called by a network admin account.
 
 Approves the organization admin or network admin role assignment to the specified account.
 This method can be called by a network admin account.
-The role is approved once majority approval is received.
+The role is approved once the majority of network admins approve.
 
 #### Parameters
 
@@ -1853,7 +1855,8 @@ This method can be called by an organization admin account.
 
 Initiates the recovery of the specified denylisted (blacklisted) node.
 This method can be called by a network admin account.
-Once majority approval from network admin accounts is received, the denylisted node is marked as active.
+Once the majority of network admins [approve](#quorumpermission_approveblacklistednoderecovery), the denylisted node is
+marked as active.
 
 #### Parameters
 
@@ -1901,7 +1904,7 @@ Once majority approval from network admin accounts is received, the denylisted n
 
 Approves the recovery of the specified denylisted (blacklisted) node.
 This method can be called by a network admin account.
-Once majority approval from network admin accounts is received, the denylisted node is marked as active.
+Once the majority of network admins approve, the denylisted node is marked as active.
 
 #### Parameters
 
@@ -2035,7 +2038,7 @@ Checks if the specified node is allowed to join the network.
 
 ## Privacy methods
 
-### `eth.sendTransaction`
+### `eth_sendTransaction`
 
 !!! note
 
@@ -2124,7 +2127,7 @@ the contract address after the transaction is mined.
         });
         ```
 
-### `eth.sendRawPrivateTransaction`
+### `eth_sendRawPrivateTransaction`
 
 Sends the specified pre-signed transaction, for example using
 [`SilentCicero/ethereumjs-accounts`](https://github.com/SilentCicero/ethereumjs-accounts).
@@ -2194,7 +2197,7 @@ the contract address after the transaction is mined.
         });
         ```
 
-### `eth.fillTransaction`
+### `eth_fillTransaction`
 
 Supports offline signing of the specified transaction.
 This can be used to fill and sign both public and private transactions.
