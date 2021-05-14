@@ -357,6 +357,49 @@ Retrieves the state of an address at the specified block number.
         }
         ```
 
+### `debug_privateStateRoot`
+
+Returns the private state root hash at the specified block number.
+
+#### Parameters
+
+* `blockNumber`: *number* - integer representing a block number or one of the string tags `latest` (the last block
+  mined) or `pending` (the last block mined plus pending transactions).
+
+#### Returns
+
+`result`: *data* - private state root hash
+
+!!! Example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"debug_privateStateRoot","params":["latest"],"id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result":"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+        }
+        ```
+
+    === "geth console command"
+
+        ```js
+        debug.privateStateRoot("latest")
+        ```
+
+    === "geth console result"
+
+        ```js
+        "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+        ```
+
 ## IBFT methods
 
 To use the IBFT API:
@@ -375,7 +418,7 @@ None
 
 #### Returns
 
-*map* of *strings* to *booleans* - current candidates map
+`result`: *map* of *strings* to *booleans* - current candidates map
 
 !!! example "`geth` console request"
 
@@ -408,7 +451,7 @@ mined), or `nil` (same as `latest`)
 
 #### Returns
 
-*object* - snapshot object
+`result`: *object* - snapshot object
 
 !!! example "`geth` console request"
 
@@ -426,7 +469,7 @@ Retrieves the state snapshot at the specified block hash.
 
 #### Returns
 
-*object* - snapshot object
+`result`: *object* - snapshot object
 
 !!! example "`geth` console request"
 
@@ -445,7 +488,7 @@ mined), or `nil` (same as `latest`)
 
 #### Returns
 
-*array* of *strings* - list of validator addresses
+`result`: *array* of *strings* - list of validator addresses
 
 !!! example "`geth` console request"
 
@@ -463,7 +506,7 @@ Retrieves the list of authorized validators at the specified block hash.
 
 #### Returns
 
-*array* of *strings* - list of validator addresses
+`result`: *array* of *strings* - list of validator addresses
 
 !!! example "`geth` console request"
 
@@ -498,7 +541,7 @@ None
 
 #### Returns
 
-*string* - node's public signing address
+`result`: *string* - node's public signing address
 
 !!! example "`geth` console request"
 
@@ -517,7 +560,7 @@ This means that they participated in the consensus for this block and attested t
 
 #### Returns
 
-*object* - result object with the following fields:
+`result`: *object* - result object with the following fields:
 
 * `number`: *number* - retrieved block's number
 
@@ -544,7 +587,7 @@ This means that they participated in the consensus for this block and attested t
 
 #### Returns
 
-*object* - result object with the following fields:
+`result`: *object* - result object with the following fields:
 
 * `number`: *number* - retrieved block's number
 
@@ -574,7 +617,7 @@ If the start block and end block numbers are not provided, the status of the las
 
 #### Returns
 
-*object* - result object with the following fields:
+`result`: *object* - result object with the following fields:
 
 * `numBlocks`: *number* - number of blocks for which sealer activity is retrieved
 
@@ -597,7 +640,7 @@ Indicates if this node is the validator for the specified block number.
 
 #### Returns
 
-*boolean* - `true` if this node is the validator for the given `blockNumber`, otherwise `false`
+`result`: *boolean* - `true` if this node is the validator for the given `blockNumber`, otherwise `false`
 
 !!! example "`geth` console request"
 
@@ -913,6 +956,8 @@ Returns lists of accounts, nodes, roles, and sub-organizations linked to the spe
 
 #### Returns
 
+`result`: *object* - result object with the following fields:
+
 * `acctList`: *array* of *objects* - list of account objects
 
 * `nodeList`: *array* of *objects* - list of node objects
@@ -1049,9 +1094,7 @@ Also, the enode ID and account ID can only be linked to one organization.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1098,9 +1141,7 @@ This method can be called by a network admin account.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1151,9 +1192,7 @@ This can only be performed for the master organization and requires the majority
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1207,9 +1246,7 @@ Similarly, no transactions are allowed from any accounts linked to the organizat
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean*` - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1264,9 +1301,7 @@ This method can be called by an organization admin account.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1317,9 +1352,7 @@ This method can be called by an organization admin account.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1364,9 +1397,7 @@ This method can be called by an organization admin account.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1415,9 +1446,7 @@ The account can only be linked to a single organization or sub-organization.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1464,9 +1493,7 @@ This method can be called by an organization admin account.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1519,9 +1546,7 @@ This method can be called by an organization admin account.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1568,9 +1593,7 @@ account is marked as active.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1616,9 +1639,7 @@ Once a majority of the network admins approve, the account is marked as active.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1666,9 +1687,7 @@ This method can be called by a network admin account.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1714,9 +1733,7 @@ The role is approved once the majority of network admins approve.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1762,9 +1779,7 @@ A node cannot be part of multiple organizations.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1817,9 +1832,7 @@ This method can be called by an organization admin account.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1866,9 +1879,7 @@ marked as active.
 
 #### Returns
 
-* `msg`: *string* - response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1914,9 +1925,7 @@ Once the majority of network admins approve, the denylisted node is marked as ac
 
 #### Returns
 
-* `msg`: *string*- response message
-
-* `status`: *boolean* - indicates if the operation was a success or failure
+`result`: *string* - response message
 
 !!! example
 
@@ -1958,7 +1967,7 @@ Checks if the account initiating the specified transaction has sufficient permis
 
 #### Returns
 
-* `status`: *boolean* - indicates if transaction is allowed or not
+`result`: *boolean* - indicates if transaction is allowed or not
 
 !!! example
 
@@ -2004,7 +2013,7 @@ Checks if the specified node is allowed to join the network.
 
 #### Returns
 
-* `status`: *boolean* - indicates if the connection is allowed or not
+`result`: *boolean* - indicates if the connection is allowed or not
 
 !!! example
 
@@ -2099,7 +2108,7 @@ the contract address after the transaction is mined.
 
 #### Returns
 
-*string* - 32-byte transaction hash as a hex string
+`result`: *string* - 32-byte transaction hash as a hex string
 
 !!! example
 
@@ -2162,7 +2171,7 @@ the contract address after the transaction is mined.
 
 #### Returns
 
-*string* - 32-byte transaction hash as a hex string
+`result`: *string* - 32-byte transaction hash as a hex string
 
 !!! example
 
@@ -2220,6 +2229,8 @@ Defaults to `RLP` plus `json`.
 * `privateFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients' base64-encoded public keys
 
 #### Returns
+
+`result`: *object* - result object with the following fields:
 
 * `raw`: *data* - `RLP`-encoded bytes for the passed transaction object
 
@@ -2341,7 +2352,7 @@ hash from the private state database.
 
 #### Returns
 
-*string* - 32-byte storage root hash as a hex string
+`result`: *string* - 32-byte storage root hash as a hex string
 
 !!! example
 
@@ -2372,7 +2383,7 @@ this is seen in the transaction as the `input` field.
 
 #### Returns
 
-*string* - unencrypted transaction payload in hex format
+`result`: *string* - unencrypted transaction payload in hex format
 
 !!! example
 
@@ -2449,11 +2460,11 @@ the contract address after the transaction is mined.
 
 #### Returns
 
-* *string* - empty hash, defined as `0x0000000000000000000000000000000000000000000000000000000000000000`
+* `result`: *string* - empty hash, defined as `0x0000000000000000000000000000000000000000000000000000000000000000`
 
 The callback URL receives the following object:
 
-* *object* - result object with the following fields:
+* `result`: *object* - result object with the following fields:
 
     * `id`: *string* - ID in the original RPC call, used to match this result to the request
 
@@ -2510,6 +2521,8 @@ Queries the privacy metadata for the specified contract account address.
 
 #### Returns
 
+`result`: *object* - result object with the following fields:
+
 * `creationTxHash`: *data* - affected contract's original transaction's encrypted payload hash
 
 * `privacyFlag`: *number* - unsigned integer with 1 for counterparty protection and 3 for private state validation contracts
@@ -2562,7 +2575,7 @@ None
 
 #### Returns
 
-*array* - list of node objects with the following fields:
+`result`: *array* - list of node objects with the following fields:
 
 * `hostName`: *string* - DNS name or the host IP address
 
