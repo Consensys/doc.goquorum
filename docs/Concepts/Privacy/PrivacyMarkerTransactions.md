@@ -74,16 +74,13 @@ See [Privacy Marker API].
 
 ## GoQuorum Configuration Changes
 
-### Command Line Flag
-
-The command line flag `--privacymarker.enable` is needed in order to enable the creation of privacy marker transactions.
-If this flag is specified, then whenever a private transaction is submitted to GoQuorum, it will lead to the creation of a privacy marker transaction.
-
 ### Genesis Flag
 
-The `genesis.json` file has been modified to include the `quorumPrecompilesV1Block` flag.
-This flag enables the precompiled contract which is required for processing of privacy marker transactions.
-The value for this flag should be set to an appropriate value in the future, by when the entire network would be upgraded with the correct GoQuorum version that supports the precompile.
+The `genesis.json` file has been modified to support the `quorumPrecompilesV1Block` flag.
+This flag defines the fork block at which the precompiled contract used by privacy marker transactions is enabled.  Once the fork block is reached the node can process and use privacy marker transactions.
+
+The value for this flag should be set to an appropriate future block number, by when the entire network is expected to have been upgraded to GoQuorum versions that support the privacy precompile.
+
 The flag should be initialised with same value across all the nodes.
 
 !!! example
@@ -95,6 +92,16 @@ The flag should be initialised with same value across all the nodes.
         "quorumPrecompilesV1Block": 10000
     }
     ```
+
+### Command Line Flag
+
+The command line flag `--privacymarker.enable` is needed in order to enable the creation of privacy marker transactions.
+
+If this flag is specified, then whenever a private transaction is submitted to GoQuorum, it will lead to the creation of a privacy marker transaction.
+
+!!! note
+    Once the `quorumPrecompilesV1Block` has been reached, a node without the `--privacymarker.enable` CLI flag can still receive and correctly process privacy marker transactions sent from other nodes.
+
 
 <!--links-->
 [Configuration Changes]: #goquorum-configuration-changes
