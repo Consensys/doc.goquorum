@@ -11,7 +11,7 @@ GoQuorum v21.??.? introduces a new method for processing private transactions, w
 This makes use of a new type of public transaction referred to as a *privacy marker transaction (PMT)*.
 Only the public privacy marker transaction is added to the chain.  The private transaction is stored in the [Privacy Manager (Tessera)](PrivateTransactionManager.md) and is only available to the participants.
 
-This functionality is enabled using a new command line flag and genesis flag (see [Configuration Changes]).
+This functionality is enabled using a new command line flag and genesis flag (see [How To Use]).
 
 The advantages of using a Privacy Marker Transaction over a normal Private Transaction are as follows:
 
@@ -181,9 +181,9 @@ Note that the final step of retrieving the private transaction receipt uses the 
 
 See [Privacy Marker API].
 
-## GoQuorum Configuration Changes
+## How To Use
 
-### Genesis Flag
+### Genesis Configuration
 
 The `genesis.json` file has been modified to support the `quorumPrecompilesV1Block` flag.
 This flag defines the fork block at which the precompiled contract used by privacy marker transactions is enabled.  Once the fork block is reached the node can process and use privacy marker transactions.
@@ -211,10 +211,33 @@ If this flag is specified, then whenever a private transaction is submitted to G
 !!! note
     Once the `quorumPrecompilesV1Block` has been reached, a node without the `--privacymarker.enable` CLI flag can still receive and correctly process privacy marker transactions sent from other nodes.
 
+### Notes for clients/dApps
+
+The privacy marker transaction and internal private transaction are separate transactions and consequently have separate transaction receipts.
+
+Clients should be aware of this and make sure they are using the new [Privacy Marker API] methods where appropriate.
+
+### Examples
+
+#### Send unsigned private transaction
+
+Use the same APIs as usual, such as `eth_sendTransaction`.  If `privateFor` is provided ,  the `quorumPrecompilesV1Block` has been reached, and the GoQuorum node was started with the `--privacymarker.enable` flag, then the private transaction will be created as a privacy marker transaction and internal private transaction.
+
+#### Send signed private transaction
+
+1. Use `eth_fillTransaction` or Tessera's ThirdParty `/storeraw` API to encrypt the private transaction payload.
+1. Create the private transaction, replacing the `data` value with the hash of the encrypted private transaction payload from Tessera.
+1. Externally sign the private transaction.
+1. Use `eth_distributePrivateTransaction` (see [Privacy Marker API] for more details) to encrypt the signed private transaction and share with all participants.
+1. Create the privacy marker transaction, with `data` value equal to `from` + hash returned by `eth_distributePrivateTransaction`
+1. Send the privacy marker transaction using the same APIs as usual, such as `eth_sendTransaction`.
 
 <!--links-->
-[Configuration Changes]: #goquorum-configuration-changes
+[How To Use]: #how-to-use
 [eth_getPrivateTransactionReceipt]: ../../Reference/APIs/PrivacyMarkerTransactionAPI.md#eth_getprivatetransactionreceipt
 [eth_getPrivacyPrecompileAddress]: ../../Reference/APIs/PrivacyMarkerTransactionAPI.md#eth_getprivacyprecompileaddress
 [Privacy Marker API]: ../../Reference/APIs/PrivacyMarkerTransactionAPI.md
 [private transaction lifecycle]: ../PrivateTransactionLifecycle
+[privacy precompile]: #privacy-precompile-contract
+[internal private transaction]: #internal-private-transaction
+[Flows]: #flows
