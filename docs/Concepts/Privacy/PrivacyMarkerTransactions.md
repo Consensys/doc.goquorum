@@ -70,34 +70,7 @@ Note that the final step of retrieving the private transaction receipt uses the 
 
 ## New API Methods
 
-See [Privacy Marker API] for full details of these methods.
-
-### eth_getPrivateTransactionByHash
-
-Retrieves details of a private transaction.
-
-* Input: Hash for privacy marker transaction
-* Output: Private transaction (or nil, if caller is not a participant)
-
-### eth_getPrivateTransactionReceipt
-
-Retrieves the receipt for a private transaction.
-
-* Input: Hash for privacy marker transaction
-* Output: Private transaction receipt (or nil, if caller is not a participant)
-
-### eth_distributePrivateTransaction
-
-Send a private transaction to the local private transaction manager, for distribution to participants.
-
-* Input: Serialised private transaction, privacy data
-* Output: Tessera hash to put in privacy marker transaction
-
-### eth_getPrivacyPrecompileAddress
-
-Get address of the privacy precompile, to be used as the 'To' address for privacy marker transactions.
-
-* Output: Contract address for the privacy precompile
+See [Privacy Marker API].
 
 ## GoQuorum Configuration Changes
 
