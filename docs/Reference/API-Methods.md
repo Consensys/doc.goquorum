@@ -2058,7 +2058,7 @@ the contract address after the transaction is mined.
 
     * `from`: *string* - address for the sending account; defaults to `web3.eth.defaultAccount`
 
-    * `to`: *string* - destination address of the message, left undefined for a contract-creation transaction
+    * `to`: *string* - (optional) destination address of the message; defaults to `undefined`
 
     * `value`: *number* - (optional) value transferred for the transaction in Wei, also the endowment if it's a contract-creation
       transaction
@@ -2409,7 +2409,7 @@ the contract address after the transaction is mined.
 
 * `from`: *string* - address for the sending account; defaults to `web3.eth.defaultAccount`
 
-* `to`: *string* - destination address of the message, left undefined for a contract-creation transaction
+* `to`: *string* - (optional) destination address of the message; defaults to `undefined`
 
 * `value`: *number* - (optional) value transferred for the transaction in Wei, also the endowment if it's a contract-creation
   transaction
