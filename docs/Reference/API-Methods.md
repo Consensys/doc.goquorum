@@ -358,14 +358,32 @@ Retrieves the state of an address at the specified block number.
         }
         ```
 
+    === "geth console request"
+
+        ```javascript
+        debug.dumpAddress("0xfff7ac99c8e4feb60c9750054bdc14ce1857f181",10)
+
+    === "geth console result"
+
+        ```JSON
+        {
+          "balance":"49358640978154672",
+          "code":"",
+          "codeHash":"c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+          "nonce":2,
+          "root":"56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+          "storage":{}
+        }
+        ```
+
 ### `debug_privateStateRoot`
 
 Returns the private state root hash at the specified block number.
 
 #### Parameters
 
-* `blockNumber`: *number* - integer representing a block number or one of the string tags `latest` (the last block
-  mined) or `pending` (the last block mined plus pending transactions).
+`blockNumber`: *number* - integer representing a block number or one of the string tags `latest` (the last block mined)
+or `pending` (the last block mined plus pending transactions).
 
 #### Returns
 
@@ -389,7 +407,7 @@ Returns the private state root hash at the specified block number.
         }
         ```
 
-    === "geth console command"
+    === "geth console request"
 
         ```js
         debug.privateStateRoot("latest")
@@ -409,9 +427,9 @@ To use the IBFT API:
 
 2. Run `geth attach`.
 
-### `istanbul.candidates`
+### `istanbul_candidates`
 
-Returns the current candidates which the node tries to vote in or out.
+Returns the current candidates which the node tries to [vote](#istanbul_propose) in or out.
 
 #### Parameters
 
@@ -421,27 +439,76 @@ None
 
 `result`: *map* of *strings* to *booleans* - current candidates map
 
-!!! example "`geth` console request"
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_candidates","id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result":
+        }
+        ```
+
+    === "geth console request"
 
         ```js
         istanbul.candidates
         ```
 
-### `istanbul.discard`
+    === "geth console result"
 
-Drops a currently running candidate, stopping the validator from casting further votes (either for or against).
+        ```js
+        ```
+
+### `istanbul_discard`
+
+Drops a currently running candidate, stopping the validator from casting further [votes](#istanbul_propose) (either for
+or against).
 
 #### Parameters
 
 `address`: *string* - address of the candidate
 
-!!! example "`geth` console request"
+#### Returns
 
-        ```js
-        istanbul.discard(address)
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_discard","params":["0xfff7ac99c8e4feb60c9750054bdc14ce1857f181"],id":1}' --header "Content-Type: application/json"
         ```
 
-### `istanbul.getSignersFromBlock`
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result":
+        }
+        ```
+
+    === "geth console request"
+
+        ```js
+        istanbul.discard("0xfff7ac99c8e4feb60c9750054bdc14ce1857f181")
+        ```
+
+    === "geth console result"
+
+        ```js
+        ```
+
+### `istanbul_getSignersFromBlock`
 
 Retrieves the public addresses whose seals are included in the specified block number.
 This means that they participated in the consensus for this block and attested to its validity.
@@ -462,13 +529,41 @@ This means that they participated in the consensus for this block and attested t
 
 * `committers`: *array* of *strings* - list of all addresses whose seal appears in this block
 
-!!! example "`geth` console request"
+!!! example
 
-    ```js
-    istanbul.getSignersFromBlock(blockNumber)
-    ```
+    === "curl HTTP request"
 
-### `istanbul.getSignersFromBlockByHash`
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSignersFromBlock","params":[10],id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result": {
+            "number":10,
+            "hash":"0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553",
+            "author":,
+            "committers":[]
+          }
+        }
+        ```
+
+    === "geth console request"
+
+        ```js
+        istanbul.getSignersFromBlock(10)
+        ```
+
+    == "geth console result"
+
+        ```js
+        ```
+
+### `istanbul_getSignersFromBlockByHash`
 
 Retrieves the public addresses whose seals are included in the specified block number.
 This means that they participated in the consensus for this block and attested to its validity.
@@ -489,32 +584,85 @@ This means that they participated in the consensus for this block and attested t
 
 * `committers`: *array* of *strings* - list of all addresses whose seal appears in this block
 
-!!! example "`geth` console request"
+!!! example
 
-    ```js
-    istanbul.getSignersFromBlockByHash(blockHash)
-    ```
+    === "curl HTTP request"
 
-### `istanbul.getSnapshot`
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSignersFromBlockByHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result": {
+            "number":10,
+            "hash":"0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553",
+            "author":,
+            "committers":[]
+          }
+        }
+        ```
+
+    === "geth console request"
+
+        ```js
+        istanbul.getSignersFromBlockByHash("0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553")
+        ```
+
+    === "geth console result"
+
+        ```js
+        ```
+
+### `istanbul_getSnapshot`
 
 Retrieves the state snapshot at the specified block number.
 
 #### Parameters
 
-`blockNumber`: *number* or *string* - integer representing a block number, the string tag `latest` (the last block
-mined), or `nil` (same as `latest`)
+`blockNumber`: *number* or *string* - (optional) integer representing a block number or the string tag `latest` (the last block
+mined); defaults to `latest`
 
 #### Returns
 
 `result`: *object* - snapshot object
 
-!!! example "`geth` console request"
+!!! example
 
-    ```js
-    istanbul.getSnapshot(blockNumber)
-    ```
+    === "curl HTTP request"
 
-### `istanbul.getSnapshotAtHash`
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSnapshot","params":[10],id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result": {
+          }
+        }
+        ```
+
+    === "geth console request"
+
+        ```js
+        istanbul.getSnapshot(10)
+        ```
+
+    === "geth console result"
+
+        ```js
+        {}
+        ```
+
+### `istanbul_getSnapshotAtHash`
 
 Retrieves the state snapshot at the specified block hash.
 
@@ -526,32 +674,82 @@ Retrieves the state snapshot at the specified block hash.
 
 `result`: *object* - snapshot object
 
-!!! example "`geth` console request"
+!!! example
 
-    ```js
-    istanbul.getSnapshotAtHash(blockHash)
-    ```
+    === "curl HTTP request"
 
-### `istanbul.getValidators`
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSnapshotAtHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result": {
+          }
+        }
+        ```
+
+    === "geth console request"
+
+        ```js
+        istanbul.getSnapshotAtHash("0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553")
+        ```
+
+    === "geth console result"
+
+        ```js
+        {}
+        ```
+
+### `istanbul_getValidators`
 
 Retrieves the list of authorized validators at the specified block number.
 
 #### Parameters
 
-`blockNumber`: *number* or *string* - integer representing a block number, the string tag `latest` (the last block
-mined), or `nil` (same as `latest`)
+`blockNumber`: *number* or *string* - (optional) integer representing a block number or the string tag `latest` (the
+last block mined); defaults to `latest`
 
 #### Returns
 
 `result`: *array* of *strings* - list of validator addresses
 
-!!! example "`geth` console request"
+!!! example
 
-    ```js
-    istanbul.getValidators(blockNumber)
-    ```
+    === "curl HTTP request"
 
-### `istanbul.getValidatorsAtHash`
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getValidators","params":[10],id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result": [
+          ]
+        }
+        ```
+
+    === "geth console request"
+
+        ```js
+        istanbul.getValidators(10)
+        ```
+
+    === "geth console result"
+
+        ```js
+        []
+        ```
+
+### `istanbul_getValidatorsAtHash`
 
 Retrieves the list of authorized validators at the specified block hash.
 
@@ -563,13 +761,38 @@ Retrieves the list of authorized validators at the specified block hash.
 
 `result`: *array* of *strings* - list of validator addresses
 
-!!! example "`geth` console request"
+!!! example
 
-    ```js
-    istanbul.getValidatorsAtHash(blockHash)
-    ```
+    === "curl HTTP request"
 
-### `istanbul.isValidator`
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getValidatorsAtHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result": [
+          ]
+        }
+        ```
+
+    === "geth console request"
+
+        ```js
+        istanbul.getValidatorsAtHash("0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553")
+        ```
+
+    === "geth console result"
+
+        ```js
+        []
+        ```
+
+### `istanbul_isValidator`
 
 Indicates if this node is the validator for the specified block number.
 
@@ -581,13 +804,37 @@ Indicates if this node is the validator for the specified block number.
 
 `result`: *boolean* - `true` if this node is the validator for the given `blockNumber`, otherwise `false`
 
-!!! example "`geth` console request"
+!!! example
 
-    ```js
-    istanbul.isValidator(blockNumber)
-    ```
+    === "curl HTTP request"
 
-### `istanbul.nodeAddress`
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_isValidator","params":[10],id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result":true
+        }
+        ```
+
+    === "geth console request"
+
+        ```js
+        istanbul.isValidator(10)
+        ```
+
+    === "geth console result"
+
+        ```js
+        true
+        ```
+
+### `istanbul_nodeAddress`
 
 Retrieves the public address that is used to sign proposals, which is derived from the node's `nodekey`.
 
@@ -599,13 +846,36 @@ None
 
 `result`: *string* - node's public signing address
 
-!!! example "`geth` console request"
+!!! example
 
-    ```js
-    istanbul.nodeAddress()
-    ```
+    === "curl HTTP request"
 
-### `istanbul.propose`
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_nodeAddress",id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result":"0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb"
+        }
+
+    === "geth console request"
+
+        ```js
+        istanbul.nodeAddress()
+        ```
+
+    === "geth console result"
+
+        ```js
+        "0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb"
+        ```
+
+### `istanbul_propose`
 
 Injects a new authorization candidate that the validator attempts to push through.
 If a majority of the validators vote the candidate in/out, the candidate is added/removed in the validator set.
@@ -616,13 +886,37 @@ If a majority of the validators vote the candidate in/out, the candidate is adde
 
 * `auth`: *boolean* - `true` votes the candidate in and `false` votes out
 
-!!! example "`geth` console request"
+#### Returns
 
-    ```js
-    istanbul.propose(address, auth)
-    ```
+!!! example
 
-### `istanbul.status`
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_propose","params":["0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb",true],id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result":
+        }
+
+    === "geth console request"
+
+        ```js
+        istanbul.propose("0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb",true)
+        ```
+
+    === "geth console result"
+
+        ```js
+        ```
+
+### `istanbul_status`
 
 Returns the signing status of blocks for the specified block range.
 
@@ -643,11 +937,39 @@ If the start block and end block numbers are not provided, the status of the las
 * `sealerActivity`: *map* of *strings* to *numbers* - key is the validator and value is the number of blocks sealed by
   the validator
 
-!!! example "`geth` console request"
+!!! example
 
-    ```js
-    istanbul.status(startBlockNumber,endBlockNumber)
-    ```
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_status","params":[1,10],id":1}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```JSON
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result": {
+            "numBlocks":,
+            "sealerActivity":
+        }
+
+    === "geth console request"
+
+        ```js
+        istanbul.status(1,10)
+        ```
+
+    === "geth console result"
+
+        ```js
+        {
+          "numblocks":,
+          "sealerActivity":
+        }
+        ```
 
 ## Permission methods
 
@@ -703,13 +1025,13 @@ None
         }
         ```
 
-        === "geth console request"
+    === "geth console request"
 
         ```javascript
         quorumPermission.acctList
         ```
 
-        === "geth console result"
+    === "geth console result"
 
         ```json
         [{
@@ -2265,6 +2587,18 @@ this is seen in the transaction as the `input` field.
         }
         ```
 
+    === "geth console request"
+
+        ```js
+        eth.getQuorumPayload("0x5e902fa2af51b186468df6ffc21fd2c26235f4959bf900fc48c17dc1774d86d046c0e466230225845ddf2cf98f23ede5221c935aac27476e77b16604024bade0")
+        ```
+
+    === "geth console result"
+
+        ```js
+        "0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a"
+        ```
+
 ### `eth_sendRawPrivateTransaction`
 
 Sends the specified pre-signed transaction, for example using
@@ -2370,9 +2704,9 @@ the contract address after the transaction is mined.
     [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the
     message, or in the case of a contract-creation transaction, the initialization code
 
-  !!! note
+!!! note
 
-        `input` cannot co-exist with `data` if they are set to different values.
+    `input` cannot co-exist with `data` if they are set to different values.
 
   * `nonce`: *number* - (optional) integer of a nonce; allows you to overwrite your own pending transactions that use
     the same nonce
@@ -2513,6 +2847,18 @@ The callback URL receives the following object:
         }
         ```
 
+    === "geth console request"
+
+        ```js
+        eth.sendTransactionAsync({"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data":"0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":"0x47b760","privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+        ```
+
+    === "geth console result"
+
+        ```js
+        "0x0000000000000000000000000000000000000000000000000000000000000000"
+        ```
+
     If you provide the callback URL, you receive the following response after submitting the transaction.
     This example assumes a webserver that can be accessed by calling http://localhost:8080 has been set up to accept
     POST requests:
@@ -2526,6 +2872,21 @@ The callback URL receives the following object:
     === "JSON result"
 
         ```json
+        {
+          "id":67,
+          "txHash":"0x75ebbf4fbe29355fc8a4b8d1e14ecddf0228b64ef41e6d2fce56047650e2bf17"
+        }
+        ```
+
+    === "geth console request"
+
+        ```js
+        eth.sendTransactionAsync({"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data":"0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":"0x47b760","privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="],"callbackUrl":"http://localhost:8080"})
+        ```
+
+    === "geth console result"
+
+        ```js
         {
           "id":67,
           "txHash":"0x75ebbf4fbe29355fc8a4b8d1e14ecddf0228b64ef41e6d2fce56047650e2bf17"
@@ -2564,6 +2925,18 @@ hash from the private state database.
           "id":67,
           "result":"0x81d1fa699f807735499cf6f7df860797cf66f6a66b565cfcda3fae3521eb6861"
         }
+        ```
+
+    === "geth console request"
+
+        ```js
+        eth.storageRoot("0x1349f3e1b8d71effb47b840594ff27da7e603d17","0x1")
+        ```
+
+    === "geth console result"
+
+        ```js
+        "0x81d1fa699f807735499cf6f7df860797cf66f6a66b565cfcda3fae3521eb6861"
         ```
 
 ## Raft methods
