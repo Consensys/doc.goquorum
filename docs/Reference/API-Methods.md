@@ -1502,9 +1502,9 @@ Similarly, no transactions are allowed from any accounts linked to the organizat
 
 * `action`: *number* -
 
-  * 1 - for approving organization suspension
+    * 1 - for approving organization suspension
 
-  * 2 - for approving activation of the suspended organization
+    * 2 - for approving activation of the suspended organization
 
 #### Returns
 
@@ -2332,9 +2332,9 @@ This can only be performed for the master organization and requires the majority
 
 * `action`: *number* -
 
-  * 1 - for suspending the organization
+    * 1 - for suspending the organization
 
-  * 2 - for activating the suspended organization
+    * 2 - for activating the suspended organization
 
 #### Returns
 
@@ -2619,16 +2619,16 @@ the contract address after the transaction is mined.
 
 * *object* - private data to send, with the following fields:
 
-  * `privateFor`: *array* of *strings* - when sending a private transaction, an array of the recipients' base64-encoded
-    public keys
+    * `privateFor`: *array* of *strings* - when sending a private transaction, an array of the recipients' base64-encoded
+      public keys
 
-  * `privacyFlag`: *number* - (optional)
+    * `privacyFlag`: *number* - (optional)
 
-    * 0 - for standard private (default if not provided)
+        * 0 - for standard private (default if not provided)
 
-    * 1 - for counterparty protection
+        * 1 - for counterparty protection
 
-    * 3 - for private state validation
+        * 3 - for private state validation
 
 * `callback`: *function* - (optional) callback function; if you pass a callback, the HTTP request is made asynchronous.
 
@@ -2687,46 +2687,46 @@ the contract address after the transaction is mined.
 
 * `transaction`: *object* - transaction object to send, with the following fields:
 
-  * `from`: *string* - address for the sending account; defaults to `web3.eth.defaultAccount`
+    * `from`: *string* - address for the sending account; defaults to `web3.eth.defaultAccount`
 
-  * `to`: *string* - (optional) destination address of the message; defaults to `undefined`
+    * `to`: *string* - (optional) destination address of the message; defaults to `undefined`
 
-  * `value`: *number* - (optional) value transferred for the transaction in Wei, also the endowment if it's a contract-creation
-    transaction
+    * `value`: *number* - (optional) value transferred for the transaction in Wei, also the endowment if it's a contract-creation
+      transaction
 
-  * `gas`: *number* - (optional) amount of gas to use for the transaction (unused gas is refunded)
+    * `gas`: *number* - (optional) amount of gas to use for the transaction (unused gas is refunded)
 
-  * `data`: *data* - (optional) either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI)
-    containing the associated data of the message, or in the case of a contract-creation transaction, the
-    initialization code
+    * `data`: *data* - (optional) either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI)
+      containing the associated data of the message, or in the case of a contract-creation transaction, the
+      initialization code
 
-  * `input`: *data* - (optional) either a
-    [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the
-    message, or in the case of a contract-creation transaction, the initialization code
+    * `input`: *data* - (optional) either a
+      [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the
+      message, or in the case of a contract-creation transaction, the initialization code
+
+    * `nonce`: *number* - (optional) integer of a nonce; allows you to overwrite your own pending transactions that use
+      the same nonce
+
+    * `privateFrom`: *string* - (optional) when sending a private transaction, the sending party's base64-encoded public key to use;
+      if not present *and* passing `privateFor`, use the default key as configured in the
+      `TransactionManager`.
+
+    * `privateFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
+      base64-encoded public keys
+
+    * `privacyFlag`: *number* - (optional)
+
+        * 0 - for standard private (default if not provided)
+
+        * 1 - for counterparty protection
+
+        * 3 - for private state validation
+
+* `callback`: *function* - (optional) callback function; if you pass a callback, the HTTP request is made asynchronous.
 
 !!! note
 
-    `input` cannot co-exist with `data` if they are set to different values.
-
-  * `nonce`: *number* - (optional) integer of a nonce; allows you to overwrite your own pending transactions that use
-    the same nonce
-
-  * `privateFrom`: *string* - (optional) when sending a private transaction, the sending party's base64-encoded public key to use;
-    if not present *and* passing `privateFor`, use the default key as configured in the
-    `TransactionManager`.
-
-  * `privateFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
-    base64-encoded public keys
-
-  * `privacyFlag`: *number* - (optional)
-
-    * 0 - for standard private (default if not provided)
-
-    * 1 - for counterparty protection
-
-    * 3 - for private state validation
-
-* `callback`: *function* - (optional) callback function; if you pass a callback, the HTTP request is made asynchronous.
+        `input` cannot co-exist with `data` if they are set to different values.
 
 #### Returns
 
@@ -2790,10 +2790,6 @@ the contract address after the transaction is mined.
   [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the
   message, or in the case of a contract-creation transaction, the initialization code
 
-!!! note
-
-    `input` cannot co-exist with `data` if they are set to different values.
-
 * `nonce`: *number* - (optional) integer of a nonce; allows you to overwrite your own pending transactions that use the
   same nonce
 
@@ -2812,6 +2808,10 @@ the contract address after the transaction is mined.
     * 3 - for private state validation
 
 * `callbackUrl`: *string* - (optional) URL to perform a POST request to post the result of submitting the transaction
+
+!!! note
+
+    `input` cannot co-exist with `data` if they are set to different values.
 
 #### Returns
 
