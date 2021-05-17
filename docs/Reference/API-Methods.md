@@ -1258,7 +1258,7 @@ This method can be called by an organization admin account.
 
     The parent organization ID should contain the complete organization hierarchy from master organization ID to the
     immediate parent.
-    The organization hierarchy is separated by `.`.
+    The organization hierarchy is separated by `.` (dot character).
     For example, if master organization `ABC` has a sub-organization `SUB1`, then while creating the sub-organization at
     `SUB1` level, the parent organization should be given as `ABC.SUB1`.
 
@@ -2558,7 +2558,7 @@ Queries the privacy metadata for the specified contract account address.
 
 ### `eth_getQuorumPayload`
 
-Returns the unencrypted payload from Tessera.
+Returns the [unencrypted payload from Tessera](https://docs.tessera.consensys.net/Concepts/Transaction-manager/#private-transaction-flow).
 
 #### Parameters
 
