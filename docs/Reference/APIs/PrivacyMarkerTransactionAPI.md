@@ -125,8 +125,8 @@ Retrieve the receipt for a private transaction that is executed by a privacy mar
 
 ### `eth_distributePrivateTransaction`
 
-Send a private transaction to the local private transaction manager, for distribution to participants.
-This API method is used by clients when creating externally signed private transactions.
+Send a signed private transaction to the local private transaction manager, for distribution to participants.
+This API method should be used by clients who wish to externally sign the private transaction when using privacy marker transactions.
 
 !!! note
     Two step process:
@@ -136,9 +136,10 @@ This API method is used by clients when creating externally signed private trans
 
 #### Parameters
 
-* serialised private transaction
+* serialised signed private transaction
 * privacy data object:
   - `privateFor`: `List<String>`  - an array of the recipients' base64-encoded public keys.
+  - `privateFrom`: `String` - (optional) the sending party’s base64-encoded public key to use (Privacy Manager default if not provided).
   - `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `3` for PSV
 
 #### Returns
@@ -175,7 +176,7 @@ This API method is used by clients when creating externally signed private trans
 
 ### `eth_getPrivacyPrecompileAddress`
 
-Get the address of the privacy precompile, to be used as the 'To' address for privacy marker transactions.
+Get the address of the privacy precompile, to be used as the `to` address for privacy marker transactions.
 
 #### Parameters
 
