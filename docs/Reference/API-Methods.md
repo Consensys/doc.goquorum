@@ -1058,7 +1058,7 @@ The account can only be linked to a single organization or sub-organization.
 
 #### Parameters
 
-* `acctId`: *string* - organization or sub-organization ID to which the role belongs
+* `acctId`: *string* - account ID
 
 * `orgId`: *string* - organization ID
 
@@ -1275,7 +1275,7 @@ This method can be called by an organization admin account.
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addSubOrg","params":["ABC","SUB1","",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addSubOrg","params":["ABC.SUB1","SUB2","",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1291,7 +1291,7 @@ This method can be called by an organization admin account.
     === "geth console request"
 
         ```javascript
-        quorumPermission.addSubOrg("ABC","SUB1","",{"from":eth.accounts[0]})
+        quorumPermission.addSubOrg("ABC.SUB1","SUB2","",{"from":eth.accounts[0]})
         ```
 
     === "geth console result"
@@ -1904,7 +1904,7 @@ None
 
 `result`: *array* of *objects* - list of organization objects with the following fields:
 
-* `fullOrgId`: *string* - complete organization ID including the all parent organization IDs separated by `.`
+* `fullOrgId`: *string* - complete organization ID including all the parent organization IDs separated by `.`
 
 * `level`: *number* - level of the organization in the organization hierarchy
 
@@ -2230,7 +2230,7 @@ This method can be called by an organization admin account.
 
     * 2 - for activating the suspended account
 
-    * 3 - for denylisting the account
+    * 3 - for denylisting (blacklisting) the account
 
 #### Returns
 
@@ -2283,7 +2283,7 @@ This method can be called by an organization admin account.
 
     * 2 - for activating the deactivated node
 
-    * 3 - for denylisting the node
+    * 3 - for denylisting (blacklisting) the node
 
 #### Returns
 
@@ -2535,7 +2535,7 @@ Queries the privacy metadata for the specified contract account address.
           "jsonrpc":"2.0",
           "id":15,
           "result": {
-            "creationTxHash":[246,124,116,139,190,217,33,16,203,102,81,13,65,58,249,145,68,180,67,79,163,37,119,27,99,35,247,240,12,53,25,45,47,134,16,118,246,128,97,237,45,50,79,97,78,221,47,1 89,11,165,238,36,8,187,66,64,42,135,108,75,41,85,152,183],
+            "creationTxHash":"0xf67c748bbed92110cb66510d413af99144b4434fa325771b6323f7f00c35192d2f861076f68061ed2d324f614edd2f0159Ba5ee2408bb42402a876c4b295598b7",
             "privacyFlag":3
           }
         }
@@ -2551,7 +2551,7 @@ Queries the privacy metadata for the specified contract account address.
 
         ```json
         {
-          "creationTxHash":[246,124,116,139,190,217,33,16,203,102,81,13,65,58,249,145,68,180,67,79,163,37,119,27,99,35,247,240,12,53,25,45,47,134,16,118,246,128,97,237,45,50,79,97,78,221,47,1 89,11,165,238,36,8,187,66,64,42,135,108,75,41,85,152,183],
+          "creationTxHash":"0xf67c748bbed92110cb66510d413af99144b4434fa325771b6323f7f00c35192d2f861076f68061ed2d324f614edd2f0159Ba5ee2408bb42402a876c4b295598b7",
           "privacyFlag":3
         }
         ```
@@ -2673,15 +2673,15 @@ the contract address after the transaction is mined.
 
 !!! note
 
-    To support private transactions in GoQuorum, the
-    [`web3.eth.sendTransaction(object)`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#sendtransaction) API
-    method has been modified.
+    To support private transactions in GoQuorum, the Web3js
+    [`web3.eth.sendTransaction(object)`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#sendtransaction)
+    API method has been modified to include private transaction parameters.
 
 Sends the specified transaction to the network.
 
 If the transaction is a contract creation, use
-[`web3.eth.getTransactionReceipt()`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#gettransactionreceipt) to get
-the contract address after the transaction is mined.
+[`web3.eth.getTransactionReceipt()`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#gettransactionreceipt)
+([`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API)) to get the contract address after the transaction is mined.
 
 #### Parameters
 
