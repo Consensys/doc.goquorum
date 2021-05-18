@@ -484,6 +484,8 @@ or against).
 
 #### Returns
 
+`result`: `null`
+
 !!! example
 
     === "curl HTTP request"
@@ -498,7 +500,7 @@ or against).
         {
           "jsonrpc":"2.0",
           "id":1,
-          "result":
+          "result":null
         }
         ```
 
@@ -511,6 +513,7 @@ or against).
     === "geth console result"
 
         ```js
+        null
         ```
 
 ### `istanbul_getSignersFromBlock`
@@ -675,6 +678,18 @@ mined); defaults to `latest`
           "jsonrpc":"2.0",
           "id":1,
           "result": {
+            "epoch":30000,
+            "number":16,
+            "hash":"0x2d7df0a0dc7b1136687bb5a8b7ca3e7b00414a8f8d3a9c756ff59c49b78ce08e",
+            "votes":[],
+            "tally":{},
+            "validators": [
+              "0x6571d97f340c8495b661a823f2c2145ca47d63c2",
+              "0xd8dba507e85f116b1f7e231ca8525fc9008a6966",
+              "0xe36cbeb565b061217930767886474e3cde903ac5",
+              "0xf512a992f3fb749857d758ffda1330e590fa915e"
+            ],
+            "policy":0
           }
         }
         ```
@@ -688,7 +703,20 @@ mined); defaults to `latest`
     === "geth console result"
 
         ```js
-        {}
+        {
+          "epoch":30000,
+          "number":16,
+          "hash":"0x2d7df0a0dc7b1136687bb5a8b7ca3e7b00414a8f8d3a9c756ff59c49b78ce08e",
+          "votes":[],
+          "tally":{},
+          "validators": [
+            "0x6571d97f340c8495b661a823f2c2145ca47d63c2",
+            "0xd8dba507e85f116b1f7e231ca8525fc9008a6966",
+            "0xe36cbeb565b061217930767886474e3cde903ac5",
+            "0xf512a992f3fb749857d758ffda1330e590fa915e"
+          ],
+          "policy":0
+        }
         ```
 
 ### `istanbul_getSnapshotAtHash`
@@ -931,6 +959,8 @@ If a majority of the validators vote the candidate in/out, the candidate is adde
 
 #### Returns
 
+`result`: `null`
+
 !!! example
 
     === "curl HTTP request"
@@ -945,7 +975,7 @@ If a majority of the validators vote the candidate in/out, the candidate is adde
         {
           "jsonrpc":"2.0",
           "id":1,
-          "result":
+          "result":null
         }
 
     === "geth console request"
@@ -957,6 +987,7 @@ If a majority of the validators vote the candidate in/out, the candidate is adde
     === "geth console result"
 
         ```js
+        null
         ```
 
 ### `istanbul_status`
@@ -1314,7 +1345,8 @@ This method can be called by an organization admin account.
 
 * `subOrgId`: *string* - sub-organization ID
 
-* `enodeId`: *string* - complete enode ID of the node linked to the sub-organization ID
+* `enodeId`: *string* - complete enode ID of the node linked to the sub-organization ID; if left as an empty string,
+  inherits the enode ID from the parent organization.
 
 #### Returns
 
@@ -2730,6 +2762,8 @@ If the transaction is a contract creation, use
 !!! note
 
     `input` cannot co-exist with `data` if they are set to different values.
+    `input` is the new naming of `data`.
+    They are the same parameters, but both remain for backwards compatibility.
 
 #### Returns
 
@@ -2819,6 +2853,8 @@ the contract address after the transaction is mined.
 !!! note
 
     `input` cannot co-exist with `data` if they are set to different values.
+    `input` is the new naming of `data`.
+    They are the same parameters, but both remain for backwards compatibility.
 
 #### Returns
 
