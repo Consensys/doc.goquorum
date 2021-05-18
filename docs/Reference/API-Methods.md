@@ -453,7 +453,9 @@ None
         {
           "jsonrpc":"2.0",
           "id":1,
-          "result":
+          "result": {
+            "0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb":true
+          }
         }
         ```
 
@@ -466,6 +468,9 @@ None
     === "geth console result"
 
         ```js
+        {
+          "0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb":true
+        }
         ```
 
 ### `istanbul_discard`
@@ -546,8 +551,11 @@ This means that they participated in the consensus for this block and attested t
           "result": {
             "number":10,
             "hash":"0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553",
-            "author":,
-            "committers":[]
+            "author":"0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7",
+            "committers": [
+              "0x71c7656ec7ab88b098defb751b7401b5f6d8976f",
+              "0xdc25ef3F5b8a186998338a2ada83795fba2d695"
+            ]
           }
         }
         ```
@@ -561,6 +569,15 @@ This means that they participated in the consensus for this block and attested t
     == "geth console result"
 
         ```js
+        {
+          "number":10,
+          "hash":"0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553",
+          "author":"0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7",
+          "committers": [
+            "0x71c7656ec7ab88b098defb751b7401b5f6d8976f",
+            "0xdc25ef3F5b8a186998338a2ada83795fba2d695"
+          ]
+        }
         ```
 
 ### `istanbul_getSignersFromBlockByHash`
@@ -601,8 +618,11 @@ This means that they participated in the consensus for this block and attested t
           "result": {
             "number":10,
             "hash":"0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553",
-            "author":,
-            "committers":[]
+            "author":"0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7",
+            "committers": [
+              "0x71c7656ec7ab88b098defb751b7401b5f6d8976f",
+              "0xdc25ef3F5b8a186998338a2ada83795fba2d695"
+            ]
           }
         }
         ```
@@ -616,6 +636,15 @@ This means that they participated in the consensus for this block and attested t
     === "geth console result"
 
         ```js
+        {
+          "number":10,
+          "hash":"0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553",
+          "author":"0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7",
+          "committers": [
+            "0x71c7656ec7ab88b098defb751b7401b5f6d8976f",
+            "0xdc25ef3F5b8a186998338a2ada83795fba2d695"
+          ]
+        }
         ```
 
 ### `istanbul_getSnapshot`
@@ -733,6 +762,9 @@ last block mined); defaults to `latest`
           "jsonrpc":"2.0",
           "id":1,
           "result": [
+            "0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7",
+            "0x71c7656ec7ab88b098defb751b7401b5f6d8976f",
+            "0xdc25ef3F5b8a186998338a2ada83795fba2d695"
           ]
         }
         ```
@@ -746,7 +778,11 @@ last block mined); defaults to `latest`
     === "geth console result"
 
         ```js
-        []
+        [
+          "0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7",
+          "0x71c7656ec7ab88b098defb751b7401b5f6d8976f",
+          "0xdc25ef3F5b8a186998338a2ada83795fba2d695"
+        ]
         ```
 
 ### `istanbul_getValidatorsAtHash`
@@ -776,6 +812,9 @@ Retrieves the list of authorized validators at the specified block hash.
           "jsonrpc":"2.0",
           "id":1,
           "result": [
+            "0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7",
+            "0x71c7656ec7ab88b098defb751b7401b5f6d8976f",
+            "0xdc25ef3F5b8a186998338a2ada83795fba2d695"
           ]
         }
         ```
@@ -789,7 +828,11 @@ Retrieves the list of authorized validators at the specified block hash.
     === "geth console result"
 
         ```js
-        []
+        [
+          "0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7",
+          "0x71c7656ec7ab88b098defb751b7401b5f6d8976f",
+          "0xdc25ef3F5b8a186998338a2ada83795fba2d695"
+        ]
         ```
 
 ### `istanbul_isValidator`
@@ -952,8 +995,12 @@ If the start block and end block numbers are not provided, the status of the las
           "jsonrpc":"2.0",
           "id":1,
           "result": {
-            "numBlocks":,
-            "sealerActivity":
+            "numBlocks":2,
+            "sealerActivity": {
+              "0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7": 3,
+              "0x71c7656ec7ab88b098defb751b7401b5f6d8976f": 1
+            }
+          }
         }
 
     === "geth console request"
@@ -966,8 +1013,11 @@ If the start block and end block numbers are not provided, the status of the las
 
         ```js
         {
-          "numblocks":,
-          "sealerActivity":
+          "numblocks":2,
+          "sealerActivity": {
+            "0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7": 3,
+            "0x71c7656ec7ab88b098defb751b7401b5f6d8976f": 1
+          }
         }
         ```
 
@@ -2402,16 +2452,42 @@ Defaults to `RLP` plus `json`.
 
 * `tx`: *object* - transaction object
 
-The following example uses `geth` console for signing and sending a private transaction.
-
 !!! example
 
-    The following transaction deploys a simple storage contract with an initial value of 42.
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_fillTransaction","params":[{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data":"0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":0x47b760,"privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":10}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":10,
+          "result": {
+            "raw":"0xf84d02808347b7608080b84075902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d6258080",
+            "tx": {
+              "gas":"0x47b760",
+              "gasPrice":"0x0",
+              "hash":"0xc0bbb6326ebafb7b0b18cf85d7b93e73ec8ae72b1c8d043d77d7ac5fecd9ccb5",
+              "input":"0x75902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d6",
+              "nonce":"0x2",
+              "r":"0x0",
+              "s":"0x0",
+              "to":null,
+              "v":"0x25",
+              "value":"0x0"
+            }
+          }
+        }
+        ```
 
     === "geth console request"
 
         ```javascript
-        a = eth.fillTransaction({"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data":"0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":0x47b760,"privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+        eth.fillTransaction({"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data":"0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":0x47b760,"privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
         ```
 
     === "geth console result"
@@ -2432,76 +2508,6 @@ The following example uses `geth` console for signing and sending a private tran
             "value":"0x0"
           }
         }
-        ```
-
-    Once the transaction object is returned, set `tx.from`:
-
-    === "geth console request"
-
-        ```javascript
-        a.tx.from = "0xed9d02e382b34818e88b88a309c7fe71e65f419d"
-        ```
-
-    === "geth console result"
-
-        ```json
-        "0xed9d02e382b34818e88b88a309c7fe71e65f419d"
-        ```
-
-    Set `tx.privatefor`:
-
-    === "geth console request"
-
-        ```javascript
-        a.tx.privateFor = ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]
-        ```
-
-    === "geth console result"
-
-        ```json
-        ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]
-        ```
-
-    Sign the transaction:
-
-    === "geth console request"
-
-        ```javascript
-        b = eth.signTransaction(a.tx)
-        ```
-
-    === "geth console result"
-
-        ```json
-        {
-          "raw":"0xf88d02808347b7608080b84075902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d637a04ff24fa99cdf3cfbaec698857c006240aa79331432d7ddb86209ec7b0010097da071f42224ee42a35872ca13fa6ffa3f7f6e550f1edecc750cc0a3ea638bf05ed9",
-          "tx": {
-            "gas":"0x47b760",
-            "gasPrice":"0x0",
-            "hash":"0x1fa98e808d711ffadfce90c4db088057e3d5efd668883be0755f158349dc274b",
-            "input":"0x75902a24f8f3248a8c6d342506f018b2ef735bca0badecbaf7dc98b5799b3c8db4cc65f1a9294f29f018ce603cf93a212ebdde4a8f2d83d44a98eb97ffa690d6",
-            "nonce":"0x2",
-            "r":"0x4ff24fa99cdf3cfbaec698857c006240aa79331432d7ddb86209ec7b0010097d",
-            "s":"0x71f42224ee42a35872ca13fa6ffa3f7f6e550f1edecc750cc0a3ea638bf05ed9",
-            "to":null,
-            "v":"0x37",
-            "value":"0x0"
-          }
-        }
-        ```
-
-    Call [`eth.sendRawPrivateTransaction`](#ethsendrawprivatetransaction) to send the transaction to intended recipients:
-
-    === "geth console request"
-
-        ```javascript
-        eth.sendRawPrivateTransaction(b.raw,{"privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
-        ```
-
-    === "geth console result"
-
-        ```json
-        "0xcd8ab3f6dbdb8535a44d47df9c7d8a3862fe9fb4257a2d377bdd8bface016928"
         ```
 
 ### `eth_getContractPrivacyMetadata`
@@ -2638,35 +2644,32 @@ the contract address after the transaction is mined.
 
 !!! example
 
-    === "Syntax"
+    === "curl HTTP request"
 
-        ```js
-        web3.eth.sendRawPrivateTransaction(signedTransactionData [, privateData] [, callback])
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getContractPrivacyMetadata","params":["0xf889808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000571ca08a8bbf888cfa37bbf0bb965423625641fc956967b81d12e23709cead01446075a01ce999b56a8a88504be365442ea61239198e23d1fce7d00fcfc5cd3b44b7215f", {privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
         ```
 
-    === "Example"
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":15,
+          "result":"0x7f9fade1c0d57a7af66ab4ead79fade1c0d57a7af66ab4ead7c2c2eb7b11a91385"
+        }
+        ```
+
+    === "geth console request"
 
         ```js
-        var Tx = require('ethereumjs-tx');
-        var privateKey = new Buffer('e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109', 'hex')
-        var rawTx = {
-          nonce: '0x00',
-          gasPrice: '0x09184e72a000',
-          gasLimit: '0x2710',
-          to: '0x0000000000000000000000000000000000000000',
-          value: '0x00',
-          // This data should be the hex value of the hash returned by Tessera after invoking storeraw api
-          data: '0x7f7465737432000000000000000000000000000000000000000000000000000000600057'
-        }
-        var tx = new Tx(rawTx);
-        tx.sign(privateKey);
-        var serializedTx = tx.serialize();
-        //console.log(serializedTx.toString('hex'));
-        //f889808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000571ca08a8bbf888cfa37bbf0bb965423625641fc956967b81d12e23709cead01446075a01ce999b56a8a88504be365442ea61239198e23d1fce7d00fcfc5cd3b44b7215f
-        web3.eth.sendRawPrivateTransaction('0x' + serializedTx.toString('hex'), {privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}, function(err, hash) {
-        if (!err)
-          console.log(hash); // "0x7f9fade1c0d57a7af66ab4ead79fade1c0d57a7af66ab4ead7c2c2eb7b11a91385"
-        });
+        web3.eth.sendRawPrivateTransaction("0xf889808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000571ca08a8bbf888cfa37bbf0bb965423625641fc956967b81d12e23709cead01446075a01ce999b56a8a88504be365442ea61239198e23d1fce7d00fcfc5cd3b44b7215f", {privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+        ```
+
+    === "geth console result"
+
+        ```js
+        "0x7f9fade1c0d57a7af66ab4ead79fade1c0d57a7af66ab4ead7c2c2eb7b11a91385"
         ```
 
 ### `eth_sendTransaction`
@@ -2726,7 +2729,7 @@ If the transaction is a contract creation, use
 
 !!! note
 
-        `input` cannot co-exist with `data` if they are set to different values.
+    `input` cannot co-exist with `data` if they are set to different values.
 
 #### Returns
 
@@ -2734,28 +2737,32 @@ If the transaction is a contract creation, use
 
 !!! example
 
-    === "Syntax"
+    === "curl HTTP request"
 
-        ```js
-        web3.eth.sendTransaction(transactionObject [, callback])
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getContractPrivacyMetadata","params":[{data:"603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3",privateFor:["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
         ```
 
-    === "Example"
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":15,
+          "result":"0x7f9fade1c0d57a7af66ab4ead7c2eb7b11a91385"
+        }
+        ```
+
+    === "geth console request"
 
         ```js
-        // compiled solidity source code using https://chriseth.github.io/cpp-ethereum/
-        var code = "603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3";
+        web3.eth.sendTransaction({data:"603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3",privateFor:["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+        ```
 
-        web3.eth.sendTransaction({
-            data: code,
-            privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]
-          },
-          function(err, address) {
-            if (!err) {
-              console.log(address); // "0x7f9fade1c0d57a7af66ab4ead7c2eb7b11a91385"
-            }
-          }
-        });
+    === "geth console result"
+
+        ```js
+        "0x7f9fade1c0d57a7af66ab4ead7c2eb7b11a91385"
         ```
 
 ### `eth_sendTransactionAsync`
