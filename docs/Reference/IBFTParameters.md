@@ -2,8 +2,8 @@
 
 ## Command line options
 
-You can set the block period with the [`--istanbul.blockperiod`](../CLI-Syntax.md#istanbulblockperiod) option and
-the request timeout with the [`--istanbul.requesttimeout`](../CLI-Syntax.md#istanbulrequesttimeout) option.
+You can set the block period with the [`--istanbul.blockperiod`](CLI-Syntax.md#istanbulblockperiod) option and
+the request timeout with the [`--istanbul.requesttimeout`](CLI-Syntax.md#istanbulrequesttimeout) option.
 
 ## Genesis file options
 
