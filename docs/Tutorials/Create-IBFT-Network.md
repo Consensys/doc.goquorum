@@ -302,8 +302,7 @@ Use the JavaScript console to check the peer count.
 
 ### 11. List current validators
 
-Use the Istanbul [`getValidators`](../Reference/Consensus/IBFT-RPC-API.md#istanbulgetvalidators) command to
-view the validator addresses.
+Use [`instabul.getValidators`](../Reference/API-Methods.md#istanbulgetvalidators) to view the validator addresses.
 
 === "Command"
     ```bash
