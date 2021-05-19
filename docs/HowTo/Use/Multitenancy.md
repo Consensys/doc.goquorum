@@ -108,6 +108,6 @@ In the above setup, `Node2` is being run as a legacy standalone node with `isMPS
 * Tessera needs to be restarted to load the new key. When Tessera starts, if the new key was generated but not added to a resident group the startup will fail.
 * Updates to the Authorization Server should be made to provide the new Tenant access to the private state defined in the `residentGroups` configuration.
 
-[scope values]: ../../Concepts/Multitenancy/Multitenancy.md#access-token-scope
-[custom scopes]: ../../Concepts/Multitenancy/Multitenancy.md#access-token-scope
+[scope values]: ../../Concepts/Multitenancy/Overview.md#access-token-scope
+[custom scopes]: ../../Concepts/Multitenancy/Overview.md#access-token-scope
 [Tessera]: https://docs.tessera.consensys.net

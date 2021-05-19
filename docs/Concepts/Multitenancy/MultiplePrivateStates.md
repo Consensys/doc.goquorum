@@ -150,7 +150,7 @@ In this case, the Tenant's Tessera version will need to be upgraded and `residen
 Returns the private state the user is operating on.
 
 <!--links-->
-[supporting multiple tenants on a single node]: Multitenancy.md
+[supporting multiple tenants on a single node]: Overview.md
 [setup residentGroups in Tessera]: ../../HowTo/Use/Multitenancy.md#tessera-setup
 [steps for migration]: #migration-guides
 [retrieved from Tessera]: #tessera-q2t-communication-changes
