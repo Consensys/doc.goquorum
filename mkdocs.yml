@@ -146,17 +146,10 @@ nav:
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md
   - Reference:
       - Command Line Options: Reference/CLI-Syntax.md
-      - API:
-          - Privacy: Reference/APIs/PrivacyAPI.md
-          - Privacy enhancements: Reference/APIs/PrivacyEnhancementsAPIs.md
-          - Permissions: Reference/APIs/PermissioningAPIs.md
-          - Contract extension: Reference/APIs/ContractExtensionAPIs.md
-          - Debug: Reference/APIs/DebugAPIs.md
+      - GoQuorum API Methods: Reference/API-Methods.md
+      - Permissioning Types: Reference/Permissioning-Types.md
       - Example Genesis File: Reference/genesis.md
-      - Consensus:
-          - IBFT Parameters: Reference/Consensus/IBFTParameters.md
-          - IBFT RPC API: Reference/Consensus/IBFT-RPC-API.md
-          - Raft RPC API: Reference/Consensus/Raft-RPC-API.md
+      - IBFT Parameters: Reference/IBFTParameters.md
       - Plugins:
           - Initialization interface: Reference/Plugins/init_interface.md
           - helloworld:
@@ -248,9 +241,9 @@ plugins:
         Consensus/raft/raft.md: Concepts/Consensus/Raft.md
         Getting Started/permissioned-nodes.md: HowTo/Configure/BasicPermissions.md
         Getting Started/running.md: HowTo/GetStarted/GettingStartedOverview.md
-        Consensus/ibft/ibft-parameters.md: Reference/Consensus/IBFTParameters.md
-        Consensus/ibft/istanbul-rpc-api.md: Reference/Consensus/IBFT-RPC-API.md
-        Consensus/raft/raft-rpc-api.md: Reference/Consensus/Raft-RPC-API.md
+        Consensus/ibft/ibft-parameters.md: Reference/IBFTParameters.md
+        Consensus/ibft/istanbul-rpc-api.md: Reference/API-Methods.md
+        Consensus/raft/raft-rpc-api.md: Reference/API-Methods.md
         Permissioning/Basic NetworkPermissions.md: Concepts/Permissioning/BasicNetworkPermissions.md
         Permissioning/Enhanced Permissions Model/Contract Design.md: Concepts/Permissioning/Enhanced/ContractDesign.md
         Permissioning/Permissions Overview.md: Concepts/Permissioning/PermissionsOverview.md
@@ -285,9 +278,9 @@ plugins:
         How-To-Guides/adding_nodes.md: HowTo/Use/adding_nodes.md
         Getting Started/graphql.md: HowTo/Use/graphql.md
         How-To-Guides/import-export.md: HowTo/Use/import-export.md
-        Privacy/Contract-Extension/ContractExtension apis.md: Reference/APIs/ContractExtensionAPIs.md
-        Permissioning/Enhanced Permissions Model/Permissioning apis.md: Reference/APIs/PermissioningAPIs.md
-        Getting Started/api.md: Reference/APIs/PrivacyAPI.md
+        Privacy/Contract-Extension/ContractExtension apis.md: Reference/API-Methods.md
+        Permissioning/Enhanced Permissions Model/Permissioning apis.md: Reference/API-Methods.md
+        Getting Started/api.md: Reference/API-Methods.md
         Reference/CakeshopFAQ.md: Reference/Cakeshop/GettingStarted.md
         Cakeshop/Cakeshop FAQ.md: Reference/Cakeshop/GettingStarted.md
         Cakeshop/Overview.md: Reference/Cakeshop/GettingStarted.md
@@ -309,3 +302,11 @@ plugins:
         quorum.js/extend.md: Reference/quorum.js/extend.md
         Tutorials/Creating-A-Network-From-Scratch.md: Tutorials/Create-IBFT-Network.md
         HowTo/GetStarted/monitoring.md: HowTo/Monitor/monitoring.md
+        Reference/APIs/PrivacyAPI.md: Reference/API-Methods.md
+        Reference/APIs/PrivacyEnhancementsAPIs.md: Reference/API-Methods.md
+        Reference/APIs/PermissioningAPIs.md: Reference/API-Methods.md
+        Reference/APIs/ContractExtensionAPIs.md: Reference/API-Methods.md
+        Reference/APIs/DebugAPIs.md: Reference/API-Methods.md
+        Reference/Consensus/IBFTParameters.md: Reference/IBFTParameters.md
+        Reference/Consensus/IBFT-RPC-API.md: Reference/API-Methods.md
+        Reference/Consensus/Raft-RPC-API.md: Reference/API-Methods.md
