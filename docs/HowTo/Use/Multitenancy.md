@@ -75,7 +75,7 @@ psi://J?self.eoa=0x0
 
 ### Tessera Setup
 
-In addition to configuring the Authorization Server, the Tessera config file must be updated to contain the new flag `enableMultiplePrivateStates=true` as well as `residentGroups` for the multi-tenant nodes.
+In addition to configuring the Authorization Server, the Tessera config file must be updated to contain the new flag `enableMultiplePrivateStates=true` and the `residentGroups` for the multi-tenant nodes.
 
 In the above setup, the `residentGroups` configuration of `Node1` would be:
 

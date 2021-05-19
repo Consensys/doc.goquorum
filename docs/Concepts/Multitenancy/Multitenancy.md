@@ -114,7 +114,7 @@ The value of the scope encoded in an access token (in case of JWT), or introspec
 (in the case of the OAuth2 Token Introspection API) contains the [RPC scope](../../Reference/Plugins/security/For-Users.md#oauth2-scopes)
 and tenant scope which has the following URL-based syntax:
 
-Specific scope details here...
+Specific scope details here…
 
 ```text
     "psi://[PSI]?self.eoa=0x0&node.eoa=0x0"

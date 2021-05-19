@@ -1,6 +1,6 @@
 # Multiple Private States
 
-Multiple Private States is a feature that allows a GoQuorum node to manage more than one private state. The private states are separated logically in the shared database.  This functionality lays the foundation for [supporting multiple tenants on a single node].
+Multiple Private States is a feature that allows a GoQuorum node to manage more than one private state. The private states are separated logically in the shared database. This functionality lays the foundation for [supporting multiple tenants on a single node].
 
 ## Key Changes
 
@@ -18,7 +18,7 @@ The purpose of the Private State Manager in GoQuorum is to resolve the PSI based
 
 #### Applying the Transaction
 
-When executing a private transaction, it may be the case that the transaction is addressed to multiple locally managed parties and as a result it may be necessary to apply the transaction to multiple private states.  The Private State Manager resolves each managed party tessera public key to one private state identifier.
+When executing a private transaction, it may be the case that the transaction is addressed to multiple locally managed parties and as a result it may be necessary to apply the transaction to multiple private states. The Private State Manager resolves each managed party tessera public key to one private state identifier.
 
 #### User invokes an RPC API
 
@@ -64,7 +64,7 @@ The `genesis.json` file has been modified to include `isMPS`.  This value should
 
 A new flag `enableMultiplePrivateStates` has been added to Tessera config defaulting to `false`, and can be enabled by adding the property to the config file the same way as other features. Quorum will not start if `isMPS=true` and `enableMultiplePrivateStates=false`.
 
-In addition, a new field `residentGroups` can be added to the Tessera config to define group access to specific private states.  If `enableMultiplePrivateStates=true`, `residentGroups` must be properly configured in order for Tessera to start. View how to [setup residentGroups in Tessera] for further information.  If the node is running as a standalone node (`isMPS=false`), configuration of `residentGroups` is not necessary.
+In addition, a new field `residentGroups` can be added to the Tessera config to define group access to specific private states. If `enableMultiplePrivateStates=true`, `residentGroups` must be properly configured in order for Tessera to start. View how to [setup residentGroups in Tessera] for further information. If the node is running as a standalone node (`isMPS=false`), configuration of `residentGroups` is not necessary.
 
 ## Upgrading a Node to MPS
 
@@ -74,7 +74,7 @@ If a user would like to upgrade an existing GoQuorum node to an node with MPS fu
 
 MPS requires [Tessera] version `21.4.0` or later.
 
-For any given node the privacy manager (Tessera) is started first and for that reason we allow the Tessera node to be upgraded with MPS support ahead of the GoQuorum upgrade.  But when the GoQuorum node is upgraded and Geth is reinitialized with `isMPS=true`, the GoQuorum node will validate the version of Tessera running and will fail to start if Tessera is not running an upgraded version.  The GoQuorum node reports an appropriate error message in the console suggesting users to upgrade Tessera first.
+For any given node the privacy manager (Tessera) is started first and for that reason we allow the Tessera node to be upgraded with MPS support ahead of the GoQuorum upgrade. But when the GoQuorum node is upgraded and geth is reinitialized with `isMPS=true`, the GoQuorum node will validate the version of Tessera running and will fail to start if Tessera is not running an upgraded version. The GoQuorum node reports an appropriate error message in the console suggesting users to upgrade Tessera first.
 
 If a node wants to upgrade it's Tessera to the MPS release (or further) to have other features and fixes but is not ready to upgrade GoQuorum, it can do so by running GoQuorum as usual. GoQuorum will continue to function as a standalone node.
 
@@ -83,11 +83,11 @@ If both Tessera and GoQuorum are upgraded but not configured to run MPS, the nod
 ## Tessera Q2T Communication Changes
 
 MPS introduces a new QT2 endpoint `/groups/resident` to return the resident groups defined in Tessera.
-This endpoint is invoked at GoQuorum startup to retrieve all resident groups.  These details are kept in memory in GoQuorum, so the [Private State Manager] is able to resolve these resident groups to the corresponding private state.
+This endpoint is invoked at GoQuorum startup to retrieve all resident groups. These details are kept in memory in GoQuorum, so the [Private State Manager] is able to resolve these resident groups to the corresponding private state.
 
 ## Accessing a Private State
 
-Users will need to specify the private state they wish to operate on. For backwards compatibility, if a user connects without specifying the private state, the default "private" identifier will be used.  If a "private" state is not configured, the user will be operating on an empty read only private state.
+Users will need to specify the private state they wish to operate on. For backwards compatibility, if a user connects without specifying the private state, the default "private" identifier will be used. If a "private" state is not configured, the user will be operating on an empty read only private state.
 
 In order to specify a private state to operate on the user has 3 options:
 
