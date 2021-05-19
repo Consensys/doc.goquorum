@@ -65,7 +65,7 @@ In order to run a multi-tenant node, the node must have the [configuration chang
 
 ## Enable Multi-tenancy via MPS
 
-Multi-tenancy requires [Tessera] version `20.10.3` or later and GoQuorum to be [MPS enabled].
+Multi-tenancy requires [Tessera] version `21.4.0` or later and GoQuorum to be [MPS enabled].
 
 To enable multi-tenancy, configure the [JSON RPC Security plugin](../../HowTo/Use/JSON-RPC-API-Security.md#configuration)
 and start GoQuorum with the `--multitenancy` command line option:
@@ -97,7 +97,7 @@ Security plugin.
         }
     }
     ```
-    
+
 ## Enterprise Authorization Server
 
 To support Multi-tenancy, an Authorization Server will need to be configured. The Authorization Server has the ability to grant private state access to clients via a private state identifier.

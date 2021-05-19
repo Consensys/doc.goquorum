@@ -72,7 +72,7 @@ If a user would like to upgrade an existing GoQuorum node to an node with MPS fu
 
 ## Enable Multiple Private States
 
-MPS requires [Tessera] version `20.10.3` or later.
+MPS requires [Tessera] version `21.4.0` or later.
 
 For any given node the privacy manager (Tessera) is started first and for that reason we allow the Tessera node to be upgraded with MPS support ahead of the GoQuorum upgrade.  But when the GoQuorum node is upgraded and Geth is reinitialized with `isMPS=true`, the GoQuorum node will validate the version of Tessera running and will fail to start if Tessera is not running an upgraded version.  The GoQuorum node reports an appropriate error message in the console suggesting users to upgrade Tessera first.
 
