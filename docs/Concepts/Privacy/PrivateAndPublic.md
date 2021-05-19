@@ -9,13 +9,13 @@ GoQuorum achieves transaction privacy by:
 1. Enabling transaction senders to create private transactions by marking who is privy to a transaction via the
   `privateFor` parameter.
 
-2. Replacing the payload of a private transaction with a hash of the encrypted payload, such that the original payload
-  is not visible to participants who are not privy to the transaction.
-
-3. Storing encrypted private data off-chain in a separate component called the
+1. Storing encrypted private data off-chain in a separate component called the
   [private transaction manager](PrivateTransactionManager.md).
   The private transaction manager encrypts private data, distributes the encrypted data to other parties that are privy
   to the transaction, and returns the decrypted payload to those parties.
+
+1. Replacing the payload of a private transaction with a hash of the encrypted payload, such that the original payload
+   is not visible to participants who are not privy to the transaction.
 
 !!! note
 
@@ -47,6 +47,10 @@ the `privateFor` parameter of the Transaction.
 `privateFor` can take multiple addresses in a comma separated list.
 (See
 [Creating private transactions/contracts](../../HowTo/Use/DevelopingSmartContracts.md#creating-private-transactionscontracts).)
+
+!!! note
+
+    `privateFor` is not shared with other participants; it's only used to know which nodes to send the encrypted payload.
 
 When a GoQuorum node encounters a transaction with a non-null `privateFor` value, it sets the `v` value of the
 transaction signature to `37` or `38` (as opposed to public transactions, whose `v` values are set according to
