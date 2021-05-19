@@ -185,17 +185,17 @@ as an example.
     txnManager.storeRawRequest(data, from)
     ```
 
-2. Replace the `data` field of the transaction with the `key` field from the `storeRawRequest` response.
+1. Replace the `data` field of the transaction with the `key` field from the `storeRawRequest` response.
 
-3. Sign the transaction.
+1. Sign the transaction.
 
-4. Mark the signed transaction as private with `setPrivate`.
+1. Mark the signed transaction as private with `setPrivate`.
 
     ```js
     txnManager.setPrivate(signedTx)
     ```
 
-5. Send the signed transaction to Quorum with `sendRawRequest`.
+1. Send the signed transaction to Quorum with `sendRawRequest`.
 
     ```js
      txnManager.sendRawRequest(serializedTransaction, privateFor)
