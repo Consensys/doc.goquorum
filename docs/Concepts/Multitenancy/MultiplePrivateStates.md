@@ -156,5 +156,5 @@ Returns the private state the user is operating on.
 [retrieved from Tessera]: #tessera-q2t-communication-changes
 [Tessera]: https://docs.tessera.consensys.net
 [Private State Manager]: #private-state-manager
-[Tessera Resident Groups]: https://docs.tessera.consensys.net/en/stable/Concepts/privacy-groups.md
-[how to merge Tesseras]: https://docs.tessera.consensys.net/en/stable/HowTo/Migrate/migration-multitenancy.md
+[Tessera Resident Groups]: https://docs.tessera.consensys.net/en/stable/Concepts/Privacy-Groups/
+[how to merge Tesseras]: https://docs.tessera.consensys.net/en/stable/HowTo/Migrate/Migration-Multitenancy/
