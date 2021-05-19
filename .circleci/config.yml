@@ -10,13 +10,13 @@ executors:
       - image: circleci/python:3.7.4
         auth:
           username: $DOCKER_USER_RO
-          password: $DOCKER_PASSWORD_RO        
+          password: $DOCKER_PASSWORD_RO
   node_executor:
     docker:
       - image: circleci/node:12.9.0-stretch
         auth:
           username: $DOCKER_USER_RO
-          password: $DOCKER_PASSWORD_RO        
+          password: $DOCKER_PASSWORD_RO
 
 commands:
   prepare:
@@ -26,6 +26,24 @@ commands:
       - run: git submodule sync
       - run: git submodule update --init
 
+  install_node:
+    description: "Install Node dependencies"
+    steps:
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "./common/build_tools/package-lock.json" }}
+      - run:
+          name: Install dependencies
+          command: |
+            npm ci
+
+  save_node_cache:
+    description: "Save Node dependencies"
+    steps:
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: deps-{{ checksum "./common/build_tools/package-lock.json" }}
   notify:
     description: "Notify Slack"
     steps:
@@ -65,7 +83,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            curl -sfL https://install.goreleaser.com/github.com/ValeLint/vale.sh | sh -s v2.4.0
+            curl -sfL https://install.goreleaser.com/github.com/ValeLint/vale.sh | sh -s v2.6.6
       - run:
           name: Cat config
           command: |
@@ -83,22 +101,13 @@ jobs:
     executor: node_executor
     steps:
       - prepare
-      - restore_cache:
-          keys:
-            - deps-{{ checksum "./common/build_tools/package-lock.json" }}
-      - run:
-          name: Install dependencies
-          command: |
-            npm install
+      - install_node
       - run:
           name: Run markdown link checker
           command: |
             npm run test:links
       - notify
-      - save_cache:
-          paths:
-            - ./node_modules
-          key: deps-{{ checksum "./common/build_tools/package-lock.json" }}
+      - save_node_cache
       - store_artifacts:
           path: ./linkchecker.out
           destination: ./linkchecker.out
@@ -107,13 +116,7 @@ jobs:
     executor: node_executor
     steps:
       - prepare
-      - restore_cache:
-          keys:
-            - deps-{{ checksum "./common/build_tools/package-lock.json" }}
-      - run:
-          name: Install dependencies
-          command: |
-            npm ci
+      - install_node
       - run:
           shell: /bin/bash #this is a non breaking command so it will always return success
           name: Run Markdownlint info checks
@@ -124,10 +127,7 @@ jobs:
           command: |
             npm run test:markdown
       - notify
-      - save_cache:
-          paths:
-            - ./node_modules
-          key: deps-{{ checksum "./common/build_tools/package-lock.json" }}
+      - save_node_cache
       - store_artifacts:
           path: ./markdownlint.out
           destination: ./markdownlint.out
@@ -141,16 +141,16 @@ workflows:
     jobs:
       - build:
           context:
-            - dockerhub-quorumengineering-ro      
+            - dockerhub-quorumengineering-ro
       - vale:
           context:
-            - dockerhub-quorumengineering-ro      
+            - dockerhub-quorumengineering-ro
       - markdownlint:
           context:
-            - dockerhub-quorumengineering-ro      
+            - dockerhub-quorumengineering-ro
       - linkchecker:
           context:
-            - dockerhub-quorumengineering-ro   
+            - dockerhub-quorumengineering-ro
   nightly:
     triggers:
       - schedule: # GMT
@@ -162,4 +162,4 @@ workflows:
     jobs:
       - linkchecker:
           context:
-            - dockerhub-quorumengineering-ro            
+            - dockerhub-quorumengineering-ro

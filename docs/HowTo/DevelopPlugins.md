@@ -16,7 +16,7 @@ A plugin is started as a separate process and communicates with the GoQuorum cli
 This is done over a mutually-authenticated TLS connection on the local machine. The implementation is done inside `go-plugin`
 library.
 
-Usage is simpler when developing plugins in Golang. For plugins written in other languages, plugin authors need to have
+Usage is simpler when developing plugins in golang. For plugins written in other languages, plugin authors need to have
 an understanding of the following lifecycle (see [Advanced topics for non-Go plugins](#advanced-topics-for-non-go-plugins) for more info):
 
 1. `geth` looks for the plugin distribution file after reading the plugin definition from settings

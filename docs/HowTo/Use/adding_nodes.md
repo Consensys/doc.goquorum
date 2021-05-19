@@ -20,7 +20,7 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 - [GoQuorum installed](../GetStarted/Install.md)
 - [Tessera](https://docs.tessera.consensys.net)
-- [A running network](../../Tutorials/Creating-A-Network-From-Scratch.md)
+- [A running network](../../Tutorials/Create-IBFT-Network.md)
 
 ## Adding GoQuorum nodes
 
@@ -28,13 +28,13 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 1. On an *existing* node, add the new peer to the Raft network.
 
-    In Geth console, run:
+    In the `geth` console, run:
 
     ```js
     raft.addPeer("enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407")
     ```
 
-    Result is:
+    The result is:
 
     ```js
     7
@@ -42,23 +42,23 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
     In this example, your new node has a Raft ID of `7`.
 
-1. If you are using permissioning, or discovery for Ethereum p2p, please refer [here](#extra-options).
+1. If you are using permissioning or peer-to-peer discovery, see the [extra options](#extra-options).
 
-1. You now need to initialise the new node with the network's genesis configuration.
+1. You now need to initialize the new node with the network's genesis configuration.
 
-    Initialising the new node is exactly the same an the original nodes.
+    Initializing the new node is exactly the same as the original nodes.
 
     ```bash
     geth --datadir qdata/dd7 init genesis.json
     ```
 
     !!! note
-       Where you obtain this from will be dependent on the network. You may get it from an existing peer, or a network operator, or elsewhere entirely.
+
+        Where you obtain this from will be dependent on the network. You may get it from an existing peer, or a network operator, or elsewhere entirely.
 
 1. Now you can start up the new node and let it sync with the network.
-    The main difference now is the use of the
-`--raftjoinexisting` flag, which lets the node know that it is joining an existing network, which is handled
-differently internally.
+    The main difference now is the use of the [`--raftjoinexisting`](../../Reference/CLI-Syntax.md#raftjoinexisting)
+    flag, which lets the node know that it is joining an existing network.
     The Raft ID obtained in step 1 is passed as a parameter to this flag:
 
     ```bash
@@ -68,23 +68,29 @@ differently internally.
     The new node is now up and running, and will start syncing the blockchain from existing peers. Once this has
     completed, it can send new transactions just as any other peer.
 
+!!! important
+
+    For a Raft network to work, 51% of the peers must be up and running.
+    We recommend having an odd number of at least 3 peers in a network.
+
 ### IBFT/Clique
 
-Adding nodes to an IBFT/Clique network is a bit simpler, as it only needs to configure itself rather then be
+Adding nodes to an IBFT/Clique network is a bit simpler, as it only needs to configure itself rather than be
 pre-allocated on the network (permissioning aside).
 
-1. Initialise the new node with the network's genesis configuration.
+1. Initialize the new node with the network's genesis configuration.
 
-    Initialising the new node is exactly the same an the original nodes:
+    Initializing the new node is exactly the same as the original nodes:
 
     ```bash
      geth --datadir qdata/dd7 init genesis.json
     ```
 
     !!! note
-       Where you obtain this from will be dependent on the network. You may get it from an existing peer, or a network operator, or elsewhere entirely.
 
-1. If you are using permissioning or discovery for Ethereum peer-to-peer, please refer [here](#extra-options).
+        Where you obtain the genesis file from will be dependent on the network. You may get it from an existing peer, or a network operator, or elsewhere entirely.
+
+1. If you are using permissioning or peer-to-peer discovery, see the [extra options](#extra-options).
 
 1. Start the new node, pointing either to a `bootnode` or listing an existing peer in the `static-nodes.json` file.
     Once a connection is established, the node will start syncing the blockchain, after which transactions can be sent.

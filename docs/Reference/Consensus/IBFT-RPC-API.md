@@ -169,3 +169,39 @@ istanbul.getSignersFromBlockByHash(blockHash)
 - `hash`: `String` - The retrieved block's hash
 - `author`: `String` - The address of the block proposer
 - `committers`: `[]String` - The list of all addresses whose seal appears in this block
+
+### istanbul.status
+
+Returns the signing status of blocks for a given block range. If the start block and end block numbers are not provided, it returns the status of the last 64 blocks by default.
+
+```js
+istanbul.status(startBlockNumber,endBlockNumber)
+```
+
+#### Parameters
+
+- `Number` - start block number
+- `Number` - end block number
+
+#### Returns
+
+`Object`
+
+- `numBlocks`: `Number` - number of blocks for which sealer activity is retrieved
+- `sealerActivity`: `map[string]Number` - key is the validator and value is the number of blocks sealed by the validator
+
+### istanbul.isValidator
+
+Returns `true` if this node is the validator for the given `blockNumber`. If blockNumber is not provided it takes the latest block number by default.
+
+```js
+istanbul.isValidator(blockNumber)
+```
+
+#### Parameters
+
+- `Number` - block number
+
+#### Returns
+
+- `Boolean` - validator status of this node for the given `blockNumber`.

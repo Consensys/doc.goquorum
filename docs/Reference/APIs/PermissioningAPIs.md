@@ -1317,6 +1317,90 @@ Once majority approvals from network admin accounts is received, the node is mar
         "Action completed successfully"
         ```
 
+### `quorumPermission_transactionAllowed`
+
+This api checks if the account initiating the transaction has sufficient permissions to execute the transaction
+
+#### Parameters
+
+* `txArgs`: transaction arguments object
+
+#### Returns
+
+* `status`: `bool` indicating if transaction is allowed or not
+
+!!! example
+    === "JSON-RPC"
+
+        Request:
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_transactionAllowed", "params":[ {"from":"0xf2cd20ed7904c103ce2ca0ef73fb77539930c59f"}],"id":50}' --header "Content-Type: application/json"
+        ```
+
+        Response:
+
+        ```json
+        {"jsonrpc":"2.0","id":50,"result":true}
+        ```
+
+    === "Geth console"
+
+        Request:
+
+        ```javascript
+        quorumPermission.transactionAllowed({from: eth.accounts[0]})
+        ```
+
+        Response:
+
+        ```json
+        "true"
+        ```
+
+### `quorumPermission_connectionAllowed`
+
+This api checks if the given enode is allowed to join network
+
+#### Parameters
+
+* `enodeId`: enode id
+* `ipAddress`: IP address of the node
+* `portNum`: port number
+
+#### Returns
+
+* `status`: `bool` indicating if connection is allowed or not
+
+!!! example
+    === "JSON-RPC"
+
+        Request:
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_connectionAllowed", "params":[ "239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf", "127.0.0.1", 21006],"id":50}' --header "Content-Type: application/json"
+        ```
+
+        Response:
+
+        ```json
+        {"jsonrpc":"2.0","id":50,"result":true}
+        ```
+
+    === "Geth console"
+
+        Request:
+
+        ```javascript
+        quorumPermission.connectionAllowed("579f786d4e2830bbcc02815a27e8a9bacccc9605df4dc6f20bcc1a6eb391e7225fff7cb83e5b4ecd1f3a94d8b733803f2f66b7e871961e7b029e22c155c3a778", "127.0.0.1", 21003)
+        ```
+
+        Response:
+
+        ```json
+        "true"
+        ```
+
 ## Roles
 
 ### Account access types

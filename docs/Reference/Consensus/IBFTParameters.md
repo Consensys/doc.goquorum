@@ -2,26 +2,8 @@
 
 ## Command line options
 
-### Block period
-
-`--istanbul.blockperiod 1`
-
-Setting the block period is used for how long blocks should be minted by the validators. It is also used for validation
-of block times by all nodes, so should not be changed after deciding a value for the network.
-The setting is a positive integer, and measures the minimum numbers of seconds before the next block is considered
-valid.
-
-The default value is `1`.
-
-### Request timeout
-
-`--istanbul.requesttimeout 10000`
-
-The request timeout is the timeout at which IBFT will seek to trigger a new round if the previous one did not complete.
-This period increases are the timeout is hit more often. This parameter sets the minimum timeout in the case of normal
-operation and is measured in milliseconds.
-
-The default value is `10000`.
+You can set the block period with the [`--istanbul.blockperiod`](../CLI-Syntax.md#istanbulblockperiod) option and
+the request timeout with the [`--istanbul.requesttimeout`](../CLI-Syntax.md#istanbulrequesttimeout) option.
 
 ## Genesis file options
 

@@ -15,7 +15,7 @@ This command-line tool creates a local GoQuorum network that can be started and 
 The wizard provides options for configuring the network and generates all the resources to run either
 in containers using `docker-compose`, or locally through the use of bash scripts.
 
-The wizard requires [NodeJS](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and runs on Linux/Mac only.
+The wizard requires [Nodejs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and runs on Linux/Mac only.
 
 ```bash
 npm install -g quorum-wizard
@@ -44,7 +44,7 @@ ready to run on Kubernetes.
 
 ## Creating a network from scratch
 
-[Creating a Network From Scratch](../../Tutorials/Creating-A-Network-From-Scratch.md) provides a step-by-step walkthrough
+[Creating a Network From Scratch](../../Tutorials/Create-IBFT-Network.md) provides a step-by-step walkthrough
 of how to create and configure a GoQuorum network suitable for either Raft or Istanbul consensus. It
 also shows how to enable privacy and add/remove nodes as required.
 

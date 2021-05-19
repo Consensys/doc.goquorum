@@ -4,7 +4,7 @@ description: RawTransactionManager module
 
 # RawTransactionManager module
 
-The `RawTransactionManager` module of quorum.js provides access to private transaction APIs that require a connection to a [Privacy Manager](../../Concepts/Privacy/PrivateTransactionManager.md).
+The `RawTransactionManager` module of `quorum.js` provides access to private transaction APIs that require a connection to a [Privacy Manager](../../Concepts/Privacy/PrivateTransactionManager.md).
 
 !!!example
 
@@ -197,4 +197,4 @@ A promise that resolves to the transaction receipt if the transaction was sent s
 
 ### Other examples
 
-The [7nodes-test](https://github.com/ConsenSys/quorum.js/tree/master/7nodes-test) directory in the quorum.js project repo contains examples of quorum.js usage. These scripts can be tested with a running [7nodes test network](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes).
+The [7nodes-test](https://github.com/ConsenSys/quorum.js/tree/master/7nodes-test) directory in the `quorum.js` project repo contains examples of `quorum.js` usage. These scripts can be tested with a running [7nodes test network](https://github.com/ConsenSys/quorum-examples/tree/master/examples/7nodes).

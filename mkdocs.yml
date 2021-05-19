@@ -29,7 +29,7 @@ extra:
     company: ConsenSys
     tool: Slack
     faq: https://consensys.net/quorum/faq
-    channel: https://93ecjxb0d3.execute-api.us-east-1.amazonaws.com/Express/
+    channel: https://www.goquorum.com/slack-inviter
     email: quorum@consensys.net
     website: https://consensys.net/
     lead_gen: https://consensys.net/quorum/contact-us
@@ -58,13 +58,14 @@ nav:
       - Get started:
           - Overview: HowTo/GetStarted/GettingStartedOverview.md
           - Install: HowTo/GetStarted/Install.md
-          - With Cakeshop: HowTo/GetStarted/Cakeshop.md
           - With Qubernetes (K8s):  HowTo/GetStarted/Getting-Started-Qubernetes.md
           - Upgrade to 2.6.0: HowTo/GetStarted/migration.md
           - With GoQuorum Wizard:
               - Get started: HowTo/GetStarted/Wizard/GettingStarted.md
               - Interacting: HowTo/GetStarted/Wizard/Interacting.md
+              - Tools: HowTo/GetStarted/Wizard/Tools.md
       - Configure:
+          - Raft consensus: HowTo/Configure/Consensus/Configuring-Raft.md
           - Genesis file: HowTo/Configure/GenesisOptions.md
           - High availability: HowTo/Configure/HighAvailability.md
           - Permissions:
@@ -77,18 +78,25 @@ nav:
           - Overview: HowTo/ManageKeys/ManagingKeys.md
           - Using clef: HowTo/ManageKeys/clef.md
           - Using account plugins: HowTo/ManageKeys/AccountPlugins.md
+      - Monitor nodes:
+          - Monitor a GoQuorum node: HowTo/Monitor/monitoring.md
+          - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md
       - Use:
           - Adding nodes to network: HowTo/Use/adding_nodes.md
           - Adding nodes examples: HowTo/Use/add_node_examples.md
           - Adding IBFT validators: HowTo/Use/AddingIBFTValidators.md
           - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
           - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
-          - Multitenancy: HowTo/Use/Multitenancy.md
+          - Multi-tenancy: HowTo/Use/Multitenancy.md
           - Smart contracts: HowTo/Use/DevelopingSmartContracts.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
   - Tutorials:
-      - Create network from scratch: Tutorials/Creating-A-Network-From-Scratch.md
+      - Create a network using IBFT: Tutorials/Create-IBFT-Network.md
+      - Adding and removing IBFT validators: Tutorials/Adding-removing-IBFT-validators.md
+      - Create a network using Raft: Tutorials/Create-a-Raft-network.md
+      - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
+      - Send private transactions: Tutorials/Send-private-transaction.md
       - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
       - Quorum Developer Quickstart: Tutorials/Quorum-Dev-Quickstart.md
   - Concepts:
@@ -104,7 +112,10 @@ nav:
       - Consensus:
           - Overview: Concepts/Consensus/Overview.md
           - IBFT: Concepts/Consensus/IBFT.md
-          - Raft: Concepts/Consensus/Raft.md
+          - Raft:
+              - Overview: Concepts/Consensus/Raft.md
+              - Lifecyle Raft transaction: Concepts/Consensus/Lifecycle-Raft-transaction.md
+              - Implementation: Concepts/Consensus/Raft-implementation.md
       - Permissioning:
           - Overview: Concepts/Permissioning/PermissionsOverview.md
           - Basic permissions: Concepts/Permissioning/BasicNetworkPermissions.md
@@ -124,7 +135,9 @@ nav:
           - Decentralized App:
             - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
             - Smart Contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
-      - Multitenancy:
+      - Multi-tenancy:
+      - Multi-tenancy:
+            - Overview: Concepts/Multitenancy/Overview.md
             - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
             - Multitenancy: Concepts/Multitenancy/Multitenancy.md
       - Quorum profiling: Concepts/Profiling.md
@@ -134,12 +147,14 @@ nav:
           - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md
   - Reference:
+      - Command Line Options: Reference/CLI-Syntax.md
       - API:
           - Privacy: Reference/APIs/PrivacyAPI.md
           - Privacy enhancements: Reference/APIs/PrivacyEnhancementsAPIs.md
           - Permissions: Reference/APIs/PermissioningAPIs.md
           - Contract extension: Reference/APIs/ContractExtensionAPIs.md
-      - Example genesis file: Reference/genesis.md
+          - Debug: Reference/APIs/DebugAPIs.md
+      - Example Genesis File: Reference/genesis.md
       - Consensus:
           - IBFT Parameters: Reference/Consensus/IBFTParameters.md
           - IBFT RPC API: Reference/Consensus/IBFT-RPC-API.md
@@ -157,9 +172,13 @@ nav:
             - Developers: Reference/Plugins/security/For-Developers.md
             - Users: Reference/Plugins/security/For-Users.md
             - Interface: Reference/Plugins/security/interface.md
-      - GoQuorum projects: Reference/GoQuorum-Projects.md
+      - Accounts for Testing: Reference/Accounts-for-Testing.md
+      - GoQuorum Projects: Reference/GoQuorum-Projects.md
       - Logging and Errors: Reference/Logging and Errors.md
-      - Remix plugin:
+      - Cakeshop:
+          - Getting started: Reference/Cakeshop/GettingStarted.md
+          - Configuration: Reference/Cakeshop/Configuration.md
+      - Remix Plugin:
           - Overview: Reference/RemixPlugin/Overview.md
           - Getting started: Reference/RemixPlugin/GettingStarted.md
       - quorum.js:
@@ -167,7 +186,6 @@ nav:
           - extend API: Reference/quorum.js/extend.md
           - RawTransactionManager API: Reference/quorum.js/RawTransactionManager.md
       - FAQ: Reference/FAQ.md
-      - Cakeshop FAQ: Reference/CakeshopFAQ.md
 
 markdown_extensions:
   - toc:
@@ -203,8 +221,18 @@ markdown_extensions:
 plugins:
   - search:
       lang: 'en'
-      separator: '[\s]+'
+      separator: '[\s\-\.\_]+'
   - markdownextradata
+  - exclude:
+      glob:
+        - global/*
+  - git-revision-date-localized:
+      locale: en
+  - minify:
+      minify_html: true
+      minify_js: true
+      htmlmin_opts:
+        remove_comments: true
   - redirects:
       redirect_maps:
         # Configure redirects using key:value pairs:
@@ -246,7 +274,8 @@ plugins:
         Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/EnhancedPermissions.md
         Quorum Features/dns.md: HowTo/Configure/dns.md
         PluggableArchitecture/PluginDevelopment.md: HowTo/DevelopPlugins.md
-        Cakeshop/Getting started.md: HowTo/GetStarted/Cakeshop.md
+        HowTo/GetStarted/Cakeshop.md: Reference/Cakeshop/GettingStarted.md
+        Cakeshop/Getting started.md: Reference/Cakeshop/GettingStarted.md
         Getting Started/Getting Started Overview.md: HowTo/GetStarted/GettingStartedOverview.md
         Getting Started/Installing.md: HowTo/GetStarted/Install.md
         Wizard/GettingStarted.md: HowTo/GetStarted/Wizard/GettingStarted.md
@@ -261,7 +290,9 @@ plugins:
         Privacy/Contract-Extension/ContractExtension apis.md: Reference/APIs/ContractExtensionAPIs.md
         Permissioning/Enhanced Permissions Model/Permissioning apis.md: Reference/APIs/PermissioningAPIs.md
         Getting Started/api.md: Reference/APIs/PrivacyAPI.md
-        Cakeshop/Cakeshop FAQ.md: Reference/CakeshopFAQ.md
+        Reference/CakeshopFAQ.md: Reference/Cakeshop/GettingStarted.md
+        Cakeshop/Cakeshop FAQ.md: Reference/Cakeshop/GettingStarted.md
+        Cakeshop/Overview.md: Reference/Cakeshop/GettingStarted.md
         FAQ.md: Reference/FAQ.md
         Getting Started/Quorum-Examples.md: Reference/GoQuorum-Projects.md
         PluggableArchitecture/Plugins/account/For-Developers.md: Reference/Plugins/account/For-Developers.md
@@ -278,4 +309,5 @@ plugins:
         quorum.js/Overview.md: Reference/quorum.js/Overview.md
         quorum.js/RawTransactionManager.md: Reference/quorum.js/RawTransactionManager.md
         quorum.js/extend.md: Reference/quorum.js/extend.md
-        Getting Started/Creating-A-Network-From-Scratch.md: Tutorials/Creating-A-Network-From-Scratch.md
+        Tutorials/Creating-A-Network-From-Scratch.md: Tutorials/Create-IBFT-Network.md
+        HowTo/GetStarted/monitoring.md: HowTo/Monitor/monitoring.md
