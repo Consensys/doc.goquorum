@@ -1,10 +1,12 @@
-# Multi-tenancy
+# Multi-tenancy via MPS
 
 ## Prerequisites
 
-* Supply the `--multitenancy` command line flag
+* Set `isMPS=true` in GoQuorum genesis.config
 * Configure the [JSON RPC Security plugin](JSON-RPC-API-Security.md#configuration)
-* Use [Tessera] version `20.10.2` or later.
+* Use [Tessera] version `21.4.0` or later
+* Add `enableMultiplePrivateStates=true` and configure `residentGroups` in the Tessera config
+* Run GoQuorum with `--multitenancy` flag
 
 ## Network Topology
 
@@ -16,8 +18,9 @@ only be protected by one authorization server.
 
 This section outlines an example of how multi-tenancy can be set up. A network operator must
 configure [scope values] for each user in an authorization server, for each tenant.
-This example network contains 4 nodes, 2 of which are multi-tenant nodes. The multi-tenant nodes are
-`Node1` and `Node2`.
+This example network contains 4 nodes.
+Multi-tenant `Node1` is shared between tenant `J` and `G` (`isMPS=true`) and
+Standalone `Node2` is used by tenant `D` alone (`isMPS=false`)
 
 !!! note
     A node consists of GoQuorum client and Tessera Private Transaction Manager.
@@ -25,108 +28,86 @@ This example network contains 4 nodes, 2 of which are multi-tenant nodes. The mu
     We name Privacy Manager key pairs for easy referencing, for example: `J_K1` or `G_K1`. In
     reality, their values are the pubic keys used in `privateFor` and `privateFrom` fields.
 
-Privacy Manager key pairs are allocated as follows:
-
-* `Node1` manages `J_K1`, `J_K2`, `G_K1`, and `G_K3`
-* `Node2` manages `G_K2` and `D_K1`.
-
 Tenants are assigned to multi-tenant nodes as follows:
 
 * `J Organization` owns `J_K1` and `J_K2`, and it's tenancy is on `Node1`
-* `G Organization` owns `G_K1`, `G_K2`, and `G_K3`, and its tenancy is on `Node1` and `Node2`
-* `D Organization` owns `D_K1`, and its tenancy is on `Node2`.
+* `G Organization` owns `G_K1` and `G_K2`, and it's tenancy is on `Node1`
+* `D Organization` owns `D_K1`, and it's tenancy is on `Node2`.
 
-In practice, `J Organization`, `G Organization` and `D Organization` may decide to allocate keys to
+In practice, `J Organization` and `G Organization` may decide to allocate keys to
 their departments, therefore the security model could be as below:
 
 * `J Organization` has:
-    * `J Investment` owning `J_K1`
-    * `J Settlement` owning `J_K2`
-    * `J Audit` having READ access to contracts in which `J_K1` and `J_K2` are participants
+    * `J Investment` has access to `J` tenancy using any self-managed Ethereum Accounts
+    * `J Settlement` has access to `J` tenancy using node-managed Ethereum Account `J_ACC1` and a self-managed `Wallet1`
 * `G Organization` has:
-    * `G Investment` owning `G_K1`
-    * `G Settlement` owning `G_K2`
-    * `G Research` owning `G_K3`
-    * `G Audit` having READ access to contracts in which `G_K1`, `G_K2` and `G_K3` are participants
-* `D Organization` has:
-    * `D Investment` owning `D_K1`
+    * `G Investment` has access to `G` tenancy using any self-managed Ethereum Accounts
+    * `G Settlement` has access to `G` tenancy using node-managed Ethereum Account `G_ACC1` and self-managed `Wallet2`
 
 Each authorization server has its own configuration steps and client onboarding process.
 A network operator's responsibility is to implement the above security model in the authorization
-server by defining [custom scopes](../../Concepts/Multitenancy/Overview.md#access-token-scope) and
+server by defining [custom scopes] and
 granting them to target clients.
 
-A custom scope representing __`J Investment` owning `J_K1`__,  
-where `J_K1=8SjRHlUBe4hAmTk3KDeJ96RhN+s10xRrHDrxEi1O5W0=`  
-would be:
+A custom scope representing __`J Investment`__ would be:
 
 ```text
-private://0x0/_/contracts?owned.eoa=0x0&from.tm=8SjRHlUBe4hAmTk3KDeJ96RhN%2bs10xRrHDrxEi1O5W0%3d
+psi://J?self.eoa=0x0
 ```
 
-Custom scopes representing __`J Audit` having READ access to contracts in which `J_K1` and `J_K2` are participants__,  
-where `J_K1=8SjRHlUBe4hAmTk3KDeJ96RhN+s10xRrHDrxEi1O5W0=`  
-and `J_K2=2T7xkjblN568N1QmPeElTjoeoNT4tkWYOJYxSMDO5i0=`,  
-would be:
+A custom scope representing __`G Settlement`__ would be:
 
 ```text
-private://0x0/read/contracts?owned.eoa=0x0&from.tm=8SjRHlUBe4hAmTk3KDeJ96RhN%2bs10xRrHDrxEi1O5W0%3d&from.tm=2T7xkjblN568N1QmPeElTjoeoNT4tkWYOJYxSMDO5i0%3d
+psi://G?node.eoa=G_ACC1&self.eoa=Wallet2
 ```
 
-!!! important
-    Clients must also be granted scopes which specify access to the JSON RPC APIs.
+Clients must also be granted scopes which specify access to the JSON RPC APIs.
 
-    Refer to the [JSON RPC Security plugin](../../Reference/Plugins/security/For-Users.md#oauth2-scopes)
-    for more information.
+Refer to the [JSON RPC Security plugin](../../Reference/Plugins/security/For-Users.md#oauth2-scopes) for more information.
 
 In summary, to reflect the above security model, typical scopes being granted to `J Investment`
 would be the following:
 
 ```text
 rpc://eth_*
-private://0x0/_/contracts?owned.eoa=0x0&from.tm=8SjRHlUBe4hAmTk3KDeJ96RhN%2bs10xRrHDrxEi1O5W0%3d
+psi://J?self.eoa=0x0
 ```
 
-## Supported JSON RPC APIs
+### Tessera Setup
 
-!!! important
-    The `privateFrom` field is mandatory when multi-tenancy is enabled
+In addition to configuring the Authorization Server, the Tessera config file must be updated to contain the new flag `enableMultiplePrivateStates=true` and the `residentGroups` for the multi-tenant nodes.
 
-APIs that are used to access states are required to be protected. Those are:
+In the above setup, the `residentGroups` configuration of `Node1` would be:
 
-* `read` APIs:
-    * `eth_getTransactionReceipt`
-    * `eth_getLogs`
-    * `eth_getFilterLogs`
-    * `eth_call`
-    * `quorumExtension_getExtensionStatus`
-    * `quorumExtension_activeExtensionContracts`
-* `write` APIs:
-    * `eth_sendTransaction`
-    * `eth_sendRawPrivateTransaction`
-    * `quorumExtension_extendContract`
-    * `quorumExtension_approveExtension`
-    * `quorumExtension_cancelExtension`
+``` json
+"residentGroups": [
+ {
+   "name": "PS1",
+   "members": ["J_K1", "J_K2"],
+   "description": "Private state of J Organization"
+ },
+ {
+   "name": "PS2",
+   "members": ["G_K1", "G_K2"],
+   "description": "Private State of G Organization"
+ }
+]
+```
 
-It's important for the network operator to configure the authorization server to ensure the
-authorization model is reflected accurately.
+During Tessera startup, `residentGroups` are validated to check that each key is part of a single resident group.
+Once a key is added to a resident group, it must remain in that group.
 
-!!! info
-    GraphQL APIs and other APIs will be supported in the future.
+Tessera will not start if `residentGroups` is not configured correctly and `enableMultiplePrivateStates=true`.
 
-## Migration Guides
+In the above setup, `Node2` is being run as a legacy standalone node with `isMPS=false`. No additional configuration changes are required in Tessera.
 
-### GoQuorum
+## Adding a new Tenant to Multi-tenant Node
 
-Multi-tenancy introduces new improvements to how GoQuorum stores data so it can be used to protect
-tenant states. This requires re-syncing a node to be multi-tenant.
+* Network Admin executes Tessera keygen to generate the new key
+* The Tessera config file must be updated to include the new key in a resident group.
+* Tessera needs to be restarted to load the new key. When Tessera starts, if the new key was generated but not added to a resident group the startup will fail.
+* Updates to the Authorization Server should be made to provide the new Tenant access to the private state defined in the `residentGroups` configuration.
 
-### Tessera
-
-Tenants own one or more Privacy Manager key pairs. Public keys are used to address private transactions.
-Please refer to [Tessera keys configuration documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Keys/)
-for more information about how Tessera manages multiple key pairs.
-
-<!--links-->
 [scope values]: ../../Concepts/Multitenancy/Overview.md#access-token-scope
-[Tessera]: https://docs.tessera.consensys.net/en/stable/
+[custom scopes]: ../../Concepts/Multitenancy/Overview.md#access-token-scope
+[Tessera]: https://docs.tessera.consensys.net
