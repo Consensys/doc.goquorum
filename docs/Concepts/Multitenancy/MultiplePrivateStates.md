@@ -100,9 +100,11 @@ In order to specify a private state to operate on the user has 3 options:
 ### URL Parameter
 
 PSI query param can be added to the API URI:
-```
+
+```shell
 geth attach http://localhost:22000/?PSI=PS1
 ```
+
 ### HTTP Header
 
 Every RPC request must have an HTTP Header "PSI" attached that specifies the private state to use
@@ -146,7 +148,6 @@ In this case, the Tenant's Tessera version will need to be upgraded and `residen
 ### eth_getPSI
 
 Returns the private state the user is operating on.
-
 
 <!--links-->
 [supporting multiple tenants on a single node]: Multitenancy.md

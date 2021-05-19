@@ -28,7 +28,6 @@ Standalone `Node2` is used by tenant `D` alone (`isMPS=false`)
     We name Privacy Manager key pairs for easy referencing, for example: `J_K1` or `G_K1`. In
     reality, their values are the pubic keys used in `privateFor` and `privateFrom` fields.
 
-
 Tenants are assigned to multi-tenant nodes as follows:
 
 * `J Organization` owns `J_K1` and `J_K2`, and it's tenancy is on `Node1`
@@ -108,7 +107,6 @@ In the above setup, `Node2` is being run as a legacy standalone node with `isMPS
 * The Tessera config file must be updated to include the new key in a resident group.
 * Tessera needs to be restarted to load the new key. When Tessera starts, if the new key was generated but not added to a resident group the startup will fail.
 * Updates to the Authorization Server should be made to provide the new Tenant access to the private state defined in the `residentGroups` configuration.
-
 
 [scope values]: ../../Concepts/Multitenancy/Multitenancy.md#access-token-scope
 [custom scopes]: ../../Concepts/Multitenancy/Multitenancy.md#access-token-scope
