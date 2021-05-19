@@ -4,7 +4,7 @@
 
 * Set `isMPS=true` in GoQuorum genesis.config
 * Configure the [JSON RPC Security plugin](JSON-RPC-API-Security.md#configuration)
-* Use [Tessera] version `20.10.3` or later
+* Use [Tessera] version `21.4.0` or later
 * Add `enableMultiplePrivateStates=true` and configure `residentGroups` in the Tessera config
 * Run GoQuorum with `--multitenancy` flag
 
@@ -19,7 +19,7 @@ only be protected by one authorization server.
 This section outlines an example of how multi-tenancy can be set up. A network operator must
 configure [scope values] for each user in an authorization server, for each tenant.
 This example network contains 4 nodes.
-Multi-tenant `Node1` is shared between tenant `J` and `G` (`isMPS=true`) and 
+Multi-tenant `Node1` is shared between tenant `J` and `G` (`isMPS=true`) and
 Standalone `Node2` is used by tenant `D` alone (`isMPS=false`)
 
 !!! note
@@ -27,7 +27,7 @@ Standalone `Node2` is used by tenant `D` alone (`isMPS=false`)
 
     We name Privacy Manager key pairs for easy referencing, for example: `J_K1` or `G_K1`. In
     reality, their values are the pubic keys used in `privateFor` and `privateFrom` fields.
-    
+
 
 Tenants are assigned to multi-tenant nodes as follows:
 

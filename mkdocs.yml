@@ -136,10 +136,8 @@ nav:
             - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
             - Smart Contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
       - Multi-tenancy:
-      - Multi-tenancy:
-            - Overview: Concepts/Multitenancy/Overview.md
             - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
-            - Multitenancy: Concepts/Multitenancy/Multitenancy.md
+            - Multi-tenancy: Concepts/Multitenancy/Multitenancy.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
       - Cakeshop: Concepts/Cakeshop.md
