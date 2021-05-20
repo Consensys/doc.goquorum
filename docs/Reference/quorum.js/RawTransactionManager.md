@@ -195,7 +195,7 @@ as an example.
     txnManager.setPrivate(signedTx)
     ```
 
-1. Send the signed transaction to Quorum with `sendRawRequest`.
+1. Send the signed transaction to GoQuorum with `sendRawRequest`.
 
     ```js
      txnManager.sendRawRequest(serializedTransaction, privateFor)
