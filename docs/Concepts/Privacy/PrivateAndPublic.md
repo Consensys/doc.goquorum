@@ -21,13 +21,13 @@ GoQuorum achieves transaction privacy by:
 
     While GoQuorum introduces the notion of "public transactions" and "private transactions," it does not introduce new
     transaction types.
-    Rather, it extends the Ethereum transaction model to include an optional `privateFor` parameter (whose use results
-    in GoQuorum treating a transaction as private) and the transaction type has a new `IsPrivate` method to identify
-    private transactions.
+    Rather, it extends the Ethereum transaction model to include an optional `privateFor` parameter (the inclusion of
+    which results in GoQuorum treating a transaction as private) and the transaction type has a new `IsPrivate` method to
+    identify private transactions.
 
 ## Public transactions
 
-Public transactions have payloads that are visible to all participants of the same GoQuorum network.
+Public transactions have payloads that are visible to all participants of the same network.
 These are
 [created as standard Ethereum transactions](https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethsendtransaction).
 
@@ -54,7 +54,7 @@ the `privateFor` parameter of the Transaction.
 
 When a GoQuorum node encounters a transaction with a non-null `privateFor` value, it sets the `v` value of the
 transaction signature to `37` or `38` (as opposed to public transactions, whose `v` values are set according to
-[EIP 155](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md)).
+[EIP-155](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md)).
 
 ## Public vs private transaction handling
 
@@ -62,7 +62,7 @@ Public transactions are executed in the standard Ethereum way.
 If a public transaction is sent to an account that holds contract code, each participant executes the same code, and
 their StateDBs are updated accordingly.
 
-Private transactions are executed differently: prior to the sender's GoQuorum node propagating the transaction to the
+Private transactions are executed differently: before the sender's GoQuorum node propagating the transaction to the
 rest of the network, the node replaces the original transaction payload with a hash of the encrypted payload that it
 receives from Tessera.
 Participants that are privy to the transaction are able to replace the hash with the actual payload via their Tessera
@@ -73,6 +73,6 @@ the transaction skip the transaction and don't execute the contract code.
 However, participants privy to the transaction replace the hash with the original payload before calling the EVM for
 execution, and their StateDBs update accordingly.
 These two sets of participants therefore end up with different StateDBs and aren't able to reach consensus.
-To support this bifurcation of contract state, GoQuorum stores the state of public contracts in a public state trie that
+To support this forking of contract state, GoQuorum stores the state of public contracts in a public state trie that
 is globally synchronized, and it stores the state of private contracts in a private state trie that is not globally
 synchronized.
