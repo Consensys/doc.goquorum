@@ -168,32 +168,45 @@ A promise that resolves to the transaction receipt if the transaction was sent s
 
 ## Examples
 
-### Externally signing and sending a private tx
+### Externally signing and sending a private transaction
 
-!!!info
+!!! info
+
     This is not supported by Constellation and requires Quorum v2.2.0+
 
-[Code sample](https://github.com/ConsenSys/quorum.js/blob/master/7nodes-test/deployContractViaHttp-externalSigningTemplate.js).
+The following workflow demonstrates how to externally sign and send a private transaction.
+See this
+[code sample](https://github.com/ConsenSys/quorum.js/blob/master/7nodes-test/deployContractViaHttp-externalSigningTemplate.js)
+as an example.
 
-1. `storeRawRequest` to encrypt the transaction `data`
+1. Use `storeRawRequest` to encrypt the transaction `data`.
 
     ```js
     txnManager.storeRawRequest(data, from)
     ```
 
-1. Replace `data` field of transaction with `key` field from `storeRawRequest` response
-1. Sign the transaction
-1. Mark the signed transaction as private with `setPrivate`
+1. Replace the `data` field of the transaction with the `key` field from the `storeRawRequest` response.
+
+1. Sign the transaction.
+
+1. Mark the signed transaction as private with `setPrivate`.
 
     ```js
     txnManager.setPrivate(signedTx)
     ```
 
-1. Send the signed transaction to Quorum with `sendRawRequest`
+1. Send the signed transaction to GoQuorum with `sendRawRequest`.
 
     ```js
      txnManager.sendRawRequest(serializedTransaction, privateFor)
     ```
+
+!!! note
+
+    The additional parameters set in step 4 and step 5 must be set after signing the transaction in step 3.
+    In step 4, `setPrivate` modifies the `v` value, which is only present after signing a transaction.
+    In step 5, the extra parameters do not relate to the transaction itself, so must be submitted alongside the signed
+    transaction.
 
 ### Other examples
 
