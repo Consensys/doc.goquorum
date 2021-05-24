@@ -1196,6 +1196,11 @@ This method can be called by an organization admin account.
 
 * `isAdminRole`: *boolean* - indicates if the role is an admin role
 
+!!! note
+
+    When adding a new role to a sub-organization, the role ID must exist in the master organization under which the
+    sub-organization falls.
+
 #### Returns
 
 `result`: *string* - response message
