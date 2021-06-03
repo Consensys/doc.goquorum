@@ -20,7 +20,7 @@ description: Helps to generate local GoQuorum and Ethereum blockchain networks.
 
 ## Usage
 
-You can follow this [walkthrough](https://consensys.net/quorum/products/guides/getting-started-with-consensys-quorum/) 
+You can follow this [walk-through](https://consensys.net/quorum/products/guides/getting-started-with-consensys-quorum/)
 which details the entire process.
 
 To create the docker-compose file and artifacts, run:
@@ -32,4 +32,4 @@ npx quorum-dev-quickstart
 Follow the prompts displayed.
 
 When installation is complete, refer to `README.md` in the installation directory for more information
-on your test network. Optionally refer to the walkthrough above
+on your test network. Optionally, refer to the walk-through above.
