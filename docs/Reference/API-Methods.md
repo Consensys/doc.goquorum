@@ -2459,6 +2459,16 @@ This can only be performed for the master organization and requires the majority
 
 ## Privacy methods
 
+!!! note
+
+    The following privacy methods have been created or modified in addition to the standard Ethereum `eth` JSON-RPC
+    methods.
+
+    Gas price is removed from GoQuorum networks.
+    When using standard Ethereum JSON-RPC methods such as
+    [`sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.3.4/web3-eth.html#sendsignedtransaction), set
+    `gasPrice` to 0.
+
 ### `eth_fillTransaction`
 
 Supports offline signing of the specified transaction.
