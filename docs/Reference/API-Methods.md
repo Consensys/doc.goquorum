@@ -475,8 +475,8 @@ None
 
 ### `istanbul_discard`
 
-Drops a currently running candidate, stopping the validator from casting further [votes](#istanbul_propose) (either for
-or against).
+Drops a currently running candidate, stopping further [votes](#istanbul_propose) from being cast either for or against
+the candidate.
 
 #### Parameters
 
