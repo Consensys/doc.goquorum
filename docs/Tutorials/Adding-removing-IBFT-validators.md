@@ -118,7 +118,7 @@ description: Adding and removing IBFT validators
     exit
     ```
 
-    **Repeat the proposal process for this candidate node by connecting your `geth` console to node 1, node 2, and node 3.**
+    Repeat the proposal process for this candidate node by connecting your `geth` console to node 1, node 2, and node 3.
 
     !!! note
 
