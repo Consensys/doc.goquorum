@@ -6,7 +6,7 @@ description: Adding and removing IBFT validators
 
 ## Prerequisites
 
-* [IBFT network as configured in IBFT tutorial](Create-IBFT-Network.md).
+* An IBFT network as configured in [the IBFT tutorial](Create-IBFT-Network.md).
 
 ## Adding a validator
 
@@ -118,7 +118,12 @@ description: Adding and removing IBFT validators
     exit
     ```
 
-    **Repeat the proposal process for this candidate node by connecting your geth console to node 1, node 2, and node 3.**
+    Repeat the proposal process for this candidate node by connecting your `geth` console to node 1, node 2, and node 3.
+
+    !!! note
+
+        To drop a currently running validator candidate and stop further votes from being cast either for or against it, use
+        [`istanbul.discard`](../Reference/API-Methods.md#istanbul_discard).
 
 1. Verify that the new validator is now in the list of validators by running `istanbul.getValidators()` in a `geth` console attached to any of your nodes:
 
