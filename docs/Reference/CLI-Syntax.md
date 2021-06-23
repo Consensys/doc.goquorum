@@ -261,6 +261,23 @@ Raft ID to assume when
 [joining a pre-existing cluster](../HowTo/Configure/Consensus/Configuring-Raft.md#adding-raft-members).
 The default is 0.
 
+### `raftlogdir`
+
+=== "Syntax"
+
+    ```bash
+    --raftlogdir <DIRECTORY>
+    ```
+
+=== "Command Line"
+
+    ```bash
+    --raftlogdir raftlogdir
+    ```
+
+Raft log directory the node uses for the `quorum-raft-state`, `raft-snap` and `raft-wal` folders.
+If `raftlogdir` isn't set, it defaults to the [`datadir` option](https://geth.ethereum.org/docs/interface/command-line-options).
+
 ### `raftport`
 
 === "Syntax"
