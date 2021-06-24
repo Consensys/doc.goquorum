@@ -275,7 +275,7 @@ The default is 0.
     --raftlogdir raftlogdir
     ```
 
-Raft log directory used for the `quorum-raft-state`, `raft-snap` and `raft-wal` folders.
+Raft log directory used for the `quorum-raft-state`, `raft-snap`, and `raft-wal` folders.
 Defaults to the [`datadir` option](https://geth.ethereum.org/docs/interface/command-line-options).
 
 ### `raftport`
