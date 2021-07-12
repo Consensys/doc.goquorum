@@ -117,13 +117,40 @@ Prepend the PSI to the ID field of the jsonrpcMessage
 
 ### GoQuorum
 
-MPS introduces improvements to how GoQuorum handles the private state, so upgrading requires re-syncing a node after Tessera is upgraded.
-
-In the future, we will provide a migration tool that will assist with updating the GoQuorum database to be MPS compatible.
+MPS introduces improvements to how GoQuorum handles the private state, so upgrading requires re-syncing a node (except for specific cases where the `mpsdbupgrade` command can be used) after Tessera is upgraded.
 
 #### Backwards Compatibility
 
 In the event that a user wants to upgrade the version of GoQuorum without upgrading Tessera, GoQuorum will continue to operate in "legacy" mode on a single private state. In this case, GoQuorum cannot be run in MPS mode since Tessera has not been upgraded.
+
+#### Standalone Node DB Upgrade (mpsdbupgrade)
+
+MPS can be enabled on a standalone node by executing the `mpsdbupgrade` command. It should be significantly faster than a normal sync from block 0 (especially if the network has reached a significant number of blocks).
+The effect of the `mpsdbupgrade` command is to restructure/upgrade the existing database to present itself as an MPS enabled database with a single private state.
+Once the upgrade completes additional private states can be introduced but only from the current block height (you can't introduce private states at historic block heights).
+
+##### mpsdbupgrade command
+In order to use the `mpsdbupgrade` command one must consider the following constraints:
+
+- The node must be offline for the upgrade process to be executed (it is advisable to make a backup of the node data directory before executing the upgrade)
+- The mpsdbupgrade command CAN NOT be used to combine multiple quorum databases/private states into a single quourm database
+- Tessera must be upgraded to enable MPS and a single resident group named "private" must be defined (with all the existing locally managed tessera keys)
+- After successful execution the node database contains the `empty` state and the `private` state (corresponding to the single private state that existed before the upgrade)
+
+Command parameters:
+
+- `--datadir` - the directory containing the goquorum node database
+
+Example:
+
+```
+$ geth mpsdbupgrade --datadir data
+Processing block 1 with hash 0xf668e8b8320040a0cabd1b6ec963a79a08536409d82b9ccaa31f62b0a1a4dc10
+...
+Processing block 1232739 with hash 0x2423b5d0f4c2883172f657f08d7d359b81f144b8cb8393ee24ef285058d55ce8
+MPS DB upgrade finished successfully.
+
+```
 
 ### Tessera
 
