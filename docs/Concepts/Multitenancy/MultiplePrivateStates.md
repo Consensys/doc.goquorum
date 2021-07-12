@@ -130,6 +130,7 @@ The effect of the `mpsdbupgrade` command is to restructure/upgrade the existing 
 Once the upgrade completes additional private states can be introduced but only from the current block height (you can't introduce private states at historic block heights).
 
 ##### mpsdbupgrade command
+
 In order to use the `mpsdbupgrade` command one must consider the following constraints:
 
 - The node must be offline for the upgrade process to be executed (it is advisable to make a backup of the node data directory before executing the upgrade)
@@ -139,11 +140,11 @@ In order to use the `mpsdbupgrade` command one must consider the following const
 
 Command parameters:
 
-- `--datadir` - the directory containing the goquorum node database
+- `--datadir` - the directory containing the GoQuorum node database
 
 Example:
 
-```
+```shell
 $ geth mpsdbupgrade --datadir data
 Processing block 1 with hash 0xf668e8b8320040a0cabd1b6ec963a79a08536409d82b9ccaa31f62b0a1a4dc10
 ...
