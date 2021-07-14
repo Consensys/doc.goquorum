@@ -17,9 +17,12 @@ When changing the network configuration of a node, we need to follow specific st
 This applies when the node has a new networking configuration but the peers keep the same IP/Ports as before.
 
 For example:
-* A node changes public IP/Ports and peers keep the same public IP/Ports.
-* A node migrates to another private network but access peers using the same IP/Ports as before.
-* Node and peers are in the same private network and routing is still possible with the new networking configuration.
+
+- A node changes public IP/Ports and peers keep the same public IP/Ports.
+
+- A node migrates to another private network but access peers using the same IP/Ports as before.
+
+- Node and peers are in the same private network and routing is still possible with the new networking configuration.
 
 ### Raft
 
@@ -61,7 +64,8 @@ For example:
 On this scenario, the Node won't be able to communicate after the migration with the peers using the same IP/Port as before and requires updating the IP/Ports of the peers on the Node side.
 
 For example:
-* A node migrates to a different private network and the peers are behing NAT so the node needs to use now their public IP/Ports instead of the private ones.
+
+- A node migrates to a different private network and the peers are behing NAT so the node needs to use now their public IP/Ports instead of the private ones.
 
 ### Raft
 
