@@ -55,7 +55,7 @@ For example:
     This will remove the Node from the network
 
 1. Update networking configuration in the `static-nodes.json` used by *Node X*.
-    Even that this file is not read when using `--raftjoinexisting <raftId>`, the file should be kept in sync with the right configuration.
+    Even that this file isn't read when using `--raftjoinexisting <raftId>`, the file should be updated to keep it in sync with the current cluster configuration.
 
 1. Follow the steps on [`Adding GoQuorum nodes`](./add_node_examples.md#raft) to add back the peer with the new network configuration to the Raft network
 
