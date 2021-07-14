@@ -4,7 +4,7 @@ description: Migrate node to a new IP network
 
 # Migrate node to a new IP network
 
-When changing the network configuration of a node, we need to follow specific steps so the new configuration it's applied and the consensus protocol continues to work as expected.
+When changing the network configuration of a node, it's recommended to follow specific steps so the new configuration it's applied and the consensus protocol continues to work as expected.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ For example:
 
 ### Raft
 
-1. Stop the Node that will be migrated to a new IP network, which we name *Node X* for simplification.
+1. Stop the Node being migrated to a new IP network
 
 1. On an *existing* running node, obtain the Raft ID of *Node X*
 
@@ -36,9 +36,9 @@ For example:
     raft.cluster
     ```
 
-    Obtain the Raft ID assigned to the *Node X*
+    Obtain the Raft ID assigned to the migration Node.
 
-1. On an *existing* running node, remove the Node X using the obtained Raft ID previously
+1. On an *existing* running node, remove migration Node using the obtained Raft ID previously
 
     In the `geth` console, run:
 
@@ -52,10 +52,10 @@ For example:
     null
     ```
 
-    This will remove the peer from the network
+    This will remove the Node from the network
 
 1. Update networking configuration in the `static-nodes.json` used by *Node X*.
-    Even that this file is not read when using `--raftjoinexisting <raftId>`, we should keep this file updated with the right configuration.
+    Even that this file is not read when using `--raftjoinexisting <raftId>`, the file should be kept in sync with the right configuration.
 
 1. Follow the steps on [`Adding GoQuorum nodes`](./add_node_examples.md#raft) to add back the peer with the new network configuration to the Raft network
 
@@ -65,7 +65,7 @@ On this scenario, the Node won't be able to communicate after the migration with
 
 For example:
 
-- A node migrates to a different private network and the peers are behing NAT so the node needs to use now their public IP/Ports instead of the private ones.
+- A node migrates to a different private network and the peers are behind NAT so the node needs to use now their public IP/Ports instead of the private ones.
 
 ### Raft
 
@@ -79,7 +79,7 @@ For example:
     rm quorum-raft-state raft-*
     ```
 
-    This will force RAFT to refresh the cluster state based on the latest information in the `static-nodes.json` without losing any of the blockchain history/data.
+    This will force Raft to refresh the cluster state based on the latest information in the `static-nodes.json` without losing any of the blockchain history/data.
 
 1. Migrate the Node's data to the new location.
 
