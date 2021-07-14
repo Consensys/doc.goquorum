@@ -2,7 +2,7 @@
 description: Migrate node to a new IP network
 ---
 
-# UMigrate node to a new IP network
+# Migrate node to a new IP network
 
 When changing the network configuration of a node, we need to follow specific steps so the new configuration it's applied and the consensus protocol continues to work as expected.
 
@@ -23,7 +23,7 @@ For example:
 
 ### Raft
 
-1. Shutdown Node that will be moved to a new IP network, which we name *Node X* for simplification.
+1. Stop the Node that will be migrated to a new IP network, which we name *Node X* for simplification.
 
 1. On an *existing* running node, obtain the Raft ID of *Node X*
 
@@ -52,6 +52,7 @@ For example:
     This will remove the peer from the network
 
 1. Update networking configuration in the `static-nodes.json` used by *Node X*.
+    Even that this file is not read when using `--raftjoinexisting <raftId>`, we should keep this file updated with the right configuration.
 
 1. Follow the steps on [`Adding GoQuorum nodes`](./add_node_examples.md#raft) to add back the peer with the new network configuration to the Raft network
 
@@ -64,7 +65,7 @@ For example:
 
 ### Raft
 
-1. Shutdown all nodes
+1. Stop all nodes.
 
 1. Clean the cached Raft data
 
@@ -74,8 +75,11 @@ For example:
     rm quorum-raft-state raft-*
     ```
 
+    This will force RAFT to refresh the cluster state based on the latest information in the `static-nodes.json` without losing any of the blockchain history/data.
+
 1. Migrate the Node's data to the new location.
 
 1. Update networking configuration in the `static-nodes.json` of all Nodes with the right accessible IP and Ports for each peer.
 
-1. Start the network again
+1. Start all nodes again.
+    The nodes should be able to connect with the peers and the `raft.cluster` command should show the right information and IP/Port configuration.
