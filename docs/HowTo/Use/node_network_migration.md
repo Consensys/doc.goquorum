@@ -112,8 +112,15 @@ For example:
 
 1. Update networking configuration in the `static-nodes.json` of all Nodes with the right accessible IP and Ports for each Node.
 
-1. Start all nodes again.
-    The nodes should be able to connect with their peers and the `raft.cluster` command should show the updated information and IP/Port configuration.
+1. Start all nodes again. The nodes should be able to connect with their peers
+     and the `raft.cluster` command should show the updated information and IP/Port configuration.
+    In the `geth` console, run:
+
+    ```js
+    raft.cluster
+    ```
+
+    It will return the Raft cluster with the updated IP and Ports for each Node.
 
 ## IBFT
 
@@ -125,5 +132,13 @@ For all scenarios, it's a matter of updating the right information in the `stati
 
 1. Update networking configuration in the `static-nodes.json` of all Nodes with the right accessible IP and Ports for each node.
 
-1. Start Node A.
-    The nodes should be able to connect with the peers and the `admin.peers` command should show the connections between Node A and other nodes (B and C).
+1. Start Node A. The nodes should be able to connect with the peers.
+
+    In the `geth` console, run:
+
+    ```js
+    admin.peers
+    ```
+
+    It will return the current connections between the Node A and Node B/C.
+
