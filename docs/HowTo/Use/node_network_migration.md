@@ -82,7 +82,7 @@ For example:
 
 1. Follow the steps on [`Adding GoQuorum nodes`](./add_node_examples.md#raft) to add back the peer with the new network configuration to the Raft network
 
-1. The nodes should be able to connect with their peers and the `raft.cluster` [command](../../Reference/Consensus/Raft-RPC-API/#raft_cluster) should show the updated information and IP/Port configuration.
+1. The nodes should be able to connect with their peers and the `raft.cluster` [command](../../Reference/API-Methods.md#raft_cluster) should show the updated information and IP/Port configuration.
 
 ### Peers need a new networking configuration
 
