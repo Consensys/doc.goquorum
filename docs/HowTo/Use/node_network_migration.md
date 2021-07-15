@@ -29,11 +29,9 @@ For example:
 
 - Node and peers are in the same private network and routing is still possible with the new networking configuration.
 
-
 !!!tip
 
     Before any step, create a backup of your data directory in all Nodes.
-
 
 #### Steps
 
@@ -64,7 +62,6 @@ For example:
 
 1. Follow the steps on [`Adding GoQuorum nodes`](./add_node_examples.md#raft) to add back the peer with the new network configuration to the Raft network
 
-
 ### Peers need a new networking configuration
 
 On this scenario, the Node won't be able to communicate after the migration with the peers using the same IP/Port as before and requires updating the IP/Ports of the peers on the Node side.
@@ -93,7 +90,6 @@ For example:
 
 1. Start all nodes again.
     The nodes should be able to connect with the peers and the `raft.cluster` command should show the right information and IP/Port configuration.
-
 
 ## IBFT
 
