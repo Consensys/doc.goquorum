@@ -97,7 +97,7 @@ For example:
 
 For all scenarios, it's a matter of updating the right information in the `static-nodes.json` of the migrated Node.
 
-#### Steps
+### Steps
 
 1. Stop the Node being migrated.
 
