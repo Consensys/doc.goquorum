@@ -9,7 +9,6 @@ When changing the network configuration of a node, it's recommended to follow sp
 This documentation applies when using static configuratoin through the `static-nodes.json` file.
 
 !!!important
-
     Before starting the migration, create a backup of your data directory of all Nodes.
 
 ## Prerequisites
@@ -22,7 +21,6 @@ This documentation applies when using static configuratoin through the `static-n
 *Assume a 3 node network A, B, C, where Node A is the node being migrated.*
 
 !!!tip
-
     This can apply to any number of migrated Nodes on any network with any number of nodes.
 
 ## Raft
@@ -39,7 +37,6 @@ For example:
     This applies both when Node of B and C are public or are private but continue to be accessible using routing across the sub-nets.
 
 !!!tip
-
     Before any step, create a backup of your data directory in all Nodes.
 
 #### Steps
@@ -55,6 +52,7 @@ For example:
     ```
 
     With the result:
+
     ```js
     {
         "jsonrpc": "2.0",
