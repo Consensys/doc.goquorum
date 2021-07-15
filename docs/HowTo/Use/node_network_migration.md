@@ -141,4 +141,3 @@ For all scenarios, it's a matter of updating the right information in the `stati
     ```
 
     It will return the current connections between the Node A and Node B/C.
-
