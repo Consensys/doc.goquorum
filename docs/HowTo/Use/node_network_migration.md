@@ -62,6 +62,8 @@ For example:
 
 1. Follow the steps on [`Adding GoQuorum nodes`](./add_node_examples.md#raft) to add back the peer with the new network configuration to the Raft network
 
+1. The nodes should be able to connect with the peers and the `raft.cluster` command should show the updated information and IP/Port configuration.
+
 ### Peers need a new networking configuration
 
 On this scenario, the Node won't be able to communicate after the migration with the peers using the same IP/Port as before and requires updating the IP/Ports of the peers on the Node side.
@@ -89,7 +91,7 @@ For example:
 1. Update networking configuration in the `static-nodes.json` of all Nodes with the right accessible IP and Ports for each peer.
 
 1. Start all nodes again.
-    The nodes should be able to connect with the peers and the `raft.cluster` command should show the right information and IP/Port configuration.
+    The nodes should be able to connect with the peers and the `raft.cluster` command should show the updated information and IP/Port configuration.
 
 ## IBFT
 
@@ -102,3 +104,4 @@ For all scenarios, it's a matter of updating the right information in the `stati
 1. Update networking configuration in the `static-nodes.json` of all Nodes with the right accessible IP and Ports for each peer.
 
 1. Start the migrated Node.
+    The nodes should be able to connect with the peers and the `admin.peers` command should show the connections between the migrated Node and the peers.
