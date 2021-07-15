@@ -54,7 +54,20 @@ For example:
     raft.cluster
     ```
 
-    Obtain the Raft ID assigned to the Node A
+    With the result:
+    ```js
+    {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "result": [{
+            "raftId": 1,
+            "nodeId": "<enodeId>",
+            ...
+        }, ...]
+    }
+    ```
+
+    Obtain the Raft ID assigned to the Node A (which in the example above is `1`).
 
 1. On node B or C, remove Node A using the obtained Raft ID previously
 
@@ -71,7 +84,7 @@ For example:
 
 1. Follow the steps on [`Adding GoQuorum nodes`](./add_node_examples.md#raft) to add back the peer with the new network configuration to the Raft network
 
-1. The nodes should be able to connect with their peers and the `raft.cluster` command should show the updated information and IP/Port configuration.
+1. The nodes should be able to connect with their peers and the `raft.cluster` [command](../../Reference/Consensus/Raft-RPC-API/#raft_cluster) should show the updated information and IP/Port configuration.
 
 ### Peers need a new networking configuration
 
