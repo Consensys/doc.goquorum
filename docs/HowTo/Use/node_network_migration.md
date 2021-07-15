@@ -6,13 +6,18 @@ description: Migrate node to a new IP network
 
 When changing the network configuration of a node, it's recommended to follow specific steps so the new configuration it's applied and the consensus protocol continues to work as expected.
 
+!!!important
+
+    Before starting the migration, create a backup of your data directory of all Nodes.
+
 ## Prerequisites
 
 - [GoQuorum installed](../GetStarted/Install.md)
-- [Tessera](https://docs.tessera.consensys.net)
-- [A running network](../../Tutorials/Create-IBFT-Network.md)
+- A running [RAFT network](../../Tutorials/Create-a-Raft-network.md) or [IBFT network](../../Tutorials/Create-IBFT-Network.md)
 
-## Peers with same networking configuration
+## Raft
+
+### Peers with same networking configuration
 
 This applies when the node has a new networking configuration but the peers keep the same IP/Ports as before.
 
@@ -24,11 +29,17 @@ For example:
 
 - Node and peers are in the same private network and routing is still possible with the new networking configuration.
 
-### Raft
+
+!!!tip
+
+    Before any step, create a backup of your data directory in all Nodes.
+
+
+#### Steps
 
 1. Stop the Node being migrated to a new IP network
 
-1. On an *existing* running node, obtain the Raft ID of *Node X*
+1. On an *existing* running node, obtain the Raft ID.
 
     In the `geth` console, run:
 
@@ -46,12 +57,6 @@ For example:
     raft.removePeer(<Raft ID>)
     ```
 
-    The result is:
-
-    ```js
-    null
-    ```
-
     This will remove the Node from the network
 
 1. Update networking configuration in the `static-nodes.json` used by *Node X*.
@@ -59,7 +64,8 @@ For example:
 
 1. Follow the steps on [`Adding GoQuorum nodes`](./add_node_examples.md#raft) to add back the peer with the new network configuration to the Raft network
 
-## Peers need a new networking configuration
+
+### Peers need a new networking configuration
 
 On this scenario, the Node won't be able to communicate after the migration with the peers using the same IP/Port as before and requires updating the IP/Ports of the peers on the Node side.
 
@@ -67,7 +73,7 @@ For example:
 
 - A node migrates to a different private network and the peers are behind NAT so the node needs to use now their public IP/Ports instead of the private ones.
 
-### Raft
+#### Steps
 
 1. Stop all nodes.
 
@@ -87,3 +93,16 @@ For example:
 
 1. Start all nodes again.
     The nodes should be able to connect with the peers and the `raft.cluster` command should show the right information and IP/Port configuration.
+
+
+## IBFT
+
+For all scenarios, it's a matter of updating the right information in the `static-nodes.json` of the migrated Node.
+
+#### Steps
+
+1. Stop the Node being migrated.
+
+1. Update networking configuration in the `static-nodes.json` of all Nodes with the right accessible IP and Ports for each peer.
+
+1. Start the migrated Node.
