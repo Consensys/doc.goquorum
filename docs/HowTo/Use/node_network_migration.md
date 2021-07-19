@@ -2,142 +2,121 @@
 description: Migrate node to a new IP network
 ---
 
-# Migrate node to a new IP network
+# Migrate nodes to a new IP network
 
-When changing the network configuration of a node, it's recommended to follow specific steps so the new configuration it's applied and the consensus protocol continues to work as expected.
+Use the following instructions to change the network configuration of a node while ensuring the consensus protocol
+continues to work as expected.
+These instructions apply when using a static configuration through the `static-nodes.json` file.
 
-This documentation applies when using static configuratoin through the `static-nodes.json` file.
+The following instructions use a three-node network, A, B, and C, as an example, where Node A is being migrated.
+These instructions can apply to any number of migrated nodes on any network with any number of nodes.
 
-!!!important
-    Before starting the migration, create a backup of your data directory of all Nodes.
+!!! important
+
+    Before migrating a node to a new network, create a backup of each node's data directory.
 
 ## Prerequisites
 
 - [GoQuorum installed](../GetStarted/Install.md)
 - A running [Raft network](../../Tutorials/Create-a-Raft-network.md) or [IBFT network](../../Tutorials/Create-IBFT-Network.md)
 
-## Example setup for steps
-
-*Assume a 3 node network A, B, C, where Node A is the node being migrated.*
-
-!!!tip
-    This can apply to any number of migrated Nodes on any network with any number of nodes.
-
 ## Raft
 
 ### Peers with same networking configuration
 
-This applies when the node has a new networking configuration but the peers keep the same IP/Ports as before.
-
+In this scenario, the migrated node has a new network configuration, but its peers keep the same IP addresses and ports as before.
 For example:
 
-- Node A's public IP is changed to another public IP and Node B/C keep the same public IP (same applies for public ports).
-
-- Node A migrates from one private sub-net 10.1.X.X to another subnet 10.2.X.X but is still able to connect to Node B and C using the same IPs as before
-    This applies both when Node of B and C are public or are private but continue to be accessible using routing across the sub-nets.
-
-!!!tip
-    Before any step, create a backup of your data directory in all Nodes.
+- Node A's public IP address and port are changed, and Nodes B and C keep the same public IP addresses and ports.
+- Node A migrates from one private sub-network `10.1.X.X` to another sub-network `10.2.X.X` but can still connect to
+  Nodes B and C using the same IP addresses as before, by routing across the sub-networks.
 
 #### Steps
 
-1. Stop Node A
+1. Stop Node A.
 
-1. On node B or C, obtain the Raft ID (_Quorum Raft node ID in the network_) of Node A.
+1. On Node B or C, obtain Node A's Raft ID (GoQuorum Raft node ID in the network):
 
-    In the `geth` console, run:
+    === "geth console request"
 
-    ```js
-    raft.cluster
+        ```bash
+        raft.cluster
+        ```
+
+    === "JSON result"
+
+        ```js
+        {
+            "jsonrpc": "2.0",
+            "id": 10,
+            "result": [{
+                "raftId": 1,
+                "nodeId": "<enodeId>",
+                ...
+            }, ...]
+        }
+        ```
+
+    In this example Node A's Raft ID is 1.
+
+1. On Node B or C, remove Node A from the network using its Raft ID:
+
+    ```bash
+    raft.removePeer(<RAFT-ID>)
     ```
 
-    With the result:
+1. Update the network configuration in Node A's `static-nodes.json` file.
 
-    ```js
-    {
-        "jsonrpc": "2.0",
-        "id": 10,
-        "result": [{
-            "raftId": 1,
-            "nodeId": "<enodeId>",
-            ...
-        }, ...]
-    }
-    ```
+    !!! note
 
-    Obtain the Raft ID assigned to the Node A (which in the example above is `1`).
+        Even if this file isn't specified with [`--raftjoinexisting`](../../Reference/CLI-Syntax.md#raftjoinexisting),
+        it should be updated to keep in sync with the current cluster configuration.
 
-1. On node B or C, remove Node A using the obtained Raft ID previously
+1. [Add Node A back to the Raft network](add_node_examples.md#raft) with its new network configuration.
 
-    In the `geth` console, run:
-
-    ```js
-    raft.removePeer(<Raft ID>)
-    ```
-
-    This will remove the Node A from the network
-
-1. Update networking configuration in the `static-nodes.json` used by Node A.
-    Even that this file isn't read when using `--raftjoinexisting <raftId>`, the file should be updated to keep it in sync with the current cluster configuration.
-
-1. Follow the steps on [`Adding GoQuorum nodes`](./add_node_examples.md#raft) to add back the peer with the new network configuration to the Raft network
-
-1. The nodes should be able to connect with their peers and the `raft.cluster` [command](../../Reference/API-Methods.md#raft_cluster) should show the updated information and IP/Port configuration.
+1. The nodes can now connect with their peers, and [`raft.cluster`](../../Reference/API-Methods.md#raft_cluster)
+   shows the updated information and network configuration.
 
 ### Peers need a new networking configuration
 
-In this scenario, the Node won't be able to communicate after the migration with the peers using the same IP/Port as before and requires updating the IP/Ports of the peers on the Node side.
-
+In this scenario, the migrated node must update the IP addresses and ports of its peers.
 For example:
 
-- Node A/B/C were in the same private sub-net and Node A is migrating to another sub-net or to the internet. NAT is used to transte IP from public to private sub-net and viceversa, requiring the Nodes to use their peer's public IPs.
-    This will require updating configuration of Node A to use the public IP of Node B and C.
-    Same applies for the configuration of Node B and C.
+- Nodes A, B, and C are in the same private sub-network, and Node A migrates to another sub-network or to the internet.
+  NAT is used to translate the IP addresses from public to private sub-network and vice versa, requiring the nodes to use
+  their peers' public IPs.
+  This requires updating the configuration of Node A to use the public IP addresses of Nodes B and C, and updating the
+  configurations of Nodes B and C to use the public IP address of Node A.
 
 #### Steps
 
 1. Stop all nodes.
 
-1. Clean the cached Raft data
+1. Clean the cached Raft data.
 
     In the data folder of each node, run:
 
-    ```js
+    ```bash
     rm quorum-raft-state raft-*
     ```
 
-    This will force Raft to refresh the cluster state based on the latest information in the `static-nodes.json` without losing any of the blockchain history/data.
+    This forces Raft to refresh the cluster state based on the latest information in the `static-nodes.json` without
+    losing any of the blockchain data.
 
-1. Migrate Node A's data to the new location
+1. Migrate Node A's data to the new location.
 
-1. Update networking configuration in the `static-nodes.json` of all Nodes with the right accessible IP and Ports for each Node.
+1. Update the network configuration in the `static-nodes.json` file of each node with its peers' accessible IP addresses and ports.
 
-1. Start all nodes again. The nodes should be able to connect with their peers
-     and the `raft.cluster` command should show the updated information and IP/Port configuration.
-    In the `geth` console, run:
-
-    ```js
-    raft.cluster
-    ```
-
-    It will return the Raft cluster with the updated IP and Ports for each Node.
+1. Start all nodes.
+   The nodes can now connect with their peers, and [`raft.cluster`](../../Reference/API-Methods.md#raft_cluster) shows
+   the updated information and network configuration.
 
 ## IBFT
 
-For all scenarios, it's a matter of updating the right information in the `static-nodes.json` of the migrated Node.
+1. Stop Node A.
 
-### Steps
+1. Update the network configuration in Node A's `static-nodes.json` file with its peers' accessible IP addresses and ports.
 
-1. Stop the Node A.
-
-1. Update networking configuration in the `static-nodes.json` of all Nodes with the right accessible IP and Ports for each node.
-
-1. Start Node A. The nodes should be able to connect with the peers.
-
-    In the `geth` console, run:
-
-    ```js
-    admin.peers
-    ```
-
-    It will return the current connections between the Node A and Node B/C.
+1. Start Node A.
+   The nodes can now connect with their peers, and [`admin.peers`](https://geth.ethereum.org/docs/rpc/ns-admin#admin_peers)
+   returns the current connections between the nodes.

@@ -91,6 +91,7 @@ nav:
           - Smart contracts: HowTo/Use/DevelopingSmartContracts.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
+          - Migrate: HowTo/Use/node_network_migration.md
   - Tutorials:
       - Create a network using IBFT: Tutorials/Create-IBFT-Network.md
       - Adding and removing IBFT validators: Tutorials/Adding-removing-IBFT-validators.md
