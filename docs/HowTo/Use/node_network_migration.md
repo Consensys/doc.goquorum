@@ -13,7 +13,7 @@ You can apply these instructions to any number of migrated nodes on any network 
 
 !!! important
 
-    Before migrating a node to a new network, create a backup of each node's data directory.
+    Before migrating a node to a new network, [create a backup of each node's data directory].
 
 ## Prerequisites
 
@@ -120,3 +120,5 @@ configurations of Nodes B and C to use the public IP address of Node A.
 1. Start Node A.
    The nodes can now connect with their peers, and [`admin.peers`](https://geth.ethereum.org/docs/rpc/ns-admin#admin_peers)
    returns the current connections between the nodes.
+
+[create a backup of each node's data directory]: https://geth.ethereum.org/docs/install-and-build/backup-restore#data-directory
