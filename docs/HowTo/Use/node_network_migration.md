@@ -1,15 +1,15 @@
 ---
-description: Migrate node to a new IP network
+description: Migrate a node to a new IP network
 ---
 
 # Migrate nodes to a new IP network
 
-Use the following instructions to change the network configuration of a node while ensuring the consensus protocol
+Use the following instructions to update a node's network configuration while ensuring the consensus protocol
 continues to work as expected.
 These instructions apply when using a static configuration through the `static-nodes.json` file.
 
 The following instructions use a three-node network, A, B, and C, as an example, where Node A is being migrated.
-These instructions can apply to any number of migrated nodes on any network with any number of nodes.
+You can apply these instructions to any number of migrated nodes on any network with any number of nodes.
 
 !!! important
 
@@ -24,12 +24,12 @@ These instructions can apply to any number of migrated nodes on any network with
 
 ### Peers with same networking configuration
 
-In this scenario, the migrated node has a new network configuration, but its peers keep the same IP addresses and ports as before.
+In this scenario, the migrated node has a new network configuration, but its peers keep the same IP addresses and ports.
 For example:
 
 - Node A's public IP address and port are changed, and Nodes B and C keep the same public IP addresses and ports.
-- Node A migrates from one private sub-network `10.1.X.X` to another sub-network `10.2.X.X` but can still connect to
-  Nodes B and C using the same IP addresses as before, by routing across the sub-networks.
+- Node A migrates from one private sub-network `10.1.X.X` to another sub-network `10.2.X.X`, but can still connect to
+      Nodes B and C using the same IP addresses as before, by routing across the sub-networks.
 
 #### Steps
 
@@ -80,13 +80,13 @@ For example:
 ### Peers need a new networking configuration
 
 In this scenario, the migrated node must update the IP addresses and ports of its peers.
-For example:
 
-- Nodes A, B, and C are in the same private sub-network, and Node A migrates to another sub-network or to the internet.
-  NAT is used to translate the IP addresses from public to private sub-network and vice versa, requiring the nodes to use
-  their peers' public IPs.
-  This requires updating the configuration of Node A to use the public IP addresses of Nodes B and C, and updating the
-  configurations of Nodes B and C to use the public IP address of Node A.
+For example, Nodes A, B, and C are in the same private sub-network, and Node A migrates to another sub-network, or
+to the internet. NAT is used to translate the IP addresses from the public to private sub-network and vice versa,
+requiring the nodes to use their peers' public IPs.
+
+This requires updating the configuration of Node A to use the public IP addresses of Nodes B and C, and updating the
+configurations of Nodes B and C to use the public IP address of Node A.
 
 #### Steps
 
