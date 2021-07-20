@@ -76,15 +76,16 @@ nav:
       - Develop plugins: HowTo/DevelopPlugins.md
       - Manage keys:
           - Overview: HowTo/ManageKeys/ManagingKeys.md
-          - Using clef: HowTo/ManageKeys/clef.md
-          - Using account plugins: HowTo/ManageKeys/AccountPlugins.md
+          - Use clef: HowTo/ManageKeys/clef.md
+          - Use account plugins: HowTo/ManageKeys/AccountPlugins.md
       - Monitor nodes:
           - Monitor a GoQuorum node: HowTo/Monitor/monitoring.md
           - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md
       - Use:
-          - Adding nodes to network: HowTo/Use/adding_nodes.md
-          - Adding nodes examples: HowTo/Use/add_node_examples.md
-          - Adding IBFT validators: HowTo/Use/AddingIBFTValidators.md
+          - Add nodes to network: HowTo/Use/adding_nodes.md
+          - Add nodes examples: HowTo/Use/add_node_examples.md
+          - Migrate network nodes: HowTo/Use/node_network_migration.md
+          - Add IBFT validators: HowTo/Use/AddingIBFTValidators.md
           - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
           - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
           - Multi-tenancy: HowTo/Use/Multitenancy.md
@@ -93,7 +94,7 @@ nav:
           - Backup and restore: HowTo/Use/import-export.md
   - Tutorials:
       - Create a network using IBFT: Tutorials/Create-IBFT-Network.md
-      - Adding and removing IBFT validators: Tutorials/Adding-removing-IBFT-validators.md
+      - Add and remove IBFT validators: Tutorials/Adding-removing-IBFT-validators.md
       - Create a network using Raft: Tutorials/Create-a-Raft-network.md
       - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
       - Send private transactions: Tutorials/Send-private-transaction.md
