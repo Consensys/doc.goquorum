@@ -5,7 +5,7 @@ description: Creating a network using IBFT consensus
 # Create a private network using the IBFT consensus protocol
 
 A private network provides a configurable network for testing. This private network uses the
-[IBFT consensus protocol](../Concepts/Consensus/IBFT.md).
+[IBFT consensus protocol](../../Concepts/Consensus/IBFT.md).
 
 !!!important
 
@@ -14,7 +14,7 @@ A private network provides a configurable network for testing. This private netw
 
 ## Prerequisites
 
-* [GoQuorum](../HowTo/GetStarted/Install.md#as-release-binaries). Ensure that `PATH` contains `geth`
+* [GoQuorum](../../HowTo/GetStarted/Install.md#as-release-binaries). Ensure that `PATH` contains `geth`
   and `bootnode`.
 
 !!! tip
@@ -302,7 +302,7 @@ Use the JavaScript console to check the peer count.
 
 ### 11. List current validators
 
-Use [`instabul.getValidators`](../Reference/API-Methods.md#istanbulgetvalidators) to view the validator addresses.
+Use [`instabul.getValidators`](../../Reference/API-Methods.md#istanbulgetvalidators) to view the validator addresses.
 
 === "Command"
     ```bash

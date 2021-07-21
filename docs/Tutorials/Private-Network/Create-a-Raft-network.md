@@ -5,7 +5,7 @@ description: Creating a network using Raft consensus
 # Create a private network using the Raft consensus protocol
 
 A private network provides a configurable network for testing. This private network uses the
-[Raft consensus protocol](../Concepts/Consensus/Raft.md).
+[Raft consensus protocol](../../Concepts/Consensus/Raft.md).
 
 !!!important
 
@@ -14,7 +14,7 @@ A private network provides a configurable network for testing. This private netw
 
 ## Prerequisites
 
-* [GoQuorum](../HowTo/GetStarted/Install.md#as-release-binaries). Ensure that `PATH` contains `geth`
+* [GoQuorum](../../HowTo/GetStarted/Install.md#as-release-binaries). Ensure that `PATH` contains `geth`
   and `bootnode`.
 
 !!! tip

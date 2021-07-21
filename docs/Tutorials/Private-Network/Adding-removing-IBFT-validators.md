@@ -123,7 +123,7 @@ description: Adding and removing IBFT validators
     !!! note
 
         To drop a currently running validator candidate and stop further votes from being cast either for or against it, use
-        [`istanbul.discard`](../Reference/API-Methods.md#istanbul_discard).
+        [`istanbul.discard`](../../Reference/API-Methods.md#istanbul_discard).
 
 1. Verify that the new validator is now in the list of validators by running `istanbul.getValidators()` in a `geth` console attached to any of your nodes:
 
