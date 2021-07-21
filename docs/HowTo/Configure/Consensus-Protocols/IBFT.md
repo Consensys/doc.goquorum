@@ -113,7 +113,7 @@ In addition to this you also need to set a `requesttimeout` by using the cli opt
 
 ## Add or Remove Validators
 
-The approach to adding or removing validators is typically done via API's or the Geth CLI, and the
+The approach to adding or removing validators is typically done via API's or the geth CLI, and the
 thing to note is that the process of adding or removing a validator must be done on greater than
 50% of the existing validator pool
 

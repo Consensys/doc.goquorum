@@ -5,7 +5,7 @@ description: Helps to generate local GoQuorum and Ethereum blockchain networks.
 
 # Quorum Developer Quickstart
 
-The Quorum Developer Quickstart uses the Consensys GoQuorum Docker image to run a private
+The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private
 [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md) network of Besu nodes managed by Docker Compose.
 
 !!! warning
@@ -48,7 +48,7 @@ To create the tutorial `docker-compose` files and artifacts, run:
 npx quorum-dev-quickstart
 ```
 
-Follow the prompts displayed to run Consensys GoQuorum and [logging with ELK](../HowTo/Monitor/Elastic-Stack.md).
+Follow the prompts displayed to run GoQuorum and [logging with ELK](../HowTo/Monitor/Elastic-Stack.md).
 Enter `n` for [Codefi Orchestrate](https://docs.orchestrate.consensys.net/en/stable/) and `y` for
 [private transactions](../Concepts/Privacy/Privacy.md).
 
