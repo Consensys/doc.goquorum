@@ -29,6 +29,7 @@ A public transaction with the following properties:
 
 * `to` = [privacy precompile] address
 * `input`/`data` = sender address + Tessera hash of encrypted [internal private transaction]
+* `from` = must be the same signing acount as the [internal private transaction]
 * `contractAddress` (in receipt, if contract creation transaction) = null
 * `logs` & `logsBloom` (in receipt) = empty
 
@@ -39,8 +40,8 @@ A public transaction with the following properties:
   blockNumber: 121,
   hash: "0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79",
   from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
-  to: "0x000000000000000000000000000000000000007e",
-  input: "0xed9d02e382b34818e88b88a309c7fe71e65f419dd174e0b4ddc86936479655ec5c218530c0270afcff1c337caa81e12610f2182d95c642bf297d65592078d7c5509dc0cb0d3c01ea1a5bc4110c004603702d3d8c",
+  to: "0x000000000000000000000000000000000000007a",
+  input: "0xd174e0b4ddc86936479655ec5c218530c0270afcff1c337caa81e12610f2182d95c642bf297d65592078d7c5509dc0cb0d3c01ea1a5bc4110c004603702d3d8c",
   nonce: 2,
   r: "0x35ea14362403065174863c07d8de5e9f85c365f19ddde7f907f44ebacba6f63a",
   s: "0x1d3c2a8b8342fc086501a9e95361430b221d80e2f4076b6c37f52dac47fff0f0",
@@ -55,7 +56,7 @@ A public transaction with the following properties:
   transactionHash: "0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79",
   contractAddress: null,
   from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
-  to: "0x000000000000000000000000000000000000007e",
+  to: "0x000000000000000000000000000000000000007a",
   logs: [],
   logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
   status: "0x1",
@@ -66,7 +67,8 @@ A public transaction with the following properties:
 
 ### Internal Private Transaction
 
-Each privacy marker transaction has a corresponding internal private transaction.  The content of this private transaction is the same as the content of a normal private transaction.
+Each privacy marker transaction has a corresponding internal private transaction.
+The content of this private transaction is the same as the content of a normal private transaction, however it will have the same `from` and `nonce` values as the privacy marker transaction.
 
 Only the hash of the encrypted internal private transaction is stored on chain (as part of the `data` field of the privacy marker transaction).  The internal private transaction is stored, encrypted, in each participant's Tessera.  As a result, the internal private transaction is only available to participants of the private transaction.
 
@@ -229,7 +231,7 @@ Use the same APIs as usual, such as `eth_sendTransaction`.  If `privateFor` is p
 1. Create the private transaction, replacing the `data` value with the hash of the encrypted private transaction payload from Tessera.
 1. Externally sign the private transaction.
 1. Use `eth_distributePrivateTransaction` (see [Privacy Marker API] for more details) to encrypt the signed private transaction and share with all participants.
-1. Create the privacy marker transaction, with `data` value equal to `from` + hash returned by `eth_distributePrivateTransaction`.
+1. Create the privacy marker transaction, with `data` value set to the hash returned by `eth_distributePrivateTransaction`. The `from` and `nonce` values must also be the same as the private transaction.
 1. Send the privacy marker transaction using the same APIs as usual, such as `eth_sendTransaction`.
 
 <!--links-->
