@@ -8,36 +8,29 @@ description: Helps to generate local GoQuorum and Ethereum blockchain networks.
 The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private
 [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md) network of Besu nodes managed by Docker Compose.
 
-!!! warning
-This tutorial runs a private network suitable for education or demonstration purposes
-and is not intended for running production networks.
+!!! important
+
+    This tutorial runs a private network suitable for education or demonstration purposes
+    and is not intended for running production networks.
 
 ## Prerequisites
 
-* One of the following operating systems is required:
+* One of the following operating systems:
     * Linux on x86_64 architecture
     * macOS on an Intel processor (M1 processor not supported yet)
     * Windows 64-bit edition, with:
-        * Windows Subsystem for Linux 2.
-        * Docker desktop configured to use the WSL2-based engine.
-* [Docker and Docker-compose](https://docs.docker.com/compose/install/).
-    <!-- vale off -->
-* [Node.js v6+ LTS](https://nodejs.org/en/)
-    <!-- vale on -->
-    installed and ready to use.
-    The best way to install this tool it to use
-    <!-- vale off -->
-    [NVM](http://nvm.sh)
-    <!-- vale on -->
-    the Node Version Manager.
-* [Truffle](https://www.trufflesuite.com/truffle) development framework installed.
-* [cURL command line](https://curl.haxx.se/download.html).
-* A Web browser with [MetaMask](https://metamask.io/) installed.
-  MetaMask is currently available for Chrome, Firefox, Opera, and Brave.
+        * Windows Subsystem for Linux 2
+        * Docker desktop configured to use the WSL2-based engine
+* [Docker and Docker-compose](https://docs.docker.com/compose/install/)
+* [Node.js v6+ LTS](https://nodejs.org/en/) (the best way to install is with [NVM](http://nvm.sh))
+* [Truffle](https://www.trufflesuite.com/truffle) development framework
+* [curl command line](https://curl.haxx.se/download.html)
+* [MetaMask](https://metamask.io/)
 
 !!! important
+
     Allow Docker up to 4G of memory or 6G if running the privacy examples.
-    Refer to the _Resources_ section in [Docker for Mac](https://docs.docker.com/docker-for-mac/) and
+    Refer to the **Resources** section in [Docker for Mac](https://docs.docker.com/docker-for-mac/) and
     [Docker Desktop](https://docs.docker.com/docker-for-windows/) for details.
 
 ## Generate the tutorial blockchain configuration files
@@ -62,8 +55,8 @@ To start the network, go to the installation directory (`quorum-test-network` if
 
 The script builds the Docker images, and runs the Docker containers.
 
-Four GoQuorum IBFT 2.0 validator nodes and a non-validator node are created to simulate a base network. In addition
-there are three member pairs (GoQuorum and Tessera sets) to simulate private nodes on the network.
+Four GoQuorum IBFT 2.0 validator nodes and a non-validator node are created to simulate a base network.
+There are also three member pairs (GoQuorum and Tessera sets) to simulate private nodes on the network.
 
 When execution is successfully finished, the process lists the available services:
 
@@ -89,11 +82,10 @@ When execution is successfully finished, the process lists the available service
 
 * Use the **JSON-RPC HTTP service endpoint** to access the RPC node service from your dapp or from
   cryptocurrency wallets such as MetaMask.
-* Use the **JSON-RPC WebSocket service endpoint** to access the Web socket node service from your
+* Use the **JSON-RPC WebSocket service endpoint** to access the WebSocket node service from your
   dapp.
 * Use the **Web block explorer address** to display the [block explorer Web application](http://localhost:25000).
-* Use the **Prometheus address** to access the
-  [Prometheus dashboard](http://localhost:9090/graph).
+* Use the **Prometheus address** to access the [Prometheus dashboard](http://localhost:9090/graph).
   _[Read more about metrics](../HowTo/Monitor/Metrics.md)_.
 * Use the **Grafana address** to access the
   [Grafana dashboard](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All).
@@ -112,8 +104,7 @@ To display the list of endpoints again, run:
 
 This tutorial uses a modified version of the [Alethio Ethereum Lite Explorer](https://github.com/Alethio/ethereum-lite-explorer).
 
-Access the explorer at [`http://localhost:25000`](http://localhost:25000) as displayed when starting
-the private network.
+Access the explorer at [`http://localhost:25000`](http://localhost:25000) as displayed when starting the private network.
 
 The block explorer displays a summary of the private network, indicating four peers.
 
@@ -123,8 +114,7 @@ Click the block number to the right of **Best Block** to display the block detai
 
 You can explore blocks by clicking on the blocks under **`Bk`** on the left-hand side.
 
-You can search for a specific block, transaction hash, or address by clicking the :mag:
-in the top left-hand corner.
+You can search for a specific block, transaction hash, or address by clicking the :mag: in the top left-hand corner.
 
 ![Explorer Search](../images/ExplorerSearch.png)
 
@@ -151,9 +141,9 @@ You can run JSON-RPC requests on:
 * HTTP with `http://localhost:8545`.
 * WebSockets with `ws://localhost:8546`.
 
-### Run with `cURL`
+### Run with `curl`
 
-This tutorial uses [cURL](https://curl.haxx.se/download.html) to send JSON-RPC requests over HTTP.
+This tutorial uses [`curl`](https://curl.haxx.se/download.html) to send JSON-RPC requests over HTTP.
 
 ### Request the node version
 
@@ -229,13 +219,12 @@ The result indicates the highest block number synchronized on this node.
 ```
 
 Here the hexadecimal value `0x2a` translates to decimal as `42`, the number of blocks received by the node so far,
-about 2 minutes after the new network started.
+about two minutes after the new network started.
 
-## Private Transactions
+## Private transactions
 
-This example uses the [web3](https://www.npmjs.com/package/web3) library to make the API calls, and the example
-creates three member nodes pairs (a GoQuorum node which has a corresponding Tessera node for privacy) that can be accessed
-via APIs on the following ports:
+This example uses the [web3.js](https://www.npmjs.com/package/web3) library to make the API calls, creating three member
+nodes pairs (a GoQuorum node which has a corresponding Tessera node for privacy) that can be accessed using APIs on the following ports:
 
 ```bash
 Member1Quorum RPC: http://localhost:20000
@@ -248,7 +237,7 @@ Member3Quorum RPC: http://localhost:20004
 Member1Tessera: http://localhost:9083
 ```
 
-Navigate to the smart_contracts directory and deploy the private transaction like so:
+Navigate to the `smart_contracts` directory and deploy the private transaction:
 
 ```bash
 cd smart_contracts
@@ -256,11 +245,11 @@ npm install
 node scripts/private_tx.js
 ```
 
-which deploys the contract and sends an arbitrary value (47) from `Member1` to `Member3`. Once done, it preforms a read
-on the contract using the `get` function and the contract's ABI, at the address specified. It then performs a write
-operation using the `set` function and the contract's ABI, at the address and sets the value to (123).
-Lastly, it performs a read on all three members to verify that this is indeed private between `Member1` and `Member3`
-only, and you should observe that only `Member1` & `Member3` return the result of 123 and `Member2` has an undefined
+This deploys the contract and sends an arbitrary value (`47`) from `Member1` to `Member3`.
+Once done, it performs a read operation on the contract using the `get` function and the contract's ABI, at the address specified.
+It then performs a write operation using the `set` function and the contract's ABI, at the address and sets the value to `123`.
+Lastly, it performs a read operation on all three members to verify that this is private between `Member1` and `Member3`
+only, and you should see that only `Member1` and `Member3` return the result of `123`, and `Member2` has an undefined
 value.
 
 ```bash
@@ -275,17 +264,16 @@ Member3 obtained value at deployed contract is: 123
 Member2 obtained value at deployed contract is: undefined
 ```
 
-The general form is to:
+In general:
 
-1. Deploy a contract from A to B, which returns an address
-2. Use the contract address and the contract's ABI to interact with the contract from that point on,
-   where you can get/set values etc.
+1. Deploy a contract from A to B, which returns an address.
+2. Use the contract address and the contract's ABI to interact with the contract from that point on, where you can get and set values.
 
 ## Create a transaction using MetaMask
 
 You can use [MetaMask](https://metamask.io/) to send a transaction on your private network.
 
-* Open MetaMask and connect it to your private network RPC endpoint by selecting `Localhost 8545` in the network list.
+* Open MetaMask and connect it to your private network RPC endpoint by selecting **Localhost 8545** in the network list.
 * Choose one of the following test accounts and [import it into MetaMask by copying the corresponding private key](https://metamask.zendesk.com/hc/en-us/articles/360015489331-How-to-import-an-Account).
 
 {!global/test_accounts.md!}
@@ -303,7 +291,7 @@ The new test account displays with a zero balance.
 [Send test Ether](https://metamask.zendesk.com/hc/en-us/articles/360015488931-How-to-send-ETH-and-ERC-20-tokens-from-your-MetaMask-Wallet)
 from the first test account (containing test Ether) to the new test account (which has a zero balance).
 
-!!!tip
+!!! tip
 
     You can use a zero gas price here as this private test network is a free gas network, but the maximum amount of
     gas that can be used (the gas limit) for a value transaction must be at least 21000.
@@ -312,17 +300,16 @@ Refresh the Block Explorer page in your browser displaying the target test accou
 
 The updated balance reflects the transaction completed using MetaMask.
 
-## Smart contract and DApp usage
+## Smart contract and dapp usage
 
-You can use a demo DApp called Pet Shop, provided by [Truffle](https://www.trufflesuite.com/tutorial).
+You can use a demo dapp called Pet Shop, provided by [Truffle](https://www.trufflesuite.com/tutorial).
 
-The DApp runs a local website using Docker, and uses smart contracts deployed on the network.
+The dapp runs a local website using Docker, and uses smart contracts deployed on the network.
 
 The directory created by `quorum-dev-quickstart` includes a `dapps` directory with a `pet-shop` subdirectory,
 which contains the source code for the dapp, including the smart contracts, website, and configurations to run this tutorial.
 
-With the blockchain running and MetaMask connected to `Localhost 8545` via the browser,
-run the following command to start the Pet Shop DApp:
+With the blockchain running and MetaMask connected to **Localhost 8545**, run the following command to start the Pet Shop dapp:
 
 ```bash
 cd dapps/pet-shop
@@ -474,10 +461,9 @@ The script will:
 In the browser where you have MetaMask enabled and one of the test accounts loaded, open a new tab and navigate
 to [the Pet Shop dapp](http://localhost:3001) where you can adopt lovely pets (sorry, not for real, it's a demo).
 
-When you click on 'Adopt', a MetaMask window will pop up and request your permissions to continue
-with the transaction.
+When you click on **Adopt**, a MetaMask window will pop up and request your permissions to continue with the transaction.
 
-After the transaction is complete and successful, the status of the pet you adopted will show 'Success'.
+After the transaction is complete and successful, the status of the pet you adopted will show **Success**.
 
 ![Dapp UI](../images/dapp-ui.png)
 
@@ -485,7 +471,7 @@ You can also search for the transaction and view its details in the [Block Explo
 
 ![Dapp UI](../images/dapp-explorer-tx.png)
 
-The MetMask UI also keeps a record of the transaction.
+The MetaMask UI also keeps a record of the transaction.
 
 ![Dapp UI](../images/dapp-metamask-tx.png)
 
@@ -499,8 +485,7 @@ To shut down the private network without deleting the containers:
     ./stop.sh
     ```
 
-This command stops the containers related to the services specified in the `docker-compose.yml`
-file.
+This command stops the containers related to the services specified in the `docker-compose.yml` file.
 
 To restart the private network:
 
@@ -512,8 +497,7 @@ To restart the private network:
 
 ## Stop the private network and remove containers
 
-To shut down the private network and delete all containers and images created from running the
-sample network and the Pet Shop dapp:
+To shut down the private network and delete all containers and images created from running the sample network and the Pet Shop dapp:
 
 === "Linux/MacOS"
 

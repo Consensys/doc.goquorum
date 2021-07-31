@@ -20,7 +20,7 @@ Before inserting a block onto the chain, a super-majority (greater than 66%) of 
 Existing validators propose and vote to [add or remove validators](#add-or-remove-validators).
 Adding or removing a validator requires a majority vote (greater than 50%) of validators.
 
-!!! warning
+!!! important
 
     Configure your network to ensure you never lose 1/3 or more of your validators.
     If more than 1/3 of validators stop participating, new blocks are no longer created, and the network stalls.
