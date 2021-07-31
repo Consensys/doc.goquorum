@@ -56,7 +56,7 @@ To start the network, go to the installation directory (`quorum-test-network` if
 The script builds the Docker images, and runs the Docker containers.
 
 Four GoQuorum IBFT 2.0 validator nodes and a non-validator node are created to simulate a base network.
-There are also three member pairs (GoQuorum and Tessera sets) to simulate private nodes on the network.
+In addition, there are three member pairs (GoQuorum and Tessera sets) to simulate private nodes on the network.
 
 When execution is successfully finished, the process lists the available services:
 
