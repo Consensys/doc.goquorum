@@ -67,7 +67,7 @@ nav:
       - Configure:
           - Consensus Protocols:
               - Clique: HowTo/Configure/Consensus-Protocols/Raft.md
-              - IBFT 2.0: HowTo/Configure/Consensus-Protocols/IBFT.md
+              - IBFT: HowTo/Configure/Consensus-Protocols/IBFT.md
           - Genesis file: HowTo/Configure/GenesisOptions.md
           - High availability: HowTo/Configure/HighAvailability.md
           - Permissions:

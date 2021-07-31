@@ -5,38 +5,39 @@ description: Configuring IBFT consensus
 # Configuring IBFT consensus
 
 GoQuorum implements the [IBFT](../../../Concepts/Consensus/IBFT.md) Proof-of-Authority (PoA)
-consensus protocol. Private networks can use IBFT. Blocks in Istanbul BFT protocol are final,
-which means that there are no forks and any valid block must be somewhere in the main chain.
-To prevent a faulty node from generating a totally different chain from the main chain,
-each validator appends ceil(2N/3) of received COMMIT signatures to extraData field in the
-header before inserting it into the chain. Thus all blocks are self-verifiable.
+consensus protocol.
+Private networks can use IBFT.
+Blocks in IBFT protocol are final, which means that there are no forks and any valid block must be somewhere in the main chain.
+
+To prevent a faulty node from generating a different chain from the main chain, each validator appends `ceil(2N/3)` of
+received `COMMIT` signatures to the `extraData` field in a block's header before inserting it into the chain.
+Therefore, all blocks are self-verifiable.
+
+In IBFT networks, approved accounts known as validators validate transactions and blocks.
+Validators take turns to create the next block.
+Before inserting a block onto the chain, a super-majority (greater than 66%) of validators must first sign the block.
+
+Existing validators propose and vote to [add or remove validators](#add-or-remove-validators).
+Adding or removing a validator requires a majority vote (greater than 50%) of validators.
 
 !!! warning
 
-    Configure your network to ensure you never lose 1/3 or more of your validators. If more
-    than 1/3 of validators stop participating, new blocks are no longer created, and the
-    network stalls. It may take significant time to recover once nodes are restarted.
-
-In IBFT networks, approved accounts also known as validators, validate transactions and blocks.
-Validators take turns to create the next block. Before inserting the block onto the chain, a
-super-majority (greater than 66%) of validators must first sign the block.
-
-Existing validators propose and vote to
-[add or remove validators](#add-or-remove-validators). Adding or removing a validator
-requires a majority vote (greater than 50%) of validators.
+    Configure your network to ensure you never lose 1/3 or more of your validators.
+    If more than 1/3 of validators stop participating, new blocks are no longer created, and the network stalls.
+    It may take significant time to recover once nodes are restarted.
 
 ## Minimum number of validators
 
-IBFT requires four validators to be Byzantine fault tolerant. Byzantine fault tolerance is the
-ability for a blockchain network to function correctly and reach consensus despite nodes failing or
-propagating incorrect information to peers.
+IBFT requires four validators to be Byzantine fault tolerant.
+Byzantine fault tolerance is the ability for a blockchain network to function correctly and reach consensus despite nodes
+failing or propagating incorrect information to peers.
 
 ## Genesis file
 
-To use IBFT, GoQuorum requires an IBFT genesis file. The genesis file defines properties
-specific to IBFT and to your specific network.
+To use IBFT, GoQuorum requires a genesis file.
+The genesis file defines properties specific to IBFT and to your specific network.
 
-!!! example "Sample IBFT Genesis File"
+!!! example "Sample IBFT genesis file"
 
     Example genesis file for a 4 nodes IBFT2 network.
 
@@ -76,76 +77,55 @@ specific to IBFT and to your specific network.
 
 The properties specific to IBFT are in the `istanbul` section:
 
-* `epoch` - Specifies the number of blocks that should pass before pending validator votes
-  are reset.
-* `policy` - Refers to the prosper selection policy, which is 0 (Round Robin) or 1 (Sticky).
-  'Round robin' is where validators take turns in proposing blocks, 'Sticky' is where a single
-  validator proposes blocks until they go offline or unreachable
-* `ceil2Nby3Block` - Sets the block number from which to use an updated formula for
-  calculating the number of faulty nodes. For new networks, it is recommended to set this
-  value to 0 to use the updated formula immediately.
-* `extraData` - RLP encoded string with a list of validtors
-  `RLP([32 bytes Vanity, List<Validators>, No Vote, Round=Int(0), 0 Seals])`. RLP encoding
-  is a space efficient object serialization scheme used in Ethereum.
+* `epoch` - Number of blocks that should pass before pending validator votes are reset.
+* `policy` - Proposer selection policy, which is 0 (Round Robin) or 1 (Sticky).
+  'Round Robin' is where validators take turns in proposing blocks, and 'Sticky' is where a single validator proposes
+  blocks until they go offline or are unreachable.
+* `ceil2Nby3Block` - Sets the block number from which to use an updated formula for calculating the number of faulty nodes.
+  For new networks, we recommended setting this to 0 to use the updated formula immediately.
+* `extraData` - RLP encoded string with a list of validators.
+  RLP encoding is a space-efficient object serialization scheme used in Ethereum.
 
-### Block time
+## Block time
 
-This is the minimum time between two consecutive IBFT blocks’ timestamps in seconds. Setting the
-block period determines how quickly blocks should be minted by the validators. The default is 1.
-This is set on each GoQuorum node with the cli option
+The block time is the minimum time between two consecutive IBFT blocks’ timestamps in seconds.
+Setting the block time determines how quickly blocks should be minted by the validators.
+The default is 1 second.
+
+You can set the block time on each GoQuorum node with the
+[`istanbul.blockperiod`](../../../Reference/CLI-Syntax.md#istanbulblockperiod) option:
 
 ```bash
 --istanbul.blockperiod <INTEGER>
 ```
 
-In addition to this you also need to set a `requesttimeout` by using the cli option
+You can also set a `requesttimeout` by using the
+[`istanbul.requesttimeout`](../../../Reference/CLI-Syntax.md#istanbulrequesttimeout) option:
 
 ```bash
 --istanbul.requesttimeout <INTEGER>
 ```
 
-!!! warning
+!!! important
 
-    If more than 1/3 of validators stop participating, new blocks can no longer be created and
-    `requesttimeoutseconds` doubles with each round change. The quickest method
-    to resume block production is to restart all validators, which resets `requesttimeoutseconds` to
+    If more than 1/3 of validators stop participating, new blocks can no longer be created and `requesttimeoutseconds`
+    doubles with each round change.
+    The quickest method to resume block production is to restart all validators, which resets `requesttimeoutseconds` to
     its genesis value.
 
-## Add or Remove Validators
+## Add or remove validators
 
-The approach to adding or removing validators is typically done via API's or the geth CLI, and the
-thing to note is that the process of adding or removing a validator must be done on greater than
-50% of the existing validator pool
+You can [add or remove IBFT validators](../../../Tutorials/Private-Network/Adding-removing-IBFT-validators.md#adding-a-validator).
+To add a validator:
 
-1. The first thing to do is to add the node's enode to the `static-nodes.json` file, which will allow
-other nodes to peer with it. This needs to be done on every validator node in the network, and
-ideally on every node in the network depending on your permissions policy.
+1. Add the node's enode to the `static-nodes.json` file, which allows other nodes to peer with it.
+   Repeat on every validator node in the network, and ideally on every node in the network depending on your permissions policy.
 
-2. The next thing to obtain the validator's address which can be obtained via the
-[istanbul_nodeAddress](../../../Reference/API-Methods.md/#istanbul_nodeAddress) API call.
+2. Obtain the validator's address by calling [istanbul_nodeAddress](../../../Reference/API-Methods.md#istanbul_nodeAddress).
 
-3. To add a validator you can then make an API call from greater than 50% of the existing validator
-pool like so:
+3. Call [istanbul_propose](../../../Reference/API-Methods.md#istanbul_propose) from greater than 50% of the existing validator pool.
 
-```bash
-istanbul.propose(NODE_ADDRESS, ENABLED)
-```
+## Add or remove non-validator nodes
 
-where:
-
-* NODE_ADDRESS - is your node's address in hex and,
-* ENABLED - is a boolean representing whether the node should be a validaotr or not. To set
-  the node as a validator, set the value of ENABLED to `true` and to remove the node from
-  the validator pool, set it to `false`
-
-More information and a
-[tutorial](../../../Tutorials/Private-Network/Adding-removing-IBFT-validators.md) is also
-available.
-
-## Add or Remove Non-Validator Nodes
-
-A normal node (non-validator) follows the exact same process as above but ends at step 1.
-
-More information and a
-[tutorial](../../../Tutorials/Private-Network/Adding-removing-IBFT-validators.md/) is also
-available.
+You can [add or remove IBFT non-validator nodes](../../../Tutorials/Private-Network/Adding-removing-IBFT-validators.md#adding-a-non-validator-node).
+Adding a non-validator node is simply step 1 of [adding a validator](#add-or-remove-validators).
