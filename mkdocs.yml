@@ -65,7 +65,7 @@ nav:
           - Contract extension: Concepts/Privacy/ContractExtension.md
           - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
       - Consensus:
-          - Overview: Concepts/Consensus/Using-the-Quickstart.md
+          - Overview: Concepts/Consensus/Overview.md
           - IBFT: Concepts/Consensus/IBFT.md
           - Raft:
               - Overview: Concepts/Consensus/Raft.md
@@ -81,7 +81,7 @@ nav:
           - Overview: Concepts/Plugins/Plugins.md
           - Architecture: Concepts/Plugins/PluginsArchitecture.md
       - Security Framework:
-          - Overview: Concepts/Security/Framework/Using-the-Quickstart.md
+          - Overview: Concepts/Security/Framework/Overview.md
           - GoQuorum Network:
               - Consortium: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
               - GoQuorum Node: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
@@ -91,19 +91,19 @@ nav:
               - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
               - Smart Contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
       - Multi-tenancy:
-          - Overview: Concepts/Multitenancy/Using-the-Quickstart.md
+          - Overview: Concepts/Multitenancy/Overview.md
           - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
       - Cakeshop: Concepts/Cakeshop.md
       - Qubernetes:
-          - Overview: Concepts/Qubernetes/Qubernetes-Using-the-Quickstart.md
+          - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md
   - Tutorials:
-      - Quorum Developer Quickstart:
-          - Getting Started: Quorum-Dev-Quickstart/Getting-Started.md
-          - Using the Quickstart: Quorum-Dev-Quickstart/Using the Quickstart.md
-          - Tools: Quorum-Dev-Quickstart/Tools.md
+      - Quorum Dev Quickstart:
+          - Getting Started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+          - Using the Quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
+          - Tools: Tutorials/Quorum-Dev-Quickstart/Tools.md
       - Create a Private Network:
           - Create a network using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
           - Adding and removing IBFT validators: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
@@ -174,10 +174,10 @@ nav:
           - Getting started: Reference/Cakeshop/GettingStarted.md
           - Configuration: Reference/Cakeshop/Configuration.md
       - Remix Plugin:
-          - Overview: Reference/RemixPlugin/Using-the-Quickstart.md
+          - Overview: Reference/RemixPlugin/Overview.md
           - Getting started: Reference/RemixPlugin/GettingStarted.md
       - quorum.js:
-          - Overview: Reference/quorum.js/Using-the-Quickstart.md
+          - Overview: Reference/quorum.js/Overview.md
           - extend API: Reference/quorum.js/extend.md
           - RawTransactionManager API: Reference/quorum.js/RawTransactionManager.md
       - FAQ: Reference/FAQ.md
@@ -241,7 +241,7 @@ plugins:
         Account-Key-Management/Quorum/account-Plugins/Overview.md: HowTo/ManageKeys/AccountPlugins.md
         Account-Key-Management/Tessera/Overview.md: Concepts/AccountManagement.md
         Consensus/ibft/ibft.md: Concepts/Consensus/IBFT.md
-        Consensus/Consensus.md: Concepts/Consensus/Using-the-Quickstart.md
+        Consensus/Consensus.md: Concepts/Consensus/Overview.md
         Consensus/raft/raft.md: Concepts/Consensus/Raft.md
         Getting Started/permissioned-nodes.md: HowTo/Configure/BasicPermissions.md
         Getting Started/running.md: HowTo/GetStarted/GettingStartedOverview.md
@@ -299,9 +299,9 @@ plugins:
         PluggableArchitecture/Plugins/security/implementation.md: Reference/Plugins/security/For-Users.md
         PluggableArchitecture/Plugins/security/interface.md: Reference/Plugins/security/interface.md
         RemixPlugin/GettingStarted.md: Reference/RemixPlugin/GettingStarted.md
-        RemixPlugin/Overview.md: Reference/RemixPlugin/Using-the-Quickstart.md
+        RemixPlugin/Overview.md: Reference/RemixPlugin/Overview.md
         Getting Started/genesis.md: Reference/genesis.md
-        quorum.js/Overview.md: Reference/quorum.js/Using-the-Quickstart.md
+        quorum.js/Overview.md: Reference/quorum.js/Overview.md
         quorum.js/RawTransactionManager.md: Reference/quorum.js/RawTransactionManager.md
         quorum.js/extend.md: Reference/quorum.js/extend.md
         Tutorials/Creating-A-Network-From-Scratch.md: Tutorials/Private-Network/Create-IBFT-Network.md

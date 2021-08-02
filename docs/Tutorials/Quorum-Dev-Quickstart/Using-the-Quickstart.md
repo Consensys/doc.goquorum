@@ -302,20 +302,19 @@ The updated balance reflects the transaction completed using MetaMask.
 
 ## Using Remix
 
-You can also also connect your nodes to [Remix](http://remix.ethereum.org) by using our
-[GoQuorum Plugin](../../Reference/RemixPlugin/Overview.md). Follow the instructions for activating the remix plugin
-in [Getting Started](../../Reference/RemixPlugin/GettingStarted.md), using their GoQuorum and Tessera urls above
+You can also connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](../../Reference/RemixPlugin/Overview.md).
+Follow the instructions for activating the remix plugin in [Getting Started](../../Reference/RemixPlugin/GettingStarted.md),
+using the GoQuorum and Tessera URLs in the [Private transactions](#private-transactions) section.
 
 ## Using Cakeshop
 
 Cakeshop allows you to perform transactions directly via the UI.
 
 1. Open <http://localhost:8999> in your browser.
-1. Go to the Contracts tab and Deploy the contract registry
-1. Go to the Sandbox, select the SimpleStorage sample contract from the Contract Library, and deploy with
-   `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`)
-1. Go back to the main Cakeshop page, go to the Contracts tab again, and you should be able to see the
-   contract you just deployed.
+1. Go to the **Contracts** tab and **Deploy** the contract registry.
+1. Go to the **Sandbox**, select the `SimpleStorage` sample contract from the Contract Library, and deploy with
+   `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`).
+1. Return to the main Cakeshop page, go to the **Contracts** tab again, and you should be able to see the contract you just deployed.
 1. Interact with it from there, and switch between nodes using the dropdown in the top right corner of the page.
 
 ## Smart contract and dapp usage

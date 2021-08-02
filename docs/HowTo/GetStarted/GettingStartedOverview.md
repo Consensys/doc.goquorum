@@ -13,15 +13,17 @@ The easiest way to get a network up and running is by using the [Quorum Dev Quic
 This command-line tool creates a local GoQuorum network that can be started and be ready for use in minutes.
 
 The quickstart provides options for configuring the network and generates all the resources to run in containers
-using `docker-compose`
+using `docker-compose`.
 
 The quickstart requires:
-* [Nodejs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and runs on Linux/Mac only.
-* [Docker and Docker-compose](https://docs.docker.com/compose/install/)
-* [Truffle](https://www.trufflesuite.com/truffle) development framework
-* [curl command line](https://curl.haxx.se/download.html)
-* [MetaMask](https://metamask.io/)
 
+* [Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and runs on Linux and Mac only.
+* [Docker and Docker-compose](https://docs.docker.com/compose/install/).
+* [Truffle](https://www.trufflesuite.com/truffle) development framework.
+* [`curl` command line](https://curl.haxx.se/download.html).
+* [MetaMask](https://metamask.io/).
+
+Start the quickstart by running:
 
 ```bash
 npx quorum-dev-quickstart
