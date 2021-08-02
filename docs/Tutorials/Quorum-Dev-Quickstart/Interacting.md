@@ -1,5 +1,4 @@
 
-
 ### Inspecting the GoQuorum nodes
 
 You can inspect any of the GoQuorum nodes by using `./attach.sh` to open the geth JavaScript console. For this demo, you will be inspecting Node 1, Node 2, and Node 3.
@@ -159,4 +158,3 @@ Result is:
 ```
 
 And there you have it: All nodes are validating the same blockchain of transactions, with the private transactions containing only a 512 bit hash in place of the transaction data, and only the parties to the private transactions being able to view and update the state of the private contracts.
-

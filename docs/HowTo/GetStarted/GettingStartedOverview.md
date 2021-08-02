@@ -31,7 +31,6 @@ npx quorum-dev-quickstart
 
 To explore the features of GoQuorum and deploy private contracts, follow the instructions on [Interacting with the Network](../../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md)
 
-
 ## GoQuorum Examples sample network
 
 [GoQuorum Examples](../../Reference/GoQuorum-Projects.md) provides the means to quickly create a pre-configured sample GoQuorum
@@ -55,4 +54,3 @@ ready to run on Kubernetes.
 [Creating a Network From Scratch](../../Tutorials/Private-Network/Create-IBFT-Network.md) provides a step-by-step walkthrough
 of how to create and configure a GoQuorum network suitable for either Raft or Istanbul consensus. It
 also shows how to enable privacy and add/remove nodes as required.
-

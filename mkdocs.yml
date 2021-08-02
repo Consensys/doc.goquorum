@@ -263,7 +263,7 @@ plugins:
         Security/Framework/Quorum Network Security/Node.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
         Security/Framework/Quorum Network Security/Opertional Considerations.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
         Security/Framework/Quorum Network Security/Transaction Manager.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
-        Security/Framework/Overview.md: Concepts/Security/Framework/Using-the-Quickstart.md
+        Security/Framework/Overview.md: Concepts/Security/Framework/Overview.md
         How-To-Guides/HA_Setup.md: HowTo/Configure/HighAvailability.md
         How-To-Guides/add_ibft_validator.md: HowTo/Use/AddingIBFTValidators.md
         Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/EnhancedPermissions.md
