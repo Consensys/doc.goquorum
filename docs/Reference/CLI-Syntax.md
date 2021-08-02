@@ -258,7 +258,7 @@ Enables [DNS resolution of peers](../HowTo/Configure/dns.md).
     ```
 
 Raft ID to assume when
-[joining a pre-existing cluster](../HowTo/Configure/Consensus/Configuring-Raft.md#adding-raft-members).
+[joining a pre-existing cluster](../HowTo/Configure/Consensus-Protocols/Raft.md#adding-raft-members).
 The default is 0.
 
 ### `raftlogdir`
@@ -292,5 +292,5 @@ Defaults to the [`datadir` option](https://geth.ethereum.org/docs/interface/comm
     --raftport 50500
     ```
 
-Port to bind for the [Raft transport](../HowTo/Configure/Consensus/Configuring-Raft.md#raft-transport-layer).
+Port to bind for the [Raft transport](../HowTo/Configure/Consensus-Protocols/Raft.md#raft-transport-layer).
 The default is 50400.

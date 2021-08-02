@@ -5,31 +5,507 @@ description: Helps to generate local GoQuorum and Ethereum blockchain networks.
 
 # Quorum Developer Quickstart
 
-## Prerequisites
-
-- [Docker and Docker-compose](https://docs.docker.com/compose/install/)
-- [Nodejs](https://nodejs.org/en/download/)
-- On Windows:
-    - Windows Subsystem for Linux 2
-    - Docker desktop configured to use the WSL2-based engine.
+The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private
+[IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md) network of Besu nodes managed by Docker Compose.
 
 !!! important
-    Ensure you allow Docker up to 4G of memory or 6G if running the privacy examples.
-    Refer to the _Resources_ section in [Docker for Mac](https://docs.docker.com/docker-for-mac/) and
+
+    This tutorial runs a private network suitable for education or demonstration purposes
+    and is not intended for running production networks.
+
+## Prerequisites
+
+* One of the following operating systems:
+    * Linux on x86_64 architecture
+    * macOS on an Intel processor (M1 processor not supported yet)
+    * Windows 64-bit edition, with:
+        * Windows Subsystem for Linux 2
+        * Docker desktop configured to use the WSL2-based engine
+* [Docker and Docker-compose](https://docs.docker.com/compose/install/)
+* [Node.js v6+ LTS](https://nodejs.org/en/) (the best way to install is with [NVM](http://nvm.sh))
+* [Truffle](https://www.trufflesuite.com/truffle) development framework
+* [curl command line](https://curl.haxx.se/download.html)
+* [MetaMask](https://metamask.io/)
+
+!!! important
+
+    Allow Docker up to 4G of memory or 6G if running the privacy examples.
+    Refer to the **Resources** section in [Docker for Mac](https://docs.docker.com/docker-for-mac/) and
     [Docker Desktop](https://docs.docker.com/docker-for-windows/) for details.
 
-## Usage
+## Generate the tutorial blockchain configuration files
 
-You can follow this [walk-through](https://consensys.net/quorum/products/guides/getting-started-with-consensys-quorum/)
-which details the entire process.
-
-To create the docker-compose file and artifacts, run:
+To create the tutorial `docker-compose` files and artifacts, run:
 
 ```bash
 npx quorum-dev-quickstart
 ```
 
-Follow the prompts displayed.
+Follow the prompts displayed to run GoQuorum and [logging with ELK](../HowTo/Monitor/Elastic-Stack.md).
+Enter `n` for [Codefi Orchestrate](https://docs.orchestrate.consensys.net/en/stable/) and `y` for
+[private transactions](../Concepts/Privacy/Privacy.md).
 
-When installation is complete, refer to `README.md` in the installation directory for more information
-on your test network. Optionally, refer to the previously mentioned walk-through.
+## Start the network
+
+To start the network, go to the installation directory (`quorum-test-network` if you used the default value) and run:
+
+```bash
+./run.sh
+```
+
+The script builds the Docker images, and runs the Docker containers.
+
+Four GoQuorum IBFT 2.0 validator nodes and a non-validator node are created to simulate a base network.
+In addition, there are three member pairs (GoQuorum and Tessera sets) to simulate private nodes on the network.
+
+When execution is successfully finished, the process lists the available services:
+
+!!! example "Services list"
+
+    ```log
+    *************************************
+    Quorum Dev Quickstart
+    *************************************
+    ----------------------------------
+    List endpoints and services
+    ----------------------------------
+    JSON-RPC HTTP service endpoint                 : http://localhost:8545
+    JSON-RPC WebSocket service endpoint            : ws://localhost:8546
+    Web block explorer address                     : http://localhost:25000/
+    Prometheus address                             : http://localhost:9090/graph
+    Cakeshop toolkit address                       : http://localhost:8999
+    Grafana address                                : http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All
+
+    For more information on the endpoints and services, refer to README.md in the installation directory.
+    ****************************************************************
+    ```
+
+* Use the **JSON-RPC HTTP service endpoint** to access the RPC node service from your dapp or from
+  cryptocurrency wallets such as MetaMask.
+* Use the **JSON-RPC WebSocket service endpoint** to access the WebSocket node service from your
+  dapp.
+* Use the **Web block explorer address** to display the [block explorer Web application](http://localhost:25000).
+* Use the **Prometheus address** to access the [Prometheus dashboard](http://localhost:9090/graph).
+  _[Read more about metrics](../HowTo/Monitor/Metrics.md)_.
+* Use the **Grafana address** to access the
+  [Grafana dashboard](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All).
+  _[Read more about metrics](../HowTo/Monitor/Metrics.md)_.
+* Use the **Kibana logs address** to access the
+  [logs in Kibana](http://localhost:5601/app/kibana#/discover).
+  _[Read more about log management](../HowTo/Monitor/Elastic-Stack.md)_.
+
+To display the list of endpoints again, run:
+
+```bash
+./list.sh
+```
+
+## Block explorer
+
+This tutorial uses a modified version of the [Alethio Ethereum Lite Explorer](https://github.com/Alethio/ethereum-lite-explorer).
+
+Access the explorer at [`http://localhost:25000`](http://localhost:25000) as displayed when starting the private network.
+
+The block explorer displays a summary of the private network, indicating four peers.
+
+Click the block number to the right of **Best Block** to display the block details:
+
+![Block Details](../images/ExplorerBlockDetails.png)
+
+You can explore blocks by clicking on the blocks under **`Bk`** on the left-hand side.
+
+You can search for a specific block, transaction hash, or address by clicking the :mag: in the top left-hand corner.
+
+![Explorer Search](../images/ExplorerSearch.png)
+
+## Monitor nodes with Prometheus and Grafana
+
+The sample network also includes Prometheus and Grafana monitoring tools to let you visualize
+node health and usage.
+You can directly access these tools from your browser at the addresses displayed in the endpoint list.
+
+* [Prometheus dashboard](http://localhost:9090/graph).
+* [Grafana dashboard](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All).
+
+For more details on how to configure and use these tools for your own nodes, see our
+[performances monitoring documentation](../HowTo/Monitor/Metrics.md),
+the [Prometheus documentation](https://prometheus.io/docs/introduction/overview/)
+and [Grafana documentation](https://grafana.com/docs/).
+
+![Grafana](../images/dashboard_grafana_1.png)
+
+## Run JSON-RPC requests
+
+You can run JSON-RPC requests on:
+
+* HTTP with `http://localhost:8545`.
+* WebSockets with `ws://localhost:8546`.
+
+### Run with `curl`
+
+This tutorial uses [`curl`](https://curl.haxx.se/download.html) to send JSON-RPC requests over HTTP.
+
+### Request the node version
+
+Run the following command from the host shell:
+
+```bash
+curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":1}' -H 'Content-Type: application/json' http://localhost:8545
+```
+
+The result displays the client version of the running node:
+
+=== "Result example"
+
+    ```json
+    {
+    "jsonrpc" : "2.0",
+    "id" : 1,
+    "result" : "Geth/node5-istanbul/v1.9.20-stable-1d7926a1(quorum-v21.4.2)/linux-amd64/go1.15.5"
+    }
+    ```
+
+=== "Result explanation"
+
+    * `"jsonrpc" : "2.0"` indicates that the JSON-RPC 2.0 spec format is used.
+    * `"id" : 1` is the request identifier used to match the request and the response. This tutorial always uses 1.
+    * `"result"` contains the running GoQuorum information:
+        * `v1.9.20-stable-1d7926a1` is the Geth build that has been used for GoQuorum
+        * `quorum-v21.4.2` is the running GoQuorum version number. This may be different when you run this tutorial.
+        * `linux-amd64` is the architecture used to build this version.
+        * `go1.15.5` is the Go version used. This may be different when you run this tutorial.
+
+Successfully calling this method shows that you can connect to the nodes using JSON-RPC over HTTP.
+
+From here, you can walk through more interesting requests demonstrated in the rest of this section,
+or skip ahead to [Create a transaction using MetaMask](#create-a-transaction-using-metamask).
+
+### Count the peers
+
+Peers are the other nodes connected to the node receiving the JSON-RPC request.
+
+Poll the peer count using `net_peerCount`:
+
+```bash
+curl -X POST --data '{"jsonrpc":"2.0","method":"net_peerCount","params":[],"id":1}' -H 'Content-Type: application/json'  http://localhost:8545
+```
+
+The result indicates that there are seven peers (our validators):
+
+```json
+{
+  "jsonrpc" : "2.0",
+  "id" : 1,
+  "result" : "0x7"
+}
+```
+
+### Request the most recent block number
+
+Call `eth_blockNumber` to retrieve the number of the most recently synchronized block:
+
+```bash
+curl -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' -H 'Content-Type: application/json' http://localhost:8545
+```
+
+The result indicates the highest block number synchronized on this node.
+
+```json
+{
+  "jsonrpc" : "2.0",
+  "id" : 1,
+  "result" : "0x2a"
+}
+```
+
+Here the hexadecimal value `0x2a` translates to decimal as `42`, the number of blocks received by the node so far,
+about two minutes after the new network started.
+
+## Private transactions
+
+This example uses the [web3.js](https://www.npmjs.com/package/web3) library to make the API calls, creating three member
+nodes pairs (a GoQuorum node which has a corresponding Tessera node for privacy) that can be accessed using APIs on the following ports:
+
+```bash
+Member1Quorum RPC: http://localhost:20000
+Member1Tessera: http://localhost:9081
+
+Member2Quorum RPC: http://localhost:20002
+Member1Tessera: http://localhost:9082
+
+Member3Quorum RPC: http://localhost:20004
+Member1Tessera: http://localhost:9083
+```
+
+Navigate to the `smart_contracts` directory and deploy the private transaction:
+
+```bash
+cd smart_contracts
+npm install
+node scripts/private_tx.js
+```
+
+This deploys the contract and sends an arbitrary value (`47`) from `Member1` to `Member3`.
+Once done, it performs a read operation on the contract using the `get` function and the contract's ABI, at the address specified.
+It then performs a write operation using the `set` function and the contract's ABI, at the address and sets the value to `123`.
+Lastly, it performs a read operation on all three members to verify that this is private between `Member1` and `Member3`
+only, and you should see that only `Member1` and `Member3` return the result of `123`, and `Member2` has an undefined
+value.
+
+```bash
+node scripts/private_tx.js
+Address of transaction:  0x00fFD3548725459255f1e78A61A07f1539Db0271
+Use the smart contracts 'get' function to read the contract's constructor initialized value ..
+Member1 obtained value at deployed contract is: 47
+Use the smart contracts 'set' function to update that value to 123 .. - from member1 to member3
+Verify the private transaction is private by reading the value from all three members ..
+Member1 obtained value at deployed contract is: 123
+Member3 obtained value at deployed contract is: 123
+Member2 obtained value at deployed contract is: undefined
+```
+
+In general:
+
+1. Deploy a contract from A to B, which returns an address.
+2. Use the contract address and the contract's ABI to interact with the contract from that point on, where you can get and set values.
+
+## Create a transaction using MetaMask
+
+You can use [MetaMask](https://metamask.io/) to send a transaction on your private network.
+
+* Open MetaMask and connect it to your private network RPC endpoint by selecting **Localhost 8545** in the network list.
+* Choose one of the following test accounts and [import it into MetaMask by copying the corresponding private key](https://metamask.zendesk.com/hc/en-us/articles/360015489331-How-to-import-an-Account).
+
+{!global/test_accounts.md!}
+
+After importing an existing test account, [create another test account from scratch]
+to use as the recipient for a test Ether transaction.
+
+In MetaMask, select the new test account and [copy its address](https://metamask.zendesk.com/hc/en-us/articles/360015289512-How-to-copy-your-MetaMask-Account-Public-Address).
+
+In the [Block Explorer](http://localhost:25000), search for the new test account by clicking on the :mag: and pasting
+the test account address into the search box.
+
+The new test account displays with a zero balance.
+
+[Send test Ether](https://metamask.zendesk.com/hc/en-us/articles/360015488931-How-to-send-ETH-and-ERC-20-tokens-from-your-MetaMask-Wallet)
+from the first test account (containing test Ether) to the new test account (which has a zero balance).
+
+!!! tip
+
+    You can use a zero gas price here as this private test network is a free gas network, but the maximum amount of
+    gas that can be used (the gas limit) for a value transaction must be at least 21000.
+
+Refresh the Block Explorer page in your browser displaying the target test account.
+
+The updated balance reflects the transaction completed using MetaMask.
+
+## Smart contract and dapp usage
+
+You can use a demo dapp called Pet Shop, provided by [Truffle](https://www.trufflesuite.com/tutorial).
+
+The dapp runs a local website using Docker, and uses smart contracts deployed on the network.
+
+The directory created by `quorum-dev-quickstart` includes a `dapps` directory with a `pet-shop` subdirectory,
+which contains the source code for the dapp, including the smart contracts, website, and configurations to run this tutorial.
+
+With the blockchain running and MetaMask connected to **Localhost 8545**, run the following command to start the Pet Shop dapp:
+
+```bash
+cd dapps/pet-shop
+./run_dapp.sh
+```
+
+The script will:
+
+1. Install the dapp Node dependencies (you may see some warnings here, but it will not prevent the dapp from running).
+1. Compile the contracts.
+1. Deploy the contracts to the blockchain.
+1. Run tests.
+1. Build and run a Docker image to serve the dapp website.
+
+!!! example "`./run_dapp.sh` example output"
+
+    ```text
+    Compiling your contracts...
+    ===========================
+    > Compiling ./contracts/Adoption.sol
+    > Compiling ./contracts/Migrations.sol
+    > Artifacts written to /home/jfernandes/workspace/quorum-dev-quickstart/quorum-test-network/dapps/pet-shop/pet-shop-box/build/contracts
+    > Compiled successfully using:
+    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
+
+
+    Compiling your contracts...
+    ===========================
+    > Everything is up to date, there is nothing to compile.
+
+
+
+    Starting migrations...
+    ======================
+    > Network name:    'quickstartWallet'
+    > Network id:      1337
+    > Block gas limit: 700000000 (0x29b92700)
+
+
+    1_initial_migration.js
+    ======================
+
+    Deploying 'Migrations'
+    ----------------------
+    > transaction hash:    0x98c7d7754cf11b2ba5a8aa676b1299720bca0668b00b91b9d223c059f5456144
+    > Blocks: 1            Seconds: 4
+    > contract address:    0x8CdaF0CD259887258Bc13a92C0a6dA92698644C0
+    > block number:        154
+    > block timestamp:     0x60f7ca69
+    > account:             0x627306090abaB3A6e1400e9345bC60c78a8BEf57
+    > balance:             90000
+    > gas used:            221555 (0x36173)
+    > gas price:           0 gwei
+    > value sent:          0 ETH
+    > total cost:          0 ETH
+
+
+    > Saving migration to chain.
+    > Saving artifacts
+       -------------------------------------
+    > Total cost:                   0 ETH
+
+
+    2_deploy_contracts.js
+    =====================
+
+    Deploying 'Adoption'
+    --------------------
+    > transaction hash:    0xc38e10fd2078f331d6e0f8cf27f958fad8a8a02c9789680da53f39806e407332
+    > Blocks: 0            Seconds: 4
+    > contract address:    0x345cA3e014Aaf5dcA488057592ee47305D9B3e10
+    > block number:        156
+    > block timestamp:     0x60f7ca73
+    > account:             0x627306090abaB3A6e1400e9345bC60c78a8BEf57
+    > balance:             90000
+    > gas used:            239851 (0x3a8eb)
+    > gas price:           0 gwei
+    > value sent:          0 ETH
+    > total cost:          0 ETH
+
+
+    > Saving migration to chain.
+    > Saving artifacts
+       -------------------------------------
+    > Total cost:                   0 ETH
+
+
+    Summary
+    =======
+    > Total deployments:   2
+    > Final cost:          0 ETH
+
+
+    Using network 'quickstartWallet'.
+
+
+    Compiling your contracts...
+    ===========================
+    > Everything is up to date, there is nothing to compile.
+
+    Using network 'quickstartWallet'.
+
+    Compiling your contracts...
+    ===========================
+    > Compiling ./test/TestAdoption.sol
+
+    TestAdoption
+    ✓ testUserCanAdoptPet (2071ms)
+    ✓ testGetAdopterAddressByPetId (6070ms)
+    ✓ testGetAdopterAddressByPetIdInArray (6077ms)
+
+    3 passing (37s)
+    ```
+
+    After these tests are successful, the script builds a container for the Pet Shop dapp and deploys it,
+    binding it to port 3001 on your system.
+
+    ```text
+    Sending build context to Docker daemon  411.5MB
+    Step 1/5 : FROM node:12.14.1-stretch-slim
+    12.14.1-stretch-slim: Pulling from library/node
+    619014d83c02: Pull complete
+    8c5d9aed65fb: Pull complete
+    aaabe8e9daf2: Pull complete
+    f7567fa7b9f3: Pull complete
+    a989ed5f800b: Pull complete
+    Digest: sha256:59ac2f2c3a0c490d8424306032f9b638f5ea83327ffaf23c66490e0026d1a000
+    Status: Downloaded newer image for node:12.14.1-stretch-slim
+    ---> 2f7e25ad14ea
+    Step 2/5 : EXPOSE 3001
+    ---> Running in 3c818550ed02
+    Removing intermediate container 3c818550ed02
+    ---> 7839d0b263a2
+    Step 3/5 : WORKDIR /app
+    ---> Running in be4c761044b5
+    Removing intermediate container be4c761044b5
+    ---> 1a6e6d161952
+    Step 4/5 : COPY . /app
+    ---> f33c3b13bc5d
+    Step 5/5 : CMD npm run dev
+    ---> Running in f64911ca050f
+    Removing intermediate container f64911ca050f
+    ---> 16d28763e27b
+    Successfully built 16d28763e27b
+    Successfully tagged quorum-dev-quickstart_pet_shop:latest
+    fdbefa105bee995c56c2be23e9912f943973462bfc0b37df610e7feb7be4ca86
+    ```
+
+In the browser where you have MetaMask enabled and one of the test accounts loaded, open a new tab and navigate
+to [the Pet Shop dapp](http://localhost:3001) where you can adopt lovely pets (sorry, not for real, it's a demo).
+
+When you click on **Adopt**, a MetaMask window will pop up and request your permissions to continue with the transaction.
+
+After the transaction is complete and successful, the status of the pet you adopted will show **Success**.
+
+![Dapp UI](../images/dapp-ui.png)
+
+You can also search for the transaction and view its details in the [Block Explorer](http://localhost:25000/).
+
+![Dapp UI](../images/dapp-explorer-tx.png)
+
+The MetaMask UI also keeps a record of the transaction.
+
+![Dapp UI](../images/dapp-metamask-tx.png)
+
+## Stop and restart the private network without removing containers
+
+To shut down the private network without deleting the containers:
+
+=== "Linux/MacOS"
+
+    ```bash
+    ./stop.sh
+    ```
+
+This command stops the containers related to the services specified in the `docker-compose.yml` file.
+
+To restart the private network:
+
+=== "Linux/MacOS"
+
+    ```bash
+    ./resume.sh
+    ```
+
+## Stop the private network and remove containers
+
+To shut down the private network and delete all containers and images created from running the sample network and the Pet Shop dapp:
+
+=== "Linux/MacOS"
+
+    ```bash
+    ./remove.sh
+    ```
+
+<!-- Links -->
+
+[Import one of the existing accounts above into MetaMask]: https://metamask.zendesk.com/hc/en-us/articles/360015489331-Importing-an-Account-New-UI-
+[create another test account from scratch]: https://metamask.zendesk.com/hc/en-us/articles/360015289452-Creating-Additional-MetaMask-Wallets-New-UI-

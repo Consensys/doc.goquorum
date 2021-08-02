@@ -18,7 +18,7 @@ You can apply these instructions to any number of migrated nodes on any network 
 ## Prerequisites
 
 - [GoQuorum installed](../GetStarted/Install.md)
-- A running [Raft network](../../Tutorials/Create-a-Raft-network.md) or [IBFT network](../../Tutorials/Create-IBFT-Network.md)
+- A running [Raft network](../../Tutorials/Private-Network/Create-a-Raft-network.md) or [IBFT network](../../Tutorials/Private-Network/Create-IBFT-Network.md)
 
 ## Raft
 

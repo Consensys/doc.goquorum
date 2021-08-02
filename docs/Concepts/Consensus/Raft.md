@@ -124,8 +124,8 @@ lock-step when they apply the Raft log.
 
 ## Raft configuration
 
-* [How to configure Raft](../../HowTo/Configure/Consensus/Configuring-Raft.md)
-* [Create a Raft network from scratch](../../Tutorials/Create-a-Raft-network.md)
+* [Create a Raft network](../../Tutorials/Private-Network/Create-a-Raft-network.md)
+* [Configure a Raft network](../../HowTo/Configure/Consensus-Protocols/Raft.md)
 
 ## FAQ
 
