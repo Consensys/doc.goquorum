@@ -408,6 +408,23 @@ All nodes are validating the same blockchain of transactions, with the private t
 in place of the transaction data, and only the parties to the private transactions can view and update the state of the
 private contracts.
 
+## Use Remix
+
+You can connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](../../Reference/RemixPlugin/Overview.md).
+Follow the instructions for activating the remix plugin in [Getting Started](../../Reference/RemixPlugin/GettingStarted.md),
+using the GoQuorum and Tessera URLs in the [Private transactions](#private-transactions) section.
+
+## Use Cakeshop
+
+Cakeshop allows you to perform transactions directly via the UI.
+
+1. Open <http://localhost:8999> in your browser.
+1. Go to the **Contracts** tab and **Deploy** the contract registry.
+1. Go to the **Sandbox**, select the `SimpleStorage` sample contract from the Contract Library, and deploy with
+   `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`).
+1. Return to the main Cakeshop page, go to the **Contracts** tab again, and you should be able to see the contract you just deployed.
+1. Interact with it from there, and switch between nodes using the dropdown in the top right corner of the page.
+
 ## Create a transaction using MetaMask
 
 You can use [MetaMask](https://metamask.io/) to send a transaction on your private network.
@@ -438,23 +455,6 @@ from the first test account (containing test Ether) to the new test account (whi
 Refresh the Block Explorer page in your browser displaying the target test account.
 
 The updated balance reflects the transaction completed using MetaMask.
-
-## Use Remix
-
-You can connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](../../Reference/RemixPlugin/Overview.md).
-Follow the instructions for activating the remix plugin in [Getting Started](../../Reference/RemixPlugin/GettingStarted.md),
-using the GoQuorum and Tessera URLs in the [Private transactions](#private-transactions) section.
-
-## Use Cakeshop
-
-Cakeshop allows you to perform transactions directly via the UI.
-
-1. Open <http://localhost:8999> in your browser.
-1. Go to the **Contracts** tab and **Deploy** the contract registry.
-1. Go to the **Sandbox**, select the `SimpleStorage` sample contract from the Contract Library, and deploy with
-   `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`).
-1. Return to the main Cakeshop page, go to the **Contracts** tab again, and you should be able to see the contract you just deployed.
-1. Interact with it from there, and switch between nodes using the dropdown in the top right corner of the page.
 
 ## Smart contract and dapp usage
 
