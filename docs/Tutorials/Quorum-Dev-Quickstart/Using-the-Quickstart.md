@@ -246,8 +246,11 @@ node scripts/private_tx.js
 ```
 
 This deploys the contract and sends an arbitrary value (`47`) from `Member1` to `Member3`.
+
 Once done, it performs a read operation on the contract using the `get` function and the contract's ABI, at the address specified.
+
 It then performs a write operation using the `set` function and the contract's ABI, at the address and sets the value to `123`.
+
 Lastly, it performs a read operation on all three members to verify that this is private between `Member1` and `Member3`
 only, and you should see that only `Member1` and `Member3` return the result of `123`, and `Member2` has an undefined
 value.
@@ -265,97 +268,79 @@ Member3 obtained value at deployed contract is: 123
 Member2 obtained value at deployed contract is: undefined
 ```
 
-In general:
+### Inspect the member nodes with `geth attach`
 
-1. Deploy a contract from A to B, which returns an address.
-2. Use the contract address and the contract's ABI to interact with the contract from that point on, where you can get and set values.
+You can inspect any of the GoQuorum nodes by using `attach.sh` to open the geth JavaScript console.
 
-### Inspecting the member nodes via `geth attach`
+Use a separate terminal window for each of Member1, Member2, and Member3.
+In each terminal, go to the main directory where `docker-compose.yml` is located, then:
 
-You can inspect any of the GoQuorum nodes by using `attach.sh` to open the geth JavaScript console. For this demo,
-you will be inspecting Member1, Member2, and Member3 goQuorum nodes.
+* In terminal 1, run `./attach.sh 1` to attach to Member1.
+* In terminal 2, run `./attach.sh 2` to attach to Member2.
+* In terminal 3, run `./attach.sh 3` to attach to Member3.
 
-It is recommended to use separate terminal windows for each node you are inspecting. In each terminal, ensure you are
-in *main* directory where the docker-compose.yml file is, then:
+To look at the private transaction, run the following command in one of the terminals:
 
-* In terminal 1 run `./attach.sh 1` to attach to Member1
-* In terminal 2 run `./attach.sh 2` to attach to Member2
-* In terminal 3 run `./attach.sh 3` to attach to Member3
+=== "geth console request"
 
-To look at the private transaction that was just sent, run the following command in one of the terminals:
+    ```js
+    eth.getTransaction("0x4d796b2ccac109fc54006105df44c519341696fa88e004ce5c614239cb9f92a2"); // replace with your transaction hash
+    ```
 
-```javascript
-eth.getTransaction("0x4d796b2ccac109fc54006105df44c519341696fa88e004ce5c614239cb9f92a2"); //replace with your transanction hash
-```
+=== "JSON result"
 
-where you should replace this hash with the TransactionHash that was previously printed to the terminal.
-This will print a result of the form:
+    ```json
+    {
+      blockHash: "0x3d69d2eb2a50a96072c549805f0ba04ce364b68ef7c16cd0ddac8e6c184e599e",
+      blockNumber: 823,
+      from: "0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5",
+      gas: 150050,
+      gasPrice: 0,
+      hash: "0x4d796b2ccac109fc54006105df44c519341696fa88e004ce5c614239cb9f92a2",
+      input: "0xe619b9d1469c34735145be181a28d18c09b575ef1a8fdbdcb0fe3934c2de5a8c62814e93b087ee918cfa294a0023aa6d42ef360ccf4997f1b94ae1e6c9145a3a",
+      nonce: 6,
+      r: "0x2660131d78ccd80773e8094d9fbf7d030f9753ddb1496af5b12f643ba95f900b",
+      s: "0x50f3e787595b88e5738adba373971d61394c9710d1a0dbee7287d10085d2fef5",
+      to: null,
+      transactionIndex: 0,
+      v: "0x26",
+      value: 0
+    }
+    ```
 
-```json
-{
-  blockHash: "0x3d69d2eb2a50a96072c549805f0ba04ce364b68ef7c16cd0ddac8e6c184e599e",
-  blockNumber: 823,
-  from: "0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5",
-  gas: 150050,
-  gasPrice: 0,
-  hash: "0x4d796b2ccac109fc54006105df44c519341696fa88e004ce5c614239cb9f92a2",
-  input: "0xe619b9d1469c34735145be181a28d18c09b575ef1a8fdbdcb0fe3934c2de5a8c62814e93b087ee918cfa294a0023aa6d42ef360ccf4997f1b94ae1e6c9145a3a",
-  nonce: 6,
-  r: "0x2660131d78ccd80773e8094d9fbf7d030f9753ddb1496af5b12f643ba95f900b",
-  s: "0x50f3e787595b88e5738adba373971d61394c9710d1a0dbee7287d10085d2fef5",
-  to: null,
-  transactionIndex: 0,
-  v: "0x26",
-  value: 0
-}
-```
+!!! note
 
-Take note of the `v` field value of `"0x25"` or `"0x26"` (37 or 38 in decimal) which indicates this transaction has a
-private payload (input).
+    The `v` field value of `"0x25"` or `"0x26"` (37 or 38 in decimal) indicates this transaction has a private payload (input).
 
-### Interact with the contract - Read with `get()`
+### Read the contract with `get()`
 
-For each of the 3 nodes you'll use the geth JavaScript console to create a variable called `address` which you will
-assign to the address of the contract created by Member1. The contract address can be found in two ways:
+For each of the three nodes, create a variable called `address` using the geth console, and assign to it the address
+of the contract created by Member1.
+The contract address can be found:
 
-* In Node 1's log file: `data/logs/1.log`
-* By reading the `contractAddress` param after calling `eth.getTransactionReceipt(txHash)`
-  ([Ethereum API documentation](https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethgettransactionreceipt)) where
-  `txHash` is the hash printed to the terminal after sending the transaction. Note, this is also printed in the terminal
-  when the private transaction example was processed above.
+* In Member1's log file `data/logs/1.log`.
+* Using [`eth.getTransactionReceipt(txHash)`](https://web3js.readthedocs.io/en/v1.4.0/web3-eth.html#gettransactionreceipt),
+  where `txHash` is the hash printed to the terminal after sending the transaction.
+  The contract address is found in the result parameter `contractAddress`.
+  It is also printed in the terminal when the private transaction is processed.
 
-We will use the second option, and
-Once you've identified the contract address, run the following command in each terminal:
+After identifying the contract address, run the following command in each terminal:
 
 ```js
-eth.getTransactionReceipt("0x4d796b2ccac109fc54006105df44c519341696fa88e004ce5c614239cb9f92a2") ; //replace with your transanction hash
-{
-  blockHash: "0x3d69d2eb2a50a96072c549805f0ba04ce364b68ef7c16cd0ddac8e6c184e599e",
-  blockNumber: 823,
-  contractAddress: "0x695baaf717370fcbb42ab45cd83c531c27d79ef1",
-  cumulativeGasUsed: 0,
-  from: "0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5",
-  gasUsed: 0,
-  logs: [],
-  logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-  status: "0x1",
-  to: null,
-  transactionHash: "0x4d796b2ccac109fc54006105df44c519341696fa88e004ce5c614239cb9f92a2",
-  transactionIndex: 0
-}
-var address = "0x695Baaf717370fcBb42aB45CD83C531C27D79eF1";
+var address = "0x695Baaf717370fcBb42aB45CD83C531C27D79eF1"; // replace with your contract address
 ```
 
-Next you'll use ```eth.contract``` to define a contract class with the simpleStorage ABI definition in each terminal:
+Use [`eth.contract`](https://web3js.readthedocs.io/en/v1.4.0/web3-eth-contract.html#eth-contract) to define a contract class with the simpleStorage ABI definition in each terminal:
 
 ```js
-var address = "0x695baaf717370fcbb42ab45cd83c531c27d79ef1" //replace with your address
+var address = "0x695baaf717370fcbb42ab45cd83c531c27d79ef1" // replace with your address
 var abi = [{"constant":true,"inputs":[],"name":"storedData","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"x","type":"uint256"}],"name":"set","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"retVal","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[{"name":"initVal","type":"uint256"}],"type":"constructor"}];
 var private = eth.contract(abi).at(address)
 ```
 
-The function calls are now available on the contract instance and you can call those methods on the contract. Let's
-start by examining the initial value of the contract to make sure that only nodes 1 and 2 can see the initialized value.
+The function calls are available on the contract instance, and you can call those methods on the contract.
+
+Get the value of the contract to confirm that only Member1 and Member3 can see the value.
 
 * In terminal window 1 (Member1):
 
@@ -378,15 +363,12 @@ start by examining the initial value of the contract to make sure that only node
     123
     ```
 
-Notice that member nodes 1 and 3 are able to read the state of the private contract and its value is 123.
+Member2 can't read the state.
+Look in `smart_contracts/node scripts/private_tx.js` to confirm that `123` was the value set when the contract was updated.
 
-If you look in `smart_contracts/node scripts/private_tx.js` you will see that this was the value set when the contract was updated.
+### Write to the contract with `set()`
 
-member 2 is unable to read the state.
-
-### Interact with the contract - Write with `set()`
-
-Next you'll have Member1 set the state to the value `200` and verify only members 1 and 3 are able to view the new state.
+Have Member1 set the state to the value `200` and confirm that only Member1 and Member3 can view the new state.
 
 In terminal window 1 (Member1):
 
@@ -397,8 +379,7 @@ private.set(200,{from:eth.accounts[0],privateFor:["1iTZde/ndBHvzhcl7V68x44Vx7pl8
 ```
 
 You can check the log files in `data/logs/` to see each node validating the block with this new private transaction.
-Once the block containing the transaction has been validated you can once again check the state from each members 1, 2
-and 3
+Once the block containing the transaction is validated, you can check the state from each of the members.
 
 * In terminal window 1 (Member1):
 
@@ -421,9 +402,11 @@ and 3
     200
     ```
 
-And there you have it: All nodes are validating the same blockchain of transactions, with the private transactions
-containing only a 512 bit hash in place of the transaction data, and only the parties to the private transactions being
-able to view and update the state of the private contracts i.e. Member1 and Member3
+Member2 can't read the state.
+
+All nodes are validating the same blockchain of transactions, with the private transactions containing only a 512-bit hash
+in place of the transaction data, and only the parties to the private transactions can view and update the state of the
+private contracts.
 
 ## Create a transaction using MetaMask
 
@@ -456,13 +439,13 @@ Refresh the Block Explorer page in your browser displaying the target test accou
 
 The updated balance reflects the transaction completed using MetaMask.
 
-## Using Remix
+## Use Remix
 
-You can also connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](../../Reference/RemixPlugin/Overview.md).
+You can connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](../../Reference/RemixPlugin/Overview.md).
 Follow the instructions for activating the remix plugin in [Getting Started](../../Reference/RemixPlugin/GettingStarted.md),
 using the GoQuorum and Tessera URLs in the [Private transactions](#private-transactions) section.
 
-## Using Cakeshop
+## Use Cakeshop
 
 Cakeshop allows you to perform transactions directly via the UI.
 
