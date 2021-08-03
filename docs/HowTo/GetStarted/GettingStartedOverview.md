@@ -5,7 +5,7 @@ description: Getting started with GoQuorum overview
 # Getting started overview
 
 You can get started with GoQuorum in multiple ways.
-They range from using our quickstart to generate a local network, to configuring and creating a full network from scratch.
+They range from using the quickstart to generate a local network, to creating and configuring a full network from scratch.
 
 ## Quorum Dev Quickstart
 
@@ -23,7 +23,7 @@ The quickstart requires:
 * [`curl` command line](https://curl.haxx.se/download.html).
 * [MetaMask](https://metamask.io/).
 
-Start the quickstart by running:
+To start the quickstart, run:
 
 ```bash
 npx quorum-dev-quickstart

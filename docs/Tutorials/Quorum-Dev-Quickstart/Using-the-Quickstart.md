@@ -6,7 +6,7 @@ description: Helps to generate local GoQuorum and Ethereum blockchain networks.
 # Quorum Developer Quickstart
 
 The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private
-[IBFT](../../HowTo/Configure/Consensus-Protocols/IBFT.md) network of Besu nodes managed by Docker Compose.
+[IBFT](../../HowTo/Configure/Consensus-Protocols/IBFT.md) network of GoQuorum nodes managed by Docker Compose.
 
 !!! important
 
@@ -55,7 +55,7 @@ To start the network, go to the installation directory (`quorum-test-network` if
 
 The script builds the Docker images, and runs the Docker containers.
 
-Four GoQuorum IBFT 2.0 validator nodes and a non-validator node are created to simulate a base network.
+Four GoQuorum IBFT validator nodes and a non-validator node are created to simulate a base network.
 In addition, there are three member pairs (GoQuorum and Tessera sets) to simulate private nodes on the network.
 
 When execution is successfully finished, the process lists the available services:
@@ -84,15 +84,13 @@ When execution is successfully finished, the process lists the available service
   cryptocurrency wallets such as MetaMask.
 * Use the **JSON-RPC WebSocket service endpoint** to access the WebSocket node service from your
   dapp.
-* Use the **Web block explorer address** to display the [block explorer Web application](http://localhost:25000).
-* Use the **Prometheus address** to access the [Prometheus dashboard](http://localhost:9090/graph).
-  _[Read more about metrics](../../HowTo/Monitor/Metrics.md)_.
-* Use the **Grafana address** to access the
-  [Grafana dashboard](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All).
-  _[Read more about metrics](../../HowTo/Monitor/Metrics.md)_.
-* Use the **Kibana logs address** to access the
-  [logs in Kibana](http://localhost:5601/app/kibana#/discover).
-  _[Read more about log management](../../HowTo/Monitor/Elastic-Stack.md)_.
+* Use the [**Web block explorer address**](http://localhost:25000) to display the block explorer web application.
+* Use the [**Prometheus address**](http://localhost:9090/graph) to access the Prometheus dashboard
+    and [monitor nodes and view metrics](../../HowTo/Monitor/Metrics.md).
+* Use the [**Grafana address**](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All)
+    to access the Grafana dashboard to [monitor nodes and view metrics](../../HowTo/Monitor/Metrics.md).
+* Use the [**Kibana logs address**](http://localhost:5601/app/kibana#/discover) to
+  [access and manage logs in Kibana](../../HowTo/Monitor/Elastic-Stack.md).
 
 To display the list of endpoints again, run:
 
@@ -279,7 +277,7 @@ In each terminal, go to the main directory where `docker-compose.yml` is located
 * In terminal 2, run `./attach.sh 2` to attach to Member2.
 * In terminal 3, run `./attach.sh 3` to attach to Member3.
 
-To look at the private transaction, run the following command in one of the terminals:
+To view the private transaction, run the following command in one of the terminals:
 
 === "geth console request"
 
@@ -419,7 +417,7 @@ using the GoQuorum and Tessera URLs in the [Private transactions](#private-trans
 Cakeshop allows you to perform transactions directly via the UI.
 
 1. Open <http://localhost:8999> in your browser.
-1. Go to the **Contracts** tab and **Deploy** the contract registry.
+1. Select the **Contracts** tab and **Deploy** the contract registry.
 1. Go to the **Sandbox**, select the `SimpleStorage` sample contract from the Contract Library, and deploy with
    `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`).
 1. Return to the main Cakeshop page, go to the **Contracts** tab again, and you should be able to see the contract you just deployed.
@@ -472,13 +470,13 @@ cd dapps/pet-shop
 ./run_dapp.sh
 ```
 
-The script will:
+The script:
 
-1. Install the dapp Node dependencies (you may see some warnings here, but it will not prevent the dapp from running).
-1. Compile the contracts.
-1. Deploy the contracts to the blockchain.
-1. Run tests.
-1. Build and run a Docker image to serve the dapp website.
+1. Installs the dapp Node dependencies (you may see some warnings here, but it will not prevent the dapp from running).
+1. Compiles the contracts.
+1. Deploys the contracts to the blockchain.
+1. Runs the tests.
+1. Builds and runs a Docker image to serve the dapp website.
 
 !!! example "`./run_dapp.sh` example output"
 

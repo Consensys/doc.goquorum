@@ -45,7 +45,7 @@ quorum-dev-quickstart
 You can provide these flags when running `quorum-dev-quickstart`:
 
 | Flag                         | Required to skip prompt | Description                                                                             |
-| :--------------------------: | :---------------------: | :-------------------------------------------------------------------------------------: |
+| :----------------------------| :---------------------- | ----------------------------------------------------------------------------------------|
 | `--clientType=<STRING>`      | Yes                     | Use `quorum` for GoQuorum.                                                              |
 | `--privacy=<true|false>`     | Yes                     | Enables or disables private transaction support.                                        |
 | `--orchestrate=<true|false>` | No                      | Enables support for [ConsenSys Orchestrate](https://consensys.net/codefi/orchestrate/). |
@@ -61,23 +61,46 @@ The page also has information on smart contracts, dapps, wallets, and monitoring
 
 ## Tools
 
-The quickstart provides the option to deploy some useful monitoring tools alongside your network.
-Learn more on the [Tools page](./Tools.md).
+The quickstart provides the option to [deploy useful monitoring tools](./Tools.md) alongside your network.
 
 ## Developing
 
-Clone this repo to your local machine.
+1. Clone the repo to your local machine:
 
-`npm install` to get all the dependencies.
+    ```bash
+    git clone https://github.com/ConsenSys/quorum-dev-quickstart.git
+    ```
 
-`npm run build` to automatically build on changes to any files in the `src` directory and output to a build directory.
+1. Change into the quickstart directory:
 
-`npm run start` to run (alternatively, you can run `node build/index.js`).
+    ```bash
+    cd quorum-dev-quickstart
+    ```
+
+1. Install all dependencies:
+
+    ```bash
+    npm install
+    ```
+
+1. Build changes to any files in the `src` directory and output to a build directory:
+
+    ```bash
+    npm run build
+    ```
+
+1. Run the updated quickstart:
+
+    ```bash
+    npm run start
+    ```
+
+    Alternatively, you can run `node build/index.js`.
 
 ## Contributing
 
 Quorum Dev Quickstart is open source, and we invite you to contribute enhancements.
-Upon review, you will be required to complete a Contributor License Agreement (CLA) before we are able to merge.
+You will be required to complete a Contributor License Agreement (CLA) before we are able to merge.
 If you have any questions about the contribution process, you can get them answered by the [GoQuorum Slack community].
 
 ## Getting help
