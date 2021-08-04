@@ -65,9 +65,11 @@ nav:
               - Interacting: HowTo/GetStarted/Wizard/Interacting.md
               - Tools: HowTo/GetStarted/Wizard/Tools.md
       - Configure:
-          - Consensus Protocols:
-              - Raft: HowTo/Configure/Consensus-Protocols/Raft.md
+          - Consensus protocols:
               - IBFT: HowTo/Configure/Consensus-Protocols/IBFT.md
+              - QBFT: HowTo/Configure/Consensus-Protocols/QBFT.md
+              - Raft: HowTo/Configure/Consensus-Protocols/Raft.md
+              - Clique: HowTo/Configure/Consensus-Protocols/Clique.md
           - Genesis file: HowTo/Configure/GenesisOptions.md
           - High availability: HowTo/Configure/HighAvailability.md
           - Permissions:
@@ -88,7 +90,6 @@ nav:
           - Add nodes to network: HowTo/Use/adding_nodes.md
           - Add nodes examples: HowTo/Use/add_node_examples.md
           - Migrate network nodes: HowTo/Use/node_network_migration.md
-          - Add IBFT validators: HowTo/Use/AddingIBFTValidators.md
           - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
           - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
           - Multi-tenancy: HowTo/Use/Multitenancy.md
@@ -97,10 +98,11 @@ nav:
           - Backup and restore: HowTo/Use/import-export.md
   - Tutorials:
       - Quorum Developer Quickstart: Tutorials/Quorum-Dev-Quickstart.md
-      - Create a Private Network:
-          - Create a network using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
+      - Create a private network:
+          - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
+          - Using QBFT: Tutorials/Private-Network/Create-QBFT-Network.md
+          - Using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
           - Adding and removing IBFT validators: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
-          - Create a network using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
       - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
       - Send private transactions: Tutorials/Send-private-transaction.md
       - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
@@ -116,11 +118,7 @@ nav:
           - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
       - Consensus:
           - Overview: Concepts/Consensus/Overview.md
-          - IBFT: Concepts/Consensus/IBFT.md
-          - Raft:
-              - Overview: Concepts/Consensus/Raft.md
-              - Lifecyle Raft transaction: Concepts/Consensus/Lifecycle-Raft-transaction.md
-              - Implementation: Concepts/Consensus/Raft-implementation.md
+          - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
       - Permissioning:
           - Overview: Concepts/Permissioning/PermissionsOverview.md
           - Basic permissions: Concepts/Permissioning/BasicNetworkPermissions.md
@@ -154,7 +152,6 @@ nav:
       - GoQuorum API Methods: Reference/API-Methods.md
       - Permissioning Types: Reference/Permissioning-Types.md
       - Example Genesis File: Reference/genesis.md
-      - IBFT Parameters: Reference/IBFTParameters.md
       - Plugins:
           - Initialization interface: Reference/Plugins/init_interface.md
           - helloworld:

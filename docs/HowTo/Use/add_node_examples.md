@@ -24,7 +24,7 @@ To set the project name, run the following:
 export COMPOSE_PROJECT_NAME=addnode
 ```
 
-## Non-permimssioned IBFT with discovery
+## Non-permissioned IBFT with discovery
 
 An example using IBFT, no permissioning and discover enabled via a bootnode.
 
