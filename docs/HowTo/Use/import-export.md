@@ -2,60 +2,59 @@
 description: Backup and restore GoQuorum Nodes with private transactions, permissioning, and supported consensus algorithms
 ---
 
-# Backup and Restore of GoQuorum Nodes
+# Backup and restore GoQuorum Nodes
 
-GoQuorum supports export and import of chain data with built in tooling.
-
-This is an effective node backup mechanism adapted for the specific needs of GoQuorum such as private transactions, permissioning, and supported consensus
-algorithms.
+GoQuorum supports exporting and importing chain data with built-in tooling.
+This is a node backup mechanism adapted for the specific needs of GoQuorum such as private transactions, permissioning,
+and its supported consensus algorithms.
 
 !!! note
+
     GoQuorum chain data import and export must run after `geth` process is stopped.
 
-## Node Backup (Export)
+## Node backup (export)
 
-Backup functionality mimics original `geth export` command. GoQuorum export accepts 3 arguments:
+Backup functionality mimics the original [`geth export`](https://geth.ethereum.org/docs/interface/command-line-options) command.
+GoQuorum export accepts three arguments:
 
-1. Export file name **required**
-1. First block
-1. Last block *are optional but must be provided together when used*
+* Export file name
+* First block
+* Last block
 
-=== "Sample command"
+First and last block are optional, but both arguments must be provided if one is.
 
-    ```bash
-    geth export <export file name> --datadir <geth data dir>
-    ```
+```bash
+geth export <export file name> --datadir <geth data dir>
+```
 
-## Node Restore (Import)
+## Node restore (import)
 
-Restore functionality mimics original `geth import` command but requires transaction manager environment variable.
+Restore functionality mimics original [`geth import`](https://geth.ethereum.org/docs/interface/command-line-options) command but
+requires a transaction manager environment variable.
 
 GoQuorum import must run on a new node with an initialized `--datadir` after `geth init` has been executed.
 
-Restore supports arbitrary number of import files (at least 1).
+Restore supports an arbitrary number of import files (at least one).
 
 !!! warning
-    If private transactions are used in the chain data, Private Transaction Manager process for the original exported
-    node must be running on the PTM ipc endpoint during import chain.
-    Otherwise, nil pointer exceptions will be raised.
 
-### Sample command
+    If private transactions are used in the chain data, the Private Transaction Manager (PTM) process for the original exported
+    node must be running on the PTM ipc endpoint during import.
+    Otherwise, nil pointer exceptions are raised.
 
-=== "Sample command"
+```bash
+PRIVATE_CONFIG=<PTM ipc endpoint> geth import <import file names...> --datadir <geth data dir>
+```
 
-    ```bash
-    PRIVATE_CONFIG=<PTM ipc endpoint> geth import <import file names...> --datadir <geth data dir>
-    ```
+## Special consensus considerations
 
-## Special Consensus Considerations
+### IBFT/QBFT
 
-### IBFT
-
-IBFT block data contains sealer information in the header, to restore a copy of exported chain data, the new node must
-be initialized use an IBFT genesis file with exact same validator set encoded in extra data field as original exported
-node's genesis.
+IBFT and QBFT block data contain sealer information in the header.
+To restore a copy of exported chain data, the new node must be initialized using an IBFT/QBFT genesis file with the same
+validator set encoded in `extraData` field as in the original exported node's genesis file.
 
 ### Raft
 
-Raft backup do not account for current Raft state. An exported chain data from a Raft cluster can only be used by
-new nodes being added to that same cluster only.
+Raft backups do not account for current Raft state.
+An exported chain data from a Raft cluster can only be used by new nodes being added to that same cluster.

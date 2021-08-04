@@ -44,9 +44,9 @@ ready to run on Kubernetes.
 
 ## Creating a network from scratch
 
-[Creating a Network From Scratch](../../Tutorials/Private-Network/Create-IBFT-Network.md) provides a step-by-step walkthrough
-of how to create and configure a GoQuorum network suitable for either Raft or Istanbul consensus. It
-also shows how to enable privacy and add/remove nodes as required.
+[Creating a Private Network](../../Tutorials/Private-Network/Create-IBFT-Network.md) provides step-by-step walk-throughs
+of how to create and configure a GoQuorum network for IBFT, QBFT, and Raft consensus.
+It also shows how to enable privacy and add/remove nodes as required.
 
 ## Creating a network deployed in the cloud
 

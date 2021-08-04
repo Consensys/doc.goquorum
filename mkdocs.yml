@@ -88,7 +88,6 @@ nav:
           - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md
       - Use:
           - Add nodes to network: HowTo/Use/adding_nodes.md
-          - Add nodes examples: HowTo/Use/add_node_examples.md
           - Migrate network nodes: HowTo/Use/node_network_migration.md
           - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
           - Enhanced permissions: HowTo/Use/EnhancedPermissions.md

@@ -111,7 +111,7 @@ configurations of Nodes B and C to use the public IP address of Node A.
    The nodes can now connect with their peers, and [`raft.cluster`](../../Reference/API-Methods.md#raft_cluster) shows
    the updated information and network configuration.
 
-## IBFT
+## IBFT/QBFT
 
 1. Stop Node A.
 

@@ -4,7 +4,7 @@ description: IBFT Consensus Overview
 
 # IBFT Consensus Overview
 
-A PBFT-inspired consensus algorithm with immediate transaction finality, by AMIS.
+Istanbul Byzantine Fault Tolerant is a PBFT-inspired consensus algorithm with immediate transaction finality, by AMIS.
 See this [technical web article](https://medium.com/getamis/istanbul-bft-ibft-c2758b7fe6ff).
 
 ## Introduction

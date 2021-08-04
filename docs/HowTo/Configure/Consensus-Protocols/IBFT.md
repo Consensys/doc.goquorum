@@ -4,20 +4,14 @@ description: Configuring IBFT consensus
 
 # Configuring IBFT consensus
 
-GoQuorum implements the [IBFT](../../../Concepts/Consensus/IBFT.md) Proof-of-Authority (PoA)
-consensus protocol.
-Private networks can use IBFT.
-Blocks in IBFT protocol are final, which means that there are no forks and any valid block must be somewhere in the main chain.
-
-To prevent a faulty node from generating a different chain from the main chain, each validator appends `ceil(2N/3)` of
-received `COMMIT` signatures to the `extraData` field in a block's header before inserting it into the chain.
-Therefore, all blocks are self-verifiable.
+GoQuorum implements the [IBFT](https://medium.com/getamis/istanbul-bft-ibft-c2758b7fe6ff) Proof-of-Authority (PoA) consensus protocol.
+You can [create a private network using IBFT](../../../Tutorials/Private-Network/Create-IBFT-Network.md).
 
 In IBFT networks, approved accounts known as validators validate transactions and blocks.
 Validators take turns to create the next block.
 Before inserting a block onto the chain, a super-majority (greater than 66%) of validators must first sign the block.
 
-Existing validators propose and vote to [add or remove validators](#add-or-remove-validators).
+Existing validators propose and vote to [add or remove validators](../../../Tutorials/Private-Network/Adding-removing-IBFT-validators.md).
 Adding or removing a validator requires a majority vote (greater than 50%) of validators.
 
 !!! important
@@ -25,6 +19,12 @@ Adding or removing a validator requires a majority vote (greater than 50%) of va
     Configure your network to ensure you never lose 1/3 or more of your validators.
     If more than 1/3 of validators stop participating, new blocks are no longer created, and the network stalls.
     It may take significant time to recover once nodes are restarted.
+
+Blocks in IBFT protocol are final, which means that there are no forks and any valid block must be somewhere in the main chain.
+
+To prevent a faulty node from generating a different chain from the main chain, each validator appends `ceil(2N/3)` of
+received `COMMIT` signatures to the `extraData` field in a block's header before inserting it into the chain.
+Therefore, all blocks are self-verifiable.
 
 ## Minimum number of validators
 
@@ -112,20 +112,3 @@ You can also set a `requesttimeout` by using the
     doubles with each round change.
     The quickest method to resume block production is to restart all validators, which resets `requesttimeoutseconds` to
     its genesis value.
-
-## Add or remove validators
-
-You can [add or remove IBFT validators](../../../Tutorials/Private-Network/Adding-removing-IBFT-validators.md#adding-a-validator).
-To add a validator:
-
-1. Add the node's enode to the `static-nodes.json` file, which allows other nodes to peer with it.
-   Repeat on every validator node in the network, and ideally on every node in the network depending on your permissions policy.
-
-2. Obtain the validator's address by calling [istanbul_nodeAddress](../../../Reference/API-Methods.md#istanbul_nodeAddress).
-
-3. Call [istanbul_propose](../../../Reference/API-Methods.md#istanbul_propose) from greater than 50% of the existing validator pool.
-
-## Add or remove non-validator nodes
-
-You can [add or remove IBFT non-validator nodes](../../../Tutorials/Private-Network/Adding-removing-IBFT-validators.md#adding-a-non-validator-node).
-Adding a non-validator node is simply step 1 of [adding a validator](#add-or-remove-validators).
