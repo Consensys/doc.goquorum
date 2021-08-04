@@ -17,7 +17,7 @@ layer with enterprise support available from ConsenSys.
 
 ## New to ConsenSys Quorum?
 
-Get started with the [Quorum Developer Quickstart](Tutorials/Quorum-Dev-Quickstart.md). Use the quickstart
+Get started with the [Quorum Developer Quickstart](Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md). Use the quickstart
 to rapidly generate local Quorum blockchain networks.
 
 ## What can you do with GoQuorum?

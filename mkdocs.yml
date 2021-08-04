@@ -54,16 +54,69 @@ theme:
   favicon: 'images/favicon.svg'
 
 nav:
+  - Concepts:
+      - Architecture: Concepts/Architecture.md
+      - Account management: Concepts/AccountManagement.md
+      - Privacy:
+          - Overview: Concepts/Privacy/Privacy.md
+          - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
+          - Private transaction manager: Concepts/Privacy/PrivateTransactionManager.md
+          - Private transaction lifecycle: Concepts/Privacy/PrivateTransactionLifecycle.md
+          - Contract extension: Concepts/Privacy/ContractExtension.md
+          - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
+      - Consensus:
+          - Overview: Concepts/Consensus/Overview.md
+          - IBFT: Concepts/Consensus/IBFT.md
+          - Raft:
+              - Overview: Concepts/Consensus/Raft.md
+              - Lifecyle Raft transaction: Concepts/Consensus/Lifecycle-Raft-transaction.md
+              - Implementation: Concepts/Consensus/Raft-implementation.md
+      - Permissioning:
+          - Overview: Concepts/Permissioning/PermissionsOverview.md
+          - Basic permissions: Concepts/Permissioning/BasicNetworkPermissions.md
+          - Enhanced:
+              - Overview: Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md
+              - Contract design: Concepts/Permissioning/Enhanced/ContractDesign.md
+      - Plugins:
+          - Overview: Concepts/Plugins/Plugins.md
+          - Architecture: Concepts/Plugins/PluginsArchitecture.md
+      - Security Framework:
+          - Overview: Concepts/Security/Framework/Overview.md
+          - GoQuorum Network:
+              - Consortium: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
+              - GoQuorum Node: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
+              - Transaction Manager: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
+              - Operational Considerations: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
+          - Decentralized App:
+              - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
+              - Smart Contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
+      - Multi-tenancy:
+          - Overview: Concepts/Multitenancy/Overview.md
+          - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
+      - Quorum profiling: Concepts/Profiling.md
+      - Network and chain ID: Concepts/NetworkAndChainID.md
+      - Cakeshop: Concepts/Cakeshop.md
+      - Qubernetes:
+          - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
+          - Multi-cluster: Concepts/Qubernetes/Multicluster.md
+  - Tutorials:
+      - Quorum Dev Quickstart:
+          - Getting Started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+          - Using the Quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
+          - Tools: Tutorials/Quorum-Dev-Quickstart/Tools.md
+      - Create a Private Network:
+          - Create a network using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
+          - Adding and removing IBFT validators: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
+          - Create a network using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
+      - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
+      - Send private transactions: Tutorials/Send-private-transaction.md
+      - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
   - How to:
       - Get started:
           - Overview: HowTo/GetStarted/GettingStartedOverview.md
           - Install: HowTo/GetStarted/Install.md
           - With Qubernetes (K8s):  HowTo/GetStarted/Getting-Started-Qubernetes.md
           - Upgrade to 2.6.0: HowTo/GetStarted/migration.md
-          - With GoQuorum Wizard:
-              - Get started: HowTo/GetStarted/Wizard/GettingStarted.md
-              - Interacting: HowTo/GetStarted/Wizard/Interacting.md
-              - Tools: HowTo/GetStarted/Wizard/Tools.md
       - Configure:
           - Consensus Protocols:
               - Raft: HowTo/Configure/Consensus-Protocols/Raft.md
@@ -95,60 +148,6 @@ nav:
           - Smart contracts: HowTo/Use/DevelopingSmartContracts.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
-  - Tutorials:
-      - Quorum Developer Quickstart: Tutorials/Quorum-Dev-Quickstart.md
-      - Create a Private Network:
-          - Create a network using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
-          - Adding and removing IBFT validators: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
-          - Create a network using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
-      - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
-      - Send private transactions: Tutorials/Send-private-transaction.md
-      - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
-  - Concepts:
-      - Architecture: Concepts/Architecture.md
-      - Account management: Concepts/AccountManagement.md
-      - Privacy:
-          - Overview: Concepts/Privacy/Privacy.md
-          - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
-          - Private transaction manager: Concepts/Privacy/PrivateTransactionManager.md
-          - Private transaction lifecycle: Concepts/Privacy/PrivateTransactionLifecycle.md
-          - Contract extension: Concepts/Privacy/ContractExtension.md
-          - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
-      - Consensus:
-          - Overview: Concepts/Consensus/Overview.md
-          - IBFT: Concepts/Consensus/IBFT.md
-          - Raft:
-              - Overview: Concepts/Consensus/Raft.md
-              - Lifecyle Raft transaction: Concepts/Consensus/Lifecycle-Raft-transaction.md
-              - Implementation: Concepts/Consensus/Raft-implementation.md
-      - Permissioning:
-          - Overview: Concepts/Permissioning/PermissionsOverview.md
-          - Basic permissions: Concepts/Permissioning/BasicNetworkPermissions.md
-          - Enhanced:
-              - Overview: Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md
-              - Contract design: Concepts/Permissioning/Enhanced/ContractDesign.md
-      - Plugins:
-          - Overview: Concepts/Plugins/Plugins.md
-          - Architecture: Concepts/Plugins/PluginsArchitecture.md
-      - Security Framework:
-          - Overview: Concepts/Security/Framework/Overview.md
-          - GoQuorum Network:
-            - Consortium: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
-            - GoQuorum Node: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
-            - Transaction Manager: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
-            - Operational Considerations: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
-          - Decentralized App:
-            - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
-            - Smart Contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
-      - Multi-tenancy:
-            - Overview: Concepts/Multitenancy/Overview.md
-            - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
-      - Quorum profiling: Concepts/Profiling.md
-      - Network and chain ID: Concepts/NetworkAndChainID.md
-      - Cakeshop: Concepts/Cakeshop.md
-      - Qubernetes:
-          - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
-          - Multi-cluster: Concepts/Qubernetes/Multicluster.md
   - Reference:
       - Command Line Options: Reference/CLI-Syntax.md
       - GoQuorum API Methods: Reference/API-Methods.md
@@ -274,8 +273,8 @@ plugins:
         Cakeshop/Getting started.md: Reference/Cakeshop/GettingStarted.md
         Getting Started/Getting Started Overview.md: HowTo/GetStarted/GettingStartedOverview.md
         Getting Started/Installing.md: HowTo/GetStarted/Install.md
-        Wizard/GettingStarted.md: HowTo/GetStarted/Wizard/GettingStarted.md
-        Wizard/Interacting.md: HowTo/GetStarted/Wizard/Interacting.md
+        Wizard/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+        Wizard/Interacting.md: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
         Getting Started/migration.md: HowTo/GetStarted/migration.md
         Permissioning/Enhanced Permissions Model/Usage.md: HowTo/Use/EnhancedPermissions.md
         Quorum Features/rpc-security.md: HowTo/Use/JSON-RPC-API-Security.md
