@@ -16,7 +16,23 @@ When using the quickstart you are presented with a few options for monitoring:
 ![Cakeshop](../../images/console.png)
 
 [Cakeshop](https://github.com/ConsenSys/cakeshop) is GoQuorum's block explorer and node monitoring tool.
-You can use it to inspect blocks, deploy contracts, manage peers, and more.
+Out of the box you get:
+
+* **Blockchain Explorer** - view transactions, blocks and contracts, and see historical contract state at a point in time
+* **Contract Registry** - keep track of deployed contracts, along with their code, interfaces, and state
+* **Node Info** - view the overall status of your network
+* **Peer Management** - easily discover, add, and remove peers
+* **Enhanced Permissions UI** - manage smart contract-based [Enhanced Permissioning](../../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md)
+* **Solidity Sandbox** - develop, compile, deploy, and interact with Solidity smart contracts
+
+It provides tools for connecting to multiple nodes, managing peers and permissions,
+exploring the state of the chain, and working with contracts.
+
+The Cakeshop package includes a [Solidity](https://solidity.readthedocs.org/en/latest/)
+compiler, and all dependencies.
+
+[Get started with Cakeshop.](../../Reference/Cakeshop/GettingStarted.md)
+
 
 Once you have selected this tool and started the network, you can access it at [http://localhost:8999](http://localhost:8999).
 
