@@ -104,6 +104,7 @@ nav:
           - Getting Started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
           - Using the Quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
           - Tools: Tutorials/Quorum-Dev-Quickstart/Tools.md
+          - Remix: Tutorials/Quorum-Dev-Quickstart/Remix.md
       - Create a Private Network:
           - Create a network using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
           - Adding and removing IBFT validators: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
@@ -173,9 +174,6 @@ nav:
       - Cakeshop:
           - Getting started: Reference/Cakeshop/GettingStarted.md
           - Configuration: Reference/Cakeshop/Configuration.md
-      - Remix Plugin:
-          - Overview: Reference/RemixPlugin/Overview.md
-          - Getting started: Reference/RemixPlugin/GettingStarted.md
       - quorum.js:
           - Overview: Reference/quorum.js/Overview.md
           - extend API: Reference/quorum.js/extend.md
@@ -298,8 +296,8 @@ plugins:
         PluggableArchitecture/Plugins/init_interface.md: Reference/Plugins/init_interface.md
         PluggableArchitecture/Plugins/security/implementation.md: Reference/Plugins/security/For-Users.md
         PluggableArchitecture/Plugins/security/interface.md: Reference/Plugins/security/interface.md
-        RemixPlugin/GettingStarted.md: Reference/RemixPlugin/GettingStarted.md
-        RemixPlugin/Overview.md: Reference/RemixPlugin/Overview.md
+        RemixPlugin/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
+        RemixPlugin/Overview.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
         Getting Started/genesis.md: Reference/genesis.md
         quorum.js/Overview.md: Reference/quorum.js/Overview.md
         quorum.js/RawTransactionManager.md: Reference/quorum.js/RawTransactionManager.md
