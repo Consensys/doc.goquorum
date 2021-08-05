@@ -5,24 +5,31 @@ description: Getting started with GoQuorum overview
 # Getting started overview
 
 You can get started with GoQuorum in multiple ways.
-They range from using our wizard to generate a local network, to configuring and creating a full network from scratch.
+They range from using the quickstart to generate a local network, to creating and configuring a full network from scratch.
 
-## GoQuorum Wizard
+## Quorum Dev Quickstart
 
-The easiest way to get a network up and running is by using the [GoQuorum Wizard](Wizard/GettingStarted.md).
+The easiest way to get a network up and running is by using the [Quorum Dev Quickstart](../../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md).
 This command-line tool creates a local GoQuorum network that can be started and be ready for use in minutes.
 
-The wizard provides options for configuring the network and generates all the resources to run either
-in containers using `docker-compose`, or locally through the use of bash scripts.
+The quickstart provides options for configuring the network and generates all the resources to run in containers
+using `docker-compose`.
 
-The wizard requires [Nodejs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and runs on Linux/Mac only.
+The quickstart requires:
+
+* [Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and runs on Linux and Mac only.
+* [Docker and Docker-compose](https://docs.docker.com/compose/install/).
+* [Truffle](https://www.trufflesuite.com/truffle) development framework.
+* [`curl` command line](https://curl.haxx.se/download.html).
+* [MetaMask](https://metamask.io/).
+
+To start the quickstart, run:
 
 ```bash
-npm install -g quorum-wizard
-quorum-wizard
+npx quorum-dev-quickstart
 ```
 
-To explore the features of GoQuorum and deploy a private contract, follow the instructions on [Interacting with the Network](Wizard/GettingStarted.md).
+To explore the features of GoQuorum and deploy private contracts, follow the instructions on [Interacting with the Network](../../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md)
 
 ## GoQuorum Examples sample network
 

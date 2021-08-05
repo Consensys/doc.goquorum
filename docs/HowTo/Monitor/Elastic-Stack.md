@@ -23,7 +23,7 @@ The [pipeline configuration] defines the JSON format used for GoQuorum logs and 
 
 To view the GoQuorum Quickstart network logs in Kibana:
 
-1. [Start the Quorum Developer Quickstart with Besu](../../Tutorials/Quorum-Dev-Quickstart.md), selecting the appropriate options.
+1. [Start the Quorum Developer Quickstart with Quorum](../../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md), selecting the appropriate options.
 1. Open the [`Kibana logs address`](http://localhost:5601/app/kibana#/discover) listed by the sample networks `list.sh` script.
    The logs display in Kibana.
 
