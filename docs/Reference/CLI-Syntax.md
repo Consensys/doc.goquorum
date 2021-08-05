@@ -310,4 +310,4 @@ The default is 50400.
     ```
 
 Enables including the [revert reason](../HowTo/Use/Revert-Reason.md) in the
-[`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_getTransactionReceipt) response.
+[`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt) response.
