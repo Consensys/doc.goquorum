@@ -33,7 +33,6 @@ compiler, and all dependencies.
 
 [Get started with Cakeshop.](../../Reference/Cakeshop/GettingStarted.md)
 
-
 Once you have selected this tool and started the network, you can access it at [http://localhost:8999](http://localhost:8999).
 
 ## Reporting Tool

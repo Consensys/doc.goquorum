@@ -55,6 +55,9 @@ theme:
 
 nav:
   - Concepts:
+      - Blockchain:
+          - What is blockchain: Concepts/Blockchain/What-is-blockchain.md
+          - What does a blockchain comprise: Concepts/Blockchain/Blockchain-comprises.md
       - Architecture: Concepts/Architecture.md
       - Account management: Concepts/AccountManagement.md
       - Privacy:
@@ -95,7 +98,6 @@ nav:
           - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
-      - Cakeshop: Concepts/Cakeshop.md
       - Qubernetes:
           - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md

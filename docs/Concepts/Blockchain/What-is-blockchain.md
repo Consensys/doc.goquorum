@@ -29,7 +29,7 @@ architecture of the Internet today is vulnerable to censorship and targeted atta
 
 The value of a blockchain is the certainty of the network: participants can establish a trusted and immutable record of
 transactions without the need for intermediaries. The decentralized architecture of a blockchain - a global network of
-computers simultaneously running the software and validating the chain of transactions — is what ensures that the
+computers simultaneously running the software and validating the chain of transactions is what ensures that the
 transaction record is never compromised. It makes a blockchain network less likely to fail, harder to attack, and
 harder for bad actors to game the system.
 
