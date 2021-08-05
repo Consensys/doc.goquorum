@@ -36,7 +36,7 @@ command line option to include the revert reason in the transaction receipt.
 ## Where is the revert reason included
 
 With revert reason enabled, the transaction receipt returned by
-[`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_getTransactionReceipt) includes
+[`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt) includes
 the revert reason as an ABI-encoded string.
 
 !!! example
