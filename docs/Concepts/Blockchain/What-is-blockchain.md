@@ -36,7 +36,7 @@ harder for bad actors to game the system.
 ## Why do I need a blockchain for my business?
 
 Blockchains bring out a new model of doing business where networks have standard methods for establishing identity of
-of all members participating on the network but also for transactions and storing of data. Essentially it works to foster
+all members participating on the network but also for transactions and storing of data. Essentially it works to foster
 trust between members with the decentralized structure of the network and with the improved security both via encryption
 and immutable blocks. Compared to traditional systems, privacy concerns of members is better addressed by anonymyzing
 data and requiring permissions to limit access. The visibility and traceability of transactions is also a key benefit of

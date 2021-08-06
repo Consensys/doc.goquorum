@@ -19,7 +19,9 @@ fault-tolerant. Broadly speaking, there are two types of consensus mechanisms:
 * Proof of Work (PoW) like that of Bitcoin, which is both time and compute intensive has blocks created by nodes called
   *miners*
 * Proof of Authority (PoA) involves a set of trusted nodes that validate transactions and create blocks. These trusted
-nodes are called *validators* and other nodes on the network are called *reader nodes* or *non validating nodes*
+nodes are called *validators* and other nodes on the network are called *reader nodes* or *non validating nodes*. It
+should be noted that these nodes still validate the blocks that the *validators* create, however they are not
+responsible for producing them.
 
 GoQuorum supports several PoA algorithms including QBFT, IBFT, Raft and Clique
 
