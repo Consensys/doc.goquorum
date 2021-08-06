@@ -23,96 +23,104 @@ description: Adding and removing IBFT validators
     ../istanbul-tools/build/bin/istanbul setup --num 1 --verbose --quorum --save
     ```
 
-    This will generate the validator details including `Address`, `NodeInfo` and `genesis.json`:
+    This will generate the validator details including `Address`, `NodeInfo` and `genesis.json`.
 
-    ```json
-    validators
-    {
-        "Address": "0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",
-        "Nodekey": "25b47a49ef08f888c04f30417363e6c6bc33e739147b2f8b5377b3168f9f7435",
-        "NodeInfo": "enode://273eaf48591ce0e77c800b3e6465811d6d2f924c4dcaae016c2c7375256d17876c3e05f91839b741fe12350da0b5a741da4e30f39553fe8790f88503c64f6ef9@0.0.0.0:30303?discport=0"
-    }
+    !!! example "Example files"
 
-    genesis.json
-    {
-        "config": {
-            "chainId": 10,
-            "eip150Block": 1,
-            "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-            "eip155Block": 1,
-            "eip158Block": 1,
-            "byzantiumBlock": 1,
-            "istanbul": {
-                "epoch": 30000,
-                "policy": 0
+        ```json
+        validators
+        {
+            "Address": "0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",
+            "Nodekey": "25b47a49ef08f888c04f30417363e6c6bc33e739147b2f8b5377b3168f9f7435",
+            "NodeInfo": "enode://273eaf48591ce0e77c800b3e6465811d6d2f924c4dcaae016c2c7375256d17876c3e05f91839b741fe12350da0b5a741da4e30f39553fe8790f88503c64f6ef9@0.0.0.0:30303?discport=0"
+        }
+
+        genesis.json
+        {
+            "config": {
+                "chainId": 10,
+                "eip150Block": 1,
+                "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                "eip155Block": 1,
+                "eip158Block": 1,
+                "byzantiumBlock": 1,
+                "istanbul": {
+                    "epoch": 30000,
+                    "policy": 0
+                },
+                "isQuorum": true
             },
-            "isQuorum": true
-        },
-        "nonce": "0x0",
-        "timestamp": "0x5cffc942",
-        "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000f85ad5942aabbc1bb9bacef60a09764d1a1f4f04a47885c1b8410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0",
-        "gasLimit": "0xe0000000",
-        "difficulty": "0x1",
-        "mixHash": "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
-        "coinbase": "0x0000000000000000000000000000000000000000",
-        "alloc": {
-            "2aabbc1bb9bacef60a09764d1a1f4f04a47885c1": {
-                "balance": "0x446c3b15f9926687d2c40534fdb564000000000000"
-            }
-        },
-        "number": "0x0",
-        "gasUsed": "0x0",
-        "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
-    }
-    ```
+            "nonce": "0x0",
+            "timestamp": "0x5cffc942",
+            "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000f85ad5942aabbc1bb9bacef60a09764d1a1f4f04a47885c1b8410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0",
+            "gasLimit": "0xe0000000",
+            "difficulty": "0x1",
+            "mixHash": "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
+            "coinbase": "0x0000000000000000000000000000000000000000",
+            "alloc": {
+                "2aabbc1bb9bacef60a09764d1a1f4f04a47885c1": {
+                    "balance": "0x446c3b15f9926687d2c40534fdb564000000000000"
+                }
+            },
+            "number": "0x0",
+            "gasUsed": "0x0",
+            "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        }
+        ```
 
 1. Copy the address of the validator and propose it from more than half the number of current validators.
 
     Attach a `geth` console to the node:
 
-    ```bash
-    cd ..
-    geth attach node0/data/geth.ipc
-    ```
+    === "geth attach"
 
-    Result:
+        ```bash
+        cd ..
+        geth attach node0/data/geth.ipc
+        ```
 
-    ```text
-    Welcome to the Geth JavaScript console!
+    === "Result"
 
-    instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
-    coinbase: 0x4c1ccd426833b9782729a212c857f2f03b7b4c0d
-    at block: 137 (Tue, 11 Jun 2019 16:32:47 BST)
-     datadir: /Users/username/fromscratchistanbul/node0/data
-     modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
-    ```
+        ```text
+        Welcome to the Geth JavaScript console!
+
+        instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
+        coinbase: 0x4c1ccd426833b9782729a212c857f2f03b7b4c0d
+        at block: 137 (Tue, 11 Jun 2019 16:32:47 BST)
+         datadir: /Users/username/fromscratchistanbul/node0/data
+         modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+        ```
 
     Check existing validators:
 
-    ```javascript
-    istanbul.getValidators()
-    ```
+    === "geth console request"
 
-    Result:
+        ```javascript
+        istanbul.getValidators()
+        ```
 
-    ```json
-    ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
-    ```
+    === "JSON result"
 
-    Propose new validator using the command `istanbul.propose(<address>, true)`
+        ```json
+        ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
+        ```
+
+    Propose the new validator using the command [`istanbul.propose(<address>, true)`](../../Reference/API-Methods.md#istanbul_propose)
     with `<address>` replaced by the new validator candidate node address:
 
-    ```javascript
-    istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",true)
-    ```
+    === "geth console request"
 
-    Result:
+        ```javascript
+        istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",true)
+        ```
 
-    ```json
-    null
-    ```
+    === "JSON result"
 
-    Exit console:
+        ```json
+        null
+        ```
+
+    Exit the console:
 
     ```javascript
     exit
@@ -125,22 +133,25 @@ description: Adding and removing IBFT validators
         To drop a currently running validator candidate and stop further votes from being cast either for or against it, use
         [`istanbul.discard`](../../Reference/API-Methods.md#istanbul_discard).
 
-1. Verify that the new validator is now in the list of validators by running `istanbul.getValidators()` in a `geth` console attached to any of your nodes:
+1. Verify that the new validator is now in the list of validators by running [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbul_getvalidators)
+   in a `geth` console attached to any of your nodes:
 
-    ```javascript
-    istanbul.getValidators()
-    ```
+    === "geth console request"
 
-    Result:
+        ```javascript
+        istanbul.getValidators()
+        ```
 
-    ```json
-    ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
-    ```
+    === "JSON result"
 
-    The list of validators contains 6 addresses now.
+        ```json
+        ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
+        ```
 
-1. Copy `static-nodes.json` and `genesis.json` from the existing chain.
-    `static-nodes.json` should be placed into the new node's data directory:
+    The list of validators contains six addresses now.
+
+1. Copy `static-nodes.json` and `genesis.json` from the existing chain, placing `static-nodes.json` into the new node's
+   data directory:
 
     ```bash
     cd node5
@@ -173,11 +184,13 @@ description: Adding and removing IBFT validators
 
 1. Initialize the new node with the following command:
 
+    === "geth command"
+
     ```bash
     geth --datadir data init genesis.json
     ```
 
-    Result:
+    === "Result"
 
     ```text
     INFO [06-11|16:42:27.120] Maximum peer count                       ETH=25 LES=0 total=25
@@ -206,8 +219,9 @@ description: Adding and removing IBFT validators
     PRIVATE_CONFIG=ignore nohup geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22005 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30305 2>>node.log &
     ```
 
-    !!!important
-        Update IP and port number matching for this node decided on step 6
+    !!! important
+
+        Update IP and port number matching for this node decided on step 6.
 
     Run node 5:
 
@@ -217,113 +231,126 @@ description: Adding and removing IBFT validators
 
     Check that the node is started:
 
-    ```bash
-    ps
-    ```
+    === "Command"
 
-    Result:
+        ```bash
+        ps
+        ```
 
-    ```text
-      PID TTY           TIME CMD
-    10554 ttys000    0:00.11 -bash
-    21829 ttys001    0:00.03 -bash
-     9125 ttys002    0:00.93 -bash
-    36432 ttys002    0:24.48 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22000 --rpcapi admin,
-    36433 ttys002    0:23.36 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22001 --rpcapi admin,
-    36434 ttys002    0:24.32 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22002 --rpcapi admin,
-    36435 ttys002    0:24.21 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22003 --rpcapi admin,
-    36436 ttys002    0:24.17 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22004 --rpcapi admin,
-    36485 ttys002    0:00.15 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22005 --rpcapi admin,
-    36455 ttys003    0:00.04 -bash
-    36467 ttys003    0:00.32 geth attach node3/data/geth.ipc
-    ```
+    === "Result"
+
+        ```text
+          PID TTY           TIME CMD
+        10554 ttys000    0:00.11 -bash
+        21829 ttys001    0:00.03 -bash
+         9125 ttys002    0:00.93 -bash
+        36432 ttys002    0:24.48 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22000 --rpcapi admin,
+        36433 ttys002    0:23.36 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22001 --rpcapi admin,
+        36434 ttys002    0:24.32 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22002 --rpcapi admin,
+        36435 ttys002    0:24.21 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22003 --rpcapi admin,
+        36436 ttys002    0:24.17 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22004 --rpcapi admin,
+        36485 ttys002    0:00.15 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22005 --rpcapi admin,
+        36455 ttys003    0:00.04 -bash
+        36467 ttys003    0:00.32 geth attach node3/data/geth.ipc
+        ```
 
 ## Removing a validator
 
-1. Attach a `geth` console to a running validator, run `istanbul.getValidators()`, and identify the address of the validator that needs to be removed:
+1. Attach a `geth` console to a running validator, run [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbul_getvalidators),
+   and identify the address of the validator that needs to be removed:
 
-    ```bash
-    geth attach node0/data/geth.ipc
-    ```
+    === "geth attach"
 
-    Result:
+        ```bash
+        geth attach node0/data/geth.ipc
+        ```
 
-    ```text
-    Welcome to the Geth JavaScript console!
+    === "Result"
 
-    instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
-    coinbase: 0xc1056df7c02b6f1a353052eaf0533cc7cb743b52
-    at block: 181 (Tue, 11 Jun 2019 16:36:27 BST)
-     datadir: /Users/username/fromscratchistanbul/node0/data
-     modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
-    ```
+        ```text
+        Welcome to the Geth JavaScript console!
 
-    Run command:
+        instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
+        coinbase: 0xc1056df7c02b6f1a353052eaf0533cc7cb743b52
+        at block: 181 (Tue, 11 Jun 2019 16:36:27 BST)
+         datadir: /Users/username/fromscratchistanbul/node0/data
+         modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+        ```
 
-    ```javascript
-    istanbul.getValidators()
-    ```
+    Run `istanbul.getValidators`:
 
-    Result:
+    === "geth console request"
 
-    ```json
-    ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
-    ```
+        ```javascript
+        istanbul.getValidators()
+        ```
 
-    We will remove `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` from the validator in this tutorial.
+    === "JSON result"
 
-1. Run `istanbul.propose(<address>, false)` by passing the address of the validator that needs to be removed from more than half current validators:
+        ```json
+        ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
+        ```
 
-    ```javascript
-    istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)
-    ```
+    We will remove `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` from the validator list in this tutorial.
 
-    Result:
+1. Run [`istanbul.propose(<address>, false)`](../../Reference/API-Methods.md#istanbul_propose) by passing the address of
+   the validator that needs to be removed from more than half of the current validators:
 
-    ```json
-    null
-    ```
+    === "geth console request"
 
-    **Repeat the `istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)` for node 1, node 2, and node 3.**
+        ```javascript
+        istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)
+        ```
 
-1. Verify that the validator has been removed by running `istanbul.getValidators()`.
+    === "JSON result"
 
-    In one of the node's attached `geth` console, run:
+        ```json
+        null
+        ```
 
-    ```javascript
-    istanbul.getValidators()
-    ```
+    Repeat `istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)` for node 1, node 2, and node 3.
 
-    Result:
+1. Verify that the validator has been removed by running [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbul_getvalidators)
+   in one of the nodes' attached `geth` console:
 
-    ```json
-    ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
-    ```
+    === "geth console request"
 
-    The validators list now only has 5 addresses and the validator `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` was removed.
+        ```javascript
+        istanbul.getValidators()
+        ```
+
+    === "JSON result"
+
+        ```json
+        ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
+        ```
+
+    The validator `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` was removed and the validators list now only has five addresses.
 
 1. Stop the `geth` process corresponding to the validator that was removed:
 
-    ```bash
-    ps
-    ```
+    === "Command"
 
-    Result:
+        ```bash
+        ps
+        ```
 
-    ```text
-      PID TTY           TIME CMD
-    10554 ttys000    0:00.11 -bash
-    21829 ttys001    0:00.03 -bash
-     9125 ttys002    0:00.94 -bash
-    36432 ttys002    0:31.93 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22000 --rpcapi admin,
-    36433 ttys002    0:30.75 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22001 --rpcapi admin,
-    36434 ttys002    0:31.72 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22002 --rpcapi admin,
-    36435 ttys002    0:31.65 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22003 --rpcapi admin,
-    36436 ttys002    0:31.63 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22004 --rpcapi admin,
-    36485 ttys002    0:06.86 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22005 --rpcapi admin,
-    36455 ttys003    0:00.05 -bash
-    36493 ttys003    0:00.22 geth attach node4/data/geth.ipc
-    ```
+    === "Result"
+
+        ```text
+          PID TTY           TIME CMD
+        10554 ttys000    0:00.11 -bash
+        21829 ttys001    0:00.03 -bash
+         9125 ttys002    0:00.94 -bash
+        36432 ttys002    0:31.93 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22000 --rpcapi admin,
+        36433 ttys002    0:30.75 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22001 --rpcapi admin,
+        36434 ttys002    0:31.72 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22002 --rpcapi admin,
+        36435 ttys002    0:31.65 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22003 --rpcapi admin,
+        36436 ttys002    0:31.63 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22004 --rpcapi admin,
+        36485 ttys002    0:06.86 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 0.0.0.0 --rpcport 22005 --rpcapi admin,
+        36455 ttys003    0:00.05 -bash
+        36493 ttys003    0:00.22 geth attach node4/data/geth.ipc
+        ```
 
     Kill the `geth` process that uses port `22005`, corresponding to node 5 as indicated in `start5.sh`:
 

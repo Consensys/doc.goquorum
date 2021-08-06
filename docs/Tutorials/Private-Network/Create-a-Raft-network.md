@@ -5,7 +5,7 @@ description: Creating a network using Raft consensus
 # Create a private network using the Raft consensus protocol
 
 A private network provides a configurable network for testing. This private network uses the
-[Raft consensus protocol](../../Concepts/Consensus/Raft.md).
+[Raft consensus protocol](../../HowTo/Configure/Consensus-Protocols/Raft.md).
 
 !!!important
 

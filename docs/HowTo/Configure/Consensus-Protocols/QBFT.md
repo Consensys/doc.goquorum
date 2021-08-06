@@ -44,7 +44,7 @@ The genesis file defines properties specific to QBFT and to your specific networ
 
 !!! example "Sample QBFT genesis file"
 
-    Example genesis file for a 4 nodes IBFT2 network.
+    Example genesis file for a 4 nodes QBFT network.
 
     ```json
       {
@@ -57,11 +57,11 @@ The genesis file defines properties specific to QBFT and to your specific networ
           "eip158Block": 0,
           "byzantiumBlock": 0,
           "constantinopleBlock": 0,
-          "testQBFTBlock": 0,
           "istanbul": {
             "epoch": 30000,
             "policy": 0,
-            "ceil2Nby3Block": 0
+            "ceil2Nby3Block": 0,
+            "testQBFTBlock": 0
           },
           "txnSizeLimit": 64,
           "maxCodeSize": 0,

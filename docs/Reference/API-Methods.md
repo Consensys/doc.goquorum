@@ -3031,7 +3031,7 @@ Discards a proposal to
     === "geth console request"
 
         ```js
-        qbft.discardValidatorVote
+        qbft.discardValidatorVote("0xef1bfb6a12794615c9b0b5a21e6741f01e570185")
         ```
 
     === "geth console result"
@@ -3104,12 +3104,10 @@ Provides the following validator metrics for the specified range:
 
 #### Parameters
 
-* `fromBlockNumber`: *string* - integer representing a block number or the string tag `earliest` as described
-  in [Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter)
+* `fromBlockNumber`: *string* - integer representing a block number or the string tag `earliest` (genesis block)
 
-* `toBlockNumber`: *string* - integer representing a block number or one of the string tags `latest` or
-  `pending`, as described in
-  [Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter)
+* `toBlockNumber`: *string* - integer representing a block number or one of the string tags `latest` (the last block mined) or
+  `pending` (the last block mined plus pending transactions)
 
 If you specify:
 
@@ -3164,7 +3162,7 @@ If you specify:
     === "geth console request"
 
         ```js
-        qbft.getSignerMetrics
+        qbft.getSignerMetrics("1", "100")
         ```
 
     === "geth console result"
@@ -3226,7 +3224,7 @@ Lists the validators defined in the specified block.
     === "geth console request"
 
         ```js
-        qbft.getValidatorsByBlockHash
+        qbft.getValidatorsByBlockHash("0xbae7d3feafd743343b9a4c578cab5e5d65eb735f6855fb845c00cab356331256")
         ```
 
     === "geth console result"
@@ -3245,9 +3243,8 @@ Lists the validators defined in the specified block.
 
 #### Parameters
 
-* `blockNumber`: *string* - integer representing a block number or one of the string tags `latest`,
-  `earliest`, or `pending`, as described in
-  [Block Parameter](../HowTo/Interact/APIs/Using-JSON-RPC-API.md#block-parameter)
+* `blockNumber`: *string* - integer representing a block number or one of the string tags `latest` (the last block mined),
+  `earliest` (the genesis block), or `pending` (the last block mined plus pending transactions)
 
 #### Returns
 
@@ -3278,7 +3275,7 @@ Lists the validators defined in the specified block.
     === "geth console request"
 
         ```js
-        qbft.getValidatorsByBlockNumber
+        qbft.getValidatorsByBlockNumber("latest")
         ```
 
     === "geth console result"
@@ -3327,7 +3324,7 @@ Proposes to
     === "geth console request"
 
         ```js
-        qbft.proposeValidatorVote
+        qbft.proposeValidatorVote("42d4287eac8078828cf5f3486cfe601a275a49a5",true)
         ```
 
     === "geth console result"
