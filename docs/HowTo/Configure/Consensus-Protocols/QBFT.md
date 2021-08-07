@@ -9,8 +9,7 @@ You can [create a private network using QBFT](../../../Tutorials/Private-Network
 
 !!! warning
 
-    QBFT is currently an early access feature. It is not recommended for production networks with
-    business critical impact.
+    QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
 
 In QBFT networks, approved accounts known as validators validate transactions and blocks.
 Validators take turns to create the next block.

@@ -9,5 +9,4 @@ GoQuorum implements the following Proof of Authority consensus protocols:
 
 !!! warning
 
-    QBFT is currently an early access feature. It is not recommended for production networks with
-    business critical impact.
+    QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.

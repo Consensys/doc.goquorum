@@ -4,6 +4,10 @@ description: Adding and removing QBFT validators
 
 # Adding and removing QBFT validators
 
+!!! warning
+
+    QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
+
 ## Prerequisites
 
 * A QBFT network as configured in the [QBFT tutorial](Create-QBFT-Network.md).
