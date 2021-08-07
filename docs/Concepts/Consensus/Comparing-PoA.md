@@ -1,5 +1,5 @@
 ---
-description: Besu  Proof of Authority consensus protocols comparison
+description: Proof of Authority consensus protocols comparison
 ---
 
 # Comparing Proof of Authority consensus protocols
