@@ -3000,7 +3000,7 @@ hash from the private state database.
 ### `qbft_discardValidatorVote`
 
 Discards a proposal to
-[add or remove a validator](../HowTo/Configure/Consensus-Protocols/QBFT.md#adding-and-removing-validators) with the specified address.
+[add or remove a validator](../Tutorials/Private-Network/Adding-removing-QBFT-validators.md) with the specified address.
 
 #### Parameters
 
@@ -3042,8 +3042,7 @@ Discards a proposal to
 
 ### `qbft_getPendingVotes`
 
-Returns [votes](../HowTo/Configure/Consensus-Protocols/QBFT.md#adding-and-removing-validators) cast in the current
-[epoch](../HowTo/Configure/Consensus-Protocols/QBFT.md#genesis-file).
+Returns votes cast in the current [epoch](../HowTo/Configure/Consensus-Protocols/QBFT.md).
 
 #### Parameters
 
@@ -3291,7 +3290,7 @@ Lists the validators defined in the specified block.
 ### `qbft_proposeValidatorVote`
 
 Proposes to
-[add or remove a validator](../HowTo/Configure/Consensus-Protocols/QBFT.md#adding-and-removing-validators) with the specified address.
+[add or remove a validator](../Tutorials/Private-Network/Adding-removing-QBFT-validators.md) with the specified address.
 
 #### Parameters
 

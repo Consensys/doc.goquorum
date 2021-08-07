@@ -6,7 +6,7 @@ description: Adding and removing IBFT validators
 
 ## Prerequisites
 
-* An IBFT network as configured in [the IBFT tutorial](Create-IBFT-Network.md).
+* An IBFT network as configured in the [IBFT tutorial](Create-IBFT-Network.md).
 
 ## Adding a validator
 
@@ -16,7 +16,7 @@ description: Adding and removing IBFT validators
     mkdir node5
     ```
 
-1. Change into the working directory for the new node 5 and run istanbul setup:
+1. Change into the working directory for the new node 5 and run `istanbul setup`:
 
     ```bash
     cd node5

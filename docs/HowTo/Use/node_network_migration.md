@@ -72,7 +72,7 @@ For example:
         Even if this file isn't specified with [`--raftjoinexisting`](../../Reference/CLI-Syntax.md#raftjoinexisting),
         it should be updated to keep in sync with the current cluster configuration.
 
-1. [Add Node A back to the Raft network](add_node_examples.md#raft) with its new network configuration.
+1. [Add Node A back to the Raft network](adding_nodes.md#raft) with its new network configuration.
 
 1. The nodes can now connect with their peers, and [`raft.cluster`](../../Reference/API-Methods.md#raft_cluster)
    shows the updated information and network configuration.
