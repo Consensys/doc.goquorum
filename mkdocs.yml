@@ -105,7 +105,7 @@ nav:
           - Getting Started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
           - Using the Quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
           - Tools: Tutorials/Quorum-Dev-Quickstart/Tools.md
-      - Create a Private Network:
+      - Create a private network:
           - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
           - Using QBFT: Tutorials/Private-Network/Create-QBFT-Network.md
           - Using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
