@@ -15,7 +15,7 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 ## Prerequisites
 
-- [GoQuorum installed](../GetStarted/Install.md)
+- [GoQuorum installed](../../GetStarted/Install.md)
 - [Tessera](https://docs.tessera.consensys.net)
 - [A running network](../../Tutorials/Private-Network/Create-IBFT-Network.md)
 

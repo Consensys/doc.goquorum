@@ -9,7 +9,7 @@ They range from using the quickstart to generate a local network, to creating an
 
 ## Quorum Dev Quickstart
 
-The easiest way to get a network up and running is by using the [Quorum Dev Quickstart](../../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md).
+The easiest way to get a network up and running is by using the [Quorum Dev Quickstart](../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md).
 This command-line tool creates a local GoQuorum network that can be started and be ready for use in minutes.
 
 The quickstart provides options for configuring the network and generates all the resources to run in containers
@@ -29,11 +29,11 @@ To start the quickstart, run:
 npx quorum-dev-quickstart
 ```
 
-To explore the features of GoQuorum and deploy private contracts, follow the instructions on [Interacting with the Network](../../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md)
+To explore the features of GoQuorum and deploy private contracts, follow the instructions on [Interacting with the Network](../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md)
 
 ## GoQuorum Examples sample network
 
-[GoQuorum Examples](../../Reference/GoQuorum-Projects.md) provides the means to quickly create a pre-configured sample GoQuorum
+[GoQuorum Examples](../Reference/GoQuorum-Projects.md) provides the means to quickly create a pre-configured sample GoQuorum
 network that can be run either in a virtual-machine environment using Vagrant, in containers using docker-compose,
 or locally through the use of bash scripts to automate creation of the network.
 
@@ -51,7 +51,7 @@ ready to run on Kubernetes.
 
 ## Creating a network from scratch
 
-[Creating a Private Network](../../Tutorials/Private-Network/Create-IBFT-Network.md) provides step-by-step walk-throughs
+[Creating a Private Network](../Tutorials/Private-Network/Create-IBFT-Network.md) provides step-by-step walk-throughs
 of how to create and configure a GoQuorum network for IBFT, QBFT, and Raft consensus.
 It also shows how to enable privacy and add/remove nodes as required.
 

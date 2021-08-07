@@ -55,10 +55,10 @@ theme:
 
 nav:
   - Get started:
-      - Overview: HowTo/GetStarted/GettingStartedOverview.md
-      - Install: HowTo/GetStarted/Install.md
-      - With Qubernetes (K8s): HowTo/GetStarted/Getting-Started-Qubernetes.md
-      - Upgrade to 2.6.0: HowTo/GetStarted/migration.md
+      - Overview: GetStarted/GettingStartedOverview.md
+      - Install: GetStarted/Install.md
+      - With Qubernetes (K8s): GetStarted/Getting-Started-Qubernetes.md
+      - Upgrade to 2.6.0: GetStarted/migration.md
   - Concepts:
       - Architecture: Concepts/Architecture.md
       - Account management: Concepts/AccountManagement.md
@@ -313,7 +313,13 @@ plugins:
         Reference/Consensus/IBFT-RPC-API.md: Reference/API-Methods.md
         Reference/Consensus/Raft-RPC-API.md: Reference/API-Methods.md
         HowTo/Use/AddingIBFTValidators.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
+        HowTo/Use/add_node_examples.md: HowTo/Use/adding_nodes.md
         Concepts/Consensus/IBFT.md: HowTo/Configure/Consensus-Protocols/IBFT.md
         Concepts/Consensus/Raft.md: HowTo/Configure/Consensus-Protocols/Raft.md
         Concepts/Consensus/Lifecycle-Raft-transaction.md: HowTo/Configure/Consensus-Protocols/Raft.md
         Concepts/Consensus/Raft-implementation.md: HowTo/Configure/Consensus-Protocols/Raft.md
+        Reference/IBFTParameters.md: HowTo/Configure/Consensus-Protocols/IBFT.md
+        HowTo/GetStarted/GettingStartedOverview.md: GetStarted/GettingStartedOverview.md
+        HowTo/GetStarted/Install.md: GetStarted/Install.md
+        HowTo/GetStarted/Getting-Started-Qubernetes.md: GetStarted/Getting-Started-Qubernetes.md
+        HowTo/GetStarted/migration.md: GetStarted/migration.md
