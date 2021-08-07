@@ -262,7 +262,7 @@ plugins:
         Security/Framework/Quorum Network Security/Transaction Manager.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
         Security/Framework/Overview.md: Concepts/Security/Framework/Overview.md
         How-To-Guides/HA_Setup.md: HowTo/Configure/HighAvailability.md
-        How-To-Guides/add_ibft_validator.md: Tutorials/Private-Network/Add-removing-IBFT-validators.md
+        How-To-Guides/add_ibft_validator.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
         Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/EnhancedPermissions.md
         Quorum Features/dns.md: HowTo/Configure/dns.md
         PluggableArchitecture/PluginDevelopment.md: HowTo/DevelopPlugins.md
