@@ -25,10 +25,10 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 Use the following Raft API methods on an existing node to add, remove, and promote Raft members:
 
-* [raft_addPeer](../../../Reference/API-Methods.md#raft_addpeer) to add a verifier node
-* [raft_addLearner](../../../Reference/API-Methods.md#raft_addlearner) to add a learner node
-* [raft_promoteToPeer](../../../Reference/API-Methods.md#raft_promotetopeer) to promote a learner to a verifier
-* [raft_removePeer](../../../Reference/API-Methods.md#raft_removepeer) to remove a node
+- [raft_addPeer](../../Reference/API-Methods.md#raft_addpeer) to add a verifier node
+- [raft_addLearner](../../Reference/API-Methods.md#raft_addlearner) to add a learner node
+- [raft_promoteToPeer](../../Reference/API-Methods.md#raft_promotetopeer) to promote a learner to a verifier
+- [raft_removePeer](../../Reference/API-Methods.md#raft_removepeer) to remove a node
 
 If you are using permissioning or peer-to-peer discovery, see the [extra options](#extra-options).
 
@@ -45,8 +45,8 @@ After `addPeer` or `addLearner`:
         Where you get the genesis file is dependent on the network.
         You may get it from an existing peer, a network operator, or somewhere else.
 
-1. Start the new GoQuorum node with the [`--raftjoinexisting`](../../../Reference/CLI-Syntax.md#raftjoinexisting) and
-   [`--raft`](../../../Reference/CLI-Syntax.md#raft) command line options.
+1. Start the new GoQuorum node with the [`--raftjoinexisting`](../../Reference/CLI-Syntax.md#raftjoinexisting) and
+   [`--raft`](../../Reference/CLI-Syntax.md#raft) command line options.
    Use the Raft ID returned by `addPeer` or `addLearner` as the argument for `--raftjoinexisting`.
 
     !!! example
