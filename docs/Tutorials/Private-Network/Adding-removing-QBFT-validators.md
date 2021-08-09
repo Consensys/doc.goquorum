@@ -101,7 +101,7 @@ description: Adding and removing QBFT validators
     === "geth console request"
 
         ```javascript
-        qbft.getValidatorsByBlockNumber("latest")
+        istanbul.getValidators()
         ```
 
     === "JSON result"
@@ -110,13 +110,13 @@ description: Adding and removing QBFT validators
         ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
         ```
 
-    Propose the new validator using the command [`qbft.proposeValidatorVote(<address>, true)`](../../Reference/API-Methods.md#qbft_proposevalidatorvote)
+    Propose the new validator using the command [`istanbul.propose(<address>, true)`](../../Reference/API-Methods.md#istanbul_propose)
     with `<address>` replaced by the new validator candidate node address:
 
     === "geth console request"
 
         ```javascript
-        qbft.proposeValidatorVote("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",true)
+        istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",true)
         ```
 
     === "JSON result"
@@ -136,15 +136,15 @@ description: Adding and removing QBFT validators
     !!! note
 
         To drop a currently running validator candidate and stop further votes from being cast either for or against it, use
-        [`qbft.discardValidatorVote`](../../Reference/API-Methods.md#qbft_discardvalidatorvote).
+        [`istanbul.discard`](../../Reference/API-Methods.md#istanbul_discard).
 
-1. Verify that the new validator is now in the list of validators by running [`qbft.getValidatorsByBlockNumber`](../../Reference/API-Methods.md#qbft_getvalidatorsbyblocknumber)
+1. Verify that the new validator is now in the list of validators by running [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbul_getvalidators)
    in a `geth` console attached to any of your nodes:
 
     === "geth console request"
 
         ```javascript
-        qbft.getValidatorsByBlockNumber("latest")
+        istanbul.getValidators()
         ```
 
     === "JSON result"
@@ -261,7 +261,7 @@ description: Adding and removing QBFT validators
 
 ## Removing a validator
 
-1. Attach a `geth` console to a running validator, run [`qbft.getValidatorsByBlockNumber`](../../Reference/API-Methods.md#qbft_getvalidatorsbyblocknumber),
+1. Attach a `geth` console to a running validator, run [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbul_getvalidators),
    and identify the address of the validator that needs to be removed:
 
     === "geth attach"
@@ -282,12 +282,12 @@ description: Adding and removing QBFT validators
          modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
         ```
 
-    Run `qbft.getValidatorsByBlockNumber`:
+    Run `istanbul.getValidators`:
 
     === "geth console request"
 
         ```javascript
-        qbft.getValidatorsByBlockNumber("latest")
+        istanbul.getValidators()
         ```
 
     === "JSON result"
@@ -298,13 +298,13 @@ description: Adding and removing QBFT validators
 
     We will remove `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` from the validator list in this tutorial.
 
-1. Run [`qbft.proposeValidatorVote(<address>, false)`](../../Reference/API-Methods.md#qbft_proposevalidatorvote) by passing
+1. Run [`istanbul.propose(<address>, false)`](../../Reference/API-Methods.md#istanbul_propose) by passing
    the address of the validator that needs to be removed from more than half of the current validators:
 
     === "geth console request"
 
         ```javascript
-        qbft.proposeValidatorVote("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)
+        istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)
         ```
 
     === "JSON result"
@@ -313,15 +313,15 @@ description: Adding and removing QBFT validators
         null
         ```
 
-    Repeat `qbft.proposeValidatorVote("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)` for node 1, node 2, and node 3.
+    Repeat `istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)` for node 1, node 2, and node 3.
 
-1. Verify that the validator has been removed by running [`qbft.getValidatorsByBlockNumber`](../../Reference/API-Methods.md#qbft_getvalidatorsbyblocknumber)
+1. Verify that the validator has been removed by running [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbul_getvalidators)
    in one of the nodes' attached `geth` console:
 
     === "geth console request"
 
         ```javascript
-        qbft.getValidatorsByBlockNumber("latest")
+        istanbul.getValidators()
         ```
 
     === "JSON result"

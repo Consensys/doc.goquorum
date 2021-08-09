@@ -313,12 +313,12 @@ Use the JavaScript console to check the peer count:
 
 ### 11. List current validators
 
-Use [`qbft.getValidatorsByBlockNumber`](../../Reference/API-Methods.md#qbft_getvalidatorsbyblocknumber) to view the validator addresses.
+Use [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbulgetvalidators) to view the validator addresses.
 
 === "Command"
 
     ```bash
-    qbft.getValidatorsByBlockNumber("latest")
+    istanbul.getValidators("latest")
     ```
 
 === "Result"
