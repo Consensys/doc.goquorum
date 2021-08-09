@@ -56,8 +56,8 @@ theme:
 nav:
   - Concepts:
       - Blockchain:
-          - What is blockchain: Concepts/Blockchain/What-is-blockchain.md
-          - What does a blockchain comprise: Concepts/Blockchain/Blockchain-comprises.md
+          - Introduction: Concepts/Blockchain/What-is-blockchain.md
+          - Components: Concepts/Blockchain/Blockchain-comprises.md
       - Architecture: Concepts/Architecture.md
       - Account management: Concepts/AccountManagement.md
       - Privacy:
