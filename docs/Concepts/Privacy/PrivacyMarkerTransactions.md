@@ -187,7 +187,7 @@ See [Privacy Marker API].
 
 ### Genesis Configuration
 
-The `genesis.json` file has been modified to support the `quorumPrecompilesV1Block` flag.
+The `genesis.json` file has been modified to support the `privacyPrecompileBlock` flag.
 This flag defines the fork block at which the privacy precompile contract is enabled and made available.  Once the fork block is reached the node can process and use privacy marker transactions.
 
 The value for this flag should be set to an appropriate future block number, by when the entire network is expected to have been upgraded to GoQuorum versions that support the privacy precompile.
@@ -200,7 +200,7 @@ The flag should be initialised with same value across all the nodes.
 
     ```json
     "config": {
-        "quorumPrecompilesV1Block": 10000
+        "privacyPrecompileBlock": 10000
     }
     ```
 
@@ -211,7 +211,7 @@ The command line flag `--privacymarker.enable` is needed in order to enable the 
 If this flag is specified, then whenever a private transaction is submitted to GoQuorum, it will lead to the creation of a privacy marker transaction.
 
 !!! note
-    Once the `quorumPrecompilesV1Block` has been reached, a node without the `--privacymarker.enable` CLI flag can still receive and correctly process privacy marker transactions sent from other nodes.
+    Once the `privacyPrecompileBlock` has been reached, a node without the `--privacymarker.enable` CLI flag can still receive and correctly process privacy marker transactions sent from other nodes.
 
 ### Notes for clients/dApps
 
@@ -223,7 +223,7 @@ Clients should be aware of this and make sure they are using the new [Privacy Ma
 
 #### Send unsigned private transaction
 
-Use the same APIs as usual, such as `eth_sendTransaction`.  If `privateFor` is provided ,  the `quorumPrecompilesV1Block` has been reached, and the GoQuorum node was started with the `--privacymarker.enable` flag, then the private transaction will be created as a privacy marker transaction and internal private transaction.
+Use the same APIs as usual, such as `eth_sendTransaction`.  If `privateFor` is provided ,  the `privacyPrecompileBlock` has been reached, and the GoQuorum node was started with the `--privacymarker.enable` flag, then the private transaction will be created as a privacy marker transaction and internal private transaction.
 
 #### Send signed private transaction
 
