@@ -117,3 +117,27 @@ You can also set a `requesttimeout` by using the
     doubles with each round change.
     The quickest method to resume block production is to restart all validators, which resets `requesttimeoutseconds` to
     its genesis value.
+
+## Migrating from IBFT to QBFT
+
+You can migrate an existing [IBFT](IBFT.md) network to a QBFT network with the following steps:
+
+1. Stop the network.
+1. Update the IBFT genesis file with a non-zero `testQBFTBlock` fork block.
+   For example, if the current block number in your IBFT network is 100, set `testQBFTBlock` to any block greater than
+   100, and once that fork block is reached, QBFT consensus will be used instead of IBFT.
+
+    !!! example "Sample QBFT genesis file"
+
+        ```json
+        ...
+        "istanbul": {
+            "epoch": 30000,
+            "policy": 0,
+            "ceil2Nby3Block": 0,
+            "testQBFTBlock": 120
+          },
+        ...
+        ```
+
+1. Restart the network with the updated genesis file.
