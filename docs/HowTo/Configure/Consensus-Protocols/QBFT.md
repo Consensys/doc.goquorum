@@ -90,6 +90,7 @@ The properties specific to QBFT are in the `istanbul` section:
   For new networks, we recommended setting this to 0 to use the updated formula immediately.
 * `extraData` - RLP encoded string with a list of validators.
   RLP encoding is a space-efficient object serialization scheme used in Ethereum.
+* `testQBFTBlock` - QBFT fork block. QBFT is used once the network reaches this block number.
 
 ## Block time
 
