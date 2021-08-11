@@ -34,7 +34,7 @@ Using `clef` instead of `geth` for account management has several benefits:
 ## Installing
 
 `geth` and all included tools (`clef`, `bootnode`, …) can be installed to `PATH` by
-[building GoQuorum from source with `make all`](../GetStarted/Install.md).
+[building GoQuorum from source with `make all`](../../GetStarted/Install.md).
 
 Verify the installation with:
 
