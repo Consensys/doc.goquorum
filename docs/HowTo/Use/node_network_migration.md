@@ -17,7 +17,7 @@ You can apply these instructions to any number of migrated nodes on any network 
 
 ## Prerequisites
 
-- [GoQuorum installed](../GetStarted/Install.md)
+- [GoQuorum installed](../../GetStarted/Install.md)
 - A running [Raft network](../../Tutorials/Private-Network/Create-a-Raft-network.md) or [IBFT network](../../Tutorials/Private-Network/Create-IBFT-Network.md)
 
 ## Raft
@@ -72,7 +72,7 @@ For example:
         Even if this file isn't specified with [`--raftjoinexisting`](../../Reference/CLI-Syntax.md#raftjoinexisting),
         it should be updated to keep in sync with the current cluster configuration.
 
-1. [Add Node A back to the Raft network](add_node_examples.md#raft) with its new network configuration.
+1. [Add Node A back to the Raft network](adding_nodes.md#raft) with its new network configuration.
 
 1. The nodes can now connect with their peers, and [`raft.cluster`](../../Reference/API-Methods.md#raft_cluster)
    shows the updated information and network configuration.
@@ -111,7 +111,7 @@ configurations of Nodes B and C to use the public IP address of Node A.
    The nodes can now connect with their peers, and [`raft.cluster`](../../Reference/API-Methods.md#raft_cluster) shows
    the updated information and network configuration.
 
-## IBFT
+## IBFT and QBFT
 
 1. Stop Node A.
 

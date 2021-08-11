@@ -4,46 +4,24 @@ description: Configuring Raft consensus
 
 # Configuring Raft consensus
 
+GoQuorum implements the Raft Proof-of-Authority (PoA) consensus protocol.
 To enable Raft consensus, specify the [`--raft`](../../../Reference/CLI-Syntax.md#raft) command line option when starting GoQuorum.
+You can [create a private network using Raft](../../../Tutorials/Private-Network/Create-a-Raft-network.md).
 
-Raft requires that all initial nodes in the cluster are configured as [static peers](https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network#static-nodes).
+Raft requires that all initial nodes in the cluster are configured as
+[static peers](https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network#static-nodes).
 The order of the enode IDs in the `static-nodes.json` file must be the same across all peers.
 
 The enode IDs must include a `raftport` querystring parameter specifying the Raft port for each peer.
 
 !!! example
+
     ```bash
-    `enode://abcd@127.0.0.1:30400?raftport=50400`
+    enode://abcd@127.0.0.1:30400?raftport=50400
     ```
 
 For the Raft network to work, 51% of the peers must be up and running.
 We recommend having an odd number of at least 3 peers in the network.
-
-## Adding Raft members
-
-To add a verifier node to the cluster, attach to a JS console and issue `raft.addPeer(enodeId)`.
-
-To add a learner node to the cluster, attach to a JS console and issue `raft.addLearner(enodeId)`.
-
-To promote a learner to a verifier in the cluster, attach to a JS console of a leader or verifier node
-and issue `raft.promoteToPeer(raftId)`.
-
-The enode ID must include a `raftport` querystring parameter like the [enode IDs in the `static-nodes.json`
-file](#configuring-raft-consensus).
-
-The `addPeer` and `addLearner` calls allocate and return a Raft ID not already in use.
-After `addPeer` or `addLearner`, start the new GoQuorum node with the
-[`--raftjoinexisting`](../../../Reference/CLI-Syntax.md#raftjoinexisting) and
-[`--raft`](../../../Reference/CLI-Syntax.md#raft) command line options.
-Use the Raft ID returned by `addPeer` or `addLearner` as the argument for `--raftjoinexisting`.
-
-## Removing Raft members
-
-To remove a node from the cluster, attach to a JS console and issue `raft.removePeer(raftId)`. `raftId`
-is the number of the node to be removed. For initial nodes in the cluster, `raftId` number
-is the 1-indexed position of the enode ID for the node in the static peers list. Once a node is removed
-from the cluster, it is permanent. The Raft ID cannot reconnect to the cluster in the future. If rejoining,
-the node must specify a new Raft ID returned by `addPeer` or `addLearner`.
 
 ## Minting frequency
 

@@ -4,10 +4,10 @@ description: Getting started with Qubernetes (GoQuorum on Kubernetes)
 
 # Getting started with Qubernetes
 
-[Qubernetes](../../Concepts/Qubernetes/Qubernetes-Overview.md) is a project for generating GoQuorum network resources,
+[Qubernetes](../Concepts/Qubernetes/Qubernetes-Overview.md) is a project for generating GoQuorum network resources,
 Kubernetes GoQuorum resources, and managing and interacting with a GoQuorum Kubernetes deployment.
 
-[qctl](../../Concepts/Qubernetes/Qubernetes-Overview.md#qctl-command-line-tool) is a golang command line tool for
+[qctl](../Concepts/Qubernetes/Qubernetes-Overview.md#qctl-command-line-tool) is a golang command line tool for
 creating and manipulating the minimal configuration, and interacting with a running Kubernetes network.
 
 ## Installing binaries
@@ -62,7 +62,7 @@ qctl --help
 
 Two paths must be set, either as environment variable or flags to the commands:
 
-* `QUBE_CONFIG` or `--config`. Path to the [minimal configuration](../../Concepts/Qubernetes/Qubernetes-Overview.md#minimal-configuration).
+* `QUBE_CONFIG` or `--config`. Path to the [minimal configuration](../Concepts/Qubernetes/Qubernetes-Overview.md#minimal-configuration).
 * `QUBE_K8S_DIR` or `--k8sdir`. Path to a directory to contain the GoQuorum and Kubernetes resources.
 
 !!! example "Environment variables"

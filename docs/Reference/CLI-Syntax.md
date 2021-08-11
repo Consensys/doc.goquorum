@@ -64,7 +64,8 @@ The default is 3162240.
     --istanbul.blockperiod 5
     ```
 
-Minimum time between two consecutive [IBFT](../Concepts/Consensus/IBFT.md) blocks' timestamps in seconds.
+Minimum time between two consecutive [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md) or
+[QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md) blocks' timestamps in seconds.
 Setting the block period determines how quickly blocks should be minted by the validators. The default is 1.
 
 !!! warning
@@ -85,7 +86,8 @@ Setting the block period determines how quickly blocks should be minted by the v
     --istanbul.requesttimeout 12000
     ```
 
-Minimum request timeout for each [IBFT](../Concepts/Consensus/IBFT.md) round in milliseconds.
+Minimum request timeout for each [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md) or
+[QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md) round in milliseconds.
 The request timeout is the timeout at which IBFT triggers a new round if the previous one did not complete.
 This period increases as the timeout is hit more often.
 
@@ -208,7 +210,7 @@ Disables the [plugin verification](../Concepts/Plugins/Plugins.md#plugin-integri
     --raft
     ```
 
-Enables [Raft](../Concepts/Consensus/Raft.md) for consensus.
+Enables [Raft](../HowTo/Configure/Consensus-Protocols/Raft.md) for consensus.
 
 ### `raftblocktime`
 
@@ -294,3 +296,20 @@ Defaults to the [`datadir` option](https://geth.ethereum.org/docs/interface/comm
 
 Port to bind for the [Raft transport](../HowTo/Configure/Consensus-Protocols/Raft.md#raft-transport-layer).
 The default is 50400.
+
+### `revertreason`
+
+=== "Syntax"
+
+    ```bash
+    --revertreason
+    ```
+
+=== "Command Line"
+
+    ```bash
+    --revertreason
+    ```
+
+Enables including the [revert reason](../HowTo/Use/Revert-Reason.md) in the
+[`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt) response.

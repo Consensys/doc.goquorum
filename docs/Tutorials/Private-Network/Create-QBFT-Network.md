@@ -1,12 +1,16 @@
 ---
-description: Creating a network using IBFT consensus
+description: Creating a network using QBFT consensus
 ---
 
-# Create a private network using the IBFT consensus protocol
+# Create a private network using the QBFT consensus protocol
 
 A private network provides a configurable network for testing.
-This tutorial walks you through creating an [IBFT](../../HowTo/Configure/Consensus-Protocols/IBFT.md) private network
+This tutorial walks you through creating an [QBFT](../../HowTo/Configure/Consensus-Protocols/QBFT.md) private network
 with five nodes.
+
+!!! warning
+
+    QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
 
 !!! important
 
@@ -27,7 +31,7 @@ with five nodes.
 
 ### 1. Install Istanbul tools
 
-The [`istanbul-tools`](https://github.com/ConsenSys/istanbul-tools) repository contains tools for configuring IBFT networks.
+The [`istanbul-tools`](https://github.com/ConsenSys/istanbul-tools) repository contains tools for configuring QBFT networks.
 
 ```bash
 git clone https://github.com/ConsenSys/istanbul-tools.git
@@ -37,10 +41,10 @@ make
 
 ### 2. Create directories
 
-Create directories for your private network and 5 nodes.
+Create directories for your private network and five nodes.
 
 ```bash
-IBFT-Network/
+QBFT-Network/
 ├── Node-0
 │   ├── data
 ├── Node-1
@@ -55,10 +59,10 @@ IBFT-Network/
 
 ### 3. Generate keys and configuration
 
-In the `IBFT-Network` directory, generate keys and configuration for five nodes.
+In the `QBFT-Network` directory, generate keys and configuration for five nodes.
 
 ```bash
-<path to istanbul-tools>/istanbul-tools/build/bin/istanbul setup --num 5 --nodes --quorum --save --verbose
+<path to istanbul-tools>/istanbul-tools/build/bin/qbft setup --num 5 --nodes --quorum --save --verbose
 ```
 
 Node keys for five nodes, a `static-nodes.json` files, and a `genesis.json` files are generated.
@@ -116,7 +120,8 @@ Node keys for five nodes, a `static-nodes.json` files, and a `genesis.json` file
             "istanbul": {
                 "epoch": 30000,
                 "policy": 0,
-                "ceil2Nby3Block": 0
+                "ceil2Nby3Block": 0,
+                "testQBFTBlock": 0
             },
             "txnSizeLimit": 64,
             "maxCodeSize": 0,
@@ -124,7 +129,7 @@ Node keys for five nodes, a `static-nodes.json` files, and a `genesis.json` file
         },
         "nonce": "0x0",
         "timestamp": "0x5fc06d3d",
-        "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000f8aff8699466f976d16c906b1b7e0e110d6950b109f146120f94c20f68dfb6b3707ec2ee5b4c1f5ca9e10e560d7b9485ceceb205c67da0029d6852f0fc486b4324b5dc94608e7dfbbb6ebcc24fabeb67b3597b166b11414294c5db99d2cd30fd3ab58fe2738a3513c6ccdb0d2bb8410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0",
+        "extraData": "0xf87aa00000000000000000000000000000000000000000000000000000000000000000f8549493917cadbace5dfce132b991732c6cda9bcc5b8a9427a97c9aaf04f18f3014c32e036dd0ac76da5f1894ce412f988377e31f4d0ff12d74df73b51c42d0ca9498c1334496614aed49d2e81526d089f7264fed9cc080c0",
         "gasLimit": "0xe0000000",
         "difficulty": "0x1",
         "mixHash": "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
@@ -155,7 +160,7 @@ Node keys for five nodes, a `static-nodes.json` files, and a `genesis.json` file
 Directory structure after generating keys and configuration files:
 
 ```bash
-IBFT-Network/
+QBFT-Network/
 ├── 0
 │   ├── nodekey
 ├── 1
@@ -220,7 +225,7 @@ cp 4/nodekey Node-4/data
 
 ### 6. Initialize nodes
 
-In each node directory (that is, `Node-0`, `Node-1`, `Node-2`, `Node-3`, and `Node-4`), initialize each node:
+In each node directory (that is, `Node-0`, `Node-1`, `Node-2`, `Node-3`, and `Node-4`), initalize each node.
 
 ```bash
 geth --datadir data init ../genesis.json
@@ -231,7 +236,7 @@ geth --datadir data init ../genesis.json
 In the `Node-0` directory, start the first node:
 
 ```bash
-PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22000 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30300
+PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22000 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30300
 ```
 
 The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled.
@@ -248,25 +253,25 @@ specifying different ports for DevP2P and RPC.
 === "Node 1"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22001 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30301
+    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22001 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30301
     ```
 
 === "Node 2"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22002 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30302
+    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22002 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30302
     ```
 
 === "Node 3"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22003 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30303
+    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22003 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30303
     ```
 
 === "Node 4"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22004 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30304
+    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22004 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30304
     ```
 
 ### 9. Attach to node 0
@@ -317,11 +322,10 @@ Use [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbulgetvalidat
     ```
 
 === "Result"
-
     ```bash
     ["0x608e7dfbbb6ebcc24fabeb67b3597b166b114142", "0x66f976d16c906b1b7e0e110d6950b109f146120f", "0x85ceceb205c67da0029d6852f0fc486b4324b5dc", "0xc20f68dfb6b3707ec2ee5b4c1f5ca9e10e560d7b", "0xc5db99d2cd30fd3ab58fe2738a3513c6ccdb0d2b"]
     ```
 
 ### Next
 
-[Add and remove validators](Adding-removing-IBFT-validators.md).
+[Add and remove validators](Adding-removing-QBFT-validators.md).

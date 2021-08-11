@@ -5,20 +5,17 @@ description: Adding new nodes to an existing network
 # Adding nodes to the network
 
 Adding new nodes to an existing network can range from a common occurrence to never happening.
-In public blockchains, such as the Ethereum Mainnet, new nodes continuously join and talk to the existing network.
-In permissioned blockchains, this may not happen as often, but it still an important task to achieve as your network
-evolves.
+In public blockchains such as Ethereum Mainnet, new nodes continuously join and talk to the existing network.
+In permissioned blockchains, this may not happen as often, but it's still an important task to achieve as your network evolves.
 
-When adding new nodes to the network, it is important understand that the GoQuorum network and Tessera
-network are distinct and do not overlap in any way.
-
+When adding new nodes to the network, it's important to understand that the GoQuorum network and Tessera network are
+distinct and do not overlap in any way.
 Therefore, options applicable to one are not applicable to the other.
-
 In some cases, they may have their own options to achieve similar tasks, but must be specified separately.
 
 ## Prerequisites
 
-- [GoQuorum installed](../GetStarted/Install.md)
+- [GoQuorum installed](../../GetStarted/Install.md)
 - [Tessera](https://docs.tessera.consensys.net)
 - [A running network](../../Tutorials/Private-Network/Create-IBFT-Network.md)
 
@@ -26,44 +23,37 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 ### Raft
 
-1. On an *existing* node, add the new peer to the Raft network.
+Use the following Raft API methods on an existing node to add, remove, and promote Raft members:
 
-    In the `geth` console, run:
+- [raft_addPeer](../../Reference/API-Methods.md#raft_addpeer) to add a verifier node
+- [raft_addLearner](../../Reference/API-Methods.md#raft_addlearner) to add a learner node
+- [raft_promoteToPeer](../../Reference/API-Methods.md#raft_promotetopeer) to promote a learner to a verifier
+- [raft_removePeer](../../Reference/API-Methods.md#raft_removepeer) to remove a node
 
-    ```js
-    raft.addPeer("enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407")
-    ```
+If you are using permissioning or peer-to-peer discovery, see the [extra options](#extra-options).
 
-    The result is:
+After `addPeer` or `addLearner`:
 
-    ```js
-    7
-    ```
-
-    In this example, your new node has a Raft ID of `7`.
-
-1. If you are using permissioning or peer-to-peer discovery, see the [extra options](#extra-options).
-
-1. You now need to initialize the new node with the network's genesis configuration.
-
-    Initializing the new node is exactly the same as the original nodes.
+1. Initialize the new node with the network's genesis configuration:
 
     ```bash
-    geth --datadir qdata/dd7 init genesis.json
+    geth --datadir <NEW-NODE-DATA-DIRECTORY> init <GENESIS-FILE>
     ```
 
     !!! note
 
-        Where you obtain this from will be dependent on the network. You may get it from an existing peer, or a network operator, or elsewhere entirely.
+        Where you get the genesis file is dependent on the network.
+        You may get it from an existing peer, a network operator, or somewhere else.
 
-1. Now you can start up the new node and let it sync with the network.
-    The main difference now is the use of the [`--raftjoinexisting`](../../Reference/CLI-Syntax.md#raftjoinexisting)
-    flag, which lets the node know that it is joining an existing network.
-    The Raft ID obtained in step 1 is passed as a parameter to this flag:
+1. Start the new GoQuorum node with the [`--raftjoinexisting`](../../Reference/CLI-Syntax.md#raftjoinexisting) and
+   [`--raft`](../../Reference/CLI-Syntax.md#raft) command line options.
+   Use the Raft ID returned by `addPeer` or `addLearner` as the argument for `--raftjoinexisting`.
 
-    ```bash
-     PRIVATE_CONFIG=ignore geth --datadir qdata/dd7 ... OTHER ARGS ... --raft --raftport 50407 --rpcport 22006 --port 21006 --raftjoinexisting 7
-    ```
+    !!! example
+
+        ```bash
+         PRIVATE_CONFIG=ignore geth --datadir qdata/dd7 ... OTHER ARGS ... --raft --raftport 50407 --rpcport 22006 --port 21006 --raftjoinexisting 7
+        ```
 
     The new node is now up and running, and will start syncing the blockchain from existing peers. Once this has
     completed, it can send new transactions just as any other peer.
@@ -73,27 +63,30 @@ In some cases, they may have their own options to achieve similar tasks, but mus
     For a Raft network to work, 51% of the peers must be up and running.
     We recommend having an odd number of at least 3 peers in a network.
 
-### IBFT/Clique
+### IBFT, QBFT, and Clique
 
-Adding nodes to an IBFT/Clique network is a bit simpler, as it only needs to configure itself rather than be
-pre-allocated on the network (permissioning aside).
+Adding a non-validator node to an IBFT, QBFT, or Clique network is a bit simpler, as it only needs to configure itself
+rather than be pre-allocated on the network (permissioning aside).
 
-1. Initialize the new node with the network's genesis configuration.
-
-    Initializing the new node is exactly the same as the original nodes:
+1. Initialize the new node with the network's genesis configuration:
 
     ```bash
-     geth --datadir qdata/dd7 init genesis.json
+    geth --datadir <NEW-NODE-DATA-DIRECTORY> init <GENESIS-FILE>
     ```
 
     !!! note
 
-        Where you obtain the genesis file from will be dependent on the network. You may get it from an existing peer, or a network operator, or elsewhere entirely.
+        Where you get the genesis file is dependent on the network.
+        You may get it from an existing peer, a network operator, or somewhere else.
 
 1. If you are using permissioning or peer-to-peer discovery, see the [extra options](#extra-options).
 
 1. Start the new node, pointing either to a `bootnode` or listing an existing peer in the `static-nodes.json` file.
     Once a connection is established, the node will start syncing the blockchain, after which transactions can be sent.
+
+Adding a validator to an IBFT or QBFT network requires using the consensus APIs outlined in the
+[IBFT tutorial](../../Tutorials/Private-Network/Adding-removing-IBFT-validators.md) and the
+[QBFT tutorial](../../Tutorials/Private-Network/Adding-removing-QBFT-validators.md).
 
 ### Extra options
 
@@ -258,9 +251,5 @@ In order to make sure the new node is accepted into the network:
 
     The new node will now record public keys belonging to the existing peers, and then existing peers will record
     public keys belonging to the new peer; this allows private transactions to be sent both directions!
-
-## Examples
-
-For a walkthrough of some examples that put into action the above, check out [this guide](add_node_examples.md).
 
 *[PTM]: Private Transaction Manager

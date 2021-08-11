@@ -124,7 +124,7 @@ running a node in a single cluster, the node defines:
 
 ## qctl command line tool
 
-[qctl](../../HowTo/GetStarted/Getting-Started-Qubernetes.md) is a golang command line tool for
+[qctl](../../GetStarted/Getting-Started-Qubernetes.md) is a golang command line tool for
 creating and manipulating the minimal configuration, and interacting with a running Kubernetes network.
 
 Following the Unix philosophy, the commands intentionally only do one thing. Add the commands to
