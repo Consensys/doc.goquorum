@@ -296,3 +296,20 @@ Defaults to the [`datadir` option](https://geth.ethereum.org/docs/interface/comm
 
 Port to bind for the [Raft transport](../HowTo/Configure/Consensus-Protocols/Raft.md#raft-transport-layer).
 The default is 50400.
+
+### `revertreason`
+
+=== "Syntax"
+
+    ```bash
+    --revertreason
+    ```
+
+=== "Command Line"
+
+    ```bash
+    --revertreason
+    ```
+
+Enables including the [revert reason](../HowTo/Use/Revert-Reason.md) in the
+[`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt) response.
