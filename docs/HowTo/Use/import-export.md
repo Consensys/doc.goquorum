@@ -48,7 +48,7 @@ PRIVATE_CONFIG=<PTM ipc endpoint> geth import <import file names...> --datadir <
 
 ## Special consensus considerations
 
-### IBFT/QBFT
+### IBFT and QBFT
 
 IBFT and QBFT block data contain sealer information in the header.
 To restore a copy of exported chain data, the new node must be initialized using an IBFT/QBFT genesis file with the same

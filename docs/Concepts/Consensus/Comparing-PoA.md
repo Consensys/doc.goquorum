@@ -15,7 +15,7 @@ consensus protocol used on Ethereum Mainnet.
 
 In the GoQuorum PoA consensus protocols, a group of nodes in the network act as validators (IBFT and QBFT), verifiers (Raft)
 or signers (Clique).
-The existing nodes in the validator/verifier/signer pool vote to add nodes to or remove nodes from the pool.
+Existing validators, verifiers, or signers vote to add or remove network nodes.
 
 !!! note
 

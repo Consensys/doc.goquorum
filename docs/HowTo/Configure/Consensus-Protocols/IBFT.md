@@ -20,7 +20,7 @@ Adding or removing a validator requires a majority vote (greater than 50%) of va
     If more than 1/3 of validators stop participating, new blocks are no longer created, and the network stalls.
     It may take significant time to recover once nodes are restarted.
 
-Blocks in IBFT protocol are final, which means that there are no forks and any valid block must be somewhere in the main chain.
+Blocks in IBFT protocol are final, meaning there are no forks, and valid blocks must be in the main chain.
 
 To prevent a faulty node from generating a different chain from the main chain, each validator appends `ceil(2N/3)` of
 received `COMMIT` signatures to the `extraData` field in a block's header before inserting it into the chain.
