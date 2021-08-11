@@ -54,6 +54,11 @@ theme:
   favicon: 'images/favicon.svg'
 
 nav:
+  - Get started:
+      - Overview: GetStarted/GettingStartedOverview.md
+      - Install: GetStarted/Install.md
+      - With Qubernetes (K8s): GetStarted/Getting-Started-Qubernetes.md
+      - Upgrade to 2.6.0: GetStarted/migration.md
   - Concepts:
       - Blockchain:
           - Introduction: Concepts/Blockchain/What-is-blockchain.md
@@ -69,11 +74,7 @@ nav:
           - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
       - Consensus:
           - Overview: Concepts/Consensus/Overview.md
-          - IBFT: Concepts/Consensus/IBFT.md
-          - Raft:
-              - Overview: Concepts/Consensus/Raft.md
-              - Lifecyle Raft transaction: Concepts/Consensus/Lifecycle-Raft-transaction.md
-              - Implementation: Concepts/Consensus/Raft-implementation.md
+          - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
       - Permissioning:
           - Overview: Concepts/Permissioning/PermissionsOverview.md
           - Basic permissions: Concepts/Permissioning/BasicNetworkPermissions.md
@@ -106,23 +107,22 @@ nav:
           - Getting Started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
           - Using the Quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
           - Tools: Tutorials/Quorum-Dev-Quickstart/Tools.md
-      - Create a Private Network:
-          - Create a network using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
+      - Create a private network:
+          - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
+          - Using QBFT: Tutorials/Private-Network/Create-QBFT-Network.md
+          - Using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
           - Adding and removing IBFT validators: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
-          - Create a network using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
+          - Adding and removing QBFT validators: Tutorials/Private-Network/Adding-removing-QBFT-validators.md
       - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
       - Send private transactions: Tutorials/Send-private-transaction.md
       - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
   - How to:
-      - Get started:
-          - Overview: HowTo/GetStarted/GettingStartedOverview.md
-          - Install: HowTo/GetStarted/Install.md
-          - With Qubernetes (K8s):  HowTo/GetStarted/Getting-Started-Qubernetes.md
-          - Upgrade to 2.6.0: HowTo/GetStarted/migration.md
       - Configure:
-          - Consensus Protocols:
-              - Raft: HowTo/Configure/Consensus-Protocols/Raft.md
+          - Consensus protocols:
               - IBFT: HowTo/Configure/Consensus-Protocols/IBFT.md
+              - QBFT: HowTo/Configure/Consensus-Protocols/QBFT.md
+              - Raft: HowTo/Configure/Consensus-Protocols/Raft.md
+              - Clique: HowTo/Configure/Consensus-Protocols/Clique.md
           - Genesis file: HowTo/Configure/GenesisOptions.md
           - High availability: HowTo/Configure/HighAvailability.md
           - Permissions:
@@ -141,9 +141,7 @@ nav:
           - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md
       - Use:
           - Add nodes to network: HowTo/Use/adding_nodes.md
-          - Add nodes examples: HowTo/Use/add_node_examples.md
           - Migrate network nodes: HowTo/Use/node_network_migration.md
-          - Add IBFT validators: HowTo/Use/AddingIBFTValidators.md
           - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
           - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
           - Multi-tenancy: HowTo/Use/Multitenancy.md
@@ -156,7 +154,6 @@ nav:
       - GoQuorum API Methods: Reference/API-Methods.md
       - Permissioning Types: Reference/Permissioning-Types.md
       - Example Genesis File: Reference/genesis.md
-      - IBFT Parameters: Reference/IBFTParameters.md
       - Plugins:
           - Initialization interface: Reference/Plugins/init_interface.md
           - helloworld:
@@ -243,12 +240,12 @@ plugins:
         Account-Key-Management/Quorum/Overview.md: Concepts/AccountManagement.md
         Account-Key-Management/Quorum/account-Plugins/Overview.md: HowTo/ManageKeys/AccountPlugins.md
         Account-Key-Management/Tessera/Overview.md: Concepts/AccountManagement.md
-        Consensus/ibft/ibft.md: Concepts/Consensus/IBFT.md
+        Consensus/ibft/ibft.md: HowTo/Configure/Consensus-Protocols/IBFT.md
         Consensus/Consensus.md: Concepts/Consensus/Overview.md
-        Consensus/raft/raft.md: Concepts/Consensus/Raft.md
+        Consensus/raft/raft.md: HowTo/Configure/Consensus-Protocols/Raft.md
         Getting Started/permissioned-nodes.md: HowTo/Configure/BasicPermissions.md
-        Getting Started/running.md: HowTo/GetStarted/GettingStartedOverview.md
-        Consensus/ibft/ibft-parameters.md: Reference/IBFTParameters.md
+        Getting Started/running.md: GetStarted/GettingStartedOverview.md
+        Consensus/ibft/ibft-parameters.md: HowTo/Configure/Consensus-Protocols/IBFT.md
         Consensus/ibft/istanbul-rpc-api.md: Reference/API-Methods.md
         Consensus/raft/raft-rpc-api.md: Reference/API-Methods.md
         Permissioning/Basic NetworkPermissions.md: Concepts/Permissioning/BasicNetworkPermissions.md
@@ -268,20 +265,20 @@ plugins:
         Security/Framework/Quorum Network Security/Transaction Manager.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
         Security/Framework/Overview.md: Concepts/Security/Framework/Overview.md
         How-To-Guides/HA_Setup.md: HowTo/Configure/HighAvailability.md
-        How-To-Guides/add_ibft_validator.md: HowTo/Use/AddingIBFTValidators.md
+        How-To-Guides/add_ibft_validator.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
         Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/EnhancedPermissions.md
         Quorum Features/dns.md: HowTo/Configure/dns.md
         PluggableArchitecture/PluginDevelopment.md: HowTo/DevelopPlugins.md
         HowTo/GetStarted/Cakeshop.md: Reference/Cakeshop/GettingStarted.md
         Cakeshop/Getting started.md: Reference/Cakeshop/GettingStarted.md
-        Getting Started/Getting Started Overview.md: HowTo/GetStarted/GettingStartedOverview.md
-        Getting Started/Installing.md: HowTo/GetStarted/Install.md
+        Getting Started/Getting Started Overview.md: GetStarted/GettingStartedOverview.md
+        Getting Started/Installing.md: GetStarted/Install.md
         Wizard/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
         Wizard/Interacting.md: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
-        Getting Started/migration.md: HowTo/GetStarted/migration.md
+        Getting Started/migration.md: GetStarted/migration.md
         Permissioning/Enhanced Permissions Model/Usage.md: HowTo/Use/EnhancedPermissions.md
         Quorum Features/rpc-security.md: HowTo/Use/JSON-RPC-API-Security.md
-        How-To-Guides/add_node_examples.md: HowTo/Use/add_node_examples.md
+        How-To-Guides/add_node_examples.md: HowTo/Use/adding_nodes.md
         How-To-Guides/adding_nodes.md: HowTo/Use/adding_nodes.md
         Getting Started/graphql.md: HowTo/Use/graphql.md
         How-To-Guides/import-export.md: HowTo/Use/import-export.md
@@ -315,6 +312,17 @@ plugins:
         Reference/APIs/PermissioningAPIs.md: Reference/API-Methods.md
         Reference/APIs/ContractExtensionAPIs.md: Reference/API-Methods.md
         Reference/APIs/DebugAPIs.md: Reference/API-Methods.md
-        Reference/Consensus/IBFTParameters.md: Reference/IBFTParameters.md
+        Reference/Consensus/IBFTParameters.md: HowTo/Configure/Consensus-Protocols/IBFT.md
         Reference/Consensus/IBFT-RPC-API.md: Reference/API-Methods.md
         Reference/Consensus/Raft-RPC-API.md: Reference/API-Methods.md
+        HowTo/Use/AddingIBFTValidators.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
+        HowTo/Use/add_node_examples.md: HowTo/Use/adding_nodes.md
+        Concepts/Consensus/IBFT.md: HowTo/Configure/Consensus-Protocols/IBFT.md
+        Concepts/Consensus/Raft.md: HowTo/Configure/Consensus-Protocols/Raft.md
+        Concepts/Consensus/Lifecycle-Raft-transaction.md: HowTo/Configure/Consensus-Protocols/Raft.md
+        Concepts/Consensus/Raft-implementation.md: HowTo/Configure/Consensus-Protocols/Raft.md
+        Reference/IBFTParameters.md: HowTo/Configure/Consensus-Protocols/IBFT.md
+        HowTo/GetStarted/GettingStartedOverview.md: GetStarted/GettingStartedOverview.md
+        HowTo/GetStarted/Install.md: GetStarted/Install.md
+        HowTo/GetStarted/Getting-Started-Qubernetes.md: GetStarted/Getting-Started-Qubernetes.md
+        HowTo/GetStarted/migration.md: GetStarted/migration.md

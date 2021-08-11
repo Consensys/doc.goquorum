@@ -36,7 +36,7 @@ network routes to the necessary services (GoQuorum p2p and Tessera p2p), and the
 if using istanbul consensus. When adding an external node, this information must be obtained from
 exposes a pod to the outside world via `K8s_Node_IP:Node_Port`.the external cluster.
 
-The [qctl](../../HowTo/GetStarted/Getting-Started-Qubernetes.md) command includes a command for exporting
+The [qctl](../../GetStarted/Getting-Started-Qubernetes.md) command includes a command for exporting
 the information required to add an external node. The required information cannot always be known
 until the node is deployed. For example, the ports are provisioned by Kubernetes and cannot be known
 until the node is deployed.
