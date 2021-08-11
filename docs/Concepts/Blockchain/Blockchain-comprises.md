@@ -22,9 +22,7 @@ Consensus mechanisms include:
   These trusted nodes are called *validators*, and other nodes in the network are called *non-validating nodes*.
   Non-validating nodes still validate the blocks that the validators create, but they don't produce them.
 
-GoQuorum supports the PoA algorithms [IBFT](../../HowTo/Configure/Consensus-Protocols/IBFT.md),
-[QBFT](../../HowTo/Configure/Consensus-Protocols/QBFT.md), [Raft](../../HowTo/Configure/Consensus-Protocols/Raft.md),
-and [Clique](../../HowTo/Configure/Consensus-Protocols/Clique.md).
+GoQuorum supports the PoA algorithms IBFT, QBFT, Raft, and Clique.
 
 ## Smart contracts
 

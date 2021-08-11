@@ -49,7 +49,6 @@ Multiple organizations can come together to create a *consortium network* workin
 and permissions are agreed upon and deployed to the blockchain.
 These policies can evolve over time, updating through participant-based governance.
 
-Blockchains can help make your business smoother and more efficient, allowing you to focus on what matters to you and
-growing your business.
+Blockchains can help make your business smoother and more efficient, allowing you to focus on growing your business.
 
 ![Blockchain business](../../images/blockchain-business.png)
