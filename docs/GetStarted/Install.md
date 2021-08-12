@@ -32,7 +32,7 @@ docker pull quorumengineering/tessera
 !!! note
 
     We recommend installing from official containers or release binaries rather than building from source.  If you build
-    from source, use the [this version of Go](https://github.com/ConsenSys/quorum/blob/master/go.mod).
+    from source, use Go version 1.15 or later.
 
 1. Clone the repository and build the source:
 
