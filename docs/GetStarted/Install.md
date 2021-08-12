@@ -29,6 +29,11 @@ docker pull quorumengineering/tessera
 
 ### GoQuorum
 
+!!! note
+
+    We recommend installing from official containers or release binaries rather than building from source.  If you build
+    from source, use Go version 1.15 or later.
+
 1. Clone the repository and build the source:
 
     ```bash
