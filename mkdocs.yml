@@ -60,6 +60,9 @@ nav:
       - With Qubernetes (K8s): GetStarted/Getting-Started-Qubernetes.md
       - Upgrade to 2.6.0: GetStarted/migration.md
   - Concepts:
+      - Blockchain:
+          - Introduction: Concepts/Blockchain/What-is-blockchain.md
+          - Components: Concepts/Blockchain/Blockchain-comprises.md
       - Architecture: Concepts/Architecture.md
       - Account management: Concepts/AccountManagement.md
       - Privacy:
@@ -96,7 +99,6 @@ nav:
           - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
-      - Cakeshop: Concepts/Cakeshop.md
       - Qubernetes:
           - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md

@@ -1,6 +1,6 @@
 # Getting started with Cakeshop
 
-For a high level overview of what Cakeshop is, see the [Cakeshop concept page](../../Concepts/Cakeshop.md).
+For a high level overview of what Cakeshop is, see the [Cakeshop concept page](../../Tutorials/Quorum-Dev-Quickstart/Tools.md).
 
 ## Download
 
