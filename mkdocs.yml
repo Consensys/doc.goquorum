@@ -173,9 +173,6 @@ nav:
       - Accounts for Testing: Reference/Accounts-for-Testing.md
       - GoQuorum Projects: Reference/GoQuorum-Projects.md
       - Logging and Errors: Reference/Logging and Errors.md
-      - Remix plugin:
-          - Overview: Reference/RemixPlugin/Overview.md
-          - Getting started: Reference/RemixPlugin/GettingStarted.md
       - quorum.js:
           - Overview: Reference/quorum.js/Overview.md
           - extend API: Reference/quorum.js/extend.md
@@ -269,8 +266,8 @@ plugins:
         Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/EnhancedPermissions.md
         Quorum Features/dns.md: HowTo/Configure/dns.md
         PluggableArchitecture/PluginDevelopment.md: HowTo/DevelopPlugins.md
-        HowTo/GetStarted/Cakeshop.md: Reference/Cakeshop/GettingStarted.md
-        Cakeshop/Getting started.md: Reference/Cakeshop/GettingStarted.md
+        HowTo/GetStarted/Cakeshop.md: HowTo/Monitor/Cakeshop.md
+        Cakeshop/Getting started.md: HowTo/Monitor/Cakeshop.md
         Getting Started/Getting Started Overview.md: GetStarted/GettingStartedOverview.md
         Getting Started/Installing.md: GetStarted/Install.md
         Wizard/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
@@ -285,9 +282,9 @@ plugins:
         Privacy/Contract-Extension/ContractExtension apis.md: Reference/API-Methods.md
         Permissioning/Enhanced Permissions Model/Permissioning apis.md: Reference/API-Methods.md
         Getting Started/api.md: Reference/API-Methods.md
-        Reference/CakeshopFAQ.md: Reference/Cakeshop/GettingStarted.md
-        Cakeshop/Cakeshop FAQ.md: Reference/Cakeshop/GettingStarted.md
-        Cakeshop/Overview.md: Reference/Cakeshop/GettingStarted.md
+        Reference/CakeshopFAQ.md: HowTo/Monitor/Cakeshop.md
+        Cakeshop/Cakeshop FAQ.md: HowTo/Monitor/Cakeshop.md
+        Cakeshop/Overview.md: HowTo/Monitor/Cakeshop.md
         FAQ.md: Reference/FAQ.md
         Getting Started/Quorum-Examples.md: Reference/GoQuorum-Projects.md
         PluggableArchitecture/Plugins/account/For-Developers.md: Reference/Plugins/account/For-Developers.md
@@ -329,4 +326,4 @@ plugins:
         Concepts/Cakeshop.md: HowTo/Monitor/Cakeshop.md
         Reference/Cakeshop/GettingStarted.md: HowTo/Monitor/Cakeshop.md
         Reference/Cakeshop/Configuration.md: HowTo/Monitor/Cakeshop.md
-        Tutorials/Quorum-Dev-Quickstart/Tools.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md#tools
+        Tutorials/Quorum-Dev-Quickstart/Tools.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md

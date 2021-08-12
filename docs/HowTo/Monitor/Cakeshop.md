@@ -13,7 +13,7 @@ Out of the box you get:
 * **Contract registry** - Keep track of deployed contracts and their code, interfaces, and state.
 * **Node info** - View the overall status of your network.
 * **Peer management** - Discover, add, and remove peers.
-* **Enhanced permissions UI** - Manage smart contract-based [enhanced permissioning](Permissioning/Enhanced/EnhancedPermissionsOverview.md)
+* **Enhanced permissions UI** - Manage smart contract-based [enhanced permissioning](../../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md)
 * **Solidity sandbox** - Develop, compile, deploy, and interact with Solidity smart contracts.
 
 You can access Cakeshop when using the [Quorum Developer Quickstart](../../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md),
