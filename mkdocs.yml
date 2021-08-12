@@ -60,6 +60,9 @@ nav:
       - With Qubernetes (K8s): GetStarted/Getting-Started-Qubernetes.md
       - Upgrade to 2.6.0: GetStarted/migration.md
   - Concepts:
+      - Blockchain:
+          - Introduction: Concepts/Blockchain/What-is-blockchain.md
+          - Components: Concepts/Blockchain/Blockchain-comprises.md
       - Architecture: Concepts/Architecture.md
       - Account management: Concepts/AccountManagement.md
       - Privacy:
@@ -103,7 +106,8 @@ nav:
       - Quorum Dev Quickstart:
           - Getting Started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
           - Using the Quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
-      - Create a private network:
+          - Remix: Tutorials/Quorum-Dev-Quickstart/Remix.md
+      - Create a Private Network:
           - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
           - Using QBFT: Tutorials/Private-Network/Create-QBFT-Network.md
           - Using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
@@ -169,7 +173,7 @@ nav:
       - Accounts for Testing: Reference/Accounts-for-Testing.md
       - GoQuorum Projects: Reference/GoQuorum-Projects.md
       - Logging and Errors: Reference/Logging and Errors.md
-      - Remix Plugin:
+      - Remix plugin:
           - Overview: Reference/RemixPlugin/Overview.md
           - Getting started: Reference/RemixPlugin/GettingStarted.md
       - quorum.js:
@@ -294,8 +298,8 @@ plugins:
         PluggableArchitecture/Plugins/init_interface.md: Reference/Plugins/init_interface.md
         PluggableArchitecture/Plugins/security/implementation.md: Reference/Plugins/security/For-Users.md
         PluggableArchitecture/Plugins/security/interface.md: Reference/Plugins/security/interface.md
-        RemixPlugin/GettingStarted.md: Reference/RemixPlugin/GettingStarted.md
-        RemixPlugin/Overview.md: Reference/RemixPlugin/Overview.md
+        RemixPlugin/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
+        RemixPlugin/Overview.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
         Getting Started/genesis.md: Reference/genesis.md
         quorum.js/Overview.md: Reference/quorum.js/Overview.md
         quorum.js/RawTransactionManager.md: Reference/quorum.js/RawTransactionManager.md

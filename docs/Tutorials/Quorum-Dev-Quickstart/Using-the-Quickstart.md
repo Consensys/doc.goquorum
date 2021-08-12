@@ -402,8 +402,8 @@ private contracts.
 
 ## Use Remix
 
-You can connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](../../Reference/RemixPlugin/Overview.md).
-Follow the instructions for activating the remix plugin in [Getting Started](../../Reference/RemixPlugin/GettingStarted.md),
+You can connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](./Remix.md).
+Follow the instructions for activating the remix plugin in [Getting Started](Remix.md),
 using the GoQuorum and Tessera URLs in the [Private transactions](#private-transactions) section.
 
 ## Use Cakeshop
