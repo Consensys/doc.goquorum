@@ -3,7 +3,7 @@ title: Quorum Developer Quickstart
 description: Helps to generate local GoQuorum and Ethereum blockchain networks.
 ---
 
-# Quorum Developer Quickstart
+# Use Quorum Developer Quickstart
 
 The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private
 [IBFT](../../HowTo/Configure/Consensus-Protocols/IBFT.md) network of GoQuorum nodes managed by Docker Compose.
@@ -15,16 +15,10 @@ The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private
 
 ## Prerequisites
 
-* One of the following operating systems:
-    * Linux on x86_64 architecture
-    * macOS on an Intel processor (M1 processor not supported yet)
-    * Windows 64-bit edition, with:
-        * Windows Subsystem for Linux 2
-        * Docker desktop configured to use the WSL2-based engine
+* [Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) version 14 or higher
 * [Docker and Docker-compose](https://docs.docker.com/compose/install/)
-* [Node.js v6+ LTS](https://nodejs.org/en/) (the best way to install is with [NVM](http://nvm.sh))
 * [Truffle](https://www.trufflesuite.com/truffle) development framework
-* [curl command line](https://curl.haxx.se/download.html)
+* [`curl` command line](https://curl.haxx.se/download.html)
 * [MetaMask](https://metamask.io/)
 
 !!! important
@@ -414,7 +408,7 @@ using the GoQuorum and Tessera URLs in the [Private transactions](#private-trans
 
 ## Use Cakeshop
 
-Cakeshop allows you to perform transactions directly via the UI.
+[Cakeshop](../../HowTo/Monitor/Cakeshop.md) allows you to perform transactions directly using the UI.
 
 1. Open <http://localhost:8999> in your browser.
 1. Select the **Contracts** tab and **Deploy** the contract registry.

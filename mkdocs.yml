@@ -96,7 +96,6 @@ nav:
           - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
-      - Cakeshop: Concepts/Cakeshop.md
       - Qubernetes:
           - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md
@@ -104,7 +103,6 @@ nav:
       - Quorum Dev Quickstart:
           - Getting Started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
           - Using the Quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
-          - Tools: Tutorials/Quorum-Dev-Quickstart/Tools.md
       - Create a private network:
           - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
           - Using QBFT: Tutorials/Private-Network/Create-QBFT-Network.md
@@ -134,9 +132,12 @@ nav:
           - Use clef: HowTo/ManageKeys/clef.md
           - Use account plugins: HowTo/ManageKeys/AccountPlugins.md
       - Monitor nodes:
-          - Use Metrics: HowTo/Monitor/Metrics.md
+          - Use metrics: HowTo/Monitor/Metrics.md
           - Use Elastic Stack: HowTo/Monitor/Elastic-Stack.md
           - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md
+          - Use Splunk: HowTo/Monitor/Splunk.md
+          - Use Cakeshop: HowTo/Monitor/Cakeshop.md
+          - Use Quorum Reporting: HowTo/Monitor/Quorum-Reporting.md
       - Use:
           - Add nodes to network: HowTo/Use/adding_nodes.md
           - Migrate network nodes: HowTo/Use/node_network_migration.md
@@ -168,9 +169,6 @@ nav:
       - Accounts for Testing: Reference/Accounts-for-Testing.md
       - GoQuorum Projects: Reference/GoQuorum-Projects.md
       - Logging and Errors: Reference/Logging and Errors.md
-      - Cakeshop:
-          - Getting started: Reference/Cakeshop/GettingStarted.md
-          - Configuration: Reference/Cakeshop/Configuration.md
       - Remix Plugin:
           - Overview: Reference/RemixPlugin/Overview.md
           - Getting started: Reference/RemixPlugin/GettingStarted.md
@@ -324,3 +322,7 @@ plugins:
         HowTo/GetStarted/Install.md: GetStarted/Install.md
         HowTo/GetStarted/Getting-Started-Qubernetes.md: GetStarted/Getting-Started-Qubernetes.md
         HowTo/GetStarted/migration.md: GetStarted/migration.md
+        Concepts/Cakeshop.md: HowTo/Monitor/Cakeshop.md
+        Reference/Cakeshop/GettingStarted.md: HowTo/Monitor/Cakeshop.md
+        Reference/Cakeshop/Configuration.md: HowTo/Monitor/Cakeshop.md
+        Tutorials/Quorum-Dev-Quickstart/Tools.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md#tools
