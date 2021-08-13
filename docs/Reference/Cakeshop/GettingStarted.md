@@ -1,6 +1,6 @@
 # Getting started with Cakeshop
 
-For a high level overview of what Cakeshop is, see the [Cakeshop concept page](../../Concepts/Cakeshop.md).
+For a high level overview of what Cakeshop is, see the [Cakeshop concept page](../../Tutorials/Quorum-Dev-Quickstart/Tools.md).
 
 ## Download
 
@@ -12,9 +12,9 @@ Cakeshop is a Spring Boot application, so you may place an `application.properti
 
 For more info, see the [configuration documentation](Configuration.md).
 
-## Running via GoQuorum Wizard
+## Running via Quorum Dev Quickstart
 
-The recommended way to use Cakeshop is to generate a GoQuorum network with [GoQuorum Wizard](../../HowTo/GetStarted/Wizard/GettingStarted.md) and choose to deploy Cakeshop alongside the network.
+The recommended way to use Cakeshop is to generate a GoQuorum network with [Quorum Dev Quickstart](../../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md).
 
 ## Requirements
 

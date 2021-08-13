@@ -28,4 +28,4 @@ The `extend` module of `quorum.js` allows Quorum-specific APIs to be added to an
 
 ## Methods
 
-See the [Raft](../Consensus/Raft-RPC-API.md), [Istanbul](../Consensus/IBFT-RPC-API.md), [Privacy](../APIs/PrivacyAPI.md), and [Permissioning](../APIs/PermissioningAPIs.md) API documentation for API details.
+See the [API documentation](../API-Methods.md) for API details.
