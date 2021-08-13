@@ -74,7 +74,7 @@ Only the hash of the encrypted internal private transaction is stored on chain (
 
 At execution time, GoQuorum retrieves the internal private transaction from Tessera. See [Flows] for more information.
 
-[New APIs](../../Reference/APIs/PrivacyMarkerTransactionAPI.md) have been added to enable clients to retrieve the decrypted internal private transaction and corresponding receipt.
+[New API Methods] have been added to enable clients to retrieve the decrypted internal private transaction and corresponding receipt.
 
 ```json
 > eth.getPrivateTransaction("0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79")
@@ -181,7 +181,12 @@ Note that the final step of retrieving the private transaction receipt uses the 
 
 ## New API Methods
 
-See [Privacy Marker API].
+The following API methods have been added to support Privacy Marker Transactions:
+
+* [eth_distributePrivateTransaction]
+* [eth_getPrivacyPrecompileAddress]
+* [eth_getPrivateTransactionByHash]
+* [eth_getPrivateTransactionReceipt]
 
 ## How To Use
 
@@ -217,7 +222,7 @@ If this flag is specified, then whenever a private transaction is submitted to G
 
 The privacy marker transaction and internal private transaction are separate transactions and consequently have separate transaction receipts.
 
-Clients should be aware of this and make sure they are using the new [Privacy Marker API] methods where appropriate.
+Clients should be aware of this and make sure they are using the new [eth_getPrivateTransactionReceipt] API method where appropriate.
 
 ### Examples
 
@@ -230,15 +235,17 @@ Use the same APIs as usual, such as `eth_sendTransaction`.  If `privateFor` is p
 1. Use `eth_fillTransaction` or Tessera's ThirdParty `/storeraw` API to encrypt the private transaction payload.
 1. Create the private transaction, replacing the `data` value with the hash of the encrypted private transaction payload from Tessera.
 1. Externally sign the private transaction.
-1. Use `eth_distributePrivateTransaction` (see [Privacy Marker API] for more details) to encrypt the signed private transaction and share with all participants.
+1. Use `eth_distributePrivateTransaction` (see [eth_distributePrivateTransaction] for more details) to encrypt the signed private transaction and share with all participants.
 1. Create the privacy marker transaction, with `data` value set to the hash returned by `eth_distributePrivateTransaction`. The `from` and `nonce` values must also be the same as the private transaction.
 1. Send the privacy marker transaction using the same APIs as usual, such as `eth_sendTransaction`.
 
 <!--links-->
 [How To Use]: #how-to-use
-[eth_getPrivateTransactionReceipt]: ../../Reference/APIs/PrivacyMarkerTransactionAPI.md#eth_getprivatetransactionreceipt
-[eth_getPrivacyPrecompileAddress]: ../../Reference/APIs/PrivacyMarkerTransactionAPI.md#eth_getprivacyprecompileaddress
-[Privacy Marker API]: ../../Reference/APIs/PrivacyMarkerTransactionAPI.md
+[New API Methods]: #new-api-methods
+[eth_distributePrivateTransaction]: ../../Reference/API-Methods.md#eth_distributeprivatetransaction
+[eth_getPrivacyPrecompileAddress]: ../../Reference/API-Methods.md#eth_getprivacyprecompileaddress
+[eth_getPrivateTransactionByHash]: ../../Reference/API-Methods.md#eth_getprivatetransactionbyhash
+[eth_getPrivateTransactionReceipt]: ../../Reference/API-Methods.md#eth_getprivatetransactionreceipt
 [private transaction lifecycle]: ../PrivateTransactionLifecycle
 [privacy precompile]: #privacy-precompile-contract
 [internal private transaction]: #internal-private-transaction
