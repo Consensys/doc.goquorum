@@ -11,7 +11,7 @@ The [Filebeat] configuration ingests logs and the [Metricbeat] configuration col
 defined intervals and outputs them to Redis for storage.
 Redis provides a highly available mechanism enabling storage by any of the Elastic Beats and pulled by Logstash as required.
 
-The [pipeline configuration] defines the JSON format used for Besu logs and automatically picks up any new log fields.
+The [pipeline configuration] defines the JSON format used for GoQuorum logs and automatically picks up any new log fields.
 
 !!! note
 
