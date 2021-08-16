@@ -2473,7 +2473,7 @@ Send a signed private transaction to the local private transaction manager and s
 transaction managers.
 
 This API method is to be used as part of the process for sending externally signed
-[privacy marker transactions](../../Concepts/Privacy/PrivacyMarkerTransactions). The private transaction should be signed,
+[privacy marker transactions](../Concepts/Privacy/PrivacyMarkerTransactions.md). The private transaction should be signed,
 sent to participants with this API, and the resulting hash set as the PMT's `data`.
 
 !!! note
