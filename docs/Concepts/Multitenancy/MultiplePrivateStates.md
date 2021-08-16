@@ -126,7 +126,7 @@ In the event that a user wants to upgrade the version of GoQuorum without upgrad
 #### Standalone Node DB Upgrade (mpsdbupgrade)
 
 MPS can be enabled on a standalone node by executing the `mpsdbupgrade` command. It should be significantly faster than a normal sync from block 0 (especially if the network has reached a significant number of blocks).
-The effect of the `mpsdbupgrade` command is to restructure/upgrade the existing database to present itself as an MPS enabled database with a single private state.
+The effect of the `mpsdbupgrade` command is to restructure/upgrade the existing database to present itself as an MPS enabled database with a single private state (and to set the chain `config.isMPS` to `true`).
 Once the upgrade completes additional private states can be introduced but only from the current block height (you can't introduce private states at historic block heights).
 
 ##### mpsdbupgrade command
