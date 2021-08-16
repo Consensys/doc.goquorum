@@ -9,7 +9,7 @@ description: Privacy Marker Transactions are an alternative method of processing
 
 GoQuorum v21.??.? introduces a new method for processing private transactions, which can be used instead of the normal private transaction flow.
 This makes use of a new type of public transaction referred to as a *privacy marker transaction (PMT)*.
-Only the public privacy marker transaction is added to the chain.  The private transaction is stored in the [Privacy Manager (Tessera)](PrivateTransactionManager.md) and is only available to the participants.
+Only the public privacy marker transaction is added to the chain. The private transaction is stored in the [Privacy Manager (Tessera)](PrivateTransactionManager.md) and is only available to the participants.
 
 This functionality is enabled using a new command line flag and genesis flag (see [How To Use]).
 
@@ -70,7 +70,7 @@ A public transaction with the following properties:
 Each privacy marker transaction has a corresponding internal private transaction.
 The content of this private transaction is the same as the content of a normal private transaction, however it will have the same `from` and `nonce` values as the privacy marker transaction.
 
-Only the hash of the encrypted internal private transaction is stored on chain (as part of the `data` field of the privacy marker transaction).  The internal private transaction is stored, encrypted, in each participant's Tessera.  As a result, the internal private transaction is only available to participants of the private transaction.
+Only the hash of the encrypted internal private transaction is stored on chain (as part of the `data` field of the privacy marker transaction).  The internal private transaction is stored, encrypted, in each participant's Tessera. As a result, the internal private transaction is only available to participants of the private transaction.
 
 At execution time, GoQuorum retrieves the internal private transaction from Tessera. See [Flows] for more information.
 
@@ -138,9 +138,9 @@ A precompile contract that retrieves the internal private transaction from Tesse
 1. Private transaction sent to GoQuorum, to be signed on the node.
 2. Private transaction `data` value serialised to JSON and sent to Tessera with details of participant parties.
 3. `data` encrypted and distributed to participants.
-4. Hash of encrypted `data` returned to GoQuorum.  Private transaction `data` value replaced with hash.  Private transaction signed by GoQuorum. `v` value changed to `37`/`38` to mark it as private.
+4. Hash of encrypted `data` returned to GoQuorum. Private transaction `data` value replaced with hash. Private transaction signed by GoQuorum. `v` value changed to `37`/`38` to mark it as private.
 5. Private transaction distributed throughout the network.
-6. All nodes can see the transaction.  Only participants are able to obtain the decrypted `data` from Tessera and execute the transaction.
+6. All nodes can see the transaction. Only participants are able to obtain the decrypted `data` from Tessera and execute the transaction.
 
 ### Privacy marker transactions
 
@@ -148,10 +148,10 @@ A precompile contract that retrieves the internal private transaction from Tesse
 
 ![private txn current flow](../../images/PrivateTxn_NewFlow.png)
 
-1. Private transaction sent to GoQuorum, to be signed on the node. (Steps 1 - 4 in [Normal private transactions] are carried out as before)
+1. Private transaction sent to GoQuorum, to be signed on the node. (Steps 1 to 4 in [Normal private transactions] are carried out as before)
 2. Signed private transaction serialised to JSON and sent to Tessera with details of participant parties.
 3. Private transaction encrypted and distributed to participants.
-4. Hash of encrypted private transaction returned to GoQuorum.  Privacy marker transaction is created, with `data` field set to hash. Privacy marker transaction signed by GoQuorum.
+4. Hash of encrypted private transaction returned to GoQuorum. Privacy marker transaction is created, with `data` field set to hash. Privacy marker transaction signed by GoQuorum.
 5. Privacy marker transaction is distributed throughout the network.
 6. All nodes can see the privacy marker transaction. Only participants are able to obtain the decrypted private transaction from Tessera and execute it.
 
@@ -166,7 +166,7 @@ Since the `to` value in the privacy marker transaction is the address of the pri
 2. Privacy precompile is called with the transaction data, which is the hash of the encrypted private transaction.
 3. The decrypted private transaction is retrieved from Tessera.
 4. Action depends on whether the node is a participant:
-    1. Participant node: recursive call to `ApplyTransaction`, this time to process the private transaction.  The decrypted `data` of the private transaction is retrieved from Tessera, and the private transaction executed.
+    1. Participant node: recursive call to `ApplyTransaction`, this time to process the private transaction. The decrypted `data` of the private transaction is retrieved from Tessera, and the private transaction executed.
     2. Non participant: no private transaction found, so return immediately.
 5. If the node is a participant, write the private transaction receipt directly to the database.
 
@@ -193,7 +193,7 @@ The following API methods have been added to support Privacy Marker Transactions
 ### Genesis Configuration
 
 The `genesis.json` file has been modified to support the `privacyPrecompileBlock` flag.
-This flag defines the fork block at which the privacy precompile contract is enabled and made available.  Once the fork block is reached the node can process and use privacy marker transactions.
+This flag defines the fork block at which the privacy precompile contract is enabled and made available. Once the fork block is reached the node can process and use privacy marker transactions.
 
 The value for this flag should be set to an appropriate future block number, by when the entire network is expected to have been upgraded to GoQuorum versions that support the privacy precompile.
 
@@ -246,7 +246,7 @@ Use the same APIs as usual, such as `eth_sendTransaction`.  If `privateFor` is p
 [eth_getPrivacyPrecompileAddress]: ../../Reference/API-Methods.md#eth_getprivacyprecompileaddress
 [eth_getPrivateTransactionByHash]: ../../Reference/API-Methods.md#eth_getprivatetransactionbyhash
 [eth_getPrivateTransactionReceipt]: ../../Reference/API-Methods.md#eth_getprivatetransactionreceipt
-[private transaction lifecycle]: ../PrivateTransactionLifecycle
+[private transaction lifecycle]: PrivateTransactionLifecycle.md
 [privacy precompile]: #privacy-precompile-contract
 [internal private transaction]: #internal-private-transaction
 [Flows]: #flows

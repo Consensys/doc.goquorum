@@ -2482,9 +2482,10 @@ Two step process:
 
 * serialised signed private transaction
 * privacy data object:
-  - `privateFor`: `List<String>`  - an array of the recipients' base64-encoded public keys.
-  - `privateFrom`: `String` - (optional) the sending party’s base64-encoded public key to use (Privacy Manager default if not provided).
-  - `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `3` for PSV
+
+    * `privateFor`: `List<String>`  - an array of the recipients' base64-encoded public keys.
+    * `privateFrom`: `String` - (optional) the sending party’s base64-encoded public key to use (Privacy Manager default if not provided).
+    * `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `3` for PSV
 
 #### Returns
 
