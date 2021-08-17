@@ -10,11 +10,11 @@ packaged as a Java web application archive (WAR) that gets you up and running qu
 Out of the box you get:
 
 * **Blockchain explorer** - View transactions, blocks, and contracts, and see historical contract state at a point in time.
-* **Contract registry** - Keep track of deployed contracts and their code, interfaces, and state.
 * **Node info** - View the overall status of your network.
 * **Peer management** - Discover, add, and remove peers.
 * **Enhanced permissions UI** - Manage smart contract-based [enhanced permissioning](../../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md)
 * **Solidity sandbox** - Develop, compile, deploy, and interact with Solidity smart contracts.
+* **Contract registry** - Keep track of deployed contracts and their code, interfaces, and state.
 
 You can access Cakeshop when using the [Quorum Developer Quickstart](../../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md),
 [with Spring Boot](https://github.com/ConsenSys/cakeshop#running-via-spring-boot), or
