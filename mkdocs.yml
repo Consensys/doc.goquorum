@@ -107,7 +107,6 @@ nav:
       - Quorum Dev Quickstart:
           - Getting Started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
           - Using the Quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
-          - Tools: Tutorials/Quorum-Dev-Quickstart/Tools.md
           - Remix: Tutorials/Quorum-Dev-Quickstart/Remix.md
       - Create a Private Network:
           - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
@@ -138,9 +137,12 @@ nav:
           - Use clef: HowTo/ManageKeys/clef.md
           - Use account plugins: HowTo/ManageKeys/AccountPlugins.md
       - Monitor nodes:
-          - Use Metrics: HowTo/Monitor/Metrics.md
+          - Use metrics: HowTo/Monitor/Metrics.md
           - Use Elastic Stack: HowTo/Monitor/Elastic-Stack.md
           - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md
+          - Use Splunk: HowTo/Monitor/Splunk.md
+          - Use Cakeshop: HowTo/Monitor/Cakeshop.md
+          - Use Quorum Reporting: HowTo/Monitor/Quorum-Reporting.md
       - Use:
           - Add nodes to network: HowTo/Use/adding_nodes.md
           - Migrate network nodes: HowTo/Use/node_network_migration.md
@@ -172,9 +174,6 @@ nav:
       - Accounts for Testing: Reference/Accounts-for-Testing.md
       - GoQuorum Projects: Reference/GoQuorum-Projects.md
       - Logging and Errors: Reference/Logging and Errors.md
-      - Cakeshop:
-          - Getting started: Reference/Cakeshop/GettingStarted.md
-          - Configuration: Reference/Cakeshop/Configuration.md
       - quorum.js:
           - Overview: Reference/quorum.js/Overview.md
           - extend API: Reference/quorum.js/extend.md
@@ -268,8 +267,8 @@ plugins:
         Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/EnhancedPermissions.md
         Quorum Features/dns.md: HowTo/Configure/dns.md
         PluggableArchitecture/PluginDevelopment.md: HowTo/DevelopPlugins.md
-        HowTo/GetStarted/Cakeshop.md: Reference/Cakeshop/GettingStarted.md
-        Cakeshop/Getting started.md: Reference/Cakeshop/GettingStarted.md
+        HowTo/GetStarted/Cakeshop.md: HowTo/Monitor/Cakeshop.md
+        Cakeshop/Getting started.md: HowTo/Monitor/Cakeshop.md
         Getting Started/Getting Started Overview.md: GetStarted/GettingStartedOverview.md
         Getting Started/Installing.md: GetStarted/Install.md
         Wizard/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
@@ -284,9 +283,9 @@ plugins:
         Privacy/Contract-Extension/ContractExtension apis.md: Reference/API-Methods.md
         Permissioning/Enhanced Permissions Model/Permissioning apis.md: Reference/API-Methods.md
         Getting Started/api.md: Reference/API-Methods.md
-        Reference/CakeshopFAQ.md: Reference/Cakeshop/GettingStarted.md
-        Cakeshop/Cakeshop FAQ.md: Reference/Cakeshop/GettingStarted.md
-        Cakeshop/Overview.md: Reference/Cakeshop/GettingStarted.md
+        Reference/CakeshopFAQ.md: HowTo/Monitor/Cakeshop.md
+        Cakeshop/Cakeshop FAQ.md: HowTo/Monitor/Cakeshop.md
+        Cakeshop/Overview.md: HowTo/Monitor/Cakeshop.md
         FAQ.md: Reference/FAQ.md
         Getting Started/Quorum-Examples.md: Reference/GoQuorum-Projects.md
         PluggableArchitecture/Plugins/account/For-Developers.md: Reference/Plugins/account/For-Developers.md
@@ -325,3 +324,7 @@ plugins:
         HowTo/GetStarted/Install.md: GetStarted/Install.md
         HowTo/GetStarted/Getting-Started-Qubernetes.md: GetStarted/Getting-Started-Qubernetes.md
         HowTo/GetStarted/migration.md: GetStarted/migration.md
+        Concepts/Cakeshop.md: HowTo/Monitor/Cakeshop.md
+        Reference/Cakeshop/GettingStarted.md: HowTo/Monitor/Cakeshop.md
+        Reference/Cakeshop/Configuration.md: HowTo/Monitor/Cakeshop.md
+        Tutorials/Quorum-Dev-Quickstart/Tools.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md

@@ -1,7 +1,10 @@
-# Monitor node performance
+---
+description: Using GoQuorum metrics tools
+---
 
-You can configure a GoQuorum node to collect metrics that can be viewed in a visualization tool
-like [Grafana].
+# Use metrics to monitor node performance
+
+You can configure a GoQuorum node to collect metrics that can be viewed in a visualization tool like [Grafana].
 
 This page explains how to configure a GoQuorum node to provide metrics and enable monitoring.
 
@@ -9,25 +12,23 @@ This page explains how to configure a GoQuorum node to provide metrics and enabl
 
 A GoQuorum node can collect and expose the metrics data in the following formats:
 
-- [ExpVars]; the standard Go interface to instrument and expose metrics via HTTP.
-- [Prometheus]; an alternative to ExpVars, and the preferred option because it allows users to
-    pull or push metrics, and has a consistent metric format across languages.
-- [InfluxDB]; metrics can only be pushed to Influx.
+- [ExpVars] - The standard Go interface to instrument and expose metrics via HTTP.
+- [Prometheus] - An alternative to ExpVars, and the preferred option because it allows users to pull or push metrics,
+  and has a consistent metric format across languages.
+- [InfluxDB] - Metrics can only be pushed to Influx.
 
-Use GoQuorum `--metrics`, `--pprof`, `--pprofaddr` and `pprofport`
-(where applicable, the default port is 6060) [command line options], and set the scraper endpoints
-to the following:
+Use the [geth command line options] `--metrics`, `--pprof`, `--pprof.addr` and `--pprof.port` where applicable, and set
+the scraper endpoints to the following:
 
-- In ExpVar format at `http://127.0.0.1:6060/debug/metrics`
-- In Prometheus format at `http://127.0.0.1:6060/debug/metrics/prometheus`
+- In ExpVar format, `http://127.0.0.1:6060/debug/metrics`
+- In Prometheus format, `http://127.0.0.1:6060/debug/metrics/prometheus`
 
 !!! critical "Security warning"
 
-    Do not expose the `pprof` HTTP end point to the public internet.
+    Do not expose the `pprof` HTTP endpoint to the public internet.
+    This endpoint can be used to trigger resource intensive operations.
 
-    This end point can be used to trigger resource intensive operations.
-
-Use `--metric.influxdb` and associated [command line options] to push metrics data to [InfluxDB].
+Use `--metric.influxdb` and associated [geth command line options] to push metrics data to [InfluxDB].
 
 !!! note "Excerpt of geth command line options"
 
@@ -50,15 +51,15 @@ Use `--metric.influxdb` and associated [command line options] to push metrics da
 
 ## Visualize collected data
 
-GoQuorum metrics data can be visualized with many dashboard tools. We provide a
-[goQuourm dashboard](https://grafana.com/grafana/dashboards/14360) that can be imported into your
-instance of Grafana.
+You can visualize GoQuorum metrics data with many dashboard tools.
+For example, you can import the [GoQuorum dashboard](https://grafana.com/grafana/dashboards/14360) into your Grafana instance.
+The GoQuorum Dashboard provides network information such as blocks and transactions per second, CPU usage, and memory usage.
 
 !!! tip
 
-    If using the [Quorum Developer Quickstart](https://docs.goquorum.consensys.net/en/stable/Tutorials/Quorum-Dev-Quickstart/)
-    the dashboard is pre-installed in the Grafana container, and the example shows how to configure
-    nodes to use Prometheus to send metrics to Grafana.
+    If using the [Quorum Developer Quickstart](../../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md),
+    the dashboard is pre-installed in the Grafana container, and the example shows how to configure nodes to use Prometheus
+    to send metrics to Grafana.
 
 ![Grafana system, network and chain infos screenshot](../../images/dashboard_grafana_1.png)
 
@@ -68,4 +69,4 @@ instance of Grafana.
 [ExpVars]: https://golang.org/pkg/expvar/
 [Prometheus]: https://prometheus.io/
 [InfluxDB]: https://www.influxdata.com/products/influxdb-overview/
-[command line options]: https://geth.ethereum.org/docs/interface/command-line-options
+[geth command line options]: https://geth.ethereum.org/docs/interface/command-line-options
