@@ -2467,6 +2467,65 @@ This can only be performed for the master organization and requires the majority
     [`sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.3.4/web3-eth.html#sendsignedtransaction), set
     `gasPrice` to 0.
 
+### `eth_distributePrivateTransaction`
+
+Send a signed private transaction to the local private transaction manager and share with private participant's
+transaction managers.
+
+This API method is to be used as part of the process for sending externally signed
+[privacy marker transactions](../Concepts/Privacy/PrivacyMarkerTransactions.md). The private transaction should be signed,
+sent to participants with this API, and the resulting hash set as the PMT's `data`.
+
+!!! note
+    Two step process:
+
+    1. Performs the same as eth_sendRawPrivateTransaction (simulation and calling `/sendsignedtx`), but doesn’t submit private transaction to txpool.
+    2. Sends the private transaction to Tessera to generate a hash, which should be placed in the privacy marker transaction.
+
+#### Parameters
+
+* string - signed private transaction in hex format
+* object - private data to send, with the following fields:
+    * `privateFor`: `List<String>`  - an array of the recipients' base64-encoded public keys.
+    * `privateFrom`: `String` - (optional) the sending party’s base64-encoded public key to use (Privacy Manager default if not provided).
+    * `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `3` for PSV
+
+#### Returns
+
+* string - Transaction Manager hash to be used as a privacy marker transaction's `data` when externally signing.
+
+#### Example
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_distributePrivateTransaction","params":["0xf88d01808347b7608080b84034ec48699ce5877f0f97a5bea4550d52296368b1dcdc89667559555066c9894525e4878d0689cfeb4b6fda3dd6566aa06ce772f2e19e0404e45fe6351ebf640326a0ffecedc570d3520d283508f00d8b2c162096ebddca753979da95062c1df234cea033ceb36d46e3e86a399e8fde35b078248c90fb71344aadcc7e83b9324958a4ed", {privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":15,
+          "result":"0xb33c67830588b746d7824e650d242bbe31a72018560f82ffe69692fd087c068c61bf3ed82c76ece771e11fef4a85035053911c6ae7589cac4c3e06ffc23da34c"
+        }
+        ```
+
+    === "geth console request"
+
+        ```js
+        web3.eth.distributePrivateTransaction("0xf88d01808347b7608080b84034ec48699ce5877f0f97a5bea4550d52296368b1dcdc89667559555066c9894525e4878d0689cfeb4b6fda3dd6566aa06ce772f2e19e0404e45fe6351ebf640326a0ffecedc570d3520d283508f00d8b2c162096ebddca753979da95062c1df234cea033ceb36d46e3e86a399e8fde35b078248c90fb71344aadcc7e83b9324958a4ed", {privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+        ```
+
+    === "geth console result"
+
+        ```js
+        "0xb33c67830588b746d7824e650d242bbe31a72018560f82ffe69692fd087c068c61bf3ed82c76ece771e11fef4a85035053911c6ae7589cac4c3e06ffc23da34c"
+        ```
+
 ### `eth_fillTransaction`
 
 Supports offline signing of the specified transaction.
@@ -2607,6 +2666,154 @@ Queries the privacy metadata for the specified contract account address.
         }
         ```
 
+### `eth_getPrivacyPrecompileAddress`
+
+Get the address of the privacy precompile contract, to be used as the `to` address for privacy marker transactions.
+
+#### Parameters
+
+None
+
+#### Returns
+
+* string - contract address for the privacy precompile in hex format
+
+#### Examples
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://localhost:22000 --data '{ "jsonrpc":"2.0", "id":2, "method":"eth_getPrivacyPrecompileAddress"}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {"jsonrpc":"2.0","id":2,"result":"0x000000000000000000000000000000000000007a"}
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        eth.getPrivacyPrecompileAddress();
+        ```
+
+    === "geth console result"
+
+        ```json
+        "0x000000000000000000000000000000000000007a"
+        ```
+
+### `eth_getPrivateTransactionByHash`
+
+Retrieve the details of a privacy marker transaction's internal private transaction using the PMT's transaction hash.
+
+#### Parameters
+
+* string - privacy marker transaction's hash in hex format
+
+#### Returns
+
+* object - private transaction (will be nil if caller is not a participant)
+
+#### Examples
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://localhost:22000 --data '{ "jsonrpc":"2.0", "id":2, "method":"eth_getPrivateTransactionByHash", "params": ["0xcb1f39245a88d5be49dca35e1a34a11f98bcb825ea4aa70829923ff5404c8a82"]}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {"jsonrpc":"2.0","id":2,"result":{"blockHash":"0x7b2b52bf505e27e8a93249c589d8e93c68b20c589f27fd98ddeb53083fcd3276","blockNumber":"0x5","from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","gas":"0x47b760","gasPrice":"0x0","hash":"0x7cb8fbda0c76632ee801e27cc3ef5445378cf65cc0c36ffaf79b738c16d6ff18","input":"0xc23a8cc005b977ff5b736f8fa670e3a68c0ce4c9609494a9d482d12b2bae9a5037fdad0164d0e6fd21527e20363507262e528eb3187a0f0a1f097eaaedc845b7","nonce":"0x3","to":null,"transactionIndex":"0x0","value":"0x0","v":"0x25","r":"0xef2562c04b2da7a90007068990b5279d6cb468e5347d40fe0aaa523485367bff","s":"0x3530a3a6188cb0a3ebcfce29ada3ff3ed59976e6c88d1557f48554dfc0c3849e"}}
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        eth.getPrivateTransaction("0xcb1f39245a88d5be49dca35e1a34a11f98bcb825ea4aa70829923ff5404c8a82");
+        ```
+
+    === "geth console result"
+
+        ```json
+        {
+          blockHash: "0x7b2b52bf505e27e8a93249c589d8e93c68b20c589f27fd98ddeb53083fcd3276",
+          blockNumber: 5,
+          from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+          gas: 4700000,
+          gasPrice: 0,
+          hash: "0x7cb8fbda0c76632ee801e27cc3ef5445378cf65cc0c36ffaf79b738c16d6ff18",
+          input: "0xc23a8cc005b977ff5b736f8fa670e3a68c0ce4c9609494a9d482d12b2bae9a5037fdad0164d0e6fd21527e20363507262e528eb3187a0f0a1f097eaaedc845b7",
+          nonce: 3,
+          r: "0xef2562c04b2da7a90007068990b5279d6cb468e5347d40fe0aaa523485367bff",
+          s: "0x3530a3a6188cb0a3ebcfce29ada3ff3ed59976e6c88d1557f48554dfc0c3849e",
+          to: null,
+          transactionIndex: 0,
+          v: "0x25",
+          value: 0
+        }
+        ```
+
+### `eth_getPrivateTransactionReceipt`
+
+Retrieve the receipt of a privacy marker transaction's internal private transaction using the PMT's transaction hash.
+
+#### Parameters
+
+* string - privacy marker transaction's hash in hex format
+
+#### Returns
+
+* object - private transaction receipt (will be nil if caller is not a participant)
+
+#### Examples
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://localhost:22000 --data '{ "jsonrpc":"2.0", "id":2, "method":"eth_getPrivateTransactionReceipt", "params": ["0xcb1f39245a88d5be49dca35e1a34a11f98bcb825ea4aa70829923ff5404c8a82"]}' --header "Content-Type: application/json"
+        ```
+
+    === "JSON result"
+
+        ```json
+        {"jsonrpc":"2.0","id":2,"result":{"blockHash":"0x7b2b52bf505e27e8a93249c589d8e93c68b20c589f27fd98ddeb53083fcd3276","blockNumber":"0x5","contractAddress":"0xd9d64b7dc034fafdba5dc2902875a67b5d586420","cumulativeGasUsed":"0x0","from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","gasUsed":"0x0","logs":[],"logsBloom":"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","status":"0x1","to":null,"transactionHash":"0xcb1f39245a88d5be49dca35e1a34a11f98bcb825ea4aa70829923ff5404c8a82","transactionIndex":"0x0"}}
+        ```
+
+    === "geth console request"
+
+        ```javascript
+        eth.getPrivateTransactionReceipt("0xcb1f39245a88d5be49dca35e1a34a11f98bcb825ea4aa70829923ff5404c8a82");
+        ```
+
+    === "geth console result"
+
+        ```json
+        {
+          blockHash: "0x7b2b52bf505e27e8a93249c589d8e93c68b20c589f27fd98ddeb53083fcd3276",
+          blockNumber: 5,
+          contractAddress: "0xd9d64b7dc034fafdba5dc2902875a67b5d586420",
+          cumulativeGasUsed: 0,
+          from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d",
+          gasUsed: 0,
+          logs: [],
+          logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          status: "0x1",
+          to: null,
+          transactionHash: "0xcb1f39245a88d5be49dca35e1a34a11f98bcb825ea4aa70829923ff5404c8a82",
+          transactionIndex: 0
+        }
+        ```
+
 ### `eth_getQuorumPayload`
 
 Returns the [unencrypted payload from Tessera](https://docs.tessera.consensys.net/Concepts/Transaction-manager/#private-transaction-flow).
@@ -2692,7 +2899,7 @@ the contract address after the transaction is mined.
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getContractPrivacyMetadata","params":["0xf889808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000571ca08a8bbf888cfa37bbf0bb965423625641fc956967b81d12e23709cead01446075a01ce999b56a8a88504be365442ea61239198e23d1fce7d00fcfc5cd3b44b7215f", {privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendRawPrivateTransaction","params":["0xf889808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000571ca08a8bbf888cfa37bbf0bb965423625641fc956967b81d12e23709cead01446075a01ce999b56a8a88504be365442ea61239198e23d1fce7d00fcfc5cd3b44b7215f", {privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
