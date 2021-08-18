@@ -180,8 +180,8 @@ To deploy a smart contract using
 account's private key to sign and serialize the transaction, and send the API request.
 
 This example uses the [web3js](https://www.npmjs.com/package/web3) library to make the API calls and the outputs
-from [compiling the contract](#compile-the-contract). Create a new file `public_tx.js`(or run the commands
-below in a JavaScript console) to send the transaction.
+from [compiling the contract](#compile-the-contract).
+Create a new file `public_tx.js`(or run the commands below in a JavaScript console) to send the transaction.
 
 The Developer Quickstart provides an
 [example of a public transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/public_tx.js).
@@ -336,7 +336,7 @@ async function main(){
 
 This example uses the [web3js-quorum](https://www.npmjs.com/package/web3js-quorum) library to make the
 `[priv.generateAndSendRawTransaction](https://consensys.github.io/web3js-quorum/latest/module-priv.html#~generateAndSendRawTransaction)`
- API call.  Create a new file `private_tx_web3js_quorum.js`(or run the commands below in a JavaScript
+ API call. Create a new file `private_tx_web3js_quorum.js`(or run the commands below in a JavaScript
  console) to send the transaction.
 
 For reference, the Developer Quickstart provides an
