@@ -76,12 +76,7 @@ nav:
       - Consensus:
           - Overview: Concepts/Consensus/Overview.md
           - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
-      - Permissioning:
-          - Overview: Concepts/Permissioning/PermissionsOverview.md
-          - Basic permissions: Concepts/Permissioning/BasicNetworkPermissions.md
-          - Enhanced:
-              - Overview: Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md
-              - Contract design: Concepts/Permissioning/Enhanced/ContractDesign.md
+      - Permissioning: Concepts/PermissionsOverview.md
       - Plugins:
           - Overview: Concepts/Plugins/Plugins.md
           - Architecture: Concepts/Plugins/PluginsArchitecture.md
@@ -126,9 +121,9 @@ nav:
               - Clique: HowTo/Configure/Consensus-Protocols/Clique.md
           - Genesis file: HowTo/Configure/GenesisOptions.md
           - High availability: HowTo/Configure/HighAvailability.md
-          - Permissions:
-              - Basic permissions: HowTo/Configure/BasicPermissions.md
-              - Enhanced permissions: HowTo/Configure/EnhancedPermissions.md
+          - Permissioning:
+              - Basic permissions: HowTo/Configure/Permissioning/BasicPermissions.md
+              - Enhanced permissions: HowTo/Configure/Permissioning/EnhancedPermissions.md
           - Plugins: HowTo/Configure/Plugins.md
           - DNS: HowTo/Configure/dns.md
       - Develop plugins: HowTo/DevelopPlugins.md
@@ -328,3 +323,9 @@ plugins:
         Reference/Cakeshop/GettingStarted.md: HowTo/Monitor/Cakeshop.md
         Reference/Cakeshop/Configuration.md: HowTo/Monitor/Cakeshop.md
         Tutorials/Quorum-Dev-Quickstart/Tools.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+        Concepts/Permissioning/PermissionsOverview.md: Concepts/PermissionsOverview.md
+        Concepts/Permissioning/BasicNetworkPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
+        Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md: Concepts/PermissionsOverview.md
+        Concepts/Permissioning/Enhanced/ContractDesign.md: Concepts/PermissionsOverview.md
+        HowTo/Configure/BasicPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
+        HowTo/Configure/EnhancedPermissions.md: HowTo/Configure/Permissioning/EnhancedPermissions.md

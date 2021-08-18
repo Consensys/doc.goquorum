@@ -4,12 +4,12 @@ description: Using enhanced smart contract based permissioning
 
 # Using enhanced permissioning
 
-Managing the [enhanced permissioning model](../../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md)
+Managing the [enhanced permissioning model](../../Concepts/PermissionsOverview.md#enhanced-network-permissioning)
 can be broadly categorized into the following activities:
 
 ## Setting up the initial network
 
-Please refer to the [configuration instructions](../Configure/EnhancedPermissions.md) for detailed information.
+Please refer to the [configuration instructions](../Configure/Permissioning/EnhancedPermissions.md) for detailed information.
 For an existing network running with an older version of GoQuorum:
 
 1. Upgrade GoQuorum to the latest version.
@@ -38,7 +38,7 @@ As part of network initialization:
 ### Example
 
 This example assumes that the network was started with the `permission-config.json` given in the
-[configuration instructions](../Configure/EnhancedPermissions.md), and that the network was brought up with the
+[configuration instructions](../Configure/Permissioning/EnhancedPermissions.md), and that the network was brought up with the
 `static-nodes.json` file as the following:
 
 ```json
