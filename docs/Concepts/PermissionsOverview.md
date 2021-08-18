@@ -10,7 +10,7 @@ In the basic network permissioning model, you can control:
 * The nodes that a particular GoQuorum node can connect to.
 * The nodes that a particular GoQuorum node can receive connections from.
 
-It is managed at the individual node level by providing the [`--permissioned`](../../Reference/CLI-Syntax.md#permissioned)
+It is managed at the individual node level by providing the [`--permissioned`](../Reference/CLI-Syntax.md#permissioned)
 command line option when starting the node.
 
 You can [configure basic network permissioning](../HowTo/Configure/Permissioning/BasicPermissions.md).

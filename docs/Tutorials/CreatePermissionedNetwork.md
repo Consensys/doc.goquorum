@@ -89,6 +89,6 @@ request is made from the dropped node ids, it is rejected as part of that new re
 
 ## Enhanced permissioning
 
-[Enhanced network permissioning](../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md)
+[Enhanced network permissioning](../Concepts/PermissionsOverview.md#enhanced-network-permissioning)
 uses a smart contract permissioning model. Enhanced permissioning enables significant flexibility to
 manage nodes, accounts, and account-level access controls.
