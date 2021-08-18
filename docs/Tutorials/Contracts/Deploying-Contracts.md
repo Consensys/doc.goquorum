@@ -5,7 +5,7 @@ description: deploying smart contracts
 # Deploying smart contracts to an Ethereum chain
 
 This tutorial shows you how to deploy smart contracts as transactions onto a running network. Use the
-[Quorum Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md) to rapidly generate 
+[Quorum Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md) to rapidly generate
 a local blockchain network.
 
 ## Prerequisites
@@ -19,13 +19,13 @@ Please note, that the [Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-
 caters to both scenarios above. To enable privacy, select and `y` for
 [private transactions](../../Concepts/Privacy/Privacy.md).
 
-## Compile the contract 
+## Compile the contract
 
 The first step in this process is to create a smart contract. For the examples that follow
 we are using the
 [`SimpleStorage.sol`](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/common/smart_contracts/contracts/SimpleStorage.sol)
 smart contract as an example that we compile and get the binary and JSON output that we use
-to deploy the contract to the network. 
+to deploy the contract to the network.
 
 Start with creating a new file called `compile.js` with the contents below, and then compile
 the contract to get its bytecode using `solc`:
@@ -83,7 +83,7 @@ a network as a public transaction or as a private transaction.
 
 ## Public Contracts
 
-### 1. Using `eth_sendTransaction` 
+### 1. Using `eth_sendTransaction`
 
 Use [`eth_sendTransaction`](https://eth.wiki/json-rpc/API) and pass the following parameters to the API call
 
@@ -115,8 +115,8 @@ Make the request via curl like so:
 curl -X POST --data '{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5", "to":null, "gas":"0x24A22","gasPrice":"0x0", "data":"0x608060405234801561001057600080fd5b5060405161014d38038061014d8339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000819055505060f38061005a6000396000f3fe6080604052348015600f57600080fd5b5060043610603c5760003560e01c80632a1afcd914604157806360fe47b114605d5780636d4ce63c146088575b600080fd5b604760a4565b6040518082815260200191505060405180910390f35b608660048036036020811015607157600080fd5b810190808035906020019092919050505060aa565b005b608e60b4565b6040518082815260200191505060405180910390f35b60005481565b8060008190555050565b6000805490509056fea2646970667358221220e6966e446bd0af8e6af40eb0d8f323dd02f771ba1f11ae05c65d1624ffb3c58264736f6c63430007060033"}], "id":1}' -H 'Content-Type: application/json' http://localhost:20000
 ```
 
-where the `from` address as well as the RPC endoint of `http://localhost:20000` are that of Member1 if
-using the [Quorum Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md). Please 
+where the `from` address and the RPC endoint of `http://localhost:20000` are that of Member1 if
+using the [Quorum Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md). Please
 update your request according to your environment.
 
 ### 2. Using `web3.eth.Contract` from [web3](https://www.npmjs.com/package/web3)
@@ -125,10 +125,10 @@ Using the outputs from [compiling the contract](#compile-the-contract), create a
 `public_tx_web3.js`(or run the commands below in a JavaScript console) to send the transaction.
 In the code below we are using the
 [Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md) and sending the
-transaction from Member1. 
+transaction from Member1.
 
 We use the [web3js](https://www.npmjs.com/package/web3) library and the
-[web3.eth.Contract](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html) object
+`[web3.eth.Contract](https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html)` object
 to interact with smart contracts on the chain. Once the contract object is created, you
 essentially give it the JSON interface of the smart contract and the library converts the
 calls into low level ABI calls over RPC for you. The benefit of this for you as a developer
@@ -181,10 +181,10 @@ account's private key to sign and serialize the transaction, and send the API re
 
 This example uses the [web3js](https://www.npmjs.com/package/web3) library to make the API calls and the outputs
 from [compiling the contract](#compile-the-contract). Create a new file `public_tx.js`(or run the commands
-below in a JavaScript console) to send the transaction. 
+below in a JavaScript console) to send the transaction.
 
 The Developer Quickstart provides an
-[example of a public transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goQuorum/smart_contracts/scripts/public_tx.js).
+[example of a public transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/public_tx.js).
 
 ```js
 // public_tx.js
@@ -243,9 +243,9 @@ contract.
 
 ## Private Contracts
 
-### 1. Using `eth_sendTransaction` 
+### 1. Using `eth_sendTransaction`
 
-As with the [public transaction](#using-eth_sendTransaction ) this one is very similar and has a few more
+As with the [public transaction](#using-eth_sendTransaction ) this one is similar and has a few more
 parameters for the privacy part of the transaction namely `privateFrom, privateFor and privacyFlag (optional)`.
 
 ```json
@@ -270,7 +270,7 @@ The parameters are as before with a few new parameters for privacy:
 * `privateFrom` - the sender's base-64 encoded public keys
 * `privateFor` - an array of the receipient's base-64 encoded public keys
 * `privacyFlag` - 0 for standard private, 1 for Counter Party Protection and 3 for Private State Validation. Please
- refer to [Privacy Enhancements]((../../Concepts/Privacy/PrivacyEnhancements.md)) for more information.
+ refer to [Privacy Enhancements](../../Concepts/Privacy/PrivacyEnhancements.md) for more information.
 * `data` - one of the following:
     * For contract deployments (this use case) - compiled binary of the contract from the [compiling the contract](#compile-the-contract) step
     * For contract interactions - hash of the invoked method signature and encoded parameters
@@ -282,8 +282,8 @@ Make the request via curl like so:
 ```bash
 curl -X POST --data '{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5", "to":null, "gas":"0x24A22","gasPrice":"0x0", "privateFrom": "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=", "privateFor": ["1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg="], "privacyFlag": 0,"data":"0x608060405234801561001057600080fd5b5060405161014d38038061014d8339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000819055505060f38061005a6000396000f3fe6080604052348015600f57600080fd5b5060043610603c5760003560e01c80632a1afcd914604157806360fe47b114605d5780636d4ce63c146088575b600080fd5b604760a4565b6040518082815260200191505060405180910390f35b608660048036036020811015607157600080fd5b810190808035906020019092919050505060aa565b005b608e60b4565b6040518082815260200191505060405180910390f35b60005481565b8060008190555050565b6000805490509056fea2646970667358221220e6966e446bd0af8e6af40eb0d8f323dd02f771ba1f11ae05c65d1624ffb3c58264736f6c63430007060033"}], "id":1}' -H 'Content-Type: application/json' http://localhost:20000
 ```
-where the `from` address as well as the RPC endoint of `http://localhost:20000` are that of Member1 if using the [Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md) and the `from` address is the account address of Member1. Please update your request according to your environment.
 
+where the `from` address and the RPC endoint of `http://localhost:20000` are that of Member1 if using the [Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md) and the `from` address is the account address of Member1. Please update your request according to your environment.
 
 ### 2. Using `web3.eth.Contract` from [web3](https://www.npmjs.com/package/web3)
 
@@ -337,13 +337,13 @@ async function main(){
 This example uses the [web3js-quorum](https://www.npmjs.com/package/web3js-quorum) library to make the
 `[priv.generateAndSendRawTransaction](https://consensys.github.io/web3js-quorum/latest/module-priv.html#~generateAndSendRawTransaction)`
  API call.  Create a new file `private_tx_web3js_quorum.js`(or run the commands below in a JavaScript
- console) to send the transaction. 
+ console) to send the transaction.
 
 For reference, the Developer Quickstart provides an
 [example of a private transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/private_tx.js).
 
 ```js
-//private_tx_web3js_quorum.js 
+//private_tx_web3js_quorum.js
 
 const Web3 = require('web3');
 const Web3Quorum = require('web3js-quorum');
@@ -383,13 +383,13 @@ const txOptions = {
   privateFor: [toPublicKey]
 };
 console.log("Creating contract...");
-// Generate and send the Raw transaction to the Besu node using the eea_sendRawTransaction JSON-RPC call
 const txHash = await web3quorum.priv.generateAndSendRawTransaction(txOptions);
 console.log("Getting contractAddress from txHash: ", txHash);
 console.log("Private Transaction Receipt: ", txHash.contractAddress);
 ```
 
 `txOptions` contains the following field:
+
 * `nonce` - the count of transactions from this account
 * `from` - address of the EthSigner account. For example `0x9b790656b9ec0db1936ed84b3bea605873558198`.
 * `gasLimit` - amount of gas provided by the sender for the transaction

@@ -1,5 +1,5 @@
 ---
-description: Ethereum accounts used for Hyperledger Besu testing only on private networks
+description: Ethereum accounts used for Consensys GoQuorum testing only on private networks
 ---
 
 # Accounts for testing
