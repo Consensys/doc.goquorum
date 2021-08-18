@@ -2,9 +2,9 @@
 description: Quorum Dev Quickstart network setup quickstart command line tool
 ---
 
-# Quorum Dev Quickstart
+# Get started with Quorum Developer Quickstart
 
-[Quorum Dev Quickstart](https://github.com/ConsenSys/quorum-dev-quickstart) is a command line tool that allows
+The [Quorum Developer Quickstart](https://github.com/ConsenSys/quorum-dev-quickstart) is a command line tool that allows
 users to set up a development GoQuorum network on their local machine in less than two minutes.
 The quickstart is written in Javascript and designed to be run as a global npm module from the command line.
 
@@ -18,7 +18,7 @@ The quickstart is written in Javascript and designed to be run as a global npm m
 * [`curl` command line](https://curl.haxx.se/download.html)
 * [MetaMask](https://metamask.io/)
 
-## Using Quorum Dev Quickstart
+## Run Quorum Developer Quickstart
 
 To run the quickstart without installation, use `npx`:
 
@@ -55,13 +55,20 @@ You can provide these flags when running `quorum-dev-quickstart`:
 
 ## Interacting with the network
 
-To explore the features of GoQuorum, such as permissioning and privacy, follow the instructions on
-[Interacting with the Network](./Using-the-Quickstart.md).
-The page also has information on smart contracts, dapps, wallets, and monitoring the network.
+To explore the features of GoQuorum, such as permissioning and privacy, follow the
+[Quorum Developer Quickstart tutorial](Using-the-Quickstart.md).
+The tutorial also has information on smart contracts, dapps, wallets, and monitoring the network.
 
 ## Tools
 
-The quickstart provides the option to [deploy useful monitoring tools](./Tools.md) alongside your network.
+The quickstart provides the option to deploy monitoring tools alongside your network.
+You can use:
+
+* [Prometheus and Grafana](../../HowTo/Monitor/Metrics.md) to collect and visualize metrics.
+* [Cakeshop](../../HowTo/Monitor/Cakeshop.md) to explore the chain, work with contracts, and manage peers and permissions.
+* [Quorum Reporting](../../HowTo/Monitor/Quorum-Reporting.md) to inspect contracts.
+* [Elastic Stack](../../HowTo/Monitor/Elastic-Stack.md) to manage logs.
+* [Splunk](../../HowTo/Monitor/Splunk.md) to manage logs.
 
 ## Developing
 
