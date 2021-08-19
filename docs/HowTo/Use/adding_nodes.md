@@ -99,18 +99,25 @@ nodes before the new node is able to communicate with existing nodes.
 
 You do not need to restart any nodes in order for the changes to take effect.
 
+!!! note
+
+    You can use either DNS names or IP addresses to specify nodes in `permissioned-nodes.json`.
+    Only bootnodes need to be specified with IP addresses.
+
 #### Static node connections
 
-If not using peer-to-peer node discovery (for example, you specified `--nodiscover`), then the only connections a node
-made will be to peers defined in the `static-nodes.json` file.
+If not using peer-to-peer node discovery (for example, you specify `--nodiscover`), then the node only makes connections
+to peers defined in the `static-nodes.json` file.
 
-When adding a new node, you should make sure you have peers defined in its `static-nodes.json` file.
+When adding a new node, define peers in its `static-nodes.json` file.
 
-The more peers you have defined here, the better network connectivity and fault tolerance you have.
+The more peers defined here, the better the network connectivity and fault tolerance.
 
 !!! note
 
-    * You do not need to update the existing peers static nodes for the connection to be established, although it is good practise to do so.
+    * You can use either DNS names or IP addresses to specify nodes in `static-nodes.json`.
+      Only bootnodes need to be specified with IP addresses.
+    * You do not need to update the existing peers static nodes for the connection to be established, although it is good practice to do so.
     * You do not need to specify every peer in your static nodes file if you do not wish to connect to every peer directly.
 
 #### Peer-to-peer discovery

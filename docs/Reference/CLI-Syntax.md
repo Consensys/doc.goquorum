@@ -124,7 +124,7 @@ This requires the [JSON-RPC Security plugin](../HowTo/Use/JSON-RPC-API-Security.
     --permissioned
     ```
 
-Enables [basic network permissioning](../Concepts/Permissioning/BasicNetworkPermissions.md).
+Enables [basic network permissioning](../Concepts/PermissionsOverview.md#basic-network-permissioning).
 The node allows only a defined list of nodes to connect.
 
 ### `plugins`

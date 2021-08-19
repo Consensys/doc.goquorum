@@ -270,7 +270,7 @@ management contract to the blockchain.
     * You must execute `quorumExtension_extendContract` from the node that initially created the contract.
 
     * If the network is using
-      [enhanced network permissioning](../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md), then both
+      [enhanced network permissioning](../Concepts/PermissionsOverview.md#enhanced-network-permissioning), then both
       initiator (the `from` address in `txArgs`) and receiver (`recipientAddress`) of the extension must be network or
       org admin accounts.
 
