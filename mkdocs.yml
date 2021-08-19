@@ -70,18 +70,13 @@ nav:
           - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
           - Private transaction manager: Concepts/Privacy/PrivateTransactionManager.md
           - Private transaction lifecycle: Concepts/Privacy/PrivateTransactionLifecycle.md
-          - Contract extension: Concepts/Privacy/ContractExtension.md
+          - Contract state extension: Concepts/Privacy/ContractExtension.md
           - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
           - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
       - Consensus:
           - Overview: Concepts/Consensus/Overview.md
           - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
-      - Permissioning:
-          - Overview: Concepts/Permissioning/PermissionsOverview.md
-          - Basic permissions: Concepts/Permissioning/BasicNetworkPermissions.md
-          - Enhanced:
-              - Overview: Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md
-              - Contract design: Concepts/Permissioning/Enhanced/ContractDesign.md
+      - Permissioning: Concepts/PermissionsOverview.md
       - Plugins:
           - Overview: Concepts/Plugins/Plugins.md
           - Architecture: Concepts/Plugins/PluginsArchitecture.md
@@ -130,9 +125,9 @@ nav:
               - Clique: HowTo/Configure/Consensus-Protocols/Clique.md
           - Genesis file: HowTo/Configure/GenesisOptions.md
           - High availability: HowTo/Configure/HighAvailability.md
-          - Permissions:
-              - Basic permissions: HowTo/Configure/BasicPermissions.md
-              - Enhanced permissions: HowTo/Configure/EnhancedPermissions.md
+          - Permissioning:
+              - Basic permissions: HowTo/Configure/Permissioning/BasicPermissions.md
+              - Enhanced permissions: HowTo/Configure/Permissioning/EnhancedPermissions.md
           - Plugins: HowTo/Configure/Plugins.md
           - DNS: HowTo/Configure/dns.md
       - Develop plugins: HowTo/DevelopPlugins.md
@@ -245,14 +240,14 @@ plugins:
         Consensus/ibft/ibft.md: HowTo/Configure/Consensus-Protocols/IBFT.md
         Consensus/Consensus.md: Concepts/Consensus/Overview.md
         Consensus/raft/raft.md: HowTo/Configure/Consensus-Protocols/Raft.md
-        Getting Started/permissioned-nodes.md: HowTo/Configure/BasicPermissions.md
+        Getting Started/permissioned-nodes.md: HowTo/Configure/Permissioning/BasicPermissions.md
         Getting Started/running.md: GetStarted/GettingStartedOverview.md
         Consensus/ibft/ibft-parameters.md: HowTo/Configure/Consensus-Protocols/IBFT.md
         Consensus/ibft/istanbul-rpc-api.md: Reference/API-Methods.md
         Consensus/raft/raft-rpc-api.md: Reference/API-Methods.md
-        Permissioning/Basic NetworkPermissions.md: Concepts/Permissioning/BasicNetworkPermissions.md
-        Permissioning/Enhanced Permissions Model/Contract Design.md: Concepts/Permissioning/Enhanced/ContractDesign.md
-        Permissioning/Permissions Overview.md: Concepts/Permissioning/PermissionsOverview.md
+        Permissioning/Basic NetworkPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
+        Permissioning/Enhanced Permissions Model/Contract Design.md: Concepts/PermissionsOverview.md
+        Permissioning/Permissions Overview.md: Concepts/PermissionsOverview.md
         PluggableArchitecture/Overview.md: Concepts/Plugins/Plugins.md
         PluggableArchitecture/Internals.md: Concepts/Plugins/PluginsArchitecture.md
         Privacy/Contract-Extension/Overview.md: Concepts/Privacy/ContractExtension.md
@@ -268,7 +263,7 @@ plugins:
         Security/Framework/Overview.md: Concepts/Security/Framework/Overview.md
         How-To-Guides/HA_Setup.md: HowTo/Configure/HighAvailability.md
         How-To-Guides/add_ibft_validator.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
-        Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/EnhancedPermissions.md
+        Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/Permissioning/EnhancedPermissions.md
         Quorum Features/dns.md: HowTo/Configure/dns.md
         PluggableArchitecture/PluginDevelopment.md: HowTo/DevelopPlugins.md
         HowTo/GetStarted/Cakeshop.md: HowTo/Monitor/Cakeshop.md
@@ -332,3 +327,9 @@ plugins:
         Reference/Cakeshop/GettingStarted.md: HowTo/Monitor/Cakeshop.md
         Reference/Cakeshop/Configuration.md: HowTo/Monitor/Cakeshop.md
         Tutorials/Quorum-Dev-Quickstart/Tools.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+        Concepts/Permissioning/PermissionsOverview.md: Concepts/PermissionsOverview.md
+        Concepts/Permissioning/BasicNetworkPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
+        Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md: Concepts/PermissionsOverview.md
+        Concepts/Permissioning/Enhanced/ContractDesign.md: Concepts/PermissionsOverview.md
+        HowTo/Configure/BasicPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
+        HowTo/Configure/EnhancedPermissions.md: HowTo/Configure/Permissioning/EnhancedPermissions.md

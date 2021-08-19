@@ -12,7 +12,7 @@ Out of the box you get:
 * **Blockchain explorer** - View transactions, blocks, and contracts, and see historical contract state at a point in time.
 * **Node info** - View the overall status of your network.
 * **Peer management** - Discover, add, and remove peers.
-* **Enhanced permissions UI** - Manage smart contract-based [enhanced permissioning](../../Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md)
+* **Enhanced permissions UI** - Manage [enhanced network permissioning](../../Concepts/PermissionsOverview.md#enhanced-network-permissioning).
 * **Solidity sandbox** - Develop, compile, deploy, and interact with Solidity smart contracts.
 * **Contract registry** - Keep track of deployed contracts and their code, interfaces, and state.
 
