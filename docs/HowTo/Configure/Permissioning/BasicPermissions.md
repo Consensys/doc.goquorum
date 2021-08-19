@@ -25,9 +25,9 @@ file that is used to specify the list of static nodes a given node always connec
 
         ```json
         [
-            "enode://remoteky1@ip1:port1",
-            "enode://remoteky1@ip2:port2",
-            "enode://remoteky1@ip3:port3",
+            "enode://remotekey1@ip1:port1",
+            "enode://remotekey2@ip2:port2",
+            "enode://remotekey3@ip3:port3",
         ]
         ```
 
