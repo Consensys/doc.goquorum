@@ -2,22 +2,21 @@
 description: deploying smart contracts
 ---
 
-# Deploying smart contracts to an Ethereum chain
+# Deploy a smart contract
 
-This tutorial shows you how to deploy smart contracts as transactions onto a running network. Use the
-[Quorum Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md) to rapidly generate
-a local blockchain network.
+This tutorial shows you how to deploy smart contracts as transactions onto a running network.
+Use the [Quorum Developer Quickstart](../Quorum-Dev-Quickstart/Getting-Started.md) to rapidly generate a local blockchain network.
 
 ## Prerequisites
 
 * A [private network](../Private-Network/Create-IBFT-Network.md) if deploying a public contract.
-
 * A [privacy-enabled network](../Create-Privacy-enabled-network.md) if deploying a private contract
-    (Public contracts can also be deployed on privacy-enabled networks).
+    (public contracts can also be deployed on privacy-enabled networks).
 
-Please note, that the [Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md)
-caters to both scenarios above. To enable privacy, select and `y` for
-[private transactions](../../Concepts/Privacy/Privacy.md).
+!!! note
+
+    You can use the Quorum Developer Quickstart to deploy either public contracts or private contracts.
+    To enable privacy, enter `Y` at the prompt for private transactions.
 
 ## Compile the contract
 
@@ -161,7 +160,7 @@ async function createContract(host, contractAbi, contractByteCode, contractInit,
   return ci;
 };
 
-// create the contract  
+// create the contract
 async function main(){
   // using Member1 to send the transaction from
   createContract("http://localhost:20000", contractAbi, contractByteCode, 47, address)
@@ -320,7 +319,7 @@ async function createContract(host, contractAbi, contractByteCode, contractInit,
   return ci;
 };
 
-// create the contract  
+// create the contract
 async function main(){
   // sending the transaction from Member1 to Member3
   createContract("http://localhost:20000", contractAbi, contractByteCode, 47, "f0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5", "1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg=")
