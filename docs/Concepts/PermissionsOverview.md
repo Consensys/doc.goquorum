@@ -19,7 +19,7 @@ You can [configure basic network permissioning](../HowTo/Configure/Permissioning
 
 The enhanced network permissioning model caters to enterprise-level needs by using smart contracts.
 It has significant flexibility to manage nodes, accounts, and account-level access controls.
-Two versions of enhanced network permissioning are available::
+Two versions of enhanced network permissioning are available:
 
 * Version 1 - The permissioning rules are applied only at the time of transaction entry with respect to the permissioning
   data stored in node memory.
