@@ -240,10 +240,10 @@ Call [`eth_sendTransaction`](https://eth.wiki/json-rpc/API) with the following p
 * `privacyFlag` - 0 for standard private, 1 for [counter party protection](../../Concepts/Privacy/PrivacyEnhancements.md#counter-party-protection).
   and 3 for [private state validation](../../Concepts/Privacy/PrivacyEnhancements.md#private-state-validation).
 * `data` - One of the following:
-  * For contract deployments (this use case), the [compiled binary of the contract](#compile-the-contract).
-  * For contract interactions, the hash of the invoked method signature and encoded parameters
-    (see [Ethereum Contract ABI](https://solidity.readthedocs.io/en/develop/abi-spec.html)).
-  * For simple ether transfers, empty.
+    * For contract deployments (this use case), the [compiled binary of the contract](#compile-the-contract).
+    * For contract interactions, the hash of the invoked method signature and encoded parameters
+      (see [Ethereum Contract ABI](https://solidity.readthedocs.io/en/develop/abi-spec.html)).
+    * For simple ether transfers, empty.
 
 !!! example "Example eth_sendTransaction curl HTTP request"
 
@@ -371,4 +371,3 @@ Create a new file `private_tx_web3js_quorum.js`(or run the following commands in
 
 For reference, the Developer Quickstart provides an
 [example of a private transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/private_tx.js).
-
