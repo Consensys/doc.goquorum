@@ -2,15 +2,14 @@
 description: calling smart contracts functions
 ---
 
-# Interacting with deployed smart contracts
+# Interact with a deployed smart contract
 
-This tutorial shows you how to interact with smart contracts that have been deployed to a network. Use the
-[Quorum Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md) to rapidly generate
-a local blockchain network.
+This tutorial shows you how to interact with smart contracts that have been deployed to a network.
+Use the [Quorum Developer Quickstart](../Quorum-Dev-Quickstart/Getting-Started.md) to rapidly generate a local blockchain network.
 
 ## Prerequisites
 
-* A network with a deployed smart contract as in the [deploying smart contracts tutorial](Deploying-Contracts.md)
+* A network with a deployed smart contract as in the [deploying smart contracts tutorial](Deploying-Contracts.md).
 
 ## Interact with public contracts
 
@@ -38,17 +37,16 @@ contract SimpleStorage {
 }
 ```
 
-Once the contract is deployed, you can perform a read operation using the `get` function call and a
-write operation using the `set` function call.
+Once the contract is deployed, you can perform a read operation using the `get` function call and a write operation
+using the `set` function call.
 This tutorial uses the [web3js](https://www.npmjs.com/package/web3) library to interact with the contract.
-A [full example](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/public_tx.js)
-of these calls can be found in the [Quorum Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md)
+The Quorum Developer Quickstart provides a [full example of a public contract script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/public_tx.js).
 
 ### 1. Perform a read operation
 
 To perform a read operation, you need the address that the contract was deployed to and the contract's ABI.
-The contract's ABI can be obtained from compiling the contract; see the
-[deploying smart contracts tutorial](Deploying-Contracts.md) for an example.
+The contract's ABI can be obtained from compiling the contract;
+see the [deploying smart contracts tutorial](Deploying-Contracts.md) for an example.
 
 Use the [`web3.eth.Contract`](https://web3js.readthedocs.io/en/v1.3.4/web3-eth-contract.html) object to create a new
 instance of the smart contract, then make the `get` function call from the contract's list of methods, which will return the value stored:
@@ -90,16 +88,14 @@ To verify that a value has been updated, perform a `get` call after a `set` upda
 
 This private contracts example uses the same `SimpleStorage.sol` contract as in the
 [public contracts example](#interact-with-public-contracts), but it uses the
-
 [`eea_sendRawTransaction`](../../Reference/API-Methods.md#eea_sendrawtransaction) method to interact with the contract.
 Both read and write operations are performed using the `eea_sendRawTransaction` API call.
-A [full example](A [full example](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/private_tx_web3.js)
-can be found in the [Quorum Developer Quickstart](../Quorum-Dev-Quickstart/Using-the-Quickstart.md)
+The Quorum Developer quickstart provides a [full example of a private contract script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/private_tx_web3.js).
 
 ### 1. Perform a read operation
 
-Performing a read operation on a contract is identical to the public contract's example, and you need the address that
-the contract was deployed to and the contract's ABI.
+Performing a read operation on a contract is identical to the [public contract example](#interact-with-public-contracts),
+and you need the address that the contract was deployed to and the contract's ABI.
 
 Use the [`web3.eth.Contract`](https://web3js.readthedocs.io/en/v1.3.4/web3-eth-contract.html) object to create a new
 instance of the smart contract, then make the `get` function call from the contract's list of methods, which will return the value stored:
@@ -118,7 +114,7 @@ async function getValueAtAddress(host, deployedContractAbi, deployedContractAddr
 
 Performing a write operation is almost the same process as the read operation, except that you encode the new value to
 the `set` function's ABI, and then append these arguments to the `set` function's ABI and use this as the `data` field.
-In addition you provide the public key of the Transaction Manager of the respective node.
+Additionally provide the public key of the Transaction Manager of the respective node.
 
 ```js
 async function setValueAtAddress(host, value, deployedContractAbi, deployedContractAddress, fromAddress, toPublicKey) {
@@ -127,7 +123,6 @@ async function setValueAtAddress(host, value, deployedContractAbi, deployedContr
   const res = await contractInstance.methods.set(value).send({from: fromAddress, privateFor: [toPublicKey], gasLimit: "0x24A22"});
   return res
 }
-
 ```
 
 ### 3. Verify an updated value
