@@ -134,7 +134,7 @@ Once the upgrade completes additional private states can be introduced but only 
 In order to use the `mpsdbupgrade` command one must consider the following constraints:
 
 - The node must be offline for the upgrade process to be executed (it is advisable to make a backup of the node data directory before executing the upgrade)
-- The mpsdbupgrade command CAN NOT be used to combine multiple quorum databases/private states into a single quourm database
+- The mpsdbupgrade command CAN NOT be used to combine multiple quorum databases/private states into a single quorum database
 - Tessera must be upgraded to enable MPS and a single resident group named "private" must be defined (with all the existing locally managed tessera keys)
 - After successful execution the node database contains the `empty` state and the `private` state (corresponding to the single private state that existed before the upgrade)
 
