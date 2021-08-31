@@ -33,7 +33,7 @@ Interconnecting multiple independent networks comes with risk factors.
 
 In order to build a controls to minimize a risk, the activities that are expected to be performed in the network must be documented.
 
-## Security Checklist
+## Security checklist
 
 - [x] Use Byzantine fault tolerant consensus protocol in case nodes are managed by un-trusted participants
 

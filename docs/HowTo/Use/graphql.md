@@ -11,7 +11,7 @@ Ethereum has defined a GraphQL schema as part of
 
 To support GoQuorum private transaction data, a supplement schema and implementation has been added on top of the default.
 
-### New Supplement Schema for GoQuorum
+### New supplement schema for GoQuorum
 
 ```go
 # Transaction is an Ethereum transaction.

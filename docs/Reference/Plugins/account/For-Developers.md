@@ -1,4 +1,4 @@
-# account Plugins: For developers
+# Account plugins: For developers
 
 New `account` plugins can be developed to extend the supported account management options for GoQuorum and `clef`.
 

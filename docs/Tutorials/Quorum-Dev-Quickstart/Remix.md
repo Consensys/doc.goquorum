@@ -1,12 +1,12 @@
 
-# GoQuorum Plugin for Remix
+# GoQuorum plugin for Remix
 
 The GoQuorum plugin for Ethereum's [Remix IDE](https://remix.ethereum.org) adds support for creating and interacting with
 private contracts on a GoQuorum network.
 
 ![screenshot](../../images/remix/quorum-remix.png "screenshot")
 
-## Using the Quorum Plugin for Remix
+## Using the Quorum plugin for Remix
 
 1. Go to the [Remix IDE](https://remix.ethereum.org).
    From the left menu select the **Plugin manager** tab, scroll down to **Quorum Network**, and **Activate**.
@@ -68,6 +68,6 @@ If you have any feedback or questions, please open a GitHub issue or reach out o
 
 ## Contributing
 
-The GoQuorum Plugin for Remix is open source and you can contribute enhancements.
+The GoQuorum plugin for Remix is open source and you can contribute enhancements.
 Upon review of your changes you're required to complete a Contributor License Agreement (CLA) before merging.
 If you have any questions about the contribution process, please email <mailto:quorum@consensys.net>.

@@ -17,7 +17,7 @@ The following parameters are of interest to be collected and analyzed:
 - Network connections to ledger nodes and metadata.
 - Consensus protocol metadata (Block creation rate, and source, …)
 
-## Security Checklist
+## Security checklist
 
 - [x] Ensure all activities of GoQuorum hosts are being logged to centralized log system
 

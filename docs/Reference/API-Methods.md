@@ -11,7 +11,7 @@ This reference describes the GoQuorum JSON-RPC API methods.
     GoQuorum is based on [Geth Go Ethereum client](https://geth.ethereum.org/) but only the GoQuorum-specific API methods are listed here. Visit the
     [Go Ethereum documentation](https://geth.ethereum.org/docs/rpc/server) to view the Geth API methods.
 
-## Contract Extension methods
+## Contract extension methods
 
 ### `quorumExtension_activeExtensionContracts`
 

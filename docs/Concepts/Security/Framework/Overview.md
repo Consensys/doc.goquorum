@@ -1,8 +1,8 @@
 ---
-description: Security Framework overview
+description: Security framework overview
 ---
 
-# Security Framework
+# Security framework
 
 The Goal of this framework is to provide an in-depth reference to Quorum and
  Decentralized Applications (dApps) security best practices.

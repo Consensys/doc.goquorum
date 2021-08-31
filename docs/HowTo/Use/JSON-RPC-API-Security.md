@@ -15,7 +15,7 @@ feature allows the automatic generation of self signed certificate for
 testing environment, or a smooth integration with certificate
 authorities for enterprise deployment.
 
-### Enterprise Authorization Protocol Integration
+### Enterprise authorization protocol integration
 
 Enterprise authorization protocol integration introduces an access
 control layer that authorizes each JSON RPC invocation to an atomic
@@ -30,7 +30,7 @@ and Quorum Clients access control in an efficient approach.
 Refer to [plugin implementation](../../Reference/Plugins/security/For-Users.md) for more details
 and find [examples on how to configure the plugin to work with different OAuth2 Authorization servers](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples).
 
-## Client Usage
+## Client usage
 
 Before invoking protected JSON RPC APIs, the client must request an access token by authenticating with the
 authorization server. An access token could be opaque or a JWT. It's the client's reponsiblity to maintain

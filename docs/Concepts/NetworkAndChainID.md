@@ -1,6 +1,6 @@
-# Network and Chain ID
+# Network and chain ID
 
-An Ethereum network is run using a Network ID and a Chain ID.
+An Ethereum network is run using a network ID and a chain ID.
 
 The network ID is a property of a peer, not of the chain the peer is managing. Network ID is passed in
 via the command line by `--networkid <id>`. Its purpose is to separate peers that are running under a

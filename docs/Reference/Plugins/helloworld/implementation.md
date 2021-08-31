@@ -2,7 +2,7 @@
 description: helloworld - Plugin Implementation
 ---
 
-# helloworld - Plugin Implementation
+# helloworld - Plugin implementation
 
 | Version | Language |
 |:--------|:---------|

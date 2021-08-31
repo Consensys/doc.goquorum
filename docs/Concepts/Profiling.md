@@ -1,13 +1,13 @@
-# Quorum Profiling
+# Quorum profiling
 
-[Quorum Profiling](https://github.com/ConsenSys/quorum-profiling) is a custom toolset used to benchmark
+[Quorum profiling](https://github.com/ConsenSys/quorum-profiling) is a custom toolset used to benchmark
 transaction throughput and network statistics on any existing Quorum network using the
 [JMeter](https://github.com/ConsenSys/quorum-profiling/tree/master/jmeter-test) and
 [TPS monitoring](https://github.com/ConsenSys/quorum-profiling/tree/master/tps-monitor) tool profiles.
 Alternatively, it could also be used to spin up an entire GoQuorum network from scratch in AWS and benchmark
 the network for TPS, CPU/Memory usage. The various scenarios of usage is explained [here](https://github.com/ConsenSys/quorum-profiling)
 
-## Metrics Visualisation
+## Metrics visualisation
 
 Key Components:
 
@@ -29,12 +29,12 @@ The tool executes the stress test profile selected and then collects the followi
 
 These metrics could be configured to be stored in an InfluxDB or Prometheus for further analysis. Both databases integrate well with the open source dashboard editor Grafana to allow for easy creation of dashboards to visualise the data being captured from the profiling tool. Sample dashboards below:
 
-## Sample Network Dashboard
+## Sample network dashboard
 
-![Quorum Network Dashboard](../images/quorumDashboard.jpeg)
+![Quorum network dashboard](../images/quorumDashboard.jpeg)
 
-## Sample JMeter Dashboard
+## Sample JMeter dashboard
 
-![JMeter Dashboard](../images/jmeterDashboard.jpeg)
+![JMeter dashboard](../images/jmeterDashboard.jpeg)
 
 *[TPS]: Transactions Per Second

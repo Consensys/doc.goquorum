@@ -11,7 +11,7 @@ Both Quorum client and its dependencies i.e, Transaction Manager, Peers, and Enc
 As any asset in a network its security depends on multiple elements  (E.g the security of the Host, Data, and Accounts). In GoQuorum it will be the security of
 the Client and Transaction Manager host/host-runtime, encryption keys, Consensus runtime and Network Access Controls.
 
-## Host Security
+## Host security
 
 Any asset in a GoQuorum network (Client Host, Transaction Manager Host, Private Transaction Storage Host, ..etc ) must be hardened following industry best practices.
 
@@ -19,7 +19,7 @@ A host IDS should be used to detect any malicious activities on the host. Direct
 
 Operating systems, software and services will have vulnerabilities. GoQuorum network hosts must implement a robust patch management program.
 
-## Client Security
+## Client security
 
 GoQuorum client instance exposes a JSON-Remote Procedure Call (RPC) interface through HTTP, Web Socket, or Inter-Process communication techniques.
 
@@ -32,7 +32,7 @@ the public key identifies the node in the network.
 
 GoQuorum Smart Contract Permissioning models depends on nodes identity to authorize TCP level communication between nodes, as such securing the private key of a node is a paramount activity required to prevent unauthorized node from joining the network.
 
-## Users Security
+## Users security
 
 Blockchain technology uses public key cryptography to protect the integrity of transactions and blocks.
 
@@ -43,7 +43,7 @@ In Ethereum Accounts Private keys are encrypted with user specified seed (passwo
 
 Users password should never be saved across the ecosystem or stored in ledger host in any form.
 
-## Security Checklist
+## Security checklist
 
 ### Host
 

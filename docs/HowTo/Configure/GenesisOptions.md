@@ -1,4 +1,4 @@
-# GoQuorum Genesis Options
+# GoQuorum genesis options
 
 ## Configurable transaction size
 

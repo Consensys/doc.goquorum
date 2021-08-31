@@ -1,6 +1,6 @@
 # Plugins architecture
 
-## Go Plugin
+## Go plugin
 
 `geth` is written in the Go programming language. [Go 1.8 introduced](https://golang.org/doc/go1.8#plugin) a new plugin architecture
 which allows for the creation of plugins (via `plugin` build mode) and to use these plugins at runtime (via `plugin` package).
@@ -131,7 +131,7 @@ The `PluginManager` manages the plugins being used inside `geth`. It reads the [
 `PluginManager` implements the standard `Service` interface in `geth`, hence being embedded into the `geth` service life cycle, i.e.: expose service APIs, start and stop.
 The `PluginManager` service is registered as early as possible in the node lifecycle. This is to ensure the node fails fast if an issue is encountered when registering the `PluginManager`, so as not to impact other services.
 
-## Plugin Reloading
+## Plugin reloading
 
 The `PluginManager` exposes an API (`admin_reloadPlugin`) that allows reloading a plugin. This attempts to restart the current plugin process.
 

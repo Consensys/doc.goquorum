@@ -1,4 +1,4 @@
-# security Plugins: For developers
+# Security plugins: For developers
 
 New `security` plugins can be developed to customize protection of JSON API server
 

@@ -1,4 +1,4 @@
-# security Plugins: For users
+# Security plugins: For users
 
 GoQuorum offers an [official plugin implementation](https://github.com/ConsenSys/quorum-security-plugin-enterprise)
 providing the following enterprise features to `geth` JSON RPC server:

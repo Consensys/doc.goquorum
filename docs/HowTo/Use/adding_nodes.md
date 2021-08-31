@@ -136,9 +136,9 @@ If you are using discovery, then more options *in addition* to static nodes beco
     If you have discovery disabled, this means you will not try to find other nodes to connect to,
     but others can still find and connect to you.
 
-## Adding Private Transaction Managers
+## Adding private transaction managers
 
-In this tutorial, there will be no focus on the advanced features of adding a new Private Transaction Manager (PTM).
+In this tutorial, there will be no focus on the advanced features of adding a new private transaction manager (PTM).
 This tutorial uses [Tessera](https://github.com/ConsenSys/tessera) for any examples.
 
 Adding a new node to the PTM is relatively straight forward, but there are a lot of extra options that can be used,

@@ -31,9 +31,9 @@ npx quorum-dev-quickstart
 
 To explore the features of GoQuorum and deploy private contracts, follow the instructions on [Interacting with the Network](../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md)
 
-## GoQuorum Examples sample network
+## GoQuorum examples sample network
 
-[GoQuorum Examples](../Reference/GoQuorum-Projects.md) provides the means to quickly create a pre-configured sample GoQuorum
+[GoQuorum examples](../Reference/GoQuorum-Projects.md) provides the means to quickly create a pre-configured sample GoQuorum
 network that can be run either in a virtual-machine environment using Vagrant, in containers using docker-compose,
 or locally through the use of bash scripts to automate creation of the network.
 

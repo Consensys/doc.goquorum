@@ -1,14 +1,14 @@
-# Private Transaction Manager
+# Private transaction manager
 
-GoQuorum uses a Private Transaction Manager, [Tessera](https://docs.tessera.consensys.net), to implement
+GoQuorum uses a private transaction manager, [Tessera](https://docs.tessera.consensys.net), to implement
 private transactions.
 
-The Private Transaction Manager is a separate component for storage and distribution
+The private transaction manager is a separate component for storage and distribution
 of encrypted private transaction data between recipients of a private transaction.
 
-The Private Transaction Manager has two distinct components:
+The private transaction manager has two distinct components:
 
-* Transaction Manager
+* Transaction manager
 * Enclave
 
 Enable private transactions using any of the following methods when starting a GoQuorum node:
@@ -31,7 +31,7 @@ export PRIVATE_CONFIG=path/to/tm.ipc
 
 ## Using a connection configuration file
 
-Using a configuration file allows you to specify more options for the connection to the Transaction Manager.
+Using a configuration file allows you to specify more options for the connection to the transaction manager.
 
 ```bash
 export PRIVATE_CONFIG=path/to/connection-config-file.toml
@@ -110,7 +110,7 @@ export PRIVATE_CONFIG=path/to/connection-config-file.toml
 
 ## Using command line parameters
 
-Command line parameters can also be used to configure the connection to the Transaction Manager.
+Command line parameters can also be used to configure the connection to the transaction manager.
 Note that these can be used in conjunction with the other options given above,
 in which case the command line parameters will override any others.
 
