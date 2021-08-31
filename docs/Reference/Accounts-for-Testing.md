@@ -1,5 +1,5 @@
 ---
-description: Ethereum accounts used for Hyperledger Besu testing only on private networks
+description: Ethereum accounts used for Consensys GoQuorum testing only on private networks
 ---
 
 # Accounts for testing
@@ -7,8 +7,8 @@ description: Ethereum accounts used for Hyperledger Besu testing only on private
 You can use existing accounts for testing by including them in the genesis file for a private
 network.
 
-The genesis files in the [IBFT network tutorial](../Tutorials/Create-IBFT-Network.md) and
-[Raft network tutorial](../Tutorials/Create-a-Raft-network.md) define the following accounts used for testing.
+The genesis files in the [IBFT network tutorial](../Tutorials/Private-Network/Create-IBFT-Network.md) and
+[Raft network tutorial](../Tutorials/Private-Network/Create-a-Raft-network.md) define the following accounts used for testing.
 
 {!global/test_accounts.md!}
 

@@ -19,9 +19,7 @@ The [qubernetes build container](https://hub.docker.com/repository/docker/quorum
 following examples.
 * Generates GoQuorum resources including configuration and keys.
 * Generates Kubernetes resources for a GoQuorum network.
-* Can be leveraged by other projects that need to generate GoQuorum resource. For example, the
-[GoQuorum Wizard](../../HowTo/GetStarted/Wizard/GettingStarted.md) uses the build container to generate GoQuorum
-network resources, and to run Kubernetes.
+* Can be leveraged by other projects that need to generate GoQuorum resource.
 
 When running the qubernetes docker container, the minimal config file, and the `out` directory must be mounted to the container
 using the `-v` flag.
@@ -126,7 +124,7 @@ running a node in a single cluster, the node defines:
 
 ## qctl command line tool
 
-[qctl](../../HowTo/GetStarted/Getting-Started-Qubernetes.md) is a golang command line tool for
+[qctl](../../GetStarted/Getting-Started-Qubernetes.md) is a golang command line tool for
 creating and manipulating the minimal configuration, and interacting with a running Kubernetes network.
 
 Following the Unix philosophy, the commands intentionally only do one thing. Add the commands to

@@ -14,8 +14,8 @@ to encrpyt and distribute [private transactions](../Concepts/Privacy/Privacy.md)
 
 ## Prerequisites
 
-* [Tessera](../HowTo/GetStarted/Install.md#as-release-binaries).
-* [IBFT network as configured in IBFT tutorial](Create-IBFT-Network.md). The nodes must not be
+* [Tessera](../GetStarted/Install.md#as-release-binaries).
+* [IBFT network as configured in IBFT tutorial](Private-Network/Create-IBFT-Network.md). The nodes must not be
 running.
 
 ## Steps
