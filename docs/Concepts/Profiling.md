@@ -7,7 +7,7 @@ transaction throughput and network statistics on any existing Quorum network usi
 Alternatively, it could also be used to spin up an entire GoQuorum network from scratch in AWS and benchmark
 the network for TPS, CPU/Memory usage. The various scenarios of usage is explained [here](https://github.com/ConsenSys/quorum-profiling)
 
-## Metrics visualisation
+## Metrics visualization
 
 Key Components:
 
