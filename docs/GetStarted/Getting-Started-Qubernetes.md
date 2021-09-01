@@ -89,7 +89,7 @@ Two paths must be set, either as environment variable or flags to the commands:
     qctl geth attach quorum-node1
     ```
 
-## Interacting With A Running K8s GoQuorum Network
+## Interacting with a running K8s GoQuorum network
 
 !!! example "Listing GoQuorum nodes"
     ```

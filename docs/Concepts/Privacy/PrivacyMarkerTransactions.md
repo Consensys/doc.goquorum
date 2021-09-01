@@ -1,9 +1,9 @@
 ---
 title: Privacy Marker Transactions
-description: Privacy Marker Transactions are an alternative method of processing private transactions.
+description: Privacy marker transactions are an alternative method of processing private transactions.
 ---
 
-# Privacy Marker Transactions
+# Privacy marker transactions
 
 ## Overview
 
@@ -23,7 +23,7 @@ The Privacy Marker Transaction makes use of a new precompiled contract held in G
 
 ## Concepts
 
-### Privacy Marker Transaction
+### Privacy marker transaction
 
 A public transaction with the following properties:
 
@@ -65,7 +65,7 @@ A public transaction with the following properties:
 }
 ```
 
-### Internal Private Transaction
+### Internal private transaction
 
 Each privacy marker transaction has a corresponding internal private transaction.
 The content of this private transaction is the same as the content of a normal private transaction, however it will have the same `from` and `nonce` values as the privacy marker transaction.
@@ -117,7 +117,7 @@ At execution time, GoQuorum retrieves the internal private transaction from Tess
 }
 ```
 
-### Privacy Precompile Contract
+### Privacy precompile contract
 
 !!! info "Precompile Address"
     The [eth_getPrivacyPrecompileAddress] can be used by clients to get the address of the privacy precompile.
@@ -179,7 +179,7 @@ Non-green boxes show the new steps required.
 
 Note that the final step of retrieving the private transaction receipt uses the new API method [eth_getPrivateTransactionReceipt].
 
-## New API Methods
+## New API methods
 
 The following API methods have been added to support Privacy Marker Transactions:
 
@@ -188,9 +188,9 @@ The following API methods have been added to support Privacy Marker Transactions
 * [eth_getPrivateTransactionByHash]
 * [eth_getPrivateTransactionReceipt]
 
-## How To Use
+## How to use
 
-### Genesis Configuration
+### Genesis configuration
 
 The `genesis.json` file has been modified to support the `privacyPrecompileBlock` flag.
 This flag defines the fork block at which the privacy precompile contract is enabled and made available. Once the fork block is reached the node can process and use privacy marker transactions.
@@ -209,7 +209,7 @@ The flag should be initialised with same value across all the nodes.
     }
     ```
 
-### Command Line Flag
+### Command line flag
 
 The command line flag `--privacymarker.enable` is needed in order to enable the creation of privacy marker transactions.
 
@@ -218,7 +218,7 @@ If this flag is specified, then whenever a private transaction is submitted to G
 !!! note
     Once the `privacyPrecompileBlock` has been reached, a node without the `--privacymarker.enable` CLI flag can still receive and correctly process privacy marker transactions sent from other nodes.
 
-### Notes for clients/dApps
+### Notes for clients/dapps
 
 The privacy marker transaction and internal private transaction are separate transactions and consequently have separate transaction receipts.
 

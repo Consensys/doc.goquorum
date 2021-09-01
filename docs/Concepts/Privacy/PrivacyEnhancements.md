@@ -3,7 +3,7 @@ title: Privacy Enhancements
 description: Privacy Enhancements feature prevents nodes from modifying contracts they are not party with.
 ---
 
-# Privacy Enhancements
+# Privacy enhancements
 
 From GoQuorum v20.10.0, two privacy enhancements are included to prevent state divergence:
 
@@ -38,16 +38,16 @@ validated against all subsequent transactions. Transactions sent to a subset of 
 In standard privacy or when only using counter party protection, only the sending node knows
 the full participant list.
 
-## Affected Contract Original Transaction Payload Hash
+## Affected contract original transaction payload hash
 
 Counter party protection and private state validation are implemented using the Affected Contract
 Original Transaction Payload Hash (`ACOTH`). To transact with a private contract, a node must prove
 it has access (that is, it has the encrypted payload and the ability to decrypt it) to the originating
 transaction for the contract.
 
-## Key Enhancements
+## Key enhancements
 
-### Privacy Flag
+### Privacy flag
 
 A new parameter `PrivacyFlag` has been added to all GoQuorum
 [`send` API methods](../../Reference/API-Methods.md#privacy-methods), being passed from the client to enable the privacy
@@ -95,7 +95,7 @@ nodes concurrently is likely to result in most of the transactions failing.
 Considering the above we expect users to choose PP and PSV contracts/transactions **only** when th
 enhanced privacy is necessary (and the extra privacy benefits outweigh the potential shortfalls).
 
-### Contract/Transaction interactions
+### Contract/transaction interactions
 
 No interactions are allowed between the different types of private contracts/transactions. The only type
 of allowed interaction is for private contracts (SP/PP/PSV) to read from public contracts.
@@ -106,7 +106,7 @@ The privacy enhancements feature only performs it’s checks on submitted/minted
 None of the above limitations apply to calls (read only transactions). In this context calls are contract
 method invocations that are executed locally and do not result in minted transactions.
 
-## Configuration Changes
+## Configuration changes
 
 ### GoQuorum
 
@@ -120,7 +120,7 @@ New flag `enablePrivacyEnhancements` has been added to Tessera config defaulting
 be enabled by adding the property to the config file the same way as other features.
 Refer sample configuration for further details.
 
-## Enabling Privacy Enhancements in the GoQuorum Network
+## Enabling privacy enhancements in the GoQuorum network
 
 For any given node the privacy manager (Tessera) is started first and for that reason we allow the Tessera
 node to be upgraded with privacy enhancements support ahead of GoQuorum upgrade. But when GoQuorum node
@@ -159,7 +159,7 @@ enables the upgraded node to determine if the receiving node supports privacy en
 
 Refer [here](PrivateTransactionLifecycle.md) to refresh about Tessera P2P communication.
 
-### Party Protection changes
+### Party protection changes
 
 To prevent a non-party node from interacting with PP contracts new transactions must be submitted with
 `ACOTHs` and `PrivacyFlag` from GoQuorum to Tessera. The Tessera node would then generate proofs
@@ -173,7 +173,7 @@ Besides the ACOTH, a PSV transaction has an execution hash (Merkle root) calcula
 contract(s) resulting from the transaction simulation (at the time of submission) included from GoQuorum
 to Tessera. The d) execution hash and e) list of participants are also shared between Tessera nodes.
 
-## Privacy Enhanced Transaction End to End Flow
+## Privacy enhanced transaction end to end flow
 
 Refer [to the private transaction livecycle](PrivateTransactionLifecycle.md) documentation for end to end flow of SP transaction.
 

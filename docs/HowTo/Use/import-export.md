@@ -2,7 +2,7 @@
 description: Backup and restore GoQuorum Nodes with private transactions, permissioning, and supported consensus algorithms
 ---
 
-# Backup and restore GoQuorum Nodes
+# Backup and restore GoQuorum nodes
 
 GoQuorum supports exporting and importing chain data with built-in tooling.
 This is a node backup mechanism adapted for the specific needs of GoQuorum such as private transactions, permissioning,

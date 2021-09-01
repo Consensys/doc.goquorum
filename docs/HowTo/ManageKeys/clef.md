@@ -42,7 +42,7 @@ Verify the installation with:
 clef help
 ```
 
-## Getting Started
+## Getting started
 
 See [`cmd/clef/tutorial.md`](https://github.com/ConsenSys/quorum/blob/master/cmd/clef/tutorial.md)
 for an overview and step-by-step guide on `clef` initialisation, startup and automation rules configuration.

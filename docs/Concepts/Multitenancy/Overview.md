@@ -103,7 +103,7 @@ Security plugin.
 To support Multi-tenancy, an Authorization Server will need to be configured. The Authorization Server has the ability to grant private state access to clients via a private state identifier.
 View [Multi-tenancy via Multiple Private States] for more information on how to set up the Authorization server and configure a Multi-tenant network.
 
-### Access Token Scope
+### Access token scope
 
 The JSON RPC Security plugin enables the `geth` JSON RPC API server to be an OAuth2-compliant
 resource server. A client must first obtain a pre-authenticated access token from an authorization

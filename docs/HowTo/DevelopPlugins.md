@@ -9,7 +9,7 @@ We leverage HashiCorp's [`go-plugin`](https://github.com/hashicorp/go-plugin) to
 We recommend reading the [`go-plugin` gRPC examples](https://github.com/hashicorp/go-plugin/tree/master/examples/grpc).
 Some advanced topics which are not available in the `go-plugin` documentation will be covered here.
 
-## Life Cycle
+## Life cycle
 
 A plugin is started as a separate process and communicates with the GoQuorum client host process via gRPC service interfaces.
 
@@ -99,7 +99,7 @@ The plugin and the GoQuorum client's magic cookies are compared.
 If they are equal then the plugin is loaded.
 If they are not equal, the plugin should show human-friendly output.
 
-### Mutual TLS Authentication
+### Mutual TLS authentication
 
 The GoQuorum client requires the plugin to authenticate and secure the connection via mutual TLS.
 `PLUGIN_CLIENT_CERT` environment variable is populated with GoQuorum Client certificate (in PEM format).

@@ -4,7 +4,7 @@ description: quorum.js
 
 # `quorum.js`
 
-## Overview, Installation, Quickstart & Examples
+## Overview, installation, quickstart & examples
 
 See the [project page README](https://github.com/ConsenSys/quorum.js).
 

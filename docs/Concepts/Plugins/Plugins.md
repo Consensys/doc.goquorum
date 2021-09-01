@@ -2,7 +2,7 @@
 description: GoQuorum pluggable architecture
 ---
 
-# GoQuorum Plugins
+# GoQuorum plugins
 
 The GoQuorum client is a modified `geth` client.
 
@@ -29,11 +29,11 @@ Plugins can be written in different languages as gRPC provides a mechanism to ge
 
 The network communication and RPC are handled automatically by the [high-level plugin library](https://github.com/hashicorp/go-plugin).
 
-## Installing Plugins
+## Installing plugins
 
 Currently plugins must be manually installed into a directory (defaults to `plugins` directory inside `geth` data directory - default can be overridden by setting `baseDir` in [plugins settings](../../HowTo/Configure/Plugins.md)).
 
-## Using Plugins
+## Using plugins
 
 [Plugins settings file](../../HowTo/Configure/Plugins.md) contains a JSON that describes what plugins to be used.
 Then start `geth` using the [`--plugins`](../../Reference/CLI-Syntax.md#plugins) command line option:
@@ -43,7 +43,7 @@ geth <other parameters> \
      --plugins file:///<path>/<to>/plugins.json
 ```
 
-## Plugin Integrity Verification
+## Plugin integrity verification
 
 Plugin Central Server can be used to download and verify plugin integrity using [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy).
 The architecture enables the same verification process locally via

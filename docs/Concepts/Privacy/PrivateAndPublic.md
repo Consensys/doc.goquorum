@@ -1,8 +1,8 @@
 ---
-description: Public and Private Transactions
+description: Public and private transactions
 ---
 
-# Public and Private Transactions
+# Public and private transactions
 
 GoQuorum achieves transaction privacy by:
 

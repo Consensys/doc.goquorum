@@ -2,11 +2,11 @@
 description: Tessera transaction manager
 ---
 
-# Transaction Manager
+# Transaction manager
 
 ## Tessera
 
-[Tessera](https://docs.tessera.consensys.net) is GoQuorum's Transaction Manager.
+[Tessera](https://docs.tessera.consensys.net) is GoQuorum's transaction manager.
 
 GoQuorum privacy features depends on Tessera to Encrypt/Decrypt, and broadcast the orchestrations of a private transaction payload.
 
@@ -16,13 +16,13 @@ Tessera communication with its dependencies (Enclave, GoQuorum node, Payload Sto
 
 To ensure the privacy and authentication of the communication between Tessera the network must be configured to Certificate Based Mutual Authentication (MTLS).
 
-## Encryption Keys
+## Encryption keys
 
 Encryption keys is the most critical element of the privacy model, if the encryption key is compromised the network loses its privacy.
 
 Tessera support integration with Trusted Platform Modules (TPM) and Hardware Security Modules (HSM) to reduce surface attack and provide highly secure environment.
 
-## Security Checklist
+## Security checklist
 
 - [x] Tessera should run in independent network segment in production
 

@@ -80,16 +80,16 @@ nav:
       - Plugins:
           - Overview: Concepts/Plugins/Plugins.md
           - Architecture: Concepts/Plugins/PluginsArchitecture.md
-      - Security Framework:
+      - Security framework:
           - Overview: Concepts/Security/Framework/Overview.md
-          - GoQuorum Network:
+          - GoQuorum network:
               - Consortium: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
-              - GoQuorum Node: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
-              - Transaction Manager: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
-              - Operational Considerations: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
-          - Decentralized App:
+              - GoQuorum node: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
+              - Transaction manager: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
+              - Operational considerations: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
+          - Decentralized app:
               - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
-              - Smart Contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
+              - Smart contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
       - Multi-tenancy:
           - Overview: Concepts/Multitenancy/Overview.md
           - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
@@ -100,10 +100,10 @@ nav:
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md
   - Tutorials:
       - Quorum Dev Quickstart:
-          - Getting Started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
-          - Using the Quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
+          - Getting started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+          - Using the quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
           - Remix: Tutorials/Quorum-Dev-Quickstart/Remix.md
-      - Create a Private Network:
+      - Create a private network:
           - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
           - Using QBFT: Tutorials/Private-Network/Create-QBFT-Network.md
           - Using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
@@ -153,10 +153,10 @@ nav:
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
   - Reference:
-      - Command Line Options: Reference/CLI-Syntax.md
-      - GoQuorum API Methods: Reference/API-Methods.md
-      - Permissioning Types: Reference/Permissioning-Types.md
-      - Example Genesis File: Reference/genesis.md
+      - Command line options: Reference/CLI-Syntax.md
+      - GoQuorum API methods: Reference/API-Methods.md
+      - Permissioning types: Reference/Permissioning-Types.md
+      - Example genesis file: Reference/genesis.md
       - Plugins:
           - Initialization interface: Reference/Plugins/init_interface.md
           - helloworld:
@@ -170,9 +170,9 @@ nav:
             - Developers: Reference/Plugins/security/For-Developers.md
             - Users: Reference/Plugins/security/For-Users.md
             - Interface: Reference/Plugins/security/interface.md
-      - Accounts for Testing: Reference/Accounts-for-Testing.md
-      - GoQuorum Projects: Reference/GoQuorum-Projects.md
-      - Logging and Errors: Reference/Logging and Errors.md
+      - Accounts for testing: Reference/Accounts-for-Testing.md
+      - GoQuorum projects: Reference/GoQuorum-Projects.md
+      - Logging and errors: Reference/Logging and Errors.md
       - quorum.js:
           - Overview: Reference/quorum.js/Overview.md
           - extend API: Reference/quorum.js/extend.md

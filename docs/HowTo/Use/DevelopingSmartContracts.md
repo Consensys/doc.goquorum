@@ -1,7 +1,7 @@
-# Developing Smart Contracts
+# Developing smart contracts
 
-GoQuorum uses standard [Solidity](https://solidity.readthedocs.io/en/develop/) for writing Smart Contracts,
-and generally, these can be designed as you would design Smart Contracts for Ethereum. Smart Contracts can
+GoQuorum uses standard [Solidity](https://solidity.readthedocs.io/en/develop/) for writing smart contracts,
+and generally, these can be designed as you would design smart contracts for Ethereum. Smart contracts can
 either be public (that is, visible and executable by all participants on a given GoQuorum network) or private to
 one or more network participants. Note that GoQuorum does not introduce new contract types.
 

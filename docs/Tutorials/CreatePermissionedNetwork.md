@@ -42,7 +42,7 @@ Initialize geth:
 geth init genesis.json
 ```
 
-## 2. Setup Bootnode
+## 2. Setup bootnode
 
 Optionally you can set up a bootnode that all the other nodes will first connect to in order to find
 other peers in the network. You will first need to generate a bootnode key:
@@ -74,7 +74,7 @@ node a spectator. If you have setup a bootnode then be sure to add the `--bootno
 geth --bootnodes $BOOTNODE_ENODE
 ```
 
-## Adding New Nodes
+## Adding new nodes
 
 Any additions to the `permissioned-nodes.json` file are dynamically picked up by the server when
 subsequent incoming/outgoing requests are made. The node does not need to be restarted in order for the changes to take effect.

@@ -29,7 +29,7 @@ nodes running in a single cluster.
        Geth_Startup_Params: --rpcvhosts=\"*\" --rpccorsdomain=\"*\"
     ```
 
-## External Nodes
+## External nodes
 
 External nodes are a multi-cluster concept for nodes outside the cluster. External nodes need
 network routes to the necessary services (GoQuorum p2p and Tessera p2p), and the node address

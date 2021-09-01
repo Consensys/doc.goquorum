@@ -8,13 +8,13 @@
 * Add `enableMultiplePrivateStates=true` and configure `residentGroups` in the Tessera config
 * Run GoQuorum with `--multitenancy` flag
 
-## Network Topology
+## Network topology
 
 A network can consist of multi-tenant nodes and single-tenant nodes. One or more independent
 authorization servers can be used to protect multi-tenant nodes, however one multi-tenant node can
 only be protected by one authorization server.
 
-## Sample Network Setup
+## Sample network setup
 
 This section outlines an example of how multi-tenancy can be set up. A network operator must
 configure [scope values] for each user in an authorization server, for each tenant.
@@ -73,7 +73,7 @@ rpc://eth_*
 psi://J?self.eoa=0x0
 ```
 
-### Tessera Setup
+### Tessera setup
 
 In addition to configuring the Authorization Server, the Tessera config file must be updated to contain the new flag `enableMultiplePrivateStates=true` and the `residentGroups` for the multi-tenant nodes.
 
@@ -101,12 +101,12 @@ Tessera will not start if `residentGroups` is not configured correctly and `enab
 
 In the above setup, `Node2` is being run as a legacy standalone node with `isMPS=false`. No additional configuration changes are required in Tessera.
 
-## Adding a new Tenant to Multi-tenant Node
+## Adding a new tenant to multi-tenant node
 
 * Network Admin executes Tessera keygen to generate the new key
 * The Tessera config file must be updated to include the new key in a resident group.
 * Tessera needs to be restarted to load the new key. When Tessera starts, if the new key was generated but not added to a resident group the startup will fail.
-* Updates to the Authorization Server should be made to provide the new Tenant access to the private state defined in the `residentGroups` configuration.
+* Updates to the Authorization Server should be made to provide the new tenant access to the private state defined in the `residentGroups` configuration.
 
 [scope values]: ../../Concepts/Multitenancy/Overview.md#access-token-scope
 [custom scopes]: ../../Concepts/Multitenancy/Overview.md#access-token-scope

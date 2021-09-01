@@ -1,4 +1,4 @@
-# Managing Keys
+# Managing keys
 
 Options for managing keys in GoQuorum include:
 

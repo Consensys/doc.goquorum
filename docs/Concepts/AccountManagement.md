@@ -1,4 +1,4 @@
-# Account/Key Management
+# Account/key management
 
 Cryptographic keys are an essential component of a GoQuorum network. GoQuorum uses keys to create digital
 signatures which verify a sender's identity and prevent message tampering. The Privacy Manager uses keys to encrypt private transaction data.

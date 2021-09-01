@@ -11,7 +11,7 @@ Qubernetes has defaults to enable quick setups and ease of use. Qubernetes is cu
 more advanced Kubernetes deployments. For example,  with configurable ingress, network policies, security
 context, and persistent volume size. Qubernetes includes support for Cakeshop, monitoring, and acceptance tests.
 
-## Build Container
+## Build container
 
 The [qubernetes build container](https://hub.docker.com/repository/docker/quorumengineering/qubernetes):
 

@@ -1,4 +1,4 @@
-# GoQuorum Projects
+# GoQuorum projects
 
 See the [`awesome-quorum`](https://github.com/ConsenSys/awesome-quorum#built-on-quorum) repository for a list of
 projects and samples highlighting GoQuorum functionality.

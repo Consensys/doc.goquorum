@@ -1,5 +1,5 @@
 ---
-description: Overview of GoQuorum Architecture
+description: Overview of GoQuorum architecture
 ---
 
 # Architecture
