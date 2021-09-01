@@ -141,7 +141,7 @@ nav:
           - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md
           - Use Splunk: HowTo/Monitor/Splunk.md
           - Use Cakeshop: HowTo/Monitor/Cakeshop.md
-          - Use Quorum reporting: HowTo/Monitor/Quorum-Reporting.md
+          - Use Quorum Reporting: HowTo/Monitor/Quorum-Reporting.md
       - Use:
           - Add nodes to network: HowTo/Use/adding_nodes.md
           - Migrate network nodes: HowTo/Use/node_network_migration.md
@@ -154,8 +154,8 @@ nav:
           - Backup and restore: HowTo/Use/import-export.md
   - Reference:
       - Command line options: Reference/CLI-Syntax.md
-      - GoQuorum API Methods: Reference/API-Methods.md
-      - Permissioning Types: Reference/Permissioning-Types.md
+      - GoQuorum API methods: Reference/API-Methods.md
+      - Permissioning types: Reference/Permissioning-Types.md
       - Example genesis file: Reference/genesis.md
       - Plugins:
           - Initialization interface: Reference/Plugins/init_interface.md
