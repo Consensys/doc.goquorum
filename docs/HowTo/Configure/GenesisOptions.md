@@ -1,31 +1,66 @@
-# GoQuorum genesis options
+---
+description: Configuring a network using a genesis file.
+---
 
-## Configurable transaction size
+# Creating the GoQuorum genesis file
 
-GoQuorum allows operators of blockchains to increase maximum transaction size of accepted transactions
-via the genesis block. The GoQuorum default is currently increased to `64kb` from Ethereum's default `32kb`
-transaction size. This is configurable up to `128kb` by adding `txnSizeLimit` to the configuration section of the genesis file:
+The genesis file defines the first block in the chain, and the first block defines which chain you
+want to join.
 
-``` json
-"config": {
-    "chainId": 10,
-    "isQuorum":true.
-    ...
-    "txnSizeLimit": 128
-}
+Create a JSON genesis file, then specify the genesis file when initalizing GoQuorum with:
+
+```bash
+geth init <PATH-TO-GENESIS-FILE>
 ```
 
-## Contract code size
+The genesis file specifies the [network-wide settings](../../Reference/genesis.md), so all nodes in a network must use
+the same genesis file.
 
-GoQuorum allows operators of blockchains to increase maximum contract code size of accepted smart contracts
-via the genesis block. The GoQuorum default is currently increased to `32kb` from Ethereum's default `24kb`
-contract code size. This is configurable up to `128kb` by adding `maxCodeSize` to the configuration section of the genesis file:
+!!! example "Example Raft genesis file"
 
-``` json
-"config": {
-    "chainId": 10,
-    "isQuorum":true.
-    ...
-    "maxCodeSize": 128
-}
-```
+    ``` json
+    {
+      "alloc": {
+        "0xed9d02e382b34818e88b88a309c7fe71e65f419d": {
+          "balance": "1000000000000000000000000000"
+        },
+        "0xca843569e3427144cead5e4d5999a3d0ccf92b8e": {
+          "balance": "1000000000000000000000000000"
+        },
+        "0x0fbdc686b912d7722dc86510934589e0aaf3b55a": {
+          "balance": "1000000000000000000000000000"
+        },
+        "0x9186eb3d20cbd1f5f992a950d808c4495153abd5": {
+          "balance": "1000000000000000000000000000"
+        },
+        "0x0638e1574728b6d862dd5d3a3e0942c3be47d996": {
+          "balance": "1000000000000000000000000000"
+        }
+      },
+      "coinbase": "0x0000000000000000000000000000000000000000",
+      "config": {
+        "homesteadBlock": 0,
+        "byzantiumBlock": 0,
+        "constantinopleBlock": 0,
+        "chainId": 10,
+        "eip150Block": 0,
+        "eip155Block": 0,
+        "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "eip158Block": 0,
+        "maxCodeSizeConfig": [
+          {
+            "block": 0,
+            "size": 35
+          }
+        ],
+        "isQuorum": true
+      },
+      "difficulty": "0x0",
+      "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "gasLimit": "0xE0000000",
+      "mixhash": "0x00000000000000000000000000000000000000647572616c65787365646c6578",
+      "nonce": "0x0",
+      "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "timestamp": "0x00"
+    }
+    ```

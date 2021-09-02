@@ -34,12 +34,10 @@ failing or propagating incorrect information to peers.
 
 ## Genesis file
 
-To use IBFT, GoQuorum requires a genesis file.
+To use IBFT, GoQuorum requires a [genesis file](../GenesisOptions.md).
 The genesis file defines properties specific to IBFT and to your specific network.
 
-!!! example "Sample IBFT genesis file"
-
-    Example genesis file for a 4 nodes IBFT2 network.
+!!! example "Example IBFT genesis file"
 
     ```json
       {

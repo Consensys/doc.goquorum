@@ -117,13 +117,14 @@ nav:
       - Send private transactions: Tutorials/Send-private-transaction.md
       - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
   - How to:
-      - Configure:
+      - Configure GoQuorum:
           - Consensus protocols:
               - IBFT: HowTo/Configure/Consensus-Protocols/IBFT.md
               - QBFT: HowTo/Configure/Consensus-Protocols/QBFT.md
               - Raft: HowTo/Configure/Consensus-Protocols/Raft.md
               - Clique: HowTo/Configure/Consensus-Protocols/Clique.md
-          - Genesis file: HowTo/Configure/GenesisOptions.md
+          - Create a genesis file: HowTo/Configure/GenesisOptions.md
+          - Predeploy a contract in the genesis file: HowTo/Configure/Contracts-in-Genesis.md
           - High availability: HowTo/Configure/HighAvailability.md
           - Permissioning:
               - Basic permissions: HowTo/Configure/Permissioning/BasicPermissions.md
@@ -156,7 +157,7 @@ nav:
       - Command line options: Reference/CLI-Syntax.md
       - GoQuorum API methods: Reference/API-Methods.md
       - Permissioning types: Reference/Permissioning-Types.md
-      - Example genesis file: Reference/genesis.md
+      - Genesis file items: Reference/genesis.md
       - Plugins:
           - Initialization interface: Reference/Plugins/init_interface.md
           - helloworld:
