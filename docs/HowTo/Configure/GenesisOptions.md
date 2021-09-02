@@ -7,7 +7,8 @@ description: Configuring a network using a genesis file.
 The genesis file defines the first block in the chain, and the first block defines which chain you
 want to join.
 
-Create a JSON genesis file, then specify the genesis file when initalizing GoQuorum with:
+[Create a JSON genesis file](https://consensys.net/blog/quorum/hyperledger-besu-how-to-create-an-ethereum-genesis-file/),
+then specify the genesis file when initalizing GoQuorum with:
 
 ```bash
 geth init <PATH-TO-GENESIS-FILE>
