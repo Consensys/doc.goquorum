@@ -15,11 +15,11 @@ Network configuration items are specified in the genesis file in the `config` ob
 |---------------------|-:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Milestone blocks    | [Milestone blocks for the network](#milestone-blocks).                                                                                                                                      |
 | `chainId`           | [Chain ID for the network](../Concepts/NetworkAndChainID.md).                                                                                                                               |
-| `istanbul`          | Specifies network uses [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md) or [QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md) and contains [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md#genesis-file) or [QBFT configuration items](../HowTo/Configure/Consensus-Protocols/QBFT.md#genesis-file), respectively. |
+| `istanbul`          | Specifies network uses [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md) or [QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md) and contains [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md#genesis-file) or [QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md#genesis-file) configuration items, respectively. |
 | `clique`            | Specifies network uses [Clique](../HowTo/Configure/Consensus-Protocols/Clique.md) and contains Clique configuration items.                                                                  |
 | `txnSizeLimit`      | Maximum transaction size. The default is `64` (kilobytes), increased from Ethereum's default `32`. This is configurable up to `128`.                                                        |
 | `maxCodeSize`       | Maximum smart contract code size. The default is `32` (kilobytes), increased from Ethereum's default `24`. This is configurable up to `128`.                                                |
-| `isQuorum`          | Set to `true` to allow interoperable private transactions between GoQuorum and [Hyperledger Besu](https://besu.hyperledger.org/en/stable/) using the Tessera private transaction manager.   |
+| `isQuorum`          | Set to `true` to enable `geth` to work as GoQuorum and make additional checks, for example, ensure the gas fee is zero.                                                                     |
 
 !!! note
 
