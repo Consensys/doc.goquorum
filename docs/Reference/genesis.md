@@ -1,5 +1,5 @@
 ---
-description: Configuration items specified in the Hyperledger Besu genesis file
+description: Configuration items specified in the GoQuorum genesis file
 ---
 
 # Genesis file items
