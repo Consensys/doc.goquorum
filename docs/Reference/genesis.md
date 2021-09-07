@@ -28,7 +28,7 @@ Network configuration items are specified in the genesis file in the `config` ob
 ## Genesis block parameters
 
 The purpose of some genesis block parameters varies depending on the consensus protocol ([IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md),
-[QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md), [Raft](../HowTo/Configure/Consensus-Protocols/Raft.md),or
+[QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md), [Raft](../HowTo/Configure/Consensus-Protocols/Raft.md), or
 [Clique](../HowTo/Configure/Consensus-Protocols/Clique.md)).
 These parameters include:
 
