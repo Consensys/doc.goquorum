@@ -38,12 +38,10 @@ failing or propagating incorrect information to peers.
 
 ## Genesis file
 
-To use QBFT, GoQuorum requires a genesis file.
+To use QBFT, GoQuorum requires a [genesis file](../GenesisOptions.md).
 The genesis file defines properties specific to QBFT and to your specific network.
 
-!!! example "Sample QBFT genesis file"
-
-    Example genesis file for a 4 nodes QBFT network.
+!!! example "Example QBFT genesis file"
 
     ```json
       {
