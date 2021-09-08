@@ -152,6 +152,9 @@ nav:
           - Include revert reason: HowTo/Use/Revert-Reason.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
+      - Interact with a node:
+          - Client libraries:
+              - Use the web3js-quorum client library: HowTo/Interact/Client-Libraries/web3js-quorum.md
   - Reference:
       - Command line options: Reference/CLI-Syntax.md
       - GoQuorum API methods: Reference/API-Methods.md
@@ -173,10 +176,7 @@ nav:
       - Accounts for testing: Reference/Accounts-for-Testing.md
       - GoQuorum projects: Reference/GoQuorum-Projects.md
       - Logging and errors: Reference/Logging and Errors.md
-      - quorum.js:
-          - Overview: Reference/quorum.js/Overview.md
-          - extend API: Reference/quorum.js/extend.md
-          - RawTransactionManager API: Reference/quorum.js/RawTransactionManager.md
+      - Web3js-quorum: Reference/web3js-quorum.md
       - FAQ: Reference/FAQ.md
 
 markdown_extensions:
@@ -333,3 +333,6 @@ plugins:
         Concepts/Permissioning/Enhanced/ContractDesign.md: Concepts/PermissionsOverview.md
         HowTo/Configure/BasicPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
         HowTo/Configure/EnhancedPermissions.md: HowTo/Configure/Permissioning/EnhancedPermissions.md
+        Reference/quorum.js/Overview.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
+        Reference/quorum.js/extend.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
+        Reference/quorum.js/RawTransactionManager.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
