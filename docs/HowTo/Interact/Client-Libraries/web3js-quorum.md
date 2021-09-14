@@ -72,7 +72,7 @@ Initialize your client where:
         ```
 
         !!! important
-            IPC and HTTP are exclusive. Choose one or the other depending on your needs.
+            IPC and HTTP are mutually exclusive. Choose one or the other depending on your needs.
 
     === "IPC example"
 
@@ -90,7 +90,7 @@ Initialize your client where:
         ```
 
         !!! important
-            If IPC is enabled with `ipcPath`, HTTP `privateUrl` and TLS options will be ignored.
+            If IPC is enabled with `ipcPath`, then HTTP `privateUrl` and TLS options will be ignored.
 
     === "HTTP example"
 
@@ -108,7 +108,7 @@ Initialize your client where:
         ```
 
         !!! important
-            If HTTP is enabled with `privateUrl`, `ipcPath` options should not be used.
+            If HTTP is enabled with `privateUrl`, then `ipcPath` options should not be used.
 
     === "HTTP + enclave TLS example"
 
@@ -137,11 +137,12 @@ Initialize your client where:
         ```
 
         !!! important
-            * `allowInsecure: false` forces verification of the Privacy Manager’s certificate.
+            * `allowInsecure: false` forces the private transaction manager's certificate to be verified.
 
-                Setting `allowInsecure: true` will disable Privacy Manager’s certificate verification and allow self-signed certificates.
+                Setting `allowInsecure: true` disables the private transaction manager's certificate verification and allows
+                self-signed certificates.
 
-            * If HTTPS is enabled with `privateUrl` and TLS options, `ipcPath` options should not be used.
+            * If HTTPS is enabled with `privateUrl` and TLS options, then `ipcPath` options should not be used.
 
 ## Deploying a contract with `generateAndSendRawTransaction`
 
