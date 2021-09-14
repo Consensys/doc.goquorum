@@ -37,11 +37,11 @@ npm install web3js-quorum
 Initialize your client where:
 
 * `<GoQuorum JSON-RPC HTTP endpoint>` is the JSON-RPC HTTP endpoint of your GoQuorum node.
-* `<Enclave IPC Path>` is the enclave IPC Unix socket path
-* `<Enclave Private URL>` is the enclave HTTP endpoint
-* `<enclave key file path>` is the enclave public key file path, see [Tessera keys doc](https://docs.tessera.consensys.net/en/stable/HowTo/Generate-Keys/File-Stored-Keys/#store-keys-in-files)
-* `<enclave TLS cert file path>` is the enclave TLS client certificate file path, see [Tessera TLS doc](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)
-* `<enclave TLS CA cert file path>` is the enclave TLS certification authority (CA) certificate file path, see [Tessera TLS doc](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)
+* `<Enclave IPC Path>` is the enclave IPC Unix socket path.
+* `<Enclave Private URL>` is the enclave HTTP endpoint.
+* `<enclave key file path>` is the enclave public key file path (see [Tessera keys documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Generate-Keys/File-Stored-Keys/#store-keys-in-files)).
+* `<enclave TLS cert file path>` is the enclave TLS client certificate file path (see [Tessera TLS documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)).
+* `<enclave TLS CA cert file path>` is the enclave TLS certification authority (CA) certificate file path (see [Tessera TLS documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)).
 
 !!! example "Example connection"
 
