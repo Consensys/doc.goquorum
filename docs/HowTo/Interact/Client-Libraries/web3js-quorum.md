@@ -37,11 +37,11 @@ npm install web3js-quorum
 Initialize your client where:
 
 * `<GoQuorum JSON-RPC HTTP endpoint>` is the JSON-RPC HTTP endpoint of your GoQuorum node.
+* `<Enclave IPC Path>` is the enclave IPC Unix socket path
+* `<Enclave Private URL>` is the enclave HTTP endpoint
 * `<enclave key file path>` is the enclave public key file path, see [Tessera keys doc](https://docs.tessera.consensys.net/en/stable/HowTo/Generate-Keys/File-Stored-Keys/#store-keys-in-files)
 * `<enclave TLS cert file path>` is the enclave TLS client certificate file path, see [Tessera TLS doc](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)
 * `<enclave TLS CA cert file path>` is the enclave TLS certification authority (CA) certificate file path, see [Tessera TLS doc](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)
-* `<Enclave IPC Path>` is the enclave IPC Unix socket path
-* `<Enclave Private URL>` is the enclave HTTP endpoint
 
 !!! example "Example connection"
 
@@ -71,7 +71,7 @@ Initialize your client where:
           enclaveOptions, isQuorum);
         ```
 
-        !!! note
+        !!! important
             IPC and HTTP are exclusive. Choose one or the other depending on your needs.
 
     === "IPC example"
@@ -89,8 +89,8 @@ Initialize your client where:
           enclaveOptions, isQuorum);
         ```
 
-        !!! note
-            If IPC is enabled with `ipcPath`, HTTP `privateUrl` and TLS options should not be used.
+        !!! important
+            If IPC is enabled with `ipcPath`, HTTP `privateUrl` and TLS options will be ignored.
 
     === "HTTP example"
 
@@ -107,7 +107,7 @@ Initialize your client where:
           enclaveOptions, isQuorum);
         ```
 
-        !!! note
+        !!! important
             If HTTP is enabled with `privateUrl`, `ipcPath` options should not be used.
 
     === "HTTP + enclave TLS example"
@@ -118,9 +118,9 @@ Initialize your client where:
         const fs = require('fs');
 
         const isQuorum = true;
-        const keyFileBuffer = fs.readFileSync("./key-file");
-        const certFileBuffer = fs.readFileSync("./cert-file");
-        const caCertFileBuffer = fs.readFileSync("./ca-cert-file");
+        const keyFileBuffer = fs.readFileSync("./cert.key");
+        const certFileBuffer = fs.readFileSync("./cert.pem");
+        const caCertFileBuffer = fs.readFileSync("./ca-cert.pem");
 
         const enclaveOptions = {
           privateUrl: "https://localhost:9081",
@@ -136,8 +136,12 @@ Initialize your client where:
           enclaveOptions, isQuorum);
         ```
 
-        !!! note
-            If HTTPS is enabled with `privateUrl` and TLS options, `ipcPath` options should not be used.
+        !!! important
+            * `allowInsecure: false` forces verification of the Privacy Manager’s certificate.
+
+                Setting `allowInsecure: true` will disable Privacy Manager’s certificate verification and allow self-signed certificates.
+
+            * If HTTPS is enabled with `privateUrl` and TLS options, `ipcPath` options should not be used.
 
 ## Deploying a contract with `generateAndSendRawTransaction`
 
