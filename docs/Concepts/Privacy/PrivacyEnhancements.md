@@ -5,12 +5,13 @@ description: Privacy Enhancements feature prevents nodes from modifying contract
 
 # Privacy enhancements
 
-From GoQuorum v20.10.0, two privacy enhancements are included to prevent state divergence:
+Three different flavours of privacy enhancements as detailed below:
 
-* Counter party protection
+* Counter-party protection
+* Mandatory party protection
 * Private state validation
 
-## Counter party protection
+## Counter Party protection
 
 Counter party protection prevents non-participants sending a transaction to a
 private contract. For example, a private contract is deployed between node 1 and 2. Without counter
@@ -23,7 +24,13 @@ Use the counter party protection instead of access controls on private contract 
 against other network participants from updating the state. Counter party protection prevents non-participants
 from interacting with the private contract without additional access controls.
 
-## Private state validation
+## Mandatory Party protection
+
+Inherits all features of Counter party protection (including state divergence) but allows for one or more recipients to be defined as "mandatory" for the contract and to be included in all subsequent transactions to the contract so as to have full private state while normal recipients may only have partial state of the contract.
+
+Use the mandatory party protection if you need "governing" or "central" nodes defined to have full private state view at contract level for all or selective contracts deployed in the network.
+
+## Private State Validation
 
 Private state validation prevents state divergence by ensuring that any private transaction
 for the contract is always sent to all participants. For example, a private contract is deployed between node 1 and 2.
@@ -52,21 +59,25 @@ transaction for the contract.
 A new parameter `PrivacyFlag` has been added to all GoQuorum
 [`send` API methods](../../Reference/API-Methods.md#privacy-methods), being passed from the client to enable the privacy
 enhancements feature.
-This flag is an unsigned integer set to 1 for PP and 3 for PSV transactions.
+This flag is an unsigned integer set to 1 for PP, 2 for MPP and 3 for PSV transactions.
 If the flag is missing or zero, the transaction is assumed to be a "non-privacy enhanced" SP transaction.
+
+### MandatoryFor[]
+
+A new parameter `mandatoryFor` has been added to all GoQuorum [`send` API methods](../../Reference/API-Methods.md#privacy-methods), being passed from the client to define a set of recipients as mandatory for a contract. Different contracts can have different mandatory recipients defined based on use case needs.
 
 ### Privacy Metadata and Privacy Metadata Trie
 
 Privacy Metadata is a new structure introduced in GoQuorum. It is stored in the GoQuorum DB in the privacy
 metadata trie (which is linked to the private state via root hash mappings). The Privacy Metadata contains
-the ACOTH and privacyFlag.
+the ACOTH and privacyFlag(and mandatory recipients only for MPP contracts).
 
 Privacy Metadata Trie is a parallel trie that stores the privacy metadata (and whatever extra data we
 may need) for the private contracts and is linked to the private state by root hash mappings. The records
 in the trie are keyed by the contract address (similarly to how the contract/accounts data is stored
 in the state trie).
 
-Each contract(account) that is created as the result of a PP or PSV transaction would have such a structure
+Each contract(account) that is created as the result of a PP,MPP or PSV transaction would have such a structure
 attached to the privacy metadata trie as it is essential in performing checks on future transactions
 affecting those contracts.
 
@@ -84,21 +95,21 @@ and attach them to the proposed transaction.
 Depending on the complexity of the contracts and the throughput of the network it may happen that the
 state at simulation time may differ from the chain state at the time the proposed transaction is minted.
 If the state at minting time is sufficiently altered to determine different contract interactions the
-corresponding PP/PSV transactions would be marked as failed on all the participants.
-Furthermore, since state divergence is expected in PP contracts, it is possible (depending on contract design)
-for PP transactions to fail on some of the participants.
+corresponding PP/MPP & PSV transactions would be marked as failed on all the participants.
+Furthermore, since state divergence is expected in PP/MPP contracts, it is possible (depending on contract design)
+for PP/MPP transactions to fail on some of the participants.
 
 Concurrency may also present a problem for PSV contracts. The execution hash calculation is based on
 the chain state at simulation time. Submitting multiple transactions to the same PSV contract from multiple
 nodes concurrently is likely to result in most of the transactions failing.
 
-Considering the above we expect users to choose PP and PSV contracts/transactions **only** when th
+Considering the above we expect users to choose private enhanced contracts/transactions **only** when the
 enhanced privacy is necessary (and the extra privacy benefits outweigh the potential shortfalls).
 
 ### Contract/transaction interactions
 
 No interactions are allowed between the different types of private contracts/transactions. The only type
-of allowed interaction is for private contracts (SP/PP/PSV) to read from public contracts.
+of allowed interaction is for private contracts (SP/PP/MPP & PSV) to read from public contracts.
 
 ![Contract interaction matrix](../../images/PrivacyEnhancements_Contract_Interaction_Matrix.png)
 
@@ -130,7 +141,7 @@ GoQuorum node reports an appropriate error message in the console suggesting use
 
 If a node wants to upgrade it's Tessera to privacy enhancements release (or further) to avail other
 features and fixes but not ready to upgrade GoQuorum, it can do so by not enabling `enablePrivacyEnhancements`
-in Tessera config. This will allow the node to reject PP and PSV transactions from other nodes until
+in Tessera config. This will allow the node to reject PP/MPP and PSV transactions from other nodes until
 the node is ready to support privacy enhanced contracts/transactions.
 
 ## Backward compatability
@@ -140,7 +151,7 @@ the node is ready to support privacy enhanced contracts/transactions.
 An upgraded GoQuorum node can coexist on a network where other nodes are running on lower version of
 GoQuorum and thus supports node by node upgrade. But it cannot support privacy enhanced contracts until
 all interested nodes are upgraded and privacy is enabled.
-If an upgraded but privacy not "enabled" node receives a PSV or PP transaction the node would log a
+If an upgraded but privacy not "enabled" node receives a PP/MPP or PSV transaction the node would log a
 `BAD BLOCK` error with “Privacy enhanced transaction received while privacy enhancements are disabled.
 Please check your node configuration.” error message. If the consensus algorithm is Raft, the node would stop.
 For Istanbul, the node would keep trying to append the problematic block and reprint the above errors and
@@ -149,8 +160,8 @@ it won't catch up with rest of nodes until restarted and reinitialized with the 
 ### Tessera
 
 On any given node, Tessera can be upgraded to privacy enhanced release at anytime.
-Take care when you enable `enablePrivacyEnhancements` flag in Tessera config as it will accept PSV and
-PP transactions and can cause the node to crash if GoQuorum node is not privacy enabled.
+Take care when you enable `enablePrivacyEnhancements` flag in Tessera config as it will accept PP/MPP and
+PSV transactions and can cause the node to crash if GoQuorum node is not privacy enabled.
 The upgraded node can continue to communicate on Tessera nodes running on previous versions using SP transactions.
 API versioning <!-- TODO: add hyperlink later --> (that will be introduced along with privacy enhancements)
 enables the upgraded node to determine if the receiving node supports privacy enhancements and fail the transaction if not.
@@ -159,13 +170,18 @@ enables the upgraded node to determine if the receiving node supports privacy en
 
 Refer [here](PrivateTransactionLifecycle.md) to refresh about Tessera P2P communication.
 
-### Party protection changes
+### Party Protection changes
 
 To prevent a non-party node from interacting with PP contracts new transactions must be submitted with
 `ACOTHs` and `PrivacyFlag` from GoQuorum to Tessera. The Tessera node would then generate proofs
 (a hash using new transaction ciphertext, original transaction ciphertext and original transaction master key)
 for each ACOTH and include a) `PrivacyFlag`, b) ACOTHs and c) ACOTH proofs (secure hashes) in the transaction
 payload shared between Tessera nodes.
+
+### Mandatory Party Protection changes
+
+To define a recipient as mandatory for a contract, new transactions must be submitted with
+`ACOTHs`, `PrivacyFlag` and `mandatoryFor` from GoQuorum to Tessera. The Tessera node would include a) `PrivacyFlag`, b) ACOTHs , c) ACOTH proofs (secure hashes) and mandatory recipients in the transaction payload shared between Tessera nodes.
 
 ### Private State Validation changes
 
@@ -183,24 +199,25 @@ In this example we walk through the flow of a private transaction on a "privacy 
 
 1. User pushing a private transaction from Node A private for Node B
 
-    * The transaction payload will include the `PrivacyFlag` with value `1` for PP and `3` for PSV contract
+    * The transaction payload will include the `PrivacyFlag` with value `1` for PP, `2` for MPP and `3` for PSV contract (& also `mandatoryFor` for MPP contracts)
 
 1. Node A GoQuorum reading the `PrivacyFlag` runs an EVM transaction simulation to gather all the affected
 contracts and the ACOTH(s) associated to contract accounts. For PSV transactions, it also calculates
 an execution hash (Merkle root) from all the affected contracts resulting from the transaction simulation.
 
-1. Node A GoQuorum pushes the transaction payload, `PrivacyFlag`, ACOTHs (& the Merkle root for PSV) to Node A Tessera.
+1. Node A GoQuorum pushes the transaction payload, `PrivacyFlag`, ACOTHs (& `mandatoryFor` for MPP or the Merkle root for PSV) to Node A Tessera.
 
 1. Node A Tessera generates proofs (secure hashes) for the ACOTHs and use them to validate that the
 originating party has access to all relevant transactions.
-In addition for PSV it would also verify the participants list against the list in each of the ACOTH
+In addition for MPP it verifies mandatory recipients against the list in each of ACOTH(the list should at the minimum include all mandatory recipients against each ACOTH).
+For PSV it would verify the participants list against the list in each of the ACOTH
 transactions (as in PSV transactions the recipient list is shared across all nodes party to the transaction).
 If the list doesn't match it will return failure on `/send` to Node A GoQuorum.
 
 1. Node A Tessera pushes to Node B Tessera the encrypted payload, ACOTH <-> proofs (secure hash) mappings
-(for PSV transaction it will also push the `privateFor` list and Merkle root).
+(for MPP it will also push `mandatoryFor` and for PSV transaction it will also push the `privateFor` list and Merkle root).
 
-1. Node B Tessera computes and compares proofs (secure hash) from Node A Tessera (for PSV it also verifies
+1. Node B Tessera computes and compares proofs (secure hash) from Node A Tessera (for MPP it also verifies mandatory recipients & for PSV it also verifies
 participants list of ACOTHs against the `privateFor` list).
 
 1. Node B Tessera returns a SUCCESS response to Node A Tessera - even if the compute and compare mismatched
@@ -224,6 +241,7 @@ the transaction receipt accordingly to mark transaction execution completion.
     proofs (secure hash) for each ACOTH.**
 
 *[PP]: Counter Party Protection
+*[MPP]: Mandatory Party Protection
 *[PSV]: Private State Validation
 *[ACOTH]: Affected Contract's Original Transaction's encrypted payload Hash
 *[SP]: Standard Private
