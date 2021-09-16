@@ -19,7 +19,7 @@ The following diagram describes the flow of contract state extension.
 For the purpose of the flow description, "**all participants**" in the below description refers to:
 
 - For *"**Standard Private**"* type of contracts, it will be node initiating the extension and the node to which the contract is being extended
-- For *"**Party Protection**"* & *"**State Validation**"* type of contracts, it will include all the nodes which are current participant of the contract and the new node to which it is being extended
+- For *"**Party Protection**"*, *"**Mandatory Party Protection**"* & *"**State Validation**"* type of contracts, it will include all the nodes which are current participant of the contract and the new node to which it is being extended
 
 In this example, an existing private contract deployed between Nodes A and B is being extended to  Nodes C from Node A.
 
@@ -60,7 +60,7 @@ In this example, an existing private contract deployed between Nodes A and B is 
         propagated across all nodes
 
 1. Node A & B monitors for state share event
-    - **5a** - Upon noticing the state share event as a part of block processing, node A & B update the privacy metadata for the contract being extended. *This step will be executed only for party protection or private state validation type of contracts.*
+    - **5a** - Upon noticing the state share event as a part of block processing, node A & B update the privacy metadata for the contract being extended. *This step will be executed only for party protection, mandatory party protection or private state validation type of contracts.*
 
 1. Node C monitors for state share event
     - **6a** - Upon noticing the state share event as a part of block processing, node C fetches the
