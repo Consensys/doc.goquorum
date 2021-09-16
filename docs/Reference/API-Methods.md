@@ -2488,7 +2488,8 @@ sent to participants with this API, and the resulting hash set as the PMT's `dat
 * object - private data to send, with the following fields:
     * `privateFor`: `List<String>`  - an array of the recipients' base64-encoded public keys.
     * `privateFrom`: `String` - (optional) the sending party’s base64-encoded public key to use (Privacy Manager default if not provided).
-    * `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `3` for PSV
+    * `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP & `3` for PSV
+    * `mandatoryFor`: `List<String>`  - an array of the recipients' base64-encoded public keys.
 
 #### Returns
 
@@ -2628,7 +2629,9 @@ Queries the privacy metadata for the specified contract account address.
 
 * `creationTxHash`: *data* - affected contract's original transaction's encrypted payload hash
 
-* `privacyFlag`: *number* - unsigned integer with 1 for counterparty protection and 3 for private state validation contracts
+* `privacyFlag`: *number* - unsigned integer with 1 for counterparty protection, 2 for mandatory party protection and 3 for private state validation contracts
+
+* `mandatoryFor`: *string* - an array of the recipients' base64-encoded public keys.
 
 !!! example
 
@@ -2646,7 +2649,8 @@ Queries the privacy metadata for the specified contract account address.
           "id":15,
           "result": {
             "creationTxHash":"0xf67c748bbed92110cb66510d413af99144b4434fa325771b6323f7f00c35192d2f861076f68061ed2d324f614edd2f0159Ba5ee2408bb42402a876c4b295598b7",
-            "privacyFlag":3
+            "mandatoryFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]
+            "privacyFlag":2
           }
         }
         ```
@@ -2662,7 +2666,8 @@ Queries the privacy metadata for the specified contract account address.
         ```json
         {
           "creationTxHash":"0xf67c748bbed92110cb66510d413af99144b4434fa325771b6323f7f00c35192d2f861076f68061ed2d324f614edd2f0159Ba5ee2408bb42402a876c4b295598b7",
-          "privacyFlag":3
+          "mandatoryFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="],
+          "privacyFlag":2
         }
         ```
 
@@ -2886,7 +2891,12 @@ the contract address after the transaction is mined.
 
         * 1 - for counterparty protection
 
+        * 2 - for mandatory party protection
+
         * 3 - for private state validation
+
+    * `mandatoryFor`: *array* of *strings* - when sending a private transaction, an array of the recipients' base64-encoded
+      public keys
 
 * `callback`: *function* - (optional) callback function; if you pass a callback, the HTTP request is made asynchronous.
 
@@ -2975,7 +2985,12 @@ If the transaction is a contract creation, use
 
         * 1 - for counterparty protection
 
+        * 2 - for mandatory party protection
+
         * 3 - for private state validation
+
+    * `mandatoryFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
+      base64-encoded public keys
 
 * `callback`: *function* - (optional) callback function; if you pass a callback, the HTTP request is made asynchronous.
 
@@ -3066,7 +3081,12 @@ the contract address after the transaction is mined.
 
     * 1 - for counterparty protection
 
+    * 2 - for mandatory party protection
+
     * 3 - for private state validation
+
+* `mandatoryFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
+  base64-encoded public keys
 
 * `callbackUrl`: *string* - (optional) URL to perform a POST request to post the result of submitting the transaction
 
