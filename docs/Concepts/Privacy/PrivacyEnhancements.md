@@ -97,7 +97,7 @@ state at simulation time may differ from the chain state at the time the propose
 If the state at minting time is sufficiently altered to determine different contract interactions the
 corresponding PP/MPP & PSV transactions would be marked as failed on all the participants.
 Furthermore, since state divergence is expected in PP/MPP contracts, it is possible (depending on contract design)
-for PP/MRP transactions to fail on some of the participants.
+for PP/MPP transactions to fail on some of the participants.
 
 Concurrency may also present a problem for PSV contracts. The execution hash calculation is based on
 the chain state at simulation time. Submitting multiple transactions to the same PSV contract from multiple
