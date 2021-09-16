@@ -5,9 +5,9 @@ description: Privacy Enhancements feature prevents nodes from modifying contract
 
 # Privacy enhancements
 
-There are three different flavours of privacy enhancements as detailed below:
+Three different flavours of privacy enhancements as detailed below:
 
-* Counter party protection
+* Counter-party protection
 * Mandatory party protection
 * Private state validation
 

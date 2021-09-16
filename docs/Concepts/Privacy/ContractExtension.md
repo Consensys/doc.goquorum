@@ -22,8 +22,8 @@ The following diagram describes the flow of contract state extension.
 
 For the purpose of the flow description, "**all participants**" in the below description refers to:
 
-- For *"**Standard Private**"* type of contracts, it will be node initiating the extension and the node to which the contract is being extended
-- For *"**Party Protection**"*, *"**Mandatory Party Protection**"* & *"**State Validation**"* type of contracts, it will include all the nodes which are current participant of the contract and the new node to which it is being extended
+- For **Standard Private** type of contracts, it will be node initiating the extension and the node to which the contract is being extended
+- For **Party Protection**, **Mandatory Party Protection** & **State Validation** type of contracts, it will include all the nodes which are current participant of the contract and the new node to which it is being extended
 
 In this example, an existing private contract deployed between Nodes A and B is being extended to  Nodes C from Node A.
 
