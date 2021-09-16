@@ -209,7 +209,7 @@ an execution hash (Merkle root) from all the affected contracts resulting from t
 
 1. Node A Tessera generates proofs (secure hashes) for the ACOTHs and use them to validate that the
 originating party has access to all relevant transactions.
-In addition for MPP it verifies mandatory recipients against the list in each of ACOTH(the list should at the minimum include all mandatory recipients against each ACOTH). 
+In addition for MPP it verifies mandatory recipients against the list in each of ACOTH(the list should at the minimum include all mandatory recipients against each ACOTH).
 For PSV it would verify the participants list against the list in each of the ACOTH
 transactions (as in PSV transactions the recipient list is shared across all nodes party to the transaction).
 If the list doesn't match it will return failure on `/send` to Node A GoQuorum.
