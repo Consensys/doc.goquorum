@@ -166,10 +166,6 @@ The upgraded node can continue to communicate on Tessera nodes running on previo
 API versioning <!-- TODO: add hyperlink later --> (that will be introduced along with privacy enhancements)
 enables the upgraded node to determine if the receiving node supports privacy enhancements and fail the transaction if not.
 
-## Tessera P2P communication changes
-
-Refer [here](PrivateTransactionLifecycle.md) to refresh about Tessera P2P communication.
-
 ### Party Protection changes
 
 To prevent a non-party node from interacting with PP contracts new transactions must be submitted with
@@ -190,8 +186,6 @@ contract(s) resulting from the transaction simulation (at the time of submission
 to Tessera. The d) execution hash and e) list of participants are also shared between Tessera nodes.
 
 ## Privacy enhanced transaction end to end flow
-
-Refer [to the private transaction livecycle](PrivateTransactionLifecycle.md) documentation for end to end flow of SP transaction.
 
 ![Privacy enhanced transaction end to end flow](../../images/PrivacyEnhancements.png)
 

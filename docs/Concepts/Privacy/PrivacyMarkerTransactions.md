@@ -130,9 +130,6 @@ A precompile contract that retrieves the internal private transaction from Tesse
 
 #### Transaction submission
 
-!!! note
-    See [private transaction lifecycle] for a complete flow
-
 ![private txn current flow](../../images/PrivateTxn_CurrentFlow.png)
 
 1. Private transaction sent to GoQuorum, to be signed on the node.
@@ -246,7 +243,6 @@ Use the same APIs as usual, such as `eth_sendTransaction`.  If `privateFor` is p
 [eth_getPrivacyPrecompileAddress]: ../../Reference/API-Methods.md#eth_getprivacyprecompileaddress
 [eth_getPrivateTransactionByHash]: ../../Reference/API-Methods.md#eth_getprivatetransactionbyhash
 [eth_getPrivateTransactionReceipt]: ../../Reference/API-Methods.md#eth_getprivatetransactionreceipt
-[private transaction lifecycle]: PrivateTransactionLifecycle.md
 [privacy precompile]: #privacy-precompile-contract
 [internal private transaction]: #internal-private-transaction
 [Flows]: #flows

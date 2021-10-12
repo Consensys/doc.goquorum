@@ -69,7 +69,6 @@ nav:
           - Overview: Concepts/Privacy/Privacy.md
           - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
           - Private transaction manager: Concepts/Privacy/PrivateTransactionManager.md
-          - Private transaction lifecycle: Concepts/Privacy/PrivateTransactionLifecycle.md
           - Contract state extension: Concepts/Privacy/ContractExtension.md
           - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
           - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
@@ -248,7 +247,7 @@ plugins:
         PluggableArchitecture/Internals.md: Concepts/Plugins/PluginsArchitecture.md
         Privacy/Contract-Extension/Overview.md: Concepts/Privacy/ContractExtension.md
         Privacy/Overview.md: Concepts/Privacy/PrivateAndPublic.md
-        Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateTransactionLifecycle.md
+        Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateAndPublic.md
         Privacy/Privacy-Manager.md: Concepts/Privacy/PrivateTransactionManager.md
         Security/Framework/Decentralized Application/Frontend Components.md: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
         Security/Framework/Decentralized Application/Smart Contracts Security.md: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
@@ -332,3 +331,4 @@ plugins:
         Reference/quorum.js/Overview.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
         Reference/quorum.js/extend.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
         Reference/quorum.js/RawTransactionManager.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
+        Concepts/Privacy/PrivateTransactionLifecycle.md: Concepts/Privacy/PrivateAndPublic.md
