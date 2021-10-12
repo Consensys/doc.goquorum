@@ -10,7 +10,7 @@ GoQuorum achieves transaction privacy by:
   `privateFor` parameter.
 
 1. Storing encrypted private data off-chain in a separate component called the
-  [private transaction manager](PrivateTransactionManager.md).
+  [private transaction manager](Privacy.md#private-transaction-manager).
   The private transaction manager encrypts private data, distributes the encrypted data to other parties that are privy
   to the transaction, and returns the decrypted payload to those parties.
 

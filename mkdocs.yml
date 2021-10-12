@@ -68,7 +68,6 @@ nav:
       - Privacy:
           - Overview: Concepts/Privacy/Privacy.md
           - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
-          - Private transaction manager: Concepts/Privacy/PrivateTransactionManager.md
           - Contract state extension: Concepts/Privacy/ContractExtension.md
           - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
           - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
@@ -128,6 +127,7 @@ nav:
           - Permissioning:
               - Basic permissions: HowTo/Configure/Permissioning/BasicPermissions.md
               - Enhanced permissions: HowTo/Configure/Permissioning/EnhancedPermissions.md
+          - Private transaction manager: HowTo/Configure/ConfigurePTM.md
           - Plugins: HowTo/Configure/Plugins.md
           - DNS: HowTo/Configure/dns.md
       - Develop plugins: HowTo/DevelopPlugins.md
@@ -248,7 +248,7 @@ plugins:
         Privacy/Contract-Extension/Overview.md: Concepts/Privacy/ContractExtension.md
         Privacy/Overview.md: Concepts/Privacy/PrivateAndPublic.md
         Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateAndPublic.md
-        Privacy/Privacy-Manager.md: Concepts/Privacy/PrivateTransactionManager.md
+        Privacy/Privacy-Manager.md: Concepts/Privacy/ConfigurePTM.md
         Security/Framework/Decentralized Application/Frontend Components.md: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
         Security/Framework/Decentralized Application/Smart Contracts Security.md: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
         Security/Framework/Quorum Network Security/Consortium.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
@@ -332,3 +332,4 @@ plugins:
         Reference/quorum.js/extend.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
         Reference/quorum.js/RawTransactionManager.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
         Concepts/Privacy/PrivateTransactionLifecycle.md: Concepts/Privacy/PrivateAndPublic.md
+        Concepts/Privacy/PrivateTransactionManager.md: Concepts/Privacy/Privacy.md

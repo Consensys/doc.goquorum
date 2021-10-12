@@ -9,7 +9,7 @@ description: Privacy marker transactions are an alternative method of processing
 
 GoQuorum v21.??.? introduces a new method for processing private transactions, which can be used instead of the normal private transaction flow.
 This makes use of a new type of public transaction referred to as a *privacy marker transaction (PMT)*.
-Only the public privacy marker transaction is added to the chain. The private transaction is stored in the [Privacy Manager (Tessera)](PrivateTransactionManager.md) and is only available to the participants.
+Only the public privacy marker transaction is added to the chain. The private transaction is stored in the [Privacy Manager (Tessera)](Privacy.md#private-transaction-manager) and is only available to the participants.
 
 This functionality is enabled using a new command line flag and genesis flag (see [How To Use]).
 
