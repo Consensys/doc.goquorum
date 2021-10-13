@@ -60,7 +60,7 @@ To validate that the private state change from a private transaction is the same
 block height.
 If the state is in sync across all participating nodes, the same root hash is returned by all participating nodes.
 
-### Private state validation
+### Privacy enhancements and private state validation
 
 When [privacy enhancements](PrivacyEnhancements.md) are enabled and private state validation (PSV) transactions are used,
 the GoQuorum node automatically verifies a contract's state across participating nodes.

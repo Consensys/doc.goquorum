@@ -13,6 +13,8 @@ This reference describes the GoQuorum JSON-RPC API methods.
 
 ## Contract extension methods
 
+The following API methods provide functionality for GoQuorum [contract extension](../Concepts/Privacy/ContractExtension.md).
+
 ### `quorumExtension_activeExtensionContracts`
 
 Lists all active contract extensions involving this node (either as initiator or receiver).
@@ -318,6 +320,8 @@ Retrieves the status of the specified contract extension.
 
 ## Debug methods
 
+The following API methods allow you to inspect and debug the network.
+
 ### `debug_dumpAddress`
 
 Retrieves the state of an address at the specified block number.
@@ -421,7 +425,10 @@ or `pending` (the last block mined plus pending transactions).
 
 ## IBFT methods
 
-To use the IBFT API:
+The following API methods provide access to the [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md) and
+[QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md) consensus engines.
+
+To use these methods:
 
 1. Run Istanbul `geth` with `--rpcapi "istanbul"`.
 
@@ -1053,6 +1060,8 @@ If the start block and end block numbers are not provided, the status of the las
         ```
 
 ## Permission methods
+
+The following API methods provide functionality for GoQuorum [permissioning](../Concepts/PermissionsOverview.md).
 
 ### `quorumPermission_acctList`
 
@@ -2459,6 +2468,8 @@ This can only be performed for the master organization and requires the majority
 
 ## Privacy methods
 
+The following API methods provide functionality for GoQuorum [privacy](../Concepts/Privacy/Privacy.md).
+
 !!! note
 
     Gas price is removed from GoQuorum networks, so is not included as a transaction object parameter in GoQuorum
@@ -2486,14 +2497,14 @@ sent to participants with this API, and the resulting hash set as the PMT's `dat
 
 * string - signed private transaction in hex format
 * object - private data to send, with the following fields:
-    * `privateFor`: `List<String>`  - an array of the recipients' base64-encoded public keys.
-    * `privateFrom`: `String` - (optional) the sending party’s base64-encoded public key to use (Privacy Manager default if not provided).
-    * `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP & `3` for PSV
-    * `mandatoryFor`: `List<String>`  - an array of the recipients' base64-encoded public keys.
+    * `privateFor`: `List<String>`  - an array of the recipients' base64-encoded public keys
+    * `privateFrom`: `String` - (optional) the sending party’s base64-encoded public key to use (Privacy Manager default if not provided)
+    * `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
+    * `mandatoryFor`: `List<String>` - an array of the recipients' base64-encoded public keys
 
 #### Returns
 
-* string - Transaction Manager hash to be used as a privacy marker transaction's `data` when externally signing.
+* string - Transaction Manager hash to be used as a privacy marker transaction's `data` when externally signing
 
 #### Example
 
@@ -2629,9 +2640,9 @@ Queries the privacy metadata for the specified contract account address.
 
 * `creationTxHash`: *data* - affected contract's original transaction's encrypted payload hash
 
-* `privacyFlag`: *number* - unsigned integer with 1 for counterparty protection, 2 for mandatory party protection and 3 for private state validation contracts
+* `privacyFlag`: *number* - `0` for SP, `1` for PP, `2` for MPP, and `3` for PSV transactions
 
-* `mandatoryFor`: *string* - an array of the recipients' base64-encoded public keys.
+* `mandatoryFor`: *string* - an array of the recipients' base64-encoded public keys
 
 !!! example
 
@@ -2721,7 +2732,7 @@ Retrieve the details of a privacy marker transaction's internal private transact
 
 #### Returns
 
-* object - private transaction (will be nil if caller is not a participant)
+* object - private transaction (nil if caller is not a participant)
 
 #### Examples
 
@@ -2776,7 +2787,7 @@ Retrieve the receipt of a privacy marker transaction's internal private transact
 
 #### Returns
 
-* object - private transaction receipt (will be nil if caller is not a participant)
+* object - private transaction receipt (nil if caller is not a participant)
 
 #### Examples
 
@@ -2825,8 +2836,8 @@ Returns the [unencrypted payload from Tessera](https://docs.tessera.consensys.ne
 
 #### Parameters
 
-`id`: *string* - the generated SHA3-512 hash of the encrypted payload from the Private Transaction Manager, in hex;
-this is seen in the transaction as the `input` field.
+`id`: *string* - the generated SHA3-512 hash of the encrypted payload from the Private Transaction Manager, in hex
+(This is seen in the transaction as the `input` field.)
 
 #### Returns
 
@@ -2885,15 +2896,7 @@ the contract address after the transaction is mined.
     * `privateFor`: *array* of *strings* - when sending a private transaction, an array of the recipients' base64-encoded
       public keys
 
-    * `privacyFlag`: *number* - (optional)
-
-        * 0 - for standard private (default if not provided)
-
-        * 1 - for counterparty protection
-
-        * 2 - for mandatory party protection
-
-        * 3 - for private state validation
+    * `privacyFlag`: *number* - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
 
     * `mandatoryFor`: *array* of *strings* - when sending a private transaction, an array of the recipients' base64-encoded
       public keys
@@ -2979,15 +2982,7 @@ If the transaction is a contract creation, use
     * `privateFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
       base64-encoded public keys
 
-    * `privacyFlag`: *number* - (optional)
-
-        * 0 - for standard private (default if not provided)
-
-        * 1 - for counterparty protection
-
-        * 2 - for mandatory party protection
-
-        * 3 - for private state validation
+    * `privacyFlag`: *number* - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
 
     * `mandatoryFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
       base64-encoded public keys
@@ -3075,15 +3070,7 @@ the contract address after the transaction is mined.
 * `privateFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
   base64-encoded public keys
 
-* `privacyFlag`: *number* - (optional)
-
-    * 0 - for standard private (default if not provided)
-
-    * 1 - for counterparty protection
-
-    * 2 - for mandatory party protection
-
-    * 3 - for private state validation
+* `privacyFlag`: *number* - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
 
 * `mandatoryFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
   base64-encoded public keys
@@ -3223,6 +3210,8 @@ hash from the private state database.
         ```
 
 ## Raft methods
+
+The following API methods provide access to the [Raft](../HowTo/Configure/Consensus-Protocols/Raft.md) consensus engine.
 
 ### `raft_addLearner`
 
@@ -3582,3 +3571,8 @@ network level
         ```json
         "minter"
         ```
+
+*[PP]: Counter-Party Protection
+*[MPP]: Mandatory Party Protection
+*[PSV]: Private State Validation
+*[SP]: Standard Private
