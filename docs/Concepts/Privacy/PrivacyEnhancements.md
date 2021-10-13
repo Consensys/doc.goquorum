@@ -8,9 +8,9 @@ description: Privacy Enhancements feature prevents nodes from modifying contract
 In addition to [standard private (SP) transactions](PrivateAndPublic.md#private-transactions), GoQuorum provides three
 different kinds of privacy enhancements:
 
-* [Counter-party protection (PP) transactions](#counter-party-protection)
-* [Mandatory party protection (MPP) transactions](#mandatory-party-protection)
-* [Private state validation (PSV) transactions](#private-state-validation)
+* [Counter-party protection (PP)](#counter-party-protection)
+* [Mandatory party protection (MPP)](#mandatory-party-protection)
+* [Private state validation (PSV)](#private-state-validation)
 
 ## Counter-party protection
 
