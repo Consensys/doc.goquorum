@@ -49,13 +49,6 @@ If the transaction is private, the node can only execute the transaction if it h
 Nodes that are involved in the transaction don't have the private payload at all.
 As a result, all nodes share a common public state created through public transactions and have a local unique private state.
 
-This model imposes a restriction in the ability to modify state in private transactions.
-Since a common use case for a (private) contract is to read data from a public contract, the virtual machine has the
-ability to jump into read only mode.
-For each call from a private contract to a public contract, the virtual machine changes to read only mode.
-If the virtual machine is in read only mode, and the code tries to make a state change, the virtual machine stops
-execution and throws an exception.
-
 ### State verification
 
 To determine if nodes are in sync, the public state root hash is included in the block.

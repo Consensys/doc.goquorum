@@ -148,7 +148,6 @@ nav:
           - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
           - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
           - Multi-tenancy: HowTo/Use/Multitenancy.md
-          - Smart contracts: HowTo/Use/DevelopingSmartContracts.md
           - Include revert reason: HowTo/Use/Revert-Reason.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
@@ -333,3 +332,4 @@ plugins:
         Reference/quorum.js/RawTransactionManager.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
         Concepts/Privacy/PrivateTransactionLifecycle.md: Concepts/Privacy/PrivateAndPublic.md
         Concepts/Privacy/PrivateTransactionManager.md: Concepts/Privacy/Privacy.md
+        HowTo/Use/DevelopingSmartContracts.md: Tutorials/Contracts/Deploying-Contracts.md
