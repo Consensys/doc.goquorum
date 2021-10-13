@@ -14,7 +14,7 @@ This also means events are not shared, as the transactions are not shared and no
 
 !!! note
 
-    Mandatory recipients are defined at contract creation time and cannnot be amended/extended.
+    Mandatory recipients are defined at contract creation time and can't be amended or extended.
     However, such contracts can be extended to other nodes in the network.
 
 ## With enhanced network permissioning

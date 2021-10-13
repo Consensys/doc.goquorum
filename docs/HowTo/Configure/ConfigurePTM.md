@@ -30,9 +30,9 @@ export PRIVATE_CONFIG=path/to/connection-config-file.toml
 
 The configuration file can specify:
 
-- An [IPC socket connection](#ipc-socket-connection).
-- An [HTTP connection](#http-connection).
-- An [HTTP connection using TLS](#http-connection-using-tls).
+* An [IPC socket connection](#ipc-socket-connection).
+* An [HTTP connection](#http-connection).
+* An [HTTP connection using TLS](#http-connection-using-tls).
 
 ### IPC socket connection
 
@@ -46,13 +46,12 @@ An IPC socket configuration file has the following parameters.
 
 * `socket` - `.ipc` socket file created by the private transaction manager.
 * `workdir` - Path to the working directory of the IPC file.
-* `timeout` - (optional) Overall timeout when sending messages, in seconds.
-  Setting to 0 disables timeout.
+* `timeout` - (optional) Timeout when sending messages, in seconds.
+  Setting to 0 disables the timeout.
   The default is 5 seconds.
   You can increase this value if transaction manager responses are too slow.
 * `dialTimeout` - (optional) Timeout for connecting to the socket, in seconds.
   The default is 1 second.
-  This value rarely needs to be changed.
 
 !!! example "ipc-config-file.toml"
 
@@ -73,8 +72,8 @@ An IPC socket configuration file has the following parameters.
 An HTTP configuration file has the following parameters.
 
 * `httpUrl` - URL of the HTTP connection.
-* `timeout` - (optional) Overall timeout when sending messages, in seconds.
-  Setting to 0 disables timeout.
+* `timeout` - (optional) Timeout when sending messages, in seconds.
+  Setting to 0 disables the timeout.
   The default is 5 seconds.
 * `writeBufferSize` - (optional) Size of the write buffer, in bytes.
   Setting to 0 or not specifying uses the `http.Transport` default.
@@ -151,9 +150,9 @@ Specify the HTTP URL of the private transaction manager connection using [`--ptm
 
 HTTP using TLS requires:
 
-- Specifying an `https` URL using [`--ptm.url`](../../Reference/CLI-Syntax.md#ptmurl).
-- Setting the TLS mode to `strict` using [`--ptm.tls.mode`](../../Reference/CLI-Syntax.md#ptmtlsmode).
-- Specifying relevant certificates using [`--ptm.tls.rootca`](../../Reference/CLI-Syntax.md#ptmtlsrootca),
+* Specifying an `https` URL using [`--ptm.url`](../../Reference/CLI-Syntax.md#ptmurl).
+* Setting the TLS mode to `strict` using [`--ptm.tls.mode`](../../Reference/CLI-Syntax.md#ptmtlsmode).
+* Specifying relevant certificates using [`--ptm.tls.rootca`](../../Reference/CLI-Syntax.md#ptmtlsrootca),
   [`--ptm.tls.clientcert`](../../Reference/CLI-Syntax.md#ptmtlsclientcert), and
   [`--ptm.tls.clientkey`](../../Reference/CLI-Syntax.md#ptmtlsclientkey).
 

@@ -7,7 +7,7 @@ description: Privacy marker transactions are an alternative method of processing
 
 You can use privacy marker transactions (PMTs) instead of normal [private transactions](PrivateAndPublic.md#private-transactions).
 
-PMTs are public and are added to the blockchain.
+PMTs are public and added to the blockchain.
 PMTs each have a corresponding [internal private transaction](#internal-private-transaction) stored in the
 [private transaction manager](Privacy.md#private-transaction-manager) (Tessera) and only available to participants.
 
@@ -25,7 +25,7 @@ A PMT is a public transaction with the following parameters.
 
 * `to` - [privacy precompile](#privacy-precompile-contract) address
 * `input` or `data` - sender address and Tessera hash of the encrypted [internal private transaction](#internal-private-transaction)
-* `from` - the same signing acount as the [internal private transaction](#internal-private-transaction)
+* `from` - the same signing account as the [internal private transaction](#internal-private-transaction)
 * `contractAddress` - (in receipt if the PMT is a contract creation transaction) null
 * `logs` and `logsBloom` (in receipt) - empty
 
@@ -123,7 +123,7 @@ At execution time, GoQuorum retrieves the internal private transaction from Tess
 
 To enable PMTs in GoQuorum, set the `privacyPrecompileBlock` in the GoQuorum
 [genesis file](../../HowTo/Configure/GenesisOptions.md) `config` object to a future block, by when the entire network is
-expected to have been upgraded to GoQuorum versions that support the privacy precompile.
+upgraded to GoQuorum versions that support the privacy precompile.
 Once the fork block is reached, the node can process and use PMTs.
 All GoQuorum nodes in the network should be initialized with the same `privacyPrecompileBlock` value.
 
@@ -153,9 +153,9 @@ To send an unsigned private transaction as a PMT, use the same API methods as wi
 
 If the following conditions are met, the private transaction is created as a PMT and internal private transaction:
 
-- `privateFor` is provided.
-- The `privacyPrecompileBlock` has been reached.
-- The GoQuorum node is started with the [`--privacymarker.enable`](../../Reference/CLI-Syntax.md#privacymarkerenable) option.
+* `privateFor` is provided.
+* The `privacyPrecompileBlock` has been reached.
+* The GoQuorum node is started with the [`--privacymarker.enable`](../../Reference/CLI-Syntax.md#privacymarkerenable) option.
 
 ### Sending signed private transactions
 

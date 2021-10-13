@@ -13,7 +13,7 @@ GoQuorum achieves transaction privacy by:
   The private transaction manager encrypts private data, distributes the encrypted data to other parties that are privy
   to the transaction, and returns the decrypted payload to those parties.
 - Replacing the payload of a private transaction with a hash of the encrypted payload, such that the original payload
-  is not visible to participants who are not privy to the transaction.
+  isn't visible to participants who aren't privy to the transaction.
 
 !!! note
 
@@ -62,19 +62,19 @@ If a public transaction is sent to an account that holds contract code, each par
 their StateDBs are updated accordingly.
 
 Private transactions are executed differently: before the sender's GoQuorum node propagates the transaction to the rest
-of the network, the node replaces the original transaction payload with a hash of the encrypted payload received from Tessera.
-Participants privy to the transaction can replace the hash with the actual payload via their Tessera instance, while
+of the network, the node substitutes the original transaction payload with a hash of the encrypted payload received from Tessera.
+Participants privy to the transaction can replace the hash with the original payload via their Tessera instance, while
 participants not privy only see the hash.
 
-The result is that if a private transaction is sent to an account that holds contract code, participants not privy to
-the transaction skip the transaction and don't execute the contract code.
-However, participants privy to the transaction replace the hash with the original payload before calling the virtual
-machine for execution, and their StateDBs update accordingly.
-These two sets of participants therefore end up with different StateDBs and can't reach consensus.
+If a private transaction is sent to an account that holds contract code, participants not privy to the
+transaction skip the transaction and don't execute the contract code.
+But participants privy to the transaction replace the hash, call the virtual machine for execution, and their StateDBs
+update accordingly.
+As a result, these two sets of participants end up with different StateDBs and can't reach consensus.
 To support this forking of contract state, GoQuorum stores the state of public contracts in a public state trie that
 is globally synchronized, and the state of private contracts in a private state trie not globally synchronized.
 
-This model imposes a restriction in the ability to modify state in private transactions.
+This model imposes a restriction in the ability to change state in private transactions.
 Since a common use case for a private contract is to read data from a public contract, the virtual machine changes to
 read only mode for each call from a private contract to a public contract.
 If the virtual machine is in read only mode, and the code tries to make a state change, the virtual machine stops

@@ -18,7 +18,7 @@ Counter-party protection prevents non-participants from sending a transaction to
 For example, a private contract is deployed between nodes 1 and 2.
 Without counter-party protection, if node 3 discovers the private contract address, node 3 can send a transaction with
 `privateFor` set to node 2.
-The transaction is not applied on node 3 because it is not a participant in the private transaction.
+The transaction isn't applied on node 3 because it isn't a participant in the private transaction.
 The transaction submitted by non-participating node 3 is applied to the private state on node 2.
 
 Use counter-party protection instead of access controls on private contract implementations to protect against other
@@ -68,15 +68,15 @@ private state validation.
 
 Depending on the complexity of the contracts and the throughput of the network, the state at simulation time may differ
 from the chain state at the time the proposed transaction is published.
-If the state at publishing time is sufficiently altered, in order to determine different contract interactions the
-corresponding PP, MPP, and PSV transactions are marked as failed on all the participants.
+If the state at publishing time is changed from simulation time, the corresponding PP, MPP, and PSV transactions are
+marked as failed on all the participants.
 Furthermore, since state divergence is expected in PP and MPP contracts, it's possible (depending on contract design)
-for PP and MPP transactions to fail on some of the participants.
+for PP and MPP transactions to fail on some participants.
 
 Concurrency may also present a problem for PSV contracts.
 The execution hash calculation is based on the chain state at simulation time.
-Submitting multiple transactions to the same PSV contract from multiple nodes concurrently is likely to result in most
-of the transactions failing.
+Submitting multiple transactions to the same PSV contract from multiple nodes concurrently may result in most of the
+transactions failing.
 
 !!! important
 
@@ -86,7 +86,7 @@ of the transactions failing.
 ### Transaction interactions
 
 No interactions are allowed between the different types of private transactions.
-The only type of allowed interaction is for private contracts (SP, PP, MPP, and PSV) to read from public contracts.
+The only allowed interaction is for private contracts (SP, PP, MPP, and PSV) to read from public contracts.
 
 ![Contract interaction matrix](../../images/PrivacyEnhancements_Contract_Interaction_Matrix.png)
 
@@ -110,9 +110,8 @@ privacy-enhanced transactions.
 
 ### Backward compatibility
 
-An upgraded GoQuorum node can coexist on a network where other nodes are running on lower version of GoQuorum.
-However, it cannot support privacy-enhanced contracts until all interested nodes are upgraded and
-enable privacy.
+An upgraded GoQuorum node can coexist on a network where other nodes are running on lower versions of GoQuorum.
+But it can't support privacy-enhanced contracts until all interested nodes are upgraded and enable privacy.
 
 If an upgraded but non-privacy-enabled GoQuorum node receives a PP, MPP, or PSV transaction, the node logs a `BAD BLOCK` error.
 If the consensus algorithm is Raft, the node stops.
