@@ -247,7 +247,7 @@ plugins:
         Privacy/Contract-Extension/Overview.md: Concepts/Privacy/ContractExtension.md
         Privacy/Overview.md: Concepts/Privacy/PrivateAndPublic.md
         Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateAndPublic.md
-        Privacy/Privacy-Manager.md: Concepts/Privacy/ConfigurePTM.md
+        Privacy/Privacy-Manager.md: Concepts/Privacy/Privacy.md
         Security/Framework/Decentralized Application/Frontend Components.md: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
         Security/Framework/Decentralized Application/Smart Contracts Security.md: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
         Security/Framework/Quorum Network Security/Consortium.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md

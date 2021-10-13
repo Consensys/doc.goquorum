@@ -68,7 +68,7 @@ participants not privy only see the hash.
 
 If a private transaction is sent to an account that holds contract code, participants not privy to the
 transaction skip the transaction and don't execute the contract code.
-But participants privy to the transaction replace the hash, call the virtual machine for execution, and their StateDBs
+Participants privy to the transaction replace the hash, call the virtual machine for execution, and their StateDBs
 update accordingly.
 As a result, these two sets of participants end up with different StateDBs and can't reach consensus.
 To support this forking of contract state, GoQuorum stores the state of public contracts in a public state trie that

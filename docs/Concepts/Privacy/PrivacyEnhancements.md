@@ -111,7 +111,7 @@ privacy-enhanced transactions.
 ### Backward compatibility
 
 An upgraded GoQuorum node can coexist on a network where other nodes are running on lower versions of GoQuorum.
-But it can't support privacy-enhanced contracts until all interested nodes are upgraded and enable privacy.
+However, it can't support privacy-enhanced contracts until all interested nodes are upgraded and enable privacy.
 
 If an upgraded but non-privacy-enabled GoQuorum node receives a PP, MPP, or PSV transaction, the node logs a `BAD BLOCK` error.
 If the consensus algorithm is Raft, the node stops.
