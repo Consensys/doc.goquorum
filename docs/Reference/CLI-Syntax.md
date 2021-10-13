@@ -152,13 +152,7 @@ Use this to configure [plugins](../Concepts/Plugins/Plugins.md).
     --plugins.localverify
     ```
 
-=== "Example"
-
-    ```bash
-    --plugins.localverify
-    ```
-
-Verifies [plugin integrity](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) from the
+If included, verifies [plugin integrity](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) from the
 local file system.
 This requires a plugin signature file and [PGP public key file](#pluginspublickey) to be available.
 
@@ -188,13 +182,18 @@ This option is only valid if [`--plugins.localverify`](#pluginslocalverify) is s
     --plugins.skipverify
     ```
 
-=== "Example"
+If included, disables the [plugin verification](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) process.
+
+### `privacymarker.enable`
+
+=== "Syntax"
 
     ```bash
-    --plugins.skipverify
+    --privacymarker.enable
     ```
 
-Disables the [plugin verification](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) process.
+If included, GoQuorum creates a [privacy marker transaction](../Concepts/Privacy/PrivacyMarkerTransactions.md) when a
+private transaction is submitted.
 
 ### `ptm.dialtimeout`
 

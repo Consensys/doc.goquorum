@@ -2684,7 +2684,8 @@ Queries the privacy metadata for the specified contract account address.
 
 ### `eth_getPrivacyPrecompileAddress`
 
-Get the address of the privacy precompile contract, to be used as the `to` address for privacy marker transactions.
+Get the address of the privacy precompile contract, to be used as the `to` address for
+[privacy marker transactions](../Concepts/Privacy/PrivacyMarkerTransactions.md).
 
 #### Parameters
 
@@ -2724,7 +2725,8 @@ None
 
 ### `eth_getPrivateTransactionByHash`
 
-Retrieve the details of a privacy marker transaction's internal private transaction using the PMT's transaction hash.
+Retrieve the details of a [privacy marker transaction](../Concepts/Privacy/PrivacyMarkerTransactions.md)'s internal
+private transaction using the PMT's transaction hash.
 
 #### Parameters
 
@@ -2779,7 +2781,8 @@ Retrieve the details of a privacy marker transaction's internal private transact
 
 ### `eth_getPrivateTransactionReceipt`
 
-Retrieve the receipt of a privacy marker transaction's internal private transaction using the PMT's transaction hash.
+Retrieve the receipt of a [privacy marker transaction](../Concepts/Privacy/PrivacyMarkerTransactions.md)'s internal
+private transaction using the PMT's transaction hash.
 
 #### Parameters
 

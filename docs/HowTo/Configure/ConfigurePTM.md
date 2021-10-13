@@ -139,7 +139,7 @@ Specify the path to the IPC socket file using [`--ptm.socket`](../../Reference/C
     This should only be used for development purposes, due to a lack of security on the connection.
     For production environments, you should enable TLS on the connection.
 
-Specify the HTTP URL for the private transaction manager connection using [`--ptm.url`](../../Reference/CLI-Syntax.md#ptmurl).
+Specify the HTTP URL of the private transaction manager connection using [`--ptm.url`](../../Reference/CLI-Syntax.md#ptmurl).
 
 !!! example "Example HTTP connection"
 
