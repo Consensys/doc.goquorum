@@ -12,8 +12,8 @@ GoQuorum achieves transaction privacy by:
   [private transaction manager](Privacy.md#private-transaction-manager).
   The private transaction manager encrypts private data, distributes the encrypted data to other parties that are privy
   to the transaction, and returns the decrypted payload to those parties.
-- Replacing the payload of a private transaction with a hash of the encrypted payload, such that the original payload
-  isn't visible to participants who aren't privy to the transaction.
+- Replacing the payload of a private transaction with a key for the location of the encrypted payload, such that the
+  original payload isn't visible to participants who aren't privy to the transaction.
 
 !!! note
 
@@ -62,7 +62,8 @@ If a public transaction is sent to an account that holds contract code, each par
 their StateDBs are updated accordingly.
 
 Private transactions are executed differently: before the sender's GoQuorum node propagates the transaction to the rest
-of the network, the node substitutes the original transaction payload with a hash of the encrypted payload received from Tessera.
+of the network, the node substitutes the original transaction payload with a key for the location of the encrypted
+payload received from Tessera.
 Participants privy to the transaction can replace the hash with the original payload via their Tessera instance, while
 participants not privy only see the hash.
 

@@ -246,7 +246,7 @@ The default is 10 seconds.
     ```
 
 Size of the read buffer in bytes for the [private transaction manager connection](../HowTo/Configure/ConfigurePTM.md).
-Setting to 0 value or not specifying uses the `http.Transport` default.
+Setting to 0 or not specifying uses the `http.Transport` default.
 
 ### `ptm.http.writebuffersize`
 
@@ -263,7 +263,7 @@ Setting to 0 value or not specifying uses the `http.Transport` default.
     ```
 
 Size of the write buffer in bytes for the [private transaction manager connection](../HowTo/Configure/ConfigurePTM.md).
-Setting to 0 value or not specifying uses the `http.Transport` default.
+Setting to 0 or not specifying uses the `http.Transport` default.
 
 ### `ptm.socket`
 

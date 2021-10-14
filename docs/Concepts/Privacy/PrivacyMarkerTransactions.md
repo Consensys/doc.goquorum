@@ -7,7 +7,7 @@ description: Privacy marker transactions are an alternative method of processing
 
 You can use privacy marker transactions (PMTs) instead of normal [private transactions](PrivateAndPublic.md#private-transactions).
 
-PMTs are public and added to the blockchain.
+PMTs are public transactions.
 PMTs each have a corresponding [internal private transaction](#internal-private-transaction) stored in the
 [private transaction manager](Privacy.md#private-transaction-manager) (Tessera) and only available to participants.
 
@@ -23,7 +23,7 @@ PMTs use a privacy precompile contract, which retrieves the internal private tra
 
 A PMT is a public transaction with the following parameters.
 
-* `to` - [privacy precompile](#privacy-precompile-contract) address
+* `to` - privacy precompile contract address
 * `input` or `data` - sender address and Tessera hash of the encrypted [internal private transaction](#internal-private-transaction)
 * `from` - the same signing account as the [internal private transaction](#internal-private-transaction)
 * `contractAddress` - (in receipt if the PMT is a contract creation transaction) null

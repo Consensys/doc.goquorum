@@ -12,7 +12,7 @@ transactions using any of the following methods.
 
 You can set the `PRIVATE_CONFIG` environment variable to the path to the `.ipc` socket file created by the private
 transaction manager.
-Use this method if you want to use an IPC socket for the connection, with default timeout values.
+Use this method if you want to use an IPC socket for the connection with default timeout values.
 
 ```bash
 export PRIVATE_CONFIG=path/to/tm.ipc
@@ -20,8 +20,8 @@ export PRIVATE_CONFIG=path/to/tm.ipc
 
 ## Using a connection configuration file
 
-You can set the `PRIVATE_CONFIG` environment variable to a TOML configuration file that specifies the private transaction
-manager connection.
+You can set the `PRIVATE_CONFIG` environment variable to the path to a TOML configuration file that specifies the
+private transaction manager connection.
 Using a configuration file allows you to specify more options for the connection to the transaction manager.
 
 ```bash
@@ -100,6 +100,16 @@ An HTTP configuration file using TLS has the following parameters.
   The default is the host's certificates.
 * `tlsClientCert` - Path to the file containing the client certificate.
 * `tlsClientKey` - Path to the file containing the client certificate private key.
+* `timeout` - (optional) Timeout when sending messages, in seconds.
+  Setting to 0 disables the timeout.
+  The default is 5 seconds.
+* `httpIdleConnTimeout` - (optional) Idle timeout in seconds.
+  Setting to 0 disables the timeout.
+  The default is 10 seconds.
+* `writeBufferSize` - (optional) Size of the write buffer, in bytes.
+  Setting to 0 or not specifying uses the `http.Transport` default.
+* `readBufferSize` - (optional) Size of the read buffer, in bytes.
+  Setting to 0 or not specifying uses the `http.Transport` default.
 
 !!! example "http-config-file.toml"
 

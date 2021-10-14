@@ -68,8 +68,8 @@ nav:
       - Privacy:
           - Overview: Concepts/Privacy/Privacy.md
           - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
-          - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
           - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
+          - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
           - Contract state extension: Concepts/Privacy/ContractExtension.md
       - Consensus:
           - Overview: Concepts/Consensus/Overview.md

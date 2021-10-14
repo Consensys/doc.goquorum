@@ -26,8 +26,8 @@ network participants from updating the state.
 Counter-party protection prevents non-participants from interacting with the private contract without additional access
 controls.
 
-When using [`send` API methods](../../Reference/API-Methods.md#privacy-methods), set `privacyFlag` to 1 to enable
-counter-party protection.
+When using [`send` API methods](../../Reference/API-Methods.md#privacy-methods) with
+[enhanced privacy enabled](#enabling-privacy-enhancements), set `privacyFlag` to 1 to enable counter-party protection.
 
 ## Mandatory party protection
 
@@ -39,8 +39,8 @@ while normal recipients may only have partial state of the contract.
 Use mandatory party protection if you need "governing" or "central" nodes to have full private state view at the contract
 level for all or selective contracts deployed in the network.
 
-When using [`send` API methods](../../Reference/API-Methods.md#privacy-methods), set `privacyFlag` to 2 to enable
-mandatory party protection.
+When using [`send` API methods](../../Reference/API-Methods.md#privacy-methods) with
+[enhanced privacy enabled](#enabling-privacy-enhancements), set `privacyFlag` to 2 to enable mandatory party protection.
 Set the `mandatoryFor` parameter to a list of mandatory recipients for the contract.
 
 ## Private state validation
@@ -59,8 +59,8 @@ Transactions sent to a subset of participants fail.
 
 In standard privacy or when only using counter-party protection, only the sender knows the full participant list.
 
-When using [`send` API methods](../../Reference/API-Methods.md#privacy-methods), set `privacyFlag` to 3 to enable
-private state validation.
+When using [`send` API methods](../../Reference/API-Methods.md#privacy-methods) with
+[enhanced privacy enabled](#enabling-privacy-enhancements), set `privacyFlag` to 3 to enable private state validation.
 
 ## Using privacy enhancements
 
@@ -80,8 +80,8 @@ transactions failing.
 
 !!! important
 
-    Because of these limitations, users should choose privacy-enhanced transactions **only** when the enhanced privacy
-    is necessary (and the extra privacy benefits outweigh the potential shortfalls).
+    Because of these limitations, users should choose privacy-enhanced transactions only when the enhanced privacy is
+    necessary (and the extra privacy benefits outweigh the potential shortfalls).
 
 ### Transaction interactions
 

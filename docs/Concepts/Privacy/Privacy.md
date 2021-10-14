@@ -42,8 +42,6 @@ GoQuorum supports two states:
 
 [Public state transactions](PrivateAndPublic.md#public-transactions) have non-encrypted payloads, while
 [private state transactions](PrivateAndPublic.md#private-transactions) have encrypted payloads.
-Nodes can determine if a transaction is private by looking at the `v` value of the signature.
-Public transactions have a `v` value of `27` or `28`, and private transactions have a value of `37` or `38`.
 
 If the transaction is private, the node can only execute the transaction if it can access and decrypt the payload.
 Nodes involved in the transaction don't have the private payload at all.
@@ -65,5 +63,17 @@ If the state is in sync across all participating nodes, they return the same roo
 When [privacy enhancements](PrivacyEnhancements.md) are enabled and
 [private state validation (PSV)](PrivacyEnhancements.md#private-state-validation) transactions are used, the GoQuorum
 node automatically verifies a contract's state across participating nodes.
+
+## Privacy marker transactions
+
+GoQuorum supports [privacy marker transactions (PMTs)](PrivacyMarkerTransactions.md), an alternative to normal private
+transactions, in which public PMTs and internal private transactions are created.
+A PMT allows for the corresponding internal private transaction to be kept off chain, with its contents and receipt
+hidden from public view.
+
+## Contract state extension
+
+[Contract state extension](ContractExtension.md) allows for access to a private contract to be extended beyond its
+initial set of participants.
 
 *[HSM]: Hardware security module
