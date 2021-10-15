@@ -25,15 +25,12 @@ enable private transactions.
 
 ## Enclave
 
-Distributed ledger protocols use cryptographic techniques for transaction authenticity, participant authentication, and
-historical data preservation.
-To achieve a separation of concerns and provide performance improvements through parallelization of certain
-crypto-operations, much of the cryptographic work, including symmetric key generation and data encryption and decryption,
-is delegated to an enclave.
-
-The enclave works with the [private transaction manager](#private-transaction-manager) to strengthen privacy by managing
-the encryption and decryption in isolation.
+The enclave provides cryptographic functionality to the [private transaction manager](#private-transaction-manager) by
+managing the encryption and decryption in isolation.
 The enclave holds private keys and is essentially a virtual HSM isolated from other components.
+
+The separation of duties between the private transaction manager and enclave provide performance improvements and
+strengthens privacy.
 
 ## Public and private state
 
@@ -46,8 +43,7 @@ GoQuorum supports two states:
 [private state transactions](PrivateAndPublic.md#private-transactions) have encrypted payloads.
 
 Nodes can only execute private transactions if they can access and decrypt the payload.
-Nodes involved in the transaction don't have the private payload.
-As a result, all nodes share a common public state created through public transactions and have a local unique private state.
+All nodes share a common public state created through public transactions and have a local unique private state.
 
 ### State verification
 
