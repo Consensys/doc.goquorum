@@ -127,7 +127,7 @@ An HTTP configuration file using TLS has the following parameters.
 
 ## Using command line options
 
-You can use [`--ptm.*` command line options](../../Reference/CLI-Syntax.md#ptmdialtimeout) to specify the private
+Use [`--ptm.*` command line options](../../Reference/CLI-Syntax.md#ptmdialtimeout) to specify the private
 transaction manager connection.
 These can be used in conjunction with the previous methods, in which case the command line options override any others.
 

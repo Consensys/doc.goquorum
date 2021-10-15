@@ -4,7 +4,7 @@ description: Privacy overview
 
 # Privacy
 
-In GoQuorum, privacy refers to the ability to keep transactions private between the involved participants.
+Privacy refers to the ability to keep transactions private between the involved participants.
 Other participants can't access the transaction content.
 
 ## Private transaction manager
@@ -45,7 +45,7 @@ GoQuorum supports two states:
 [Public state transactions](PrivateAndPublic.md#public-transactions) have non-encrypted payloads, while
 [private state transactions](PrivateAndPublic.md#private-transactions) have encrypted payloads.
 
-Nodes can only execute private transactions if it can access and decrypt the payload.
+Nodes can only execute private transactions if they can access and decrypt the payload.
 Nodes involved in the transaction don't have the private payload.
 As a result, all nodes share a common public state created through public transactions and have a local unique private state.
 

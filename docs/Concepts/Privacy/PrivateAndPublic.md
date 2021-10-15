@@ -41,7 +41,7 @@ a correction to a bond security definition.
 ## Private transactions
 
 Private transactions have payloads that are visible only to the network participants whose public keys are specified in
-the `privateFor` parameter of the Transaction.
+the `privateFor` parameter of the transaction.
 `privateFor` can take multiple addresses in a comma separated list.
 
 !!! note

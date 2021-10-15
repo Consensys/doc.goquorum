@@ -12,10 +12,9 @@ This also means events are not shared, as the transactions are not shared and no
 !!! note
 
     [Mandatory recipients](PrivacyEnhancements.md#mandatory-party-protection) are defined at contract creation time and
-    can't be amended or extended.
-    However, such contracts can be extended to other nodes in the network.
+    can't be updated. However, contracts containing mandatory recipients can be extended to other nodes in the network.
 
-## With enhanced network permissioning
+## Enhanced network permissioning
 
 If the network is running with [enhanced network permissioning](../PermissionsOverview.md#enhanced-network-permissioning),
 only a network or organization administrator can initiate or accept a contract extension.
