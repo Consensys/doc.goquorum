@@ -9,7 +9,7 @@ Other participants can't access the transaction content.
 
 ## Private transaction manager
 
-GoQuorum uses a private transaction manager, [Tessera](https://docs.tessera.consensys.net), to implement private transactions.
+GoQuorum uses [Tessera](https://docs.tessera.consensys.net) as the private transaction manager to implement private transactions.
 Tessera stores and allows access to encrypted transaction data, and exchanges encrypted payloads with other Tessera nodes,
 but doesn't have access to any private keys.
 
@@ -18,7 +18,7 @@ The private transaction manager itself can optionally host an enclave.
 
 Tessera is restful/stateless and can be load balanced.
 
-You can [configure a connection to the private transaction manager](../../HowTo/Configure/ConfigurePTM.md) to
+[Configure a connection to the private transaction manager](../../HowTo/Configure/ConfigurePTM.md) to
 enable private transactions.
 
 ## Enclave
@@ -43,8 +43,8 @@ GoQuorum supports two states:
 [Public state transactions](PrivateAndPublic.md#public-transactions) have non-encrypted payloads, while
 [private state transactions](PrivateAndPublic.md#private-transactions) have encrypted payloads.
 
-If the transaction is private, the node can only execute the transaction if it can access and decrypt the payload.
-Nodes involved in the transaction don't have the private payload at all.
+Nodes can only execute private transactions if it can access and decrypt the payload.
+Nodes involved in the transaction don't have the private payload.
 As a result, all nodes share a common public state created through public transactions and have a local unique private state.
 
 ### State verification
@@ -66,14 +66,13 @@ node automatically verifies a contract's state across participating nodes.
 
 ## Privacy marker transactions
 
-GoQuorum supports [privacy marker transactions (PMTs)](PrivacyMarkerTransactions.md), an alternative to normal private
-transactions, in which public PMTs and internal private transactions are created.
+[Privacy marker transactions (PMTs)](PrivacyMarkerTransactions.md) creates public PMTs and internal private transactions, and is an alternative to normal private transactions.
 A PMT allows for the corresponding internal private transaction to be kept off chain, with its contents and receipt
 hidden from public view.
 
 ## Contract state extension
 
-[Contract state extension](ContractExtension.md) allows for access to a private contract to be extended beyond its
+[Contract state extension](ContractExtension.md) allows you to extend access to a private contract beyond its
 initial set of participants.
 
 *[HSM]: Hardware security module

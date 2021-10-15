@@ -2781,7 +2781,7 @@ private transaction using the PMT's transaction hash.
 
 ### `eth_getPrivateTransactionReceipt`
 
-Retrieve the receipt of a [privacy marker transaction](../Concepts/Privacy/PrivacyMarkerTransactions.md)'s internal
+Retrieve the receipt of a [privacy marker transaction's (PMT)](../Concepts/Privacy/PrivacyMarkerTransactions.md) internal
 private transaction using the PMT's transaction hash.
 
 #### Parameters

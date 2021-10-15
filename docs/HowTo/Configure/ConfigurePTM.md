@@ -1,6 +1,6 @@
 # Configure the private transaction manager
 
-When starting a GoQuorum node, you can configure a connection to the
+You can configure a connection to the
 [private transaction manager](../../Concepts/Privacy/Privacy.md#private-transaction-manager) and enable private
 transactions using any of the following methods.
 
