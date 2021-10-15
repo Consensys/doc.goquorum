@@ -10,13 +10,15 @@ Other participants can't access the transaction content.
 ## Private transaction manager
 
 GoQuorum uses [Tessera](https://docs.tessera.consensys.net) as the private transaction manager to implement private transactions.
-Tessera stores and allows access to encrypted transaction data, and exchanges encrypted payloads with other Tessera nodes,
-but doesn't have access to any private keys.
 
-Tessera uses an [enclave](#enclave) for cryptographic functionality.
-The private transaction manager itself can optionally host an enclave.
+Tessera:
 
-Tessera is restful/stateless and can be load balanced.
+- Stores and allows access to encrypted transaction data.
+- Exchanges encrypted payloads with other Tessera nodes.
+- Doesn't have access to any private keys.
+- Uses an [enclave](#enclave) for cryptographic functionality.
+  The private transaction manager itself can optionally host an enclave.
+- Is restful/stateless and can be load balanced.
 
 [Configure a connection to the private transaction manager](../../HowTo/Configure/ConfigurePTM.md) to
 enable private transactions.

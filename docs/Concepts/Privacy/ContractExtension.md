@@ -11,7 +11,8 @@ This also means events are not shared, as the transactions are not shared and no
 
 !!! note
 
-    Mandatory recipients are defined at contract creation time and can't be amended or extended.
+    [Mandatory recipients](PrivacyEnhancements.md#mandatory-party-protection) are defined at contract creation time and
+    can't be amended or extended.
     However, such contracts can be extended to other nodes in the network.
 
 ## With enhanced network permissioning
