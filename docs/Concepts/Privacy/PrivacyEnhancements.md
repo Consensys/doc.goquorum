@@ -5,7 +5,7 @@ description: Privacy Enhancements feature prevents nodes from modifying contract
 
 # Privacy enhancements
 
-In addition to [standard private (SP) transactions](PrivateAndPublic.md#private-transactions), GoQuorum provides three
+In addition to [standard privacy (SP)](PrivateAndPublic.md#private-transactions), GoQuorum provides three
 different kinds of privacy enhancements:
 
 * [Counter-party protection (PP)](#counter-party-protection)
@@ -14,53 +14,51 @@ different kinds of privacy enhancements:
 
 ## Counter-party protection
 
-Counter-party protection prevents non-participants from sending a transaction to a private contract.
+Counter-party protection prevents non-participants from interacting with a private contract, without using access controls.
+
 For example, a private contract is deployed between nodes 1 and 2.
-Without counter-party protection, if node 3 discovers the private contract address, node 3 can send a transaction with
+Without counter-party protection, if node 3 discovers the private contract address, it can send a transaction with
 `privateFor` set to node 2.
-The transaction isn't applied on node 3 because it isn't a participant in the private transaction.
-The transaction submitted by non-participating node 3 is applied to the private state on node 2.
+The transaction isn't applied to node 3's private state because node 3 isn't a participant in the private transaction,
+but the transaction is applied to node 2's private state.
 
-Use counter-party protection instead of access controls on private contract implementations to protect against other
-network participants from updating the state.
-Counter-party protection prevents non-participants from interacting with the private contract without additional access
-controls.
-
-When using [`send` API methods](../../Reference/API-Methods.md#privacy-methods) with
-[enhanced privacy enabled](#enabling-privacy-enhancements), set `privacyFlag` to 1 to enable counter-party protection.
+To enable counter-party protection, [enable enhanced privacy](#enabling-privacy-enhancements) and set `privacyFlag` to 1
+when using [`send` API methods](../../Reference/API-Methods.md#privacy-methods).
 
 ## Mandatory party protection
 
-Mandatory party protection inherits all features of counter-party protection (including state divergence), but allows
-for one or more recipient(s) to be defined as "mandatory" for the contract.
-The mandatory recipient is included in all subsequent transactions to the contract, and therefore has full private state
+Mandatory party protection inherits all features of counter-party protection (including state divergence), and allows
+for one or more recipient(s) to be defined as "mandatory" for a private contract.
+The mandatory recipient is included in all subsequent transactions to the contract and has full private state,
 while normal recipients may only have partial state of the contract.
 
-Use mandatory party protection if you need "governing" or "central" nodes to have full private state view at the contract
-level for all or selective contracts deployed in the network.
+Use mandatory party protection if you need "governing" or "central" nodes to have full private state for any contracts
+deployed in the network.
 
-When using [`send` API methods](../../Reference/API-Methods.md#privacy-methods) with
-[enhanced privacy enabled](#enabling-privacy-enhancements), set `privacyFlag` to 2 to enable mandatory party protection.
-Set the `mandatoryFor` parameter to a list of mandatory recipients for the contract.
+To enable mandatory party protection, [enable enhanced privacy](#enabling-privacy-enhancements) and set `privacyFlag` to
+2 and the `mandatoryFor` parameter to a list of mandatory recipients when using
+[`send` API methods](../../Reference/API-Methods.md#privacy-methods).
 
 ## Private state validation
 
 Private state validation prevents state divergence by ensuring that any private transaction for the contract is always
 sent to all participants.
-For example, a private contract is deployed between node 1 and 2.
+
+For example, a private contract is deployed between nodes 1 and 2.
 Without private state validation, node 1 can send a transaction to the private contract with a `privateFor` of `[]`.
-The transaction changes the private state of node 1 but not node 2 and the private states of 1 and 2 no longer match.
+The transaction changes the private state of node 1 but not node 2, and the private states of 1 and 2 no longer match.
 With private state validation, a transaction from node 1 with a `privateFor` of `[]` is rejected and the transaction is
 processed only when `privateFor` contains both 1 and 2.
 
-When using private state validation, the full participant list is shared among all participants and validated against
-all subsequent transactions.
+In private state validation, the full participant list is shared among all participants and validated against all
+subsequent transactions.
 Transactions sent to a subset of participants fail.
 
-In standard privacy or when only using counter-party protection, only the sender knows the full participant list.
+In standard privacy or when only using [counter-party protection](#counter-party-protection), only the sender knows the
+full participant list.
 
-When using [`send` API methods](../../Reference/API-Methods.md#privacy-methods) with
-[enhanced privacy enabled](#enabling-privacy-enhancements), set `privacyFlag` to 3 to enable private state validation.
+To enable private state validation, [enable enhanced privacy](#enabling-privacy-enhancements) and set `privacyFlag` to 3
+when using [`send` API methods](../../Reference/API-Methods.md#privacy-methods).
 
 ## Using privacy enhancements
 
@@ -68,8 +66,8 @@ When using [`send` API methods](../../Reference/API-Methods.md#privacy-methods) 
 
 Depending on the complexity of the contracts and the throughput of the network, the state at simulation time may differ
 from the chain state at the time the proposed transaction is published.
-If the state at publishing time is changed from simulation time, the corresponding PP, MPP, and PSV transactions are
-marked as failed on all the participants.
+If the state at publishing time is changed from simulation time, the corresponding PP, MPP, and PSV transactions fail on
+all participants.
 Furthermore, since state divergence is expected in PP and MPP contracts, it's possible (depending on contract design)
 for PP and MPP transactions to fail on some participants.
 
@@ -80,8 +78,8 @@ transactions failing.
 
 !!! important
 
-    Because of these limitations, users should choose privacy-enhanced transactions only when the enhanced privacy is
-    necessary (and the extra privacy benefits outweigh the potential shortfalls).
+    Because of these limitations, use privacy-enhanced transactions only when the enhanced privacy is necessary and the
+    extra privacy benefits outweigh the potential shortfalls.
 
 ### Transaction interactions
 
@@ -118,8 +116,8 @@ If the consensus algorithm is Raft, the node stops.
 If the consensus algorithm is IBFT or QBFT, the node keeps trying to add the bad block, and reprints the errors.
 It won't catch up with rest of nodes until restarted and reinitialized with the correct `privacyEnhancementsBlock`.
 
-If you enable `enablePrivacyEnhancements` flag in Tessera without enabling privacy in GoQuorum, the node can crash, as
-the Tessera node accepts PP, MPP, and PSV transactions.
+If you set the `enablePrivacyEnhancements` flag to `true` in Tessera without enabling privacy in GoQuorum, the node can
+crash, as the Tessera node accepts PP, MPP, and PSV transactions.
 
 An upgraded Tessera node can continue to communicate with Tessera nodes running on previous versions using SP transactions.
 

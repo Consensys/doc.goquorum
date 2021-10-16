@@ -5,7 +5,7 @@ description: Privacy marker transactions are an alternative method of processing
 
 # Privacy marker transactions
 
-You can use privacy marker transactions (PMTs) instead of normal [private transactions](PrivateAndPublic.md#private-transactions).
+You can use privacy marker transactions (PMTs) instead of [normal private transactions](PrivateAndPublic.md#private-transactions).
 
 PMTs are public transactions.
 PMTs each have a corresponding [internal private transaction](#internal-private-transaction) stored in the
@@ -21,7 +21,7 @@ PMTs use a privacy precompile contract, which retrieves the internal private tra
 
 ## Privacy marker transaction
 
-A PMT is a public transaction with the following parameters.
+A PMT is a public transaction with the following parameters:
 
 * `to` - privacy precompile contract address
 * `input` or `data` - sender address and Tessera hash of the encrypted [internal private transaction](#internal-private-transaction)
@@ -128,14 +128,14 @@ Once the fork block is reached, the node can process and use PMTs.
 All GoQuorum nodes in the network should be initialized with the same `privacyPrecompileBlock` value.
 
 Use the [`--privacymarker.enable`](../../Reference/CLI-Syntax.md#privacymarkerenable) command line option when starting
-GoQuorum to enable the creation of PMTs.
+GoQuorum to enable PMTs.
 
 !!! note
 
     Once the `privacyPrecompileBlock` is reached, a node without the `--privacymarker.enable` CLI flag can still receive
     and correctly process PMTs sent from other nodes.
 
-You can use the following API methods to interact with PMTs.
+Use the following API methods to interact with PMTs:
 
 * [`eth_distributePrivateTransaction`](../../Reference/API-Methods.md#eth_distributeprivatetransaction)
 * [`eth_getPrivacyPrecompileAddress`](../../Reference/API-Methods.md#eth_getprivacyprecompileaddress)
@@ -144,7 +144,7 @@ You can use the following API methods to interact with PMTs.
 
     !!! important
 
-        The PMT and internal private transaction are separate transactions and consequently have separate transaction receipts.
+        The PMT and internal private transaction are separate transactions and have separate transaction receipts.
 
 ### Sending unsigned private transactions
 
