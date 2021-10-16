@@ -5,8 +5,8 @@ description: Privacy Enhancements feature prevents nodes from modifying contract
 
 # Privacy enhancements
 
-In addition to [standard privacy (SP)](PrivateAndPublic.md#private-transactions), GoQuorum provides three
-different kinds of privacy enhancements:
+In addition to [standard privacy (SP)](PrivateAndPublic.md#private-transactions), GoQuorum provides three kinds of
+privacy enhancements:
 
 * [Counter-party protection (PP)](#counter-party-protection)
 * [Mandatory party protection (MPP)](#mandatory-party-protection)
@@ -27,8 +27,8 @@ when using [`send` API methods](../../Reference/API-Methods.md#privacy-methods).
 
 ## Mandatory party protection
 
-Mandatory party protection inherits all features of counter-party protection (including state divergence), and allows
-for one or more recipient(s) to be defined as "mandatory" for a private contract.
+Mandatory party protection inherits all features of counter-party protection, and also allows you to define one or more
+recipients as "mandatory" for a private contract.
 The mandatory recipient is included in all subsequent transactions to the contract and has full private state,
 while normal recipients may only have partial state of the contract.
 
