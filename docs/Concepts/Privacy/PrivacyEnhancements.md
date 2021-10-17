@@ -28,11 +28,11 @@ when using [`send` API methods](../../Reference/API-Methods.md#privacy-methods).
 ## Mandatory party protection
 
 Mandatory party protection inherits all features of counter-party protection, and also allows you to define one or more
-recipients as "mandatory" for a private contract.
+recipients as mandatory for a private contract.
 The mandatory recipient is included in all subsequent transactions to the contract and has full private state,
 while normal recipients may only have partial state of the contract.
 
-Use mandatory party protection if you need "governing" or "central" nodes to have full private state for any contracts
+Use mandatory party protection if you need governing or central nodes to have full private state for any contracts
 deployed in the network.
 
 To enable mandatory party protection, [enable enhanced privacy](#enabling-privacy-enhancements) and set `privacyFlag` to
@@ -50,7 +50,7 @@ The transaction changes the private state of node 1 but not node 2, and the priv
 With private state validation, a transaction from node 1 with a `privateFor` of `[]` is rejected and the transaction is
 processed only when `privateFor` contains both 1 and 2.
 
-In private state validation, the full participant list is shared among all participants and validated against all
+Private state validation shares the full participant list among all participants, and validates against all
 subsequent transactions.
 Transactions sent to a subset of participants fail.
 
@@ -97,18 +97,17 @@ executed locally and don't result in published transactions.
 To enable privacy enhancements in Tessera, set the `enablePrivacyEnhancements` parameter in the
 [Tessera configuration file](https://docs.tessera.consensys.net/en/stable/Reference/SampleConfiguration/) to `true`.
 To enable privacy enhancements in GoQuorum, set the `privacyEnhancementsBlock` in the GoQuorum
-[genesis file](../../HowTo/Configure/GenesisOptions.md) `config` object to a future block, by when the entire network is
+[genesis file](../../HowTo/Configure/GenesisOptions.md) `config` object to a future block, when the entire network is
 ready to transact with privacy-enhanced transactions.
-All GoQuorum nodes in the network should be initialized with the same `privacyEnhancementsBlock` value.
+All GoQuorum nodes in the network must be initialized with the same `privacyEnhancementsBlock` value.
 
-If a node wants to upgrade Tessera to the privacy enhancements release (or further) to benefit from other features and
-fixes, but isn't ready to upgrade GoQuorum, it can disable `enablePrivacyEnhancements` in the Tessera configuration.
-This allows the node to reject PP, MPP, and PSV transactions from other nodes until the node is ready to support
+You can disable `enablePrivacyEnhancements` in the Tessera configuration if your GoQuorum node is not ready to support privacy enhancements.
+This allows the GoQuorum node to reject PP, MPP, and PSV transactions from other nodes until the node is ready to support
 privacy-enhanced transactions.
 
 ### Backward compatibility
 
-An upgraded GoQuorum node can coexist on a network where other nodes are running on lower versions of GoQuorum.
+An upgraded GoQuorum node can coexist on a network where other nodes are running earlier GoQuorum versions.
 However, it can't support privacy-enhanced contracts until all interested nodes are upgraded and enable privacy.
 
 If an upgraded but non-privacy-enabled GoQuorum node receives a PP, MPP, or PSV transaction, the node logs a `BAD BLOCK` error.
