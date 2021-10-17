@@ -122,8 +122,8 @@ At execution time, GoQuorum retrieves the internal private transaction from Tess
 ## Using privacy marker transactions
 
 To enable PMTs in GoQuorum, set the `privacyPrecompileBlock` in the GoQuorum
-[genesis file](../../HowTo/Configure/GenesisOptions.md) `config` object to a future block, by when the entire network is
-upgraded to GoQuorum versions that support the privacy precompile.
+[genesis file](../../HowTo/Configure/GenesisOptions.md) `config` object to a block where the network is
+ready to support the privacy precompile.
 Once the fork block is reached, the node can process and use PMTs.
 All GoQuorum nodes in the network should be initialized with the same `privacyPrecompileBlock` value.
 
