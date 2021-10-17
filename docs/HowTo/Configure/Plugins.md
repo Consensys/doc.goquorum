@@ -2,10 +2,12 @@
 
 `geth` can load plugins from:
 
-- JSON file which is passed via [`--plugins`](../../Reference/CLI-Syntax.md#plugins) option
-- Ethereum TOML configuration file which is passed via `--config` option
+- A JSON file specified using the [`--plugins`](../../Reference/CLI-Syntax.md#plugins) command line option.
+- An Ethereum TOML configuration file specified using the `--config` command line option.
 
-=== "JSON"
+## Configuration files
+
+=== "JSON file"
 
     ```json
     {
@@ -17,7 +19,7 @@
     }
     ```
 
-=== "TOML"
+=== "TOML file"
 
     ```toml
     [Node.Plugins]
@@ -40,7 +42,8 @@
 
 ## `PluginCentralConfiguration`
 
-[Plugin Integrity Verification](../../Concepts/Plugins/Plugins.md#plugin-integrity-verification) uses the GoQuorum Plugin Central Server by default.
+[Plugin integrity verification](../../Concepts/Plugins/Plugins.md#plugin-integrity-verification) uses the GoQuorum
+Plugin Central Server by default.
 Modifying this section configures your own local plugin central for Plugin Integrity Verification:
 
 === "JSON"

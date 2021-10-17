@@ -113,9 +113,10 @@ nav:
           - Deploy a contract: Tutorials/Contracts/Deploying-Contracts.md
           - Interact with a deployed contract: Tutorials/Contracts/Calling-Contract-Functions.md
           - Transfer account funds: Tutorials/Contracts/Account-Funds-Transfers.md
-      - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
+      - Create a privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
       - Send private transactions: Tutorials/Send-private-transaction.md
-      - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
+      - Create a permissioned network: Tutorials/CreatePermissionedNetwork.md
+      - Use a plugin: Tutorials/Use-Plugin.md
   - How to:
       - Configure GoQuorum:
           - Consensus protocols:

@@ -2,21 +2,23 @@
 
 ## Go plugin
 
-`geth` is written in the Go programming language. [Go 1.8 introduced](https://golang.org/doc/go1.8#plugin) a new plugin architecture
-which allows for the creation of plugins (via `plugin` build mode) and to use these plugins at runtime (via `plugin` package).
+`geth` is written in the Go programming language.
+[Go 1.8 introduced](https://golang.org/doc/go1.8#plugin) a new plugin architecture which allows for the creation of
+plugins (via `plugin` build mode) and to use these plugins at runtime (via `plugin` package).
 In order to utilize this architecture, there are strict requirements in developing plugins.
 
 By using the network RPC interface, the plugin is independently built and distributed without having to rebuild `geth`.
 Especially with gRPC interfaces, plugins can be written in different languages (see our [examples](Plugins.md#example-helloworld-plugin)).
 This makes it easy for you to build a prototype feature or even a proprietary plugin for your organization's internal use.
 
-We use HashiCorp's [`go-plugin`](https://github.com/hashicorp/go-plugin) library as it fits our asks
-and it has been proven in many plugin-based production systems.
+We use HashiCorp's [`go-plugin`](https://github.com/hashicorp/go-plugin) library as it fits our asks and it has been
+proven in many plugin-based production systems.
 
 ## Benefits
 
 - Dynamically-linked binaries (which you get when using plugins) are much smaller than statically compiled binaries.
-- We value the ability to isolate failures. E.g.: GoQuorum client would continue mining/validating even if security plugin has crashed.
+- We value the ability to isolate failures. E.g.: GoQuorum client would continue mining/validating even if security
+  plugin has crashed.
 - Easily enables support for open source plugins written in languages other than Go.
 
 ## Design
@@ -122,18 +124,26 @@ impl2 -up- grpcI2
 
 ## Discovery
 
-The GoQuorum client reads the plugin [settings](../../HowTo/Configure/Plugins.md) file to determine which plugins are going to be loaded and searches for installed plugins
-(`<name>-<version>.zip` files) in the plugin `baseDir` (defaults to `<datadir>/plugins`). If the required plugin doesn't exist in the path, GoQuorum will attempt to use the configured `plugin central` to download the plugin.
+The GoQuorum client reads the plugin [settings](../../HowTo/Configure/Plugins.md) file to determine which plugins are
+going to be loaded and searches for installed plugins (`<name>-<version>.zip` files) in the plugin `baseDir` (defaults
+to `<datadir>/plugins`).
+If the required plugin doesn't exist in the path, GoQuorum will attempt to use the configured `plugin central` to
+download the plugin.
 
-## PluginManager
+## `PluginManager`
 
-The `PluginManager` manages the plugins being used inside `geth`. It reads the [configuration](../../HowTo/Configure/Plugins.md) and builds a registry of plugins.
-`PluginManager` implements the standard `Service` interface in `geth`, hence being embedded into the `geth` service life cycle, i.e.: expose service APIs, start and stop.
-The `PluginManager` service is registered as early as possible in the node lifecycle. This is to ensure the node fails fast if an issue is encountered when registering the `PluginManager`, so as not to impact other services.
+The `PluginManager` manages the plugins being used inside `geth`.
+It reads the [configuration](../../HowTo/Configure/Plugins.md) and builds a registry of plugins.
+`PluginManager` implements the standard `Service` interface in `geth`, hence being embedded into the `geth` service life
+cycle, i.e.: expose service APIs, start and stop.
+The `PluginManager` service is registered as early as possible in the node lifecycle.
+This is to ensure the node fails fast if an issue is encountered when registering the `PluginManager`, so as not to
+impact other services.
 
 ## Plugin reloading
 
-The `PluginManager` exposes an API (`admin_reloadPlugin`) that allows reloading a plugin. This attempts to restart the current plugin process.
+The `PluginManager` exposes an API (`admin_reloadPlugin`) that allows reloading a plugin.
+This attempts to restart the current plugin process.
 
 Any changes to the plugin configuration after initial node start will be applied when reloading the plugin.
 This is demonstrated in the [HelloWorld plugin example](../../Reference/Plugins/helloworld/interface.md).
