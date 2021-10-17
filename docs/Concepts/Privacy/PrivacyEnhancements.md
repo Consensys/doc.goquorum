@@ -111,10 +111,13 @@ privacy-enhanced transactions.
 An upgraded GoQuorum node can coexist on a network where other nodes are running on lower versions of GoQuorum.
 However, it can't support privacy-enhanced contracts until all interested nodes are upgraded and enable privacy.
 
-If an upgraded but non-privacy-enabled GoQuorum node receives a PP, MPP, or PSV transaction, the node logs a `BAD BLOCK` error.
-If the consensus algorithm is Raft, the node stops.
-If the consensus algorithm is IBFT or QBFT, the node keeps trying to add the bad block, and reprints the errors.
-It won't catch up with rest of nodes until restarted and reinitialized with the correct `privacyEnhancementsBlock`.
+!!! important
+
+    If an upgraded but non-privacy-enabled GoQuorum node receives a PP, MPP, or PSV transaction, the node logs a `BAD
+    BLOCK` error.
+    If the consensus algorithm is Raft, the node stops.
+    If the consensus algorithm is IBFT or QBFT, the node keeps trying to add the bad block, and reprints the errors.
+    It won't catch up with rest of nodes until restarted and reinitialized with the correct `privacyEnhancementsBlock`.
 
 If you set the `enablePrivacyEnhancements` flag to `true` in Tessera without enabling privacy in GoQuorum, the node can
 crash, as the Tessera node accepts PP, MPP, and PSV transactions.
