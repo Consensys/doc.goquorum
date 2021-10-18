@@ -333,3 +333,4 @@ plugins:
         Concepts/Privacy/PrivateTransactionLifecycle.md: Concepts/Privacy/PrivateAndPublic.md
         Concepts/Privacy/PrivateTransactionManager.md: Concepts/Privacy/Privacy.md
         HowTo/Use/DevelopingSmartContracts.md: Tutorials/Contracts/Deploying-Contracts.md
+        Tutorials/Adding-removing-IBFT-validators.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
