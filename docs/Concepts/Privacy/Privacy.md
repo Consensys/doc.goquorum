@@ -1,88 +1,76 @@
 ---
-description: Privacy
+description: Privacy overview
 ---
 
 # Privacy
 
-In GoQuorum, privacy refers to the ability to keep transactions private between the involved participants.
-Other participants cannot access the transaction content.
+Privacy refers to the ability to keep transactions private between the involved participants.
+Other participants can't access the transaction content.
 
 ## Private transaction manager
 
-[Tessera](https://docs.tessera.consensys.net) is private transaction manager for GoQuorum. Tessera stores and allows access
-to encrypted transaction data, and exchanges encrypted payloads with other Tessera nodes but does not
-have access to any sensitive private keys. Tessera uses the enclave for cryptographic functionality.
-The enclave can optionally be hosted by the private transaction manager itself.
+GoQuorum uses [Tessera](https://docs.tessera.consensys.net) as the private transaction manager to implement private transactions.
 
-Tessera is restful/stateless and can be load balanced easily.
+Tessera:
+
+- Stores and allows access to encrypted transaction data.
+- Exchanges encrypted payloads with other Tessera nodes.
+- Doesn't have access to any private keys.
+- Uses an [enclave](#enclave) for cryptographic functionality.
+  The private transaction manager itself can optionally host an enclave.
+- Is restful/stateless and can be load balanced.
+
+[Configure a connection to the private transaction manager](../../HowTo/Configure/ConfigurePTM.md) to
+enable private transactions.
 
 ## Enclave
 
-Distributed ledger protocols leverage cryptographic techniques for transaction authenticity, participant
-authentication, and historical data preservation (that is, through a chain of cryptographically hashed data).
-To achieve a separation of concerns and to provide performance improvements through parallelization
-of certain crypto-operations, much of the cryptographic work including symmetric key generation and data
-encryption/decryption is delegated to the enclave.
+The enclave provides cryptographic functionality to the [private transaction manager](#private-transaction-manager) by
+managing the encryption and decryption in isolation.
+The enclave holds private keys and is essentially a virtual HSM isolated from other components.
 
-The enclave works with the private transaction manager to strengthen privacy by managing the encryption
-and decryption in isolation. The enclave holds private keys and is essentially a _virtual HSM_ isolated
-from other components.
+The separation of duties between the private transaction manager and enclave provide performance improvements and
+strengthens privacy.
 
 ## Public and private state
 
 GoQuorum supports two states:
 
-- Public state: accessible by all nodes within the network
-- Private state: only accessible by nodes with the correct permissions
+- Public state, which is accessible by all nodes within the network
+- Private state, which is only accessible by nodes with the correct permissions
 
-The difference is made through the use of transactions with encrypted (private) and non-encrypted payloads (public).
-Nodes can determine if a transaction is private by looking at the `v` value of the signature.
-Public transactions have a `v` value of `27` or `28`, private transactions have a value of `37` or `38`.
+[Public state transactions](PrivateAndPublic.md#public-transactions) have non-encrypted payloads, while
+[private state transactions](PrivateAndPublic.md#private-transactions) have encrypted payloads.
 
-If the transaction is private, the node can only execute the transaction if it has the ability to access and decrypt the payload. Nodes who are not involved in the transaction do not have the private payload at all. As a result all nodes share a common public state which is created through public transactions and have a local unique private state.
-
-This model imposes a restriction in the ability to modify state in private transactions.
-Since it's a common use case for a (private) contract to read data from a public contract the virtual machine has the ability to jump into read only mode.
-For each call from a private contract to a public contract the virtual machine will change to read only mode.
-If the virtual machine is in read only mode and the code tries to make a state change the virtual machine stops execution and throws an exception.
-
-The following transactions are allowed:
-
-```text
-1. S -> A -> B
-2. S -> (A) -> (B)
-3. S -> (A) -> [B -> C]
-```
-
-and the following transaction are unsupported:
-
-```text
-1. (S) -> A
-2. (S) -> (A)
-```
-
-where:
-
-- `S` = sender
-- `(X)` = private
-- `X` = public
-- `->` = direction
-- `[]` = read only mode
+Nodes can only execute private transactions if they can access and decrypt the payload.
+All nodes share a common public state created through public transactions and have a local unique private state.
 
 ### State verification
 
 To determine if nodes are in sync, the public state root hash is included in the block.
-Private transactions are only processed by participating nodes, so it's impossible to obtain global consensus on the
+Private transactions are only processed by participating nodes, so it's impossible to reach global consensus on the
 private state.
 
 To validate that the private state change from a private transaction is the same across all participants, use
 [`eth_storageRoot`](../../Reference/API-Methods.md#eth_storageroot), specifying the private smart contract address and
 block height.
-If the state is in sync across all participating nodes, the same root hash is returned by all participating nodes.
+If the state is in sync across all participating nodes, they return the same root hash.
 
-#### Privacy enhancements - private state validation
+### Privacy enhancements and private state validation
 
-Automatic verification of a contract(s) state across party nodes is performed by the GoQuorum node when privacy enhancements are enabled and PSV transactions are used.
-For more details please see [Privacy Enhancements](PrivacyEnhancements.md).
+When [privacy enhancements](PrivacyEnhancements.md) are enabled and
+[private state validation (PSV)](PrivacyEnhancements.md#private-state-validation) transactions are used, the GoQuorum
+node automatically verifies a contract's state across participating nodes.
 
-*[PSV]: Private State Validation
+## Privacy marker transactions
+
+[Privacy marker transactions (PMTs)](PrivacyMarkerTransactions.md) creates public PMTs and internal private transactions, and is an alternative to normal private transactions.
+A PMT allows for the corresponding internal private transaction to be kept off chain, with its contents and receipt
+hidden from public view.
+
+## Contract state extension
+
+[Contract state extension](ContractExtension.md) allows you to extend access to a private contract beyond its
+initial set of participants.
+
+*[HSM]: Hardware security module

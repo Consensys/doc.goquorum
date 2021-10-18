@@ -68,11 +68,9 @@ nav:
       - Privacy:
           - Overview: Concepts/Privacy/Privacy.md
           - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
-          - Private transaction manager: Concepts/Privacy/PrivateTransactionManager.md
-          - Private transaction lifecycle: Concepts/Privacy/PrivateTransactionLifecycle.md
-          - Contract state extension: Concepts/Privacy/ContractExtension.md
           - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
           - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
+          - Contract state extension: Concepts/Privacy/ContractExtension.md
       - Consensus:
           - Overview: Concepts/Consensus/Overview.md
           - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
@@ -129,6 +127,7 @@ nav:
           - Permissioning:
               - Basic permissions: HowTo/Configure/Permissioning/BasicPermissions.md
               - Enhanced permissions: HowTo/Configure/Permissioning/EnhancedPermissions.md
+          - Private transaction manager: HowTo/Configure/ConfigurePTM.md
           - Plugins: HowTo/Configure/Plugins.md
           - DNS: HowTo/Configure/dns.md
       - Develop plugins: HowTo/DevelopPlugins.md
@@ -149,7 +148,6 @@ nav:
           - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
           - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
           - Multi-tenancy: HowTo/Use/Multitenancy.md
-          - Smart contracts: HowTo/Use/DevelopingSmartContracts.md
           - Include revert reason: HowTo/Use/Revert-Reason.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
@@ -248,8 +246,8 @@ plugins:
         PluggableArchitecture/Internals.md: Concepts/Plugins/PluginsArchitecture.md
         Privacy/Contract-Extension/Overview.md: Concepts/Privacy/ContractExtension.md
         Privacy/Overview.md: Concepts/Privacy/PrivateAndPublic.md
-        Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateTransactionLifecycle.md
-        Privacy/Privacy-Manager.md: Concepts/Privacy/PrivateTransactionManager.md
+        Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateAndPublic.md
+        Privacy/Privacy-Manager.md: Concepts/Privacy/Privacy.md
         Security/Framework/Decentralized Application/Frontend Components.md: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
         Security/Framework/Decentralized Application/Smart Contracts Security.md: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
         Security/Framework/Quorum Network Security/Consortium.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
@@ -332,3 +330,6 @@ plugins:
         Reference/quorum.js/Overview.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
         Reference/quorum.js/extend.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
         Reference/quorum.js/RawTransactionManager.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
+        Concepts/Privacy/PrivateTransactionLifecycle.md: Concepts/Privacy/PrivateAndPublic.md
+        Concepts/Privacy/PrivateTransactionManager.md: Concepts/Privacy/Privacy.md
+        HowTo/Use/DevelopingSmartContracts.md: Tutorials/Contracts/Deploying-Contracts.md
