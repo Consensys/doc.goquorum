@@ -22,7 +22,7 @@ This reference describes the syntax of the GoQuorum Command Line Interface (CLI)
     --allowedfutureblocktime <INTEGER>
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --allowedfutureblocktime 1
@@ -40,7 +40,7 @@ The default is 0.
     --immutabilitythreshold <INTEGER>
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --immutabilitythreshold 1000000
@@ -58,7 +58,7 @@ The default is 3162240.
     --istanbul.blockperiod <INTEGER>
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --istanbul.blockperiod 5
@@ -80,7 +80,7 @@ Setting the block period determines how quickly blocks should be minted by the v
     --istanbul.requesttimeout <INTEGER>
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --istanbul.requesttimeout 12000
@@ -101,7 +101,7 @@ The default is 10000.
     --multitenancy
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --multitenancy
@@ -118,7 +118,7 @@ This requires the [JSON-RPC Security plugin](../HowTo/Use/JSON-RPC-API-Security.
     --permissioned
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --permissioned
@@ -135,7 +135,7 @@ The node allows only a defined list of nodes to connect.
     --plugins file:///<path>/<to>/plugins.json
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --plugins file:///opt/geth/plugins.json
@@ -152,13 +152,7 @@ Use this to configure [plugins](../Concepts/Plugins/Plugins.md).
     --plugins.localverify
     ```
 
-=== "Command Line"
-
-    ```bash
-    --plugins.localverify
-    ```
-
-Verifies [plugin integrity](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) from the
+If included, verifies [plugin integrity](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) from the
 local file system.
 This requires a plugin signature file and [PGP public key file](#pluginspublickey) to be available.
 
@@ -170,7 +164,7 @@ This requires a plugin signature file and [PGP public key file](#pluginspublicke
     --plugins.publickey file:///<path>/<to>/<publicKeyFile>
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --plugins.publickey file:///opt/geth/pubkey.pgp.asc
@@ -188,13 +182,219 @@ This option is only valid if [`--plugins.localverify`](#pluginslocalverify) is s
     --plugins.skipverify
     ```
 
-=== "Command Line"
+If included, disables the [plugin verification](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) process.
+
+### `privacymarker.enable`
+
+=== "Syntax"
 
     ```bash
-    --plugins.skipverify
+    --privacymarker.enable
     ```
 
-Disables the [plugin verification](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) process.
+If included, GoQuorum creates a [privacy marker transaction](../Concepts/Privacy/PrivacyMarkerTransactions.md) when a
+private transaction is submitted.
+
+### `ptm.dialtimeout`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.dialtimeout <INTEGER>
+    ```
+
+=== "Example"
+
+    ```bash
+    ---ptm.dialtimeout 0
+    ```
+
+Dial timeout in seconds for the [private transaction manager connection](../HowTo/Configure/ConfigurePTM.md).
+Setting to 0 disables the timeout.
+The default is 1 second.
+
+### `ptm.http.idletimeout`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.http.idletimeout <INTEGER>
+    ```
+
+=== "Example"
+
+    ```bash
+    ---ptm.http.idletimeout 0
+    ```
+
+Idle timeout in seconds for the [private transaction manager connection](../HowTo/Configure/ConfigurePTM.md).
+Setting to 0 disables the timeout.
+The default is 10 seconds.
+
+### `ptm.http.readbuffersize`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.http.readbuffersize <INTEGER>
+    ```
+
+=== "Example"
+
+    ```bash
+    ---ptm.http.readbuffersize 0
+    ```
+
+Size of the read buffer in bytes for the [private transaction manager connection](../HowTo/Configure/ConfigurePTM.md).
+Setting to 0 or not specifying uses the `http.Transport` default.
+
+### `ptm.http.writebuffersize`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.http.writebuffersize <INTEGER>
+    ```
+
+=== "Example"
+
+    ```bash
+    ---ptm.http.writebuffersize 0
+    ```
+
+Size of the write buffer in bytes for the [private transaction manager connection](../HowTo/Configure/ConfigurePTM.md).
+Setting to 0 or not specifying uses the `http.Transport` default.
+
+### `ptm.socket`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.socket <path>/<to>/<ipc>/<file>
+    ```
+
+=== "Example"
+
+    ```bash
+    ---ptm.socket qdata/c1/tm.ipc
+    ```
+
+Path to the IPC file when using a Unix domain socket for the [private transaction manager connection](../HowTo/Configure/ConfigurePTM.md).
+
+### `ptm.timeout`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.timeout <INTEGER>
+    ```
+
+=== "Example"
+
+    ```bash
+    ---ptm.timeout 0
+    ```
+
+Timeout in seconds for communication over the [private transaction manager connection](../HowTo/Configure/ConfigurePTM.md).
+Setting to 0 disables the timeout.
+The default is 5 seconds.
+
+### `ptm.tls.clientcert`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.tls.clientcert <path>/<to>/<client_cert_pem_file>
+    ```
+
+=== "Example"
+
+    ```bash
+    ---ptm.tls.clientcert client.cert.pem
+    ```
+
+Path to the file containing client certificate (or chain of certificates) when using a TLS
+[connection to the private transaction manager](../HowTo/Configure/ConfigurePTM.md).
+This is required if the server is configured to use two-way authentication.
+
+### `ptm.tls.clientkey`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.tls.clientkey <path>/<to>/<client_key_pem_file>
+    ```
+
+=== "Example"
+
+    ```bash
+    ---ptm.tls.clientkey client.key.pem
+    ```
+
+Path to the file containing the client's private key when using a TLS
+[connection to private transaction manager](../HowTo/Configure/ConfigurePTM.md).
+This is required if the server is configured to use two-way authentication.
+
+### `ptm.tls.insecureskipverify`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.tls.insecureskipverify
+    ```
+
+If included, disables verification of the server's TLS certificate on
+[connection to private transaction manager](../HowTo/Configure/ConfigurePTM.md).
+
+### `ptm.tls.mode`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.tls.mode <STRING>
+    ```
+
+=== "Example"
+
+    ```bash
+    ---ptm.tls.mode "strict"
+    ```
+
+Setting to `off` disables TLS.
+Setting to `strict` enables TLS when using an HTTPS [connection to the private transaction manager](../HowTo/Configure/ConfigurePTM.md).
+
+### `ptm.tls.rootca`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.tls.rootca <path>/<to>/<rootca_pem_file>
+    ```
+
+=== "Example"
+
+    ```bash
+    ---ptm.tls.rootca certfile.pem
+    ```
+
+Path to the file containing root CA certificate when using a TLS [connection to the private transaction manager](../HowTo/Configure/ConfigurePTM.md).
+The default is the host's certificates.
+
+### `ptm.url`
+
+=== "Syntax"
+
+    ```bash
+    --ptm.url <URL>
+    ```
+
+=== "Example"
+
+    ```bash
+    ---ptm.url "https://127.0.0.1:9101"
+    ```
+
+URL when using an HTTP/HTTPS [connection to the private transaction manager](../HowTo/Configure/ConfigurePTM.md).
 
 ### `raft`
 
@@ -204,7 +404,7 @@ Disables the [plugin verification](../Concepts/Plugins/Plugins.md#plugin-integri
     --raft
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --raft
@@ -220,7 +420,7 @@ Enables [Raft](../HowTo/Configure/Consensus-Protocols/Raft.md) for consensus.
     --raftblocktime <INTEGER>
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --raftblocktime 100
@@ -237,7 +437,7 @@ The default is 50.
     --raftdnsenable
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --raftdnsenable
@@ -253,7 +453,7 @@ Enables [DNS resolution of peers](../HowTo/Configure/dns.md).
     --raftjoinexisting <INTEGER>
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --raftjoinexisting 1
@@ -271,7 +471,7 @@ The default is 0.
     --raftlogdir <DIRECTORY>
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --raftlogdir raftlogdir
@@ -288,7 +488,7 @@ Defaults to the [`datadir` option](https://geth.ethereum.org/docs/interface/comm
     --raftport <PORT>
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --raftport 50500
@@ -305,7 +505,7 @@ The default is 50400.
     --revertreason
     ```
 
-=== "Command Line"
+=== "Example"
 
     ```bash
     --revertreason
