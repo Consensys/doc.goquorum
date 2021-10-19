@@ -4,34 +4,34 @@ description: GoQuorum pluggable architecture
 
 # GoQuorum plugins
 
-GoQuorum has a pluggable architecture which allows adding features as plugins to the core `geth` client, providing
-extensibility, flexibility, and isolation of GoQuorum features.
+GoQuorum allows adding features as plugins to the core `geth` client, providing extensibility, flexibility, and
+isolation of GoQuorum features.
 
-The benefits of this enhancement include:
+The benefits of plugins include:
 
 1. Allowing the implementation of certain GoQuorum components to be changed at configuration time.
-1. Supporting our community to improve the GoQuorum client with their own innovative implementations of the supported
+1. Supporting the GoQuorum community to improve the GoQuorum client with innovative implementations of the supported
    pluggable components.
-1. Decoupling new GoQuorum-specific features from the core `geth`, simplifying the process of pulling in changes from
+1. Decoupling new GoQuorum-specific features from the core `geth`, simplifying the process of integrating changes from
    upstream `geth`.
 
 ## How it works
 
-Each plugin exposes an implementation for a specific [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions)
-
-Plugins are executed as a separate process and communicate with the main GoQuorum client `geth` process over a
-[gRPC](https://grpc.io/) interface.
+Each plugin exposes an implementation for a specific [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions).
+Plugins are executed as separate processes and communicate with the main `geth` process over a [gRPC](https://grpc.io/)
+interface.
 
 The plugin implementation must adhere to certain gRPC services defined in a `.proto` file corresponding to the plugin interface.
 Plugins can be written in different languages, as gRPC provides a mechanism to generate stub code from `.proto` files.
 
-The network communication and RPC are handled automatically by the [high-level plugin library](https://github.com/hashicorp/go-plugin).
+The [high-level plugin library](https://github.com/hashicorp/go-plugin) automatically handles the network communication
+and RPC.
 
 ## Installing plugins
 
 Currently, plugins must be manually installed into a directory.
 The default is the `plugins` directory inside `geth` data directory.
-You can override the default by setting `baseDir` in [plugins settings](../../HowTo/Configure/Plugins.md).
+You can override the default by setting `baseDir` in the [plugin settings](../../HowTo/Configure/Plugins.md).
 
 ## Using plugins
 
@@ -52,19 +52,3 @@ To disable the plugin verification process, use the
 !!! warning
 
     Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.
-
-!!! important
-
-    Before GoQuorum `21.4.1`, the default Plugin Central Server configuration used Bintray to distribute the official plugins.
-    As Bintray is deprecated, [configure Plugin Central](../../HowTo/Configure/Plugins.md#plugincentralconfiguration)
-    to use the ConsenSys Cloudsmith repository to override the default:
-
-    ```json
-    {
-        "central": {
-            "baseURL": "https://provisional-plugins-repo.quorum.consensys.net",
-            "publicKeyURI": ".pgp/Central.pgp.pk"
-        },
-        ...
-    }
-    ```
