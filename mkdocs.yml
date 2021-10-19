@@ -241,7 +241,7 @@ plugins:
         Permissioning/Basic NetworkPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
         Permissioning/Enhanced Permissions Model/Contract Design.md: Concepts/PermissionsOverview.md
         Permissioning/Permissions Overview.md: Concepts/PermissionsOverview.md
-        PluggableArchitecture/Overview.md: Concepts/Plugins/Plugins.md
+        PluggableArchitecture/Overview.md: Concepts/Plugins.md
         PluggableArchitecture/Internals.md: Concepts/Plugins.md
         Privacy/Contract-Extension/Overview.md: Concepts/Privacy/ContractExtension.md
         Privacy/Overview.md: Concepts/Privacy/PrivateAndPublic.md

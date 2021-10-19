@@ -28,11 +28,11 @@ and RPC.
 
 ## Using plugins
 
-The GoQuorum client reads the [plugin settings file](../HowTo/Configure/Plugins.md) to determine which plugins to
+The GoQuorum client reads the [plugin configuration file](../HowTo/Configure/Plugins.md) to determine which plugins to
 load and searches for installed plugins (`<name>-<version>.zip` files) in the plugins directory `baseDir` (the default
 directory is `<datadir>/plugins`).
 
-You can [configure the plugin settings file](../HowTo/Configure/Plugins.md) and
+You can [specify a plugin configuration file](../HowTo/Configure/Plugins.md) and
 [use an example `HelloWorld` plugin](../Tutorials/Use-Plugin.md).
 
 ## Plugin reloading

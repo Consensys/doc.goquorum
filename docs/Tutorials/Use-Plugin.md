@@ -28,7 +28,7 @@ The plugin can [reload](../Concepts/Plugins.md#plugin-reloading) changes from it
 
     ```bash
     cd go
-    go build
+    make
     ```
 
     `quorum-plugin-hello-world-1.0.0.zip` is now created in the `build` directory.

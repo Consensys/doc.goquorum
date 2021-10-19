@@ -1,11 +1,14 @@
 # Configure plugins
 
-`geth` can load plugins from:
+GoQuorum can load plugins from:
 
 - A JSON file specified using the [`--plugins`](../../Reference/CLI-Syntax.md#plugins) command line option.
-- An Ethereum TOML configuration file specified using the `--config` command line option.
+- An Ethereum TOML configuration file specified using the [`--config`](https://geth.ethereum.org/docs/interface/command-line-options)
+  command line option.
 
 ## Configuration files
+
+You can specify the plugin configuration file with the following content.
 
 === "JSON file"
 
@@ -33,76 +36,95 @@
             .. = .. from object(PluginDefinition)
     ```
 
-| Fields      | Description                                                                                                                                                                                                        |
-|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `baseDir`   | A string indicating the local directory from where plugins are read. If empty, defaults to `<datadir>/plugins`. <br/> To read from arbitrary enviroment variable (e.g: `MY_BASE_DIR`), provide value `env://MY_BASE_DIR` |
-| `central`   | A configuration of the remote plugin central. See [PluginCentralConfiguration](#plugincentralconfiguration)                                                                                                        |
-| `providers` | A map of the supported plugin interfaces being used (for example, `helloworld`), mapped to their respective plugin provider definitions (see [PluginDefinition](#plugindefinition))                                                                             |
-| `<string>`  | A string constant indicates the plugin interface. E.g: `helloworld`.                                                                                                                                               |
+| Field      | Description                                                                                                             |
+|:-----------|:------------------------------------------------------------------------------------------------------------------------|
+| `baseDir`  | The local directory from where GoQuorum reads plugins. The default is `<datadir>/plugins`. To read from an arbitrary environment variable, for example `MY_BASE_DIR`, provide the value `env://MY_BASE_DIR`. |
+| `central`  | A configuration of the remote [Plugin Central](#plugincentralconfiguration).                                            |
+| `providers`| The supported plugin interfaces being used mapped to their respective [plugin provider definitions](#plugindefinition). |
+| `<string>` | The plugin interface, for example `helloworld`.                                                                         |
 
-## `PluginCentralConfiguration`
+### `PluginCentralConfiguration`
 
-[Plugin integrity verification](../../Concepts/Plugins.md#plugin-integrity-verification) uses the GoQuorum
-Plugin Central Server by default.
-Modifying this section configures your own local plugin central for Plugin Integrity Verification:
+[Plugin integrity verification](../../Concepts/Plugins.md#plugin-integrity-verification) uses the GoQuorum Plugin
+Central Server by default.
+You can modify this section to configure your own local Plugin Central for plugin integrity verification.
 
-=== "JSON"
-
-    ```json
-    {
-      "baseURL": string,
-      "certFingerprint": string,
-      "publicKeyURI": string,
-      "insecureSkipTLSVerify": bool,
-      "pluginDistPathTemplate": string,
-      "pluginSigPathTemplate": string
-    }
-    ```
-
-=== "TOML"
-
-    ```toml
-    BaseURL = string
-    CertFingerPrint = string
-    PublicKeyURI = string
-    InsecureSkipTLSVerify = bool
-    PluginDistPathTemplate = string
-    PluginSigPathTemplate = string
-    ```
-
-| Fields                  | Description                                                                                                               |
-|:------------------------|:--------------------------------------------------------------------------------------------------------------------------|
-| `baseURL`               | A string indicating the remote plugin central URL (ex.`https://plugins.mycorp.com`)                                       |
-| `certFingerprint`       | A string containing hex representation of the http server public key finger print <br/>to be used for certificate pinning |
-| `publicKeyURI`          | A string defining the location of the PGP public key <br/>to be used to perform the signature verification                |
-| `insecureSkipTLSVerify` | If true, **do not** verify the server's certificate chain and host name                                                   |
-| `pluginDistPathTemplate`| A string defining the path template to the plugin distribution file. <br/>The value is a string that is a Go text template. <br/>The self-explanatory variables are \{\{.Name\}\}, \{\{.Version\}\}, \{\{.OS\}\} and \{\{.Arch\}\} |
-| `pluginSigPathTemplate` | A string defining the path template to the plugin sha256 signature file. <br/> The value is a string that is a Go text template. <br/>The self-explanatory variables are \{\{.Name\}\}, \{\{.Version\}\}, \{\{.OS\}\} and \{\{.Arch\}\} |
-
-## `PluginDefinition`
-
-Defines the plugin and its configuration
-
-=== "JSON"
+=== "JSON file"
 
     ```json
     {
-      "name": string,
-      "version": string,
-      "config": file/string/array/object
+      "central": {
+        {
+          "baseURL": string,
+          "certFingerprint": string,
+          "publicKeyURI": string,
+          "insecureSkipTLSVerify": bool,
+          "pluginDistPathTemplate": string,
+          "pluginSigPathTemplate": string
+        }
+      },
+      ...
     }
     ```
 
-=== "TOML"
+=== "TOML file"
 
     ```toml
-    Name = string
-    Version = string
-    Config = file/string/array/object
+    ...
+            [Node.Plugins.Central]
+            BaseURL = string
+            CertFingerPrint = string
+            PublicKeyURI = string
+            InsecureSkipTLSVerify = bool
+            PluginDistPathTemplate = string
+            PluginSigPathTemplate = string
+    ...
     ```
 
-| Fields    | Description                                                                                                                                                                                                                                                                     |
-|:----------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`    | A string specifying the name of the plugin                                                                                                                                                                                                                                       |
-| `version` | A string specifying the version of the plugin                                                                                                                                                                                                                                    |
-| `config`  | Value can be: <ul><li>uri format: supports the following schemes<ul><li>`file`: location of plugin config file to be read. E.g.: `file:///opt/plugin.cfg`</li><li>`env`: value from an environment variable. E.g.: `env://MY_CONFIG_JSON`<br/>To indicate value is a file location: append `?type=file`. E.g.: `env://MY_CONFIG_FILE?type=file`</li></ul><li>string: an arbitrary JSON string</li><li>array: a valid JSON array E.g.: `["1", "2", "3"]`</li><li>object: a valid JSON object. E.g.: `{"foo" : "bar"}`</li></ul> |
+| Field                    | Description                                                                    |
+|:-------------------------|:-------------------------------------------------------------------------------|
+| `baseURL`                | The remote plugin central URL. For example, `https://plugins.mycorp.com`.      |
+| `certFingerprint`        | The HTTP server public key fingerprint, in hex, used for certificate pinning.  |
+| `publicKeyURI`           | The path to the PGP public key used for signature verification.                |
+| `insecureSkipTLSVerify`  | If true, GoQuorum doesn't verify the server's certificate chain and host name. |
+| `pluginDistPathTemplate` | The path template to the plugin distribution file. The value is a Go text template. The variables are \{\{.Name\}\}, \{\{.Version\}\}, \{\{.OS\}\}, and \{\{.Arch\}\}.     |
+| `pluginSigPathTemplate`  | The path template to the plugin sha256 signature file. The value is a Go text template. The variables are \{\{.Name\}\}, \{\{.Version\}\}, \{\{.OS\}\}, and \{\{.Arch\}\}. |
+
+### `PluginDefinition`
+
+You can define each supported plugin and its configuration in this section.
+
+=== "JSON file"
+
+    ```json
+    {
+      "providers": {
+        <string>: {
+          "name": string,
+          "version": string,
+          "config": file/string/array/object
+        },
+        ...
+      },
+      ...
+    }
+    ```
+
+=== "TOML file"
+
+    ```toml
+    ...
+        [[Node.Plugins.Providers]]
+            [[Node.Plugins.Providers.<string>]]
+            Name = string
+            Version = string
+            Config = file/string/array/object
+        ...
+    ...
+    ```
+
+| Field     | Description                |
+|:----------|:---------------------------|
+| `name`    | The name of the plugin.    |
+| `version` | The version of the plugin. |
+| `config`  | The JSON configuration. The value can be: <ul><li>One of the following URI schemes:<ul><li>The path to the plugin configuration file. For example, `file:///opt/plugin.cfg`.</li><li>The configuration as an environment variable. For example, `env://MY_CONFIG_JSON`. <br/>To indicate the value is a file location, append `?type=file`. For example, `env://MY_CONFIG_FILE?type=file`.</li></ul><li>An arbitrary JSON string.</li><li>A valid JSON array. For example, `["1", "2", "3"]`.</li><li>A valid JSON object. For example, `{"foo" : "bar"}`.</li></ul> |
