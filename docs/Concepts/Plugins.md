@@ -1,5 +1,5 @@
 ---
-description: GoQuorum pluggable architecture
+description: GoQuorum plugins overview
 ---
 
 # GoQuorum plugins
