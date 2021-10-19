@@ -42,7 +42,7 @@
 
 ## `PluginCentralConfiguration`
 
-[Plugin integrity verification](../../Concepts/Plugins/Plugins.md#plugin-integrity-verification) uses the GoQuorum
+[Plugin integrity verification](../../Concepts/Plugins.md#plugin-integrity-verification) uses the GoQuorum
 Plugin Central Server by default.
 Modifying this section configures your own local plugin central for Plugin Integrity Verification:
 

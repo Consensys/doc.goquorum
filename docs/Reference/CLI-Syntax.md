@@ -142,7 +142,7 @@ The node allows only a defined list of nodes to connect.
     ```
 
 URI of the [plugins settings JSON file](../HowTo/Configure/Plugins.md).
-Use this to configure [plugins](../Concepts/Plugins/Plugins.md).
+Use this to configure [plugins](../Concepts/Plugins.md).
 
 ### `plugins.localverify`
 
@@ -152,7 +152,7 @@ Use this to configure [plugins](../Concepts/Plugins/Plugins.md).
     --plugins.localverify
     ```
 
-If included, verifies [plugin integrity](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) from the
+If included, verifies [plugin integrity](../Concepts/Plugins.md#plugin-integrity-verification) from the
 local file system.
 This requires a plugin signature file and [PGP public key file](#pluginspublickey) to be available.
 
@@ -171,7 +171,7 @@ This requires a plugin signature file and [PGP public key file](#pluginspublicke
     ```
 
 URI of the PGP public key for local
-[plugin verification](../Concepts/Plugins/Plugins.md#plugin-integrity-verification).
+[plugin verification](../Concepts/Plugins.md#plugin-integrity-verification).
 This option is only valid if [`--plugins.localverify`](#pluginslocalverify) is set.
 
 ### `plugins.skipverify`
@@ -182,7 +182,7 @@ This option is only valid if [`--plugins.localverify`](#pluginslocalverify) is s
     --plugins.skipverify
     ```
 
-If included, disables the [plugin verification](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) process.
+If included, disables the [plugin verification](../Concepts/Plugins.md#plugin-integrity-verification) process.
 
 ### `privacymarker.enable`
 

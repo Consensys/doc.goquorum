@@ -112,4 +112,4 @@ in the [handshake](https://github.com/hashicorp/go-plugin/blob/master/docs/inter
 
 ## Examples
 
-Please visit [Overview](../Concepts/Plugins/Plugins.md#example-helloworld-plugin) page for a built-in HelloWorld plugin example.
+Please visit [Overview](../Concepts/Plugins.md#example-helloworld-plugin) page for a built-in HelloWorld plugin example.

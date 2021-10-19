@@ -2,7 +2,7 @@
 
 `account` plugins can be used with GoQuorum or `clef` to provide additional account management.
 
-We recommended reading the [Plugins overview](../../Concepts/Plugins/Plugins.md) first to learn how to use plugins.
+We recommended reading the [Plugins overview](../../Concepts/Plugins.md) first to learn how to use plugins.
 
 ## Available account plugins
 

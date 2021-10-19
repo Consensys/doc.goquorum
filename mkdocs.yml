@@ -75,9 +75,7 @@ nav:
           - Overview: Concepts/Consensus/Overview.md
           - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
       - Permissioning: Concepts/PermissionsOverview.md
-      - Plugins:
-          - Overview: Concepts/Plugins/Plugins.md
-          - Architecture: Concepts/Plugins/PluginsArchitecture.md
+      - Plugins: Concepts/Plugins.md
       - Security framework:
           - Overview: Concepts/Security/Framework/Overview.md
           - GoQuorum network:
@@ -244,7 +242,7 @@ plugins:
         Permissioning/Enhanced Permissions Model/Contract Design.md: Concepts/PermissionsOverview.md
         Permissioning/Permissions Overview.md: Concepts/PermissionsOverview.md
         PluggableArchitecture/Overview.md: Concepts/Plugins/Plugins.md
-        PluggableArchitecture/Internals.md: Concepts/Plugins/PluginsArchitecture.md
+        PluggableArchitecture/Internals.md: Concepts/Plugins.md
         Privacy/Contract-Extension/Overview.md: Concepts/Privacy/ContractExtension.md
         Privacy/Overview.md: Concepts/Privacy/PrivateAndPublic.md
         Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateAndPublic.md
@@ -334,3 +332,5 @@ plugins:
         Concepts/Privacy/PrivateTransactionLifecycle.md: Concepts/Privacy/PrivateAndPublic.md
         Concepts/Privacy/PrivateTransactionManager.md: Concepts/Privacy/Privacy.md
         HowTo/Use/DevelopingSmartContracts.md: Tutorials/Contracts/Deploying-Contracts.md
+        Concepts/Plugins/PluginsArchitecture.md: Concepts/Plugins.md
+        Concepts/Plugins/Plugins.md: Concepts/Plugins.md

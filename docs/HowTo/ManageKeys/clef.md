@@ -107,7 +107,7 @@ An example workflow would be:
 
 By default, `clef` manages file-stored `keystore` accounts. Alternative account management options
 can be enabled through the use of [`account` plugins](AccountPlugins.md). See the
-[Pluggable Architecture Overview](../../Concepts/Plugins/Plugins.md) for more info on using plugins with `clef`.
+[Pluggable Architecture Overview](../../Concepts/Plugins.md) for more info on using plugins with `clef`.
 
 ```bash
 clef --plugins file:///path/to/plugin-config.json
