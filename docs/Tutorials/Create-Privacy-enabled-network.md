@@ -4,8 +4,9 @@ description: Creating a network with privacy enabled
 
 # Create a privacy-enabled network
 
-The private network uses [Tessera](https://docs.tessera.consensys.net/), a private transaction manager,
-to encrpyt and distribute [private transactions](../Concepts/Privacy/Privacy.md).
+This tutorial shows you how to create a privacy-enabled network.
+The network uses [Tessera](https://docs.tessera.consensys.net/), a private transaction manager,
+to encrypt and distribute [private transactions](../Concepts/Privacy/Privacy.md).
 
 !!!important
 
