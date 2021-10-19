@@ -334,3 +334,4 @@ plugins:
         HowTo/Use/DevelopingSmartContracts.md: Tutorials/Contracts/Deploying-Contracts.md
         Concepts/Plugins/PluginsArchitecture.md: Concepts/Plugins.md
         Concepts/Plugins/Plugins.md: Concepts/Plugins.md
+        Tutorials/Adding-removing-IBFT-validators.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
