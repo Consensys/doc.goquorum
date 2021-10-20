@@ -29,9 +29,9 @@ following lifecycle:
 1. `geth` imports the plugin RPC server certificate.
 1. `geth` and the plugin communicate via RPC over TLS using mutual TLS.
 
-Each plugin must implement a `PluginInitializer` gRPC service [initialization interface](../Reference/Plugins/init_interface.md).
+Each plugin must implement the [`PluginInitializer` gRPC service interface](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/init.proto).
 After the plugin process starts and connection with the GoQuorum client is established,
-GoQuorum invokes the `Init()` gRPC method using the initialization interface to initialize the plugin with data from the
+GoQuorum invokes the `Init()` gRPC method to initialize the plugin with data from the
 [plugin configuration file](Configure/Plugins.md).
 
 ## Distribution
@@ -114,7 +114,9 @@ append the base64-encoded value of the certificate (in DER format) in the
 
 Follow the [`HelloWorld` plugin tutorial](../Tutorials/Use-Plugin.md) for an example.
 
-You can also view the interfaces for the [`HelloWorld` plugin](../Reference/Plugins/helloworld/interface.md),
-[`account` plugins](../Reference/Plugins/account/interface.md), and
-[`security` plugins](../Reference/Plugins/security/interface.md).
+## Plugin interface definitions
+
+You can view the [gRPC definitions](https://github.com/ConsenSys/quorum-plugin-definitions) for the initialization
+interface, `HelloWorld` plugin interface, [`account` plugin](../Reference/Plugins/Account.md) interface, and
+[`security` plugin](../Reference/Plugins/Security.md) interface.
 

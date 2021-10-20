@@ -63,7 +63,7 @@ psi://G?node.eoa=G_ACC1&self.eoa=Wallet2
 
 Clients must also be granted scopes which specify access to the JSON RPC APIs.
 
-Refer to the [JSON RPC Security plugin](../../Reference/Plugins/security/For-Users.md#oauth2-scopes) for more information.
+Refer to the [JSON RPC Security plugin](../../Reference/Plugins/Security.md#oauth2-scopes) for more information.
 
 In summary, to reflect the above security model, typical scopes being granted to `J Investment`
 would be the following:

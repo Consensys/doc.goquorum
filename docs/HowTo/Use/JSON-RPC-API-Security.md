@@ -1,8 +1,6 @@
-# Securing JSON RPC
+# Securing JSON-RPC
 
-## Overview
-
-JSON RPC servers are secured via a [security plugin interface](../../Reference/Plugins/security/interface.md).
+JSON-RPC servers are secured using a [security plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/security.proto).
 The official implementation is [Quorum Security Plugin](https://github.com/ConsenSys/quorum-security-plugin-enterprise) which
 enables the GoQuorum Client to protect JSON RPC APIs with the following features:
 
@@ -27,7 +25,7 @@ and Quorum Clients access control in an efficient approach.
 
 ## Configuration
 
-Refer to [plugin implementation](../../Reference/Plugins/security/For-Users.md) for more details
+Refer to [plugin implementation](../../Reference/Plugins/Security.md#for-users) for more details
 and find [examples on how to configure the plugin to work with different OAuth2 Authorization servers](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples).
 
 ## Client usage
