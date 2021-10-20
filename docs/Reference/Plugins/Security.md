@@ -19,6 +19,8 @@ GoQuorum provides an [official plugin implementation](https://github.com/ConsenS
 - Provides TLS configuration to HTTP and WS transports.
 - Enables the `geth` JSON-RPC (HTTP/WS) server to be an OAuth2-compliant resource server.
 
+See [how to use the security plugin](../../HowTo/Use/JSON-RPC-API-Security.md).
+
 ### Configuration
 
 One of the following blocks must be configured:
@@ -243,4 +245,3 @@ method-name := string
     | `rpc://web3.clientVersion`                 | Allow access to the `web3_clientVersion` API.                                                      |
     | `rpc://eth_*` <br/>or `rpc://eth_`         | Allow access to all APIs under the `eth` namespace.                                                |
     | `rpc://*_version` <br/>or `rpc://_version` | Allow access to the `version` method of all namespaces. For example, `net_version`, `ssh_version`. |
-

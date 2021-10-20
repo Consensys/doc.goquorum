@@ -119,4 +119,3 @@ Follow the [`HelloWorld` plugin tutorial](../Tutorials/Use-Plugin.md) for an exa
 You can view the [gRPC definitions](https://github.com/ConsenSys/quorum-plugin-definitions) for the initialization
 interface, `HelloWorld` plugin interface, [`account` plugin](../Reference/Plugins/Account.md) interface, and
 [`security` plugin](../Reference/Plugins/Security.md) interface.
-
