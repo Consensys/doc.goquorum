@@ -89,7 +89,7 @@ Some additional advanced topics are described here.
 ### Magic cookie
 
 A magic cookie key and value are used as basic verification that a plugin is intended to be launched.
-This is not a security measure, just a UX feature.
+This is a UX feature, not a security measure.
 
 Set the magic cookie key and value as an environment variable while executing the plugin process:
 

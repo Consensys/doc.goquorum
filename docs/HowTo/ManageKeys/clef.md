@@ -2,12 +2,11 @@
 description: Clef Ethereum account manager
 ---
 
-# Using Clef
+# Using `clef`
 
 `clef` was introduced in Quorum `v2.6.0`.
 
-Clef for GoQuorum is the standard `go-ethereum` `clef` tool, with additional support for GoQuorum-specific
-features, including:
+`clef` for GoQuorum is the standard `go-ethereum` `clef` tool, with support for GoQuorum-specific features including:
 
 * Support for private transactions.
 * Ability to extend functionality with [`account` plugins](AccountPlugins.md).
@@ -87,8 +86,8 @@ this is exposed over IPC socket. The API can also be exposed over HTTP by using 
 
 ### As a geth signer
 
-Using `clef` as a `geth` signer does not require direct interaction through the `clef` API. Instead
-`geth` can be used as normal and will automatically delegate to `clef`.
+Using `clef` as a `geth` signer doesn't require direct interaction through the `clef` API.
+Use `geth` as normal and it automatically delegates to `clef`.
 
 To use `clef` as a `geth` signer:
 
@@ -98,7 +97,7 @@ To use `clef` as a `geth` signer:
 An example workflow:
 
 1. Start `clef` and make your accounts available to it.
-1. Start `geth` and do not make your accounts available to it.
+1. Start `geth` and don't make your accounts available to it.
 1. Use `eth_sendTransaction` to sign and submit a transaction for validation, propagation, and minting.
 
 ### Extending with account plugins

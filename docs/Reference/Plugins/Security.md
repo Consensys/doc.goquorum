@@ -4,7 +4,7 @@
 
 You can develop new `security` [plugins](../../Concepts/Plugins.md) to customize protection of the JSON-RPC server.
 
-`security` plugins must satisfy the [gRPC API interface requirements](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/security.proto).
+`security` plugins must follow the [gRPC API interface requirements](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/security.proto).
 
 To simplify the development of new `security` plugins the following `security` plugin SDKs are available:
 

@@ -4,7 +4,7 @@
 
 You can develop new `account` plugins to extend the supported account management options for GoQuorum and `clef`.
 
-`account` plugins must satisfy the [gRPC API interface requirements](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/account.proto).
+`account` plugins must follow the [gRPC API interface requirements](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/account.proto).
 
 To simplify the development of new `account` plugins, the following `account` plugin SDKs are available:
 
@@ -14,4 +14,4 @@ To simplify the development of new `account` plugins, the following `account` pl
 
 ## For users
 
-See the [account/key management documentation](../../HowTo/ManageKeys/AccountPlugins.md).
+See [how to use `account` plugins](../../HowTo/ManageKeys/AccountPlugins.md).

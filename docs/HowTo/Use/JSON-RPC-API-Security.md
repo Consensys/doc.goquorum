@@ -30,7 +30,7 @@ and find [examples on how to configure the plugin to work with different OAuth2 
 Before invoking protected JSON-RPC APIs, the client must request an access token by authenticating with the
 authorization server.
 An access token can be opaque or a JWT.
-It's the client's responsiblity to maintain this token's validity during its lifetime.
+It's the client's responsibility to maintain this token's validity during its lifetime.
 
 When invoking a JSON-RPC API, the client must send the token in the `Authorization` request header field with the
 `Bearer` authentication scheme.
@@ -57,7 +57,7 @@ web3.setProvider(provider);
 
 ### `curl`
 
-Obtain the pre-authenticated bearer token by authenticating with the authorization server:
+Get the pre-authenticated bearer token by authenticating with the authorization server:
 
 ```bash
 export TOKEN="Bearer ..."
@@ -68,7 +68,7 @@ curl -X POST -H "Content-type: application/json" -H "Authorization: $TOKEN" \
 
 ### `geth attach`
 
-Use additional flags to allow a secured GoQuorum node connection:
+Use command line options to allow a secured GoQuorum node connection:
 
 ```text
 --rpcclitoken value                 RPC Client access token

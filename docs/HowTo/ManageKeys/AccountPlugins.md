@@ -135,9 +135,10 @@ Creates a plugin-managed account from an existing private key.
 
         Not supported, use CLI instead
 
-## CLI
+## Command line interface
 
-A limited CLI allows users to interact directly with `account` plugins:
+A limited command line interface allows users to interact directly with `account` plugins.
+Run the following command to view all `geth account plugin` subcommands and options:
 
 ```bash
 geth account plugin --help
@@ -145,7 +146,7 @@ geth account plugin --help
 
 !!! info
 
-    Use the `--verbosity` flag to hide log output. For example, `geth --verbosity 1 account plugin new ...`.
+    Use the `--verbosity` option to hide log output. For example, `geth --verbosity 1 account plugin new ...`.
 
 ### `geth account plugin new`
 

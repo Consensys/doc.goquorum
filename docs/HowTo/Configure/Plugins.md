@@ -40,7 +40,7 @@ You can specify the plugin configuration file with the following content.
 |:-----------|:------------------------------------------------------------------------------------------------------------------------|
 | `baseDir`  | The local directory from where GoQuorum reads plugins. The default is `<datadir>/plugins`. To read from an arbitrary environment variable, for example `MY_BASE_DIR`, provide the value `env://MY_BASE_DIR`. |
 | `central`  | A configuration of the remote [Plugin Central](#plugincentralconfiguration).                                            |
-| `providers`| The supported plugin interfaces being used mapped to their respective [plugin provider definitions](#plugindefinition). |
+| `providers`| The supported plugin interfaces mapped to their respective [plugin provider definitions](#plugindefinition).            |
 | `<string>` | The plugin interface, for example `helloworld`.                                                                         |
 
 ### `PluginCentralConfiguration`
