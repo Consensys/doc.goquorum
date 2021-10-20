@@ -16,6 +16,10 @@ and send a private transaction.
 
 ## 1. Create private contract
 
+!!! Warning
+
+    All Tessera nodes listed in `privateFor` must be running while executing a transaction for the contract to propagate without error.
+
 In the `Node-0` directory, copy and paste the following to a file called `private-contract.js`. On the
 highlighted line, replace the placeholder for `privateFor` with the base64 content of the `tessera1.pub` key file.
 For example, `1oRj9qpgnNhr/ZUggeMXnXsWMuVgedS6gfimpEVt+EQ=`.

@@ -48,6 +48,10 @@ the `privateFor` parameter of the transaction.
 
     `privateFor` is not shared with other participants; it's only used to know which nodes to send the encrypted payload to.
 
+!!! Warning
+
+    All Tessera nodes listed in `privateFor` must be running while executing a transaction for the contract to propagate without error.
+
 When a GoQuorum node encounters a transaction with a non-null `privateFor` value, it sets the `v` value of the
 transaction signature to `37` or `38` (as opposed to public transactions, whose `v` values are set according to
 [EIP-155](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md)).

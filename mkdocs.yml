@@ -59,61 +59,6 @@ nav:
       - Install: GetStarted/Install.md
       - With Qubernetes (K8s): GetStarted/Getting-Started-Qubernetes.md
       - Upgrade to 2.6.0: GetStarted/migration.md
-  - Concepts:
-      - Blockchain:
-          - Introduction: Concepts/Blockchain/What-is-blockchain.md
-          - Components: Concepts/Blockchain/Blockchain-comprises.md
-      - Architecture: Concepts/Architecture.md
-      - Account management: Concepts/AccountManagement.md
-      - Privacy:
-          - Overview: Concepts/Privacy/Privacy.md
-          - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
-          - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
-          - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
-          - Contract state extension: Concepts/Privacy/ContractExtension.md
-      - Consensus:
-          - Overview: Concepts/Consensus/Overview.md
-          - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
-      - Permissioning: Concepts/PermissionsOverview.md
-      - Plugins:
-          - Overview: Concepts/Plugins/Plugins.md
-          - Architecture: Concepts/Plugins/PluginsArchitecture.md
-      - Security framework:
-          - Overview: Concepts/Security/Framework/Overview.md
-          - GoQuorum network:
-              - Consortium: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
-              - GoQuorum node: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
-              - Transaction manager: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
-              - Operational considerations: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
-          - Decentralized app:
-              - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
-              - Smart contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
-      - Multi-tenancy:
-          - Overview: Concepts/Multitenancy/Overview.md
-          - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
-      - Quorum profiling: Concepts/Profiling.md
-      - Network and chain ID: Concepts/NetworkAndChainID.md
-      - Qubernetes:
-          - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
-          - Multi-cluster: Concepts/Qubernetes/Multicluster.md
-  - Tutorials:
-      - Quorum Dev Quickstart:
-          - Getting started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
-          - Using the quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
-          - Remix: Tutorials/Quorum-Dev-Quickstart/Remix.md
-      - Create a private network:
-          - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
-          - Using QBFT: Tutorials/Private-Network/Create-QBFT-Network.md
-          - Using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
-          - Adding and removing IBFT validators: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
-          - Adding and removing QBFT validators: Tutorials/Private-Network/Adding-removing-QBFT-validators.md
-      - Smart contracts and transactions:
-          - Deploy a contract: Tutorials/Contracts/Deploying-Contracts.md
-          - Interact with a deployed contract: Tutorials/Contracts/Calling-Contract-Functions.md
-          - Transfer account funds: Tutorials/Contracts/Account-Funds-Transfers.md
-      - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
-      - Send private transactions: Tutorials/Send-private-transaction.md
-      - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
   - How to:
       - Configure GoQuorum:
           - Consensus protocols:
@@ -154,6 +99,61 @@ nav:
       - Interact with a node:
           - Client libraries:
               - Use the web3js-quorum client library: HowTo/Interact/Client-Libraries/web3js-quorum.md
+  - Tutorials:
+      - Quorum Dev Quickstart:
+          - Getting started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+          - Using the quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
+          - Remix: Tutorials/Quorum-Dev-Quickstart/Remix.md
+      - Create a private network:
+          - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
+          - Using QBFT: Tutorials/Private-Network/Create-QBFT-Network.md
+          - Using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
+          - Adding and removing IBFT validators: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
+          - Adding and removing QBFT validators: Tutorials/Private-Network/Adding-removing-QBFT-validators.md
+      - Smart contracts and transactions:
+          - Deploy a contract: Tutorials/Contracts/Deploying-Contracts.md
+          - Interact with a deployed contract: Tutorials/Contracts/Calling-Contract-Functions.md
+          - Transfer account funds: Tutorials/Contracts/Account-Funds-Transfers.md
+      - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
+      - Send private transactions: Tutorials/Send-private-transaction.md
+      - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
+  - Concepts:
+      - Blockchain:
+          - Introduction: Concepts/Blockchain/What-is-blockchain.md
+          - Components: Concepts/Blockchain/Blockchain-comprises.md
+      - Architecture: Concepts/Architecture.md
+      - Account management: Concepts/AccountManagement.md
+      - Privacy:
+          - Overview: Concepts/Privacy/Privacy.md
+          - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
+          - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
+          - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
+          - Contract state extension: Concepts/Privacy/ContractExtension.md
+      - Consensus:
+          - Overview: Concepts/Consensus/Overview.md
+          - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
+      - Permissioning: Concepts/PermissionsOverview.md
+      - Plugins:
+          - Overview: Concepts/Plugins/Plugins.md
+          - Architecture: Concepts/Plugins/PluginsArchitecture.md
+      - Security framework:
+          - Overview: Concepts/Security/Framework/Overview.md
+          - GoQuorum network:
+              - Consortium: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
+              - GoQuorum node: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
+              - Transaction manager: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
+              - Operational considerations: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
+          - Decentralized app:
+              - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
+              - Smart contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
+      - Multi-tenancy:
+          - Overview: Concepts/Multitenancy/Overview.md
+          - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
+      - Quorum profiling: Concepts/Profiling.md
+      - Network and chain ID: Concepts/NetworkAndChainID.md
+      - Qubernetes:
+          - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
+          - Multi-cluster: Concepts/Qubernetes/Multicluster.md
   - Reference:
       - Command line options: Reference/CLI-Syntax.md
       - GoQuorum API methods: Reference/API-Methods.md
