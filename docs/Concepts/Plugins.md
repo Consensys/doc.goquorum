@@ -32,8 +32,9 @@ The GoQuorum client reads the [plugin configuration file](../HowTo/Configure/Plu
 load and searches for installed plugins (`<name>-<version>.zip` files) in the plugins directory `baseDir` (the default
 directory is `<datadir>/plugins`).
 
-You can [specify a plugin configuration file](../HowTo/Configure/Plugins.md) and
-[use an example `HelloWorld` plugin](../Tutorials/Use-Plugin.md).
+You can [specify a plugin configuration file](../HowTo/Configure/Plugins.md),
+[develop plugins](../HowTo/DevelopPlugins.md),
+and [use an example `HelloWorld` plugin](../Tutorials/Use-Plugin.md).
 
 ## Plugin reloading
 

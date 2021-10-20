@@ -1,6 +1,6 @@
 # Configure plugins
 
-GoQuorum can load plugins from:
+GoQuorum can load [plugins](../../Concepts/Plugins.md) from:
 
 - A JSON file specified using the [`--plugins`](../../Reference/CLI-Syntax.md#plugins) command line option.
 - An Ethereum TOML configuration file specified using the [`--config`](https://geth.ethereum.org/docs/interface/command-line-options)

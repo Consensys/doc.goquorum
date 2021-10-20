@@ -1,72 +1,33 @@
-<!-- This is auto generated file from running `go generate` in plugin/proto folder. Please do not edit -->
+# Initialization interface
 
+Every [plugin](../../Concepts/Plugins.md) must implement the initialization interface and define it in an `init.proto` file.
 
+`geth` sends a raw configuration to each plugin using the `PluginInitializer` service.
+Each plugin determines how to interpret and parse the configuration and perform initialization.
 
-<a name="init.proto"></a>
+## `PluginInitializer`
 
-## init.proto
-It is __mandatory__ that every plugin must implement this RPC service
+The service required for `geth` to initialize the plugin after the plugin process starts.
 
-Via this service, plugins receive a raw configuration sent by `geth`.
-It's up to the plugin to interpret and parse the configuration then do the initialization
-to make sure the plugin is ready to serve
+| Method name | Request type                   | Response type                   |
+| ----------- | ------------------------------ | ------------------------------- |
+| `Init`      | `PluginInitialization.Request` | `PluginInitialization.Response` |
 
-### Services
+## Messages
 
+### `PluginInitialization`
 
-<a name="proto_common.PluginInitializer"></a>
+A wrapper message to logically group other messages.
 
-#### `PluginInitializer`
-`Required`
-RPC service to initialize the plugin after plugin process is started successfully
+### `PluginInitialization.Request`
 
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Init | [`PluginInitialization.Request`](#proto_common.PluginInitialization.Request) | [`PluginInitialization.Response`](#proto_common.PluginInitialization.Response) |  |
+Initialization data for the plugin.
 
- <!-- end services -->
+| Field              | Type   | Description                                     |
+| ------------------ | ------ | ----------------------------------------------- |
+| `hostIdentity`     | string | `geth` node identity                            |
+| `rawConfiguration` | bytes  | Raw configuration to be processed by the plugin |
 
-### Messsages
+### `PluginInitialization.Response`
 
-
-<a name="proto_common.PluginInitialization"></a>
-
-#### `PluginInitialization`
-A wrapper message to logically group other messages
-
-
-
-
-
-
-<a name="proto_common.PluginInitialization.Request"></a>
-
-#### `PluginInitialization.Request`
-Initialization data for the plugin
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| hostIdentity | [string](#string) |  | `geth` node identity |
-| rawConfiguration | [bytes](#bytes) |  | Raw configuration to be processed by the plugin |
-
-
-
-
-
-
-<a name="proto_common.PluginInitialization.Response"></a>
-
-#### `PluginInitialization.Response`
-
-
-
-
-
-
- <!-- end messages -->
-
- <!-- end enums -->
-
- <!-- end HasExtensions -->
-
+The initialization response.
