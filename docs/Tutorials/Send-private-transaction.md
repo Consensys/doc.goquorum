@@ -16,10 +16,6 @@ and send a private transaction.
 
 ## 1. Create private contract
 
-!!! Warning
-
-    All Tessera nodes listed in `privateFor` must be running while executing a transaction for the contract to propagate without error.
-
 In the `Node-0` directory, copy and paste the following to a file called `private-contract.js`. On the
 highlighted line, replace the placeholder for `privateFor` with the base64 content of the `tessera1.pub` key file.
 For example, `1oRj9qpgnNhr/ZUggeMXnXsWMuVgedS6gfimpEVt+EQ=`.
@@ -90,6 +86,11 @@ Type in the account password when prompted.
     By default, accounts remain unlocked for 5 minutes. After 5 minutes, the account is relocked.
 
 ## 4. Send the private transaction
+
+!!! important
+
+    All participants listed in `privateFor` must have their [private transaction managers](../Concepts/Privacy/Privacy.md#private-transaction-manager) running when the private transaction is sent.
+    Otherwise, the transaction doesn't propagate and an error is returned.
 
 In the `geth` console, run `loadScript` to deploy the contract and
 send a private transaction from node 1 to node 2.
