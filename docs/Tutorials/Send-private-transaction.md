@@ -87,6 +87,11 @@ Type in the account password when prompted.
 
 ## 4. Send the private transaction
 
+!!! important
+
+    All participants listed in `privateFor` must have their [private transaction managers](../Concepts/Privacy/Privacy.md#private-transaction-manager) running when the private transaction is sent.
+    Otherwise, the transaction doesn't propagate and an error is returned.
+
 In the `geth` console, run `loadScript` to deploy the contract and
 send a private transaction from node 1 to node 2.
 
