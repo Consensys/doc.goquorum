@@ -498,7 +498,7 @@ the candidate.
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_discard","params":["0xfff7ac99c8e4feb60c9750054bdc14ce1857f181"],id":1}' --header "Content-Type: application/json"
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_discard","params":["0xfff7ac99c8e4feb60c9750054bdc14ce1857f181"],"id":1}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -549,7 +549,7 @@ This means that they participated in the consensus for this block and attested t
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSignersFromBlock","params":[10],id":1}' --header "Content-Type: application/json"
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSignersFromBlock","params":[10],"id":1}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -616,7 +616,7 @@ This means that they participated in the consensus for this block and attested t
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSignersFromBlockByHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],id":1}' --header "Content-Type: application/json"
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSignersFromBlockByHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],"id":1}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -675,7 +675,7 @@ mined); defaults to `latest`
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSnapshot","params":[10],id":1}' --header "Content-Type: application/json"
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSnapshot","params":[10],"id":1}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -743,7 +743,7 @@ Retrieves the state snapshot at the specified block hash.
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSnapshotAtHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],id":1}' --header "Content-Type: application/json"
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSnapshotAtHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],"id":1}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -787,7 +787,7 @@ last block mined); defaults to `latest`
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getValidators","params":[10],id":1}' --header "Content-Type: application/json"
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getValidators","params":[10],"id":1}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -837,7 +837,7 @@ Retrieves the list of authorized validators at the specified block hash.
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getValidatorsAtHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],id":1}' --header "Content-Type: application/json"
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getValidatorsAtHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],"id":1}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -887,7 +887,7 @@ Indicates if this node is the validator for the specified block number.
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_isValidator","params":[10],id":1}' --header "Content-Type: application/json"
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_isValidator","params":[10],"id":1}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -929,7 +929,7 @@ None
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_nodeAddress",id":1}' --header "Content-Type: application/json"
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_nodeAddress","id":1}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -973,7 +973,7 @@ If a majority of the validators vote the candidate in/out, the candidate is adde
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_propose","params":["0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb",true],id":1}' --header "Content-Type: application/json"
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_propose","params":["0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb",true],"id":1}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -1023,7 +1023,7 @@ If the start block and end block numbers are not provided, the status of the las
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_status","params":[1,10],id":1}' --header "Content-Type: application/json"
+        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_status","params":[1,10],"id":1}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
