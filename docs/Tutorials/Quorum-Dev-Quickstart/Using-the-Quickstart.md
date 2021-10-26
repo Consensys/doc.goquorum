@@ -665,8 +665,8 @@ New nodes joining an existing network require the following:
 * The same genesis file used by all other nodes on the running network.
 * A list of nodes to connect to; this is done by specifying [bootnodes], or by providing a list of [static nodes].
 * A node key pair and optionally an account. If the running network is using permissions, then you need
-    to add the new node's enode details to the [permissions file] that existing nodes use, or update
-    the onchain permissioning contract
+    to add the new node's enode details to the [permissions file] used by existing nodes, or update
+    the onchain permissioning contract.
 
 The following steps describe the process to add a new node to the Quorum Dev Quickstart.
 
@@ -686,12 +686,12 @@ node generate_node_keys.js --password "Password"
 ### 2. Create new node directory
 
 In the [`config/nodes`](https://github.com/ConsenSys/quorum-dev-quickstart/tree/master/files/common/config/nodes)
-directory, create a new sub directory for the new node (for example, `newnode`),  and move the
-`nodekey`, `nodekey.pub`, `address` and `accountkey` from the previous step into this directory.
+directory, create a subdirectory for the new node (for example, `newnode`), and move the
+`nodekey`, `nodekey.pub`, `address` and `accountkey` files from the previous step into this directory.
 
 ### 3. Update docker-compose
 
-Add an entry for the new node into the docker-compose:
+Add an entry for the new node into the docker-compose file:
 
 ```yaml
 
@@ -723,7 +723,7 @@ Add an entry for the new node into the docker-compose:
 
 ### 4. Update files with the enode address
 
-Add the new node's enode address to the [static nodes] file and the [permissions file].
+Add the new node's enode address to the [static nodes] file and [permissions file].
 
 The enode uses the format `enode://pubkey@ip_address:30303`.
 
@@ -731,11 +731,15 @@ If the `nodekey.pub` is `4540ea...9c1d78` and the IP address is `172.16.239.41`,
 address would be `"enode://4540ea...9c1d78@172.16.239.41:30303?discport=0&raftport=53000"`,
 which must be added to both files.
 
+#### 5. Start the network
+
 Once complete, start the network up with `./run.sh`
 
-On a live network the process is the same when using local permissions, that is (permissioned-nodes.json), you do not need to restart the
-network and subsequent changes to the files are picked up by the servers. When using the smart contract you can either make changes
-via a [DApp](https://github.com/ConsenSys/permissioning-smart-contracts) or via RPC
+On a live network the process is the same when using local permissions with the `permissioned-nodes.json` file.
+You don't need to restart the network and subsequent changes to the files are picked up by the servers.
+
+When using the smart contract you can either make changes
+via a [dapp](https://github.com/ConsenSys/permissioning-smart-contracts) or via RPC
 [API](https://docs.goquorum.consensys.net/en/latest/Reference/API-Methods/#permission-methods) calls.
 
 [bootnodes]: ../CreatePermissionedNetwork.md#2-setup-bootnode
