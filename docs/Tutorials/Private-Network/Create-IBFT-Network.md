@@ -32,7 +32,7 @@ The [`istanbul-tools`](https://github.com/ConsenSys/istanbul-tools) repository c
 ```bash
 git clone https://github.com/ConsenSys/istanbul-tools.git
 cd istanbul-tools
-make
+make istanbul
 ```
 
 ### 2. Create directories

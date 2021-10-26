@@ -166,7 +166,6 @@ nav:
       - Logging and errors: Reference/Logging and Errors.md
       - Web3js-quorum: Reference/web3js-quorum.md
       - FAQ: Reference/FAQ.md
-
 markdown_extensions:
   - toc:
       permalink: 
