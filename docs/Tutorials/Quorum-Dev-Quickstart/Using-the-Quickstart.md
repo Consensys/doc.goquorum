@@ -658,18 +658,21 @@ To shut down the private network and delete all containers and images created fr
 [Import one of the existing accounts above into MetaMask]: https://metamask.zendesk.com/hc/en-us/articles/360015489331-Importing-an-Account-New-UI-
 [create another test account from scratch]: https://metamask.zendesk.com/hc/en-us/articles/360015289452-Creating-Additional-MetaMask-Wallets-New-UI-
 
-## Adding a new node to the network
+## Add a new node to the network
 
-Any new node joining an existing network requires the following:
+New nodes joining an existing network require the following:
 
-* The same genesis file that is used by all other nodes on the running network.
-* A list of nodes to connect to - typically this is either done by specifying *bootnodes* or by providing a list of
-*[static nodes](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/static-nodes.json)*
-* A nodekey pair and optionally an account. If the running network is using permissions, then you need to add the new node's enode details to the
-[permissions file](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/permissioned-nodes.json) that the
-existing nodes use or update the onchain permissions contract
+* The same genesis file used by all other nodes on the running network.
+* A list of nodes to connect to; this is done by specifying [bootnodes], or by providing a list of [static nodes].
+* A node key pair and optionally an account. If the running network is using permissions, then you need
+    to add the new node's enode details to the [permissions file] that existing nodes use, or update
+    the onchain permissioning contract
 
-With regards to the Quorum Dev Quickstart we will start by creating a nodekey pair and account for a new node by running the following script:
+The following steps describe the process to add a new node to the Quorum Dev Quickstart.
+
+### 1. Create the node key files
+
+Create a node key pair and account for a new node, by running the following script:
 
 ```bash
 cd ./extra
@@ -677,12 +680,18 @@ npm install
 node generate_node_keys.js --password "Password"
 ```
 
-where the `password` parameter is optional
+!!! note
+    The `--password` parameter is optional.
 
-In the [config/nodes](https://github.com/ConsenSys/quorum-dev-quickstart/tree/master/files/common/config/nodes) folder, create a new sub folder
-for your node, let's call this `newnode` and move the nodekey, nodekey.pub, address and accountkey from the previous step into this folder.
+### 2. Create new node directory
 
-The next step is to add an entry into the docker-compose file like so:
+In the [`config/nodes`](https://github.com/ConsenSys/quorum-dev-quickstart/tree/master/files/common/config/nodes)
+directory, create a new sub directory for the new node (for example, `newnode`),  and move the
+`nodekey`, `nodekey.pub`, `address` and `accountkey` from the previous step into this directory.
+
+### 3. Update docker-compose
+
+Add an entry for the new node into the docker-compose:
 
 ```yaml
 
@@ -707,16 +716,20 @@ The next step is to add an entry into the docker-compose file like so:
 
 ```
 
-The important thing to note is that the IP address and port mapping are values that aren't being used. Additionally mount the newly created
-folder `./config/nodes/newnode` to the `/config/keys` directory of the new node.
+!!! important
 
-The last thing to do is to add the new node's enode to the
-[static nodes](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/static-nodes.json) file and the
-[permissions file](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/permissioned-nodes.json).
+    The IP address and port mapping are values that aren't being used. Additionally mount the newly created
+    folder `./config/nodes/newnode` to the `/config/keys` directory of the new node.
 
-For example if the nodekey.pub is `4540eafb670d76570af376df94e86bebc63ccef39808a6f81372d5bc5e774558b2b1b3b6e04cadf04ef468de231616e989aa726ee39d976af69cdf805f9c1d78` and the
-IP address is `172.16.239.41` then you would enter the enode of the form `enode://pubkey@ip_address:30303`, so we sould append
-`"enode://4540eafb670d76570af376df94e86bebc63ccef39808a6f81372d5bc5e774558b2b1b3b6e04cadf04ef468de231616e989aa726ee39d976af69cdf805f9c1d78@172.16.239.41:30303?discport=0&raftport=53000"` to the lists in both files.
+### 4. Update files with the enode address
+
+Add the new node's enode address to the [static nodes] file and the [permissions file].
+
+The enode uses the format `enode://pubkey@ip_address:30303`.
+
+If the `nodekey.pub` is `4540ea...9c1d78` and the IP address is `172.16.239.41`, then the enode
+address would be `"enode://4540ea...9c1d78@172.16.239.41:30303?discport=0&raftport=53000"`,
+which must be added to both files.
 
 Once complete, start the network up with `./run.sh`
 
@@ -724,3 +737,7 @@ On a live network the process is the same when using local permissions, that is 
 network and subsequent changes to the files are picked up by the servers. When using the smart contract you can either make changes
 via a [DApp](https://github.com/ConsenSys/permissioning-smart-contracts) or via RPC
 [API](https://docs.goquorum.consensys.net/en/latest/Reference/API-Methods/#permission-methods) calls.
+
+[bootnodes]: ../CreatePermissionedNetwork.md#2-setup-bootnode
+[permissions file]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/permissioned-nodes.json
+[static nodes]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/static-nodes.json
