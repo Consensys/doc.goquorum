@@ -35,6 +35,20 @@ The plugin can [reload](../Concepts/Plugins.md#plugin-reloading) changes from it
     `quorum-plugin-hello-world-1.0.0.zip` is now created in the `build` directory.
     The file `hello-world-plugin-config.json` is the JSON configuration file for the plugin.
 
+1. Rename `quorum-plugin-hello-world-1.0.0.zip` according to your operating system:
+
+    === "Linux"
+
+        ```text
+        quorum-plugin-hello-world-1.0.0-linux-amd64.zip
+        ```
+
+    === "Intel MacOS"
+
+        ```text
+        quorum-plugin-hello-world-1.0.0-darwin-amd64.zip
+        ```
+
 ## Start GoQuorum with plugin support
 
 1. Navigate to your GoQuorum installation directory.
@@ -56,6 +70,10 @@ The plugin can [reload](../Concepts/Plugins.md#plugin-reloading) changes from it
     }
     EOF
     ```
+
+    !!! note
+
+        For the configured locations, `./` means that you start from the working directory, from where the program is launched.
 
 1. Run `geth` with the plugin:
 
