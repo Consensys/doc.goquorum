@@ -718,14 +718,15 @@ Add an entry for the new node into the docker-compose file:
 
 !!! important
 
-    The IP address and port mapping are values that aren't being used. Additionally mount the newly created
+    Select an IP address and port map that aren't being used for the other containers. Additionally mount the newly created
     folder `./config/nodes/newnode` to the `/config/keys` directory of the new node.
 
 ### 4. Update files with the enode address
 
 Add the new node's enode address to the [static nodes] file and [permissions file].
 
-The enode uses the format `enode://pubkey@ip_address:30303`.
+The enode uses the format `enode://pubkey@ip_address:30303?discport=0&raftport=53000`. where raftport is only required for
+the [Raft](../../HowTo/Configure/Consensus-Protocols/Raft.md) consensus algorithm
 
 If the `nodekey.pub` is `4540ea...9c1d78` and the IP address is `172.16.239.41`, then the enode
 address would be `"enode://4540ea...9c1d78@172.16.239.41:30303?discport=0&raftport=53000"`,
