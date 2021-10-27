@@ -99,7 +99,7 @@ Creates a plugin-managed account from an existing private key.
 
 !!! note
 
-    Although you can this API to move plugin-managed accounts between nodes, the plugin may provide a preferable alternative.
+    Although you can use this API to move plugin-managed accounts between nodes, the plugin may provide a preferable alternative.
     See the plugin's documentation for more information.
 
 #### Parameters
