@@ -4,7 +4,7 @@ Options for managing keys in GoQuorum include:
 
 * [`keystore` files](https://geth.ethereum.org/docs/interface/managing-your-accounts)
 
-    As with geth, keys can be stored in password-protected `keystore` files.
+    As with `geth`, you can store keys in password-protected `keystore` files.
 
 * [`clef`](clef.md)
 
@@ -12,4 +12,4 @@ Options for managing keys in GoQuorum include:
 
 * [`account` plugins](AccountPlugins.md)
 
-    Introduced in GoQuorum v2.7.0, `account` plugins allow GoQuorum or `clef` to be extended with alternative methods of managing accounts.
+    Introduced in GoQuorum v2.7.0, `account` plugins allow you to extend GoQuorum or `clef` with alternative methods of managing accounts.

@@ -4,7 +4,7 @@ description: Create a permissioned network
 
 # Create a permissioned network with basic permissioning
 
-The following steps create a permissioned network with [basic permissioning](../Concepts/PermissionsOverview.md#basic-network-permissioning).
+This tutorial shows you how to create a permissioned network with [basic permissioning](../Concepts/PermissionsOverview.md#basic-network-permissioning).
 
 ## 1. Initialize chain
 

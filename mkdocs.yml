@@ -64,6 +64,9 @@ nav:
           - Introduction: Concepts/Blockchain/What-is-blockchain.md
           - Components: Concepts/Blockchain/Blockchain-comprises.md
       - Architecture: Concepts/Architecture.md
+      - Consensus:
+          - Overview: Concepts/Consensus/Overview.md
+          - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
       - Account management: Concepts/AccountManagement.md
       - Privacy:
           - Overview: Concepts/Privacy/Privacy.md
@@ -71,13 +74,8 @@ nav:
           - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
           - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
           - Contract state extension: Concepts/Privacy/ContractExtension.md
-      - Consensus:
-          - Overview: Concepts/Consensus/Overview.md
-          - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
       - Permissioning: Concepts/PermissionsOverview.md
-      - Plugins:
-          - Overview: Concepts/Plugins/Plugins.md
-          - Architecture: Concepts/Plugins/PluginsArchitecture.md
+      - Plugins: Concepts/Plugins.md
       - Security framework:
           - Overview: Concepts/Security/Framework/Overview.md
           - GoQuorum network:
@@ -111,9 +109,10 @@ nav:
           - Deploy a contract: Tutorials/Contracts/Deploying-Contracts.md
           - Interact with a deployed contract: Tutorials/Contracts/Calling-Contract-Functions.md
           - Transfer account funds: Tutorials/Contracts/Account-Funds-Transfers.md
-      - Create privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
+      - Create a privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
       - Send private transactions: Tutorials/Send-private-transaction.md
-      - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
+      - Create a permissioned network: Tutorials/CreatePermissionedNetwork.md
+      - Use a plugin: Tutorials/Use-Plugin.md
   - How to:
       - Configure GoQuorum:
           - Consensus protocols:
@@ -130,7 +129,15 @@ nav:
           - Private transaction manager: HowTo/Configure/ConfigurePTM.md
           - Plugins: HowTo/Configure/Plugins.md
           - DNS: HowTo/Configure/dns.md
-      - Develop plugins: HowTo/DevelopPlugins.md
+      - Use:
+          - Add nodes to network: HowTo/Use/adding_nodes.md
+          - Migrate network nodes: HowTo/Use/node_network_migration.md
+          - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
+          - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
+          - Multi-tenancy: HowTo/Use/Multitenancy.md
+          - Include revert reason: HowTo/Use/Revert-Reason.md
+          - GraphQL: HowTo/Use/graphql.md
+          - Backup and restore: HowTo/Use/import-export.md
       - Manage keys:
           - Overview: HowTo/ManageKeys/ManagingKeys.md
           - Use clef: HowTo/ManageKeys/clef.md
@@ -142,36 +149,18 @@ nav:
           - Use Splunk: HowTo/Monitor/Splunk.md
           - Use Cakeshop: HowTo/Monitor/Cakeshop.md
           - Use Quorum Reporting: HowTo/Monitor/Quorum-Reporting.md
-      - Use:
-          - Add nodes to network: HowTo/Use/adding_nodes.md
-          - Migrate network nodes: HowTo/Use/node_network_migration.md
-          - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
-          - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
-          - Multi-tenancy: HowTo/Use/Multitenancy.md
-          - Include revert reason: HowTo/Use/Revert-Reason.md
-          - GraphQL: HowTo/Use/graphql.md
-          - Backup and restore: HowTo/Use/import-export.md
       - Interact with a node:
           - Client libraries:
               - Use the web3js-quorum client library: HowTo/Interact/Client-Libraries/web3js-quorum.md
+      - Develop plugins: HowTo/DevelopPlugins.md
   - Reference:
       - Command line options: Reference/CLI-Syntax.md
       - GoQuorum API methods: Reference/API-Methods.md
       - Permissioning types: Reference/Permissioning-Types.md
       - Genesis file items: Reference/genesis.md
       - Plugins:
-          - Initialization interface: Reference/Plugins/init_interface.md
-          - helloworld:
-              - Interface: Reference/Plugins/helloworld/interface.md
-              - Implementation: Reference/Plugins/helloworld/implementation.md
-          - account:
-            - Developers: Reference/Plugins/account/For-Developers.md
-            - Users: Reference/Plugins/account/For-Users.md
-            - Interface: Reference/Plugins/account/interface.md
-          - security:
-            - Developers: Reference/Plugins/security/For-Developers.md
-            - Users: Reference/Plugins/security/For-Users.md
-            - Interface: Reference/Plugins/security/interface.md
+          - account: Reference/Plugins/Account.md
+          - security: Reference/Plugins/Security.md
       - Accounts for testing: Reference/Accounts-for-Testing.md
       - GoQuorum projects: Reference/GoQuorum-Projects.md
       - Logging and errors: Reference/Logging and Errors.md
@@ -241,8 +230,8 @@ plugins:
         Permissioning/Basic NetworkPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
         Permissioning/Enhanced Permissions Model/Contract Design.md: Concepts/PermissionsOverview.md
         Permissioning/Permissions Overview.md: Concepts/PermissionsOverview.md
-        PluggableArchitecture/Overview.md: Concepts/Plugins/Plugins.md
-        PluggableArchitecture/Internals.md: Concepts/Plugins/PluginsArchitecture.md
+        PluggableArchitecture/Overview.md: Concepts/Plugins.md
+        PluggableArchitecture/Internals.md: Concepts/Plugins.md
         Privacy/Contract-Extension/Overview.md: Concepts/Privacy/ContractExtension.md
         Privacy/Overview.md: Concepts/Privacy/PrivateAndPublic.md
         Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateAndPublic.md
@@ -280,14 +269,14 @@ plugins:
         Cakeshop/Overview.md: HowTo/Monitor/Cakeshop.md
         FAQ.md: Reference/FAQ.md
         Getting Started/Quorum-Examples.md: Reference/GoQuorum-Projects.md
-        PluggableArchitecture/Plugins/account/For-Developers.md: Reference/Plugins/account/For-Developers.md
-        PluggableArchitecture/Plugins/account/For-Users.md: Reference/Plugins/account/For-Users.md
-        PluggableArchitecture/Plugins/account/interface.md: Reference/Plugins/account/interface.md
-        PluggableArchitecture/Plugins/helloworld/implementation.md: Reference/Plugins/helloworld/implementation.md
-        PluggableArchitecture/Plugins/helloworld/interface.md: Reference/Plugins/helloworld/interface.md
-        PluggableArchitecture/Plugins/init_interface.md: Reference/Plugins/init_interface.md
-        PluggableArchitecture/Plugins/security/implementation.md: Reference/Plugins/security/For-Users.md
-        PluggableArchitecture/Plugins/security/interface.md: Reference/Plugins/security/interface.md
+        PluggableArchitecture/Plugins/account/For-Developers.md: Reference/Plugins/Account.md
+        PluggableArchitecture/Plugins/account/For-Users.md: Reference/Plugins/Account.md
+        PluggableArchitecture/Plugins/account/interface.md: Reference/Plugins/Account.md
+        PluggableArchitecture/Plugins/helloworld/implementation.md: Tutorials/Use-Plugin.md
+        PluggableArchitecture/Plugins/helloworld/interface.md: Tutorials/Use-Plugin.md
+        PluggableArchitecture/Plugins/init_interface.md: https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/init.proto
+        PluggableArchitecture/Plugins/security/implementation.md: Reference/Plugins/Security.md
+        PluggableArchitecture/Plugins/security/interface.md: Reference/Plugins/Security.md
         RemixPlugin/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
         RemixPlugin/Overview.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
         Getting Started/genesis.md: Reference/genesis.md
@@ -332,4 +321,16 @@ plugins:
         Concepts/Privacy/PrivateTransactionLifecycle.md: Concepts/Privacy/PrivateAndPublic.md
         Concepts/Privacy/PrivateTransactionManager.md: Concepts/Privacy/Privacy.md
         HowTo/Use/DevelopingSmartContracts.md: Tutorials/Contracts/Deploying-Contracts.md
+        Concepts/Plugins/PluginsArchitecture.md: Concepts/Plugins.md
+        Concepts/Plugins/Plugins.md: Concepts/Plugins.md
         Tutorials/Adding-removing-IBFT-validators.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
+        PluggableArchitecture/Plugins/security/For-Users.md: Reference/Plugins/Security.md
+        Reference/Plugins/account/For-Developers.md: Reference/Plugins/Account.md
+        Reference/Plugins/account/For-Users.md: Reference/Plugins/Account.md
+        Reference/Plugins/account/interface.md: Reference/Plugins/Account.md
+        Reference/Plugins/security/For-Developers.md: Reference/Plugins/Security.md
+        Reference/Plugins/security/For-Users.md: Reference/Plugins/Security.md
+        Reference/Plugins/security/interface.md: Reference/Plugins/Security.md
+        Reference/Plugins/helloworld/interface.md: https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/helloworld.proto
+        Reference/Plugins/helloworld/implementation.md: Tutorials/Use-Plugin.md
+        Reference/Plugins/init_interface.md: https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/init.proto

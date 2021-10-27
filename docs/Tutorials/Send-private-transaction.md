@@ -4,6 +4,8 @@ description: Sending private transactions
 
 # Send private transactions
 
+This tutorial shows you how to send [private transactions](../Concepts/Privacy/PrivateAndPublic.md#private-transactions).
+
 ## Prerequisites
 
 * [Privacy-enabled network running as configured in tutorial](Create-Privacy-enabled-network.md). The

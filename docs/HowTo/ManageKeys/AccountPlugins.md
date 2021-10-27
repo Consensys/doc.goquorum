@@ -1,18 +1,20 @@
-# account Plugins
+# `account` plugins
 
-`account` plugins can be used with GoQuorum or `clef` to provide additional account management.
+You can use `account` [plugins](../../Concepts/Plugins.md) with GoQuorum or `clef` to provide additional account management.
 
-We recommended reading the [Plugins overview](../../Concepts/Plugins/Plugins.md) first to learn how to use plugins.
+See the [`account` plugin reference](../../Reference/Plugins/Account.md) for more information.
 
 ## Available account plugins
 
-| Name | Version |  | Description |
-| --- | --- | --- | --- |
-| `hashicorp-vault` | `0.0.1` | [Docs & Source](https://www.github.com/ConsenSys/quorum-account-plugin-hashicorp-vault) | Enables storage of Quorum account keys in a HashiCorp Vault KV v2 engine. Written in Go.
+| Name | Version | Description |
+| ---- | ------- | ----------- |
+| [`hashicorp-vault`](https://www.github.com/ConsenSys/quorum-account-plugin-hashicorp-vault) | `0.0.1` | Enables storage of GoQuorum account keys in a HashiCorp Vault KV v2 engine. Written in Go. |
 
-## Using with GoQuorum & clef
+## Using GoQuorum and `clef`
 
-=== "Quorum"
+Run an `account` plugin using GoQuorum or `clef`:
+
+=== "GoQuorum"
 
     ```bash
     geth --plugins file:///path/to/plugins.json ...
@@ -24,7 +26,7 @@ We recommended reading the [Plugins overview](../../Concepts/Plugins/Plugins.md)
     clef --plugins file:///path/to/plugins.json ...
     ```
 
-Where the [plugins settings file](../Configure/Plugins.md), `plugins.json`, defines an `account` provider:
+`plugins.json` is the [plugins configuration file](../Configure/Plugins.md) that defines an `account` provider:
 
 ```json
 {
@@ -40,22 +42,24 @@ Where the [plugins settings file](../Configure/Plugins.md), `plugins.json`, defi
 
 ## RPC API
 
-A limited API allows users to interact directly with `account` plugins:
+A limited API allows users to interact directly with `account` plugins.
 
-!!! info
-    GoQuorum must explicitly expose the API with `--rpcapi plugin@account` or `--wsapi plugin@account`
+!!! important
 
-### plugin@account_newAccount
+    GoQuorum must expose the API using the `--rpcapi plugin@account` or `--wsapi plugin@account` command line options.
 
-Create a plugin-managed account with a new key:
+### `plugin@account_newAccount`
 
-| Parameter | Description |
-| --- | --- |
-| `config` | Plugin-specific json configuration for creating an account. See the plugin's documentation for more info on the json config required
+Creates a plugin-managed account with a new key.
+
+#### Parameters
+
+`config`: *object* - Plugin-specific JSON configuration for creating an account.
+See the plugin's documentation for more information on the JSON configuration required.
 
 !!! example
 
-    === "quorum"
+    === "GoQuorum"
 
         ```bash
         curl -X POST \
@@ -70,7 +74,7 @@ Create a plugin-managed account with a new key:
              http://localhost:22000
         ```
 
-    === "js console"
+    === "JS console"
 
         ```js
         plugin_account.newAccount({<config>})
@@ -89,21 +93,24 @@ Create a plugin-managed account with a new key:
         ' | nc -U /path/to/clef.ipc
         ```
 
-### plugin@account_importRawKey
+### `plugin@account_importRawKey`
 
-Create a plugin-managed account from an existing private key:
+Creates a plugin-managed account from an existing private key.
 
 !!! note
-    Although this API can be used to move plugin-managed accounts between nodes, the plugin may provide a preferable alternative. See the plugin's documentation for more info.
 
-| Parameter | Description |
-| --- | --- |
-| `rawkey` | Hex-encoded account private key (without 0x prefix)
-| `config` | Plugin-specific json configuration for creating a new account. See the plugin's documentation for more info on the json config required
+    Although you can use this API to move plugin-managed accounts between nodes, the plugin may provide a preferable alternative.
+    See the plugin's documentation for more information.
+
+#### Parameters
+
+- `rawkey`: *string* - Hex-encoded account private key (without the `0x` prefix).
+- `config`: *object* - Plugin-specific JSON configuration for creating a new account.
+  See the plugin's documentation for more information on the JSON configuration required.
 
 !!! example
 
-    === "quorum"
+    === "GoQuorum"
 
         ```bash
         curl -X POST \
@@ -118,7 +125,7 @@ Create a plugin-managed account from an existing private key:
              http://localhost:22000
         ```
 
-    === "js console"
+    === "JS console"
 
         ```js
         plugin_account.importRawKey(<rawkey>, {<config>})
@@ -128,26 +135,30 @@ Create a plugin-managed account from an existing private key:
 
         Not supported, use CLI instead
 
-## CLI
+## Command line interface
 
-A limited CLI allows users to interact directly with `account` plugins:
+A limited command line interface allows users to interact directly with `account` plugins.
+Run the following command to view all `geth account plugin` subcommands and options:
 
 ```bash
 geth account plugin --help
 ```
 
 !!! info
-    Use the `--verbosity` flag to hide log output, for example `geth --verbosity 1 account plugin new ...`
 
-### geth account plugin new
+    Use the `--verbosity` option to hide log output. For example, `geth --verbosity 1 account plugin new ...`.
 
-Create a plugin-managed account from an existing key:
+### `geth account plugin new`
 
-| Parameter | Description |
-| --- | --- |
-| `plugins.account.config` | Plugin-specific configuration for creating an account. Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required.
+Creates a plugin-managed account from an existing key.
 
-=== "json file"
+#### Parameters
+
+`plugins.account.config`: Plugin-specific configuration for creating an account.
+The value can be `file://...` or inline JSON.
+See the plugin's documentation for more information on the JSON configuration required.
+
+=== "JSON file"
 
     ```bash
     geth account plugin new \
@@ -155,7 +166,7 @@ Create a plugin-managed account from an existing key:
         --plugins.account.config file:///path/to/new-acct-config.json
     ```
 
-=== "inline json"
+=== "inline JSON"
 
     ```bash
     geth account plugin new \
@@ -163,16 +174,18 @@ Create a plugin-managed account from an existing key:
         --plugins.account.config '{<json>}'
     ```
 
-### geth account plugin import
+### `geth account plugin import`
 
-Create a plugin-managed account from an existing private key:
+Creates a plugin-managed account from an existing private key.
 
-| Parameter | Description |
-| --- | --- |
-| `plugins.account.config` | Plugin-specific configuration for creating an account. Can be `file://` or inline-json. See the plugin's documentation for more info on the json config required
-| `rawkey` | Path to file containing hex-encoded account private key (without 0x prefix) (for example `/path/to/raw.key`)
+#### Parameters
 
-=== "json file"
+- `plugins.account.config`: Plugin-specific configuration for creating an account.
+  The value can be `file://...` or inline JSON.
+  See the plugin's documentation for more information on the JSON configuration required.
+- `rawkey`: Path to the file containing a hex-encoded account private key (without the `0x` prefix) (for example `/path/to/raw.key`).
+
+=== "JSON file"
 
     ```bash
     geth account plugin import \
@@ -181,7 +194,7 @@ Create a plugin-managed account from an existing private key:
         /path/to/raw.key
     ```
 
-=== "inline json"
+=== "inline JSON"
 
     ```bash
     geth account plugin import \
@@ -190,15 +203,11 @@ Create a plugin-managed account from an existing private key:
         /path/to/raw.key
     ```
 
-### geth account plugin list
+### `geth account plugin list`
 
-List all plugin-managed accounts for a given config:
+Lists all the plugin-managed accounts for a given configuration.
 
 ```bash
 geth account plugin list \
     --plugins file:///path/to/plugin-config.json
 ```
-
-## Developers
-
-See [For Developers](../../Reference/Plugins/account/For-Developers.md).

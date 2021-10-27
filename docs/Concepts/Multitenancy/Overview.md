@@ -111,7 +111,7 @@ server, then present the access token (using an `Authorization` HTTP request hea
 API. Calls to the quorum RPC API without an authenticated token are rejected.
 
 The value of the scope encoded in an access token (in case of JWT), or introspection response
-(in the case of the OAuth2 Token Introspection API) contains the [RPC scope](../../Reference/Plugins/security/For-Users.md#oauth2-scopes)
+(in the case of the OAuth2 Token Introspection API) contains the [RPC scope](../../Reference/Plugins/Security.md#oauth2-scopes)
 and tenant scope which has the following URL-based syntax:
 
 Specific scope details here…
@@ -138,5 +138,5 @@ to private contracts on private states `PS1` and `PS2` using any self or node ma
 [configuration changes needed for MPS]: MultiplePrivateStates.md#configuration-changes
 [MPS enabled]: MultiplePrivateStates.md#enable-multiple-private-states
 [Authentication Server setup]: #Enterprise-Authorization-Server
-[security plugins documentation]: ../../Reference/Plugins/security/For-Users.md#configuration
+[security plugins documentation]: ../../Reference/Plugins/Security.md#configuration
 [Tessera]: https://docs.tessera.consensys.net
