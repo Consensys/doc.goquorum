@@ -8,8 +8,8 @@ client to protect JSON-RPC APIs using the following features:
 
 ### Native Transport Layer Security
 
-The native Transport Layer Security (TLS) introduces an encryption layer to the JSON-RPC request/response communication
-channel for both HTTP and Web Socket listeners.
+Native Transport Layer Security (TLS) introduces an encryption layer to the JSON-RPC request/response communication
+channel for both HTTP and WebSocket listeners.
 By using a simple configuration flag, this feature allows the automatic generation of a self-signed certificates for
 testing environments, or a smooth integration with certificate authorities for enterprise deployment.
 
@@ -95,12 +95,12 @@ For example, connect to the node with `--rpcclitls.insecureskipverify` to ignore
 ### `ethclient`
 
 `ethclient` provides a Go client for the Ethereum RPC API.
-It also supports GoQuorum-specific APIs and the ability to invoke protected APIs.
+It also supports GoQuorum-specific APIs and protected APIs.
 
 === "HTTP"
 
-    For HTTP endpoint, the preauthenticated token is populated in `Authorization` HTTP request header for each call.
-    The token value is obtained from `rpc.HttpCredentialsProviderFunc` implementation which is configured after
+    For the HTTP endpoint, the preauthenticated token is populated in the `Authorization` HTTP request header for each call.
+    The token value is obtained from the `rpc.HttpCredentialsProviderFunc` implementation, which is configured after
     `rpc.Client` is instantiated.
 
     ```go
@@ -136,8 +136,8 @@ It also supports GoQuorum-specific APIs and the ability to invoke protected APIs
 
 === "WebSocket"
 
-    For WS endpoint, the preauthenticated token is populated in `Authorization` HTTP request header only once
-    during the handshake. The token value is obtained from `rpc.HttpCredentialsProviderFunc` implementation via
+    For the WS endpoint, the preauthenticated token is populated in the `Authorization` HTTP request header only once
+    during the handshake. The token value is obtained from the `rpc.HttpCredentialsProviderFunc` implementation via
     `context.Context` when dialing.
 
     ```go
@@ -158,7 +158,7 @@ It also supports GoQuorum-specific APIs and the ability to invoke protected APIs
     // use authenticatedClient as usual
     ```
 
-    To customize TLS client configuration, use `rpc.DialWebsocketWithCustomTLS()` instead of `rpc.DialContext()`
+    To customize the TLS client configuration, use `rpc.DialWebsocketWithCustomTLS()` instead of `rpc.DialContext()`:
 
     ```go
     // create a tls.Config
