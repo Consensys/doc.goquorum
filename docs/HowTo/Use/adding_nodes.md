@@ -65,8 +65,8 @@ After `addPeer` or `addLearner`:
 
 ### IBFT, QBFT, and Clique
 
-Adding a non-validator node to an IBFT, QBFT, or Clique network is a bit simpler, as it only needs to configure itself
-rather than be pre-allocated on the network (permissioning aside).
+Adding a non-validator node to an IBFT, QBFT, or Clique network is a bit simpler than adding a node to a Raft network,
+as it only needs to configure itself rather than be pre-allocated on the network (permissioning aside).
 
 1. Initialize the new node with the network's genesis configuration:
 
@@ -87,6 +87,11 @@ rather than be pre-allocated on the network (permissioning aside).
 Adding a validator to an IBFT or QBFT network requires using the consensus APIs outlined in the
 [IBFT tutorial](../../Tutorials/Private-Network/Adding-removing-IBFT-validators.md) and the
 [QBFT tutorial](../../Tutorials/Private-Network/Adding-removing-QBFT-validators.md).
+
+!!! info
+
+    Validator nodes require the [`--mine`](https://geth.ethereum.org/docs/interface/command-line-options) command line
+    option on startup, which enables mining, while non-validator nodes do not.
 
 ### Extra options
 
