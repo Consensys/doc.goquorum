@@ -138,7 +138,6 @@ Custom fork block when using [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.
 [QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md) consensus.
 The default is 0.
 
-
 ### `permissioned`
 
 === "Syntax"
