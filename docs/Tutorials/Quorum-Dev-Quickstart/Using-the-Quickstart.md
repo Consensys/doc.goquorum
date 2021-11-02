@@ -110,6 +110,29 @@ You can search for a specific block, transaction hash, or address by clicking th
 
 ![Explorer Search](../../images/quickstart/ExplorerSearch.png)
 
+
+## Blockscout Block explorer
+
+The Quickstart also provides [Blockscout](https://github.com/blockscout/blockscout) and exposes it at
+[`http://localhost:26000`](http://localhost:26000)
+
+!!! note
+
+    Blockscout's docker image is large and is quite resource heavy when running. Please ensure you have adequate CPU resources
+    dedicated to the container.
+
+To start Blockscout please run the following **after** the quickstart is already running
+
+```bash
+
+./run-blockscout.sh
+
+```
+
+The [config](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/templates/goquorum/docker-compose.blockscout.yml) is
+available as a reference for your own network.
+
+
 ## Monitor nodes with Prometheus and Grafana
 
 The sample network also includes Prometheus and Grafana monitoring tools to let you visualize
