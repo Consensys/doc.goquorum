@@ -68,17 +68,15 @@ curl -X POST -H "Content-type: application/json" -H "Authorization: $TOKEN" \
 
 ### `geth attach`
 
-Use command line options to allow a secured GoQuorum node connection:
+Use the following command line options to allow a secured GoQuorum node connection:
 
-```text
---rpcclitoken value                 RPC Client access token
---rpcclitls.insecureskipverify      Disable verification of server's TLS certificate on connection by client
---rpcclitls.cert value              Server's TLS certificate PEM file on connection by client
---rpcclitls.cacert value            CA certificate PEM file for provided server's TLS certificate on connection by client
---rpcclitls.ciphersuites value      Customize supported cipher suites when using TLS connection. Value is a comma-separated cipher suite string
-```
+- [`--rpcclitoken`](../../Reference/CLI-Syntax.md#rpcclitoken)
+- [`--rpcclitls.insecureskipverify`](../../Reference/CLI-Syntax.md#rpcclitlsinsecureskipverify)
+- [`--rpcclitls.cert`](../../Reference/CLI-Syntax.md#rpcclitlscert)
+- [`--rpcclitls.cacert`](../../Reference/CLI-Syntax.md#rpcclitlscacert)
+- [`--rpcclitls.ciphersuites`](../../Reference/CLI-Syntax.md#rpcclitlsciphersuites)
 
-For example, connect to the node with `--rpcclitls.insecureskipverify` to ignore the server's certificate validation:
+For example, connect to the node using `--rpcclitls.insecureskipverify` to ignore the server's certificate validation:
 
 === "HTTP"
 
