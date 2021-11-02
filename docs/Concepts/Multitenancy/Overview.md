@@ -1,69 +1,33 @@
-# Multi-tenancy via Multiple Private States
+# Multi-tenancy via multiple private states
 
-In a typical network, each participant (tenant) uses its own GoQuorum and Tessera node. Tessera can
-be configured to manage multiple key pairs which are owned by one tenant. This model is costly to
-run and scale as more tenants join the network.
+In a typical GoQuorum network, each participant (tenant) uses its own GoQuorum and Tessera node.
+Tessera can be configured to manage multiple key pairs owned by one tenant.
+This model is costly to run and scale as more tenants join the network.
 
-[Multi-tenancy via Multiple Private States] allows multiple tenants to use the same GoQuorum node, with each tenant having it's own private state(s). Tenants can perform all operations (create/read/write) on any contract in their private state and a single tenant can have access to multiple private states. Multi-tenancy allows for a similar user experience to a user running their own managed node.
+[Use multi-tenancy via multiple private states](../../HowTo/Use/Multitenancy.md) to allow multiple tenants to use the
+same GoQuorum node, with each tenant having its own private state(s).
+Each tenant can perform all operations (create, read, and write) on any contract in its private state, and a single
+tenant can have access to multiple private states.
+Multi-tenancy enables a user experience similar to a user running their own managed node.
 
-The public state remains available publicly to all tenants and private states are logically separated.
+The public state remains publicly available to all tenants, and private states are logically separated.
 
-```plantuml
-skinparam shadowing false
-skinparam monochrome true
-skinparam nodesep 20
-skinparam ranksep 20
-skinparam database {
-StereotypeFontSize 10
-}
-scale 1.0
+![Multi-tenancy](../../images/Multi-tenancy.png)
 
-left to right direction
+In this example diagram, an organization represents a tenant with multiple departments, and users within the departments.
+Each tenant operates on its own private state.
+Each user in an organization owns one or more privacy manager key pairs that allows them to operate on their
+organization's private state.
+A network operator administers entitlements and private state access for each organization using the authorization server.
 
-rectangle "<&people> J Organization" as ta
-rectangle "<&people> G Organization" as tb
-
-node "GoQuorum" as goquorum {
-  rectangle "<size:16><&shield></size>\n\nA\n\nP\n\nI\n" as api
-  rectangle "<size:16><&shield></size>\n\nE\n\nV\n\nM\n" as evm
-  together {
-    database "Public State" as publicstate {
-    }
-    database "<size:16><&lock-locked></size> Private State" << J Organization >> as privatestateJ {
-    }
-    database "<size:16><&lock-locked></size> Private State" << G Organization >> as privatestateG {
-    }
-  }
-}
-
-api -[hidden]- evm
-evm -[hidden]- publicstate
-
-rectangle "<b>Tessera</b>\n\n<&key> J Organization\n<&key> G Organization" as tessera
-
-rectangle "<size:18><&cog></size> Authorization Server" as authServer
-
-
-ta -- api: <&document> JSON RPC
-tb -- api: <&document> JSON RPC
-
-authServer -- ta
-authServer -- tb
-
-goquorum -- tessera
-```
-
-In this scenario, an organization represents a tenant with multiple departments, and
-users within the departments. Each tenant operates on it's own private state. Each user in an organization owns one or more privacy manager key pairs that allows them to operate on their organization's private state. A network
-operator administers entitlements and private state access for each organization using the Authorization Server.
-
-[JSON RPC security](../../HowTo/Use/JSON-RPC-API-Security.md) features are used to manage a users access to a private state. The [Authentication Server setup] controls this access.
+[JSON-RPC security](../../HowTo/Use/JSON-RPC-API-Security.md) features are used to manage a users access to a private state.
+The [authentication server setup](#enterprise-authorization-server) controls this access.
 
 ## Configuration changes
 
-In order to run a multi-tenant node, the node must have the [configuration changes needed for MPS]
+In order to run a multi-tenant node, the node must have the [configuration changes needed for MPS].
 
-## Enable Multi-tenancy via MPS
+## Enable multi-tenancy
 
 Multi-tenancy requires [Tessera] version `21.4.0` or later and GoQuorum to be [MPS enabled].
 
@@ -98,7 +62,7 @@ Security plugin.
     }
     ```
 
-## Enterprise Authorization Server
+## Enterprise authorization server
 
 To support Multi-tenancy, an Authorization Server will need to be configured. The Authorization Server has the ability to grant private state access to clients via a private state identifier.
 View [Multi-tenancy via Multiple Private States] for more information on how to set up the Authorization server and configure a Multi-tenant network.
@@ -137,6 +101,5 @@ to private contracts on private states `PS1` and `PS2` using any self or node ma
 [Multi-tenancy via Multiple Private States]: ../../HowTo/Use/Multitenancy.md
 [configuration changes needed for MPS]: MultiplePrivateStates.md#configuration-changes
 [MPS enabled]: MultiplePrivateStates.md#enable-multiple-private-states
-[Authentication Server setup]: #Enterprise-Authorization-Server
 [security plugins documentation]: ../../Reference/Plugins/Security.md#configuration
 [Tessera]: https://docs.tessera.consensys.net
