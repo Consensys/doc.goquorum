@@ -5,17 +5,17 @@ description: connecting to a node
 # Connecting to a node
 
 This tutorial shows you how to connect to a running node
-Use the [Quorum Developer Quickstart](../../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md) to rapidly generate a local blockchain network.
+Use the [Quorum Developer Quickstart](../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md) to rapidly generate a local blockchain network.
 
 ## Prerequisites
 
-* The [quickstart](../../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md) or
-* A [private network](../../Tutorials/Private-Network/Create-IBFT-Network.md) or
-* A [privacy-enabled network](../../Tutorials/Create-Privacy-enabled-network.md) 
+* The [quickstart](../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md) or
+* A [private network](../Tutorials/Private-Network/Create-IBFT-Network.md) or
+* A [privacy-enabled network](../Tutorials/Create-Privacy-enabled-network.md)
     (public contracts can also be deployed on privacy-enabled networks).
 
-
 ## Interfaces to connect to
+
 The Geth JavaScript console exposes the [Web3 JavaScript API](https://web3js.readthedocs.io/en/v1.2.9/) for development use, and is started
 with the `console` or `attach` geth sub-commands. The `console` sub-commands starts the geth node and then opens the console, while the `attach`
 subcommand attaches to the console to an already-running geth instance.
@@ -71,10 +71,9 @@ Once connected you can execute commands as normal
     exit
     ```
 
+### 2. Using the RPC interface
 
-### 2. Using the RPC interface 
-
-The next way to connect to a running node is by making HTTP REST requests on the RPC endpoint which is typically exposed on port 8545.  
+The next way to connect to a running node is by making HTTP REST requests on the RPC endpoint which is typically exposed on port 8545
 
 To enable the RPC interface, a GoQuorum needs to be started with the following parameters:
 
@@ -83,12 +82,11 @@ To enable the RPC interface, a GoQuorum needs to be started with the following p
    --http.addr localhost            # HTTP-RPC server listening interface (default: "localhost")
    --http.port 8545                 # HTTP-RPC server listening port (default: 8545)
    --http.corsdomain "localhost"    # Comma separated list of domains from which to accept cross origin requests (browser enforced)
-   --http.vhosts "localhost"        # Comma separated list of virtual hostnames from which to accept requests (server enforced). Accepts '*' wildcard. 
+   --http.vhosts "localhost"        # Comma separated list of virtual hostnames from which to accept requests (server enforced). Accepts '*' wildcard.
    --http.api admin,db,...          # API's offered over the HTTP-RPC interface
 ```
 
-GoQuorum supports the [standard web3 JSON-RPC API's](https://geth.ethereum.org/docs/rpc/server) as well as [custom methods](../../Reference/API-Methods.md)
-
+GoQuorum supports the [standard web3 JSON-RPC API's](https://geth.ethereum.org/docs/rpc/server) and [custom methods](../Reference/API-Methods.md)
 
 For example to make a request to give you the list of validators at a given block:
 !!! example
@@ -113,22 +111,21 @@ For example to make a request to give you the list of validators at a given bloc
         }
         ```
 
-You can use your choice of tooling to make the request such as [curl](https://curl.se/), [Postman](https://www.postman.com/), [Web3](https://web3js.readthedocs.io/en/latest/) or equivalent. 
-
+You can use your choice of tooling to make the request such as [curl](https://curl.se/), [Postman](https://www.postman.com/),
+[Web3](https://web3js.readthedocs.io/en/latest/) or equivalent.
 
 #### Securing JSON-RPC
 
-JSON-RPC servers are secured using a [security plugin interface](../../Reference/Plugins/security/interface.md). The
+JSON-RPC servers are secured using a [security plugin interface](../Reference/Plugins/Security.md). The
 [official implementation](https://github.com/ConsenSys/quorum-security-plugin-enterprise) enables the GoQuorum client to protect JSON-RPC APIs.
 
-Security can be done via native Transport Layer Security (TLS) or via Enterprise authorization protocol integration eg
+Security can be done via native Transport Layer Security (TLS) or via Enterprise authorization protocol integration, for example
 [OAuth 2.0](https://tools.ietf.org/html/rfc6749) or [JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519). Please refer to the
-[examples](../../HowTo/Use/JSON-RPC-API-Security.md) for connfiguration and usage details 
+[examples](../HowTo/Use/JSON-RPC-API-Security.md) for connfiguration and usage details
 
+### 3. Using the Websocket interface
 
-### 3. Using the Websocket interface 
-
-Another way to connect to a running node is by making Websocket endpoint which is typically exposed on port 8546.  
+Another way to connect to a running node is by making Websocket endpoint which is typically exposed on port 8546
 
 To enable the WS interface, a GoQuorum needs to be started with the following parameters:
 
@@ -136,11 +133,11 @@ To enable the WS interface, a GoQuorum needs to be started with the following pa
    --ws                           # Enable the WS-RPC server endpoint
    --ws.addr localhost            # WS-RPC server listening interface (default: "localhost")
    --ws.port 8545                 # WS-RPC server listening port (default: 8545)
-   --ws.origins "localhost"       # Comma separated list of virtual hostnames from which to accept requests (server enforced). Accepts '*' wildcard. 
+   --ws.origins "localhost"       # Comma separated list of virtual hostnames from which to accept requests (server enforced). Accepts '*' wildcard
    --ws.api admin,db,...          # API's offered over the WS interface
    --ws.rpcprefix "/"             # Path prefix on which WS-RPC is served. Use '/' to serve on all paths.
-
 ```
+
 Where the APIs supported are the same as that of the JSON-RPC API's above
 
 For example to connecto to an endpoint and get logs you would run something similar to:

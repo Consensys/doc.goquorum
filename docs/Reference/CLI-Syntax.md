@@ -32,6 +32,16 @@ Maximum time from current time allowed for blocks before they're considered futu
 This allows nodes to be slightly out of sync without receiving "Mining too far in the future" messages.
 The default is 0.
 
+### `emitcheckpoints`
+
+=== "Syntax"
+
+    ```bash
+    --emitcheckpoints
+    ```
+
+If included, emits specially formatted logging checkpoints.
+
 ### `immutabilitythreshold`
 
 === "Syntax"
@@ -110,6 +120,24 @@ The default is 10000.
 Enables [multi-tenancy](../Concepts/Multitenancy/Overview.md).
 This requires the [JSON-RPC Security plugin](../HowTo/Use/JSON-RPC-API-Security.md) to also be configured.
 
+### `override.istanbul`
+
+=== "Syntax"
+
+    ```bash
+    --override.istanbul <INTEGER>
+    ```
+
+=== "Example"
+
+    ```bash
+    --override.istanbul 100
+    ```
+
+Custom fork block when using [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md) or
+[QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md) consensus.
+The default is 0.
+
 ### `permissioned`
 
 === "Syntax"
@@ -142,7 +170,7 @@ The node allows only a defined list of nodes to connect.
     ```
 
 URI of the [plugins settings JSON file](../HowTo/Configure/Plugins.md).
-Use this to configure [plugins](../Concepts/Plugins/Plugins.md).
+Use this to configure [plugins](../Concepts/Plugins.md).
 
 ### `plugins.localverify`
 
@@ -152,7 +180,7 @@ Use this to configure [plugins](../Concepts/Plugins/Plugins.md).
     --plugins.localverify
     ```
 
-If included, verifies [plugin integrity](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) from the
+If included, verifies [plugin integrity](../Concepts/Plugins.md#plugin-integrity-verification) from the
 local file system.
 This requires a plugin signature file and [PGP public key file](#pluginspublickey) to be available.
 
@@ -171,7 +199,7 @@ This requires a plugin signature file and [PGP public key file](#pluginspublicke
     ```
 
 URI of the PGP public key for local
-[plugin verification](../Concepts/Plugins/Plugins.md#plugin-integrity-verification).
+[plugin verification](../Concepts/Plugins.md#plugin-integrity-verification).
 This option is only valid if [`--plugins.localverify`](#pluginslocalverify) is set.
 
 ### `plugins.skipverify`
@@ -182,7 +210,7 @@ This option is only valid if [`--plugins.localverify`](#pluginslocalverify) is s
     --plugins.skipverify
     ```
 
-If included, disables the [plugin verification](../Concepts/Plugins/Plugins.md#plugin-integrity-verification) process.
+If included, disables the [plugin verification](../Concepts/Plugins.md#plugin-integrity-verification) process.
 
 ### `privacymarker.enable`
 
@@ -313,7 +341,7 @@ The default is 5 seconds.
     ---ptm.tls.clientcert client.cert.pem
     ```
 
-Path to the file containing client certificate (or chain of certificates) when using a TLS
+Path to the file containing the client certificate (or chain of certificates) when using a TLS
 [connection to the private transaction manager](../HowTo/Configure/ConfigurePTM.md).
 This is required if the server is configured to use two-way authentication.
 
@@ -377,7 +405,7 @@ Setting to `strict` enables TLS when using an HTTPS [connection to the private t
     ---ptm.tls.rootca certfile.pem
     ```
 
-Path to the file containing root CA certificate when using a TLS [connection to the private transaction manager](../HowTo/Configure/ConfigurePTM.md).
+Path to the file containing the root CA certificate when using a TLS [connection to the private transaction manager](../HowTo/Configure/ConfigurePTM.md).
 The default is the host's certificates.
 
 ### `ptm.url`
@@ -513,3 +541,95 @@ The default is 50400.
 
 Enables including the [revert reason](../HowTo/Use/Revert-Reason.md) in the
 [`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt) response.
+
+### `rpcclitls.cacert`
+
+=== "Syntax"
+
+    ```bash
+    --rpcclitls.cacert <path>/<to>/<TLS-CA-pem-file>
+    ```
+
+=== "Example"
+
+    ```bash
+    --rpcclitls.cacert certfile.pem
+    ```
+
+Path to the file containing the CA certificate for the [server's TLS certificate](#rpcclitlscert) when using a
+[secured GoQuorum node connection](../HowTo/Use/JSON-RPC-API-Security.md).
+
+### `rpcclitls.cert`
+
+=== "Syntax"
+
+    ```bash
+    --rpcclitls.cert <path>/<to>/<TLS-pem-file>
+    ```
+
+=== "Example"
+
+    ```bash
+    --rpcclitls.cert certfile.pem
+    ```
+
+Path to the file containing the server's TLS certificate when using a [secured GoQuorum node connection](../HowTo/Use/JSON-RPC-API-Security.md).
+
+### `rpcclitls.ciphersuites`
+
+=== "Syntax"
+
+    ```bash
+    --rpcclitls.ciphersuites <STRING>
+    ```
+
+=== "Example"
+
+    ```bash
+    --rpcclitls.ciphersuites "CIPHER_SUITE_1,CIPHER_SUITE_2"
+    ```
+
+Comma-separated list of cipher suites to support when using a [secured GoQuorum node connection](../HowTo/Use/JSON-RPC-API-Security.md).
+
+### `rpcclitls.insecureskipverify`
+
+=== "Syntax"
+
+    ```bash
+    --rpcclitls.insecureskipverify
+    ```
+
+If included, disables verification of the server's TLS certificate when using a [secured GoQuorum node connection](../HowTo/Use/JSON-RPC-API-Security.md).
+
+### `rpcclitoken`
+
+=== "Syntax"
+
+    ```bash
+    --rpcclitoken <STRING>
+    ```
+
+=== "Example"
+
+    ```bash
+    --rpcclitoken "AYjcyMzY3ZDhiNmJkNTY"
+    ```
+
+JSON-RPC client access token when using a [secured GoQuorum node connection](../HowTo/Use/JSON-RPC-API-Security.md).
+
+### `vm.calltimeout`
+
+=== "Syntax"
+
+    ```bash
+    --vm.calltimeout <INTEGER>
+    ```
+
+=== "Example"
+
+    ```bash
+    --vm.calltimeout 2
+    ```
+
+Timeout in seconds when executing [`eth_call`](https://geth.ethereum.org/docs/rpc/ns-eth#eth_call).
+The default is 5.

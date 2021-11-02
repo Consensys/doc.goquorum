@@ -4,6 +4,8 @@ description: Sending private transactions
 
 # Send private transactions
 
+This tutorial shows you how to send [private transactions](../Concepts/Privacy/PrivateAndPublic.md#private-transactions).
+
 ## Prerequisites
 
 * [Privacy-enabled network running as configured in tutorial](Create-Privacy-enabled-network.md). The
@@ -86,6 +88,11 @@ Type in the account password when prompted.
     By default, accounts remain unlocked for 5 minutes. After 5 minutes, the account is relocked.
 
 ## 4. Send the private transaction
+
+!!! important
+
+    All participants listed in `privateFor` must have their [private transaction managers](../Concepts/Privacy/Privacy.md#private-transaction-manager) running when the private transaction is sent.
+    Otherwise, the transaction doesn't propagate and an error is returned.
 
 In the `geth` console, run `loadScript` to deploy the contract and
 send a private transaction from node 1 to node 2.
