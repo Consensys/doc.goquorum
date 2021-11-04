@@ -150,6 +150,7 @@ nav:
           - Use Cakeshop: HowTo/Monitor/Cakeshop.md
           - Use Quorum Reporting: HowTo/Monitor/Quorum-Reporting.md
       - Interact with a node:
+          - Access APIs: HowTo/Interact/API.md
           - Client libraries:
               - Use the web3js-quorum client library: HowTo/Interact/Client-Libraries/web3js-quorum.md
       - Develop plugins: HowTo/DevelopPlugins.md
