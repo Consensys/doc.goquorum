@@ -107,7 +107,7 @@ The default is 10000.
     --multitenancy
     ```
 
-Enables [multi-tenancy](../Concepts/Multitenancy/Overview.md).
+Enables [multi-tenancy](../Concepts/Multitenancy.md).
 This requires the [JSON-RPC Security plugin](../HowTo/Use/JSON-RPC-API-Security.md) to also be configured.
 
 ### `permissioned`
