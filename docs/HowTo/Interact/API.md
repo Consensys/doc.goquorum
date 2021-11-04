@@ -4,12 +4,8 @@ description: How to access APIs
 
 # Access APIs
 
-You can access the [GoQuorum](../../Reference/API-Methods.md) and [Geth](https://geth.ethereum.org/docs/rpc/server) APIs
-using JSON-RPC over HTTP or WebSocket, or GraphQL over HTTP.
-
-## Enabling API access
-
-To enable API access, use:
+To enable [GoQuorum](../../Reference/API-Methods.md) and [Geth](https://geth.ethereum.org/docs/rpc/server) API access,
+use the following command line options:
 
 - [`--http`](https://geth.ethereum.org/docs/interface/command-line-options) to enable JSON-RPC over HTTP.
 - [`--ws`](https://geth.ethereum.org/docs/interface/command-line-options) to enable JSON-RPC over WebSocket.
