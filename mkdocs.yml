@@ -111,10 +111,9 @@ nav:
           - Transfer account funds: Tutorials/Contracts/Account-Funds-Transfers.md
       - Create a privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
       - Send private transactions: Tutorials/Send-private-transaction.md
-      - Create permissioned network: Tutorials/CreatePermissionedNetwork.md
+      - Create a permissioned network: Tutorials/CreatePermissionedNetwork.md
+      - Connect to a node: Tutorials/Connecting-to-a-node.md
       - Use a plugin: Tutorials/Use-Plugin.md
-  - Developing Applications:
-      - Connecting to a node: DevelopingApplications/Connecting-to-a-node.md
   - How to:
       - Configure GoQuorum:
           - Consensus protocols:
