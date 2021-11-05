@@ -1,37 +1,32 @@
-# Multi-tenancy migration
+# Multiple private states migration
 
-To [use multi-tenancy](Multitenancy.md), upgrade your existing [GoQuorum](#goquorum) and [Tessera](#tessera) nodes to
-have [multiple private states (MPS)](../../../Concepts/Multitenancy.md#multiple-private-states) functionality.
+You can upgrade your existing GoQuorum and Tessera nodes to enable
+[multiple private states (MPS)](../../../Concepts/Multitenancy.md#multiple-private-states).
+This allows you [use multi-tenancy](Multitenancy.md).
 
-## GoQuorum
+If you upgrade GoQuorum without upgrading Tessera, GoQuorum continues to operate in legacy mode on a single private state.
+In this case, GoQuorum can't be run in MPS mode since Tessera isn't upgraded.
 
-### Multi-tenant node upgrade
+## GoQuorum multi-tenant node upgrade
 
-To enable MPS functionality on GoQuorum, re-sync the node after [upgrading Tessera](#tessera).
+You can enable MPS for GoQuorum to run as a multi-tenant node by re-syncing the node after [upgrading Tessera](#tessera-multi-tenant-node-upgrade).
 
-### Single-tenant node upgrade
+## GoQuorum single-tenant node upgrade (`mpsdbupgrade`)
 
-You can enable MPS on a single-tenant node by executing the `mpsdbupgrade` command.
+You can enable MPS on a single-tenant GoQuorum node by executing the `mpsdbupgrade` command after [upgrading Tessera](#tessera-single-tenant-node-upgrade).
 It's faster than a normal sync from block 0 (especially if the network has reached a significant number of blocks).
-
-- Tessera must be upgraded to enable MPS and a single resident group named "private" must be defined (with all the
-  existing locally managed Tessera keys).
 
 The `mpsdbupgrade` command upgrades the existing database to an MPS-enabled database with a single private state (and
 sets `isMPS` to `true` in the configuration).
-Once the upgrade completes, you can introduce additional private states from the current block height (you can't
-introduce private states at historic block heights).
-
-In order to use the `mpsdbupgrade` command one must consider the following constraints:
-
-- The node must be offline for the upgrade process to be executed (we recommend backing up the node data directory
-  before executing the upgrade).
-- The `mpsdbupgrade` command can't be used to combine multiple GoQuorum databases/private states into a single GoQuorum database.
-- After successful execution, the node database contains the `empty` state and the `private` state (corresponding to the
-  single private state that existed before the upgrade).
+Once the upgrade completes, you can introduce additional private states from the current block height.
 
 You must specify the directory containing the GoQuorum node database using the
 [`--datadir`](https://geth.ethereum.org/docs/interface/command-line-options) command line option.
+
+!!! important
+
+    - The node must be offline during the upgrade process (we recommend backing up the node data directory before upgrading).
+    - You can't use `mpsdbupgrade` to combine multiple GoQuorum databases/private states into a single GoQuorum database.
 
 !!! example "`mpsdbupgrade` command"
 
@@ -56,26 +51,28 @@ You must specify the directory containing the GoQuorum node database using the
         MPS DB upgrade finished successfully.
         ```
 
-### Backwards compatibility
+After execution, the node database contains the `empty` state and the `private` state (corresponding to the single
+private state that existed before the upgrade).
 
-If you upgrade GoQuorum without upgrading Tessera, GoQuorum continues to operate in "legacy" mode on a single private state.
-In this case, GoQuorum can't be run in MPS mode since Tessera isn't upgraded.
+## Tessera multi-tenant node upgrade
 
-## Tessera
+You can enable MPS for Tessera to run as a multi-tenant node by rebuilding from the privacy managers of the
+single-tenant nodes your Tessera node now supports.
 
-### Multi-tenant node upgrade
+You must [merge all transactions from the privacy managers into the new Tessera storage](https://docs.tessera.consensys.net/en/stable/HowTo/Migrate/Migration-Multitenancy/).
 
-Tessera must be rebuilt from the privacy managers of the single-tenant nodes it now supports.
-All transactions from the privacy managers must be
-[merged into the new Tessera storage](https://docs.tessera.consensys.net/en/stable/HowTo/Migrate/Migration-Multitenancy/).
+Update your Tessera [`residentGroups`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#resident-groups)
+configuration so that each tenant has its own private state.
+This provides a user experience similar to the tenants running separate nodes.
 
-The Tessera configuration file must be updated to contain the relevant [`residentGroups`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#resident-groups).
-Configure the `residentGroups` so that each tenant has its own private state.
-This provides a user experience similar to the tenants running their separate nodes.
+After upgrading Tessera, [re-sync your GoQuorum node](#goquorum-multi-tenant-node-upgrade).
 
-### Single-tenant node upgrade
+## Tessera single-tenant node upgrade
 
-A tenant of a node may want to upgrade its Tessera node to support MPS but continue running as the only tenant.
+You can enable MPS for Tessera but continue running as a single-tenant node.
 
-In this case, the tenant's Tessera version must be upgraded and [`residentGroups`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#resident-groups) must be configured.
-Configure the `residentGroups` so that there is one private state containing all the tenant's Tessera keys.
+Upgrade the Tessera version to `21.4.0` or later and configure
+[`residentGroups`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#resident-groups)
+to define a single resident group named "private" containing all the tenant's Tessera keys.
+
+You can [upgrade your GoQuorum node to support MPS as a single-tenant node](#goquorum-single-tenant-node-upgrade-mpsdbupgrade).

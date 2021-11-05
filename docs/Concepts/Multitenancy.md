@@ -71,6 +71,8 @@ private states `PS1` and `PS2` using any Ethereum accounts.
 Multiple private states (MPS) is a feature that allows a GoQuorum node to manage more than one private state.
 This functionality lays the foundation for multi-tenancy.
 
+You can [upgrade your existing GoQuorum and Tessera nodes to enable MPS](../HowTo/Use/Multitenancy/Migration.md).
+
 ### Private state identifier
 
 A private state is identified by a sequence of bytes, referred to as the PSI (private state identifier).

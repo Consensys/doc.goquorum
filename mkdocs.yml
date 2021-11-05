@@ -65,7 +65,7 @@ nav:
           - Components: Concepts/Blockchain/Blockchain-comprises.md
       - Architecture: Concepts/Architecture.md
       - Consensus:
-          - Overview: Concepts/Consensus/Multitenancy.md
+          - Overview: Concepts/Consensus/Overview.md
           - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
       - Account management: Concepts/AccountManagement.md
       - Privacy:
@@ -77,7 +77,7 @@ nav:
       - Permissioning: Concepts/PermissionsOverview.md
       - Plugins: Concepts/Plugins.md
       - Security framework:
-          - Overview: Concepts/Security/Framework/Multitenancy.md
+          - Overview: Concepts/Security/Framework/Overview.md
           - GoQuorum network:
               - Consortium: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
               - GoQuorum node: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
@@ -90,7 +90,7 @@ nav:
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
       - Qubernetes:
-          - Overview: Concepts/Qubernetes/Qubernetes-Multitenancy.md
+          - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md
   - Tutorials:
       - Quorum Dev Quickstart:
@@ -134,7 +134,7 @@ nav:
           - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
           - Multi-tenancy:
               - Use multi-tenancy: HowTo/Use/Multitenancy/Multitenancy.md
-              - Multi-tenancy migration: HowTo/Use/Multitenancy/Migration.md
+              - Multiple private states migration: HowTo/Use/Multitenancy/Migration.md
           - Include revert reason: HowTo/Use/Revert-Reason.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
@@ -221,7 +221,7 @@ plugins:
         Account-Key-Management/Quorum/account-Plugins/Overview.md: HowTo/ManageKeys/AccountPlugins.md
         Account-Key-Management/Tessera/Overview.md: Concepts/AccountManagement.md
         Consensus/ibft/ibft.md: HowTo/Configure/Consensus-Protocols/IBFT.md
-        Consensus/Consensus.md: Concepts/Consensus/Multitenancy.md
+        Consensus/Consensus.md: Concepts/Consensus/Overview.md
         Consensus/raft/raft.md: HowTo/Configure/Consensus-Protocols/Raft.md
         Getting Started/permissioned-nodes.md: HowTo/Configure/Permissioning/BasicPermissions.md
         Getting Started/running.md: GetStarted/GettingStartedOverview.md
@@ -243,7 +243,7 @@ plugins:
         Security/Framework/Quorum Network Security/Node.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
         Security/Framework/Quorum Network Security/Opertional Considerations.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
         Security/Framework/Quorum Network Security/Transaction Manager.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
-        Security/Framework/Overview.md: Concepts/Security/Framework/Multitenancy.md
+        Security/Framework/Overview.md: Concepts/Security/Framework/Overview.md
         How-To-Guides/HA_Setup.md: HowTo/Configure/HighAvailability.md
         How-To-Guides/add_ibft_validator.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
         Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/Permissioning/EnhancedPermissions.md
