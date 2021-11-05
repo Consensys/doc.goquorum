@@ -91,19 +91,19 @@ alone (`isMPS=false`).
 
 Tenants are assigned to multi-tenant nodes as follows:
 
-* `J Organization` owns `J_K1` and `J_K2`, and its tenancy is on `Node1`.
-* `G Organization` owns `G_K1` and `G_K2`, and its tenancy is on `Node1`.
-* `D Organization` owns `D_K1`, and its tenancy is on `Node2`.
+- `J Organization` owns `J_K1` and `J_K2`, and its tenancy is on `Node1`.
+- `G Organization` owns `G_K1` and `G_K2`, and its tenancy is on `Node1`.
+- `D Organization` owns `D_K1`, and its tenancy is on `Node2`.
 
 In practice, `J Organization` and `G Organization` may decide to allocate keys to their departments, therefore the
 security model may be as follows:
 
-* `J Organization`:
-    * `J Investment` has access to `J` tenancy using any self-managed Ethereum accounts.
-    * `J Settlement` has access to `J` tenancy using node-managed Ethereum account `J_ACC1` and a self-managed `Wallet1`.
-* `G Organization`:
-    * `G Investment` has access to `G` tenancy using any self-managed Ethereum accounts.
-    * `G Settlement` has access to `G` tenancy using node-managed Ethereum account `G_ACC1` and self-managed `Wallet2`.
+- `J Organization`:
+    - `J Investment` has access to `J` tenancy using any self-managed Ethereum accounts.
+    - `J Settlement` has access to `J` tenancy using node-managed Ethereum account `J_ACC1` and a self-managed `Wallet1`.
+- `G Organization`:
+    - `G Investment` has access to `G` tenancy using any self-managed Ethereum accounts.
+    - `G Settlement` has access to `G` tenancy using node-managed Ethereum account `G_ACC1` and self-managed `Wallet2`.
 
 Each authorization server has its own configuration steps and client onboarding process.
 A network operator's responsibility is to implement this security model in the authorization server by defining
