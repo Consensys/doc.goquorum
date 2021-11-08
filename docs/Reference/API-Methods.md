@@ -2845,14 +2845,13 @@ None
 #### Returns
 
 `result`: *string* - the [private state identifier (PSI)](../Concepts/Multitenancy.md#private-state-identifier)
-in bytes
 
 !!! example
 
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getPSI","id":67}'
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getPSI","id":1}'
         ```
 
     === "JSON result"
@@ -2860,8 +2859,8 @@ in bytes
         ```json
         {
           "jsonrpc":"2.0",
-          "id":67,
-          "result":""
+          "id":1,
+          "result":"PS1"
         }
         ```
 
@@ -2874,7 +2873,7 @@ in bytes
     === "geth console result"
 
         ```js
-        ""
+        "PS1"
         ```
 
 ### `eth_getQuorumPayload`

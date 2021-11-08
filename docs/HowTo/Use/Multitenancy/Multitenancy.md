@@ -8,7 +8,12 @@ use the same GoQuorum node, with each tenant having its own private state(s).
 ### Prerequisites
 
 - [Tessera](https://docs.tessera.consensys.net) version `21.4.0` or later installed
-- GoQuorum installed and [upgraded to have MPS functionality](Migration.md)
+- GoQuorum installed
+
+!!! important
+
+    If you want to upgrade existing GoQuorum or Tessera nodes to enable multiple private states and multi-tenancy, see
+    the [migration guide](Migration.md).
 
 ### Steps
 
