@@ -18,7 +18,7 @@ The public state remains publicly available to all tenants, and private states a
 
 In this example architecture, an organization represents a tenant with multiple departments, and users within the departments.
 Each tenant operates on its own private state.
-Each user in an organization owns one or more privacy manager key pairs that allows them to operate on their
+Each user in an organization owns one or more privacy manager key pairs that allow them to operate on their
 organization's private state.
 A network operator administers entitlements and private state access for each organization using the authorization server.
 
