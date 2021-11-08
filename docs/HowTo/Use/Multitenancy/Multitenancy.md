@@ -43,10 +43,11 @@ use the same GoQuorum node, with each tenant having its own private state(s).
    to `true` in the Tessera configuration file.
    The default is `false`.
 
-    !!! note
+    !!! important
 
         GoQuorum can't start if `isMPS` is `true` in the GoQuorum configuration and `enableMultiplePrivateStates` is
         `false` in the Tessera configuration.
+
         GoQuorum runs as a non-MPS-enabled node if `isMPS` is `false` and `enableMultiplePrivateStates` is `true`.
 
 1. [Configure `residentGroups`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#resident-groups)
