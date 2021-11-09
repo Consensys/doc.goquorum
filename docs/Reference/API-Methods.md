@@ -2833,6 +2833,49 @@ private transaction using the PMT's transaction hash.
         }
         ```
 
+### `eth_getPSI`
+
+When using [multiple private states](../Concepts/Multitenancy.md#multiple-private-states), returns the private
+state the user is operating on.
+
+#### Parameters
+
+None
+
+#### Returns
+
+`result`: *string* - the [private state identifier (PSI)](../Concepts/Multitenancy.md#private-state-identifier)
+
+!!! example
+
+    === "curl HTTP request"
+
+        ```bash
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getPSI","id":1}'
+        ```
+
+    === "JSON result"
+
+        ```json
+        {
+          "jsonrpc":"2.0",
+          "id":1,
+          "result":"PS1"
+        }
+        ```
+
+    === "geth console request"
+
+        ```js
+        eth.getPSI
+        ```
+
+    === "geth console result"
+
+        ```js
+        "PS1"
+        ```
+
 ### `eth_getQuorumPayload`
 
 Returns the [unencrypted payload from Tessera](https://docs.tessera.consensys.net/Concepts/Transaction-manager/#private-transaction-flow).

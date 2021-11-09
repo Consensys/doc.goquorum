@@ -86,9 +86,7 @@ nav:
           - Decentralized app:
               - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
               - Smart contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
-      - Multi-tenancy:
-          - Overview: Concepts/Multitenancy/Overview.md
-          - Multiple Private States: Concepts/Multitenancy/MultiplePrivateStates.md
+      - Multi-tenancy: Concepts/Multitenancy.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
       - Qubernetes:
@@ -135,7 +133,9 @@ nav:
           - Migrate network nodes: HowTo/Use/node_network_migration.md
           - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
           - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
-          - Multi-tenancy: HowTo/Use/Multitenancy.md
+          - Multi-tenancy:
+              - Use multi-tenancy: HowTo/Use/Multitenancy/Multitenancy.md
+              - Multiple private states migration: HowTo/Use/Multitenancy/Migration.md
           - Include revert reason: HowTo/Use/Revert-Reason.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
@@ -336,3 +336,6 @@ plugins:
         Reference/Plugins/helloworld/interface.md: https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/helloworld.proto
         Reference/Plugins/helloworld/implementation.md: Tutorials/Use-Plugin.md
         Reference/Plugins/init_interface.md: https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/init.proto
+        HowTo/Use/Multitenancy.md: HowTo/Use/Multitenancy/Multitenancy.md
+        Concepts/Multitenancy/MultiplePrivateStates.md: Concepts/Multitenancy.md
+        Concepts/Multitenancy/Overview.md: Concepts/Multitenancy.md
