@@ -92,11 +92,15 @@ To display the list of endpoints again, run:
 ./list.sh
 ```
 
-## Block explorer
+## Use a block explorer
 
-This tutorial uses a modified version of the [Alethio Ethereum Lite Explorer](https://github.com/Alethio/ethereum-lite-explorer).
+The quickstart supports a modified version of the [Alethio Ethereum Lite Explorer](#alethio-ethereum-lite-explorer)
+and [BlockScout](#blockscout).
 
-Access the explorer at [`http://localhost:25000`](http://localhost:25000) as displayed when starting the private network.
+### Alethio Ethereum Lite Explorer
+
+Access the [Alethio Ethereum Lite Explorer](https://github.com/Alethio/ethereum-lite-explorer) at
+[`http://localhost:25000`](http://localhost:25000) as displayed when starting the private network.
 
 The block explorer displays a summary of the private network, indicating four peers.
 
@@ -109,6 +113,26 @@ You can explore blocks by clicking on the blocks under **`Bk`** on the left-hand
 You can search for a specific block, transaction hash, or address by clicking the :mag: in the top left-hand corner.
 
 ![Explorer Search](../../images/quickstart/ExplorerSearch.png)
+
+### BlockScout
+
+Access [BlockScout](https://github.com/blockscout/blockscout) at [`http://localhost:26000`](http://localhost:26000)
+
+!!! note
+
+    BlockScout's Docker image is resource heavy when running.
+    Ensure you have adequate CPU resources dedicated to the container.
+
+To start BlockScout, run the following command after the quickstart is already running:
+
+```bash
+
+./run-blockscout.sh
+
+```
+
+The [quickstart BlockScout configuration](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/templates/goquorum/docker-compose.blockscout.yml)
+is available as a reference for your own network.
 
 ## Monitor nodes with Prometheus and Grafana
 

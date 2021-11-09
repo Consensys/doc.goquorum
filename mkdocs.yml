@@ -110,6 +110,7 @@ nav:
       - Create a privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
       - Send private transactions: Tutorials/Send-private-transaction.md
       - Create a permissioned network: Tutorials/CreatePermissionedNetwork.md
+      - Connect to a node: Tutorials/Connecting-to-a-node.md
       - Use a plugin: Tutorials/Use-Plugin.md
   - How to:
       - Configure GoQuorum:
