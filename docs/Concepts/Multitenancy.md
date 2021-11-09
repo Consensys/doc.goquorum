@@ -8,7 +8,7 @@ This model is costly to run and scale as more tenants join the network.
 tenants to use the same GoQuorum node, with each tenant having its own private state(s).
 Each tenant can perform all operations (create, read, and write) on any contract in its private state, and a single
 tenant can have access to [multiple private states](#multiple-private-states).
-Multi-tenancy enables a user experience similar to a user running their own managed node.
+Multi-tenancy provides a user experience similar to a user running their own managed node.
 
 The public state remains publicly available to all tenants, and private states are logically separated.
 
@@ -71,7 +71,8 @@ private states `PS1` and `PS2` using any Ethereum accounts.
 Multiple private states (MPS) is a feature that allows a GoQuorum node to manage more than one private state.
 This functionality lays the foundation for multi-tenancy.
 
-You can [upgrade your existing GoQuorum and Tessera nodes to enable MPS](../HowTo/Use/Multitenancy/Migration.md).
+If running GoQuorum version `21.4.1` or earlier or Tessera version `21.1.1` or earlier, [upgrade your existing nodes to
+enable MPS](../HowTo/Use/Multitenancy/Migration.md).
 
 ### Private state identifier
 
@@ -107,7 +108,7 @@ in memory in GoQuorum.
 
 ### Tessera Q2T communication changes
 
-MPS introduces a new QT2 endpoint `/groups/resident` to return the resident groups defined in Tessera.
+The `/groups/resident` QT2 endpoint returns the resident groups defined in Tessera.
 This endpoint is invoked at GoQuorum startup to retrieve all resident groups.
 These details are kept in memory in GoQuorum, so the [private state manager](#private-state-manager) can resolve these
 resident groups to the corresponding private state.
@@ -115,14 +116,14 @@ resident groups to the corresponding private state.
 ### Accessing a private state
 
 Users must specify the private state they wish to operate on.
-For backwards compatibility, if a user connects without specifying the private state, the default "private" identifier is used.
-If a "private" state is not configured, the user operates on an empty read-only private state.
+For backwards compatibility, if a user connects without specifying the private state, the default `private` identifier is used.
+If a private state is not configured, the user operates on an empty read-only private state.
 
-In order to specify a private state to operate on the user has three options, in order of precedence:
+In order of precedence, users have the following three options to specify a private state to operate on:
 
-1. URL parameter. PSI query param can be added to the API URI:
+1. URL parameter. PSI query parameter can be added to the API URI:
 
-    ```shell
+    ```bash
     geth attach http://localhost:22000/?PSI=PS1
     ```
 

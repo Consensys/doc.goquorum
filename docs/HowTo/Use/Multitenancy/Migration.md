@@ -1,8 +1,8 @@
 # Multiple private states migration
 
-You can upgrade your existing GoQuorum and Tessera nodes to enable
-[multiple private states (MPS)](../../../Concepts/Multitenancy.md#multiple-private-states) to run as multi-tenant or
-single-tenant nodes.
+If running GoQuorum version `21.4.1` or earlier or Tessera version `21.1.1` or earlier, you can upgrade your existing nodes
+to enable [multiple private states (MPS)](../../../Concepts/Multitenancy.md#multiple-private-states) to run as
+multi-tenant or single-tenant nodes.
 
 If you upgrade GoQuorum without upgrading Tessera, GoQuorum continues to operate in legacy mode on a single private state.
 In this case, GoQuorum can't be run in MPS mode since Tessera isn't upgraded.
