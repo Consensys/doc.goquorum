@@ -57,6 +57,8 @@ When a GoQuorum node encounters a transaction with a non-null `privateFor` value
 transaction signature to `37` or `38` (as opposed to public transactions, whose `v` values are set according to
 [EIP-155](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md)).
 
+See the [private transaction high-level lifecycle](PrivateTransactionLifecycle.md#normal-private-transactions).
+
 You can enable private transactions by [configuring the private transaction manager connection](../../HowTo/Configure/ConfigurePTM.md),
 and you can [send private transactions](../../Tutorials/Send-private-transaction.md).
 
