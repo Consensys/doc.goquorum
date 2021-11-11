@@ -1,83 +1,94 @@
 ---
-description: GoQuorum Node
+description: GoQuorum node
 ---
 
-# GoQuorum Node
+# GoQuorum node
 
-GoQuorum Node, also called GoQuorum Client, is a thick-client whose Private Transaction feature operation depends on a Transaction Manager Client that encrypts and decrypts
-private transactions payload.
-Both Quorum client and its dependencies i.e, Transaction Manager, Peers, and Enclave use traditional TCP/UDP transport layer to communicate.
+The GoQuorum client is a thick client whose private transaction feature operation depends on a transaction manager
+client that encrypts and decrypts private transaction payloads.
+Both GoQuorum and its dependencies (transaction manager, peers, and enclave) use the traditional TCP/UDP transport layer
+to communicate.
 
-As any asset in a network its security depends on multiple elements  (E.g the security of the Host, Data, and Accounts). In GoQuorum it will be the security of
-the Client and Transaction Manager host/host-runtime, encryption keys, Consensus runtime and Network Access Controls.
+As any asset in a network, its security depends on multiple elements (for example, the security of the host, data, and accounts).
+In GoQuorum, this depends on the security of the client and transaction manager host/host-runtime, encryption keys,
+consensus runtime, and network access controls.
 
 ## Host security
 
-Any asset in a GoQuorum network (Client Host, Transaction Manager Host, Private Transaction Storage Host, ..etc ) must be hardened following industry best practices.
+Any asset in a GoQuorum network (for example, client host, transaction manager host, or private transaction storage
+host) must be hardened following industry best practices.
 
-A host IDS should be used to detect any malicious activities on the host. Direct access to the host should not be allowed, instead a jump server should be used and access limited to small number of administrators.
+A host IDS should be used to detect any malicious activities on the host.
+Direct access to the host should not be allowed, instead a jump server should be used and access limited to small number
+of administrators.
 
-Operating systems, software and services will have vulnerabilities. GoQuorum network hosts must implement a robust patch management program.
+Operating systems, software, and services have vulnerabilities.
+GoQuorum network hosts must implement a robust patch management program.
 
 ## Client security
 
-GoQuorum client instance exposes a JSON-Remote Procedure Call (RPC) interface through HTTP, Web Socket, or Inter-Process communication techniques.
+GoQuorum client instance exposes a JSON-RPC interface through HTTP, WebSocket, or inter-process communication techniques.
 
-The JSON-RPC interfaces allows the remote interaction with the ledger features, and Smart Contracts. The JSON-RPC interface must be secured in order to preserve the integrity of the ledger runtime.
+The JSON-RPC interfaces allows remote interaction with the ledger features and smart contracts,and it must be secured to
+preserve the integrity of the ledger runtime.
 
 Each client in the network must be uniquely identified.
 
-In GoQuorum this is done by using nodes identity. Node identity is represented through a public key/private key, where
-the public key identifies the node in the network.
+In GoQuorum this is done by using nodes' identities.
+Node identity is represented through a public key/private key, where the public key identifies the node in the network.
 
-GoQuorum Smart Contract Permissioning models depends on nodes identity to authorize TCP level communication between nodes, as such securing the private key of a node is a paramount activity required to prevent unauthorized node from joining the network.
+GoQuorum smart contract permissioning models depend on nodes' identities to authorize TCP-level communication between
+nodes, so securing the private key of a node is required to prevent unauthorized nodes from joining the network.
 
-## Users security
+## User security
 
 Blockchain technology uses public key cryptography to protect the integrity of transactions and blocks.
 
-The security of a user’s Private keys is dependent on the security operation elements implemented to
-preserve the Private key from compromise.
+In Ethereu, accounts' private keys are encrypted with user-specified seeds (passwords).
 
-In Ethereum Accounts Private keys are encrypted with user specified seed (password).
-
-Users password should never be saved across the ecosystem or stored in ledger host in any form.
+Users' passwords should never be saved across the ecosystem or stored in a ledger host in any form.
 
 ## Security checklist
 
 ### Host
 
-- [x] Harden GoQuorum Host Operating System (e.g remove irrelevant services, root access, …).
+- Harden GoQuorum host operating system (for example, remove irrelevant services).
 
-- [x] Disable direct remote network access to GoQuorum host management interface in production.
+- Disable direct remote network access to GoQuorum host management interface in production.
 
-- [x] Use Host Based Intrusion Detection System (HIDS) to monitoring GoQuorum node host.
+- Use host-based intrusion detection system (HIDS) to monitor GoQuorum node host.
 
-- [x] Enable Host Based Firewall Rules that enforces network access to JSON-RPC interface to only a preidentified, trusted and required systems.
+- Enable host-based firewall rules that enforce network access to JSON-RPC interface to only pre-identified, trusted,
+  and required systems.
 
-- [x] Implement a robust Patch Management Program, and always keep the host updated to latest stable version.
+- Implement a robust patch management program, and always keep the host updated to the latest stable version.
 
-- [x] Ensure host level Isolation of responsibility between GoQuorum client and its dependency (e.g do not run the transaction manager and its database in the same host)
+- Ensure host-level isolation of responsibility between the GoQuorum client and its dependencies (for example, don't run
+  the transaction manager and its database in the same host).
 
-- [x] Ensure GoQuorum network hosts run with appropriate service level agreement (SLA) that can ensure a defense against non-vulnerability based denial of service.
+- Ensure GoQuorum network hosts run with appropriate service level agreements (SLA) that can ensure a defense against
+  non-vulnerability-based denial of service.
 
 ### Client
 
-- [x] Enable Secure Transport Security (TLS) to encrypt all communications from/to JSON-RPC interface to prevent data leakage and man in the middle attacks (MITM).
+- Enable TLS to encrypt all communications to and from the JSON-RPC interface to prevent data leakage and
+  man-in-the-middle (MITM) attacks.
 
-- [x] Enable GoQuorum Enterprise JSON-RPC authorization model to enforce atomic access controls to ledger modules functionalities (for example `personal.OpenWallet`).
+- Enable GoQuorum enterprise JSON-RPC authorization model to enforce atomic access controls to ledger modules
+  functionalities (for example, `personal.OpenWallet`).
 
-- [x] Implement a robust Patch Management Program, and always keep the client updated to latest stable version.
+- Implement a robust patch management program, and always keep the client updated to latest stable version.
 
-- [x] Ensure GoQuorum client run configuration is not started with unlocked accounts options.
+- Ensure GoQuorum client run configuration is not started with unlocked accounts options.
 
-- [x] Ensure cross domain access of the JSON-RPC interface is configured appropriately.
+- Ensure cross domain access of the JSON-RPC interface is configured appropriately.
 
-- [x] Ensure peer discovery is appropriately set based on the consortium requirements.
+- Ensure peer discovery is appropriately set based on the consortium requirements.
 
-- [x] In Raft Based Consensus there is no guarantee a leader would not be acting maliciously, hence Raft should not be used in environment where network ledger is managed by third party authorities.
+- In Raft consensus, there's no guarantee a leader isn't acting maliciously, so Raft shouldn't be used in an environment
+  where the network ledger is managed by third-party authorities.
 
-- [x] GoQuorum clients must run with metrics collection capability in order to preserve operational security.
+- GoQuorum clients must run with metrics collection capability in order to preserve operational security.
 
 ### Users
 
