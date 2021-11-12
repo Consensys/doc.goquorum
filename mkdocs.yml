@@ -110,8 +110,13 @@ nav:
       - Create a privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
       - Send private transactions: Tutorials/Send-private-transaction.md
       - Create a permissioned network: Tutorials/CreatePermissionedNetwork.md
-      - Connect to a node: Tutorials/Connecting-to-a-node.md
       - Use a plugin: Tutorials/Use-Plugin.md
+  - Developing Applications:
+      - Connecting to a node: DevelopingApplications/Connecting-to-a-node.md
+      - JSON RPC APIs: DevelopingApplications/JSON-RPC-APIs.md
+      - Smart Contracts and Transactions: DevelopingApplications/Smart-Contracts-Transactions.md
+      - Client Libraries: DevelopingApplications/Client-Libraries.md
+      - Develop plugins: DevelopingApplications/DevelopPlugins.md
   - How to:
       - Configure GoQuorum:
           - Consensus protocols:
@@ -126,7 +131,6 @@ nav:
               - Basic permissions: HowTo/Configure/Permissioning/BasicPermissions.md
               - Enhanced permissions: HowTo/Configure/Permissioning/EnhancedPermissions.md
           - Private transaction manager: HowTo/Configure/ConfigurePTM.md
-          - Plugins: HowTo/Configure/Plugins.md
           - DNS: HowTo/Configure/dns.md
       - Use:
           - Add nodes to network: HowTo/Use/adding_nodes.md
@@ -150,11 +154,6 @@ nav:
           - Use Splunk: HowTo/Monitor/Splunk.md
           - Use Cakeshop: HowTo/Monitor/Cakeshop.md
           - Use Quorum Reporting: HowTo/Monitor/Quorum-Reporting.md
-      - Interact with a node:
-          - Access APIs: HowTo/Interact/API.md
-          - Client libraries:
-              - Use the web3js-quorum client library: HowTo/Interact/Client-Libraries/web3js-quorum.md
-      - Develop plugins: HowTo/DevelopPlugins.md
   - Reference:
       - Command line options: Reference/CLI-Syntax.md
       - GoQuorum API methods: Reference/API-Methods.md
@@ -249,7 +248,8 @@ plugins:
         How-To-Guides/add_ibft_validator.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
         Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/Permissioning/EnhancedPermissions.md
         Quorum Features/dns.md: HowTo/Configure/dns.md
-        PluggableArchitecture/PluginDevelopment.md: HowTo/DevelopPlugins.md
+        PluggableArchitecture/PluginDevelopment.md: DevelopingApplications/DevelopPlugins.md
+        HowTo/DevelopPlugins.md: DevelopingApplications/DevelopPlugins.md
         HowTo/GetStarted/Cakeshop.md: HowTo/Monitor/Cakeshop.md
         Cakeshop/Getting started.md: HowTo/Monitor/Cakeshop.md
         Getting Started/Getting Started Overview.md: GetStarted/GettingStartedOverview.md
@@ -282,9 +282,9 @@ plugins:
         RemixPlugin/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
         RemixPlugin/Overview.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
         Getting Started/genesis.md: Reference/genesis.md
-        quorum.js/Overview.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
-        quorum.js/RawTransactionManager.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
-        quorum.js/extend.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
+        quorum.js/Overview.md: DevelopingApplications/Client-Libraries.md
+        quorum.js/RawTransactionManager.md: DevelopingApplications/Client-Libraries.md
+        quorum.js/extend.md: DevelopingApplications/Client-Libraries.md
         Tutorials/Creating-A-Network-From-Scratch.md: Tutorials/Private-Network/Create-IBFT-Network.md
         Tutorials/Create-a-Raft-network.md: Tutorials/Private-Network/Create-a-Raft-network.md
         HowTo/GetStarted/monitoring.md: HowTo/Monitor/Metrics.md
@@ -311,20 +311,24 @@ plugins:
         Reference/Cakeshop/GettingStarted.md: HowTo/Monitor/Cakeshop.md
         Reference/Cakeshop/Configuration.md: HowTo/Monitor/Cakeshop.md
         Tutorials/Quorum-Dev-Quickstart/Tools.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+        Tutorials/Connecting-to-a-node.md: DevelopingApplications/Connecting-to-a-node.md
         Concepts/Permissioning/PermissionsOverview.md: Concepts/PermissionsOverview.md
         Concepts/Permissioning/BasicNetworkPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
         Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md: Concepts/PermissionsOverview.md
         Concepts/Permissioning/Enhanced/ContractDesign.md: Concepts/PermissionsOverview.md
         HowTo/Configure/BasicPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
         HowTo/Configure/EnhancedPermissions.md: HowTo/Configure/Permissioning/EnhancedPermissions.md
-        Reference/quorum.js/Overview.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
-        Reference/quorum.js/extend.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
-        Reference/quorum.js/RawTransactionManager.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
+        Reference/quorum.js/Overview.md: DevelopingApplications/Client-Libraries.md
+        Reference/quorum.js/extend.md: DevelopingApplications/Client-Libraries.md
+        HowTo/Interact/Client-Libraries/web3js-quorum.md: DevelopingApplications/Client-Libraries.md
+        HowTo/Interact/API.md: DevelopingApplications/Connecting-to-a-node.md
+        Reference/quorum.js/RawTransactionManager.md: DevelopingApplications/Client-Libraries.md
         Concepts/Privacy/PrivateTransactionLifecycle.md: Concepts/Privacy/PrivateAndPublic.md
         Concepts/Privacy/PrivateTransactionManager.md: Concepts/Privacy/Privacy.md
         HowTo/Use/DevelopingSmartContracts.md: Tutorials/Contracts/Deploying-Contracts.md
         Concepts/Plugins/PluginsArchitecture.md: Concepts/Plugins.md
         Concepts/Plugins/Plugins.md: Concepts/Plugins.md
+        HowTo/Configure/Plugins.md: DevelopingApplications/DevelopPlugins.md
         Tutorials/Adding-removing-IBFT-validators.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
         PluggableArchitecture/Plugins/security/For-Users.md: Reference/Plugins/Security.md
         Reference/Plugins/account/For-Developers.md: Reference/Plugins/Account.md

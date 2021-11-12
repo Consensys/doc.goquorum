@@ -169,7 +169,7 @@ The node allows only a defined list of nodes to connect.
     --plugins file:///opt/geth/plugins.json
     ```
 
-URI of the [plugins settings JSON file](../HowTo/Configure/Plugins.md).
+URI of the [plugins settings JSON file](../DevelopingApplications/DevelopPlugins.md).
 Use this to configure [plugins](../Concepts/Plugins.md).
 
 ### `plugins.localverify`
