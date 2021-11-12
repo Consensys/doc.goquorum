@@ -19,6 +19,8 @@ The advantages of using a PMT over a normal private transaction are:
 
 PMTs use a privacy precompile contract, which retrieves the internal private transaction from Tessera and executes it.
 
+See the [PMT high-level lifecycle](PrivateTransactionLifecycle.md#privacy-marker-transactions).
+
 ## Privacy marker transaction
 
 A PMT is a public transaction with the following parameters:
