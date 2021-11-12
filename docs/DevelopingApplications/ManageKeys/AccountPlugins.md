@@ -26,7 +26,7 @@ Run an `account` plugin using GoQuorum or `clef`:
     clef --plugins file:///path/to/plugins.json ...
     ```
 
-`plugins.json` is the [plugins configuration file](../../DevelopingApplications/DevelopPlugins.md) that defines an `account` provider:
+`plugins.json` is the [plugins configuration file](../DevelopPlugins.md) that defines an `account` provider:
 
 ```json
 {

@@ -112,6 +112,10 @@ nav:
       - Create a permissioned network: Tutorials/CreatePermissionedNetwork.md
       - Use a plugin: Tutorials/Use-Plugin.md
   - Developing Applications:
+      - Manage keys:
+          - Overview: DevelopingApplications/ManageKeys/ManagingKeys.md
+          - Use clef: DevelopingApplications/ManageKeys/clef.md
+          - Use account plugins: DevelopingApplications/ManageKeys/AccountPlugins.md
       - Connecting to a node: DevelopingApplications/Connecting-to-a-node.md
       - JSON RPC APIs: DevelopingApplications/JSON-RPC-APIs.md
       - Smart Contracts and Transactions: DevelopingApplications/Smart-Contracts-Transactions.md
@@ -143,10 +147,6 @@ nav:
           - Include revert reason: HowTo/Use/Revert-Reason.md
           - GraphQL: HowTo/Use/graphql.md
           - Backup and restore: HowTo/Use/import-export.md
-      - Manage keys:
-          - Overview: HowTo/ManageKeys/ManagingKeys.md
-          - Use clef: HowTo/ManageKeys/clef.md
-          - Use account plugins: HowTo/ManageKeys/AccountPlugins.md
       - Monitor nodes:
           - Use metrics: HowTo/Monitor/Metrics.md
           - Use Elastic Stack: HowTo/Monitor/Elastic-Stack.md
@@ -215,10 +215,13 @@ plugins:
         # you can't use an already redirected path as an old_path.
         # new_path can be a file inside the docs/ folder or any URL (http://...)
         Account-Key-Management/Overview.md: Concepts/AccountManagement.md
-        Account-Key-Management/Quorum/Clef.md: HowTo/ManageKeys/clef.md
-        Account-Key-Management/Quorum/Keystore-Files.md: HowTo/ManageKeys/ManagingKeys.md
         Account-Key-Management/Quorum/Overview.md: Concepts/AccountManagement.md
-        Account-Key-Management/Quorum/account-Plugins/Overview.md: HowTo/ManageKeys/AccountPlugins.md
+        Account-Key-Management/Quorum/Clef.md: DevelopingApplications/ManageKeys/clef.md
+        Account-Key-Management/Quorum/Keystore-Files.md: DevelopingApplications/ManageKeys/ManagingKeys.md
+        Account-Key-Management/Quorum/account-Plugins/Overview.md: DevelopingApplications/ManageKeys/AccountPlugins.md
+        HowTo/ManageKeys/Clef.md: DevelopingApplications/ManageKeys/clef.md
+        HowTo/ManageKeys/ManagingKeys.md: DevelopingApplications/ManageKeys/ManagingKeys.md
+        HowTo/ManageKeys/AccountPlugins.md: DevelopingApplications/ManageKeys/AccountPlugins.md
         Account-Key-Management/Tessera/Overview.md: Concepts/AccountManagement.md
         Consensus/ibft/ibft.md: HowTo/Configure/Consensus-Protocols/IBFT.md
         Consensus/Consensus.md: Concepts/Consensus/Overview.md
