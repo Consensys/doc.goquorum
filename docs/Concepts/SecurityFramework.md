@@ -133,4 +133,4 @@ The following are additional resources for blockchain network and dapp security 
 - [Smart Contract Federated Identity Management without Third Party Authentication Services](https://ws680.nist.gov/publication/get_pdf.cfm?pub_id=925957)
 - [Advancing Blockchain Cybersecurity: Technical and Policy Considerations for the Financial Services Industry](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE1TH5G)
 - [Framework for Improving Critical Infrastructure Cybersecurity](https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.04162018.pdf)
-- [Recommendation for Key Management: Part 2 – Best Practices for Key Management Organizations](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt2r1.pdf)
+- [Recommendation for Key Management: Part 2 - Best Practices for Key Management Organizations](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt2r1.pdf)
