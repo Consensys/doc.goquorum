@@ -4,13 +4,12 @@ description: Security framework overview
 
 # Security framework
 
-This topic provides a high-level reference to GoQuorum security best practices.
-It outlines best practices for:
+This topic describes high-level security best practices for:
 
-- Creating a [consortium](#consortium).
+- Creating a GoQuorum [consortium](#consortium).
 - Securing the components of a [GoQuorum node](#goquorum-node).
-- [Monitoring](#monitoring) a network.
-- Using a [transaction manager](#transaction-manager).
+- [Monitoring](#monitoring) a GoQuorum network.
+- Using the Tessera [transaction manager](#transaction-manager).
 
 You can view a [list of additional network and dapp security resources](#resources).
 
@@ -18,7 +17,7 @@ You can view a [list of additional network and dapp security resources](#resourc
 
 A consortium network connects multiple independent networks.
 Consortiums come with risks and liabilities that must be managed.
-It requires a governance structure that fulfills the concerns of participants equally.
+They require governance structures that fulfill the concerns of participants equally.
 
 ### Security checklist
 
@@ -73,13 +72,13 @@ runtime, and network access controls.
 
 ### User security checklist
 
-- Ensure accounts' private-key-encrypted passwords are never be stored in the ledger host in any form.
+- Ensure accounts' private-key-encrypted passwords are never stored in the ledger host in any form.
 - In an architecture where accounts' private keys are not offloaded to ledger node clients, regularly back up the
   encrypted private keys.
 
 ## Monitoring
 
-The GoQuorum network produces logs, which should be monitored for security anomalies.
+The GoQuorum network produces logs that should be monitored for security anomalies.
 
 ### Security checklist
 
@@ -100,8 +99,8 @@ The GoQuorum network produces logs, which should be monitored for security anoma
 GoQuorum privacy features depend on Tessera to encrypt, decrypt, and broadcast the orchestrations of private
 transaction payloads.
 
-Tessera uses an enclave to perform the encryption and decryption of private transaction payloads.
-Encryption keys are the most critical element of the privacy model; if they're compromised, the network loses its privacy.
+Tessera encryption keys are the most critical element of the privacy model; if they're compromised, the network loses
+its privacy.
 
 Tessera supports integration with trusted platform modules (TPMs) and hardware security modules (HSM) to reduce surface
 attacks and provide a secure environment.
