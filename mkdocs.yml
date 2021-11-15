@@ -73,6 +73,7 @@ nav:
           - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
           - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
           - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
+          - Private transaction lifecycle: Concepts/Privacy/PrivateTransactionLifecycle.md
           - Contract state extension: Concepts/Privacy/ContractExtension.md
       - Permissioning: Concepts/PermissionsOverview.md
       - Plugins: Concepts/Plugins.md
@@ -238,7 +239,7 @@ plugins:
         PluggableArchitecture/Internals.md: Concepts/Plugins.md
         Privacy/Contract-Extension/Overview.md: Concepts/Privacy/ContractExtension.md
         Privacy/Overview.md: Concepts/Privacy/PrivateAndPublic.md
-        Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateAndPublic.md
+        Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateTransactionLifecycle.md
         Privacy/Privacy-Manager.md: Concepts/Privacy/Privacy.md
         Security/Framework/Decentralized Application/Frontend Components.md: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
         Security/Framework/Decentralized Application/Smart Contracts Security.md: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
