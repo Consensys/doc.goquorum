@@ -43,7 +43,7 @@ JavaScript).
 
 ## Permissioning
 
-[*Permissioning*](https://docs.goquorum.consensys.net/en/latest/Concepts/Permissioning/PermissionsOverview/) involves a
+[*Permissioning*](../PermissionsOverview.md) involves a
 distributed network of trust across a blockchain network, in which participants agree to follow certain rules.
 If one bad actor doesn't follow the rules other nodes can restrict the bad actor from writing to the blockchain.
 
@@ -52,7 +52,7 @@ access the network.
 
 ## Privacy
 
-In a blockchain network, [*privacy*](https://docs.goquorum.consensys.net/en/latest/Concepts/Privacy/Privacy/) refers to
+In a blockchain network, [*privacy*](../Privacy/Privacy.md) refers to
 the ability to keep transactions private between the involved participants.
 Often in a consortium network, some of the participants prefer to restrict how much information they share or who they
 transact with.

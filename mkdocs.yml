@@ -77,16 +77,7 @@ nav:
           - Contract state extension: Concepts/Privacy/ContractExtension.md
       - Permissioning: Concepts/PermissionsOverview.md
       - Plugins: Concepts/Plugins.md
-      - Security framework:
-          - Overview: Concepts/Security/Framework/Overview.md
-          - GoQuorum network:
-              - Consortium: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
-              - GoQuorum node: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
-              - Transaction manager: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
-              - Operational considerations: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
-          - Decentralized app:
-              - Frontend: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
-              - Smart contracts: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
+      - Security framework: Concepts/SecurityFramework.md
       - Multi-tenancy: Concepts/Multitenancy.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
@@ -241,13 +232,13 @@ plugins:
         Privacy/Overview.md: Concepts/Privacy/PrivateAndPublic.md
         Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateTransactionLifecycle.md
         Privacy/Privacy-Manager.md: Concepts/Privacy/Privacy.md
-        Security/Framework/Decentralized Application/Frontend Components.md: Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md
-        Security/Framework/Decentralized Application/Smart Contracts Security.md: Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md
-        Security/Framework/Quorum Network Security/Consortium.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md
-        Security/Framework/Quorum Network Security/Node.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md
-        Security/Framework/Quorum Network Security/Opertional Considerations.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md
-        Security/Framework/Quorum Network Security/Transaction Manager.md: Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md
-        Security/Framework/Overview.md: Concepts/Security/Framework/Overview.md
+        Security/Framework/Decentralized Application/Frontend Components.md: Concepts/SecurityFramework.md
+        Security/Framework/Decentralized Application/Smart Contracts Security.md: Concepts/SecurityFramework.md
+        Security/Framework/Quorum Network Security/Consortium.md: Concepts/SecurityFramework.md
+        Security/Framework/Quorum Network Security/Node.md: Concepts/SecurityFramework.md
+        Security/Framework/Quorum Network Security/Opertional Considerations.md: Concepts/SecurityFramework.md
+        Security/Framework/Quorum Network Security/Transaction Manager.md: Concepts/SecurityFramework.md
+        Security/Framework/Overview.md: Concepts/SecurityFramework.md
         How-To-Guides/HA_Setup.md: HowTo/Configure/HighAvailability.md
         How-To-Guides/add_ibft_validator.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
         Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/Permissioning/EnhancedPermissions.md
@@ -347,3 +338,10 @@ plugins:
         HowTo/Use/Multitenancy.md: HowTo/Use/Multitenancy/Multitenancy.md
         Concepts/Multitenancy/MultiplePrivateStates.md: Concepts/Multitenancy.md
         Concepts/Multitenancy/Overview.md: Concepts/Multitenancy.md
+        Concepts/Security/Framework/Overview.md: Concepts/SecurityFramework.md
+        Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md: Concepts/SecurityFramework.md
+        Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md: Concepts/SecurityFramework.md
+        Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md: Concepts/SecurityFramework.md
+        Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md: Concepts/SecurityFramework.md
+        Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md: Concepts/SecurityFramework.md
+        Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md: Concepts/SecurityFramework.md
