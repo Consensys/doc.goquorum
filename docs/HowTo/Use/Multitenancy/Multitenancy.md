@@ -59,8 +59,8 @@ use the same GoQuorum node, with each tenant having its own private state(s).
     geth [OPTIONS] --multitenancy --plugins file:///<path>/<to>/plugins.json
     ```
 
-    In the command, `plugins.json` is the [plugin settings file](../../Configure/Plugins.md) that
-    contains the [JSON-RPC Security plugin definition](../../Configure/Plugins.md#plugindefinition).
+    In the command, `plugins.json` is the [plugin settings file](../../../DevelopingApplications/DevelopPlugins.md) that
+    contains the [JSON-RPC Security plugin definition](../../../DevelopingApplications/DevelopPlugins.md#plugindefinition).
 
     For example, if you use [quorum-security-plugin-enterprise](https://github.com/ConsenSys/quorum-security-plugin-enterprise),
     `plugins.json` looks like the following:

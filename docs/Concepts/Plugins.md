@@ -28,12 +28,12 @@ and RPC.
 
 ## Using plugins
 
-The GoQuorum client reads the [plugin configuration file](../HowTo/Configure/Plugins.md) to determine which plugins to
+The GoQuorum client reads the [plugin configuration file](../DevelopingApplications/DevelopPlugins.md) to determine which plugins to
 load and searches for installed plugins (`<name>-<version>.zip` files) in the plugins directory `baseDir` (the default
 directory is `<datadir>/plugins`).
 
-You can [specify a plugin configuration file](../HowTo/Configure/Plugins.md),
-[develop plugins](../HowTo/DevelopPlugins.md),
+You can [specify a plugin configuration file](../DevelopingApplications/DevelopPlugins.md),
+[develop plugins](../DevelopingApplications/DevelopPlugins.md),
 and [use an example `HelloWorld` plugin](../Tutorials/Use-Plugin.md).
 
 ## Plugin reloading
@@ -50,7 +50,7 @@ GoQuorum uses Plugin Central Server to download and verify plugin integrity usin
 You can enable the same verification process locally using the
 [`--plugins.localverify`](../Reference/CLI-Syntax.md#pluginslocalverify) and
 [`--plugins.publickey`](../Reference/CLI-Syntax.md#pluginspublickey) command line options, or
-remotely using [custom Plugin Central](../HowTo/Configure/Plugins.md).
+remotely using [custom Plugin Central](../DevelopingApplications/DevelopPlugins.md).
 
 To disable the plugin verification process, use the
 [`--plugins.skipverify`](../Reference/CLI-Syntax.md#pluginsskipverify) command line option.
