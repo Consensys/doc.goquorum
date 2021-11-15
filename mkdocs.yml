@@ -93,6 +93,49 @@ nav:
       - Qubernetes:
           - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md
+  - Develop applications:
+      - Smart contracts and transactions: DevelopingApplications/Smart-Contracts-Transactions.md
+      - Manage keys:
+          - Overview: DevelopingApplications/ManageKeys/ManagingKeys.md
+          - Use clef: DevelopingApplications/ManageKeys/clef.md
+          - Use account plugins: DevelopingApplications/ManageKeys/AccountPlugins.md
+      - Connect to a node: DevelopingApplications/Connecting-to-a-node.md
+      - JSON-RPC APIs: DevelopingApplications/JSON-RPC-APIs.md
+      - Client libraries: DevelopingApplications/Client-Libraries.md
+      - Develop plugins: DevelopingApplications/DevelopPlugins.md
+  - How to:
+      - Configure GoQuorum:
+          - Consensus protocols:
+              - IBFT: HowTo/Configure/Consensus-Protocols/IBFT.md
+              - QBFT: HowTo/Configure/Consensus-Protocols/QBFT.md
+              - Raft: HowTo/Configure/Consensus-Protocols/Raft.md
+              - Clique: HowTo/Configure/Consensus-Protocols/Clique.md
+          - Create a genesis file: HowTo/Configure/GenesisOptions.md
+          - Predeploy a contract in the genesis file: HowTo/Configure/Contracts-in-Genesis.md
+          - High availability: HowTo/Configure/HighAvailability.md
+          - Permissioning:
+              - Basic permissions: HowTo/Configure/Permissioning/BasicPermissions.md
+              - Enhanced permissions: HowTo/Configure/Permissioning/EnhancedPermissions.md
+          - Private transaction manager: HowTo/Configure/ConfigurePTM.md
+          - DNS: HowTo/Configure/dns.md
+      - Use:
+          - Add nodes to network: HowTo/Use/adding_nodes.md
+          - Migrate network nodes: HowTo/Use/node_network_migration.md
+          - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
+          - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
+          - Multi-tenancy:
+              - Use multi-tenancy: HowTo/Use/Multitenancy/Multitenancy.md
+              - Multiple private states migration: HowTo/Use/Multitenancy/Migration.md
+          - Include revert reason: HowTo/Use/Revert-Reason.md
+          - GraphQL: HowTo/Use/graphql.md
+          - Backup and restore: HowTo/Use/import-export.md
+      - Monitor nodes:
+          - Use metrics: HowTo/Monitor/Metrics.md
+          - Use Elastic Stack: HowTo/Monitor/Elastic-Stack.md
+          - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md
+          - Use Splunk: HowTo/Monitor/Splunk.md
+          - Use Cakeshop: HowTo/Monitor/Cakeshop.md
+          - Use Quorum Reporting: HowTo/Monitor/Quorum-Reporting.md
   - Tutorials:
       - Quorum Dev Quickstart:
           - Getting started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
@@ -111,51 +154,7 @@ nav:
       - Create a privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
       - Send private transactions: Tutorials/Send-private-transaction.md
       - Create a permissioned network: Tutorials/CreatePermissionedNetwork.md
-      - Connect to a node: Tutorials/Connecting-to-a-node.md
       - Use a plugin: Tutorials/Use-Plugin.md
-  - How to:
-      - Configure GoQuorum:
-          - Consensus protocols:
-              - IBFT: HowTo/Configure/Consensus-Protocols/IBFT.md
-              - QBFT: HowTo/Configure/Consensus-Protocols/QBFT.md
-              - Raft: HowTo/Configure/Consensus-Protocols/Raft.md
-              - Clique: HowTo/Configure/Consensus-Protocols/Clique.md
-          - Create a genesis file: HowTo/Configure/GenesisOptions.md
-          - Predeploy a contract in the genesis file: HowTo/Configure/Contracts-in-Genesis.md
-          - High availability: HowTo/Configure/HighAvailability.md
-          - Permissioning:
-              - Basic permissions: HowTo/Configure/Permissioning/BasicPermissions.md
-              - Enhanced permissions: HowTo/Configure/Permissioning/EnhancedPermissions.md
-          - Private transaction manager: HowTo/Configure/ConfigurePTM.md
-          - Plugins: HowTo/Configure/Plugins.md
-          - DNS: HowTo/Configure/dns.md
-      - Use:
-          - Add nodes to network: HowTo/Use/adding_nodes.md
-          - Migrate network nodes: HowTo/Use/node_network_migration.md
-          - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
-          - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
-          - Multi-tenancy:
-              - Use multi-tenancy: HowTo/Use/Multitenancy/Multitenancy.md
-              - Multiple private states migration: HowTo/Use/Multitenancy/Migration.md
-          - Include revert reason: HowTo/Use/Revert-Reason.md
-          - GraphQL: HowTo/Use/graphql.md
-          - Backup and restore: HowTo/Use/import-export.md
-      - Manage keys:
-          - Overview: HowTo/ManageKeys/ManagingKeys.md
-          - Use clef: HowTo/ManageKeys/clef.md
-          - Use account plugins: HowTo/ManageKeys/AccountPlugins.md
-      - Monitor nodes:
-          - Use metrics: HowTo/Monitor/Metrics.md
-          - Use Elastic Stack: HowTo/Monitor/Elastic-Stack.md
-          - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md
-          - Use Splunk: HowTo/Monitor/Splunk.md
-          - Use Cakeshop: HowTo/Monitor/Cakeshop.md
-          - Use Quorum Reporting: HowTo/Monitor/Quorum-Reporting.md
-      - Interact with a node:
-          - Access APIs: HowTo/Interact/API.md
-          - Client libraries:
-              - Use the web3js-quorum client library: HowTo/Interact/Client-Libraries/web3js-quorum.md
-      - Develop plugins: HowTo/DevelopPlugins.md
   - Reference:
       - Command line options: Reference/CLI-Syntax.md
       - GoQuorum API methods: Reference/API-Methods.md
@@ -217,10 +216,13 @@ plugins:
         # you can't use an already redirected path as an old_path.
         # new_path can be a file inside the docs/ folder or any URL (http://...)
         Account-Key-Management/Overview.md: Concepts/AccountManagement.md
-        Account-Key-Management/Quorum/Clef.md: HowTo/ManageKeys/clef.md
-        Account-Key-Management/Quorum/Keystore-Files.md: HowTo/ManageKeys/ManagingKeys.md
         Account-Key-Management/Quorum/Overview.md: Concepts/AccountManagement.md
-        Account-Key-Management/Quorum/account-Plugins/Overview.md: HowTo/ManageKeys/AccountPlugins.md
+        Account-Key-Management/Quorum/Clef.md: DevelopingApplications/ManageKeys/clef.md
+        Account-Key-Management/Quorum/Keystore-Files.md: DevelopingApplications/ManageKeys/ManagingKeys.md
+        Account-Key-Management/Quorum/account-Plugins/Overview.md: DevelopingApplications/ManageKeys/AccountPlugins.md
+        HowTo/ManageKeys/Clef.md: DevelopingApplications/ManageKeys/clef.md
+        HowTo/ManageKeys/ManagingKeys.md: DevelopingApplications/ManageKeys/ManagingKeys.md
+        HowTo/ManageKeys/AccountPlugins.md: DevelopingApplications/ManageKeys/AccountPlugins.md
         Account-Key-Management/Tessera/Overview.md: Concepts/AccountManagement.md
         Consensus/ibft/ibft.md: HowTo/Configure/Consensus-Protocols/IBFT.md
         Consensus/Consensus.md: Concepts/Consensus/Overview.md
@@ -250,7 +252,8 @@ plugins:
         How-To-Guides/add_ibft_validator.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
         Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/Permissioning/EnhancedPermissions.md
         Quorum Features/dns.md: HowTo/Configure/dns.md
-        PluggableArchitecture/PluginDevelopment.md: HowTo/DevelopPlugins.md
+        PluggableArchitecture/PluginDevelopment.md: DevelopingApplications/DevelopPlugins.md
+        HowTo/DevelopPlugins.md: DevelopingApplications/DevelopPlugins.md
         HowTo/GetStarted/Cakeshop.md: HowTo/Monitor/Cakeshop.md
         Cakeshop/Getting started.md: HowTo/Monitor/Cakeshop.md
         Getting Started/Getting Started Overview.md: GetStarted/GettingStartedOverview.md
@@ -283,9 +286,9 @@ plugins:
         RemixPlugin/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
         RemixPlugin/Overview.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
         Getting Started/genesis.md: Reference/genesis.md
-        quorum.js/Overview.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
-        quorum.js/RawTransactionManager.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
-        quorum.js/extend.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
+        quorum.js/Overview.md: DevelopingApplications/Client-Libraries.md
+        quorum.js/RawTransactionManager.md: DevelopingApplications/Client-Libraries.md
+        quorum.js/extend.md: DevelopingApplications/Client-Libraries.md
         Tutorials/Creating-A-Network-From-Scratch.md: Tutorials/Private-Network/Create-IBFT-Network.md
         Tutorials/Create-a-Raft-network.md: Tutorials/Private-Network/Create-a-Raft-network.md
         HowTo/GetStarted/monitoring.md: HowTo/Monitor/Metrics.md
@@ -312,19 +315,24 @@ plugins:
         Reference/Cakeshop/GettingStarted.md: HowTo/Monitor/Cakeshop.md
         Reference/Cakeshop/Configuration.md: HowTo/Monitor/Cakeshop.md
         Tutorials/Quorum-Dev-Quickstart/Tools.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+        Tutorials/Connecting-to-a-node.md: DevelopingApplications/Connecting-to-a-node.md
         Concepts/Permissioning/PermissionsOverview.md: Concepts/PermissionsOverview.md
         Concepts/Permissioning/BasicNetworkPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
         Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md: Concepts/PermissionsOverview.md
         Concepts/Permissioning/Enhanced/ContractDesign.md: Concepts/PermissionsOverview.md
         HowTo/Configure/BasicPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
         HowTo/Configure/EnhancedPermissions.md: HowTo/Configure/Permissioning/EnhancedPermissions.md
-        Reference/quorum.js/Overview.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
-        Reference/quorum.js/extend.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
-        Reference/quorum.js/RawTransactionManager.md: HowTo/Interact/Client-Libraries/web3js-quorum.md
+        Reference/quorum.js/Overview.md: DevelopingApplications/Client-Libraries.md
+        Reference/quorum.js/extend.md: DevelopingApplications/Client-Libraries.md
+        HowTo/Interact/Client-Libraries/web3js-quorum.md: DevelopingApplications/Client-Libraries.md
+        HowTo/Interact/API.md: DevelopingApplications/Connecting-to-a-node.md
+        Reference/quorum.js/RawTransactionManager.md: DevelopingApplications/Client-Libraries.md
+        Concepts/Privacy/PrivateTransactionLifecycle.md: Concepts/Privacy/PrivateAndPublic.md
         Concepts/Privacy/PrivateTransactionManager.md: Concepts/Privacy/Privacy.md
         HowTo/Use/DevelopingSmartContracts.md: Tutorials/Contracts/Deploying-Contracts.md
         Concepts/Plugins/PluginsArchitecture.md: Concepts/Plugins.md
         Concepts/Plugins/Plugins.md: Concepts/Plugins.md
+        HowTo/Configure/Plugins.md: DevelopingApplications/DevelopPlugins.md
         Tutorials/Adding-removing-IBFT-validators.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
         PluggableArchitecture/Plugins/security/For-Users.md: Reference/Plugins/Security.md
         Reference/Plugins/account/For-Developers.md: Reference/Plugins/Account.md

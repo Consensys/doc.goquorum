@@ -4,15 +4,13 @@ description: connecting to a node
 
 # Connect to a node
 
-This tutorial shows you how to connect to a running node.
-
 ## Prerequisites
 
 Set up a GoQuorum network using one of the following tutorials:
 
-* The [Quorum Developer Quickstart](Quorum-Dev-Quickstart/Getting-Started.md)
-* [Create a private network](Private-Network/Create-IBFT-Network.md)
-* [Create a privacy-enabled network](Create-Privacy-enabled-network.md)
+* The [Quorum Developer Quickstart](../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md)
+* [Create a private network](../Tutorials/Private-Network/Create-IBFT-Network.md)
+* [Create a privacy-enabled network](../Tutorials/Create-Privacy-enabled-network.md)
 
 ## Use `geth attach`
 
