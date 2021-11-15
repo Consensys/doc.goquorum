@@ -61,7 +61,7 @@ for an overview and step-by-step guide on `clef` initialization, startup, and au
 ### As an external signer
 
 Using `clef` as an external signer requires interacting with `clef` through its RPC API. By default
-this is exposed over IPC socket. The API can also be exposed over HTTP by using the `--rpcaddr` CLI flag.
+this is exposed over IPC socket. The API can also be exposed over HTTP by using the `--http.addr` CLI flag.
 
 !!!example
 

@@ -46,7 +46,7 @@ A limited API allows users to interact directly with `account` plugins.
 
 !!! important
 
-    GoQuorum must expose the API using the `--rpcapi plugin@account` or `--wsapi plugin@account` command line options.
+    GoQuorum must expose the API using the `--http.api plugin@account` or `--ws.api plugin@account` command line options.
 
 ### `plugin@account_newAccount`
 
