@@ -92,34 +92,15 @@ nav:
       - Qubernetes:
           - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
           - Multi-cluster: Concepts/Qubernetes/Multicluster.md
-  - Tutorials:
-      - Quorum Dev Quickstart:
-          - Getting started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
-          - Using the quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
-          - Remix: Tutorials/Quorum-Dev-Quickstart/Remix.md
-      - Create a private network:
-          - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
-          - Using QBFT: Tutorials/Private-Network/Create-QBFT-Network.md
-          - Using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
-          - Adding and removing IBFT validators: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
-          - Adding and removing QBFT validators: Tutorials/Private-Network/Adding-removing-QBFT-validators.md
-      - Smart contracts and transactions:
-          - Deploy a contract: Tutorials/Contracts/Deploying-Contracts.md
-          - Interact with a deployed contract: Tutorials/Contracts/Calling-Contract-Functions.md
-          - Transfer account funds: Tutorials/Contracts/Account-Funds-Transfers.md
-      - Create a privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
-      - Send private transactions: Tutorials/Send-private-transaction.md
-      - Create a permissioned network: Tutorials/CreatePermissionedNetwork.md
-      - Use a plugin: Tutorials/Use-Plugin.md
-  - Developing Applications:
+  - Develop applications:
+      - Smart contracts and transactions: DevelopingApplications/Smart-Contracts-Transactions.md
       - Manage keys:
           - Overview: DevelopingApplications/ManageKeys/ManagingKeys.md
           - Use clef: DevelopingApplications/ManageKeys/clef.md
           - Use account plugins: DevelopingApplications/ManageKeys/AccountPlugins.md
-      - Connecting to a node: DevelopingApplications/Connecting-to-a-node.md
-      - JSON RPC APIs: DevelopingApplications/JSON-RPC-APIs.md
-      - Smart Contracts and Transactions: DevelopingApplications/Smart-Contracts-Transactions.md
-      - Client Libraries: DevelopingApplications/Client-Libraries.md
+      - Connect to a node: DevelopingApplications/Connecting-to-a-node.md
+      - JSON-RPC APIs: DevelopingApplications/JSON-RPC-APIs.md
+      - Client libraries: DevelopingApplications/Client-Libraries.md
       - Develop plugins: DevelopingApplications/DevelopPlugins.md
   - How to:
       - Configure GoQuorum:
@@ -154,6 +135,25 @@ nav:
           - Use Splunk: HowTo/Monitor/Splunk.md
           - Use Cakeshop: HowTo/Monitor/Cakeshop.md
           - Use Quorum Reporting: HowTo/Monitor/Quorum-Reporting.md
+  - Tutorials:
+      - Quorum Dev Quickstart:
+          - Getting started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+          - Using the quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
+          - Remix: Tutorials/Quorum-Dev-Quickstart/Remix.md
+      - Create a private network:
+          - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
+          - Using QBFT: Tutorials/Private-Network/Create-QBFT-Network.md
+          - Using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
+          - Adding and removing IBFT validators: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
+          - Adding and removing QBFT validators: Tutorials/Private-Network/Adding-removing-QBFT-validators.md
+      - Smart contracts and transactions:
+          - Deploy a contract: Tutorials/Contracts/Deploying-Contracts.md
+          - Interact with a deployed contract: Tutorials/Contracts/Calling-Contract-Functions.md
+          - Transfer account funds: Tutorials/Contracts/Account-Funds-Transfers.md
+      - Create a privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
+      - Send private transactions: Tutorials/Send-private-transaction.md
+      - Create a permissioned network: Tutorials/CreatePermissionedNetwork.md
+      - Use a plugin: Tutorials/Use-Plugin.md
   - Reference:
       - Command line options: Reference/CLI-Syntax.md
       - GoQuorum API methods: Reference/API-Methods.md

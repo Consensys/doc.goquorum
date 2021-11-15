@@ -12,9 +12,9 @@ Some advanced topics not available in the `go-plugin` documentation are covered 
 
 ## Lifecycle
 
-Each plugin is started as a separate process and communicates with the GoQuorum client host process via gRPC service
-interfaces, over a mutual TLS connection on the local machine.
-The implementation is inside `go-plugin` library.
+Each plugin starts as a separate process and communicates with the GoQuorum client host process via the
+gRPC service interfaces, over a mutual TLS connection on the local machine.
+The implementation is inside the `go-plugin` library.
 
 Developing plugins in Go is simplest.
 For [plugins written in other languages](#advanced-topics-for-non-go-plugins), plugin authors must understand the
@@ -27,14 +27,14 @@ following lifecycle:
 1. The plugin imports the client certificate and generates a self-signed server certificate for its RPC server.
 1. The plugin includes the RPC server certificate in the handshake.
 1. `geth` imports the plugin RPC server certificate.
-1. `geth` and the plugin communicate via RPC over TLS using mutual TLS.
+1. `geth` communicates with the plugin via RPC over TLS, using mutual TLS.
 
 Each plugin must implement the [`PluginInitializer` gRPC service interface](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/init.proto).
-After the plugin process starts and connection with the GoQuorum client is established,
+After the plugin process starts and establishes a connection with the GoQuorum client,
 GoQuorum invokes the `Init()` gRPC method to initialize the plugin with data from the
 plugin configuration file, detailed below.
 
-# Configure plugins
+## Configure plugins
 
 GoQuorum can load [plugins](../Concepts/Plugins.md) from:
 
@@ -42,7 +42,7 @@ GoQuorum can load [plugins](../Concepts/Plugins.md) from:
 - An Ethereum TOML configuration file specified using the [`--config`](https://geth.ethereum.org/docs/interface/command-line-options)
   command line option.
 
-## Configuration files
+### Configuration files
 
 You can specify the plugin configuration file with the following content.
 
@@ -79,7 +79,7 @@ You can specify the plugin configuration file with the following content.
 | `providers`| The supported plugin interfaces mapped to their respective [plugin provider definitions](#plugindefinition).            |
 | `<string>` | The plugin interface, for example `helloworld`.                                                                         |
 
-### `PluginCentralConfiguration`
+#### `PluginCentralConfiguration`
 
 [Plugin integrity verification](../Concepts/Plugins.md#plugin-integrity-verification) uses the GoQuorum Plugin
 Central Server by default.
@@ -126,7 +126,7 @@ You can modify this section to configure your own local Plugin Central for plugi
 | `pluginDistPathTemplate` | The path template to the plugin distribution file. The value is a Go text template. The variables are \{\{.Name\}\}, \{\{.Version\}\}, \{\{.OS\}\}, and \{\{.Arch\}\}.     |
 | `pluginSigPathTemplate`  | The path template to the plugin sha256 signature file. The value is a Go text template. The variables are \{\{.Name\}\}, \{\{.Version\}\}, \{\{.OS\}\}, and \{\{.Arch\}\}. |
 
-### `PluginDefinition`
+#### `PluginDefinition`
 
 You can define each supported plugin and its configuration in this section.
 
@@ -165,16 +165,16 @@ You can define each supported plugin and its configuration in this section.
 | `version` | The version of the plugin. |
 | `config`  | The JSON configuration. The value can be: <ul><li>One of the following URI schemes:<ul><li>The path to the plugin configuration file. For example, `file:///opt/plugin.cfg`.</li><li>The configuration as an environment variable. For example, `env://MY_CONFIG_JSON`. <br/>To indicate the value is a file location, append `?type=file`. For example, `env://MY_CONFIG_FILE?type=file`.</li></ul><li>An arbitrary JSON string.</li><li>A valid JSON array. For example, `["1", "2", "3"]`.</li><li>A valid JSON object. For example, `{"foo" : "bar"}`.</li></ul> |
 
-## Distribution
+### Distribute plugins
 
-### File format
+#### File format
 
 A plugin distribution file must be a ZIP file.
 The file name format is `<name>-<version>.zip`.
 `<name>` and `<version>` must be the same as the values defined in the [`PluginDefinition` object](#plugindefinition)
 in the configuration file.
 
-### Metadata
+#### Metadata
 
 A plugin metadata file `plugin-meta.json` must be included in the distribution ZIP file.
 `plugin-meta.json` contains a valid JSON object with key value pairs.
@@ -210,14 +210,24 @@ The following key value pairs are required:
 | `entrypoint` | The command to execute the plugin process.                 |
 | `parameters` | The command parameters to be passed to the plugin process. |
 
-## Advanced topics for non-Go plugins
+### Example plugin
+
+Follow the [`HelloWorld` plugin tutorial](../Tutorials/Use-Plugin.md) for an example.
+
+### Plugin interface definitions
+
+You can view the [gRPC definitions](https://github.com/ConsenSys/quorum-plugin-definitions) for the initialization
+interface, `HelloWorld` plugin interface, [`account` plugin](../Reference/Plugins/Account.md) interface, and
+[`security` plugin](../Reference/Plugins/Security.md) interface.
+
+### Advanced topics for non-Go plugins
 
 View the [`go-plugin` GitHub](https://github.com/hashicorp/go-plugin/blob/master/docs/guide-plugin-write-non-go.md) for
 a guide on developing non-Go plugins.
 
 Some additional advanced topics are described here.
 
-### Magic cookie
+#### Magic cookie
 
 A magic cookie key and value are used as basic verification that a plugin is intended to be launched.
 This is a UX feature, not a security measure.
@@ -232,7 +242,7 @@ The plugin and the GoQuorum client's magic cookies are compared.
 If they are equal then the plugin is loaded.
 If they aren't equal, the plugin should show human-friendly output.
 
-### Mutual TLS authentication
+#### Mutual TLS authentication
 
 The GoQuorum client requires each plugin to authenticate and secure its connection via mutual TLS.
 The `PLUGIN_CLIENT_CERT` environment variable is populated with the GoQuorum client certificate (in PEM format).
@@ -240,13 +250,3 @@ The `PLUGIN_CLIENT_CERT` environment variable is populated with the GoQuorum cli
 Each plugin must include this certificate to its trusted certificate pool, generate a self-signed certificate, and
 append the base64-encoded value of the certificate (in DER format) in the
 [handshake](https://github.com/hashicorp/go-plugin/blob/master/docs/internals.md#handshake) message.
-
-## Example
-
-Follow the [`HelloWorld` plugin tutorial](../Tutorials/Use-Plugin.md) for an example.
-
-## Plugin interface definitions
-
-You can view the [gRPC definitions](https://github.com/ConsenSys/quorum-plugin-definitions) for the initialization
-interface, `HelloWorld` plugin interface, [`account` plugin](../Reference/Plugins/Account.md) interface, and
-[`security` plugin](../Reference/Plugins/Security.md) interface.

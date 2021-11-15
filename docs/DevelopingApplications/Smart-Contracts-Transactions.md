@@ -4,13 +4,13 @@ description: smart contracts and transactions
 
 # Transactions
 
-A blockchain is a shared, immutable electronic ledger (or digital database) that keeps a record of transactional data,
-otherwise referred to as *transactions*. The *block* in *blockchain* refers to a block of transactions that has been
+A blockchain is a shared, immutable electronic ledger (or digital database) that records of transactional data,
+referred to as *transactions*. The *block* in *blockchain* refers to a block of transactions that's been
 broadcast to the network. The *chain* refers to a string of these blocks in chronological order.
 
-When a new block of transactions is securely validated by the network, it is attached to the end of an existing chain.
-This chain of blocks is an ever-growing ledger of transactions, each of which can be traced, providing
-accountability and transparency unavailable on traditional ledgers.
+When a new block of transactions is securely validated by the network, it is attached to the end of
+the existing chain. This chain of blocks is an growing ledger of transactions, each of which
+can be traced, providing accountability and transparency unavailable on traditional ledgers.
 
 ![Blockchain](../images/blockchain.png)
 
@@ -43,6 +43,6 @@ Dapps are built on a decentralized network (Ethereum) and interact with smart co
 They can be thought of as a GUI (front end) for a smart contract (back end), and can be written in any language (for example,
 JavaScript).
 
-If using the [Dev Quickstart](../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md), or existing blockchain, you can
-use a demo dapp called [Pet Shop](https://docs.goquorum.consensys.net/en/latest/Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart/#smart-contract-and-dapp-usage),
-provided by [Truffle](https://trufflesuite.com/tutorial)
+If using the [Quorum Developer Quickstart](../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md), or
+existing blockchain, you can use a demo dapp called [Pet Shop](https://docs.goquorum.consensys.net/en/latest/Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart/#smart-contract-and-dapp-usage),
+provided by [Truffle](https://trufflesuite.com/tutorial).

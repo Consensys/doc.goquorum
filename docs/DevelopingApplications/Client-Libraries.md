@@ -2,37 +2,37 @@
 description: GoQuorum client libraries
 ---
 
-# Client Libraries
+# Client libraries
 
-GoQuorum supports common smart contract and Dapp development, deployment, and operational use cases, using tools such as
-[Truffle](https://trufflesuite.com/),  [web3.js] and
+GoQuorum supports common smart contract and dapp development, deployment, and operational use cases,
+using tools such as [Truffle](https://trufflesuite.com/),  [web3.js] and
 [web3js-quorum](https://consensys.github.io/web3js-quorum/latest/index.html). The client supports common
-[JSON-RPC API](./JSON-RPC-APIs.md) methods such as eth, net, web3, debug, miner, etc
+[JSON-RPC API](./JSON-RPC-APIs.md) methods, for example `eth`, `net`, `web3`, `debug`, and `miner`.
 
 ## Prerequisites
 
-* [Node.js (version > 10)](https://nodejs.org/en/download/)
-* [The web3 library must be installed in your project](https://github.com/ChainSafe/web3.js#installation)
+* [Node.js version 10 or later](https://nodejs.org/en/download/).
+* [The web3 library must be installed in your project](https://github.com/ChainSafe/web3.js#installation).
 * A [private network](../Tutorials/Private-Network/Create-IBFT-Network.md) if deploying a public contract.
-* A [privacy-enabled network](../Tutorials/Create-Privacy-enabled-network.md) if deploying a private contract
-    (public contracts can also be deployed on privacy-enabled networks).
+* A [privacy-enabled network](../Tutorials/Create-Privacy-enabled-network.md) if deploying a private contract.
+    Public contracts can also be deployed on privacy-enabled networks.
 
 !!! note
 
     You can use the Quorum Developer Quickstart to deploy either public contracts or private contracts.
     To enable privacy, enter `Y` at the prompt for private transactions.
 
-# web3
+## web3
 
-[Web3.js] is the most widely used library for developing applications.
+The [web3.js] library is the most widely used for developing applications.
 
-## Add web3 to project
+### Install web3 in your project
 
 ```bash
 npm install web3
 ```
 
-## Initialize the web3 client
+### Initialize the web3 client
 
 Initialize your client where:
 
@@ -53,7 +53,7 @@ Initialize your client where:
         const web3 = new Web3("http://some.local.remote.endpoint:8546");
         ```
 
-## Deploying a contract
+### Deploying a contract
 
 To deploy a private contract, you need the contract binary. You can use
 [Solidity](https://solidity.readthedocs.io/en/develop/using-the-compiler.html) to get the
@@ -82,38 +82,41 @@ contract binary.
     });
     ```
 
-Alternatively, you can also deploy a contract via `eth.sendSignedTransaction`
+Alternatively, you can also deploy a contract using
+[`eth.sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth.html#sendsignedtransaction)
+
+!!! example "Deploying a contract with `eth.sendSignedTransaction`"
 
     ```js
-      const rawTxOptions = {
-        nonce: "0x00",
-        from: account.address,
-        to: null, //public tx
-        value: "0x00",
-        data: '0x'+contractBin+contractConstructorInit,
-        gasPrice: "0x0", //ETH per unit of gas
-        gasLimit: "0x24A22" //max number of gas units the tx is allowed to use
-      };
-      console.log("Creating transaction...");
-      const tx = new Tx(rawTxOptions);
-      console.log("Signing transaction...");
-      tx.sign(Buffer.from(account.privateKey.substring(2), "hex"));
-      console.log("Sending transaction...");
-      var serializedTx = tx.serialize();
-      const pTx = await web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex').toString("hex"));
-      console.log("tx transactionHash: " + pTx.transactionHash);
-      console.log("tx contractAddress: " + pTx.contractAddress);
-      return pTx;
+    const rawTxOptions = {
+      nonce: "0x00",
+      from: account.address,
+      to: null, //public tx
+      value: "0x00",
+      data: '0x'+contractBin+contractConstructorInit,
+      gasPrice: "0x0", //ETH per unit of gas
+      gasLimit: "0x24A22" //max number of gas units the tx is allowed to use
+    };
+    console.log("Creating transaction...");
+    const tx = new Tx(rawTxOptions);
+    console.log("Signing transaction...");
+    tx.sign(Buffer.from(account.privateKey.substring(2), "hex"));
+    console.log("Sending transaction...");
+    var serializedTx = tx.serialize();
+    const pTx = await web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex').toString("hex"));
+    console.log("tx transactionHash: " + pTx.transactionHash);
+    console.log("tx contractAddress: " + pTx.contractAddress);
+    return pTx;
     ```
 
-## web3 methods
+### web3 methods
 
 For more information about the web3 methods, see the
 [web3 reference documentation](https://web3js.readthedocs.io/en/v1.5.2/).
 
-# web3js-quorum
+## web3js-quorum
 
-The [web3js-quorum library] extends web3.js and adds supports for GoQuorum specific JSON-RPC APIs and features.
+The [web3js-quorum library] extends web3.js and adds supports for GoQuorum-specific JSON-RPC APIs and features.
 
 !!! note
 
@@ -131,13 +134,13 @@ The [web3js-quorum library] extends web3.js and adds supports for GoQuorum speci
 
     [Read the migration guide for more information about updating your code.](https://consensys.github.io/web3js-quorum/latest/tutorial-Migrate%20from%20quorum.js.html)
 
-## Add web3js-quorum to project
+### Add web3js-quorum to your project
 
 ```bash
 npm install web3js-quorum
 ```
 
-## Initialize the web3js-quorum client
+### Initialize the web3js-quorum client
 
 Initialize your client where:
 
@@ -249,7 +252,7 @@ Initialize your client where:
 
             * If HTTPS is enabled with `privateUrl` and TLS options, then `ipcPath` options should not be used.
 
-## Deploying a contract with `generateAndSendRawTransaction`
+### Deploying a contract with `generateAndSendRawTransaction`
 
 To deploy a private contract, you need the contract binary. You can use
 [Solidity](https://solidity.readthedocs.io/en/develop/using-the-compiler.html) to get the
@@ -270,12 +273,12 @@ contract binary.
 `web3.priv.generateAndSendRawTransaction(contractOptions)` returns the transaction hash. To get the private
 transaction receipt, use `web3.priv.waitForTransactionReceipt(txHash)`.
 
-## web3js-quorum methods
+### web3js-quorum methods
 
 For more information about the web3js-quorum methods, see the
 [web3js-quorum reference documentation](https://consensys.github.io/web3js-quorum/latest/index.html).
 
 [web3js-quorum library]: https://github.com/ConsenSys/web3js-quorum
-[web3]: https://github.com/ethereum/web3.js/
+[web3.js]: https://github.com/ethereum/web3.js/
 [quorum.js]: https://github.com/ConsenSys/quorum.js
 [web3js-eea]: https://github.com/ConsenSys/web3js-eea
