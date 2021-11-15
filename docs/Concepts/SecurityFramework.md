@@ -6,7 +6,7 @@ description: Security framework overview
 
 This topic describes high-level security best practices for:
 
-- Creating a GoQuorum [consortium](#consortium).
+- Managing a GoQuorum [consortium](#consortium).
 - Securing the components of a [GoQuorum node](#goquorum-node).
 - [Monitoring](#monitoring) a GoQuorum network.
 - Using the Tessera [transaction manager](#transaction-manager).
@@ -16,13 +16,12 @@ You can view a [list of additional network and dapp security resources](#resourc
 ## Consortium
 
 A consortium network connects multiple independent networks.
-Consortiums come with risks and liabilities that must be managed.
+Consortiums come with risks such as accidental data exposure and potential liabilities that must be managed.
 They require governance structures that fulfill the concerns of participants equally.
 
 ### Security checklist
 
-- Use a [Byzantine fault tolerant consensus protocol](Consensus/Overview.md) in case nodes are managed by
-  non-trusted participants.
+- Use a [Byzantine fault tolerant consensus protocol](Consensus/Overview.md) in case nodes are managed by non-trusted participants.
 - Ensure consortium members provide a reasonable network service-level agreement (SLA).
 - Ensure private and public payload data is stored in an appropriate geographical legislation area.
 - Document:
