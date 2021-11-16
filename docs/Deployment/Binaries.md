@@ -2,19 +2,21 @@
 description: GoQuorum and Tessera deployment via binaries
 ---
 
-GoQuorum and [Tessera](https://docs.tessera.consensys.net) can be installed and used as Docker containers, by building from source,
-or by downloading pre-built release binaries.
+# Install binaries
 
-## As release binaries
+You can install and use GoQuorum and [Tessera](https://docs.tessera.consensys.net) using Docker containers, building
+from source, or by downloading pre-built release binaries.
+
+## Release binaries
 
 The pre-compiled release binaries for GoQuorum and Tessera can be downloaded from the following links:
 
 * [Quorum](https://github.com/ConsenSys/quorum/releases)
 * [Tessera](https://github.com/ConsenSys/tessera/releases)
 
-Once downloaded, add the binaries to `PATH` to make them easily invokable
+Once downloaded, add the binaries to the `PATH` environment variable to make them easier to run.
 
-## From source
+## Build from source
 
 ### GoQuorum
 
@@ -27,13 +29,24 @@ Once downloaded, add the binaries to `PATH` to make them easily invokable
 
     ```bash
     git clone https://github.com/Consensys/quorum.git
+    ```
+
+    ```bash
     cd quorum
+    ```
+
+    ```bash
     make all
     ```
 
-    Binaries are placed in `$REPO_ROOT/build/bin`. Add that folder to `PATH` to make `geth` and `bootnode` easily invokable, or copy those binaries to a folder already in `PATH`, for example `/usr/local/bin`.
+    Binaries are placed in `$REPO_ROOT/build/bin`. Add that folder to the `PATH` environment variable to make
+    `geth` and `bootnode` easier to run, or copy those binaries to a folder already in `PATH`, for
+    example `/usr/local/bin`.
 
-    An easy way to supplement `PATH` is to add `PATH=$PATH:/path/to/repository/build/bin` to your `~/.bashrc` or `~/.bash_aliases` file.
+    !!! tip
+
+        An easy way to supplement `PATH` is to add `PATH=$PATH:/path/to/repository/build/bin` to your `~/.bashrc`
+        or `~/.bash_aliases` file.
 
 1. Run the tests:
 

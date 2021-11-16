@@ -80,7 +80,7 @@ nav:
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
   - Deployment:
-      - Binaries: Deployment/Binaries.md
+      - Install binaries: Deployment/Binaries.md
       - Ansible: Deployment/Ansible.md
       - Docker and Compose: Deployment/Docker-and-compose.md
       - Kubernetes: Deployment/Kubernetes.md
