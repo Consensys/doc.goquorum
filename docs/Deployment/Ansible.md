@@ -7,13 +7,14 @@ with other orchestration tooling like Terraform.
 
 ## Ansible-Galaxy
 
-You can use an [Ansible Galaxy](https://galaxy.ansible.com/consensys/goquorum) role which will install, configure and run
+You can use an [Ansible Galaxy](https://galaxy.ansible.com/consensys/goquorum) role to install, configure, and run
 GoQuourum
 
 ### Install the role
 
-The first step to include the role in a `requirements.yaml` with any other roles that you use. For example the Prometheus
-exporter roles below will publish system metrics that can be scraped with Prometheus
+The first step is to include the role in the `requirements.yaml` file with any other roles that you use.
+For example the Prometheus exporter roles below publishes system metrics that can be scraped with
+Prometheus
 
 ```bash
 # requirements.yaml
@@ -28,7 +29,7 @@ roles:
 
 ```
 
-Then install the role via:
+Then install the role:
 
 ```bash
 ansible-galaxy install --role-file requirements.yaml
@@ -36,8 +37,8 @@ ansible-galaxy install --role-file requirements.yaml
 
 ### Use the role
 
-Once installed, create a file called `goquorum.yml` where you can pass vars that configure GoQuorum, for example you could
-configure the JSON RPC service like the example below
+After you [install the role](#install-the-role), create a file called `goquorum.yml` where you can define
+variables to configure GoQuorum. For example, you can configure the JSON-RPC service as follows:
 
 ```bash
 # goquorum.yml
@@ -58,5 +59,4 @@ configure the JSON RPC service like the example below
       goquorum_http_api: ["admin","db","eth","debug","miner","net","web3","quorum","ibft"]
       goquorum_http_cors_origins: ["all"]
       goquorum_http_virtual_hosts: ["all"]
-
 ```
