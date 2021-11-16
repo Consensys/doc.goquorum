@@ -2,7 +2,7 @@
 description: GoQuorum deployment Kubernetes
 ---
 
-## Kubernetes
+## Quorum-Kubernetes
 
 [Quorum-Kubernetes](https://github.com/ConsenSys/quorum-Kubernetes) is the central repository that contains Kuberentes
 manifests and Helm charts that can be customised and deployed on a local cluster or in cloud

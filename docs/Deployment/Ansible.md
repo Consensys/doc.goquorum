@@ -5,7 +5,7 @@ description: GoQuorum deployment Ansible
 GoQuorum can be installed using Ansible on a linux VM or OSX machine. Additionally, you can use the same role in conjuction
 with other orchestration tooling like Terraform.
 
-## Ansible
+## Ansible-Galaxy
 
 You can use an [Ansible Galaxy](https://galaxy.ansible.com/consensys/goquorum) role which will install, configure and run
 GoQuourum

@@ -57,11 +57,6 @@ nav:
   - Get started:
       - Overview: GetStarted/GettingStartedOverview.md
       - Upgrade to 2.6.0: GetStarted/migration.md
-  - Deployment:
-      - Binaries: Deployment/Binaries.md
-      - Ansible: Deployment/Ansible.md
-      - Docker and Compose: Deployment/Docker-and-compose.md
-      - Kubernetes: Deployment/Kubernetes.md
   - Concepts:
       - Blockchain:
           - Introduction: Concepts/Blockchain/What-is-blockchain.md
@@ -84,6 +79,11 @@ nav:
       - Multi-tenancy: Concepts/Multitenancy.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
+  - Deployment:
+      - Binaries: Deployment/Binaries.md
+      - Ansible: Deployment/Ansible.md
+      - Docker and Compose: Deployment/Docker-and-compose.md
+      - Kubernetes: Deployment/Kubernetes.md
   - Develop applications:
       - Connect to a node: DevelopingApplications/Connecting-to-a-node.md
       - JSON-RPC APIs: DevelopingApplications/JSON-RPC-APIs.md

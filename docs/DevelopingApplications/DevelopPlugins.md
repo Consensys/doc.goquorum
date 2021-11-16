@@ -227,7 +227,7 @@ a guide on developing non-Go plugins.
 
 Some additional advanced topics are described here.
 
-#### Magic cookie
+### Magic cookie
 
 A magic cookie key and value are used as basic verification that a plugin is intended to be launched.
 This is a UX feature, not a security measure.
@@ -242,7 +242,7 @@ The plugin and the GoQuorum client's magic cookies are compared.
 If they are equal then the plugin is loaded.
 If they aren't equal, the plugin should show human-friendly output.
 
-#### Mutual TLS authentication
+### Mutual TLS authentication
 
 The GoQuorum client requires each plugin to authenticate and secure its connection via mutual TLS.
 The `PLUGIN_CLIENT_CERT` environment variable is populated with the GoQuorum client certificate (in PEM format).
