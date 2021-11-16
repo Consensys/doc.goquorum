@@ -57,7 +57,7 @@ It therefore has a limit on the maximum number of pods that can be spun up so yo
 To use multi cluster or to connect external nodes to an existing Kubernetes cluster you need to enable [CNI](#cni). To
 connect multiple clusters together the must each have different CIDR blocks so there are no conflicts and the first step
 is to peer the VPCs or VNets together and update the route tables. From that point on you can use static nodes and pods
-will communicate cross cluster
+will communicate cross cluster.
 
 The same setup also works to connect external nodes, business apps etc from other infrastructure either in cloud or on
 premise.
