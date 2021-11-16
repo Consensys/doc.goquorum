@@ -11,8 +11,8 @@ We recommend starting with the [playground](https://github.com/ConsenSys/quorum-
 and working through the example setups there and then moving to the next [dev](https://github.com/ConsenSys/quorum-kubernetes/tree/master/dev)
 stage and finally to the [prod](https://github.com/ConsenSys/quorum-kubernetes/tree/master/prod) section. The dev and
 prod folders are identical in terms of what gets deployed, but differ in that the prod folder natively uses best
-practices to manage identity (Managed Identities in Azure and IAM in AWS) and vaults (KeyVault in Azure and KMS in AWS)
-along with CSI drivers.
+practices to manage identity (Managed Identities in Azure and IAM in AWS) and vaults (KeyVault in Azure and Secrets
+Manager in AWS) along with CSI drivers.
 
 Every setup in there has monitoring and we strongly recommend deploying the monitoring manifests or charts where you
 get an overview of the network, nodes, volumes etc and you can create alerts accordingly. In addition there is example
