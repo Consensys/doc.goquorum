@@ -12,8 +12,8 @@ GoQuourum
 
 ### Install the role
 
-The first step to include the role in a `requirements.yaml` with any other roles that you use. For example the prometheus
-exporter roles below will publish system metrics that can be scraped with prometheus
+The first step to include the role in a `requirements.yaml` with any other roles that you use. For example the Prometheus
+exporter roles below will publish system metrics that can be scraped with Prometheus
 
 ```bash
 # requirements.yaml
