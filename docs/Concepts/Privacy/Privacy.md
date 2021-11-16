@@ -45,17 +45,6 @@ GoQuorum supports two states:
 Nodes can only execute private transactions if they can access and decrypt the payload.
 All nodes share a common public state created through public transactions and have a local unique private state.
 
-### State verification
-
-To determine if nodes are in sync, the public state root hash is included in the block.
-Private transactions are only processed by participating nodes, so it's impossible to reach global consensus on the
-private state.
-
-To validate that the private state change from a private transaction is the same across all participants, use
-[`eth_storageRoot`](../../Reference/API-Methods.md#eth_storageroot), specifying the private smart contract address and
-block height.
-If the state is in sync across all participating nodes, they return the same root hash.
-
 ### Privacy enhancements and private state validation
 
 When [privacy enhancements](PrivacyEnhancements.md) are enabled and

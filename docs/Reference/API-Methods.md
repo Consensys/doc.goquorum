@@ -3212,7 +3212,7 @@ The callback URL receives the following object:
 ### `eth_storageRoot`
 
 Returns the storage root hash of the specified address.
-If the contract is a [private contract](../Concepts/Privacy/Privacy.md#state-verification), returns the storage root
+If the contract is a [private contract](../Concepts/Privacy/PrivateAndPublic.md#state-verification), returns the storage root
 hash from the private state database.
 
 #### Parameters

@@ -42,20 +42,17 @@ a correction to a bond security definition.
 
 Private transactions have payloads that are visible only to the network participants whose public keys are specified in
 the `privateFor` parameter of the transaction.
-`privateFor` can take multiple addresses in a comma separated list.
-
-!!! note
-
-    `privateFor` is not shared with other participants; it's only used to know which nodes to send the encrypted payload to.
-
-!!! important
-
-    All participants listed in `privateFor` must have their [private transaction managers](Privacy.md#private-transaction-manager) running when the private transaction is sent.
-    Otherwise, the transaction doesn't propagate and an error is returned.
+`privateFor` can take multiple addresses in a comma-separated list.
 
 When a GoQuorum node encounters a transaction with a non-null `privateFor` value, it sets the `v` value of the
 transaction signature to `37` or `38` (as opposed to public transactions, whose `v` values are set according to
 [EIP-155](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md)).
+
+!!! note "Notes"
+
+    - `privateFor` is not shared with other participants; it's only used to know which nodes to send the encrypted payload to.
+    - There's no direct restriction on private transaction size.
+      As with public transactions, the only restriction is the gas limit.
 
 See the [private transaction high-level lifecycle](PrivateTransactionLifecycle.md#normal-private-transactions).
 
@@ -66,7 +63,7 @@ and you can [send private transactions](../../Tutorials/Send-private-transaction
 
 Public transactions are executed in the standard Ethereum way.
 If a public transaction is sent to an account that holds contract code, each participant executes the same code, and
-their StateDBs are updated accordingly.
+their state databases are updated accordingly.
 
 Private transactions are executed differently: before the sender's GoQuorum node propagates the transaction to the rest
 of the network, the node substitutes the original transaction payload with a key for the location of the encrypted
@@ -76,13 +73,36 @@ participants not privy only see the hash.
 
 If a private transaction is sent to an account that holds contract code, participants not privy to the
 transaction skip the transaction and don't execute the contract code.
-Participants privy to the transaction replace the hash and call the virtual machine for execution, and their StateDBs
-update accordingly.
-As a result, these two sets of participants end up with different StateDBs and can't reach consensus.
+Participants privy to the transaction replace the hash and call the virtual machine for execution, and their state
+databases update accordingly.
+
+!!! note
+
+    See the [private transaction high-level lifecycle](PrivateTransactionLifecycle.md#normal-private-transactions) for an
+    illustrated example.
+
+As a result, these two sets of participants end up with different state databases and can't reach consensus.
 To support this forking of contract state, GoQuorum stores the state of public contracts in a public state trie that
 is globally synchronized, and the state of private contracts in a private state trie not globally synchronized.
 
-This model imposes a restriction on the ability to change state in private transactions.
+### State verification
+
+Block validation includes a check on the root of the public state trie to determine if the public state is synchronized
+across nodes.
+It also includes a check the global transaction hash, which is a hash of all public and private transactions in a block.
+This means that each node can validate that it has the same set of transactions as other nodes.
+
+Synchronization of the public state root and private transaction inputs (through the global transaction hash) can imply
+synchronization of the private state across participating nodes.
+
+To further validate that the private state change from a private transaction is the same across all participants, use
+[`eth_storageRoot`](../../Reference/API-Methods.md#eth_storageroot) specifying the private smart contract address and
+block height.
+If the state is in sync across all participating nodes, they return the same root hash.
+
+### Limitations
+
+This model imposes a restriction on the ability to change public state in private transactions.
 Since a common use case for a private contract is to read data from a public contract, the virtual machine changes to
 read only mode for each call from a private contract to a public contract.
 If the virtual machine is in read only mode, and the code tries to make a state change, the virtual machine stops

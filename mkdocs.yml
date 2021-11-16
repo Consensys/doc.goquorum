@@ -318,7 +318,6 @@ plugins:
         HowTo/Interact/Client-Libraries/web3js-quorum.md: DevelopingApplications/Client-Libraries.md
         HowTo/Interact/API.md: DevelopingApplications/Connecting-to-a-node.md
         Reference/quorum.js/RawTransactionManager.md: DevelopingApplications/Client-Libraries.md
-        Concepts/Privacy/PrivateTransactionLifecycle.md: Concepts/Privacy/PrivateAndPublic.md
         Concepts/Privacy/PrivateTransactionManager.md: Concepts/Privacy/Privacy.md
         HowTo/Use/DevelopingSmartContracts.md: Tutorials/Contracts/Deploying-Contracts.md
         Concepts/Plugins/PluginsArchitecture.md: Concepts/Plugins.md
