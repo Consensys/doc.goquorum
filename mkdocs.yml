@@ -56,9 +56,12 @@ theme:
 nav:
   - Get started:
       - Overview: GetStarted/GettingStartedOverview.md
-      - Install: GetStarted/Install.md
-      - With Qubernetes (K8s): GetStarted/Getting-Started-Qubernetes.md
       - Upgrade to 2.6.0: GetStarted/migration.md
+  - Deployment:
+      - Binaries: Deployment/Binaries.md
+      - Ansible: Deployment/Ansible.md
+      - Docker and Compose: Deployment/Docker-and-compose.md
+      - Kubernetes: Deployment/Kubernetes.md
   - Concepts:
       - Blockchain:
           - Introduction: Concepts/Blockchain/What-is-blockchain.md
@@ -81,18 +84,15 @@ nav:
       - Multi-tenancy: Concepts/Multitenancy.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
-      - Qubernetes:
-          - Overview: Concepts/Qubernetes/Qubernetes-Overview.md
-          - Multi-cluster: Concepts/Qubernetes/Multicluster.md
   - Develop applications:
+      - Connect to a node: DevelopingApplications/Connecting-to-a-node.md
+      - JSON-RPC APIs: DevelopingApplications/JSON-RPC-APIs.md
+      - Client libraries: DevelopingApplications/Client-Libraries.md
       - Smart contracts and transactions: DevelopingApplications/Smart-Contracts-Transactions.md
       - Manage keys:
           - Overview: DevelopingApplications/ManageKeys/ManagingKeys.md
           - Use clef: DevelopingApplications/ManageKeys/clef.md
           - Use account plugins: DevelopingApplications/ManageKeys/AccountPlugins.md
-      - Connect to a node: DevelopingApplications/Connecting-to-a-node.md
-      - JSON-RPC APIs: DevelopingApplications/JSON-RPC-APIs.md
-      - Client libraries: DevelopingApplications/Client-Libraries.md
       - Develop plugins: DevelopingApplications/DevelopPlugins.md
   - How to:
       - Configure GoQuorum:
@@ -206,6 +206,7 @@ plugins:
         # old_path.md: new_path.md
         # you can't use an already redirected path as an old_path.
         # new_path can be a file inside the docs/ folder or any URL (http://...)
+        GetStarted/Install.md: Deployment/Binaries.md
         Account-Key-Management/Overview.md: Concepts/AccountManagement.md
         Account-Key-Management/Quorum/Overview.md: Concepts/AccountManagement.md
         Account-Key-Management/Quorum/Clef.md: DevelopingApplications/ManageKeys/clef.md
@@ -248,7 +249,7 @@ plugins:
         HowTo/GetStarted/Cakeshop.md: HowTo/Monitor/Cakeshop.md
         Cakeshop/Getting started.md: HowTo/Monitor/Cakeshop.md
         Getting Started/Getting Started Overview.md: GetStarted/GettingStartedOverview.md
-        Getting Started/Installing.md: GetStarted/Install.md
+        Getting Started/Installing.md: Deployment/Binaries.md
         Wizard/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
         Wizard/Interacting.md: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
         Getting Started/migration.md: GetStarted/migration.md
@@ -299,9 +300,10 @@ plugins:
         Concepts/Consensus/Raft-implementation.md: HowTo/Configure/Consensus-Protocols/Raft.md
         Reference/IBFTParameters.md: HowTo/Configure/Consensus-Protocols/IBFT.md
         HowTo/GetStarted/GettingStartedOverview.md: GetStarted/GettingStartedOverview.md
-        HowTo/GetStarted/Install.md: GetStarted/Install.md
-        HowTo/GetStarted/Getting-Started-Qubernetes.md: GetStarted/Getting-Started-Qubernetes.md
+        HowTo/GetStarted/Install.md: Deployment/Binaries.md
         HowTo/GetStarted/migration.md: GetStarted/migration.md
+        HowTo/GetStarted/Getting-Started-Qubernetes.md: Deployment/Kubernetes.md
+        GetStarted/Getting-Started-Qubernetes.md: Deployment/Kubernetes.md
         Concepts/Cakeshop.md: HowTo/Monitor/Cakeshop.md
         Reference/Cakeshop/GettingStarted.md: HowTo/Monitor/Cakeshop.md
         Reference/Cakeshop/Configuration.md: HowTo/Monitor/Cakeshop.md
@@ -345,3 +347,5 @@ plugins:
         Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md: Concepts/SecurityFramework.md
         Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md: Concepts/SecurityFramework.md
         Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md: Concepts/SecurityFramework.md
+        Concepts/Qubernetes/Qubernetes-Overview.md: Deployment/Kubernetes.md
+        Concepts/Qubernetes/Multicluster.md: Deployment/Kubernetes.md

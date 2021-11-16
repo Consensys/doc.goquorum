@@ -14,7 +14,7 @@ A private network provides a configurable network for testing. This private netw
 
 ## Prerequisites
 
-* [GoQuorum](../../GetStarted/Install.md#as-release-binaries). Ensure that `PATH` contains `geth`
+* [GoQuorum](../../Deployment/Binaries.md#as-release-binaries). Ensure that `PATH` contains `geth`
   and `bootnode`.
 
 !!! tip
