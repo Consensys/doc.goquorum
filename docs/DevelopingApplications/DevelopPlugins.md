@@ -165,7 +165,7 @@ You can define each supported plugin and its configuration in this section.
 | `version` | The version of the plugin. |
 | `config`  | The JSON configuration. The value can be: <ul><li>One of the following URI schemes:<ul><li>The path to the plugin configuration file. For example, `file:///opt/plugin.cfg`.</li><li>The configuration as an environment variable. For example, `env://MY_CONFIG_JSON`. <br/>To indicate the value is a file location, append `?type=file`. For example, `env://MY_CONFIG_FILE?type=file`.</li></ul><li>An arbitrary JSON string.</li><li>A valid JSON array. For example, `["1", "2", "3"]`.</li><li>A valid JSON object. For example, `{"foo" : "bar"}`.</li></ul> |
 
-### Distribute plugins
+## Distribute plugins
 
 #### File format
 
@@ -220,7 +220,7 @@ You can view the [gRPC definitions](https://github.com/ConsenSys/quorum-plugin-d
 interface, `HelloWorld` plugin interface, [`account` plugin](../Reference/Plugins/Account.md) interface, and
 [`security` plugin](../Reference/Plugins/Security.md) interface.
 
-### Advanced topics for non-Go plugins
+## Advanced topics for non-Go plugins
 
 View the [`go-plugin` GitHub](https://github.com/hashicorp/go-plugin/blob/master/docs/guide-plugin-write-non-go.md) for
 a guide on developing non-Go plugins.

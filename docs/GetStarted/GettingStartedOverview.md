@@ -37,17 +37,13 @@ To explore the features of GoQuorum and deploy private contracts, follow the ins
 network that can be run either in a virtual-machine environment using Vagrant, in containers using docker-compose,
 or locally through the use of bash scripts to automate creation of the network.
 
-## GoQuorum on Kubernetes (Qubernetes)
+## GoQuorum on Kubernetes
 
-Use [qubernetes](Getting-Started-Qubernetes.md) to run configurable N node GoQuorum networks on Kubernetes.
+Use [kubernetes](../Deployment/Kubernetes.md) to run configurable GoQuorum and Tessera networks on Kubernetes.
 
-For local development, use [kind](https://github.com/ConsenSys/qubernetes#quickest-start) or
-[Minikube](https://github.com/ConsenSys/qubernetes/blob/master/docs/minikube-docs.md). For long running networks,
-use a cloud service (for ecample Google Kubernetes Engine, Azure KS, AWS EKS) or a self-hosted Kubernetes cluster.
-
-Qubernetes supports Raft and Istanbul consensus algorithms, multiple versions, and networks with an arbitrary number of nodes.
-The [Qubernetes repository](https://github.com/ConsenSys/qubernetes) includes [examples](https://github.com/ConsenSys/qubernetes/blob/master/docs/7nodes-on-k8s.md)
-ready to run on Kubernetes.
+For local development, use [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or
+[Minikube](https://minikube.sigs.k8s.io/docs/start/). For long running networks,
+use a cloud service (for example Google GKE, Azure AKS, AWS EKS) or a self-hosted Kubernetes cluster.
 
 ## Creating a network from scratch
 
@@ -56,6 +52,5 @@ It also shows how to enable privacy and add/remove nodes as required.
 
 ## Creating a network deployed in the cloud
 
-[Quorum Cloud](https://github.com/ConsenSys/quorum-cloud) provides an example of how a GoQuorum network
-can be run on a cloud platform. It uses Terraform to create a 7 node GoQuorum network deployed on AWS
-using AWS ECS Fargate, S3 and an EC2.
+[Quorum Terraform](https://github.com/ConsenSys/quorum-terraform) provides an example of how a GoQuorum network
+can be run on a cloud platform on either AWS or Azure
