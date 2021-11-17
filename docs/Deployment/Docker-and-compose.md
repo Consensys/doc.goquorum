@@ -2,25 +2,26 @@
 description: GoQuorum deployment Docker and Compose
 ---
 
-## Docker
+# Docker and Docker Compose
 
-GoQuorum can be installed using the official docker image on [Dockerhub](https://hub.docker.com/r/quorumengineering/quorum).
-We also provide an official docker image for [Tessera](https://hub.docker.com/r/quorumengineering/tessera) as well, which
-can be paired with GoQuourm to handle private transactions. This pattern is used in the [Kubernetes](./Kubernetes.md) manifests
+You can run GoQuorum using the [official docker image on Dockerhub](https://hub.docker.com/r/quorumengineering/quorum).
+
+We also provide an [official Tessera docker image](https://hub.docker.com/r/quorumengineering/tessera) which
+can be paired with GoQuorum to handle private transactions. This pattern is used in the [Kubernetes](./Kubernetes.md) manifests
 and Helm charts.
 
 ### Pull the image
 
-Once you have [logged into dockerhub](https://docs.docker.com/engine/reference/commandline/login/) you can pull the image
-and then run it like you would the [binary](./Binaries.md)
+After you [log into dockerhub](https://docs.docker.com/engine/reference/commandline/login/), pull the latest image
+as follows:
 
 ```bash
 docker pull quorumengineering/quorum:latest
 ```
 
-### Use the image
+### Run the image
 
-Running the image is quite simple and you pass in the same command line arguments to the binary like so:
+To run the image, pass in the same command line arguments as you would when running the [binary](Binaries.md):
 
 ```bash
 docker run -d -p 8545:8545 quorumengineering/quorum:latest --datadir /data --http --http.addr 0.0.0.0 --http.port 8545 ...
@@ -28,9 +29,11 @@ docker run -d -p 8545:8545 quorumengineering/quorum:latest --datadir /data --htt
 
 ## Docker Compose
 
-[Docker-compose](https://docs.docker.com/compose/) allows you to spin up many docker containers at once and gives you the
-freedom to configure networking, volumes etc faster and develop patterns for use
+[Docker-compose](https://docs.docker.com/compose/) allows you to spin up many docker containers simultaneously,
+and allows you to quickly configure networking and volumes, and develop patterns to use.
 
-The [Quorum Dev Quickstart](../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md) is simplest and fastest way to
-spin up a local GoQuourm network with Tessera nodes and supporting containers for monitoring. The next step from this is
-to use the [Kubernetes](./Kubernetes.md) examples and charts
+The [Quorum Developer Quickstart](../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md) provides the
+simplest and fastest method to spin up a local GoQuourm network with Tessera nodes, and supporting containers
+for monitoring.
+
+You can also use the [Kubernetes](./Kubernetes.md) examples and charts.

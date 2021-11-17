@@ -82,7 +82,7 @@ nav:
   - Deployment:
       - Install binaries: Deployment/Binaries.md
       - Ansible: Deployment/Ansible.md
-      - Docker and Compose: Deployment/Docker-and-compose.md
+      - Docker and Docker Compose: Deployment/Docker-and-compose.md
       - Kubernetes: Deployment/Kubernetes.md
   - Develop applications:
       - Connect to a node: DevelopingApplications/Connecting-to-a-node.md
