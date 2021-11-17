@@ -23,7 +23,8 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 ### Raft
 
-Use the following Raft API methods on an existing node to add, remove, and promote Raft members:
+Use the following API methods on an existing node to add, remove, and promote nodes in a [Raft](../Configure/Consensus-Protocols/Raft.md)
+network:
 
 - [raft_addPeer](../../Reference/API-Methods.md#raft_addpeer) to add a verifier node
 - [raft_addLearner](../../Reference/API-Methods.md#raft_addlearner) to add a learner node
@@ -65,8 +66,10 @@ After `addPeer` or `addLearner`:
 
 ### IBFT, QBFT, and Clique
 
-Adding a non-validator node to an IBFT, QBFT, or Clique network is simpler than adding a node to a Raft network,
-as it only needs to configure itself rather than be pre-allocated on the network (permissioning aside).
+Adding a non-validator node to an [IBFT](../Configure/Consensus-Protocols/IBFT.md),
+[QBFT](../Configure/Consensus-Protocols/QBFT.md), or [Clique](../Configure/Consensus-Protocols/Clique.md) network is
+simpler than adding a node to a Raft network, as it only needs to configure itself rather than be pre-allocated on the
+network (permissioning aside).
 
 1. Initialize the new node with the network's genesis configuration:
 
