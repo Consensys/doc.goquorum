@@ -19,7 +19,7 @@ with five nodes.
 
 ## Prerequisites
 
-* [GoQuorum](../../GetStarted/Install.md#as-release-binaries).
+* [GoQuorum](../../Deployment/Binaries.md#as-release-binaries).
   Ensure that `PATH` contains `geth` and `bootnode`.
 
 !!! tip
