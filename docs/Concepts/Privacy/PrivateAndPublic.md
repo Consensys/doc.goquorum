@@ -50,7 +50,7 @@ transaction signature to `37` or `38` (as opposed to public transactions, whose 
 
 !!! note "Notes"
 
-    - `privateFor` is not shared with other participants; it's only used to know which nodes to send the encrypted payload to.
+    - `privateFor` is not shared with other participants; it's only used to identify which nodes to send the encrypted payload to.
     - There's no direct restriction on private transaction size.
       As with public transactions, the only restriction is the gas limit.
 
