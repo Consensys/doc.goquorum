@@ -13,7 +13,7 @@ The plugin can [reload](../Concepts/Plugins.md#plugin-reloading) changes from it
 
 ## Prerequisites
 
-- [GoQuorum built from source](../GetStarted/Install.md#goquorum)
+- [GoQuorum built from source](../Deployment/Binaries.md#goquorum)
 - [Gox](https://github.com/mitchellh/gox) installed
 
 ## Build the plugin distribution file
