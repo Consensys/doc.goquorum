@@ -2,30 +2,6 @@
 description: FAQ
 ---
 
-# FAQ
-
-??? question "Are there official docker images for GoQuorum and Tessera?"
-    Yes! The [official docker containers](https://hub.docker.com/u/quorumengineering/):
-
-    `quorumengineering/quorum:latest`
-    `quorumengineering/tessera:latest`
-
-??? question "Can I create a network of GoQuorum nodes using different consensus mechanisms?"
-    Unfortunately, that is not possible. GoQuorum nodes configured with Raft will only be able to work correctly with other nodes running Raft consensus. This applies to all other supported consensus algorithms.
-
-??? info "GoQuorum version compatibility table"
-    |                                     | Adding new node v2.0.x | Adding new node v2.1.x - v2.5.x |
-    | ----------------------------------- | ---------------------- | ---------------------- |
-    | Existing chain consisting of v2.0.x | <span style="color:green;">block sync<br /> public txn<br /> private txn</span>  | <span style="color:red;">block sync</span>  |
-    | Existing chain consisting of v2.1.x - v2.5.0 | <span style="color:red;">block sync</span>  | <span style="color:green;">block sync<br /> public txn<br /> private txn</span> |
-
-    **Note:** While every GoQuorum v2 client will be able to connect to any other v2 client, the usefullness will be severely degraded. <span style="color:red;">Red color</span> signifies that while connectivity is possible, <span style="color:red;">red colored</span> versions will be unable to send public or private txns to the rest of the net due to the EIP155 changes in the signer implemented in newer versions.
-
-??? info "GoQuorum to geth version mapping"
-    | GoQuorum v2.0.x - v2.1.1 | GoQuorum v2.2.0 - v2.2.1 | GoQuorum v2.2.2 - v2.5.0 |
-    |--------------------------|--------------------------|--------------------------|
-    | geth v1.7.2              | geth v1.8.12             | geth v1.8.18             |
-
 ## Tessera FAQ
 
 ??? question "What does enabling 'disablePeerDiscovery' mean?"
