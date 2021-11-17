@@ -4,13 +4,6 @@ description: FAQ
 
 # FAQ
 
-??? question "Should I include originating node in private transaction?"
-    No. In GoQuorum, including originating node's `privateFor` results in an error.
-    To create a private contract that is visible to the originating node only, use this format: `privateFor: []`.
-
-??? question "Is it possible to run a GoQuorum node without a Transaction Manager?"
-    Starting a GoQuorum node with `PRIVATE_CONFIG=ignore` (instead of `PRIVATE_CONFIG=path/to/tm.ipc`) will start the node without a Transaction Manager. The node will not broadcast matching private keys (please ensure that there is no transaction manager running for it) and will be unable to participate in any private transactions.
-
 ??? question "Are there official docker images for GoQuorum and Tessera?"
     Yes! The [official docker containers](https://hub.docker.com/u/quorumengineering/):
 

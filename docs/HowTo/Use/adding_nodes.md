@@ -141,127 +141,112 @@ If you are using discovery, then more options *in addition* to static nodes beco
     If you have discovery disabled, this means you will not try to find other nodes to connect to,
     but others can still find and connect to you.
 
-## Adding private transaction managers
+## Adding Tessera nodes
 
-In this tutorial, there will be no focus on the advanced features of adding a new private transaction manager (PTM).
-This tutorial uses [Tessera](https://github.com/ConsenSys/tessera) for any examples.
+Add a new [Tessera](https://github.com/ConsenSys/tessera) node by ensuring you have one of the existing nodes listed in
+your Tessera peer list.
 
-Adding a new node to the PTM is relatively straight forward, but there are a lot of extra options that can be used,
-which is what will be explained here.
-
-### Adding a new PTM node
-
-In a basic setting, adding a new PTM node is as simple as making sure you have one of the existing nodes listed in your
-peer list.
-
-In Tessera, this would equate to the following in the configuration file:
-
-```json
-{
-  "peers": [
-    {
-      "url": "http://existingpeer1.com:8080"
-    }
-  ]
-}
-```
-
-From there, Tessera will connect to that peer and discover all the other PTM nodes in the network, connecting to each
-of them in turn.
-
-!!! note
-    You may want to include multiple peers in the peer list in case any of them are offline/unreachable.
-
-### IP whitelisting
-
-The IP Whitelist that Tessera provides allows you restrict connections much like the `permissioned-nodes.json` file
-does for GoQuorum.
-
-Only IP addresses/hostnames listed in your peers list will be allowed to connect to you.
-
-See the [Tessera configuration page](https://docs.tessera.consensys.net) for details on setting it up.
-
-In order to make sure the new node is accepted into the network:
-
-1. You will need to add the new peer to each of the existing nodes before communication is allowed.
-    Tessera provides a way to do this without needing to restart an already running node:
-
-    ```bash
-    java -jar tessera.jar admin -configfile /path/to/existing-node-config.json -addpeer http://newpeer.com:8080
-    ```
-
-1. The new peer can be started, setting the `peers` configuration to mirror the existing network.
-    If there are 3 existing nodes in the network, then the new nodes configuration will
-    look like the following:
+!!! example "Peer configuration example"
 
     ```json
     {
       "peers": [
         {
           "url": "http://existingpeer1.com:8080"
-        },
-        {
-          "url": "http://existingpeer2.com:8080"
-        },
-        {
-          "url": "http://existingpeer3.com:8080"
         }
       ]
     }
     ```
 
-    The new node will allow incoming connections from the existing peers, and then existing peers will allow incoming
-    connections from the new peer!
+From there, Tessera connects to that peer and discovers and connects to all the other Tessera nodes in the network.
+
+!!! note
+
+    You may want to include multiple peers in the peer list in case any of them are offline/unreachable.
+
+### IP allowlisting
+
+Tessera IP allowlisting (whitelisting) restricts connections similar to `permissioned-nodes.json` in GoQuorum.
+
+If [allowlisting is configured](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Peer-discovery/), only IP
+addresses/hostnames in your Tessera peer list can connect to you.
+
+To add a new Tessera node with allowlisting enabled:
+
+1. Add the new peer to each of the existing nodes.
+   You can run the following command without restarting an already running node:
+
+    ```bash
+    java -jar tessera.jar admin -configfile /path/to/existing-node-config.json -addpeer http://newpeer.com:8080
+    ```
+
+1. Start the new peer, setting the `peers` configuration to mirror the existing network.
+
+    !!! example "Peers configuration example"
+
+        ```json
+        {
+          "peers": [
+            {
+              "url": "http://existingpeer1.com:8080"
+            },
+            {
+              "url": "http://existingpeer2.com:8080"
+            },
+            {
+              "url": "http://existingpeer3.com:8080"
+            }
+          ]
+        }
+        ```
+
+    The new node now allows incoming connections from the existing peers, and existing peers allow incoming connections
+    from the new peer.
 
 ### Discovery
 
-Tessera discovery is similar to the IP whitelist. The difference being that the IP whitelist blocks
-communications between nodes, whereas disabling discovery only affects which public keys you keep track of.
+You can [disable Tessera discovery](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Peer-discovery/#disable-peer-discovery)
+to have Tessera only allow keys that are owned by a node in its peer list to be available to the users.
 
-See the [Tessera configuration page](https://docs.tessera.consensys.net) for details on setting it up.
-
-When discovery is disabled, Tessera will only allow keys that are owned by a node in its peer list to be available to
-the users.
-
-This means that if any keys are found that are owned by a node NOT in your peer list, they are discarded and
+This means that if Tessera finds any keys owned by a node not in its peer list, those keys are discarded and
 private transactions cannot be sent to that public key.
 
-!!! note
-    This does not affect incoming transactions.
+!!! note "Notes"
 
-    Someone not in your peer list can still send transactions to your node, unless you also enable the IP Whitelist option.
+    - This does not affect incoming transactions.
+      Someone not in your peer list can still send transactions to your node, unless you also enable the IP allowlist option.
+    - [IP allowlisting](#ip-allowlisting) blocks communications between nodes, whereas disabling discovery only affects
+      which public keys Tessera keeps track of.
 
-In order to make sure the new node is accepted into the network:
+To add a new Tessera node with discovery disabled:
 
-1. You will need to add the new peer to each of the existing nodes before they will accept public keys that are linked
-    to the new peer.
-    Tessera provides a way to do this without needing to restart an already running node:
+1. Add the new peer to each of the existing nodes.
+   You can run the following command without restarting an already running node:
 
     ```bash
     java -jar tessera.jar admin -configfile /path/to/existing-node-config.json -addpeer http://newpeer.com:8080
     ```
 
-1. The new peer can be started, setting the `peers` configuration to mirror the existing network.
-    Foer example, if there are 3 existing nodes in the network, then the new nodes configuration will
-    look like the following:
+1. Start the new peer, setting the `peers` configuration to mirror the existing network.
 
-    ```json
-    {
-      "peers": [
+    !!! example "Peers configuration example"
+
+        ```json
         {
-          "url": "http://existingpeer1.com:8080"
-        },
-        {
-          "url": "http://existingpeer2.com:8080"
-        },
-        {
-          "url": "http://existingpeer3.com:8080"
+          "peers": [
+            {
+              "url": "http://existingpeer1.com:8080"
+            },
+            {
+              "url": "http://existingpeer2.com:8080"
+            },
+            {
+              "url": "http://existingpeer3.com:8080"
+            }
+          ]
         }
-      ]
-    }
-    ```
+        ```
 
-    The new node will now record public keys belonging to the existing peers, and then existing peers will record
-    public keys belonging to the new peer; this allows private transactions to be sent both directions!
-
-*[PTM]: Private Transaction Manager
+    The new node now records public keys belonging to the existing peers, and existing peers record public keys
+    belonging to the new peer.
+    This allows private transactions to be sent both directions.
