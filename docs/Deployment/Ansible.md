@@ -48,7 +48,7 @@ variables to configure GoQuorum. For example, you can configure the JSON-RPC ser
   force_handlers: True
 
   roles:
-  - role: ansible-role-goquorum
+  - role: consensys.goquorum
     vars:
       goquorum_version: vX.Y.Z
       goquorum_consensus_algorithm: "istanbul"
@@ -59,4 +59,10 @@ variables to configure GoQuorum. For example, you can configure the JSON-RPC ser
       goquorum_http_api: ["admin","db","eth","debug","miner","net","web3","quorum","ibft"]
       goquorum_http_cors_origins: ["all"]
       goquorum_http_virtual_hosts: ["all"]
+```
+
+and then call the file like so:
+
+```bash
+ansible-playbook -v /path/to/goquorum.yml
 ```
