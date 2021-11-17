@@ -63,8 +63,8 @@ We recommend having an odd number of at least three nodes in the network.
 
 By default, blocks are minted no more frequently than every 50ms. When transactions arrive:
 
-* If it has been at least 50ms since the last block, a new block is minted immediately.
-* If it has been less that 50ms, a new block is minted 50ms after the previous block was minted. Waiting
+- If it has been at least 50ms since the last block, a new block is minted immediately.
+- If it has been less that 50ms, a new block is minted 50ms after the previous block was minted. Waiting
 prevents Raft being flooded with blocks.
 
 The rate limiting achieves a balance between transaction throughput and latency.
