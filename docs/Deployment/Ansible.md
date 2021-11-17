@@ -61,7 +61,7 @@ variables to configure GoQuorum. For example, you can configure the JSON-RPC ser
       goquorum_http_virtual_hosts: ["all"]
 ```
 
-and then call the file like so:
+Run the file as follows:
 
 ```bash
 ansible-playbook -v /path/to/goquorum.yml
