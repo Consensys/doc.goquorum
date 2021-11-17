@@ -8,6 +8,12 @@ transactions using any of the following methods.
 * [Using a connection configuration file](#using-a-connection-configuration-file)
 * [Using command line options](#using-command-line-options)
 
+!!! note
+
+    To run a GoQuorum node without a private transaction manager, set the `PRIVATE_CONFIG` environment variable to `ignore`.
+    Ensure there is no transaction manager running for the node.
+    The node won't broadcast matching private keys and won't be able to participate in any private transactions.
+
 ## Direct IPC connection configuration
 
 You can set the `PRIVATE_CONFIG` environment variable to the path to the `.ipc` socket file created by the private

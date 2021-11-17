@@ -9,7 +9,7 @@ They range from using the quickstart to generate a local network, to creating an
 
 ## Quorum Dev Quickstart
 
-The easiest way to get a network up and running is by using the [Quorum Dev Quickstart](../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md).
+The easiest way to get a network up and running is by using the [Quorum Dev Quickstart](../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md).
 This command-line tool creates a local GoQuorum network that can be started and be ready for use in minutes.
 
 The quickstart provides options for configuring the network and generates all the resources to run in containers
@@ -29,7 +29,7 @@ To start the quickstart, run:
 npx quorum-dev-quickstart
 ```
 
-To explore the features of GoQuorum and deploy private contracts, follow the instructions on [Interacting with the Network](../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md)
+To explore the features of GoQuorum and deploy private contracts, follow the instructions on [Using the Quickstart](../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md).
 
 ## GoQuorum examples sample network
 

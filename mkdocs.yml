@@ -158,7 +158,6 @@ nav:
       - GoQuorum projects: Reference/GoQuorum-Projects.md
       - Logging and errors: Reference/Logging and Errors.md
       - Web3js-quorum: Reference/web3js-quorum.md
-      - FAQ: Reference/FAQ.md
 markdown_extensions:
   - toc:
       permalink: 
@@ -265,7 +264,7 @@ plugins:
         Reference/CakeshopFAQ.md: HowTo/Monitor/Cakeshop.md
         Cakeshop/Cakeshop FAQ.md: HowTo/Monitor/Cakeshop.md
         Cakeshop/Overview.md: HowTo/Monitor/Cakeshop.md
-        FAQ.md: Reference/FAQ.md
+        FAQ.md: https://consensys.net/quorum/faq/
         Getting Started/Quorum-Examples.md: Reference/GoQuorum-Projects.md
         PluggableArchitecture/Plugins/account/For-Developers.md: Reference/Plugins/Account.md
         PluggableArchitecture/Plugins/account/For-Users.md: Reference/Plugins/Account.md
@@ -320,7 +319,6 @@ plugins:
         HowTo/Interact/Client-Libraries/web3js-quorum.md: DevelopingApplications/Client-Libraries.md
         HowTo/Interact/API.md: DevelopingApplications/Connecting-to-a-node.md
         Reference/quorum.js/RawTransactionManager.md: DevelopingApplications/Client-Libraries.md
-        Concepts/Privacy/PrivateTransactionLifecycle.md: Concepts/Privacy/PrivateAndPublic.md
         Concepts/Privacy/PrivateTransactionManager.md: Concepts/Privacy/Privacy.md
         HowTo/Use/DevelopingSmartContracts.md: Tutorials/Contracts/Deploying-Contracts.md
         Concepts/Plugins/PluginsArchitecture.md: Concepts/Plugins.md
@@ -349,3 +347,4 @@ plugins:
         Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md: Concepts/SecurityFramework.md
         Concepts/Qubernetes/Qubernetes-Overview.md: Deployment/Kubernetes.md
         Concepts/Qubernetes/Multicluster.md: Deployment/Kubernetes.md
+        Reference/FAQ.md: https://consensys.net/quorum/faq/

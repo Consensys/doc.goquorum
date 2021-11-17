@@ -13,14 +13,16 @@ nodes must be running.
 
 ## Steps
 
-Listed on the right-hand side of the page are the steps to create a private contract, deploy the contract,
-and send a private transaction.
-
-## 1. Create private contract
+### 1. Create private contract
 
 In the `Node-0` directory, copy and paste the following to a file called `private-contract.js`. On the
 highlighted line, replace the placeholder for `privateFor` with the base64 content of the `tessera1.pub` key file.
 For example, `1oRj9qpgnNhr/ZUggeMXnXsWMuVgedS6gfimpEVt+EQ=`.
+
+!!! important
+
+    Don't include the sender's node in `privateFor`.
+    To create a private contract visible to the sender's node only, use this format: `privateFor: []`.
 
 ```javascript hl_lines="11" linenums="1"
 a = eth.accounts[0]
@@ -47,7 +49,7 @@ var simple = simpleContract.new(42, {from:web3.eth.accounts[0], data: bytecode, 
 });
 ```
 
-## 2. Create account
+### 2. Create account
 
 In the `Node-0` directory, create an account.
 
@@ -55,7 +57,7 @@ In the `Node-0` directory, create an account.
 geth --datadir data account new
 ```
 
-## 3. Unlock account
+### 3. Unlock account
 
 Accounts are locked by default and must be unlocked before sending the transaction. Use the `geth`
 console to display and unlock the account.
@@ -87,7 +89,7 @@ Type in the account password when prompted.
 !!! tip
     By default, accounts remain unlocked for 5 minutes. After 5 minutes, the account is relocked.
 
-## 4. Send the private transaction
+### 4. Send private transaction
 
 !!! important
 
@@ -95,7 +97,7 @@ Type in the account password when prompted.
     Otherwise, the transaction doesn't propagate and an error is returned.
 
 In the `geth` console, run `loadScript` to deploy the contract and
-send a private transaction from node 1 to node 2.
+send a private transaction from node 0 to node 1.
 
 ```javascript
 loadScript("private-contract.js")

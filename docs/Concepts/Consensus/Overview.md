@@ -10,3 +10,8 @@ GoQuorum implements the following Proof of Authority consensus protocols:
 !!! warning
 
     QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
+
+!!! note
+
+    You can't create a network of GoQuorum nodes using different consensus protocols.
+    GoQuorum nodes configured with one consensus protocol can only work correctly with other nodes running the same protocol.
