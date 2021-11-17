@@ -169,7 +169,7 @@ From there, Tessera connects to that peer and discovers and connects to all the 
 
 ### IP allowlisting
 
-Tessera IP allowlisting (whitelisting) restricts connections similar to `permissioned-nodes.json` in GoQuorum.
+Tessera IP allowlisting (whitelisting) restricts connections in a way similar to using `permissioned-nodes.json` in GoQuorum.
 
 If [allowlisting is configured](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Peer-discovery/), only IP
 addresses/hostnames in your Tessera peer list can connect to you.
