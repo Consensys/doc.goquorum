@@ -82,3 +82,5 @@ to include the new bootnodes.
 
 When adding bootnodes, you don't need to restart running nodes.
 By updating the `--bootnodes` option, the next time you restart the nodes, the nodes connect to the new bootnodes.
+
+To remove bootnodes, remove them from the `--bootnodes` option for each node.
