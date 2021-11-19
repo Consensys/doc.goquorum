@@ -57,7 +57,7 @@ We recommend that you store the bootnode configuration under source control.
 ### Specifying multiple bootnodes
 
 To allow for continuity in the event of failure, specify all bootnodes in a comma-separated list using the
-[`--bootnodes`](https://geth.ethereum.org/docs/interface/command-line-options) option for each node, including the bootnodes. 
+[`--bootnodes`](https://geth.ethereum.org/docs/interface/command-line-options) option for each node, including the bootnodes.
 
 !!! example
 
