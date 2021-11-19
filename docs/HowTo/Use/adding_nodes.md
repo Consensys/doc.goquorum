@@ -102,47 +102,41 @@ Some options take effect regardless of the consensus mechanism used.
 
 #### Permissioned nodes
 
-If using the `permissioned-nodes.json` file for permissioning, then you must make sure this file is updated on all
-nodes before the new node is able to communicate with existing nodes.
+If using the `permissioned-nodes.json` file for [permissioning](../Configure/Permissioning/BasicPermissions.md), you
+must make sure this file is updated on all nodes before the new node is able to communicate with existing nodes.
 
-You do not need to restart any nodes in order for the changes to take effect.
-
-!!! note
-
-    You can use either DNS names or IP addresses to specify nodes in `permissioned-nodes.json`.
-    Only bootnodes need to be specified with IP addresses.
+You don't need to restart any nodes for the changes to take effect.
 
 #### Static node connections
 
 If not using peer-to-peer node discovery (for example, you specify `--nodiscover`), then the node only makes connections
 to peers defined in the `static-nodes.json` file.
 
-When adding a new node, define peers in its `static-nodes.json` file.
+When adding a new node, [configure static peers](../Configure/StaticNodes.md) in its `static-nodes.json` file.
 
 The more peers defined here, the better the network connectivity and fault tolerance.
 
 !!! note
 
-    * You can use either DNS names or IP addresses to specify nodes in `static-nodes.json`.
-      Only bootnodes need to be specified with IP addresses.
-    * You do not need to update the existing peers static nodes for the connection to be established, although it is good practice to do so.
-    * You do not need to specify every peer in your static nodes file if you do not wish to connect to every peer directly.
+    * You don't need to update the existing peers' static nodes for the connection to be established, although it is
+      good practice to do so.
+    * You don't need to specify every peer in your static nodes file if you do not wish to connect to every peer directly.
 
 #### Peer-to-peer discovery
 
-If you are using discovery, then more options *in addition* to static nodes become available.
+If using discovery, more options in addition to static nodes become available.
 
-- Any nodes that are connected to your peers, which at the start will be ones defined in the static node list, will
-    then be visible by you, allowing you to connect to them; this is done automatically.
+- Any nodes connected to your peers, which at the start are your [static node connections](#static-node-connections),
+  are discoverable by you; this is done automatically.
 
-- You may specify any number of bootnodes, defined by the `--bootnodes` parameter.
-    This takes a commas separated list of enode URIs, similar to the `static-nodes.json` file.
-    These act in the same way as static nodes, letting you connect sto them and then find out about other peers,
-    whom you then connect to.
+- You may specify any number of [bootnodes](../Configure/Bootnodes.md), defined by the `--bootnodes` parameter.
+  This takes a comma-separated list of enode URLs, similar to the `static-nodes.json` file.
+  These act in the same way as static nodes, letting you connect to them and find out about other peers, who you then
+  connect to.
 
 !!! note
-    If you have discovery disabled, this means you will not try to find other nodes to connect to,
-    but others can still find and connect to you.
+
+    If you have discovery disabled, you won't try to find other nodes to connect to, but others can still find and connect to you.
 
 ## Adding Tessera nodes
 

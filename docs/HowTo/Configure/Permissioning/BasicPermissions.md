@@ -17,7 +17,7 @@ If `--permissioned` is specified but no nodes are added to the `permissioned-nod
 connect to any nodes nor accept any incoming connections.
 
 The `permissioned-nodes.json` file is structured as follows, which is similar to the `<data-dir>/static-nodes.json`
-file that is used to specify the list of static nodes a given node always connects to:
+file that is used to specify the list of [static nodes](../StaticNodes.md) a given node always connects to:
 
 !!! example "permissioned-nodes.json"
 
@@ -41,7 +41,7 @@ file that is used to specify the list of static nodes a given node always connec
 
 !!! note
 
-    You can use DNS names instead of IP addresses to specify nodes in `permissioned-nodes.json` and `static-nodes.json`.
+    When to specifying enodes in `permissioned-nodes.json`, you can use either DNS names or IP addresses.
     Only bootnodes need to be specified with IP addresses.
 
 !!! warning

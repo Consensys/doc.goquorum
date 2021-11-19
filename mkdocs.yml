@@ -103,6 +103,8 @@ nav:
               - Clique: HowTo/Configure/Consensus-Protocols/Clique.md
           - Create a genesis file: HowTo/Configure/GenesisOptions.md
           - Predeploy a contract in the genesis file: HowTo/Configure/Contracts-in-Genesis.md
+          - Bootnodes: HowTo/Configure/Bootnodes.md
+          - Static nodes: HowTo/Configure/StaticNodes.md
           - High availability: HowTo/Configure/HighAvailability.md
           - Permissioning:
               - Basic permissions: HowTo/Configure/Permissioning/BasicPermissions.md
