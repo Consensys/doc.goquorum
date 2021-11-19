@@ -77,9 +77,8 @@ To allow for failure, specify all bootnodes in a comma-separated list using
 ### Adding and removing bootnodes
 
 Adding new bootnodes is a similar process to creating bootnodes.
-After creating the bootnodes and adding them to the network,update the [`--bootnodes`](../../Reference/CLI/CLI-Syntax.md#bootnodes)
-command line option for each node to include the new bootnodes.
+After creating the bootnodes and adding them to the network, update the `--bootnodes` command line option for each node
+to include the new bootnodes.
 
 When adding bootnodes, you don't need to restart running nodes.
-By updating the [`--bootnodes`](../../Reference/CLI/CLI-Syntax.md#bootnodes) option, the next time you restart the
-nodes, the nodes connect to the new bootnodes.
+By updating the `--bootnodes` option, the next time you restart the nodes, the nodes connect to the new bootnodes.
