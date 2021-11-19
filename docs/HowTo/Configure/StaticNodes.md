@@ -28,7 +28,7 @@ To configure a network of static nodes:
 
     !!! note
 
-        When to specifying enodes in `static-nodes.json`, you can use either DNS names or IP addresses.
+        When specifying enodes in `static-nodes.json`, you can use either DNS names or IP addresses.
         Only bootnodes need to be specified with IP addresses.
 
 1. Save the `static-nodes.json` file in the data directory (specified by
@@ -42,7 +42,7 @@ To update the list of static peers at runtime, use the
 
 !!! note
 
-    Runtime modifications of static nodes are not persisted between runs.
+    Runtime modifications of static nodes do not persist between runs.
     The `static-nodes.json` file is not updated by the `admin_addPeer` and `admin_removePeer` methods.
 
     Nodes not in the list of the static nodes are not prevented from connecting.

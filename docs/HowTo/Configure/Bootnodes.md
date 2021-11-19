@@ -4,7 +4,7 @@ description: how to configure bootnodes
 
 # Configure bootnodes
 
-Using bootnodes in GoQuorum is a method for initially discovering peers.
+You can use bootnodes in GoQuorum to initially discover peers.
 Bootnodes are regular nodes used to discover other nodes.
 
 !!! tip
@@ -42,10 +42,9 @@ specify a different host or port, use the
 A GoQuorum network must have at least one operating bootnode.
 To allow for continuity in the event of failure, configure two or more bootnodes.
 
-We don't recommend putting bootnodes behind a [load balancer](HighAvailability.md) because the
+We recommend putting bootnodes on the network itself and not behind a [load balancer](HighAvailability.md) because the
 [enode URL](https://eth.wiki/en/fundamentals/enode-url-format) relates to the node public key, IP address, and discovery ports.
 Any changes to a bootnode enode prevents other nodes from being able to establish a connection with the bootnode.
-This is why we recommend putting more bootnodes on the network itself.
 
 To ensure that a bootnode enode does not change when recovering from a complete bootnode failure:
 
@@ -55,10 +54,10 @@ To ensure that a bootnode enode does not change when recovering from a complete 
 
 We recommend that you store the bootnode configuration under source control.
 
-### Specifying bootnodes
+### Specifying multiple bootnodes
 
-To allow for failure, specify all bootnodes in a comma-separated list using
-[`--bootnodes`](https://geth.ethereum.org/docs/interface/command-line-options) (even to the bootnodes themselves).
+To allow for continuity in the event of failure, specify all bootnodes in a comma-separated list using the
+[`--bootnodes`](https://geth.ethereum.org/docs/interface/command-line-options) option for each node, including the bootnodes. 
 
 !!! example
 
@@ -70,9 +69,8 @@ To allow for failure, specify all bootnodes in a comma-separated list using
 
 !!! tip
 
-    Having each bootnode list the other bootnodes increases the speed of discovery.
-    Nodes ignore their own enode in the bootnodes list so it isn't required to specify different bootnode lists to the
-    bootnodes themselves.
+    Having each bootnode include the other bootnodes increases the speed of discovery.
+    Nodes ignore their own enode in the bootnodes list so you can use the same bootnode list for all bootnodes.
 
 ### Adding and removing bootnodes
 
