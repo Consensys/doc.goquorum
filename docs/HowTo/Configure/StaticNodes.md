@@ -5,7 +5,7 @@ description: how to configure static nodes
 # Configure static nodes
 
 Static nodes are a configured set of trusted nodes.
-Static nodes are exempt from maximum peer limits set through the
+They're exempt from maximum peer limits set through the
 [`--maxpeers`](https://geth.ethereum.org/docs/interface/command-line-options) option.
 
 GoQuorum attempts to maintain connections with static nodes by periodically initiating a connection to any unconnected

@@ -9,7 +9,7 @@ Bootnodes are regular nodes used to discover other nodes.
 
 !!! tip
 
-    Bootnodes and [static nodes](StaticNoddes.md) are parallel methods for finding peers.
+    Bootnodes and [static nodes](StaticNodes.md) are parallel methods for finding peers.
     Depending on your use case, you can use only bootnodes, only static nodes, or both.
 
     To find peers, configure one or more bootnodes as described on this page.
