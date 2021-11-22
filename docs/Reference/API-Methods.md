@@ -430,7 +430,7 @@ The following API methods provide access to the [IBFT](../HowTo/Configure/Consen
 
 To use these methods:
 
-1. Run Istanbul `geth` with `--rpcapi "istanbul"`.
+1. Run Istanbul `geth` with `--http.api "istanbul"`.
 
 2. Run `geth attach`.
 

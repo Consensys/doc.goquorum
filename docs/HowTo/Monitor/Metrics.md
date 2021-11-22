@@ -35,8 +35,8 @@ Use `--metric.influxdb` and associated [geth command line options] to push metri
     ```text
     LOGGING AND DEBUGGING OPTIONS:
       --pprof                             Enable the pprof HTTP server
-      --pprofaddr value                   pprof HTTP server listening interface (default: "127.0.0.1")
-      --pprofport value                   pprof HTTP server listening port (default: 6060)
+      --pprof.addr value                  pprof HTTP server listening interface (default: "127.0.0.1")
+      --pprof.port value                  pprof HTTP server listening port (default: 6060)
 
     METRICS AND STATS OPTIONS:
       --metrics                           Enable metrics collection and reporting

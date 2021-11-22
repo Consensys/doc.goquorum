@@ -138,7 +138,7 @@ geth --datadir data init ../raftGenesis.json
 In the `Node-1` directory, start node 1.
 
 ```bash
-PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --verbosity 5 --networkid 31337 --raft --raftport 50000 --rpc --rpcaddr 0.0.0.0 --rpcport 22000 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port 21000
+PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --verbosity 5 --networkid 31337 --raft --raftport 50000 --http --http.addr 0.0.0.0 --http.port 22000 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port 21000
 ```
 
 The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled.
@@ -280,7 +280,7 @@ In the `Node-2` directory, start node 2 using the same command as for node 1 exc
 * Specify the Raft ID using the `--raftjoinexisting` option.
 
 ```bash
-PRIVATE_CONFIG=ignore geth  --datadir data --nodiscover --verbosity 5 --networkid 31337 --raft --raftjoinexisting 2 --raftport 50001 --rpc --rpcaddr 0.0.0.0 --rpcport 22001 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port 21001
+PRIVATE_CONFIG=ignore geth  --datadir data --nodiscover --verbosity 5 --networkid 31337 --raft --raftjoinexisting 2 --raftport 50001 --http --http.addr 0.0.0.0 --http.port 22001 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port 21001
 ```
 
 Node 2 connects to node 1.

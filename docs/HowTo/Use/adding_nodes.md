@@ -53,7 +53,7 @@ After `addPeer` or `addLearner`:
     !!! example
 
         ```bash
-         PRIVATE_CONFIG=ignore geth --datadir qdata/dd7 ... OTHER ARGS ... --raft --raftport 50407 --rpcport 22006 --port 21006 --raftjoinexisting 7
+         PRIVATE_CONFIG=ignore geth --datadir qdata/dd7 ... OTHER ARGS ... --raft --raftport 50407 --http.port 22006 --port 21006 --raftjoinexisting 7
         ```
 
     The new node is now up and running, and will start syncing the blockchain from existing peers. Once this has

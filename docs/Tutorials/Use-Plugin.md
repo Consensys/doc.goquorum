@@ -86,8 +86,8 @@ The plugin can [reload](../Concepts/Plugins.md#plugin-reloading) changes from it
         --raft \
         --raftjoinexisting 1 \
         --datadir ./build/_workspace/test \
-        --rpc \
-        --rpcapi eth,debug,admin,net,web3,plugin@helloworld \
+        --http \
+        --http.api eth,debug,admin,net,web3,plugin@helloworld \
         --plugins file://./build/bin/geth-plugin-settings.json \
         --plugins.skipverify
     ```

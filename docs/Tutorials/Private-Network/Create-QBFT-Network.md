@@ -236,7 +236,7 @@ geth --datadir data init ../genesis.json
 In the `Node-0` directory, start the first node:
 
 ```bash
-PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22000 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30300
+PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22000 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30300
 ```
 
 The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled.
@@ -253,25 +253,25 @@ specifying different ports for DevP2P and RPC.
 === "Node 1"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22001 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30301
+    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22001 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30301
     ```
 
 === "Node 2"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22002 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30302
+    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22002 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30302
     ```
 
 === "Node 3"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22003 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30303
+    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22003 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30303
     ```
 
 === "Node 4"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --rpc --rpcaddr 127.0.0.1 --rpcport 22004 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30304
+    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22004 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30304
     ```
 
 ### 9. Attach to node 0
