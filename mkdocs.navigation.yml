@@ -15,110 +15,111 @@
 INHERIT: mkdocs.extra.yml # DO NOT MODIFY THIS LINE
 
 nav:
-  - Get started:
-      - Overview: GetStarted/GettingStartedOverview.md
-      - Upgrade to 2.6.0: GetStarted/migration.md
-  - Concepts:
-      - Blockchain:
-          - Introduction: Concepts/Blockchain/What-is-blockchain.md
-          - Components: Concepts/Blockchain/Blockchain-comprises.md
-      - Architecture: Concepts/Architecture.md
-      - Consensus:
-          - Overview: Concepts/Consensus/Overview.md
-          - Comparing PoA consensus protocols: Concepts/Consensus/Comparing-PoA.md
-      - Account management: Concepts/AccountManagement.md
-      - Privacy:
-          - Overview: Concepts/Privacy/Privacy.md
-          - Public and private transactions: Concepts/Privacy/PrivateAndPublic.md
-          - Privacy enhancements: Concepts/Privacy/PrivacyEnhancements.md
-          - Privacy marker transactions: Concepts/Privacy/PrivacyMarkerTransactions.md
-          - Private transaction lifecycle: Concepts/Privacy/PrivateTransactionLifecycle.md
-          - Contract state extension: Concepts/Privacy/ContractExtension.md
-      - Permissioning: Concepts/PermissionsOverview.md
-      - Plugins: Concepts/Plugins.md
-      - Security framework: Concepts/SecurityFramework.md
-      - Multi-tenancy: Concepts/Multitenancy.md
-      - Quorum profiling: Concepts/Profiling.md
-      - Network and chain ID: Concepts/NetworkAndChainID.md
-  - Deployment:
-      - Install binaries: Deployment/Binaries.md
-      - Ansible: Deployment/Ansible.md
-      - Docker and Docker Compose: Deployment/Docker-and-compose.md
-      - Kubernetes: Deployment/Kubernetes.md
-  - Develop applications:
-      - Connect to a node: DevelopingApplications/Connecting-to-a-node.md
-      - JSON-RPC APIs: DevelopingApplications/JSON-RPC-APIs.md
-      - Client libraries: DevelopingApplications/Client-Libraries.md
-      - Smart contracts and transactions: DevelopingApplications/Smart-Contracts-Transactions.md
-      - Manage keys:
-          - Overview: DevelopingApplications/ManageKeys/ManagingKeys.md
-          - Use clef: DevelopingApplications/ManageKeys/clef.md
-          - Use account plugins: DevelopingApplications/ManageKeys/AccountPlugins.md
-      - Develop plugins: DevelopingApplications/DevelopPlugins.md
-  - How to:
-      - Configure GoQuorum:
+  - Deploy:
+      - Install:
+          - Overview: deploy/install/getting-started-overview.md
+          - Install binaries: deploy/install/binaries.md
+          - Ansible: deploy/ansible.md
+          - Docker and Docker Compose: deploy/install/docker-and-compose.md
+          - Kubernetes: deploy/install/kubernetes.md
+      - Upgrade to GoQuorum 2.6.0: deploy/upgrade/migration.md
+  - Configure and manage:
+      - Configure:
           - Consensus protocols:
-              - IBFT: HowTo/Configure/Consensus-Protocols/IBFT.md
-              - QBFT: HowTo/Configure/Consensus-Protocols/QBFT.md
-              - Raft: HowTo/Configure/Consensus-Protocols/Raft.md
-              - Clique: HowTo/Configure/Consensus-Protocols/Clique.md
-          - Create a genesis file: HowTo/Configure/GenesisOptions.md
-          - Predeploy a contract in the genesis file: HowTo/Configure/Contracts-in-Genesis.md
-          - Bootnodes: HowTo/Configure/Bootnodes.md
-          - Static nodes: HowTo/Configure/StaticNodes.md
-          - High availability: HowTo/Configure/HighAvailability.md
+              - IBFT: configure-and-manage/configure/consensus-protocols/ibft.md
+              - QBFT: configure-and-manage/configure/consensus-protocols/qbft.md
+              - Raft: configure-and-manage/configure/consensus-protocols/raft.md
+              - Clique: configure-and-manage/configure/consensus-protocols/clique.md
+          - Genesis files:
+              - Create a genesis file: configure-and-manage/configure/genesis-file/genesis-options.md
+              - Predeploy a contract in the genesis file: configure-and-manage/configure/genesis-file/contracts-in-genesis.md
+          - Bootnodes: configure-and-manage/configure/bootnodes.md
+          - Static nodes: configure-and-manage/configure/static-nodes.md
+          - High availability: configure-and-manage/configure/high-availability.md
           - Permissioning:
-              - Basic permissions: HowTo/Configure/Permissioning/BasicPermissions.md
-              - Enhanced permissions: HowTo/Configure/Permissioning/EnhancedPermissions.md
-          - Private transaction manager: HowTo/Configure/ConfigurePTM.md
-          - DNS: HowTo/Configure/dns.md
-      - Use:
-          - Add nodes to network: HowTo/Use/adding_nodes.md
-          - Migrate network nodes: HowTo/Use/node_network_migration.md
-          - JSON-RPC API security: HowTo/Use/JSON-RPC-API-Security.md
-          - Enhanced permissions: HowTo/Use/EnhancedPermissions.md
+              - Basic permissioning: configure-and-manage/configure/permissioning/basic-permissions.md
+              - Enhanced permissioning: configure-and-manage/configure/permissioning/enhanced-permissions.md
+          - Private transaction manager: configure-and-manage/configure/private-transaction-manager.md
+          - DNS: configure-and-manage/configure/dns.md
+      - Manage:
+          - Add network nodes: configure-and-manage/manage/add-nodes.md
+          - Migrate network nodes: configure-and-manage/manage/node-network-migration.md
+          - JSON-RPC API security: configure-and-manage/manage/json-rpc-api-security.md
+          - Enhanced permissions: configure-and-manage/manage/enhanced-permissions.md
           - Multi-tenancy:
-              - Use multi-tenancy: HowTo/Use/Multitenancy/Multitenancy.md
-              - Multiple private states migration: HowTo/Use/Multitenancy/Migration.md
-          - Include revert reason: HowTo/Use/Revert-Reason.md
-          - GraphQL: HowTo/Use/graphql.md
-          - Backup and restore: HowTo/Use/import-export.md
+              - Use multi-tenancy: configure-and-manage/manage/multi-tenancy/multi-tenancy.md
+              - Multiple private states migration: configure-and-manage/how-to/manage/multi-tenancy/migration.md
+          - Include revert reason: configure-and-manage/manage/revert-reason.md
+          - GraphQL: configure-and-manage/manage/graphql.md
+          - Backup and restore: configure-and-manage/manage/import-export.md
       - Monitor nodes:
-          - Use metrics: HowTo/Monitor/Metrics.md
-          - Use Elastic Stack: HowTo/Monitor/Elastic-Stack.md
-          - Use Quorum Hibernate: HowTo/Monitor/Quorum-Hibernate.md
-          - Use Splunk: HowTo/Monitor/Splunk.md
-          - Use Cakeshop: HowTo/Monitor/Cakeshop.md
-          - Use Quorum Reporting: HowTo/Monitor/Quorum-Reporting.md
-  - Tutorials:
-      - Quorum Dev Quickstart:
-          - Getting started: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
-          - Using the quickstart: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
-          - Remix: Tutorials/Quorum-Dev-Quickstart/Remix.md
+          - Use metrics: configure-and-manage/monitor/metrics.md
+          - Use Elastic Stack: configure-and-manage/monitor/elastic-stack.md
+          - Use Quorum Hibernate: configure-and-manage/monitor/quorum-hibernate.md
+          - Use Splunk: configure-and-manage/monitor/splunk.md
+          - Use Cakeshop: configure-and-manage/monitor/cakeshop.md
+          - Use Quorum Reporting: configure-and-manage/monitor/quorum-reporting.md
+  - Develop applications:
+      - Connect to a node: develop/connecting-to-a-node.md
+      - JSON-RPC APIs: develop/json-rpc-apis.md
+      - Client libraries: develop/client-libraries.md
+      - Smart contracts and transactions: develop/smart-contracts-transactions.md
+      - Manage keys:
+          - Overview: develop/manage-keys/managing-keys.md
+          - Use clef: develop/manage-keys/clef.md
+          - Use account plugins: develop/manage-keys/account-plugins.md
+      - Develop plugins: develop/develop-plugins.md
+  - Learn:
+      - Blockchain basics:
+          - Introduction: concepts/blockchain-basics/what-is-blockchain.md
+          - Components: concepts/blockchain-basics/blockchain-components.md
+      - Architecture: concepts/architecture.md
+      - Consensus:
+          - Overview: concepts/consensus/overview.md
+          - Comparing PoA consensus protocols: concepts/consensus/comparing-poa.md
+      - Account management: concepts/account-management.md
+      - Privacy:
+          - Overview: concepts/privacy/privacy.md
+          - Public and private transactions: concepts/privacy/private-and-public.md
+          - Privacy enhancements: concepts/privacy/privacy-enhancements.md
+          - Privacy marker transactions: concepts/privacy/privacy-marker-transactions.md
+          - Private transaction lifecycle: concepts/privacy/private-transaction-lifecycle.md
+          - Contract state extension: concepts/privacy/contract-extension.md
+      - Permissioning: concepts/permissions-overview.md
+      - Plugins: concepts/plugins.md
+      - Security framework: concepts/security-framework.md
+      - Multi-tenancy: concepts/multi-tenancy.md
+      - Quorum profiling: concepts/profiling.md
+      - Network and chain ID: concepts/network-and-chain-id.md
+  - Try the tutorials:
+      - Quorum Developer Quickstart:
+          - Getting started: tutorials/quorum-dev-quickstart/getting-started.md
+          - Using the quickstart: tutorials/quorum-dev-quickstart/using-the-quickstart.md
+          - Remix: tutorials/quorum-dev-quickstart/remix.md
       - Create a private network:
-          - Using IBFT: Tutorials/Private-Network/Create-IBFT-Network.md
-          - Using QBFT: Tutorials/Private-Network/Create-QBFT-Network.md
-          - Using Raft: Tutorials/Private-Network/Create-a-Raft-network.md
-          - Adding and removing IBFT validators: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
-          - Adding and removing QBFT validators: Tutorials/Private-Network/Adding-removing-QBFT-validators.md
+          - Using IBFT: tutorials/private-network/create-ibft-network.md
+          - Using QBFT: tutorials/private-network/create-qbft-network.md
+          - Using Raft: tutorials/private-network/create-a-raft-network.md
+          - Adding and removing IBFT validators: tutorials/private-network/adding-removing-ibft-validators.md
+          - Adding and removing QBFT validators: tutorials/private-network/adding-removing-qbft-validators.md
       - Smart contracts and transactions:
-          - Deploy a contract: Tutorials/Contracts/Deploying-Contracts.md
-          - Interact with a deployed contract: Tutorials/Contracts/Calling-Contract-Functions.md
-          - Transfer account funds: Tutorials/Contracts/Account-Funds-Transfers.md
-      - Create a privacy-enabled network: Tutorials/Create-Privacy-enabled-network.md
-      - Send private transactions: Tutorials/Send-private-transaction.md
-      - Create a permissioned network: Tutorials/CreatePermissionedNetwork.md
-      - Use a plugin: Tutorials/Use-Plugin.md
+          - Deploy a contract: tutorials/contracts/deploying-contracts.md
+          - Interact with a deployed contract: tutorials/contracts/calling-contract-functions.md
+          - Transfer account funds: tutorials/contracts/account-funds-transfers.md
+      - Create a privacy-enabled network: tutorials/create-privacy-enabled-network.md
+      - Send private transactions: tutorials/send-private-transaction.md
+      - Create a permissioned network: tutorials/create-permissioned-network.md
+      - Use a plugin: tutorials/use-plugin.md
   - Reference:
-      - Command line options: Reference/CLI-Syntax.md
-      - GoQuorum API methods: Reference/API-Methods.md
-      - Permissioning types: Reference/Permissioning-Types.md
-      - Genesis file items: Reference/genesis.md
+      - Command line options: reference/cli-syntax.md
+      - GoQuorum API methods: reference/api-methods.md
+      - Permissioning types: reference/permissioning-types.md
+      - Genesis file items: reference/genesis.md
       - Plugins:
-          - account: Reference/Plugins/Account.md
-          - security: Reference/Plugins/Security.md
-      - Accounts for testing: Reference/Accounts-for-Testing.md
-      - GoQuorum projects: Reference/GoQuorum-Projects.md
-      - Logging and errors: Reference/Logging and Errors.md
-      - Web3js-quorum: Reference/web3js-quorum.md
+          - Account: reference/plugins/account.md
+          - Security: reference/plugins/security.md
+      - Accounts for testing: reference/accounts-for-testing.md
+      - GoQuorum projects: reference/goquorum-projects.md
+      - Logging and errors: reference/logging-and-errors.md
+      - Web3js-quorum: reference/web3js-quorum.md
   - Support: support.md
