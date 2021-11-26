@@ -1,35 +1,44 @@
 ---
-description: Overview of GoQuorum
+template: home.html
+title: GoQuorum Enterprise Ethereum Client
+description: GoQuorum is an open-source Ethereum client developed under the LGPL license and written in Go.
+  GoQuorum is an Ethereum-based protocol that runs private, permissioned networks. GoQuorum implements
+  Proof of Authority (IBFT, QBFT, Raft, and Clique) consensus mechanisms.
+
+hide:
+  - toc
+  - navigation
+#links:
+#  - link: getting_started/
+#    title: Create your doc site
+profiles:
+  - link: deploy/getting-started-overview/
+    title: Deploy GoQuorum
+    text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    image: assets/illustrations/undraw_to_the_stars_qhyy.svg
+  - link: develop/connecting-to-a-node/
+    title: Develop applications
+    text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Praesent placerat suscipit lobortis. Duis nunc quam, malesuada vitae nisl at, sollicitudin tempor massa.
+      Sed quis ante dignissim, tincidunt ex id, lobortis sapien.
+    image: assets/illustrations/undraw_web_development_0l6v.svg
+  - link: configure-and-manage/how-to/configure/consensus-protocols/ibft/
+    title: Configure and manage GoQuorum
+    text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Praesent placerat suscipit lobortis.
+    image: assets/illustrations/undraw_setup_wizard_re_nday.svg
 ---
 
-# GoQuorum Enterprise Ethereum Client
+This is a landing page, you can not add markdown content directly.
 
-## What is GoQuorum?
+Configure the landing page [using meta tags](https://squidfunk.github.io/mkdocs-material/reference/meta-tags/) in the header:
 
-GoQuorum is an open-source Ethereum client developed under the LGPL license and written in Go. GoQuorum
-is an Ethereum-based protocol that runs private, permissioned networks. GoQuorum implements Proof of
-Authority (IBFT, QBFT, Raft, and Clique) consensus mechanisms.
-
-## Is GoQuorum part of ConsenSys Quorum?
-
-Yes. [ConsenSys Quorum](https://consensys.net/quorum/developers) is the complete open source blockchain
-layer with enterprise support available from ConsenSys.
-
-## New to ConsenSys Quorum?
-
-Get started with the [Quorum Developer Quickstart](Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md). Use the quickstart
-to rapidly generate local Quorum blockchain networks.
-
-## What can you do with GoQuorum?
-
-You can use GoQuorum to develop enterprise applications requiring secure, high-peformance transaction
-processing in a private network.
-
-Learn about [use cases for Enterprise Ethereum](https://consensys.net/blockchain-use-cases/case-studies/).
-
-## What does GoQuorum support?
-
-GoQuorum supports common smart contract and Dapp development, deployment, and operational
-use cases, using tools such as [Truffle](http://truffleframework.com/),
-[Remix](https://github.com/ethereum/remix), and [web3j](https://web3j.io/). The client supports
-common JSON-RPC API methods such as eth, net, web3, debug, and miner.
+```markdown
+---
+title: Page title
+description: Page description
+links:
+  - link: link-url/
+    title: Link title
+---
+```
