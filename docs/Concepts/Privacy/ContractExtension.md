@@ -74,4 +74,3 @@ In this example, an existing private contract deployed between Nodes A and B is 
 > This hash is further verified at the time of extension to validate the rightful node for extension.
 > In the event if the node loses its transaction manager and has to recover transactions using resend from other nodes in the network, this self voting transaction is never recoverable.
 > Subsequently if that node ever recovers the chain then it is never able to process the past contract extension transactions and set state for the private contract.
-
