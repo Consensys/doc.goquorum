@@ -36,7 +36,8 @@ extra:
       link: https://consensys.net/quorum/developers
   version:
     switch: true # displays the version dropdown
-
+  othersites:
+    tessera: https://docs.tessera.consensys.net
 #
 #    company: ConsenSys
 #    tool: Slack

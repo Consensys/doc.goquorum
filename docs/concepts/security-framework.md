@@ -21,7 +21,7 @@ They require governance structures that fulfill the concerns of participants equ
 
 ### Security checklist
 
-- Use a [Byzantine fault tolerant consensus protocol](Consensus/Overview.md) in case nodes are managed by non-trusted participants.
+- Use a [Byzantine fault tolerant consensus protocol](consensus/overview.md) in case nodes are managed by non-trusted participants.
 - Ensure consortium members provide a reasonable network service-level agreement (SLA).
 - Ensure private and public payload data is stored in an appropriate geographical legislation area.
 - Document:
@@ -94,7 +94,7 @@ The GoQuorum network produces logs that should be monitored for security anomali
 
 ## Transaction manager
 
-[Tessera](https://docs.tessera.consensys.net) is GoQuorum's transaction manager.
+[Tessera]({{ extra.othersites.tessera }}) is GoQuorum's transaction manager.
 GoQuorum privacy features depend on Tessera to encrypt, decrypt, and broadcast the orchestrations of private
 transaction payloads.
 

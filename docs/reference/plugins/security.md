@@ -2,7 +2,7 @@
 
 ## For developers
 
-You can develop new `security` [plugins](../../Concepts/Plugins.md) to customize protection of the JSON-RPC server.
+You can develop new `security` [plugins](../../concepts/plugins.md) to customize protection of the JSON-RPC server.
 
 `security` plugins must follow the [gRPC API interface requirements](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/security.proto).
 
@@ -19,7 +19,7 @@ GoQuorum provides an [official plugin implementation](https://github.com/ConsenS
 - Provides TLS configuration to HTTP and WS transports.
 - Enables the `geth` JSON-RPC (HTTP/WS) server to be an OAuth2-compliant resource server.
 
-See [how to use the security plugin](../../HowTo/Use/JSON-RPC-API-Security.md).
+See [how to use the security plugin](../../develop/json-rpc-apis.md).
 
 ### Configuration
 

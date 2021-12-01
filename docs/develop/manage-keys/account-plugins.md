@@ -1,8 +1,8 @@
 # `account` plugins
 
-You can use `account` [plugins](../../Concepts/Plugins.md) with GoQuorum or `clef` to provide additional account management.
+You can use `account` [plugins](../../concepts/plugins.md) with GoQuorum or `clef` to provide additional account management.
 
-See the [`account` plugin reference](../../Reference/Plugins/Account.md) for more information.
+See the [`account` plugin reference](../../reference/plugins/account.md) for more information.
 
 ## Available account plugins
 
@@ -26,7 +26,7 @@ Run an `account` plugin using GoQuorum or `clef`:
     clef --plugins file:///path/to/plugins.json ...
     ```
 
-`plugins.json` is the [plugins configuration file](../DevelopPlugins.md) that defines an `account` provider:
+`plugins.json` is the [plugins configuration file](../develop-plugins.md) that defines an `account` provider:
 
 ```json
 {
@@ -45,7 +45,6 @@ Run an `account` plugin using GoQuorum or `clef`:
 A limited API allows users to interact directly with `account` plugins.
 
 !!! important
-
     GoQuorum must expose the API using the `--http.api plugin@account` or `--ws.api plugin@account` command line options.
 
 ### `plugin@account_newAccount`
@@ -98,7 +97,6 @@ See the plugin's documentation for more information on the JSON configuration re
 Creates a plugin-managed account from an existing private key.
 
 !!! note
-
     Although you can use this API to move plugin-managed accounts between nodes, the plugin may provide a preferable alternative.
     See the plugin's documentation for more information.
 
@@ -145,7 +143,6 @@ geth account plugin --help
 ```
 
 !!! info
-
     Use the `--verbosity` option to hide log output. For example, `geth --verbosity 1 account plugin new ...`.
 
 ### `geth account plugin new`

@@ -9,7 +9,7 @@ They range from using the quickstart to generate a local network, to creating an
 
 ## Quorum Dev Quickstart
 
-The easiest way to get a network up and running is by using the [Quorum Dev Quickstart](../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md).
+The easiest way to get a network up and running is by using the [Quorum Dev Quickstart](../../tutorials/quorum-dev-quickstart/using-the-quickstart.md).
 This command-line tool creates a local GoQuorum network that can be started and be ready for use in minutes.
 
 The quickstart provides options for configuring the network and generates all the resources to run in containers
@@ -29,17 +29,17 @@ To start the quickstart, run:
 npx quorum-dev-quickstart
 ```
 
-To explore the features of GoQuorum and deploy private contracts, follow the instructions on [Interacting with the Network](../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md)
+To explore the features of GoQuorum and deploy private contracts, follow the instructions on [Interacting with the Network](../../tutorials/quorum-dev-quickstart/using-the-quickstart.md)
 
 ## GoQuorum examples sample network
 
-[GoQuorum examples](../Reference/GoQuorum-Projects.md) provides the means to quickly create a pre-configured sample GoQuorum
+[GoQuorum examples](../../reference/goquorum-projects.md) provides the means to quickly create a pre-configured sample GoQuorum
 network that can be run either in a virtual-machine environment using Vagrant, in containers using docker-compose,
 or locally through the use of bash scripts to automate creation of the network.
 
 ## GoQuorum on Kubernetes
 
-Use [kubernetes](../Deployment/Kubernetes.md) to run configurable GoQuorum and Tessera networks on Kubernetes.
+Use [kubernetes](kubernetes.md) to run configurable GoQuorum and Tessera networks on Kubernetes.
 
 For local development, use [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or
 [Minikube](https://minikube.sigs.k8s.io/docs/start/). For long running networks,
@@ -47,7 +47,7 @@ use a cloud service (for example Google GKE, Azure AKS, AWS EKS) or a self-hoste
 
 ## Creating a network from scratch
 
-Follow the step-by-step walk-throughs to create and configure GoQuorum networks for [IBFT](../Tutorials/Private-Network/Create-IBFT-Network.md), [QBFT](../Tutorials/Private-Network/Create-QBFT-Network.md), and [Raft](../Tutorials/Private-Network/Create-a-Raft-network.md) consensus.
+Follow the step-by-step walk-throughs to create and configure GoQuorum networks for [IBFT](../../tutorials/private-network/create-ibft-network.md), [QBFT](../../tutorials/private-network/create-qbft-network.md), and [Raft](../../tutorials/private-network/create-a-raft-network.md) consensus.
 It also shows how to enable privacy and add/remove nodes as required.
 
 ## Creating a network deployed in the cloud

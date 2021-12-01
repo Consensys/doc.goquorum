@@ -17,8 +17,8 @@ You can apply these instructions to any number of migrated nodes on any network 
 
 ## Prerequisites
 
-- [GoQuorum installed](../../Deployment/Binaries.md)
-- A running [Raft network](../../Tutorials/Private-Network/Create-a-Raft-network.md) or [IBFT network](../../Tutorials/Private-Network/Create-IBFT-Network.md)
+- [GoQuorum installed](../../deploy/install/binaries.md)
+- A running [Raft network](../../tutorials/private-network/create-a-raft-network.md) or [IBFT network](../../tutorials/private-network/create-ibft-network.md)
 
 ## Raft
 
@@ -69,12 +69,12 @@ For example:
 
     !!! note
 
-        Even if this file isn't specified with [`--raftjoinexisting`](../../Reference/CLI-Syntax.md#raftjoinexisting),
+        Even if this file isn't specified with [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting),
         it should be updated to keep in sync with the current cluster configuration.
 
-1. [Add Node A back to the Raft network](adding_nodes.md#raft) with its new network configuration.
+1. [Add Node A back to the Raft network](add-nodes.md#raft) with its new network configuration.
 
-1. The nodes can now connect with their peers, and [`raft.cluster`](../../Reference/API-Methods.md#raft_cluster)
+1. The nodes can now connect with their peers, and [`raft.cluster`](../../reference/api-methods.md#raft_cluster)
    shows the updated information and network configuration.
 
 ### Peers need a new networking configuration
@@ -108,7 +108,7 @@ configurations of Nodes B and C to use the public IP address of Node A.
 1. Update the network configuration in the `static-nodes.json` file of each node with its peers' accessible IP addresses and ports.
 
 1. Start all nodes.
-   The nodes can now connect with their peers, and [`raft.cluster`](../../Reference/API-Methods.md#raft_cluster) shows
+   The nodes can now connect with their peers, and [`raft.cluster`](../../reference/api-methods.md#raft_cluster) shows
    the updated information and network configuration.
 
 ## IBFT and QBFT

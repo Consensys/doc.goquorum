@@ -4,8 +4,8 @@ description: Private transaction flow
 
 # Private transaction lifecycle
 
-This topic illustrates the high-level lifecycle of normal [private transactions](PrivateAndPublic.md#private-transactions)
-and [privacy marker transactions (PMTs)](PrivacyMarkerTransactions.md).
+This topic illustrates the high-level lifecycle of normal [private transactions](private-and-public.md#private-transactions)
+and [privacy marker transactions (PMTs)](privacy-marker-transactions.md).
 
 In both examples, participants A and B are party to the transaction and participant C is not.
 

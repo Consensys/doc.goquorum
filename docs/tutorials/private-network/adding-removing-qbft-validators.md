@@ -10,7 +10,7 @@ description: Adding and removing QBFT validators
 
 ## Prerequisites
 
-* A QBFT network as configured in the [QBFT tutorial](Create-QBFT-Network.md).
+* A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
 
 ## Adding a validator
 
@@ -110,7 +110,7 @@ description: Adding and removing QBFT validators
         ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
         ```
 
-    Propose the new validator using the command [`istanbul.propose(<address>, true)`](../../Reference/API-Methods.md#istanbul_propose)
+    Propose the new validator using the command [`istanbul.propose(<address>, true)`](../../reference/api-methods.md#istanbul_propose)
     with `<address>` replaced by the new validator candidate node address:
 
     === "geth console request"
@@ -136,9 +136,9 @@ description: Adding and removing QBFT validators
     !!! note
 
         To drop a currently running validator candidate and stop further votes from being cast either for or against it, use
-        [`istanbul.discard`](../../Reference/API-Methods.md#istanbul_discard).
+        [`istanbul.discard`](../../reference/api-methods.md#istanbul_discard).
 
-1. Verify that the new validator is now in the list of validators by running [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbul_getvalidators)
+1. Verify that the new validator is now in the list of validators by running [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators)
    in a `geth` console attached to any of your nodes:
 
     === "geth console request"
@@ -261,7 +261,7 @@ description: Adding and removing QBFT validators
 
 ## Removing a validator
 
-1. Attach a `geth` console to a running validator, run [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbul_getvalidators),
+1. Attach a `geth` console to a running validator, run [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators),
    and identify the address of the validator that needs to be removed:
 
     === "geth attach"
@@ -298,7 +298,7 @@ description: Adding and removing QBFT validators
 
     We will remove `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` from the validator list in this tutorial.
 
-1. Run [`istanbul.propose(<address>, false)`](../../Reference/API-Methods.md#istanbul_propose) by passing
+1. Run [`istanbul.propose(<address>, false)`](../../reference/api-methods.md#istanbul_propose) by passing
    the address of the validator that needs to be removed from more than half of the current validators:
 
     === "geth console request"
@@ -315,7 +315,7 @@ description: Adding and removing QBFT validators
 
     Repeat `istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)` for node 1, node 2, and node 3.
 
-1. Verify that the validator has been removed by running [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbul_getvalidators)
+1. Verify that the validator has been removed by running [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators)
    in one of the nodes' attached `geth` console:
 
     === "geth console request"

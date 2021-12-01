@@ -4,11 +4,11 @@ description: Sending private transactions
 
 # Send private transactions
 
-This tutorial shows you how to send [private transactions](../Concepts/Privacy/PrivateAndPublic.md#private-transactions).
+This tutorial shows you how to send [private transactions](../concepts/privacy/private-and-public.md#private-transactions).
 
 ## Prerequisites
 
-* [Privacy-enabled network running as configured in tutorial](Create-Privacy-enabled-network.md). The
+* [Privacy-enabled network running as configured in tutorial](create-privacy-enabled-network.md). The
 nodes must be running.
 
 ## Steps
@@ -20,7 +20,6 @@ highlighted line, replace the placeholder for `privateFor` with the base64 conte
 For example, `1oRj9qpgnNhr/ZUggeMXnXsWMuVgedS6gfimpEVt+EQ=`.
 
 !!! important
-
     Don't include the sender's node in `privateFor`.
     To create a private contract visible to the sender's node only, use this format: `privateFor: []`.
 
@@ -39,7 +38,7 @@ var simple = simpleContract.new(42, {from:web3.eth.accounts[0], data: bytecode, 
     if (e) {
         console.log("err creating contract", e);
     } else {
-         if (!contract.address) {
+        if (!contract.address) {
             console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
         } else {
             console.log("Contract mined! Address: " + contract.address);
@@ -92,8 +91,7 @@ Type in the account password when prompted.
 ### 4. Send private transaction
 
 !!! important
-
-    All participants listed in `privateFor` must have their [private transaction managers](../Concepts/Privacy/Privacy.md#private-transaction-manager) running when the private transaction is sent.
+    All participants listed in `privateFor` must have their [private transaction managers](../concepts/privacy/privacy.md#private-transaction-manager) running when the private transaction is sent.
     Otherwise, the transaction doesn't propagate and an error is returned.
 
 In the `geth` console, run `loadScript` to deploy the contract and

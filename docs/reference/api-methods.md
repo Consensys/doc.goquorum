@@ -7,13 +7,12 @@ description: GoQuorum JSON-RPC API methods reference
 This reference describes the GoQuorum JSON-RPC API methods.
 
 !!! important
-
     GoQuorum is based on [Geth Go Ethereum client](https://geth.ethereum.org/) but only the GoQuorum-specific API methods are listed here. Visit the
     [Go Ethereum documentation](https://geth.ethereum.org/docs/rpc/server) to view the Geth API methods.
 
 ## Contract extension methods
 
-The following API methods provide functionality for GoQuorum [contract extension](../Concepts/Privacy/ContractExtension.md).
+The following API methods provide functionality for GoQuorum [contract extension](../concepts/privacy/contract-extension.md).
 
 ### `quorumExtension_activeExtensionContracts`
 
@@ -272,7 +271,7 @@ management contract to the blockchain.
     * You must execute `quorumExtension_extendContract` from the node that initially created the contract.
 
     * If the network is using
-      [enhanced network permissioning](../Concepts/PermissionsOverview.md#enhanced-network-permissioning), then both
+      [enhanced network permissioning](../concepts/permissions-overview.md#enhanced-network-permissioning), then both
       initiator (the `from` address in `txArgs`) and receiver (`recipientAddress`) of the extension must be network or
       org admin accounts.
 
@@ -425,8 +424,8 @@ or `pending` (the last block mined plus pending transactions).
 
 ## IBFT methods
 
-The following API methods provide access to the [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md) and
-[QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md) consensus engines.
+The following API methods provide access to the [IBFT](../configure-and-manage/configure/consensus-protocols/ibft.md) and
+[QBFT](../configure-and-manage/configure/consensus-protocols/qbft.md) consensus engines.
 
 To use these methods:
 
@@ -1061,7 +1060,7 @@ If the start block and end block numbers are not provided, the status of the las
 
 ## Permission methods
 
-The following API methods provide functionality for GoQuorum [permissioning](../Concepts/PermissionsOverview.md).
+The following API methods provide functionality for GoQuorum [permissioning](../concepts/permissions-overview.md).
 
 ### `quorumPermission_acctList`
 
@@ -1083,7 +1082,7 @@ None
 
 * `roleId`: *string* - role assigned to the account
 
-* `status`: *number* - [account status](Permissioning-Types.md#account-status-types)
+* `status`: *number* - [account status](permissioning-types.md#account-status-types)
 
 !!! example
 
@@ -1199,7 +1198,7 @@ This method can be called by an organization admin account.
 
 * `roleId`: *string* - unique role ID
 
-* `accountAccess`: *number* - [account level access](Permissioning-Types.md#account-access-types)
+* `accountAccess`: *number* - [account level access](permissioning-types.md#account-access-types)
 
 * `isVoter`: *boolean* - indicates if the role is a voting role
 
@@ -1922,7 +1921,7 @@ None
 
 * `orgId`: *string* - organization ID to which the node belongs
 
-* `status`: *number* - [node status](Permissioning-Types.md#node-status-types)
+* `status`: *number* - [node status](permissioning-types.md#node-status-types)
 
 * `url`: *string* - complete enode ID
 
@@ -2008,7 +2007,7 @@ None
 
 * `parentOrgId`: *string* - immediate parent organization ID
 
-* `status`: *number* - [organization status](Permissioning-Types.md#organization-status-types)
+* `status`: *number* - [organization status](permissioning-types.md#organization-status-types)
 
 * `subOrgList`: *array* of *strings* - list of sub-organizations linked to the organization
 
@@ -2211,7 +2210,7 @@ None
 
 `result`: *array* of *objects* - list of role objects with the following fields:
 
-* `access`: *number* - [account access](Permissioning-Types.md#account-access-types)
+* `access`: *number* - [account access](permissioning-types.md#account-access-types)
 
 * `active`: *boolean* - indicates if the role is active or not
 
@@ -2468,7 +2467,7 @@ This can only be performed for the master organization and requires the majority
 
 ## Privacy methods
 
-The following API methods provide functionality for GoQuorum [privacy](../Concepts/Privacy/Privacy.md).
+The following API methods provide functionality for GoQuorum [privacy](../concepts/privacy/privacy.md).
 
 !!! note
 
@@ -2484,7 +2483,7 @@ Send a signed private transaction to the local private transaction manager and s
 transaction managers.
 
 This API method is to be used as part of the process for sending externally signed
-[privacy marker transactions](../Concepts/Privacy/PrivacyMarkerTransactions.md). The private transaction should be signed,
+[privacy marker transactions](../concepts/privacy/privacy-marker-transactions.md). The private transaction should be signed,
 sent to participants with this API, and the resulting hash set as the PMT's `data`.
 
 !!! note
@@ -2685,7 +2684,7 @@ Queries the privacy metadata for the specified contract account address.
 ### `eth_getPrivacyPrecompileAddress`
 
 Get the address of the privacy precompile contract, to be used as the `to` address for
-[privacy marker transactions](../Concepts/Privacy/PrivacyMarkerTransactions.md).
+[privacy marker transactions](../concepts/privacy/privacy-marker-transactions.md).
 
 #### Parameters
 
@@ -2725,7 +2724,7 @@ None
 
 ### `eth_getPrivateTransactionByHash`
 
-Retrieve the details of a [privacy marker transaction](../Concepts/Privacy/PrivacyMarkerTransactions.md)'s internal
+Retrieve the details of a [privacy marker transaction](../concepts/privacy/privacy-marker-transactions.md)'s internal
 private transaction using the PMT's transaction hash.
 
 #### Parameters
@@ -2781,7 +2780,7 @@ private transaction using the PMT's transaction hash.
 
 ### `eth_getPrivateTransactionReceipt`
 
-Retrieve the receipt of a [privacy marker transaction's (PMT)](../Concepts/Privacy/PrivacyMarkerTransactions.md) internal
+Retrieve the receipt of a [privacy marker transaction's (PMT)](../concepts/privacy/privacy-marker-transactions.md) internal
 private transaction using the PMT's transaction hash.
 
 #### Parameters
@@ -2835,7 +2834,7 @@ private transaction using the PMT's transaction hash.
 
 ### `eth_getPSI`
 
-When using [multiple private states](../Concepts/Multitenancy.md#multiple-private-states), returns the private
+When using [multiple private states](../concepts/multi-tenancy.md#multiple-private-states), returns the private
 state the user is operating on.
 
 #### Parameters
@@ -2844,7 +2843,7 @@ None
 
 #### Returns
 
-`result`: *string* - the [private state identifier (PSI)](../Concepts/Multitenancy.md#private-state-identifier)
+`result`: *string* - the [private state identifier (PSI)](../concepts/multi-tenancy.md#private-state-identifier)
 
 !!! example
 
@@ -2878,7 +2877,7 @@ None
 
 ### `eth_getQuorumPayload`
 
-Returns the [unencrypted payload from Tessera](https://docs.tessera.consensys.net/Concepts/Transaction-manager/#private-transaction-flow).
+Returns the [unencrypted payload from Tessera]({{ extra.othersites.tessera }}/Concepts/Transaction-manager/#private-transaction-flow).
 
 #### Parameters
 
@@ -2929,7 +2928,6 @@ If the transaction is a contract creation, use
 the contract address after the transaction is mined.
 
 !!! important
-
     Before calling this method, [`storeraw`](https://consensys.github.io/tessera/#operation/encryptAndStoreVersion)
     needs to be called to Tessera.
 
@@ -3036,7 +3034,6 @@ If the transaction is a contract creation, use
 * `callback`: *function* - (optional) callback function; if you pass a callback, the HTTP request is made asynchronous.
 
 !!! note
-
     `input` cannot co-exist with `data` if they are set to different values.
     `input` is the new naming of `data`.
     They are the same parameters, but both remain for backwards compatibility.
@@ -3124,7 +3121,6 @@ the contract address after the transaction is mined.
 * `callbackUrl`: *string* - (optional) URL to perform a POST request to post the result of submitting the transaction
 
 !!! note
-
     `input` cannot co-exist with `data` if they are set to different values.
     `input` is the new naming of `data`.
     They are the same parameters, but both remain for backwards compatibility.
@@ -3212,7 +3208,7 @@ The callback URL receives the following object:
 ### `eth_storageRoot`
 
 Returns the storage root hash of the specified address.
-If the contract is a [private contract](../Concepts/Privacy/PrivateAndPublic.md#state-verification), returns the storage root
+If the contract is a [private contract](../concepts/privacy/private-and-public.md#state-verification), returns the storage root
 hash from the private state database.
 
 #### Parameters
@@ -3257,7 +3253,7 @@ hash from the private state database.
 
 ## Raft methods
 
-The following API methods provide access to the [Raft](../HowTo/Configure/Consensus-Protocols/Raft.md) consensus engine.
+The following API methods provide access to the [Raft](../configure-and-manage/configure/consensus-protocols/raft.md) consensus engine.
 
 ### `raft_addLearner`
 

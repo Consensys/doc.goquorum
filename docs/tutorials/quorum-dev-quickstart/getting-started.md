@@ -36,7 +36,6 @@ quorum-dev-quickstart
 ```
 
 !!! Note
-
     Many npm installations don't have permission to install global modules and will throw an EACCES error.
     npm has [a recommended solution](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally).
 
@@ -56,7 +55,7 @@ You can provide these flags when running `quorum-dev-quickstart`:
 ## Interacting with the network
 
 To explore the features of GoQuorum, such as permissioning and privacy, follow the
-[Quorum Developer Quickstart tutorial](Using-the-Quickstart.md).
+[Quorum Developer Quickstart tutorial](using-the-quickstart.md).
 The tutorial also has information on smart contracts, dapps, wallets, and monitoring the network.
 
 ## Tools
@@ -64,11 +63,11 @@ The tutorial also has information on smart contracts, dapps, wallets, and monito
 The quickstart provides the option to deploy monitoring tools alongside your network.
 You can use:
 
-* [Prometheus and Grafana](../../HowTo/Monitor/Metrics.md) to collect and visualize metrics.
-* [Cakeshop](../../HowTo/Monitor/Cakeshop.md) to explore the chain, work with contracts, and manage peers and permissions.
-* [Quorum Reporting](../../HowTo/Monitor/Quorum-Reporting.md) to inspect contracts.
-* [Elastic Stack](../../HowTo/Monitor/Elastic-Stack.md) to manage logs.
-* [Splunk](../../HowTo/Monitor/Splunk.md) to manage logs.
+* [Prometheus and Grafana](../../configure-and-manage/monitor/metrics.md) to collect and visualize metrics.
+* [Cakeshop](../../configure-and-manage/monitor/cakeshop.md) to explore the chain, work with contracts, and manage peers and permissions.
+* [Quorum Reporting](../../configure-and-manage/monitor/quorum-reporting.md) to inspect contracts.
+* [Elastic Stack](../../configure-and-manage/monitor/elastic-stack.md) to manage logs.
+* [Splunk](../../configure-and-manage/monitor/splunk.md) to manage logs.
 
 ## Developing
 

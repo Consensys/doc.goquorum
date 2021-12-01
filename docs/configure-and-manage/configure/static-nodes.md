@@ -13,10 +13,10 @@ static node.
 
 !!! tip
 
-    [Bootnodes](Bootnodes.md) and static nodes are parallel methods for finding peers.
+    [Bootnodes](bootnodes.md) and static nodes are parallel methods for finding peers.
     Depending on your use case, you can use only bootnodes, only static nodes, or both.
 
-    To find peers, configure one or more [bootnodes](Bootnodes.md).
+    To find peers, configure one or more [bootnodes](bootnodes.md).
     To configure a specific set of peer connections, use static nodes, as described on this page.
 
 ## Configure static nodes
@@ -41,15 +41,13 @@ To update the list of static peers at runtime, use the
 [`admin_removePeer`](https://etclabscore.github.io/core-geth/JSON-RPC-API/modules/admin/#admin_removepeer) JSON-RPC API methods.
 
 !!! note
-
     Runtime modifications of static nodes do not persist between runs.
     The `static-nodes.json` file is not updated by the `admin_addPeer` and `admin_removePeer` methods.
 
     Nodes not in the list of the static nodes are not prevented from connecting.
-    To prevent nodes from connecting, use [permissioning](Permissioning/BasicPermissions.md).
+    To prevent nodes from connecting, use [permissioning](permissioning/basic-permissions.md).
 
 !!! tip
-
     If the added peer does not appear in the peer list (returned by
     [`admin_peers`](https://etclabscore.github.io/core-geth/JSON-RPC-API/modules/admin/#admin_peers)), check that the
     supplied enode URL is correct, the node is running, and the node is listening for TCP connections on the endpoint.

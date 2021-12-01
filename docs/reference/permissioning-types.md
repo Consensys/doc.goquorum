@@ -5,7 +5,7 @@ description: Permissioning types reference
 # Permissioning types
 
 This reference describes account access and status types for
-[permissioning](../Concepts/PermissionsOverview.md).
+[permissioning](../concepts/permissions-overview.md).
 
 ## Account access types
 

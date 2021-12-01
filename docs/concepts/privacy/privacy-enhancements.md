@@ -5,7 +5,7 @@ description: Privacy Enhancements feature prevents nodes from modifying contract
 
 # Privacy enhancements
 
-In addition to [standard privacy (SP)](PrivateAndPublic.md#private-transactions), GoQuorum provides three kinds of
+In addition to [standard privacy (SP)](private-and-public.md#private-transactions), GoQuorum provides three kinds of
 privacy enhancements:
 
 * [Counter-party protection (PP)](#counter-party-protection)
@@ -23,7 +23,7 @@ The transaction isn't applied to node 3's private state because node 3 isn't a p
 but the transaction is applied to node 2's private state.
 
 To enable counter-party protection, [enable enhanced privacy](#enabling-privacy-enhancements) and set `privacyFlag` to 1
-when using [`send` API methods](../../Reference/API-Methods.md#privacy-methods).
+when using [`send` API methods](../../reference/api-methods.md#privacy-methods).
 
 ## Mandatory party protection
 
@@ -37,7 +37,7 @@ deployed in the network.
 
 To enable mandatory party protection, [enable enhanced privacy](#enabling-privacy-enhancements) and set `privacyFlag` to
 2 and the `mandatoryFor` parameter to a list of mandatory recipients when using
-[`send` API methods](../../Reference/API-Methods.md#privacy-methods).
+[`send` API methods](../../reference/api-methods.md#privacy-methods).
 
 ## Private state validation
 
@@ -58,7 +58,7 @@ In standard privacy or when only using [counter-party protection](#counter-party
 full participant list.
 
 To enable private state validation, [enable enhanced privacy](#enabling-privacy-enhancements) and set `privacyFlag` to 3
-when using [`send` API methods](../../Reference/API-Methods.md#privacy-methods).
+when using [`send` API methods](../../reference/api-methods.md#privacy-methods).
 
 ## Using privacy enhancements
 
@@ -95,9 +95,9 @@ executed locally and don't result in published transactions.
 ### Enabling privacy enhancements
 
 To enable privacy enhancements in Tessera, set the `enablePrivacyEnhancements` parameter in the
-[Tessera configuration file](https://docs.tessera.consensys.net/en/stable/Reference/SampleConfiguration/) to `true`.
+[Tessera configuration file]({{ extra.othersites.tessera }}/Reference/SampleConfiguration/) to `true`.
 To enable privacy enhancements in GoQuorum, set the `privacyEnhancementsBlock` in the GoQuorum
-[genesis file](../../HowTo/Configure/GenesisOptions.md) `config` object to a future block, when the entire network is
+[genesis file](../../configure-and-manage/configure/genesis-file/genesis-options.md) `config` object to a future block, when the entire network is
 ready to transact with privacy-enhanced transactions.
 All GoQuorum nodes in the network must be initialized with the same `privacyEnhancementsBlock` value.
 

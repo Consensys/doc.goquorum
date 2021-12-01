@@ -28,13 +28,13 @@ and RPC.
 
 ## Using plugins
 
-The GoQuorum client reads the [plugin configuration file](../DevelopingApplications/DevelopPlugins.md) to determine which plugins to
+The GoQuorum client reads the [plugin configuration file](../develop/develop-plugins.md) to determine which plugins to
 load and searches for installed plugins (`<name>-<version>.zip` files) in the plugins directory `baseDir` (the default
 directory is `<datadir>/plugins`).
 
-You can [specify a plugin configuration file](../DevelopingApplications/DevelopPlugins.md),
-[develop plugins](../DevelopingApplications/DevelopPlugins.md),
-and [use an example `HelloWorld` plugin](../Tutorials/Use-Plugin.md).
+You can [specify a plugin configuration file](../develop/develop-plugins.md),
+[develop plugins](../develop/develop-plugins.md),
+and [use an example `HelloWorld` plugin](../tutorials/use-plugin.md).
 
 ## Plugin reloading
 
@@ -42,19 +42,18 @@ The Plugin Manager exposes an API `admin_reloadPlugin` that allows reloading a p
 This attempts to restart the current plugin process.
 
 Plugin configuration changes made after the initial node startup are applied when reloading the plugin.
-This is demonstrated in the [`HelloWorld` plugin tutorial](../Tutorials/Use-Plugin.md).
+This is demonstrated in the [`HelloWorld` plugin tutorial](../tutorials/use-plugin.md).
 
 ## Plugin integrity verification
 
 GoQuorum uses Plugin Central Server to download and verify plugin integrity using [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy).
 You can enable the same verification process locally using the
-[`--plugins.localverify`](../Reference/CLI-Syntax.md#pluginslocalverify) and
-[`--plugins.publickey`](../Reference/CLI-Syntax.md#pluginspublickey) command line options, or
-remotely using [custom Plugin Central](../DevelopingApplications/DevelopPlugins.md).
+[`--plugins.localverify`](../reference/cli-syntax.md#pluginslocalverify) and
+[`--plugins.publickey`](../reference/cli-syntax.md#pluginspublickey) command line options, or
+remotely using [custom Plugin Central](../develop/develop-plugins.md).
 
 To disable the plugin verification process, use the
-[`--plugins.skipverify`](../Reference/CLI-Syntax.md#pluginsskipverify) command line option.
+[`--plugins.skipverify`](../reference/cli-syntax.md#pluginsskipverify) command line option.
 
 !!! warning
-
     Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.

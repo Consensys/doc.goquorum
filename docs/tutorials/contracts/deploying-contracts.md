@@ -5,12 +5,12 @@ description: deploying smart contracts
 # Deploy a smart contract
 
 This tutorial shows you how to deploy smart contracts as transactions onto a running network.
-Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/Getting-Started.md) to rapidly generate a local blockchain network.
+Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/getting-started.md) to rapidly generate a local blockchain network.
 
 ## Prerequisites
 
-* A [private network](../private-network/Create-IBFT-Network.md) if deploying a public contract.
-* A [privacy-enabled network](../Create-Privacy-enabled-network.md) if deploying a private contract
+* A [private network](../private-network/create-ibft-network.md) if deploying a public contract.
+* A [privacy-enabled network](../create-privacy-enabled-network.md) if deploying a private contract
     (public contracts can also be deployed on privacy-enabled networks).
 
 !!! note
@@ -100,7 +100,7 @@ Call [`eth_sendTransaction`](https://eth.wiki/json-rpc/API) with the following p
     curl -X POST --data '{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5", "to":null, "gas":"0x24A22","gasPrice":"0x0", "data":"0x608060405234801561001057600080fd5b5060405161014d38038061014d8339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000819055505060f38061005a6000396000f3fe6080604052348015600f57600080fd5b5060043610603c5760003560e01c80632a1afcd914604157806360fe47b114605d5780636d4ce63c146088575b600080fd5b604760a4565b6040518082815260200191505060405180910390f35b608660048036036020811015607157600080fd5b810190808035906020019092919050505060aa565b005b608e60b4565b6040518082815260200191505060405180910390f35b60005481565b8060008190555050565b6000805490509056fea2646970667358221220e6966e446bd0af8e6af40eb0d8f323dd02f771ba1f11ae05c65d1624ffb3c58264736f6c63430007060033"}], "id":1}' -H 'Content-Type: application/json' http://localhost:20000
     ```
 
-If using the [Quorum Developer Quickstart](../quorum-dev-quickstart/Using-the-Quickstart.md), use the `from` address and
+If using the [Quorum Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md), use the `from` address and
 RPC endoint of Member1.
 
 ### 2. Using `web3.eth.Contract`
@@ -108,7 +108,7 @@ RPC endoint of Member1.
 Using the outputs from [compiling the contract](#compile-the-contract), create a new file
 `public_tx_web3.js` (or run the following commands in a JavaScript console) to send the transaction.
 The example code uses the
-[Developer Quickstart](../quorum-dev-quickstart/Using-the-Quickstart.md) and sends the
+[Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md) and sends the
 transaction from Member1.
 
 !!! example "public_tx_web3.js"
@@ -237,8 +237,8 @@ Call [`eth_sendTransaction`](https://eth.wiki/json-rpc/API) with the following p
 * `gasPrice` - Price for each unit of gas the sender is willing to pay.
 * `privateFrom` - The sender's base-64-encoded public key.
 * `privateFor` - Array of the recipient's base-64-encoded public keys.
-* `privacyFlag` - 0 for standard private, 1 for [counter party protection](../../Concepts/Privacy/PrivacyEnhancements.md#counter-party-protection).
-  and 3 for [private state validation](../../Concepts/Privacy/PrivacyEnhancements.md#private-state-validation).
+* `privacyFlag` - 0 for standard private, 1 for [counter party protection](../../concepts/privacy/privacy-enhancements.md#counter-party-protection).
+  and 3 for [private state validation](../../concepts/privacy/privacy-enhancements.md#private-state-validation).
 * `data` - One of the following:
     * For contract deployments (this use case), the [compiled binary of the contract](#compile-the-contract).
     * For contract interactions, the hash of the invoked method signature and encoded parameters
@@ -251,7 +251,7 @@ Call [`eth_sendTransaction`](https://eth.wiki/json-rpc/API) with the following p
     curl -X POST --data '{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5", "to":null, "gas":"0x24A22","gasPrice":"0x0", "privateFrom": "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=", "privateFor": ["1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg="], "privacyFlag": 0,"data":"0x608060405234801561001057600080fd5b5060405161014d38038061014d8339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000819055505060f38061005a6000396000f3fe6080604052348015600f57600080fd5b5060043610603c5760003560e01c80632a1afcd914604157806360fe47b114605d5780636d4ce63c146088575b600080fd5b604760a4565b6040518082815260200191505060405180910390f35b608660048036036020811015607157600080fd5b810190808035906020019092919050505060aa565b005b608e60b4565b6040518082815260200191505060405180910390f35b60005481565b8060008190555050565b6000805490509056fea2646970667358221220e6966e446bd0af8e6af40eb0d8f323dd02f771ba1f11ae05c65d1624ffb3c58264736f6c63430007060033"}], "id":1}' -H 'Content-Type: application/json' http://localhost:20000
     ```
 
-If using the [Quorum Developer Quickstart](../quorum-dev-quickstart/Using-the-Quickstart.md), use the `from` address and
+If using the [Quorum Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md), use the `from` address and
 RPC endoint of Member1.
 
 ### 2. Using `web3.eth.Contract`
@@ -259,7 +259,7 @@ RPC endoint of Member1.
 Using the outputs from [compiling the contract](#compile-the-contract), create a new file
 `private_tx_web3.js` (or run the following commands in a JavaScript console) to send the transaction.
 The example code uses the
-[Developer Quickstart](../quorum-dev-quickstart/Using-the-Quickstart.md) and sends the
+[Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md) and sends the
 transaction from Member1.
 
 !!! example "private_tx_web3.js"

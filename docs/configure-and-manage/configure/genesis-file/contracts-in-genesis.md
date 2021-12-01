@@ -4,7 +4,7 @@ description: Pre-deploying contracts in the genesis file
 
 # Pre-deploying contracts in the genesis file
 
-To pre-deploy contracts when starting GoQuorum, specify the contract code in the [genesis file](GenesisOptions.md).
+To pre-deploy contracts when starting GoQuorum, specify the contract code in the [genesis file](genesis-options.md).
 
 !!! example "Contract code in the genesis file"
 

@@ -5,10 +5,9 @@ description: Configuring QBFT consensus
 # Configuring QBFT consensus
 
 GoQuorum implements the QBFT Proof-of-Authority (PoA) consensus protocol.
-You can [create a private network using QBFT](../../../Tutorials/Private-Network/Create-QBFT-Network.md).
+You can [create a private network using QBFT](../../../tutorials/private-network/create-qbft-network.md).
 
 !!! warning
-
     QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
 
 In QBFT networks, approved accounts known as validators validate transactions and blocks.
@@ -19,7 +18,6 @@ Existing validators propose and vote to add or remove validators.
 Adding or removing a validator requires a majority vote (greater than 50%) of validators.
 
 !!! important
-
     Configure your network to ensure you never lose 1/3 or more of your validators.
     If more than 1/3 of validators stop participating, new blocks are no longer created, and the network stalls.
     It may take significant time to recover once nodes are restarted.
@@ -38,7 +36,7 @@ failing or propagating incorrect information to peers.
 
 ## Genesis file
 
-To use QBFT, GoQuorum requires a [genesis file](../GenesisOptions.md).
+To use QBFT, GoQuorum requires a [genesis file](../genesis-file/genesis-options.md).
 The genesis file defines properties specific to QBFT and to your specific network.
 
 !!! example "Example QBFT genesis file"
@@ -97,21 +95,20 @@ Setting the block time determines how quickly blocks should be minted by the val
 The default is 1 second.
 
 You can set the block time on each GoQuorum node with the
-[`istanbul.blockperiod`](../../../Reference/CLI-Syntax.md#istanbulblockperiod) option:
+[`istanbul.blockperiod`](../../../reference/cli-syntax.md#istanbulblockperiod) option:
 
 ```bash
 --istanbul.blockperiod <INTEGER>
 ```
 
 You can also set a `requesttimeout` by using the
-[`istanbul.requesttimeout`](../../../Reference/CLI-Syntax.md#istanbulrequesttimeout) option:
+[`istanbul.requesttimeout`](../../../reference/cli-syntax.md#istanbulrequesttimeout) option:
 
 ```bash
 --istanbul.requesttimeout <INTEGER>
 ```
 
 !!! important
-
     If more than 1/3 of validators stop participating, new blocks can no longer be created and `requesttimeoutseconds`
     doubles with each round change.
     The quickest method to resume block production is to restart all validators, which resets `requesttimeoutseconds` to
@@ -119,7 +116,7 @@ You can also set a `requesttimeout` by using the
 
 ## Migrating from IBFT to QBFT
 
-You can migrate an existing [IBFT](IBFT.md) network to a QBFT network with the following steps:
+You can migrate an existing [IBFT](ibft.md) network to a QBFT network with the following steps:
 
 1. Stop the network.
 1. Update the IBFT genesis file with a non-zero `testQBFTBlock` fork block.

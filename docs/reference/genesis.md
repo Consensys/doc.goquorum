@@ -4,7 +4,7 @@ description: Configuration items specified in the GoQuorum genesis file
 
 # Genesis file items
 
-The [GoQuorum genesis file](../HowTo/Configure/GenesisOptions.md) contains [network configuration items](#configuration-items)
+The [GoQuorum genesis file](../configure-and-manage/configure/genesis-file/genesis-options.md) contains [network configuration items](#configuration-items)
 and [genesis block parameters](#genesis-block-parameters).
 
 ## Configuration items
@@ -14,22 +14,22 @@ Network configuration items are specified in the genesis file in the `config` ob
 | Item                | Description                                                                                                                                                                                 |
 |---------------------|-:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Milestone blocks    | [Milestone blocks for the network](#milestone-blocks).                                                                                                                                      |
-| `chainId`           | [Chain ID for the network](../Concepts/NetworkAndChainID.md).                                                                                                                               |
-| `istanbul`          | Specifies network uses [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md) or [QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md) and contains [IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md#genesis-file) or [QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md#genesis-file) configuration items, respectively. |
-| `clique`            | Specifies network uses [Clique](../HowTo/Configure/Consensus-Protocols/Clique.md) and contains Clique configuration items.                                                                  |
+| `chainId`           | [Chain ID for the network](../concepts/network-and-chain-id.md).                                                                                                                               |
+| `istanbul`          | Specifies network uses [IBFT](../configure-and-manage/configure/consensus-protocols/ibft.md) or [QBFT](../configure-and-manage/configure/consensus-protocols/qbft.md) and contains [IBFT](../configure-and-manage/configure/consensus-protocols/ibft.md#genesis-file) or [QBFT](../configure-and-manage/configure/consensus-protocols/qbft.md#genesis-file) configuration items, respectively. |
+| `clique`            | Specifies network uses [Clique](../configure-and-manage/configure/consensus-protocols/clique.md) and contains Clique configuration items.                                                                  |
 | `txnSizeLimit`      | Maximum transaction size. The default is `64` (kilobytes), increased from Ethereum's default `32`. This is configurable up to `128`.                                                        |
 | `maxCodeSize`       | Maximum smart contract code size. The default is `32` (kilobytes), increased from Ethereum's default `24`. This is configurable up to `128`.                                                |
 | `isQuorum`          | Set to `true` to enable `geth` to work as GoQuorum and make additional checks, for example, ensure the gas fee is zero.                                                                     |
 
 !!! note
 
-    Using the [Raft consensus protocol](../HowTo/Configure/Consensus-Protocols/Raft.md) doesn't require a specific item in the `config` object.
+    Using the [Raft consensus protocol](../configure-and-manage/configure/consensus-protocols/raft.md) doesn't require a specific item in the `config` object.
 
 ## Genesis block parameters
 
-The purpose of some genesis block parameters varies depending on the consensus protocol ([IBFT](../HowTo/Configure/Consensus-Protocols/IBFT.md),
-[QBFT](../HowTo/Configure/Consensus-Protocols/QBFT.md), [Raft](../HowTo/Configure/Consensus-Protocols/Raft.md), or
-[Clique](../HowTo/Configure/Consensus-Protocols/Clique.md)).
+The purpose of some genesis block parameters varies depending on the consensus protocol ([IBFT](../configure-and-manage/configure/consensus-protocols/ibft.md),
+[QBFT](../configure-and-manage/configure/consensus-protocols/qbft.md), [Raft](../configure-and-manage/configure/consensus-protocols/raft.md), or
+[Clique](../configure-and-manage/configure/consensus-protocols/clique.md)).
 These parameters include:
 
 * `difficulty`.
@@ -45,7 +45,7 @@ consensus protocols.
 | `gasLimit`          | Block gas limit. Total gas limit for all transactions in a block.                                                                       |
 | `nonce`             | Used in block computation. Can be any value in the genesis block (commonly set to `0x0`).                                               |
 | `timestamp`         | Creation date and time of the block. Must be before the next block so we recommend specifying `0x0` in the genesis file.                |
-| `alloc`             | Defines [accounts with balances](Accounts-for-Testing.md) or [contracts](../HowTo/Configure/Contracts-in-Genesis.md).                   |
+| `alloc`             | Defines [accounts with balances](accounts-for-testing.md) or [contracts](../configure-and-manage/configure/genesis-file/contracts-in-genesis.md).                   |
 
 ## Milestone blocks
 
@@ -87,6 +87,5 @@ In private networks, the milestone block defines the protocol version for the ne
     ```
 
 !!! tip
-
     When specifying the milestone block for private networks, you only need to specify the latest milestone.
     It is implied this includes the preceding milestones.

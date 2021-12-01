@@ -14,7 +14,7 @@ then specify the genesis file when initalizing GoQuorum with:
 geth init <PATH-TO-GENESIS-FILE>
 ```
 
-The genesis file specifies the [network-wide settings](../../Reference/genesis.md), so all nodes in a network must use
+The genesis file specifies the [network-wide settings](../../../reference/genesis.md), so all nodes in a network must use
 the same genesis file.
 
 !!! example "Example Raft genesis file"

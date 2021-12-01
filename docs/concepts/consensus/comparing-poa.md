@@ -4,8 +4,8 @@ description: Proof of Authority consensus protocols comparison
 
 # Comparing Proof of Authority consensus protocols
 
-GoQuorum implements the [IBFT](../../HowTo/Configure/Consensus-Protocols/IBFT.md), [QBFT](../../HowTo/Configure/Consensus-Protocols/QBFT.md),
-[Raft](../../HowTo/Configure/Consensus-Protocols/Raft.md), and [Clique](../../HowTo/Configure/Consensus-Protocols/Clique.md)
+GoQuorum implements the [IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md), [QBFT](../../configure-and-manage/configure/consensus-protocols/qbft.md),
+[Raft](../../configure-and-manage/configure/consensus-protocols/raft.md), and [Clique](../../configure-and-manage/configure/consensus-protocols/clique.md)
 Proof of Authority (PoA) consensus protocols.
 PoA consensus protocols work when participants know each other and there is a level of trust between them (for example,
 in a permissioned consortium network).

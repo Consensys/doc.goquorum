@@ -5,11 +5,11 @@ description: Configuring Raft consensus
 # Configuring Raft consensus
 
 GoQuorum implements the Raft Proof-of-Authority (PoA) consensus protocol.
-To enable Raft consensus, specify the [`--raft`](../../../Reference/CLI-Syntax.md#raft) command line option when starting GoQuorum.
-You can [create a private network using Raft](../../../Tutorials/Private-Network/Create-a-Raft-network.md).
+To enable Raft consensus, specify the [`--raft`](../../../reference/cli-syntax.md#raft) command line option when starting GoQuorum.
+You can [create a private network using Raft](../../../tutorials/private-network/create-a-raft-network.md).
 
 Raft requires that all initial nodes in the cluster are configured as
-[static peers](https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network#static-nodes).
+[static peers](https://github.com/ethereum/go-ethereum/wiki/connecting-to-the-network#static-nodes).
 The order of the enode IDs in the `static-nodes.json` file must be the same across all peers.
 
 The enode IDs must include a `raftport` querystring parameter specifying the Raft port for each peer.
@@ -33,7 +33,7 @@ prevents Raft being flooded with blocks.
 
 The rate limiting achieves a balance between transaction throughput and latency.
 
-Configure the minting frequency using the [`--raftblocktime`](../../../Reference/CLI-Syntax.md#raftblocktime)
+Configure the minting frequency using the [`--raftblocktime`](../../../reference/cli-syntax.md#raftblocktime)
 command line option when starting GoQuorum.
 
 ## Raft transport layer
@@ -41,7 +41,7 @@ command line option when starting GoQuorum.
 Blocks are communicated over the HTTP transport layer built into [etcd Raft](https://github.com/coreos/etcd).
 
 By default, GoQuorum listens on port 50400 for the Raft transport. Use the
-[`--raftport`](../../../Reference/CLI-Syntax.md#raftport) command line option to change the port.
+[`--raftport`](../../../reference/cli-syntax.md#raftport) command line option to change the port.
 
 By default, the number of peers is 25. Use the `--maxpeers N` command line option to configure the
 maximum number of peers where N is expected size of the cluster.

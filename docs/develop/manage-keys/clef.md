@@ -9,7 +9,7 @@ description: Clef Ethereum account manager
 `clef` for GoQuorum is the standard `go-ethereum` `clef` tool, with support for GoQuorum-specific features including:
 
 * Support for private transactions.
-* Ability to extend functionality with [`account` plugins](AccountPlugins.md).
+* Ability to extend functionality with [`account` plugins](account-plugins.md).
 
 `clef` runs as a separate process to `geth` and provides an alternative method of managing accounts
 and signing transactions/data.
@@ -31,7 +31,7 @@ Using `clef` instead of `geth` for account management has several benefits:
 ## Installing
 
 You can install `geth` and all included tools (`clef`, `bootnode`, …) to `PATH` by
-[building GoQuorum from source with `make all`](../../Deployment/Binaries.md).
+[building GoQuorum from source with `make all`](../../deploy/install/binaries.md).
 
 Verify the installation with:
 
@@ -41,8 +41,7 @@ clef help
 
 ## Getting started
 
-See [`cmd/clef/tutorial.md`](https://github.com/ConsenSys/quorum/blob/master/cmd/clef/tutorial.md)
-for an overview and step-by-step guide on `clef` initialization, startup, and automation rules configuration.
+Read [the overview and step-by-step guide on `clef` initialization, startup, and automation rules configuration](https://github.com/ConsenSys/quorum/blob/master/cmd/clef/tutorial.md).
 
 ## Using
 
@@ -103,7 +102,7 @@ An example workflow:
 ### Extending with account plugins
 
 By default, `clef` manages file-stored `keystore` accounts.
-You can enable alternative account management options using [`account` plugins](AccountPlugins.md).
+You can enable alternative account management options using [`account` plugins](account-plugins.md).
 
 ```bash
 clef --plugins file:///path/to/plugin-config.json

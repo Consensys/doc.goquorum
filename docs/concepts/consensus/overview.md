@@ -2,10 +2,10 @@
 
 GoQuorum implements the following Proof of Authority consensus protocols:
 
-* [IBFT](../../HowTo/Configure/Consensus-Protocols/IBFT.md)
-* [QBFT](../../HowTo/Configure/Consensus-Protocols/QBFT.md)
-* [Raft](../../HowTo/Configure/Consensus-Protocols/Raft.md)
-* [Clique](../../HowTo/Configure/Consensus-Protocols/Clique.md).
+* [IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md)
+* [QBFT](../../configure-and-manage/configure/consensus-protocols/qbft.md)
+* [Raft](../../configure-and-manage/configure/consensus-protocols/raft.md)
+* [Clique](../../configure-and-manage/configure/consensus-protocols/clique.md).
 
 !!! warning
 

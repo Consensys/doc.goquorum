@@ -8,7 +8,6 @@ description: GoQuorum deployment Kubernetes
 manifests and Helm charts that can be customised and deployed on a local cluster or in the cloud.
 
 !!! important
-
     We recommend starting with the [playground] directory and working through the example setups before
     moving to the [dev] directory, and finally to the [prod] directory.
 

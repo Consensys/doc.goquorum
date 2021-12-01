@@ -5,17 +5,16 @@ description: Configuring IBFT consensus
 # Configuring IBFT consensus
 
 GoQuorum implements the [IBFT](https://medium.com/getamis/istanbul-bft-ibft-c2758b7fe6ff) Proof-of-Authority (PoA) consensus protocol.
-You can [create a private network using IBFT](../../../Tutorials/Private-Network/Create-IBFT-Network.md).
+You can [create a private network using IBFT](../../../tutorials/private-network/create-ibft-network.md).
 
 In IBFT networks, approved accounts known as validators validate transactions and blocks.
 Validators take turns to create the next block.
 Before inserting a block onto the chain, a super-majority (greater than 66%) of validators must first sign the block.
 
-Existing validators propose and vote to [add or remove validators](../../../Tutorials/Private-Network/Adding-removing-IBFT-validators.md).
+Existing validators propose and vote to [add or remove validators](../../../tutorials/private-network/adding-removing-ibft-validators.md).
 Adding or removing a validator requires a majority vote (greater than 50%) of validators.
 
 !!! important
-
     Configure your network to ensure you never lose 1/3 or more of your validators.
     If more than 1/3 of validators stop participating, new blocks are no longer created, and the network stalls.
     It may take significant time to recover once nodes are restarted.
@@ -34,7 +33,7 @@ failing or propagating incorrect information to peers.
 
 ## Genesis file
 
-To use IBFT, GoQuorum requires a [genesis file](../GenesisOptions.md).
+To use IBFT, GoQuorum requires a [genesis file](../genesis-file/genesis-options.md).
 The genesis file defines properties specific to IBFT and to your specific network.
 
 !!! example "Example IBFT genesis file"
@@ -91,14 +90,14 @@ Setting the block time determines how quickly blocks should be minted by the val
 The default is 1 second.
 
 You can set the block time on each GoQuorum node with the
-[`istanbul.blockperiod`](../../../Reference/CLI-Syntax.md#istanbulblockperiod) option:
+[`istanbul.blockperiod`](../../../reference/cli-syntax.md#istanbulblockperiod) option:
 
 ```bash
 --istanbul.blockperiod <INTEGER>
 ```
 
 You can also set a `requesttimeout` by using the
-[`istanbul.requesttimeout`](../../../Reference/CLI-Syntax.md#istanbulrequesttimeout) option:
+[`istanbul.requesttimeout`](../../../reference/cli-syntax.md#istanbulrequesttimeout) option:
 
 ```bash
 --istanbul.requesttimeout <INTEGER>

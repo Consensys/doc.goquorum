@@ -11,3 +11,5 @@ common/
 docker-compose.dev.yml
 .env.dev
 __pycache__
+/.run/
+*.log

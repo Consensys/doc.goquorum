@@ -6,10 +6,9 @@ description: Helps to generate local GoQuorum and Ethereum blockchain networks.
 # Use Quorum Developer Quickstart
 
 The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private
-[IBFT](../../HowTo/Configure/Consensus-Protocols/IBFT.md) network of GoQuorum nodes managed by Docker Compose.
+[IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md) network of GoQuorum nodes managed by Docker Compose.
 
 !!! important
-
     This tutorial runs a private network suitable for education or demonstration purposes
     and is not intended for running production networks.
 
@@ -22,7 +21,6 @@ The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private
 * [MetaMask](https://metamask.io/)
 
 !!! important
-
     Allow Docker up to 4G of memory or 6G if running the privacy examples.
     Refer to the **Resources** section in [Docker for Mac](https://docs.docker.com/docker-for-mac/) and
     [Docker Desktop](https://docs.docker.com/docker-for-windows/) for details.
@@ -35,9 +33,9 @@ To create the tutorial `docker-compose` files and artifacts, run:
 npx quorum-dev-quickstart
 ```
 
-Follow the prompts displayed to run GoQuorum and [logging with ELK](../../HowTo/Monitor/Elastic-Stack.md).
+Follow the prompts displayed to run GoQuorum and [logging with ELK](../../configure-and-manage/monitor/elastic-stack.md).
 Enter `n` for [Codefi Orchestrate](https://docs.orchestrate.consensys.net/en/stable/) and `y` for
-[private transactions](../../Concepts/Privacy/Privacy.md).
+[private transactions](../../concepts/privacy/privacy.md).
 
 ## Start the network
 
@@ -80,11 +78,11 @@ When execution is successfully finished, the process lists the available service
   dapp.
 * Use the [**Web block explorer address**](http://localhost:25000) to display the block explorer web application.
 * Use the [**Prometheus address**](http://localhost:9090/graph) to access the Prometheus dashboard
-    and [monitor nodes and view metrics](../../HowTo/Monitor/Metrics.md).
+    and [monitor nodes and view metrics](../../configure-and-manage/monitor/metrics.md).
 * Use the [**Grafana address**](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All)
-    to access the Grafana dashboard to [monitor nodes and view metrics](../../HowTo/Monitor/Metrics.md).
+    to access the Grafana dashboard to [monitor nodes and view metrics](../../configure-and-manage/monitor/metrics.md).
 * Use the [**Kibana logs address**](http://localhost:5601/app/kibana#/discover) to
-  [access and manage logs in Kibana](../../HowTo/Monitor/Elastic-Stack.md).
+  [access and manage logs in Kibana](../../configure-and-manage/monitor/elastic-stack.md).
 
 To display the list of endpoints again, run:
 
@@ -144,7 +142,7 @@ You can directly access these tools from your browser at the addresses displayed
 * [Grafana dashboard](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All).
 
 For more details on how to configure and use these tools for your own nodes, see our
-[performances monitoring documentation](../../HowTo/Monitor/Metrics.md),
+[performances monitoring documentation](../../configure-and-manage/monitor/metrics.md),
 the [Prometheus documentation](https://prometheus.io/docs/introduction/overview/)
 and [Grafana documentation](https://grafana.com/docs/).
 
@@ -206,7 +204,7 @@ Poll the peer count using `net_peerCount`:
 curl -X POST --data '{"jsonrpc":"2.0","method":"net_peerCount","params":[],"id":1}' -H 'Content-Type: application/json'  http://localhost:8545
 ```
 
-The result indicates that there are seven peers (our validators):
+The result indicates seven peers (our validators):
 
 ```json
 {
@@ -325,7 +323,6 @@ To view the private transaction, run the following command in one of the termina
     ```
 
 !!! note
-
     The `v` field value of `"0x25"` or `"0x26"` (37 or 38 in decimal) indicates this transaction has a private payload (input).
 
 ### Read the contract with `get()`
@@ -426,15 +423,15 @@ private contracts.
 
 ## Use Remix
 
-You can connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](./Remix.md).
-Follow the instructions for activating the remix plugin in [Getting Started](Remix.md),
+You can connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](remix.md).
+Follow the instructions for activating the remix plugin in [Getting Started](remix.md),
 using the GoQuorum and Tessera URLs in the [Private transactions](#private-transactions) section.
 
 ## Use Cakeshop
 
-[Cakeshop](../../HowTo/Monitor/Cakeshop.md) allows you to perform transactions directly using the UI.
+[Cakeshop](../../configure-and-manage/monitor/cakeshop.md) allows you to perform transactions directly using the UI.
 
-1. Open <http://localhost:8999> in your browser.
+1. Open [`http://localhost:8999`](http://localhost:8999) in your browser.
 1. Select the **Contracts** tab and **Deploy** the contract registry.
 1. Go to the **Sandbox**, select the `SimpleStorage` sample contract from the Contract Library, and deploy with
    `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`).
@@ -464,7 +461,6 @@ The new test account displays with a zero balance.
 from the first test account (containing test Ether) to the new test account (which has a zero balance).
 
 !!! tip
-
     You can use a zero gas price here as this private test network is a free gas network, but the maximum amount of
     gas that can be used (the gas limit) for a value transaction must be at least 21000.
 
@@ -741,7 +737,6 @@ Add an entry for the new node into the docker-compose file:
 ```
 
 !!! important
-
     Select an IP address and port map that aren't being used for the other containers. Additionally mount the newly created
     folder `./config/nodes/newnode` to the `/config/keys` directory of the new node.
 
@@ -750,7 +745,7 @@ Add an entry for the new node into the docker-compose file:
 Add the new node's enode address to the [static nodes] file and [permissions file].
 
 The enode uses the format `enode://pubkey@ip_address:30303?discport=0&raftport=53000`. where raftport is only required for
-the [Raft](../../HowTo/Configure/Consensus-Protocols/Raft.md) consensus algorithm
+the [Raft](../../configure-and-manage/configure/consensus-protocols/raft.md) consensus algorithm
 
 If the `nodekey.pub` is `4540ea...9c1d78` and the IP address is `172.16.239.41`, then the enode
 address would be `"enode://4540ea...9c1d78@172.16.239.41:30303?discport=0&raftport=53000"`,
@@ -767,6 +762,6 @@ When using the smart contract you can either make changes
 via a [dapp](https://github.com/ConsenSys/permissioning-smart-contracts) or via RPC
 [API](https://docs.goquorum.consensys.net/en/latest/Reference/API-Methods/#permission-methods) calls.
 
-[bootnodes]: ../CreatePermissionedNetwork.md#2-setup-bootnode
+[bootnodes]: ../create-permissioned-network.md#2-setup-bootnode
 [permissions file]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/permissioned-nodes.json
 [static nodes]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/static-nodes.json

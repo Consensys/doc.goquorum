@@ -4,12 +4,12 @@ description: Using enhanced smart contract based permissioning
 
 # Using enhanced permissioning
 
-Managing the [enhanced permissioning model](../../Concepts/PermissionsOverview.md#enhanced-network-permissioning)
+Managing the [enhanced permissioning model](../../concepts/permissions-overview.md#enhanced-network-permissioning)
 can be broadly categorized into the following activities:
 
 ## Setting up the initial network
 
-Please refer to the [configuration instructions](../Configure/Permissioning/EnhancedPermissions.md) for detailed information.
+Please refer to the [configuration instructions](../configure/permissioning/enhanced-permissions.md) for detailed information.
 For an existing network running with an older version of GoQuorum:
 
 1. Upgrade GoQuorum to the latest version.
@@ -38,7 +38,7 @@ As part of network initialization:
 ### Example
 
 This example assumes that the network was started with the `permission-config.json` given in the
-[configuration instructions](../Configure/Permissioning/EnhancedPermissions.md), and that the network was brought up with the
+[configuration instructions](../configure/permissioning/enhanced-permissions.md), and that the network was brought up with the
 `static-nodes.json` file as the following:
 
 ```json
@@ -132,9 +132,9 @@ Once the network is up, the network admin accounts can then propose a new organi
 
 Majority approval from the network admin accounts is required before an organization is approved.
 
-The APIs for [proposing](../../Reference/API-Methods.md#quorumpermission_addorg) and
-[approving](../../Reference/API-Methods.md#quorumpermission_approveorg) an organization are documented in
-[permission APIs](../../Reference/API-Methods.md#permission-methods).
+The APIs for [proposing](../../reference/api-methods.md#quorumpermission_addorg) and
+[approving](../../reference/api-methods.md#quorumpermission_approveorg) an organization are documented in
+[permission APIs](../../reference/api-methods.md#permission-methods).
 
 ### Example
 
@@ -279,7 +279,7 @@ Once the organization is approved and the node of the organization has joined th
 
 * Change roles of existing organization-level accounts.
 
-Use [`quorumPermission_addSubOrg`](../../Reference/API-Methods.md#quorumpermission_addsuborg) to add a sub-organization
+Use [`quorumPermission_addSubOrg`](../../reference/api-methods.md#quorumpermission_addsuborg) to add a sub-organization
 at the `ORG1` level.
 
 ### Example
@@ -325,7 +325,7 @@ The enode ID is not mandatory for adding a sub-organization.
 
 If the organization admin wants to add an admin account for the newly created sub-organization, the organization admin
 account must first create a role using
-[`quorumPermission_addNewRole`](../../Reference/API-Methods.md#quorumpermission_addnewrole) with `isAdminRole` set to
+[`quorumPermission_addNewRole`](../../reference/api-methods.md#quorumpermission_addnewrole) with `isAdminRole` set to
 `true`, then assign this role to the account which belongs to the sub-organization.
 
 Once assigned, the account will act as organization admin at the sub-organization level.
@@ -462,7 +462,7 @@ View `SUB1`'s role list:
     However, the admin account at the sub-organization level has control only in its sub-organization.
 
 To add an account to an organization, use
-[`quorumPermission_addAccountToOrg`](../../Reference/API-Methods.md#quorumpermission_addaccounttoorg):
+[`quorumPermission_addAccountToOrg`](../../reference/api-methods.md#quorumpermission_addaccounttoorg):
 
 === "geth console request"
 
@@ -502,7 +502,7 @@ View the organization's account list:
     ```
 
 To suspend an account, use
-[`quorumPermission_updateAccountStatus`](../../Reference/API-Methods.md#quorumpermission_updateaccountstatus) with
+[`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus) with
 `action` set to 1:
 
 === "geth console request"
@@ -544,7 +544,7 @@ View the account's updated status in the organization's account list:
     ```
 
 To revoke suspension of an account, use
-[`quorumPermission_updateAccountStatus`](../../Reference/API-Methods.md#quorumpermission_updateaccountstatus)
+[`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus)
 with `action` set to 2:
 
 === "geth console request"
@@ -586,7 +586,7 @@ View the account's updated status in the organization's account list:
     ```
 
 To exclude an account, use
-[`quorumPermission_updateAccountStatus`](../../Reference/API-Methods.md#quorumpermission_updateaccountstatus) with
+[`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus) with
 `action` set to 3:
 
 === "geth console request"
@@ -629,7 +629,7 @@ View the account's updated status in the organization's account list:
     ```
 
 To add nodes at the organization and sub-organization level, use
-[`quorumPermission_addNode`](../../Reference/API-Methods.md#quorumpermission_addnode):
+[`quorumPermission_addNode`](../../reference/api-methods.md#quorumpermission_addnode):
 
 === "geth console request"
 
@@ -666,7 +666,7 @@ View the organization's updated node list:
     ```
 
 To manage the status of the nodes, use
-[`quorumPermission_updateNodeStatus`](../../Reference/API-Methods.md#quorumpermission_updatenodestatus).
+[`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus).
 To deactivate a node, call the method with `action` set to 1:
 
 === "geth console request"
@@ -690,7 +690,7 @@ To deactivate a node, call the method with `action` set to 1:
     ```
 
 To re-activate a node, use
-[`quorumPermission_updateNodeStatus`](../../Reference/API-Methods.md#quorumpermission_updatenodestatus) with `action`
+[`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus) with `action`
 set to 2:
 
 === "geth console request"
@@ -728,7 +728,7 @@ View the node's updated status in the organization's node list:
     ```
 
 To exclude a node, use
-[`quorumPermission_updateNodeStatus`](../../Reference/API-Methods.md#quorumpermission_updatenodestatus) with `action`
+[`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus) with `action`
 set to 3:
 
 === "geth console request"
@@ -766,7 +766,7 @@ Once excluded, a node can't re-join a network.
 ## Suspending an organization temporarily
 
 If you need to temporarily suspend all activities of an organization, use
-[`quorumPermission_updateOrgStatus`](../../Reference/API-Methods.md#quorumpermission_updateorgstatus) with
+[`quorumPermission_updateOrgStatus`](../../reference/api-methods.md#quorumpermission_updateorgstatus) with
 `action` set to `. This can be invoked only by network admin accounts and requires majority approval.
 
 ### Example
@@ -808,7 +808,7 @@ View the organization's updated status in the organization list:
     ```
 
 Suspending an organization requires majority approval from other network admin accounts, using
-[`quorumPermission_approveOrgStatus`](../../Reference/API-Methods.md#quorumpermission_approveorgstatus).
+[`quorumPermission_approveOrgStatus`](../../reference/api-methods.md#quorumpermission_approveorgstatus).
 Once approved the organization status is marked as `Suspended`.
 
 === "geth console request"
@@ -852,7 +852,7 @@ However, the nodes linked to the organization are active and are syncing with th
 ## Revoking suspension of an organization
 
 To revoke the suspension of an organization, use
-[`quorumPermission_updateOrgStatus`](../../Reference/API-Methods.md#quorumpermission_updateorgstatus) with `action` set
+[`quorumPermission_updateOrgStatus`](../../reference/api-methods.md#quorumpermission_updateorgstatus) with `action` set
 to 2.
 
 ### Example
@@ -872,7 +872,7 @@ Revoke the suspension of `ORG1` with the following command:
     ```
 
 Revoking an organization's suspension requires majority approval using
-[`quorumPermission_approveOrgStatus`](../../Reference/API-Methods.md#quorumpermission_approveorgstatus) with `action`
+[`quorumPermission_approveOrgStatus`](../../reference/api-methods.md#quorumpermission_approveorgstatus) with `action`
 set to 2:
 
 === "geth console request"
@@ -923,7 +923,7 @@ majority approval from the network admin accounts.
 ### Example
 
 To assign a network admin or organization admin role to an account, use
-[`quorumPermission_assignAdminRole`](../../Reference/API-Methods.md#quorumpermission_assignadminrole):
+[`quorumPermission_assignAdminRole`](../../reference/api-methods.md#quorumpermission_assignadminrole):
 
 === "geth console request"
 
@@ -958,7 +958,7 @@ View the account's updated role in the account list:
     ```
 
 To approve the assignment of a network admin role, use
-[`quorumPermission_approveAdminRole`](../../Reference/API-Methods.md#quorumpermission_approveadminrole):
+[`quorumPermission_approveAdminRole`](../../reference/api-methods.md#quorumpermission_approveadminrole):
 
 === "geth console request"
 

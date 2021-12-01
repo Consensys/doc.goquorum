@@ -24,7 +24,7 @@ private contracts on a GoQuorum network.
     ![quorum_tab](../../images/remix/tab_icon.png)
 
 1. Input the geth RPC URL and hit enter.
-   If you are currently running the `quorum-examples` 7nodes network, the first node's URL is <http://localhost:20000>.
+   If you are currently running the `quorum-examples` 7nodes network, the first node's URL is [`http://localhost:20000`](http://localhost:20000).
 
     ![geth_rpc](../../images/remix/geth_rpc.png)
 
@@ -70,4 +70,4 @@ If you have any feedback or questions, please open a GitHub issue or reach out o
 
 The GoQuorum plugin for Remix is open source and you can contribute enhancements.
 Upon review of your changes you're required to complete a Contributor License Agreement (CLA) before merging.
-If you have any questions about the contribution process, please email <mailto:quorum@consensys.net>.
+If you have any questions about the contribution process, please [email the Quorum team](mailto:quorum@consensys.net).

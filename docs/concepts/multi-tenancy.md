@@ -4,7 +4,7 @@ In a typical GoQuorum network, each participant (tenant) uses its own GoQuorum a
 Tessera can be configured to manage multiple key pairs owned by one tenant.
 This model is costly to run and scale as more tenants join the network.
 
-[Use multi-tenancy via multiple private states (MPS)](../HowTo/Use/Multitenancy/Multitenancy.md) to allow multiple
+[Use multi-tenancy via multiple private states (MPS)](../configure-and-manage/manage/multi-tenancy/multi-tenancy.md) to allow multiple
 tenants to use the same GoQuorum node, with each tenant having its own private state(s).
 Each tenant can perform all operations (create, read, and write) on any contract in its private state, and a single
 tenant can have access to [multiple private states](#multiple-private-states).
@@ -22,7 +22,7 @@ Each user in an organization owns one or more privacy manager key pairs that all
 organization's private state.
 A network operator administers entitlements and private state access for each organization using the authorization server.
 
-[JSON-RPC security](../HowTo/Use/JSON-RPC-API-Security.md) features are used to manage a user's access to a private state.
+[JSON-RPC security](../develop/json-rpc-apis.md) features are used to manage a user's access to a private state.
 The [authorization server](#enterprise-authorization-server) controls this access.
 
 ## Network topology
@@ -39,14 +39,14 @@ The authorization server can grant private state access to clients via a [privat
 
 ### Access token scope
 
-The [JSON-RPC security plugin](../HowTo/Use/JSON-RPC-API-Security.md) enables the `geth` JSON-RPC API server to be an
+The [JSON-RPC security plugin](../develop/json-rpc-apis.md) enables the `geth` JSON-RPC API server to be an
 OAuth2-compliant resource server.
 A client must first obtain a pre-authenticated access token from an authorization server, then present the access token
 (using an `Authorization` HTTP request header) when calling an API.
 Calls to the GoQuorum API without an authenticated token are rejected.
 
 The value of the scope encoded in an access token (in case of JWT), or Introspection response (in the case of the OAuth2
-Token Introspection API) contains the [RPC scope](../Reference/Plugins/Security.md#oauth2-scopes) and tenant scope,
+Token Introspection API) contains the [RPC scope](../reference/plugins/security.md#oauth2-scopes) and tenant scope,
 which has the following URL-based syntax:
 
 ```text
@@ -72,7 +72,7 @@ Multiple private states (MPS) is a feature that allows a GoQuorum node to manage
 This functionality lays the foundation for multi-tenancy.
 
 If running GoQuorum version `21.4.1` or earlier or Tessera version `21.1.1` or earlier, [upgrade your existing nodes to
-enable MPS](../HowTo/Use/Multitenancy/Migration.md).
+enable MPS](../configure-and-manage/manage/multi-tenancy/migration.md).
 
 ### Private state identifier
 
@@ -99,7 +99,7 @@ From the token, the private state manager derives the private state the user is 
 
 ### Tessera resident groups
 
-MPS uses [Tessera resident groups](https://docs.tessera.consensys.net/en/stable/Concepts/Privacy-Groups/) to map tenants
+MPS uses [Tessera resident groups]({{ extra.othersites.tessera }}/Concepts/Privacy-Groups/) to map tenants
 to private states.
 During Tessera startup, `residentGroups` are validated to check each Tessera key is part of a single resident group.
 Every Tessera key must be in a resident group for Tessera to start.

@@ -10,10 +10,10 @@ In the basic network permissioning model, you can control:
 * The nodes that a particular GoQuorum node can connect to.
 * The nodes that a particular GoQuorum node can receive connections from.
 
-It is managed at the individual node level by providing the [`--permissioned`](../Reference/CLI-Syntax.md#permissioned)
+It is managed at the individual node level by providing the [`--permissioned`](../reference/cli-syntax.md#permissioned)
 command line option when starting the node.
 
-You can [configure basic network permissioning](../HowTo/Configure/Permissioning/BasicPermissions.md).
+You can [configure basic network permissioning](../configure-and-manage/configure/permissioning/basic-permissions.md).
 
 ## Enhanced network permissioning
 
@@ -26,7 +26,7 @@ Two versions of enhanced network permissioning are available:
 * Version 2 - The permissioning rules are applied both at the time of transaction entry and block minting with respect to
   the data stored in the permissioning contracts.
 
-You can configure [enhanced network permissioning](../HowTo/Configure/Permissioning/EnhancedPermissions.md).
+You can configure [enhanced network permissioning](../configure-and-manage/manage/enhanced-permissions.md).
 
 ### Key definitions
 

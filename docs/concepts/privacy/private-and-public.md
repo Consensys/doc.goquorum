@@ -9,7 +9,7 @@ GoQuorum achieves transaction privacy by:
 - Enabling transaction senders to create private transactions by marking who is privy to a transaction via the
   `privateFor` parameter.
 - Storing encrypted private data off-chain in a separate component called the
-  [private transaction manager](Privacy.md#private-transaction-manager).
+  [private transaction manager](privacy.md#private-transaction-manager).
   The private transaction manager encrypts private data, distributes the encrypted data to other parties that are privy
   to the transaction, and returns the decrypted payload to those parties.
 - Replacing the payload of a private transaction with a key for the location of the encrypted payload, such that the
@@ -54,10 +54,10 @@ transaction signature to `37` or `38` (as opposed to public transactions, whose 
     - There's no direct restriction on private transaction size.
       As with public transactions, the only restriction is the gas limit.
 
-See the [private transaction high-level lifecycle](PrivateTransactionLifecycle.md#normal-private-transactions).
+See the [private transaction high-level lifecycle](private-transaction-lifecycle.md#normal-private-transactions).
 
-You can enable private transactions by [configuring the private transaction manager connection](../../HowTo/Configure/ConfigurePTM.md),
-and you can [send private transactions](../../Tutorials/Send-private-transaction.md).
+You can enable private transactions by [configuring the private transaction manager connection](../../configure-and-manage/configure/private-transaction-manager.md),
+and you can [send private transactions](../../tutorials/send-private-transaction.md).
 
 ## Public vs. private transaction handling
 
@@ -78,7 +78,7 @@ databases update accordingly.
 
 !!! note
 
-    See the [private transaction high-level lifecycle](PrivateTransactionLifecycle.md#normal-private-transactions) for an
+    See the [private transaction high-level lifecycle](private-transaction-lifecycle.md#normal-private-transactions) for an
     illustrated example.
 
 As a result, these two sets of participants end up with different state databases and can't reach consensus.
@@ -96,7 +96,7 @@ Synchronization of the public state root and private transaction inputs (through
 synchronization of the private state across participating nodes.
 
 To further validate that the private state change from a private transaction is the same across all participants, use
-[`eth_storageRoot`](../../Reference/API-Methods.md#eth_storageroot) specifying the private smart contract address and
+[`eth_storageRoot`](../../reference/api-methods.md#eth_storageroot) specifying the private smart contract address and
 block height.
 If the state is in sync across all participating nodes, they return the same root hash.
 

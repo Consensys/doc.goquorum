@@ -1,7 +1,7 @@
 # Configure the private transaction manager
 
 You can configure a connection to the
-[private transaction manager](../../Concepts/Privacy/Privacy.md#private-transaction-manager) and enable private
+[private transaction manager](../../concepts/privacy/privacy.md#private-transaction-manager) and enable private
 transactions using any of the following methods.
 
 * [Direct IPC connection configuration](#direct-ipc-connection-configuration)
@@ -9,7 +9,6 @@ transactions using any of the following methods.
 * [Using command line options](#using-command-line-options)
 
 !!! note
-
     To run a GoQuorum node without a private transaction manager, set the `PRIVATE_CONFIG` environment variable to `ignore`.
     Ensure there is no transaction manager running for the node.
     The node won't broadcast matching private keys and won't be able to participate in any private transactions.
@@ -43,7 +42,6 @@ The configuration file can specify:
 ### IPC socket connection
 
 !!! note
-
     A configuration file is only necessary for an IPC socket connection if you need to change the timeout values from their
     default values.
     Otherwise, [direct IPC connection configuration](#direct-ipc-connection-configuration) is simpler.
@@ -71,7 +69,6 @@ An IPC socket configuration file has the following parameters.
 ### HTTP connection
 
 !!! warning
-
     This should only be used for development purposes, due to a lack of security on the connection.
     For production environments, you should enable TLS on the connection.
 
@@ -133,13 +130,13 @@ An HTTP configuration file using TLS has the following parameters.
 
 ## Using command line options
 
-Use [`--ptm.*` command line options](../../Reference/CLI-Syntax.md#ptmdialtimeout) to specify the private
+Use [`--ptm.*` command line options](../../reference/cli-syntax.md#ptmdialtimeout) to specify the private
 transaction manager connection.
 These can be used in conjunction with the previous methods, in which case the command line options override any others.
 
 ### IPC socket connection
 
-Specify the path to the IPC socket file using [`--ptm.socket`](../../Reference/CLI-Syntax.md#ptmsocket).
+Specify the path to the IPC socket file using [`--ptm.socket`](../../reference/cli-syntax.md#ptmsocket).
 
 !!! example "Example IPC connection"
 
@@ -150,11 +147,10 @@ Specify the path to the IPC socket file using [`--ptm.socket`](../../Reference/C
 ### HTTP connection
 
 !!! warning
-
     This should only be used for development purposes, due to a lack of security on the connection.
     For production environments, you should enable TLS on the connection.
 
-Specify the HTTP URL of the private transaction manager connection using [`--ptm.url`](../../Reference/CLI-Syntax.md#ptmurl).
+Specify the HTTP URL of the private transaction manager connection using [`--ptm.url`](../../reference/cli-syntax.md#ptmurl).
 
 !!! example "Example HTTP connection"
 
@@ -166,11 +162,11 @@ Specify the HTTP URL of the private transaction manager connection using [`--ptm
 
 HTTP using TLS requires:
 
-* Specifying an `https` URL using [`--ptm.url`](../../Reference/CLI-Syntax.md#ptmurl).
-* Setting the TLS mode to `strict` using [`--ptm.tls.mode`](../../Reference/CLI-Syntax.md#ptmtlsmode).
-* Specifying relevant certificates using [`--ptm.tls.rootca`](../../Reference/CLI-Syntax.md#ptmtlsrootca),
-  [`--ptm.tls.clientcert`](../../Reference/CLI-Syntax.md#ptmtlsclientcert), and
-  [`--ptm.tls.clientkey`](../../Reference/CLI-Syntax.md#ptmtlsclientkey).
+* Specifying an `https` URL using [`--ptm.url`](../../reference/cli-syntax.md#ptmurl).
+* Setting the TLS mode to `strict` using [`--ptm.tls.mode`](../../reference/cli-syntax.md#ptmtlsmode).
+* Specifying relevant certificates using [`--ptm.tls.rootca`](../../reference/cli-syntax.md#ptmtlsrootca),
+  [`--ptm.tls.clientcert`](../../reference/cli-syntax.md#ptmtlsclientcert), and
+  [`--ptm.tls.clientkey`](../../reference/cli-syntax.md#ptmtlsclientkey).
 
 !!! example "Example TLS connection"
 

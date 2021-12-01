@@ -15,21 +15,21 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 
 ## Prerequisites
 
-- [GoQuorum installed](../../Deployment/Binaries.md)
-- [Tessera](https://docs.tessera.consensys.net)
-- [A running network](../../Tutorials/Private-Network/Create-IBFT-Network.md)
+- [GoQuorum installed](../../deploy/install/binaries.md)
+- [Tessera]({{ extra.othersites.tessera }})
+- [A running network](../../tutorials/private-network/create-ibft-network.md)
 
 ## Adding GoQuorum nodes
 
 ### Raft
 
-Use the following API methods on an existing node to add, remove, and promote nodes in a [Raft](../Configure/Consensus-Protocols/Raft.md)
+Use the following API methods on an existing node to add, remove, and promote nodes in a [Raft](../configure/consensus-protocols/raft.md)
 network:
 
-- [raft_addPeer](../../Reference/API-Methods.md#raft_addpeer) to add a verifier node
-- [raft_addLearner](../../Reference/API-Methods.md#raft_addlearner) to add a learner node
-- [raft_promoteToPeer](../../Reference/API-Methods.md#raft_promotetopeer) to promote a learner to a verifier
-- [raft_removePeer](../../Reference/API-Methods.md#raft_removepeer) to remove a node
+- [raft_addPeer](../../reference/api-methods.md#raft_addpeer) to add a verifier node
+- [raft_addLearner](../../reference/api-methods.md#raft_addlearner) to add a learner node
+- [raft_promoteToPeer](../../reference/api-methods.md#raft_promotetopeer) to promote a learner to a verifier
+- [raft_removePeer](../../reference/api-methods.md#raft_removepeer) to remove a node
 
 If you are using permissioning or peer-to-peer discovery, see the [extra options](#extra-options).
 
@@ -42,12 +42,11 @@ After `addPeer` or `addLearner`:
     ```
 
     !!! note
-
         Where you get the genesis file is dependent on the network.
         You may get it from an existing peer, a network operator, or somewhere else.
 
-1. Start the new GoQuorum node with the [`--raftjoinexisting`](../../Reference/CLI-Syntax.md#raftjoinexisting) and
-   [`--raft`](../../Reference/CLI-Syntax.md#raft) command line options.
+1. Start the new GoQuorum node with the [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting) and
+   [`--raft`](../../reference/cli-syntax.md#raft) command line options.
    Use the Raft ID returned by `addPeer` or `addLearner` as the argument for `--raftjoinexisting`.
 
     !!! example
@@ -60,14 +59,13 @@ After `addPeer` or `addLearner`:
     completed, it can send new transactions just as any other peer.
 
 !!! important
-
     For a Raft network to work, 51% of the peers must be up and running.
     We recommend having an odd number of at least 3 peers in a network.
 
 ### IBFT, QBFT, and Clique
 
-Adding a non-validator node to an [IBFT](../Configure/Consensus-Protocols/IBFT.md),
-[QBFT](../Configure/Consensus-Protocols/QBFT.md), or [Clique](../Configure/Consensus-Protocols/Clique.md) network is
+Adding a non-validator node to an [IBFT](../configure/consensus-protocols/ibft.md),
+[QBFT](../configure/consensus-protocols/qbft.md), or [Clique](../configure/consensus-protocols/clique.md) network is
 simpler than adding a node to a Raft network, as it only needs to configure itself rather than be pre-allocated on the
 network (permissioning aside).
 
@@ -88,8 +86,8 @@ network (permissioning aside).
     Once a connection is established, the node will start syncing the blockchain, after which transactions can be sent.
 
 Adding a validator to an IBFT or QBFT network requires using the consensus APIs outlined in the
-[IBFT tutorial](../../Tutorials/Private-Network/Adding-removing-IBFT-validators.md) and the
-[QBFT tutorial](../../Tutorials/Private-Network/Adding-removing-QBFT-validators.md).
+[IBFT tutorial](../../tutorials/private-network/adding-removing-ibft-validators.md) and the
+[QBFT tutorial](../../tutorials/private-network/adding-removing-qbft-validators.md).
 
 !!! info
 
@@ -102,7 +100,7 @@ Some options take effect regardless of the consensus mechanism used.
 
 #### Permissioned nodes
 
-If you have [permissioning configured](../Configure/Permissioning/BasicPermissions.md) using the
+If you have [permissioning configured](../configure/permissioning/basic-permissions.md) using the
 `permissioned-nodes.json` file, make sure this file is updated on all nodes before the new node is able to communicate
 with existing nodes.
 
@@ -113,7 +111,7 @@ You don't need to restart any nodes for the changes to take effect.
 If not using peer-to-peer node discovery (for example, you specify `--nodiscover`), then the node only makes connections
 to peers defined in the `static-nodes.json` file.
 
-When adding a new node, [configure static peers](../Configure/StaticNodes.md) in its `static-nodes.json` file.
+When adding a new node, [configure static peers](../configure/static-nodes.md) in its `static-nodes.json` file.
 
 The more peers defined here, the better the network connectivity and fault tolerance.
 
@@ -130,7 +128,7 @@ If using discovery, more options in addition to static nodes become available.
 - Any nodes connected to your peers, which at the start are your [static peers](#static-node-connections), are
   discoverable by you; you connect to these nodes automatically.
 
-- You may [specify bootnodes](../Configure/Bootnodes.md) using the `--bootnodes` parameter.
+- You may [specify bootnodes](../configure/bootnodes.md) using the `--bootnodes` parameter.
   This takes a comma-separated list of enode URLs, similar to the `static-nodes.json` file.
   These act in the same way as static nodes, letting you connect to them and find out about other peers, who you then
   connect to.
@@ -166,7 +164,7 @@ From there, Tessera connects to that peer and discovers and connects to all the 
 
 Tessera IP allowlisting (whitelisting) restricts connections in a way similar to using `permissioned-nodes.json` in GoQuorum.
 
-If [allowlisting is configured](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Peer-discovery/), only IP
+If [allowlisting is configured]({{ extra.othersites.tessera }}/HowTo/Configure/Peer-discovery/), only IP
 addresses/hostnames in your Tessera peer list can connect to you.
 
 To add a new Tessera node with allowlisting enabled:
@@ -203,7 +201,7 @@ To add a new Tessera node with allowlisting enabled:
 
 ### Discovery
 
-You can [disable Tessera discovery](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Peer-discovery/#disable-peer-discovery)
+You can [disable Tessera discovery]({{ extra.othersites.tessera }}/HowTo/Configure/Peer-discovery/#disable-peer-discovery)
 to have Tessera only allow keys that are owned by a node in its peer list to be available to the users.
 
 This means that if Tessera finds any keys owned by a node not in its peer list, those keys are discarded and

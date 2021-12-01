@@ -4,7 +4,7 @@ description: GoQuorum and Tessera deployment via binaries
 
 # Install binaries
 
-You can install and use GoQuorum and [Tessera](https://docs.tessera.consensys.net) using Docker containers, building
+You can install and use GoQuorum and [Tessera]({{ extra.othersites.tessera }}) using Docker containers, building
 from source, or by downloading pre-built release binaries.
 
 ## Release binaries
@@ -21,8 +21,7 @@ Once downloaded, add the binaries to the `PATH` environment variable to make the
 ### GoQuorum
 
 !!! note
-
-    We recommend installing from official [containers](./Docker-and-compose.md) or [release binaries](#as-release-binaries)
+    We recommend installing from official [containers](./docker-and-compose.md) or [release binaries](#release-binaries)
     rather than building from source. If you build from source, use Go version 1.15 or later.
 
 1. Clone the repository and build the source:
@@ -44,7 +43,6 @@ Once downloaded, add the binaries to the `PATH` environment variable to make the
     example `/usr/local/bin`.
 
     !!! tip
-
         An easy way to supplement `PATH` is to add `PATH=$PATH:/path/to/repository/build/bin` to your `~/.bashrc`
         or `~/.bash_aliases` file.
 

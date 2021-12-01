@@ -4,16 +4,16 @@ description: HelloWorld plugin tutorial
 
 # Use the `HelloWorld` plugin
 
-This tutorial shows you how to use the `HelloWorld` [plugin](../Concepts/Plugins.md), which exposes a JSON-RPC endpoint
+This tutorial shows you how to use the `HelloWorld` [plugin](../concepts/plugins.md), which exposes a JSON-RPC endpoint
 to return a greeting message in Spanish.
 
 The [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/helloworld.proto) is
 implemented in Go and Java.
-The plugin can [reload](../Concepts/Plugins.md#plugin-reloading) changes from its JSON configuration.
+The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from its JSON configuration.
 
 ## Prerequisites
 
-- [GoQuorum built from source](../Deployment/Binaries.md#goquorum)
+- [GoQuorum built from source](../deploy/install/binaries.md#goquorum)
 - [Gox](https://github.com/mitchellh/gox) installed
 
 ## Build the plugin distribution file

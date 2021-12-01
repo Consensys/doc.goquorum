@@ -5,25 +5,22 @@ description: Creating a network using QBFT consensus
 # Create a private network using the QBFT consensus protocol
 
 A private network provides a configurable network for testing.
-This tutorial walks you through creating an [QBFT](../../HowTo/Configure/Consensus-Protocols/QBFT.md) private network
+This tutorial walks you through creating an [QBFT](../../configure-and-manage/configure/consensus-protocols/qbft.md) private network
 with five nodes.
 
 !!! warning
-
     QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
 
 !!! important
-
     The steps in this tutorial create an isolated, but not protected or secure, Ethereum private network.
     We recommend running the private network behind a properly configured firewall.
 
 ## Prerequisites
 
-* [GoQuorum](../../Deployment/Binaries.md#as-release-binaries).
+* [GoQuorum](../../deploy/install/binaries.md#release-binaries).
   Ensure that `PATH` contains `geth` and `bootnode`.
 
 !!! tip
-
     GoQuorum is a fork of [geth](https://geth.ethereum.org/).
     GoQuorum uses the `geth` command to start GoQuorum nodes.
 
@@ -313,7 +310,7 @@ Use the JavaScript console to check the peer count:
 
 ### 11. List current validators
 
-Use [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbulgetvalidators) to view the validator addresses.
+Use [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators) to view the validator addresses.
 
 === "Command"
 
@@ -328,4 +325,4 @@ Use [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbulgetvalidat
 
 ### Next
 
-[Add and remove validators](Adding-removing-QBFT-validators.md).
+[Add and remove validators](adding-removing-qbft-validators.md).

@@ -10,11 +10,10 @@ When extending a contract state to a node, the contract state at the time of the
 This also means events are not shared, as the transactions are not shared and no state transitions are calculated.
 
 !!! note
-
-    [Mandatory recipients](PrivacyEnhancements.md#mandatory-party-protection) are defined at contract creation time and
+    [Mandatory recipients](privacy-enhancements.md#mandatory-party-protection) are defined at contract creation time and
     can't be updated. However, contracts containing mandatory recipients can be extended to other nodes in the network.
 
 ## Enhanced network permissioning
 
-If the network is running with [enhanced network permissioning](../PermissionsOverview.md#enhanced-network-permissioning),
+If the network is running with [enhanced network permissioning](../permissions-overview.md#enhanced-network-permissioning),
 only a network or organization administrator can initiate or accept a contract extension.

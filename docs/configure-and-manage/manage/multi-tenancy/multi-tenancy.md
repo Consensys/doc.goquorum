@@ -1,23 +1,23 @@
 # Using multi-tenancy via multiple private states
 
-Use [multi-tenancy via multiple private states (MPS)](../../../Concepts/Multitenancy.md) to allow multiple tenants to
+Use [multi-tenancy via multiple private states (MPS)](../../../concepts/multi-tenancy.md) to allow multiple tenants to
 use the same GoQuorum node, with each tenant having its own private state(s).
 
 ## Configure multi-tenancy via multiple private states
 
 ### Prerequisites
 
-- [Tessera](https://docs.tessera.consensys.net) version `21.4.0` or later installed
+- [Tessera]({{ extra.othersites.tessera }}) version `21.4.0` or later installed
 - GoQuorum version `21.4.2` or later installed
 
 !!! important
 
     If running an earlier GoQuorum or Tessera version, upgrade your existing nodes to enable MPS and multi-tenancy using
-    the [migration guide](Migration.md).
+    the [migration guide](migration.md).
 
 ### Steps
 
-1. Set `isMPS` to `true` in the `config` item of the [GoQuorum genesis file](../../Configure/GenesisOptions.md).
+1. Set `isMPS` to `true` in the `config` item of the [GoQuorum genesis file](../../configure/genesis-file/genesis-options.md).
 
     !!! example "MPS configuration"
 
@@ -35,11 +35,11 @@ use the same GoQuorum node, with each tenant having its own private state(s).
 
         There can be a mix of MPS-enabled and non-MPS-enabled nodes in a network.
 
-1. Configure the [JSON-RPC security plugin](../JSON-RPC-API-Security.md#configuration).
+1. Configure the [JSON-RPC security plugin](../json-rpc-api-security.md#configuration).
    This requires configuring an authorization server.
    View [examples of configuring the plugin to work with different OAuth2 authorization servers](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples).
 
-1. Set [`enableMultiplePrivateStates`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#multiple-private-states)
+1. Set [`enableMultiplePrivateStates`]({{ extra.othersites.tessera }}/HowTo/Configure/Multiple-private-state/#multiple-private-states)
    to `true` in the Tessera configuration file.
    The default is `false`.
 
@@ -50,17 +50,17 @@ use the same GoQuorum node, with each tenant having its own private state(s).
 
         GoQuorum runs as a non-MPS-enabled node if `isMPS` is `false` and `enableMultiplePrivateStates` is `true`.
 
-1. [Configure `residentGroups`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#resident-groups)
+1. [Configure `residentGroups`]({{ extra.othersites.tessera }}/HowTo/Configure/Multiple-private-state/#resident-groups)
    in the Tessera configuration file.
 
-1. Run GoQuorum with the [`--multitenancy`](../../../Reference/CLI-Syntax.md#multitenancy) command line option.
+1. Run GoQuorum with the [`--multitenancy`](../../../reference/cli-syntax.md#multitenancy) command line option.
 
     ```bash
     geth [OPTIONS] --multitenancy --plugins file:///<path>/<to>/plugins.json
     ```
 
-    In the command, `plugins.json` is the [plugin settings file](../../../DevelopingApplications/DevelopPlugins.md) that
-    contains the [JSON-RPC Security plugin definition](../../../DevelopingApplications/DevelopPlugins.md#plugindefinition).
+    In the command, `plugins.json` is the [plugin settings file](../../../develop/develop-plugins.md) that
+    contains the [JSON-RPC Security plugin definition](../../../develop/develop-plugins.md#plugindefinition).
 
     For example, if you use [quorum-security-plugin-enterprise](https://github.com/ConsenSys/quorum-security-plugin-enterprise),
     `plugins.json` looks like the following:
@@ -81,7 +81,7 @@ use the same GoQuorum node, with each tenant having its own private state(s).
 
 ## Configure custom scopes
 
-A network operator must configure [scope values](../../../Concepts/Multitenancy.md#access-token-scope) for each user in
+A network operator must configure [scope values](../../../concepts/multi-tenancy.md#access-token-scope) for each user in
 an authorization server, for each tenant.
 
 ### Example
@@ -114,7 +114,7 @@ security model may be as follows:
 
 Each authorization server has its own configuration steps and client onboarding process.
 A network operator's responsibility is to implement this security model in the authorization server by defining
-[custom scopes](../../../Concepts/Multitenancy.md#access-token-scope) and granting them to target clients.
+[custom scopes](../../../concepts/multi-tenancy.md#access-token-scope) and granting them to target clients.
 
 A custom scope representing `J Investment` is:
 
@@ -134,7 +134,7 @@ Clients must also be granted scopes which specify access to the JSON-RPC APIs:
 rpc://eth_*
 ```
 
-Refer to the [JSON-RPC security plugi documentation](../../../Reference/Plugins/Security.md#oauth2-scopes) for more information.
+Refer to the [JSON-RPC security plugi documentation](../../../reference/plugins/security.md#oauth2-scopes) for more information.
 
 ## Add a new tenant to multi-tenant node
 
@@ -142,7 +142,7 @@ Use the following steps to add a new tenant to a multi-tenant node:
 
 1. The network administrator executes Tessera keygen to generate a new key.
 
-1. Update the Tessera configuration file to include the new key in a [resident group](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#resident-groups).
+1. Update the Tessera configuration file to include the new key in a [resident group]({{ extra.othersites.tessera }}/HowTo/Configure/Multiple-private-state/#resident-groups).
 
 1. Restart Tessera to load the new key.
    Startup fails if the new key is generated but not added to a resident group.
@@ -152,5 +152,5 @@ Use the following steps to add a new tenant to a multi-tenant node:
 
 ## API methods
 
-Use the [`eth_getMPS`](../../../Reference/API-Methods.md#eth_getpsi) JSON-RPC API method to get the private state the
+Use the [`eth_getMPS`](../../../reference/api-methods.md#eth_getpsi) JSON-RPC API method to get the private state the
 user is operating on.

@@ -19,7 +19,7 @@ nav:
       - Install:
           - Overview: deploy/install/getting-started-overview.md
           - Install binaries: deploy/install/binaries.md
-          - Ansible: deploy/ansible.md
+          - Ansible: deploy/install/ansible.md
           - Docker and Docker Compose: deploy/install/docker-and-compose.md
           - Kubernetes: deploy/install/kubernetes.md
       - Upgrade to GoQuorum 2.6.0: deploy/upgrade/migration.md
@@ -48,7 +48,7 @@ nav:
           - Enhanced permissions: configure-and-manage/manage/enhanced-permissions.md
           - Multi-tenancy:
               - Use multi-tenancy: configure-and-manage/manage/multi-tenancy/multi-tenancy.md
-              - Multiple private states migration: configure-and-manage/how-to/manage/multi-tenancy/migration.md
+              - Multiple private states migration: configure-and-manage/manage/multi-tenancy/migration.md
           - Include revert reason: configure-and-manage/manage/revert-reason.md
           - GraphQL: configure-and-manage/manage/graphql.md
           - Backup and restore: configure-and-manage/manage/import-export.md

@@ -5,7 +5,7 @@ description: develop GoQuorum Plugins
 # Develop plugins
 
 GoQuorum uses HashiCorp's [`go-plugin`](https://github.com/hashicorp/go-plugin) library to enable a [plugin-based
-architecture](../Concepts/Plugins.md) using gRPC.
+architecture](../concepts/plugins.md) using gRPC.
 
 We recommend reading the [`go-plugin` gRPC examples](https://github.com/hashicorp/go-plugin/tree/master/examples/grpc).
 Some advanced topics not available in the `go-plugin` documentation are covered in this page.
@@ -36,9 +36,9 @@ plugin configuration file, detailed below.
 
 ## Configure plugins
 
-GoQuorum can load [plugins](../Concepts/Plugins.md) from:
+GoQuorum can load [plugins](../concepts/plugins.md) from:
 
-- A JSON file specified using the [`--plugins`](../Reference/CLI-Syntax.md#plugins) command line option.
+- A JSON file specified using the [`--plugins`](../reference/cli-syntax.md#plugins) command line option.
 - An Ethereum TOML configuration file specified using the [`--config`](https://geth.ethereum.org/docs/interface/command-line-options)
   command line option.
 
@@ -81,7 +81,7 @@ You can specify the plugin configuration file with the following content.
 
 #### `PluginCentralConfiguration`
 
-[Plugin integrity verification](../Concepts/Plugins.md#plugin-integrity-verification) uses the GoQuorum Plugin
+[Plugin integrity verification](../concepts/plugins.md#plugin-integrity-verification) uses the GoQuorum Plugin
 Central Server by default.
 You can modify this section to configure your own local Plugin Central for plugin integrity verification.
 
@@ -212,13 +212,13 @@ The following key value pairs are required:
 
 ### Example plugin
 
-Follow the [`HelloWorld` plugin tutorial](../Tutorials/Use-Plugin.md) for an example.
+Follow the [`HelloWorld` plugin tutorial](../tutorials/use-plugin.md) for an example.
 
 ### Plugin interface definitions
 
 You can view the [gRPC definitions](https://github.com/ConsenSys/quorum-plugin-definitions) for the initialization
-interface, `HelloWorld` plugin interface, [`account` plugin](../Reference/Plugins/Account.md) interface, and
-[`security` plugin](../Reference/Plugins/Security.md) interface.
+interface, `HelloWorld` plugin interface, [`account` plugin](../reference/plugins/account.md) interface, and
+[`security` plugin](../reference/plugins/security.md) interface.
 
 ## Advanced topics for non-Go plugins
 

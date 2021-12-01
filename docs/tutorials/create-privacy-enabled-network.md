@@ -5,18 +5,17 @@ description: Creating a network with privacy enabled
 # Create a privacy-enabled network
 
 This tutorial shows you how to create a privacy-enabled network.
-The network uses [Tessera](https://docs.tessera.consensys.net/), a private transaction manager,
-to encrypt and distribute [private transactions](../Concepts/Privacy/Privacy.md).
+The network uses [Tessera]({{ extra.othersites.tessera }}/), a private transaction manager,
+to encrypt and distribute [private transactions](../concepts/privacy/privacy.md).
 
 !!! important
-
     The steps in this tutorial create an isolated, but not protected or secure, Ethereum private
     network. We recommend running the private network behind a properly configured firewall.
 
 ## Prerequisites
 
-* [Tessera](../Deployment/Binaries.md#as-release-binaries).
-* [IBFT network as configured in IBFT tutorial](private-network/Create-IBFT-Network.md). The nodes must not be
+* [Tessera](../deploy/install/binaries.md#release-binaries).
+* [IBFT network as configured in IBFT tutorial](private-network/create-ibft-network.md). The nodes must not be
 running.
 
 ## Steps
@@ -244,4 +243,4 @@ as in the IBFT tutorial. Nodes 2, 3, and 4 do not have an attached Tessera node.
     PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22004 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30304
     ```
 
-Your node can now [send and receive private transactions](Send-private-transaction.md).
+Your node can now [send and receive private transactions](send-private-transaction.md).

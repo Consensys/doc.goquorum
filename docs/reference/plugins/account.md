@@ -14,4 +14,4 @@ To simplify the development of new `account` plugins, the following `account` pl
 
 ## For users
 
-See [how to use `account` plugins](../../DevelopingApplications/ManageKeys/AccountPlugins.md).
+See [how to use `account` plugins](../../develop/manage-keys/account-plugins.md).

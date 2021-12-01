@@ -4,9 +4,9 @@ description: Configure Basic Permissions
 
 # Configure basic permissions
 
-[Basic network permissioning](../../../Concepts/PermissionsOverview.md#basic-network-permissioning) is a feature that controls
+[Basic network permissioning](../../../concepts/permissions-overview.md#basic-network-permissioning) is a feature that controls
 which nodes can connect to a given node, and which nodes the given node can dial out to.
-Configure basic permissions by providing the [--permissioned](../../../Reference/CLI-Syntax.md#permissioned) command line
+Configure basic permissions by providing the [--permissioned](../../../reference/cli-syntax.md#permissioned) command line
 option when starting the node.
 
 If `--permissioned` is set, the node looks for a file named `<data-dir>/permissioned-nodes.json`.
@@ -40,12 +40,10 @@ file that is used to specify the list of static nodes a given node always connec
         ```
 
 !!! note
-
     You can use DNS names instead of IP addresses to specify nodes in `permissioned-nodes.json` and `static-nodes.json`.
     Only bootnodes need to be specified with IP addresses.
 
 !!! warning
-
     Every node has its own copy of the `permissioned-nodes.json` file.
     If different nodes have different lists of remote keys, then each node may have a different list of permissioned
     nodes which may have an adverse effect on the network.

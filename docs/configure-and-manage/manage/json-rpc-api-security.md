@@ -22,7 +22,7 @@ This feature enables GoQuorum access control and dapp management.
 
 ## Configuration
 
-Refer to the [plugin implementation](../../Reference/Plugins/Security.md#for-users) for more details
+Refer to the [plugin implementation](../../reference/plugins/security.md#for-users) for more details
 and find [examples on how to configure the plugin to work with different OAuth2 Authorization servers](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples).
 
 ## Client usage
@@ -70,11 +70,11 @@ curl -X POST -H "Content-type: application/json" -H "Authorization: $TOKEN" \
 
 Use the following command line options to allow a secured GoQuorum node connection:
 
-- [`--rpcclitoken`](../../Reference/CLI-Syntax.md#rpcclitoken)
-- [`--rpcclitls.insecureskipverify`](../../Reference/CLI-Syntax.md#rpcclitlsinsecureskipverify)
-- [`--rpcclitls.cert`](../../Reference/CLI-Syntax.md#rpcclitlscert)
-- [`--rpcclitls.cacert`](../../Reference/CLI-Syntax.md#rpcclitlscacert)
-- [`--rpcclitls.ciphersuites`](../../Reference/CLI-Syntax.md#rpcclitlsciphersuites)
+- [`--rpcclitoken`](../../reference/cli-syntax.md#rpcclitoken)
+- [`--rpcclitls.insecureskipverify`](../../reference/cli-syntax.md#rpcclitlsinsecureskipverify)
+- [`--rpcclitls.cert`](../../reference/cli-syntax.md#rpcclitlscert)
+- [`--rpcclitls.cacert`](../../reference/cli-syntax.md#rpcclitlscacert)
+- [`--rpcclitls.ciphersuites`](../../reference/cli-syntax.md#rpcclitlsciphersuites)
 
 For example, connect to the node using `--rpcclitls.insecureskipverify` to ignore the server's certificate validation:
 

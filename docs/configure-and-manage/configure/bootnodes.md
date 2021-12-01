@@ -8,12 +8,11 @@ You can use bootnodes in GoQuorum to initially discover peers.
 Bootnodes are regular nodes used to discover other nodes.
 
 !!! tip
-
-    Bootnodes and [static nodes](StaticNodes.md) are parallel methods for finding peers.
+    Bootnodes and [static nodes](static-nodes.md) are parallel methods for finding peers.
     Depending on your use case, you can use only bootnodes, only static nodes, or both.
 
     To find peers, configure one or more bootnodes as described on this page.
-    To configure a specific set of peer connections, use [static nodes](StaticNodes.md).
+    To configure a specific set of peer connections, use [static nodes](static-nodes.md).
 
 ## Development and testing networks
 
@@ -42,7 +41,7 @@ specify a different host or port, use the
 A GoQuorum network must have at least one operating bootnode.
 To allow for continuity in the event of failure, configure two or more bootnodes.
 
-We recommend putting bootnodes on the network itself and not behind a [load balancer](HighAvailability.md) because the
+We recommend putting bootnodes on the network itself and not behind a [load balancer](high-availability.md) because the
 [enode URL](https://eth.wiki/en/fundamentals/enode-url-format) relates to the node public key, IP address, and discovery ports.
 Any changes to a bootnode enode prevents other nodes from being able to establish a connection with the bootnode.
 

@@ -1,7 +1,7 @@
 # Multiple private states migration
 
 If running GoQuorum version `21.4.1` or earlier or Tessera version `21.1.1` or earlier, you can upgrade your existing nodes
-to enable [multiple private states (MPS)](../../../Concepts/Multitenancy.md#multiple-private-states) to run as
+to enable [multiple private states (MPS)](../../../concepts/multi-tenancy.md#multiple-private-states) to run as
 multi-tenant or single-tenant nodes.
 
 If you upgrade GoQuorum without upgrading Tessera, GoQuorum continues to operate in legacy mode on a single private state.
@@ -24,7 +24,6 @@ You must specify the directory containing the GoQuorum node database using the
 [`--datadir`](https://geth.ethereum.org/docs/interface/command-line-options) command line option.
 
 !!! important
-
     - The node must be offline during the upgrade process (we recommend backing up the node data directory before upgrading).
     - You can't use `mpsdbupgrade` to combine multiple GoQuorum databases/private states into a single GoQuorum database.
 
@@ -59,9 +58,9 @@ private state that existed before the upgrade).
 You can enable MPS for Tessera to run as a multi-tenant node by rebuilding from the privacy managers of the
 single-tenant nodes your Tessera node now supports.
 
-You must [merge all transactions from the privacy managers into the new Tessera storage](https://docs.tessera.consensys.net/en/stable/HowTo/Migrate/Migration-Multitenancy/).
+You must [merge all transactions from the privacy managers into the new Tessera storage]({{ extra.othersites.tessera }}/HowTo/Migrate/Migration-Multitenancy/).
 
-Update your Tessera [`residentGroups`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#resident-groups)
+Update your Tessera [`residentGroups`]({{ extra.othersites.tessera }}/HowTo/Configure/Multiple-private-state/#resident-groups)
 configuration so that each tenant has its own private state.
 This provides a user experience similar to the tenants running separate nodes.
 
@@ -72,7 +71,7 @@ After upgrading Tessera, [re-sync your GoQuorum node](#goquorum-multi-tenant-nod
 You can enable MPS for Tessera but continue running as a single-tenant node.
 
 Upgrade the Tessera version to `21.4.0` or later and configure
-[`residentGroups`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#resident-groups)
+[`residentGroups`]({{ extra.othersites.tessera }}/HowTo/Configure/Multiple-private-state/#resident-groups)
 to define a single resident group named "private" containing all the tenant's Tessera keys.
 
 You can [upgrade your GoQuorum node to support MPS as a single-tenant node](#goquorum-single-tenant-node-upgrade-mpsdbupgrade).

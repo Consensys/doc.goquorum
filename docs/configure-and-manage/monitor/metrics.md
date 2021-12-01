@@ -57,7 +57,7 @@ The GoQuorum Dashboard provides network information such as blocks and transacti
 
 !!! tip
 
-    If using the [Quorum Developer Quickstart](../../Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md),
+    If using the [Quorum Developer Quickstart](../../tutorials/quorum-dev-quickstart/using-the-quickstart.md),
     the dashboard is pre-installed in the Grafana container, and the example shows how to configure nodes to use Prometheus
     to send metrics to Grafana.
 

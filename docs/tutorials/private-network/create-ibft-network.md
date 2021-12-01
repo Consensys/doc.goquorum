@@ -5,21 +5,19 @@ description: Creating a network using IBFT consensus
 # Create a private network using the IBFT consensus protocol
 
 A private network provides a configurable network for testing.
-This tutorial walks you through creating an [IBFT](../../HowTo/Configure/Consensus-Protocols/IBFT.md) private network
+This tutorial walks you through creating an [IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md) private network
 with five nodes.
 
 !!! important
-
     The steps in this tutorial create an isolated, but not protected or secure, Ethereum private network.
     We recommend running the private network behind a properly configured firewall.
 
 ## Prerequisites
 
-* [GoQuorum](../../Deployment/Binaries.md#as-release-binaries).
+* [GoQuorum](../../deploy/install/binaries.md#release-binaries).
   Ensure that `PATH` contains `geth` and `bootnode`.
 
 !!! tip
-
     GoQuorum is a fork of [geth](https://geth.ethereum.org/).
     GoQuorum uses the `geth` command to start GoQuorum nodes.
 
@@ -242,7 +240,6 @@ In a new terminal for each node in each node directory, start the remaining node
 specifying different ports for DevP2P and RPC.
 
 !!! important
-
     The DevP2P port numbers must match the port numbers in [`static-nodes.json`](#4-update-ip-and-port-numbers).
 
 === "Node 1"
@@ -294,7 +291,6 @@ Use the JavaScript console to check the peer count:
     ```
 
 !!! tip
-
     If the peer count is 0, check the [`static-nodes.json` was updated with the correct port numbers](#4-update-ip-and-port-numbers)
     and [copied to the `data` directory for each node](#5-copy-static-nodes-file-and-node-keys-to-each-node).
 
@@ -308,7 +304,7 @@ Use the JavaScript console to check the peer count:
 
 ### 11. List current validators
 
-Use [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbulgetvalidators) to view the validator addresses.
+Use [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators) to view the validator addresses.
 
 === "Command"
 
@@ -324,4 +320,4 @@ Use [`istanbul.getValidators`](../../Reference/API-Methods.md#istanbulgetvalidat
 
 ### Next
 
-[Add and remove validators](Adding-removing-IBFT-validators.md).
+[Add and remove validators](adding-removing-ibft-validators.md).

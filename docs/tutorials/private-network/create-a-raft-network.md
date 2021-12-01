@@ -5,16 +5,15 @@ description: Creating a network using Raft consensus
 # Create a private network using the Raft consensus protocol
 
 A private network provides a configurable network for testing. This private network uses the
-[Raft consensus protocol](../../HowTo/Configure/Consensus-Protocols/Raft.md).
+[Raft consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md).
 
 !!!important
-
     The steps in this tutorial create an isolated, but not protected or secure, Ethereum private
     network. We recommend running the private network behind a properly configured firewall.
 
 ## Prerequisites
 
-* [GoQuorum](../../Deployment/Binaries.md#as-release-binaries). Ensure that `PATH` contains `geth`
+* [GoQuorum](../../deploy/install/binaries.md#release-binaries). Ensure that `PATH` contains `geth`
   and `bootnode`.
 
 !!! tip
@@ -214,7 +213,6 @@ Add the node 2 enode ID to `static-nodes.json` with a different host port and Ra
     ```
 
 !!! tip "GoQuorum peers and Raft peers"
-
     The  `static-nodes.json` file defines the GoQuorum peers only. The node must also be added as a
     member of the Raft cluster using the Raft `addPeer` command.
 
@@ -286,6 +284,5 @@ PRIVATE_CONFIG=ignore geth  --datadir data --nodiscover --verbosity 5 --networki
 Node 2 connects to node 1.
 
 !!! important
-
     For a Raft network to work, 51% of the peers must be up and running.
     We recommend having an odd number of at least 3 peers in a network.

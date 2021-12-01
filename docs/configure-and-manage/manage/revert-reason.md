@@ -30,7 +30,7 @@ client an optional string message containing information about the error.
 
 ## Enabling revert reason
 
-Use the [`--revertreason`](../../Reference/CLI-Syntax.md#revertreason)
+Use the [`--revertreason`](../../reference/cli-syntax.md#revertreason)
 command line option to include the revert reason in the transaction receipt.
 
 ## Where is the revert reason included

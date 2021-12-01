@@ -1,6 +1,6 @@
 # Configure enhanced permissions
 
-[Enhanced network permissioning](../../../Concepts/PermissionsOverview.md#enhanced-network-permissioning) is a
+[Enhanced network permissioning](../../../concepts/permissions-overview.md#enhanced-network-permissioning) is a
 smart-contract-based permissioning model designed for enterprise-level needs.
 You can configure enhanced permissioning for a [new network](#new-network) or when [migrating from an earlier version](#migrating-from-an-earlier-version).
 

@@ -8,9 +8,9 @@ description: connecting to a node
 
 Set up a GoQuorum network using one of the following tutorials:
 
-* The [Quorum Developer Quickstart](../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md)
-* [Create a private network](../Tutorials/Private-Network/Create-IBFT-Network.md)
-* [Create a privacy-enabled network](../Tutorials/Create-Privacy-enabled-network.md)
+* The [Quorum Developer Quickstart](../tutorials/quorum-dev-quickstart/getting-started.md)
+* [Create a private network](../tutorials/private-network/create-ibft-network.md)
+* [Create a privacy-enabled network](../tutorials/create-privacy-enabled-network.md)
 
 ## Use `geth attach`
 
@@ -93,7 +93,7 @@ To enable the RPC interface, start the GoQuorum node with the following paramete
 --http.api admin,db,...          # APIs offered over the HTTP-RPC interface
 ```
 
-GoQuorum supports the [standard web3 JSON-RPC APIs](https://geth.ethereum.org/docs/rpc/server) and [custom methods](../Reference/API-Methods.md).
+GoQuorum supports the [standard web3 JSON-RPC APIs](https://geth.ethereum.org/docs/rpc/server) and [custom methods](../reference/api-methods.md).
 
 For example, run the following command to get the list of validators at a given block in an IBFT or QBFT network:
 
@@ -123,8 +123,7 @@ You can any tool to make requests, such as [curl](https://curl.se/), [Postman](h
 [Web3](https://web3js.readthedocs.io/en/latest/).
 
 !!! note
-
-    Use the [security plugin](../HowTo/Use/JSON-RPC-API-Security.md) to secure the JSON-RPC server.
+    Use the [security plugin](../develop/json-rpc-apis.md) to secure the JSON-RPC server.
 
 ## Use the WebSocket interface
 

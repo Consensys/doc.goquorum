@@ -5,11 +5,11 @@ description: calling smart contracts functions
 # Interact with a deployed smart contract
 
 This tutorial shows you how to interact with smart contracts that have been deployed to a network.
-Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/Getting-Started.md) to rapidly generate a local blockchain network.
+Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/getting-started.md) to rapidly generate a local blockchain network.
 
 ## Prerequisites
 
-* A network with a deployed smart contract as in the [deploying smart contracts tutorial](Deploying-Contracts.md).
+* A network with a deployed smart contract as in the [deploying smart contracts tutorial](deploying-contracts.md).
 
 ## Interact with public contracts
 
@@ -46,7 +46,7 @@ The Quorum Developer Quickstart provides a [full example of a public contract sc
 
 To perform a read operation, you need the address that the contract was deployed to and the contract's ABI.
 The contract's ABI can be obtained from compiling the contract;
-see the [deploying smart contracts tutorial](Deploying-Contracts.md) for an example.
+see the [deploying smart contracts tutorial](deploying-contracts.md) for an example.
 
 Use the [`web3.eth.Contract`](https://web3js.readthedocs.io/en/v1.3.4/web3-eth-contract.html) object to create a new
 instance of the smart contract, then make the `get` function call from the contract's list of methods, which will return the value stored:
@@ -88,7 +88,7 @@ To verify that a value has been updated, perform a `get` call after a `set` upda
 
 This private contracts example uses the same `SimpleStorage.sol` contract as in the
 [public contracts example](#interact-with-public-contracts), but it uses the
-[`eea_sendRawTransaction`](../../Reference/API-Methods.md#eea_sendrawtransaction) method to interact with the contract.
+[`eth_sendRawPrivateTransaction`](../../reference/api-methods.md#eth_sendrawprivatetransaction) method to interact with the contract.
 Both read and write operations are performed using the `eea_sendRawTransaction` API call.
 The Quorum Developer quickstart provides a [full example of a private contract script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/private_tx_web3.js).
 

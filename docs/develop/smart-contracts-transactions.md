@@ -32,17 +32,21 @@ Transactions can be public or private. The contents of a puublic transaction are
 blockchain network, and the contents of private transactions can only be seen by parties of the transaction, or those that
 have been granted access to view it.
 
-Typically transactions are used to [deploy contracts](../Tutorials/Contracts/Deploying-Contracts.md ),
-[interact with contracts](../Tutorials/Contracts/Calling-Contract-Functions.md) or
-[transfer funds](../Tutorials/Contracts/Account-Funds-Transfers.md) and the links provide tutorials of each.
+Typically transactions are used to [deploy contracts](../tutorials/contracts/deploying-contracts.md ),
+[interact with contracts](../tutorials/contracts/calling-contract-functions.md) or
+[transfer funds](../tutorials/contracts/account-funds-transfers.md) and the links provide tutorials of each.
 
 # Dapps
 
-*Decentralized applications (dapps)* are just like any other software application can be on a website or mobile app.
+*Decentralized applications* (dapps), like any other software application, can be a website or mobile app.
 Dapps are built on a decentralized network (Ethereum) and interact with smart contracts deployed to the network.
 They can be thought of as a GUI (front end) for a smart contract (back end), and can be written in any language (for example,
 JavaScript).
 
-If using the [Quorum Developer Quickstart](../Tutorials/Quorum-Dev-Quickstart/Getting-Started.md), or
+If using the [Quorum Developer Quickstart](../tutorials/quorum-dev-quickstart/getting-started.md), or
 existing blockchain, you can use a demo dapp called [Pet Shop](https://docs.goquorum.consensys.net/en/latest/Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart/#smart-contract-and-dapp-usage),
 provided by [Truffle](https://trufflesuite.com/tutorial).
+
+*[Dapps]: Decentralized applications
+*[dapp]: Decentralized applications
+*[GUI]: Graphical User Interface
