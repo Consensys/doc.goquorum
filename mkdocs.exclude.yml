@@ -14,8 +14,8 @@
 # See source at https://github.com/ConsenSys/doctools.action-builder/blob/main/common/custom_theme/base.yml
 INHERIT: /common/custom_theme/base.yml # DO NOT MODIFY THIS LINE
 
-#plugins:
-#  exclude:
-#      glob:
+plugins:
+  exclude:
+      glob:
 #        - examples/excluded_file.md
-#        - examples/*
+        - global/test_accounts.md

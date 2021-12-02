@@ -10,9 +10,10 @@ isolation of GoQuorum features.
 The benefits of plugins include:
 
 - Allowing the implementation of certain GoQuorum components to be changed at configuration time.
-- Supporting the GoQuorum community to improve the GoQuorum client with innovative plugin implementations in different languages.
-- Decoupling new GoQuorum-specific features from the core `geth`, simplifying the process of integrating changes from
-   upstream `geth`, and isolating potential failures.
+- Supporting the GoQuorum community to improve the GoQuorum client with innovative plugin
+  implementations in different languages.
+- Decoupling new GoQuorum-specific features from the core `geth`, simplifying the process of
+  integrating changes from upstream `geth`, and isolating potential failures.
 
 ## How it works
 
