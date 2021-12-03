@@ -42,7 +42,9 @@ and [use an example `HelloWorld` plugin](../tutorials/use-plugin.md).
 The Plugin Manager exposes an API `admin_reloadPlugin` that allows reloading a plugin.
 This attempts to restart the current plugin process.
 
+<!-- textlint-disable terminology -->
 Plugin configuration changes made after the initial node startup are applied when reloading the plugin.
+<!-- textlint-enable -->
 This is demonstrated in the [`HelloWorld` plugin tutorial](../tutorials/use-plugin.md).
 
 ## Plugin integrity verification
@@ -50,11 +52,11 @@ This is demonstrated in the [`HelloWorld` plugin tutorial](../tutorials/use-plug
 GoQuorum uses Plugin Central Server to download and verify plugin integrity using [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy).
 You can enable the same verification process locally using the
 [`--plugins.localverify`](../reference/cli-syntax.md#pluginslocalverify) and
-[`--plugins.publickey`](../reference/cli-syntax.md#pluginspublickey) command line options, or
+[`--plugins.publickey`](../reference/cli-syntax.md#pluginspublickey) command-line options, or
 remotely using [custom Plugin Central](../develop/develop-plugins.md).
 
 To disable the plugin verification process, use the
-[`--plugins.skipverify`](../reference/cli-syntax.md#pluginsskipverify) command line option.
+[`--plugins.skipverify`](../reference/cli-syntax.md#pluginsskipverify) command-line option.
 
 !!! warning
     Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.

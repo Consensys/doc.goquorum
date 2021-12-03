@@ -1,10 +1,6 @@
-{
-  "rules": {
-    "terminology": {
-      "defaultTerms": false,
-      "terms": [
-
-      ]
-    }
-  }
-}
+---
+rules:
+  terminology:
+    defaultTerms: false
+    terms:
+    - "node"

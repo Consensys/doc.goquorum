@@ -1,0 +1,13 @@
+name: Spell checking
+
+on:
+  push:
+    branches: [testCI]
+
+jobs:
+  spelling:
+    name: Spell checking
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: check-spelling/check-spelling@main
