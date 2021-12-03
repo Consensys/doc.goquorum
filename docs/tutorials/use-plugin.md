@@ -52,7 +52,7 @@ The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from it
 ## Start GoQuorum with plugin support
 
 1. Navigate to your GoQuorum installation directory.
-   Copy the `HelloWorld` plugin distribution file and its JSON configuration `hello-world-plugin-config.json` to `build/bin`.
+  Copy the `HelloWorld` plugin distribution file and its JSON configuration `hello-world-plugin-config.json` to `build/bin`.
 
 1. Create `geth-plugin-settings.json`:
 

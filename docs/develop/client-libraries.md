@@ -73,7 +73,7 @@ contract binary.
     .on('error', function(error){ ... })
     .on('transactionHash', function(transactionHash){ ... })
     .on('receipt', function(receipt){
-       console.log(receipt.contractAddress) // contains the new contract address
+      console.log(receipt.contractAddress) // contains the new contract address
     })
     .on('confirmation', function(confirmationNumber, receipt){ ... })
     .then(function(newContractInstance){

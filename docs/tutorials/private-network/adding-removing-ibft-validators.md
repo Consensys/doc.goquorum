@@ -87,8 +87,8 @@ description: Adding and removing IBFT validators
         instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
         coinbase: 0x4c1ccd426833b9782729a212c857f2f03b7b4c0d
         at block: 137 (Tue, 11 Jun 2019 16:32:47 BST)
-         datadir: /Users/username/fromscratchistanbul/node0/data
-         modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+        datadir: /Users/username/fromscratchistanbul/node0/data
+        modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
         ```
 
     Check existing validators:

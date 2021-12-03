@@ -9,22 +9,22 @@ private contracts on a GoQuorum network.
 ## Using the Quorum plugin for Remix
 
 1. Go to the [Remix IDE](https://remix.ethereum.org).
-   From the left menu select the **Plugin manager** tab, scroll down to **Quorum Network**, and **Activate**.
+  From the left menu select the **Plugin manager** tab, scroll down to **Quorum Network**, and **Activate**.
 
     ![quorum_network](../../images/remix/quorum_network.png)
 
 1. Accept the permission to allow the plugin to retrieve compilation results.
-   This allows the plugin to use the Solidity compiler to get the compiled contract binary to deploy to your GoQuorum node.
+  This allows the plugin to use the Solidity compiler to get the compiled contract binary to deploy to your GoQuorum node.
 
     ![permission](../../images/remix/permission.png)
 
 1. The plugin should now be included in the icons on the left side.
-   Click on the Quorum icon to show the plugin.
+  Click on the Quorum icon to show the plugin.
 
     ![quorum_tab](../../images/remix/tab_icon.png)
 
 1. Input the geth RPC URL and hit enter.
-   If you are currently running the `quorum-examples` 7nodes network, the first node's URL is [`http://localhost:20000`](http://localhost:20000).
+  If you are currently running the `quorum-examples` 7nodes network, the first node's URL is [`http://localhost:20000`](http://localhost:20000).
 
     ![geth_rpc](../../images/remix/geth_rpc.png)
 
@@ -33,16 +33,16 @@ private contracts on a GoQuorum network.
     ![ui_ready](../../images/remix/ui_ready.png)
 
 1. The GoQuorum plugin uses results from Remix's Solidity compiler, so pull up some contract code and compile it as you
-   normally would in Remix.
-   The plugin will automatically receive the compiled code on each new compilation.
+  normally would in Remix.
+  The plugin will automatically receive the compiled code on each new compilation.
 
 1. Once you have a contract compiled, it will automatically be selected in the **Compiled Contracts** dropdown.
-   Input any constructor values and deploy.
+  Input any constructor values and deploy.
 
     ![deploy](../../images/remix/deploy.png)
 
 1. If successful, the contract will show up in a collapsed view under **Deployed Contracts**.
-   Click the caret to expand.
+  Click the caret to expand.
 
     ![contract_collapsed](../../images/remix/contract_collapsed.png)
 
@@ -51,7 +51,7 @@ private contracts on a GoQuorum network.
     ![method_call](../../images/remix/method_call.png)
 
 1. To create a private contract, add your Tessera public keys one at a time to the **Private for** multi-select box.
-   Press enter after inputting each one to save and select.
+  Press enter after inputting each one to save and select.
 
     ![private_add](../../images/remix/private_add.png)
 
@@ -60,7 +60,7 @@ private contracts on a GoQuorum network.
     ![private_multiple](../../images/remix/private_multiple.png)
 
 1. After deploying and expanding the new contract, you should see the public keys that you selected in the widget.
-   Every method call will include the selected keys automatically.
+  Every method call will include the selected keys automatically.
 
     ![deployed_private](../../images/remix/deployed_private.png)
 

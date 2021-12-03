@@ -53,7 +53,7 @@ You can specify the plugin configuration file with the following content.
       "baseDir": string,
       "central": object(PluginCentralConfiguration),
       "providers": {
-         <string>: object(PluginDefinition)
+        <string>: object(PluginDefinition)
       }
     }
     ```
