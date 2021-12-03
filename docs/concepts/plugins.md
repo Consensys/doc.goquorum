@@ -42,9 +42,7 @@ and [use an example `HelloWorld` plugin](../tutorials/use-plugin.md).
 The Plugin Manager exposes an API `admin_reloadPlugin` that allows reloading a plugin.
 This attempts to restart the current plugin process.
 
-<!-- textlint-disable terminology -->
 Plugin configuration changes made after the initial node startup are applied when reloading the plugin.
-<!-- textlint-enable -->
 This is demonstrated in the [`HelloWorld` plugin tutorial](../tutorials/use-plugin.md).
 
 ## Plugin integrity verification
@@ -60,3 +58,6 @@ To disable the plugin verification process, use the
 
 !!! warning
     Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.
+
+## DEBUG TEST!!!
+Spelling test ie. as well as

@@ -1,6 +1,0 @@
----
-rules:
-  terminology:
-    defaultTerms: false
-    terms:
-    - "node"
