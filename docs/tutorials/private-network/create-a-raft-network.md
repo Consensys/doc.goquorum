@@ -29,7 +29,7 @@ with two nodes.
 
 Create directories for your private network and two nodes:
 
-```bash
+```text
 Raft-Network/
 ├── Node-1
 │   ├── data
@@ -109,16 +109,18 @@ bootnode --nodekey=nodekey --writeaddress
 Copy the following to a file called `static-nodes.json` in the `Node-1/data` directory.
 
 === "static-nodes.json"
-    ```bash
+
+    ```json
     [
       "enode://<EnodeID>@127.0.0.1:21000?discport=0&raftport=50000"
     ]
     ```
 
-Replace the `<EnodeID>` placeholder with the enode ID returned by the `bootnode` command.
+    Replace the `<EnodeID>` placeholder with the enode ID returned by the `bootnode` command.
 
 === "Example"
-    ```bash
+
+    ```json
     [
       "enode://212655378f4f48ec6aa57648f9bd4ab86b596553a0825d68ae34ad55176920b0ae06bf68fd682633b0ef3662cbe68a06166aa3053077b93fd4afa9cf8855ea0b@127.0.0.1:21000?discport=0&raftport=50000"
     ]
@@ -153,12 +155,14 @@ geth attach data/geth.ipc
 Use the Raft `cluster` command to view the cluster details.
 
 === "Command"
-    ```bash
+
+    ```js
     raft.cluster
     ```
 
 === "Result"
-    ```bash
+
+    ```js
     [{
         hostname: "127.0.0.1",
         nodeActive: true,
@@ -197,7 +201,8 @@ bootnode --nodekey=nodekey --writeaddress
 Add the node 2 enode ID to `static-nodes.json` with a different host port and Raft port.
 
 === "static-nodes.json"
-    ```bash
+
+    ```json
     [
       "enode://<Node1-EnodeID>@127.0.0.1:21000?discport=0&raftport=50000",
       "enode://<Node2-EnodeID>@127.0.0.1:21001?discport=0&raftport=50001"
@@ -205,10 +210,11 @@ Add the node 2 enode ID to `static-nodes.json` with a different host port and Ra
     ```
 
 === "Example"
-    ```bash
+
+    ```json
     [
-      "enode://212655378f4f48ec6aa57648f9bd4ab86b596553a0825d68ae34ad55176920b0ae06bf68fd682633b0ef3662cbe68a06166aa3053077b93fd4afa9cf8855ea0b@127.0.0.1:21000?discport=0&raftport=50000",
-      "enode://104e72fd6f1a747c0b61c225a80d76ea66283b9eb04049286b525161913e343f8f6954fe41c3a3047d1115f52f01fe1c82561861f6554ffac189925097ea3dee@127.0.0.1:21001?discport=0&raftport=50001"
+        "enode://212655378f4f48ec6aa57648f9bd4ab86b596553a0825d68ae34ad55176920b0ae06bf68fd682633b0ef3662cbe68a06166aa3053077b93fd4afa9cf8855ea0b@127.0.0.1:21000?discport=0&raftport=50000",
+        "enode://104e72fd6f1a747c0b61c225a80d76ea66283b9eb04049286b525161913e343f8f6954fe41c3a3047d1115f52f01fe1c82561861f6554ffac189925097ea3dee@127.0.0.1:21001?discport=0&raftport=50001"
     ]
     ```
 
@@ -229,17 +235,20 @@ geth --datadir data init ../raftGenesis.json
 In the terminal attached to node 1, use the Raft `addPeer` command to add node 2.
 
 === "Command"
-    ```bash
+
+    ```js
     raft.addPeer('enode://<Node2-EnodeID>@127.0.0.1:21001?discport=0&raftport=50001')
     ```
 
 === "Example"
-    ```bash
+
+    ```js
     raft.addPeer('enode://104e72fd6f1a747c0b61c225a80d76ea66283b9eb04049286b525161913e343f8f6954fe41c3a3047d1115f52f01fe1c82561861f6554ffac189925097ea3dee@127.0.0.1:21001?discport=0&raftport=50001')
     ```
 
 === "Result of Raft ID"
-    ```bash
+
+    ```js
     2
     ```
 
@@ -249,12 +258,14 @@ In the terminal attached to node 1, use the Raft `addPeer` command to add node 2
 Use the Raft `cluster` command to confirm cluster now has two nodes.
 
 === "Command"
-    ```bash
+
+    ```js
     raft.cluster
     ```
 
 === "Result"
-    ```bash
+
+    ```js
     [{
        ip: "127.0.0.1",
        nodeId: "104e72fd6f1a747c0b61c225a80d76ea66283b9eb04049286b525161913e343f8f6954fe41c3a3047d1115f52f01fe1c82561861f6554ffac189925097ea3dee",

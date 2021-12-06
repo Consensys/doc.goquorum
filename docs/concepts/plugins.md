@@ -50,11 +50,14 @@ This is demonstrated in the [`HelloWorld` plugin tutorial](../tutorials/use-plug
 GoQuorum uses Plugin Central Server to download and verify plugin integrity using [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy).
 You can enable the same verification process locally using the
 [`--plugins.localverify`](../reference/cli-syntax.md#pluginslocalverify) and
-[`--plugins.publickey`](../reference/cli-syntax.md#pluginspublickey) command line options, or
+[`--plugins.publickey`](../reference/cli-syntax.md#pluginspublickey) command-line options, or
 remotely using [custom Plugin Central](../develop/develop-plugins.md).
 
 To disable the plugin verification process, use the
-[`--plugins.skipverify`](../reference/cli-syntax.md#pluginsskipverify) command line option.
+[`--plugins.skipverify`](../reference/cli-syntax.md#pluginsskipverify) command-line option.
 
 !!! warning
     Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.
+
+## DEBUG TEST!!!
+Spelling test ie. as well as

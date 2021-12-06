@@ -114,22 +114,15 @@ You can search for a specific block, transaction hash, or address by clicking th
 
 ### BlockScout
 
-Access [BlockScout](https://github.com/blockscout/blockscout) at [`http://localhost:26000`](http://localhost:26000)
+At the prompt **Do you wish to enable support for monitoring your network with BlockScout?**, enter `Y` to start
+BlockScout at [`http://localhost:26000`](http://localhost:26000).
 
 !!! note
 
     BlockScout's Docker image is resource heavy when running.
     Ensure you have adequate CPU resources dedicated to the container.
 
-To start BlockScout, run the following command after the quickstart is already running:
-
-```bash
-
-./run-blockscout.sh
-
-```
-
-The [quickstart BlockScout configuration](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/templates/goquorum/docker-compose.blockscout.yml)
+The [quickstart BlockScout configuration](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/templates/goquorum/docker-compose.yml)
 is available as a reference for your own network.
 
 ## Monitor nodes with Prometheus and Grafana

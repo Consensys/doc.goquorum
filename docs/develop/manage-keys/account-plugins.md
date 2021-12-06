@@ -1,6 +1,7 @@
 # `account` plugins
 
-You can use `account` [plugins](../../concepts/plugins.md) with GoQuorum or `clef` to provide additional account management.
+You can use `account` [plugins](../../concepts/plugins.md) with GoQuorum or `clef`
+to provide additional account management.
 
 See the [`account` plugin reference](../../reference/plugins/account.md) for more information.
 
@@ -62,15 +63,15 @@ See the plugin's documentation for more information on the JSON configuration re
 
         ```bash
         curl -X POST \
-             -H "Content-Type:application/json" \
-             -d '
+            -H "Content-Type:application/json" \
+            -d '
                 {
                     "jsonrpc":"2.0",
                     "method":"plugin@account_newAccount",
                     "params":[{<config>}],
                     "id":1
                 }' \
-             http://localhost:22000
+            http://localhost:22000
         ```
 
     === "JS console"
@@ -112,15 +113,15 @@ Creates a plugin-managed account from an existing private key.
 
         ```bash
         curl -X POST \
-             -H "Content-Type:application/json" \
-             -d '
-                 {
-                     "jsonrpc":"2.0",
-                     "method":"plugin@account_importRawKey",
-                     "params":["<rawkey>", {<config>}],
-                     "id":1
-                 }' \
-             http://localhost:22000
+            -H "Content-Type:application/json" \
+            -d '
+                {
+                    "jsonrpc":"2.0",
+                    "method":"plugin@account_importRawKey",
+                    "params":["<rawkey>", {<config>}],
+                    "id":1
+                }' \
+            http://localhost:22000
         ```
 
     === "JS console"

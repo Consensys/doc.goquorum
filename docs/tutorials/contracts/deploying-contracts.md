@@ -145,7 +145,7 @@ transaction from Member1.
       .then(async function(ci){
         console.log("Address of transaction: ", ci.options.address);
       })
-     .catch(console.error);
+    .catch(console.error);
 
     }
     ```
@@ -296,7 +296,7 @@ transaction from Member1.
       .then(async function(ci){
         console.log("Address of transaction: ", ci.options.address);
       })
-     .catch(console.error);
+    .catch(console.error);
 
     }
     ```

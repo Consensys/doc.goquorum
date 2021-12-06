@@ -1,5 +1,5 @@
 ---
-name: Test the doc
+name: Lint codebase
 
 on: [push, pull_request]
 
@@ -17,14 +17,4 @@ jobs:
         uses: ConsenSys/doctools.action-builder/actions/tests/lint@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  links-check:
-    name: Check links
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Links check
-        uses: ConsenSys/doctools.action-builder/actions/tests/links@main
 

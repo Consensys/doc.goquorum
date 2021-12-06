@@ -139,7 +139,7 @@ description: Adding and removing QBFT validators
         [`istanbul.discard`](../../reference/api-methods.md#istanbul_discard).
 
 1. Verify that the new validator is now in the list of validators by running [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators)
-   in a `geth` console attached to any of your nodes:
+  in a `geth` console attached to any of your nodes:
 
     === "geth console request"
 
@@ -156,7 +156,7 @@ description: Adding and removing QBFT validators
     The list of validators contains six addresses now.
 
 1. Copy `static-nodes.json` and `genesis.json` from the existing chain, placing `static-nodes.json` into the new node's
-   data directory:
+  data directory:
 
     ```bash
     cd node5
@@ -262,7 +262,7 @@ description: Adding and removing QBFT validators
 ## Removing a validator
 
 1. Attach a `geth` console to a running validator, run [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators),
-   and identify the address of the validator that needs to be removed:
+  and identify the address of the validator that needs to be removed:
 
     === "geth attach"
 
@@ -299,7 +299,7 @@ description: Adding and removing QBFT validators
     We will remove `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` from the validator list in this tutorial.
 
 1. Run [`istanbul.propose(<address>, false)`](../../reference/api-methods.md#istanbul_propose) by passing
-   the address of the validator that needs to be removed from more than half of the current validators:
+  the address of the validator that needs to be removed from more than half of the current validators:
 
     === "geth console request"
 
@@ -316,7 +316,7 @@ description: Adding and removing QBFT validators
     Repeat `istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)` for node 1, node 2, and node 3.
 
 1. Verify that the validator has been removed by running [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators)
-   in one of the nodes' attached `geth` console:
+  in one of the nodes' attached `geth` console:
 
     === "geth console request"
 

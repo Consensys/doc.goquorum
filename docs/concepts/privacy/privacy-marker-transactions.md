@@ -162,13 +162,13 @@ If the following conditions are met, the private transaction is created as a PMT
 ### Sending signed private transactions
 
 1. Use [`eth_fillTransaction`](../../reference/api-methods.md#eth_filltransaction) or Tessera's third party `/storeraw`
-   API to encrypt the private transaction payload.
+  API to encrypt the private transaction payload.
 1. Create the private transaction, replacing the `data` value with the hash of the encrypted private transaction payload
-   from Tessera.
+  from Tessera.
 1. Externally sign the private transaction.
 1. Use [`eth_distributePrivateTransaction`](../../reference/api-methods.md#eth_distributeprivatetransaction) to encrypt
-   the signed private transaction and share with all participants.
+  the signed private transaction and share with all participants.
 1. Create the PMT, with the `data` value set to the hash returned by `eth_distributePrivateTransaction`.
-   The `from` and `nonce` values must be the same as the private transaction.
+  The `from` and `nonce` values must be the same as the private transaction.
 1. Send the PMT using the same APIs as with normal private transactions, such as
-   [`eth_sendTransaction`](../../reference/api-methods.md#eth_sendtransaction).
+  [`eth_sendTransaction`](../../reference/api-methods.md#eth_sendtransaction).
