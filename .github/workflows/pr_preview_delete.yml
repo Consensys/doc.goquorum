@@ -9,7 +9,6 @@ jobs:
   deploy:
     name: Remove PR preview from pages
     runs-on: ubuntu-latest
-    if: ${{github.event.repository.public}} #github pages are always public, not to use for private repos.
     steps:
       - name: 'checkout code from repos'
         uses: actions/checkout@v2
