@@ -79,6 +79,7 @@ nav:
       - Multi-tenancy: Concepts/Multitenancy.md
       - Quorum profiling: Concepts/Profiling.md
       - Network and chain ID: Concepts/NetworkAndChainID.md
+      - Free gas networks: Concepts/FreeGasNetwork.md
   - Deployment:
       - Install binaries: Deployment/Binaries.md
       - Ansible: Deployment/Ansible.md

@@ -87,7 +87,7 @@ Call [`eth_sendTransaction`](https://eth.wiki/json-rpc/API) with the following p
 * `from` - Address of the sender's account.
 * `to` - Address of the receiver. To deploy a contract, set to `null`.
 * `gas` - Amount of gas provided by the sender for the transaction.
-* `gasPrice` - Price for each unit of gas the sender is willing to pay.
+* `gasPrice` - Price for each unit of gas. [Set to zero](../../Concepts/FreeGasNetwork.md) in GoQuorum networks.
 * `data` - One of the following:
     * For contract deployments (this use case), the [compiled binary of the contract](#compile-the-contract).
     * For contract interactions, the hash of the invoked method signature and encoded parameters
@@ -195,7 +195,7 @@ Create a new file `public_tx.js`(or run the following commands in a JavaScript c
       to: null, // public tx
       value: "0x00",
       data: '0x'+contractBin+contractInit, // contract binary appended with initialization value
-      gasPrice: "0x0", // ETH per unit of gas
+      gasPrice: "0x0", // Set to 0 in GoQuorum networks
       gasLimit: "0x24A22" // max number of gas units the tx is allowed to use
     };
     console.log("Creating transaction...");
@@ -215,7 +215,7 @@ Create a new file `public_tx.js`(or run the following commands in a JavaScript c
 * `from` - Address of the EthSigner account.
 * `to` - Address of the receiver. To deploy a contract, set to `null`.
 * `gas` - Amount of gas provided by the sender for the transaction.
-* `gasPrice` - Price for each unit of gas the sender is willing to pay.
+* `gasPrice` - Price for each unit of gas. [Set to zero](../../Concepts/FreeGasNetwork.md) in GoQuorum networks.
 * `data` - Binary of the contract (in this example there's also a constructor initialization value appended to the binary value).
 * `value` - Amount of ETH in Wei transferred from the sender to the recipient.
 
@@ -234,7 +234,7 @@ Call [`eth_sendTransaction`](https://eth.wiki/json-rpc/API) with the following p
 * `from` - Address of the sender's account.
 * `to` - Address of the receiver. To deploy a contract, set to `null`.
 * `gas` - Amount of gas provided by the sender for the transaction.
-* `gasPrice` - Price for each unit of gas the sender is willing to pay.
+* `gasPrice` - Price for each unit of gas. [Set to zero](../../Concepts/FreeGasNetwork.md) in GoQuorum networks.
 * `privateFrom` - The sender's base-64-encoded public key.
 * `privateFor` - Array of the recipient's base-64-encoded public keys.
 * `privacyFlag` - 0 for standard private, 1 for [counter party protection](../../Concepts/Privacy/PrivacyEnhancements.md#counter-party-protection).
@@ -341,7 +341,7 @@ Create a new file `private_tx_web3js_quorum.js`(or run the following commands in
 
     const txOptions = {
       nonce: txCount,
-      gasPrice: 0, //ETH per unit of gas
+      gasPrice: 0, // Set to 0 in GoQuorum networks
       gasLimit: 0x24A22, //max number of gas units the tx is allowed to use
       value: 0,
       data: '0x'+contractBin+contractConstructorInit,
@@ -362,7 +362,7 @@ Create a new file `private_tx_web3js_quorum.js`(or run the following commands in
 * `nonce` - Number of transactions sent from this address.
 * `from` - Address of the EthSigner account.
 * `gasLimit` - Amount of gas provided by the sender for the transaction.
-* `gasPrice` - Price for each unit of gas the sender is willing to pay.
+* `gasPrice` - Price for each unit of gas. [Set to zero](../../Concepts/FreeGasNetwork.md) in GoQuorum networks.
 * `isPrivate` - Indicates that this is a private transaction.
 * `privateKey` - The sender's GoQuorum node private key.
 * `privateFrom` - The sender's base-64-encoded public key.

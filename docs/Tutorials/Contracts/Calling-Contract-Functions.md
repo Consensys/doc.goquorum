@@ -71,7 +71,7 @@ Make the `set` call passing in your account address, `value` as the updated valu
 you are willing to spend for the transaction:
 
 ```js
-// You need to use the accountAddress details provided to Quorum to send/interact with contracts
+// You need to use the accountAddress details provided to GoQuorum to send/interact with contracts
 async function setValueAtAddress(host, accountAddress, value, deployedContractAbi, deployedContractAddress){
   const web3 = new Web3(host);
   const contractInstance = new web3.eth.Contract(deployedContractAbi, deployedContractAddress);
