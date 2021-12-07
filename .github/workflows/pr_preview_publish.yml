@@ -12,6 +12,7 @@ jobs:
       - name: checkout code from repos
         uses: actions/checkout@v2
         with:
+          ref: refs/pull/${{ github.event.number }}/merge
           fetch-depth: 0 # Required for mkdocs to be able to display pages last update info
 
       - name: set environment vars from .env file
