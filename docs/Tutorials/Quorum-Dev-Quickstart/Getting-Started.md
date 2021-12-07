@@ -108,10 +108,8 @@ You can use:
 
 Quorum Dev Quickstart is open source, and we invite you to contribute enhancements.
 You will be required to complete a Contributor License Agreement (CLA) before we are able to merge.
-If you have any questions about the contribution process, you can get them answered by the [GoQuorum Slack community].
+If you have any questions about the contribution process, you can get them answered on the [GoQuorum Discord](https://discord.gg/5U9Jwp7).
 
 ## Getting help
 
-Stuck on a step? Please join our [GoQuorum Slack community] for support.
-
-[GoQuorum Slack community]: https://www.goquorum.com/slack-inviter
+Stuck on a step? Please join the [GoQuorum Discord](https://discord.gg/5U9Jwp7) for support.

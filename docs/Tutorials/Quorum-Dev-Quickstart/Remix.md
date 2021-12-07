@@ -64,7 +64,7 @@ private contracts on a GoQuorum network.
 
     ![deployed_private](../../images/remix/deployed_private.png)
 
-If you have any feedback or questions, please open a GitHub issue or reach out on [GoQuorum Slack](https://inviter.quorum.consensys.net/).
+If you have any feedback or questions, please open a GitHub issue or reach out on the [GoQuorum Discord](https://discord.gg/5U9Jwp7).
 
 ## Contributing
 

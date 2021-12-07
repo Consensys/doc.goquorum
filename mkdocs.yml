@@ -27,9 +27,9 @@ extra:
     You can switch to stable version using the version box at screen bottom.'
   support:
     company: ConsenSys
-    tool: Slack
+    tool: Discord
     faq: https://consensys.net/quorum/faq
-    channel: https://www.goquorum.com/slack-inviter
+    channel: https://discord.gg/5U9Jwp7
     email: quorum@consensys.net
     website: https://consensys.net/
     lead_gen: https://consensys.net/quorum/contact-us
