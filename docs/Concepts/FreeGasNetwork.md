@@ -32,4 +32,3 @@ When using standard Ethereum JSON-RPC methods such as
 
     We use the term *free gas network* to refer to a network with a gas price of zero.
     A network with a gas price of zero is also known as a *zero gas network* or *no gas network*.
-
