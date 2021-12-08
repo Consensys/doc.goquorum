@@ -51,7 +51,7 @@ Before making the transaction, the script checks the balances of both accounts t
       from: accountA.address,
       to: accountB.address,
       value: "0x100", // Amount of ETH to transfer
-      gasPrice: "0x0", // ETH per unit of gas
+      gasPrice: "0x0", // Set to 0 in GoQuorum networks
       gasLimit: "0x24A22" // Max number of gas units the tx is allowed to use
     };
     console.log("Creating transaction...");
@@ -100,7 +100,7 @@ Create a new file `eth_tx.js` (or run the following commands in a JavaScript con
       from: accountA.address,
       to: accountB.address,
       value: "0x100",  // Amount of ETH to transfer
-      gasPrice: "0x0", // ETH per unit of gas
+      gasPrice: "0x0", // Set to 0 in GoQuorum networks
       gasLimit: "0x24A22" // Max number of gas units the tx is allowed to use
     };
     console.log("Creating transaction...");
