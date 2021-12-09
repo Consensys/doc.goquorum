@@ -362,7 +362,7 @@ Create a new file `private_tx_web3js_quorum.js`(or run the following commands in
 * `nonce` - Number of transactions sent from this address.
 * `from` - Address of the EthSigner account.
 * `gasLimit` - Amount of gas provided by the sender for the transaction.
-* `gasPrice` - Price for each unit of gas.  [Set to zero](../../concepts/free-gas-network.md) in GoQuorum networks.
+* `gasPrice` - Price for each unit of gas. [Set to zero](../../concepts/free-gas-network.md) in GoQuorum networks.
 * `isPrivate` - Indicates that this is a private transaction.
 * `privateKey` - The sender's GoQuorum node private key.
 * `privateFrom` - The sender's base-64-encoded public key.
