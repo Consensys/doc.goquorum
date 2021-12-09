@@ -2471,8 +2471,8 @@ The following API methods provide functionality for GoQuorum [privacy](../concep
 
 !!! note
 
-    Gas price is removed from GoQuorum networks, so is not included as a transaction object parameter in GoQuorum
-    privacy methods.
+    [Gas price is removed from GoQuorum networks](../concepts/free-gas-network.md), so is not included
+    as a transaction object parameter in GoQuorum privacy methods.
     When using standard Ethereum JSON-RPC methods such as
     [`sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.3.4/web3-eth.html#sendsignedtransaction), set
     `gasPrice` to 0.

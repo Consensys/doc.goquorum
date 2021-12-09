@@ -78,6 +78,7 @@ nav:
           - Overview: concepts/consensus/overview.md
           - Comparing PoA consensus protocols: concepts/consensus/comparing-poa.md
       - Account management: concepts/account-management.md
+      - Free gas network: concepts/free-gas-network.md
       - Privacy:
           - Overview: concepts/privacy/privacy.md
           - Public and private transactions: concepts/privacy/private-and-public.md
