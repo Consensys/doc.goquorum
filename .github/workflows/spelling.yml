@@ -1,4 +1,7 @@
+---
 name: Test spelling and guidelines
+
+# TODO configure and move to common actions
 
 on:
   push:
