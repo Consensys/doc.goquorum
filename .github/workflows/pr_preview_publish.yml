@@ -1,0 +1,30 @@
+---
+name: Publish PR preview
+
+# Controls when the action will run.
+on: [ pull_request_target ]
+
+jobs:
+  deploy:
+    name: Build and publish PR preview
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code from repos
+        uses: actions/checkout@v2
+        with:
+          ref: refs/pull/${{ github.event.number }}/merge # required to pull the PR code instead of the main one
+          fetch-depth: 0 # Required for mkdocs to be able to display pages last update info
+
+      - name: set environment vars from .env file
+        uses: c-py/action-dotenv-to-setenv@a6380f4d905f42adb7c065db63e6d66d75b971ad #v3
+        with:
+          env-file: '.env'
+
+      - name: Set non empty LANGUAGE env
+        shell: sh
+        run: echo "LANGUAGE=${LANGUAGE:-en}" >> $GITHUB_ENV
+
+      - name: Build and publish PR preview
+        uses: ConsenSys/doctools.action-builder/actions/pr-preview-publish@main
+        with:
+          LANGUAGE: ${{ env.LANGUAGE }}

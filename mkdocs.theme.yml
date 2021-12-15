@@ -12,17 +12,19 @@
 
 # This configuration must inherit the base configuration file available in the Doctools docker image.
 # See source at https://github.com/ConsenSys/doctools.action-builder/blob/main/common/custom_theme/base.yml
-INHERIT: mkdocs.theme.yml # DO NOT MODIFY THIS LINE
+INHERIT: mkdocs.redirects.yml # DO NOT MODIFY THIS LINE
 
-# Project information
-site_name: GoQuorum
-site_description: A permissioned implementation of Ethereum supporting data privacy
-
-# Software Repository
-repo_name: ConsenSys/quorum
-repo_url: https://github.com/ConsenSys/quorum
-
-# Project information
-site_author: GoQuorum community
-copyright: GoQuorum is licensed under GPLv3 License /
-  This documentation is maintained by <a href="https://consensys.net/">ConsenSys</a>.
+theme:
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: consensys
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: consensys-dark
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  logo: 'assets/logo.svg'
+  favicon: 'assets/favicon.svg'

@@ -1,35 +1,73 @@
 ---
-description: Overview of GoQuorum
+template: home.html
+title: GoQuorum Enterprise Ethereum Client
+description: GoQuorum is an open-source Ethereum client developed under the LGPL license and written in Go.
+  GoQuorum runs private, permissioned networks and implements proof of authority (IBFT, QBFT, Raft, and Clique)
+  consensus mechanisms.
+
+hide:
+  - toc
+  - navigation
+
+profiles:
+  - link: deploy/install/getting-started-overview/
+    title: Deploy GoQuorum
+    text: Install GoQuorum or upgrade from an earlier version.
+      Run the Quorum Developer Quickstart to set up a local development environment.
+    image: assets/illustrations/undraw_to_the_stars_qhyy.svg
+
+  - link: configure-and-manage/configure/consensus-protocols/ibft/
+    title: Configure and manage
+    text: Configure and manage GoQuorum consensus protocols, genesis files, permissioning,
+      monitoring, and other network components.
+    image: assets/illustrations/undraw_programming_re_kg9v.svg
+
+  - link: develop/connecting-to-a-node/
+    title: Develop applications
+    text: Connect to nodes, access the JSON-RPC APIs, and use client libraries to develop
+      applications for the GoQuorum network.
+    image: assets/illustrations/undraw_web_development_0l6v.svg
+
+  - link: concepts/blockchain-basics/what-is-blockchain/
+    title: Learn about GoQuorum
+    text: Read about blockchain concepts and GoQuorum architecture and features.
+    image: assets/illustrations/undraw_knowledge_g-5-gf.svg
+
+  - link: tutorials/quorum-dev-quickstart/getting-started/
+    title: Try the tutorials
+    text: Use the Quorum Developer Quickstart, deploy and interact with smart contracts, and create private networks.
+    image: assets/illustrations/undraw_setup_wizard_re_nday.svg
+
+  - link: reference/cli-syntax/
+    title: Reference information
+    text: See APIs, command line options, and other technical descriptions.
+    image: assets/illustrations/undraw_preferences_popup_wbfw.svg
 ---
 
-# GoQuorum Enterprise Ethereum Client
+This is a landing page, you can not add Markdown content directly.
 
-## What is GoQuorum?
+Configure the landing page [using meta tags](https://squidfunk.github.io/mkdocs-material/reference/meta-tags/) in the header:
 
-GoQuorum is an open-source Ethereum client developed under the LGPL license and written in Go. GoQuorum
-is an Ethereum-based protocol that runs private, permissioned networks. GoQuorum implements Proof of
-Authority (IBFT, QBFT, Raft, and Clique) consensus mechanisms.
+```markdown
+---
+title: Page title
+description: Page description
 
-## Is GoQuorum part of ConsenSys Quorum?
+hide:
+- toc
+- navigation
 
-Yes. [ConsenSys Quorum](https://consensys.net/quorum/developers) is the complete open source blockchain
-layer with enterprise support available from ConsenSys.
+illustration: assets/illustrations/undraw_completed_steps_re_h9wc.svg
 
-## New to ConsenSys Quorum?
+links:
+  - link: link-url/
+    title: Link title
 
-Get started with the [Quorum Developer Quickstart](Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md). Use the quickstart
-to rapidly generate local Quorum blockchain networks.
-
-## What can you do with GoQuorum?
-
-You can use GoQuorum to develop enterprise applications requiring secure, high-peformance transaction
-processing in a private network.
-
-Learn about [use cases for Enterprise Ethereum](https://consensys.net/blockchain-use-cases/case-studies/).
-
-## What does GoQuorum support?
-
-GoQuorum supports common smart contract and Dapp development, deployment, and operational
-use cases, using tools such as [Truffle](http://truffleframework.com/),
-[Remix](https://github.com/ethereum/remix), and [web3j](https://web3j.io/). The client supports
-common JSON-RPC API methods such as eth, net, web3, debug, and miner.
+profiles:
+  - link: url
+    title: title
+    text: this can be a
+      multiline text
+    image: asset path
+---
+```

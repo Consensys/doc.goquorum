@@ -1,0 +1,168 @@
+---
+# Copyright 2021 ConsenSys Software Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+# the License. You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+# an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+# specific language governing permissions and limitations under the License.
+
+# This configuration must inherit the base configuration file available in the Doctools docker image.
+# See source at https://github.com/ConsenSys/doctools.action-builder/blob/main/common/custom_theme/base.yml
+INHERIT: mkdocs.navigation.yml # DO NOT MODIFY THIS LINE
+
+# Configure redirects.
+# All page removed or with changed path (moved in another directory) has to be redirected here.
+#plugins:
+#  redirects:
+#    redirect_maps:
+      # Configure redirects using key:value pairs:
+      # old_path.md: new_path.md
+      # you can't use an already redirected path as an old_path.
+      # new_path can be a file inside the docs/ folder or any URL (http://...)
+#      GetStarted/Install.md: Deployment/Binaries.md
+#      Account-Key-Management/Overview.md: Concepts/AccountManagement.md
+#      Account-Key-Management/Quorum/Overview.md: Concepts/AccountManagement.md
+#      Account-Key-Management/Quorum/Clef.md: DevelopingApplications/ManageKeys/clef.md
+#      Account-Key-Management/Quorum/Keystore-Files.md: DevelopingApplications/ManageKeys/ManagingKeys.md
+#      Account-Key-Management/Quorum/account-Plugins/Overview.md: DevelopingApplications/ManageKeys/AccountPlugins.md
+#      HowTo/ManageKeys/Clef.md: DevelopingApplications/ManageKeys/clef.md
+#      HowTo/ManageKeys/ManagingKeys.md: DevelopingApplications/ManageKeys/ManagingKeys.md
+#      HowTo/ManageKeys/AccountPlugins.md: DevelopingApplications/ManageKeys/AccountPlugins.md
+#      Account-Key-Management/Tessera/Overview.md: Concepts/AccountManagement.md
+#      Consensus/ibft/ibft.md: HowTo/Configure/Consensus-Protocols/IBFT.md
+#      Consensus/Consensus.md: Concepts/Consensus/Overview.md
+#      Consensus/raft/raft.md: HowTo/Configure/Consensus-Protocols/Raft.md
+#      Getting Started/permissioned-nodes.md: HowTo/Configure/Permissioning/BasicPermissions.md
+#      Getting Started/running.md: GetStarted/GettingStartedOverview.md
+#      Consensus/ibft/ibft-parameters.md: HowTo/Configure/Consensus-Protocols/IBFT.md
+#      Consensus/ibft/istanbul-rpc-api.md: Reference/API-Methods.md
+#      Consensus/raft/raft-rpc-api.md: Reference/API-Methods.md
+#      Permissioning/Basic NetworkPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
+#      Permissioning/Enhanced Permissions Model/Contract Design.md: Concepts/PermissionsOverview.md
+#      Permissioning/Permissions Overview.md: Concepts/PermissionsOverview.md
+#      PluggableArchitecture/Overview.md: Concepts/Plugins.md
+#      PluggableArchitecture/Internals.md: Concepts/Plugins.md
+#      Privacy/Contract-Extension/Overview.md: Concepts/Privacy/ContractExtension.md
+#      Privacy/Overview.md: Concepts/Privacy/PrivateAndPublic.md
+#      Privacy/Lifecycle-of-a-private-transaction.md: Concepts/Privacy/PrivateTransactionLifecycle.md
+#      Privacy/Privacy-Manager.md: Concepts/Privacy/Privacy.md
+#      Security/Framework/Decentralized Application/Frontend Components.md: Concepts/SecurityFramework.md
+#      Security/Framework/Decentralized Application/Smart Contracts Security.md: Concepts/SecurityFramework.md
+#      Security/Framework/Quorum Network Security/Consortium.md: Concepts/SecurityFramework.md
+#      Security/Framework/Quorum Network Security/Node.md: Concepts/SecurityFramework.md
+#      Security/Framework/Quorum Network Security/Opertional Considerations.md: Concepts/SecurityFramework.md
+#      Security/Framework/Quorum Network Security/Transaction Manager.md: Concepts/SecurityFramework.md
+#      Security/Framework/Overview.md: Concepts/SecurityFramework.md
+#      How-To-Guides/HA_Setup.md: HowTo/Configure/HighAvailability.md
+#      How-To-Guides/add_ibft_validator.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
+#      Permissioning/Enhanced Permissions Model/setup.md: HowTo/Configure/Permissioning/EnhancedPermissions.md
+#      Quorum Features/dns.md: HowTo/Configure/dns.md
+#      PluggableArchitecture/PluginDevelopment.md: DevelopingApplications/DevelopPlugins.md
+#      HowTo/DevelopPlugins.md: DevelopingApplications/DevelopPlugins.md
+#      HowTo/GetStarted/Cakeshop.md: HowTo/Monitor/Cakeshop.md
+#      Cakeshop/Getting started.md: HowTo/Monitor/Cakeshop.md
+#      Getting Started/Getting Started Overview.md: GetStarted/GettingStartedOverview.md
+#      Getting Started/Installing.md: Deployment/Binaries.md
+#      Wizard/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+#      Wizard/Interacting.md: Tutorials/Quorum-Dev-Quickstart/Using-the-Quickstart.md
+#      Getting Started/migration.md: GetStarted/migration.md
+#      Permissioning/Enhanced Permissions Model/Usage.md: HowTo/Use/EnhancedPermissions.md
+#      Quorum Features/rpc-security.md: HowTo/Use/JSON-RPC-API-Security.md
+#      How-To-Guides/add_node_examples.md: HowTo/Use/adding_nodes.md
+#      How-To-Guides/adding_nodes.md: HowTo/Use/adding_nodes.md
+#      Getting Started/graphql.md: HowTo/Use/graphql.md
+#      How-To-Guides/import-export.md: HowTo/Use/import-export.md
+#      Privacy/Contract-Extension/ContractExtension apis.md: Reference/API-Methods.md
+#      Permissioning/Enhanced Permissions Model/Permissioning apis.md: Reference/API-Methods.md
+#      Getting Started/api.md: Reference/API-Methods.md
+#      Reference/CakeshopFAQ.md: HowTo/Monitor/Cakeshop.md
+#      Cakeshop/Cakeshop FAQ.md: HowTo/Monitor/Cakeshop.md
+#      Cakeshop/Overview.md: HowTo/Monitor/Cakeshop.md
+#      FAQ.md: https://consensys.net/quorum/faq/
+#      Getting Started/Quorum-Examples.md: Reference/GoQuorum-Projects.md
+#      PluggableArchitecture/Plugins/account/For-Developers.md: Reference/Plugins/Account.md
+#      PluggableArchitecture/Plugins/account/For-Users.md: Reference/Plugins/Account.md
+#      PluggableArchitecture/Plugins/account/interface.md: Reference/Plugins/Account.md
+#      PluggableArchitecture/Plugins/helloworld/implementation.md: Tutorials/Use-Plugin.md
+#      PluggableArchitecture/Plugins/helloworld/interface.md: Tutorials/Use-Plugin.md
+#      PluggableArchitecture/Plugins/init_interface.md: https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/init.proto
+#      PluggableArchitecture/Plugins/security/implementation.md: Reference/Plugins/Security.md
+#      PluggableArchitecture/Plugins/security/interface.md: Reference/Plugins/Security.md
+#      RemixPlugin/GettingStarted.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
+#      RemixPlugin/Overview.md: Tutorials/Quorum-Dev-Quickstart/Remix.md
+#      Getting Started/genesis.md: Reference/genesis.md
+#      quorum.js/Overview.md: DevelopingApplications/Client-Libraries.md
+#      quorum.js/RawTransactionManager.md: DevelopingApplications/Client-Libraries.md
+#      quorum.js/extend.md: DevelopingApplications/Client-Libraries.md
+#      Tutorials/Creating-A-Network-From-Scratch.md: Tutorials/Private-Network/Create-IBFT-Network.md
+#      Tutorials/Create-a-Raft-network.md: Tutorials/Private-Network/Create-a-Raft-network.md
+#      HowTo/GetStarted/monitoring.md: HowTo/Monitor/Metrics.md
+#      Reference/APIs/PrivacyAPI.md: Reference/API-Methods.md
+#      Reference/APIs/PrivacyEnhancementsAPIs.md: Reference/API-Methods.md
+#      Reference/APIs/PermissioningAPIs.md: Reference/API-Methods.md
+#      Reference/APIs/ContractExtensionAPIs.md: Reference/API-Methods.md
+#      Reference/APIs/DebugAPIs.md: Reference/API-Methods.md
+#      Reference/Consensus/IBFTParameters.md: HowTo/Configure/Consensus-Protocols/IBFT.md
+#      Reference/Consensus/IBFT-RPC-API.md: Reference/API-Methods.md
+#      Reference/Consensus/Raft-RPC-API.md: Reference/API-Methods.md
+#      HowTo/Use/AddingIBFTValidators.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
+#      HowTo/Use/add_node_examples.md: HowTo/Use/adding_nodes.md
+#      Concepts/Consensus/IBFT.md: HowTo/Configure/Consensus-Protocols/IBFT.md
+#      Concepts/Consensus/Raft.md: HowTo/Configure/Consensus-Protocols/Raft.md
+#      Concepts/Consensus/Lifecycle-Raft-transaction.md: HowTo/Configure/Consensus-Protocols/Raft.md
+#      Concepts/Consensus/Raft-implementation.md: HowTo/Configure/Consensus-Protocols/Raft.md
+#      Reference/IBFTParameters.md: HowTo/Configure/Consensus-Protocols/IBFT.md
+#      HowTo/GetStarted/GettingStartedOverview.md: GetStarted/GettingStartedOverview.md
+#      HowTo/GetStarted/Install.md: Deployment/Binaries.md
+#      HowTo/GetStarted/migration.md: GetStarted/migration.md
+#      HowTo/GetStarted/Getting-Started-Qubernetes.md: Deployment/Kubernetes.md
+#      GetStarted/Getting-Started-Qubernetes.md: Deployment/Kubernetes.md
+#      Concepts/Cakeshop.md: HowTo/Monitor/Cakeshop.md
+#      Reference/Cakeshop/GettingStarted.md: HowTo/Monitor/Cakeshop.md
+#      Reference/Cakeshop/Configuration.md: HowTo/Monitor/Cakeshop.md
+#      Tutorials/Quorum-Dev-Quickstart/Tools.md: Tutorials/Quorum-Dev-Quickstart/Getting-Started.md
+#      Tutorials/Connecting-to-a-node.md: DevelopingApplications/Connecting-to-a-node.md
+#      Concepts/Permissioning/PermissionsOverview.md: Concepts/PermissionsOverview.md
+#      Concepts/Permissioning/BasicNetworkPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
+#      Concepts/Permissioning/Enhanced/EnhancedPermissionsOverview.md: Concepts/PermissionsOverview.md
+#      Concepts/Permissioning/Enhanced/ContractDesign.md: Concepts/PermissionsOverview.md
+#      HowTo/Configure/BasicPermissions.md: HowTo/Configure/Permissioning/BasicPermissions.md
+#      HowTo/Configure/EnhancedPermissions.md: HowTo/Configure/Permissioning/EnhancedPermissions.md
+#      Reference/quorum.js/Overview.md: DevelopingApplications/Client-Libraries.md
+#      Reference/quorum.js/extend.md: DevelopingApplications/Client-Libraries.md
+#      HowTo/Interact/Client-Libraries/web3js-quorum.md: DevelopingApplications/Client-Libraries.md
+#      HowTo/Interact/API.md: DevelopingApplications/Connecting-to-a-node.md
+#      Reference/quorum.js/RawTransactionManager.md: DevelopingApplications/Client-Libraries.md
+#      Concepts/Privacy/PrivateTransactionManager.md: Concepts/Privacy/Privacy.md
+#      HowTo/Use/DevelopingSmartContracts.md: Tutorials/Contracts/Deploying-Contracts.md
+#      Concepts/Plugins/PluginsArchitecture.md: Concepts/Plugins.md
+#      Concepts/Plugins/Plugins.md: Concepts/Plugins.md
+#      HowTo/Configure/Plugins.md: DevelopingApplications/DevelopPlugins.md
+#      Tutorials/Adding-removing-IBFT-validators.md: Tutorials/Private-Network/Adding-removing-IBFT-validators.md
+#      PluggableArchitecture/Plugins/security/For-Users.md: Reference/Plugins/Security.md
+#      Reference/Plugins/account/For-Developers.md: Reference/Plugins/Account.md
+#      Reference/Plugins/account/For-Users.md: Reference/Plugins/Account.md
+#      Reference/Plugins/account/interface.md: Reference/Plugins/Account.md
+#      Reference/Plugins/security/For-Developers.md: Reference/Plugins/Security.md
+#      Reference/Plugins/security/For-Users.md: Reference/Plugins/Security.md
+#      Reference/Plugins/security/interface.md: Reference/Plugins/Security.md
+#      Reference/Plugins/helloworld/interface.md: https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/helloworld.proto
+#      Reference/Plugins/helloworld/implementation.md: Tutorials/Use-Plugin.md
+#      Reference/Plugins/init_interface.md: https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/init.proto
+#      HowTo/Use/Multitenancy.md: HowTo/Use/Multitenancy/Multitenancy.md
+#      Concepts/Multitenancy/MultiplePrivateStates.md: Concepts/Multitenancy.md
+#      Concepts/Multitenancy/Overview.md: Concepts/Multitenancy.md
+#      Concepts/Security/Framework/Overview.md: Concepts/SecurityFramework.md
+#      Concepts/Security/Framework/GoQuorumNetworkSecurity/Consortium.md: Concepts/SecurityFramework.md
+#      Concepts/Security/Framework/GoQuorumNetworkSecurity/Node.md: Concepts/SecurityFramework.md
+#      Concepts/Security/Framework/GoQuorumNetworkSecurity/TransactionManager.md: Concepts/SecurityFramework.md
+#      Concepts/Security/Framework/GoQuorumNetworkSecurity/OpertionalConsiderations.md: Concepts/SecurityFramework.md
+#      Concepts/Security/Framework/DecentralizedApplication/FrontendComponents.md: Concepts/SecurityFramework.md
+#      Concepts/Security/Framework/DecentralizedApplication/SmartContractsSecurity.md: Concepts/SecurityFramework.md
+#      Concepts/Qubernetes/Qubernetes-Overview.md: Deployment/Kubernetes.md
+#      Concepts/Qubernetes/Multicluster.md: Deployment/Kubernetes.md
+#      Reference/FAQ.md: https://consensys.net/quorum/faq/

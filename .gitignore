@@ -3,8 +3,13 @@ site/
 env/
 *.out
 node_modules/
-.circleci/process.yml
-.circleci/cat-vale.ini
 .DS_Store
 **/.DS_Store
 *.iml
+common/
+.doctools.action-builder
+docker-compose.dev.yml
+.env.dev
+__pycache__
+/.run/
+*.log

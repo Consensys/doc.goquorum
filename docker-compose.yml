@@ -1,0 +1,14 @@
+---
+version: '3.2'
+services:
+  mkdocs:
+    container_name: mkdocs-serve-${PROJECT:-project}
+    ports:
+      - "0.0.0.0:8000:8000"
+    image: ghcr.io/consensys/doctools-builder:${DOCTOOLS_IMAGE_VERSION:-latest}
+    working_dir: /workspace/
+    env_file: .env
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
