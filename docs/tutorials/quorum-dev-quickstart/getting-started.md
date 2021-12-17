@@ -107,8 +107,8 @@ You can use:
 
 Quorum Dev Quickstart is open source, and we invite you to contribute enhancements.
 You will be required to complete a Contributor License Agreement (CLA) before we are able to merge.
-If you have any questions about the contribution process, you can get them answered on the [GoQuorum Discord](https://discord.gg/5U9Jwp7).
+If you have any questions about the contribution process, you can get them answered on the [GoQuorum community support](../../support.md).
 
 ## Getting help
 
-Stuck on a step? Please join the [GoQuorum Discord](https://discord.gg/5U9Jwp7) for support.
+Stuck on a step? Please join the [GoQuorum community support](../../support.md).
