@@ -9,19 +9,17 @@ You can specify [command line options](../../reference/cli-syntax.md) in a TOML 
 To do this, specify your options on the command line, and use the `dumpconfig` command to print the options into a new
 TOML configuration file.
 
-!!! example "Create a custom configuration file"
+=== "Syntax"
 
-    === "Syntax"
+    ```bash
+    geth [OPTIONS] dumpconfig > <TOML-CONFIG-FILE>
+    ```
 
-        ```bash
-        geth [OPTIONS] dumpconfig > <TOML-CONFIG-FILE>
-        ```
+=== "Example"
 
-    === "Example"
-
-        ```bash
-        geth --wsapi "istanbul" --rpcapi "istanbul" --istanbul.requesttimeout 5000 --allowedfutureblocktime 5 dumpconfig > config.toml
-        ```
+    ```bash
+    geth --wsapi "istanbul" --rpcapi "istanbul" --istanbul.requesttimeout 5000 --allowedfutureblocktime 5 dumpconfig > config.toml
+    ```
 
 The configuration file contains your specified options and other default options.
 
@@ -127,18 +125,16 @@ The configuration file contains your specified options and other default options
 You can reuse the configuration file across node startups.
 To specify the configuration file, use the [`--config`](https://geth.ethereum.org/docs/interface/command-line-options) option.
 
-!!! example "Start GoQuorum with a configuration file"
+=== "Syntax"
 
-    === "Syntax"
+    ```bash
+    geth --config=<TOML-CONFIG-FILE>
+    ```
 
-        ```bash
-        geth --config=<TOML-CONFIG-FILE>
-        ```
+=== "Example"
 
-    === "Example"
-
-        ```bash
-        geth --config=config.toml
-        ```
+    ```bash
+    geth --config=config.toml
+    ```
 
 To override an option specified in the configuration file, specify the same option on the command line.
