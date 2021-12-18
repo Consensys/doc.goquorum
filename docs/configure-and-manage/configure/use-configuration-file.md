@@ -4,7 +4,7 @@ description: Using the GoQuorum configuration file
 
 # Using the GoQuorum configuration file
 
-You can specify [command line options](../../reference/cli-syntax.md) in a custom TOML configuration file.
+You can specify [command line options](../../reference/cli-syntax.md) in a TOML configuration file.
 
 To do this, specify your options on the command line, and use the `dumpconfig` command to print the options into a new
 TOML configuration file.
@@ -20,7 +20,7 @@ TOML configuration file.
     === "Example"
 
         ```bash
-        geth --wsapi "istanbul" --rpcapi "istanbul" --istanbul.requesttimeout 5000 --allowedfutureblocktime 5 --immutabilitythreshold 3000000 dumpconfig > config.toml
+        geth --wsapi "istanbul" --rpcapi "istanbul" --istanbul.requesttimeout 5000 --allowedfutureblocktime 5 dumpconfig > config.toml
         ```
 
 The configuration file contains your specified options and other default options.
