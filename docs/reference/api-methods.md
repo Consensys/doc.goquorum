@@ -429,7 +429,7 @@ The following API methods provide access to the [IBFT](../configure-and-manage/c
 
 To use these methods:
 
-1. Run Istanbul `geth` with `--http.api "istanbul"`.
+1. Run Istanbul `geth` with `--rpcapi "istanbul"`.
 
 2. Run `geth attach`.
 

@@ -33,6 +33,7 @@ nav:
           - Genesis files:
               - Create a genesis file: configure-and-manage/configure/genesis-file/genesis-options.md
               - Predeploy a contract in the genesis file: configure-and-manage/configure/genesis-file/contracts-in-genesis.md
+          - Use a configuration file: configure-and-manage/configure/use-configuration-file.md
           - Bootnodes: configure-and-manage/configure/bootnodes.md
           - Static nodes: configure-and-manage/configure/static-nodes.md
           - High availability: configure-and-manage/configure/high-availability.md
