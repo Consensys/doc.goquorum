@@ -27,4 +27,4 @@ GoQuorum includes the following changes to geth:
   where required.
 * [The pricing of gas is removed.](free-gas-network.md) Gas itself remains.
 
-For more information about the GoQuorum architecture and its differences from geth, contact us on [GoQuorum support](../../support.md).
+For more information about the GoQuorum architecture and its differences from geth, contact us on [GoQuorum support](../support.md).
