@@ -1,4 +1,6 @@
-
+---
+description: Using GoQuorum plugin for Remix Ethereum IDE
+---
 # GoQuorum plugin for Remix
 
 The GoQuorum plugin for Ethereum's [Remix IDE](https://remix.ethereum.org) adds support for creating and interacting with
@@ -64,10 +66,10 @@ private contracts on a GoQuorum network.
 
     ![deployed_private](../../images/remix/deployed_private.png)
 
-If you have any feedback or questions, please open a GitHub issue or reach out on [GoQuorum Slack](https://inviter.quorum.consensys.net/).
+If you have any feedback or questions, please open a GitHub issue or reach out on the [GoQuorum community support](../../support.md).
 
 ## Contributing
 
 The GoQuorum plugin for Remix is open source and you can contribute enhancements.
 Upon review of your changes you're required to complete a Contributor License Agreement (CLA) before merging.
-If you have any questions about the contribution process, please [email the Quorum team](mailto:quorum@consensys.net).
+If you have any questions about the contribution process, please [contact the Quorum support team](../../support.md).

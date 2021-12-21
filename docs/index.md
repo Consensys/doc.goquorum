@@ -44,7 +44,7 @@ profiles:
     image: assets/illustrations/undraw_preferences_popup_wbfw.svg
 ---
 
-This is a landing page, you can not add markdown content directly.
+This is a landing page, you can not add Markdown content directly.
 
 Configure the landing page [using meta tags](https://squidfunk.github.io/mkdocs-material/reference/meta-tags/) in the header:
 
