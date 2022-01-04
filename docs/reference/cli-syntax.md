@@ -4,12 +4,26 @@ description: GoQuorum command line interface reference
 
 # GoQuorum command line options
 
-This reference describes the syntax of the GoQuorum Command Line Interface (CLI) options.
+This reference describes the syntax of the GoQuorum command line interface (CLI) options.
 
 !!! important
-    GoQuorum is based on [Geth Go Ethereum client](https://geth.ethereum.org/) but only the GoQuorum specific CLI options are listed here. Visit the
-    [Go Ethereum documentation](https://geth.ethereum.org/docs/interface/command-line-options) to view the CLI
+
+    GoQuorum is based on the [Geth Go Ethereum client](https://geth.ethereum.org/) but only the GoQuorum-specific CLI
+    options are listed here.
+    Visit the [Go Ethereum documentation](https://geth.ethereum.org/docs/interface/command-line-options) to view the CLI
     options for the `geth` command.
+
+## Specifying options
+
+You can specify GoQuorum options:
+
+* On the command line.
+
+    ```bash
+    geth [OPTIONS]
+    ```
+
+* In a [configuration file](../configure-and-manage/configure/use-configuration-file.md).
 
 ## Options
 
