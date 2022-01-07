@@ -1,7 +1,6 @@
 ---
 name: Publish latest doc site
 
-# Controls when the action will run.
 on:
   push:
     branches: [main]
@@ -11,6 +10,9 @@ jobs:
   deploy:
     name: Build and publish latest site
     runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
     # secrets are not usable from outside ConsenSys org
     # The workflow will then be disabled for non ConsenSys repositories to prevent useless failure.
     # Restricting to refs/heads/main here to prevent workflow_dispatch to run on another branch
@@ -21,15 +23,6 @@ jobs:
         with:
           fetch-depth: 0 # Required for mkdocs to be able to display pages last update info
 
-      - name: set environment vars from .env file
-        uses: c-py/action-dotenv-to-setenv@a6380f4d905f42adb7c065db63e6d66d75b971ad #v3
-        with:
-          env-file: '.env'
-
-      - name: Set non empty LANGUAGE env
-        shell: sh
-        run: echo "LANGUAGE=${LANGUAGE:-en}" >> $GITHUB_ENV
-
       - name: Publish latest version to AWS
         uses: ConsenSys/doctools.action-builder/actions/latest-publish@main
         with:
@@ -39,4 +32,4 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           PROJECT: ${{ secrets.PROJECT }}
-          LANGUAGE: ${{ env.LANGUAGE }}
+          LANGUAGE: 'en'

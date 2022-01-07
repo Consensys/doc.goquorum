@@ -7,6 +7,9 @@ jobs:
   links-check:
     name: Check links
     runs-on: ubuntu-latest
+    environment: no-secret
+    permissions:
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
