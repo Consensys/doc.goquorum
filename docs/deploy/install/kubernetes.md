@@ -9,7 +9,7 @@ Helm charts that you can customize and deploy on a local cluster or in the cloud
 
 !!! important
 
-    We recommend starting with the [playground] directory and working through the example setups before moving to the
+    We recommend starting with the [`playground`] directory and working through the example setups before moving to the
     [`dev`] directory, and finally to the [`prod`] directory.
 
 The `dev` and `prod` directories are identical in terms of what gets deployed, but differ in that the `prod` folder uses
