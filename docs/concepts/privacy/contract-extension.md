@@ -23,7 +23,7 @@ only a network or organization administrator can initiate or accept a contract e
 The following diagram describes the flow of contract state extension.
 ![contract state extension diagram](../../images/ContractStateExtension.png)
 
-In this example, an existing private contract deployed between Nodes A and B is being extended to Nodes C from Node A.
+In this example, Node A extends an existing private contract to Nodes C that was initially deployed only between Nodes A and B.
 
 1. User in node A proposes the extension of the contract, citing node C's Private Transaction Manager(PTM)
   public keys as private participants of this extension, node C's public Ethereum key as a receiving
