@@ -55,6 +55,17 @@ let provider = new HttpHeaderProvider('https://...', headers);
 web3.setProvider(provider);
 ```
 
+### `web3j-quorum`
+
+Using web3j-quorum Java library:
+
+```java
+HttpService service = new HttpService("https://...");
+service.addHeader("Authorization", "bearer $accessToken");
+
+quorum = Quorum.build(service);
+```
+
 ### `curl`
 
 Get the pre-authenticated bearer token by authenticating with the authorization server:
