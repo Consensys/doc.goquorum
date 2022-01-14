@@ -105,13 +105,10 @@ The following is the recommended upgrade process:
       To enable account unlocking, use the
       [`--allow-insecure-unlock`](https://geth.ethereum.org/docs/interface/command-line-options) Geth option.
 
-    * GoQuorum 2.6.0 can fail to sync up under the following scenario:
-
-        In a GoQuorum network running with `gcmode=full` and block height exceeding the immutability threshold (with
-        blocks in `freezerdb`), if a node is restarted non-gracefully (`kill -9/docker kill & start`), it can fail to
-        sync up with its peers, generating a `missing parent` error.
-
-        This is due to an upstream bug where non-graceful restart causes a gap between `leveldb` and `freezerdb`.
+    * In a GoQuorum 2.6.0 network running with `gcmode=full` and block height exceeding the immutability threshold (with
+      blocks in `freezerdb`), if a node is restarted non-gracefully (`kill -9/docker kill & start`), it can fail to sync
+      up with its peers, generating a `missing parent` error.
+      This is due to an upstream bug where non-graceful restart causes a gap between `leveldb` and `freezerdb`.
 
         You can avoid this by either running the node with `gcmode=archive` or restarting the node gracefully
         (`kill / docker stop & start`).
