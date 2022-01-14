@@ -17,14 +17,14 @@ Check the [release log](https://github.com/ConsenSys/quorum/releases) for any ac
 
 ## Upgrade to GoQuorum 2.6.0
 
-GoQuorum 2.6.0 upgrades the base `geth` version from 1.8.18 to 1.9.7.
+GoQuorum 2.6.0 upgrades the base Geth version from 1.8.18 to 1.9.7.
 See [Ethereum 1.9.0](https://blog.ethereum.org/2019/07/10/geth-v1-9-0/) for the complete list if new features added as a
-part of `geth` 1.9.7.
+part of Geth 1.9.7.
 
 !!! note
 
-    `geth` 1.9.7 has several enhancements at the database layer which are part of GoQuorum 2.6.0.
-    Hence, once you migrate to 2.6.0, it can't roll back to older version of GoQuorum.
+    Geth 1.9.7 has several enhancements at the database layer which are part of GoQuorum 2.6.0.
+    Once you migrate to 2.6.0, it can't roll back to an older version of GoQuorum.
     We recommend backing up the data directory before upgrading to 2.6.0, which you can use to revert back to the older
     version if necessary.
 
@@ -33,22 +33,22 @@ perform a rolling upgrade to GoQuorum 2.6.0.
 The following is the recommended upgrade process:
 
 1. Stop the node you wish to upgrade to GoQuorum 2.6.0.
-   Modify the `genesis.json` file to include `istanbulBlock` and `petersburgBlock`.
-   Set these parameters to an appropriate value in future by when the entire network will be upgraded to GoQuorum 2.6.0.
+    Modify the `genesis.json` file to include `istanbulBlock` and `petersburgBlock`.
+    Set these parameters to an appropriate value in future by when the entire network will be upgraded to GoQuorum 2.6.0.
 
-   !!! warning
+    !!! warning
 
-       Setting the milestone blocks is necessary because the gas calculation logic changes in `geth` 1.9.7.
-       Not setting these values properly can result in a `Bad block error`.
+        Setting the milestone blocks is necessary because the gas calculation logic changes in Geth 1.9.7.
+        Not setting these values properly can result in a `Bad block error`.
 
 1. GoQuorum 2.6.0 deprecates genesis parameters `maxCodeSize` and `maxCodeSizeChangeBlock`.
-   A new attribute `maxCodeSizeConfig` is added to genesis to allow tracking of multiple `maxCodeSize` value changes.
+    A new attribute `maxCodeSizeConfig` is added to genesis to allow tracking of multiple `maxCodeSize` value changes.
 
     In earlier GoQuorum versions, if the `maxCodeSize` is changed multiple times, any node joining the network might get
     a `Bad block error`.
     The changes in GoQuorum 2.6.0 enable tracking of historical changes of `maxCodeSize` in the genesis file and thus
     allow it to be changed multiple times in the network's life.
-    When `init` is executed in GoQuorum 2.6.0, `geth` forces use of `maxCodeSizeConfig`.
+    When `init` is executed in GoQuorum 2.6.0, Geth forces use of `maxCodeSizeConfig`.
 
     !!! example
 
@@ -88,24 +88,22 @@ The following is the recommended upgrade process:
 
 !!! note "Notes"
 
-    * `geth` 1.9.7 introduces `freezerdb`, where block data beyond a certain threshold is moved to a different
+    * Geth 1.9.7 introduces `freezerdb`, where block data beyond a certain threshold is moved to a different
       file-based storage area.
-      You can provide the location for `freezerdb` using the following `geth` command line option:
+      Provide the location for `freezerdb` using the
+      [`--datadir.ancient`](https://geth.ethereum.org/docs/interface/command-line-options) Geth command line option.
 
-        `--datadir.ancient <value>` - Data directory for ancient chain segments. The default is inside `chaindata`.
-
-    * When a node is migrated to this version, `geth` by default creates the `ancient` data folder and starts moving
+    * When a node is migrated to this version, Geth by default creates the `ancient` data folder and starts moving
       blocks below the immutability threshold (default: 3162240) into the ancient data.
 
         If you don't want this movement to happen, use
         [`--immutabilitythreshold`](../../reference/cli-syntax.md#immutabilitythreshold) to set the immutability
-        threshold to an appropriate value when starting `geth`.
+        threshold to an appropriate value when starting Geth.
 
-    * `geth` 1.9.7 by default doesn't allow unlocking keystore-based accounts in the startup process, and crashes if
+    * Geth 1.9.7 by default doesn't allow unlocking keystore-based accounts in the startup process, and crashes if
       you attempt this.
-      To enable account unlocking, use the following option:
-
-        `--allow-insecure-unlock ` - Allow insecure account unlocking when account-related RPCs are exposed by http.
+      To enable account unlocking, use the
+      [`--allow-insecure-unlock`](https://geth.ethereum.org/docs/interface/command-line-options) Geth option.
 
     * GoQuorum 2.6.0 can fail to sync up under the following scenario:
 
@@ -118,4 +116,4 @@ The following is the recommended upgrade process:
         You can avoid this by either running the node with `gcmode=archive` or restarting the node gracefully
         (`kill / docker stop & start`).
 
-        This is fixed in GoQuorum v21.4.0 (from upstream `geth` 1.9.20).
+        This is fixed in GoQuorum v21.4.0 (from upstream Geth 1.9.20).
