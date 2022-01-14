@@ -1,12 +1,22 @@
-# Upgrade to GoQuorum 2.6.0
+# Migrating GoQuroum
+
+The following information is for migrating GoQuroum only. 
+
+You can have multiple versions of GoQuroum running on the same network, providing you with the opportunity to perform a rolling upgrade. We recommend you ensure your network maintains full uptime availability whilst upgrading. It provides a level of redundancy and reversibility if anything goes wrong.  
+
+## Incremental upgrades
+
+Stop the GoQuorum node you wish to upgrade, update the binary to the next version and restart. Check the node starts without errors and has the latest block from the network. Whilst you can jump versions during an upgrade, we do not recommend it. Some versions may require manual intervention. You should check the release log for any actions you may need to take.
+
+## Upgrade to GoQuorum 2.6.0
 
 GoQuorum 2.6.0 upgrades the base `geth` version from 1.8.18 to 1.9.7
 See [Ethereum 1.9.0](https://blog.ethereum.org/2019/07/10/geth-v1-9-0/) for the complete list if new features added as a part of `geth` 1.9.7.
 
 !!!note
     `geth` 1.9.7 has several enhancements at the database layer which are part of GoQuorum 2.6.0.
-    Hence, once migrates to 2.6.0, it cannot rollback to older version of Quorum.
-    The recommendation is to keep the back of the data directory before upgrading to 2.6.0 which can be used to revert back to older version if necessary.
+    Hence, once you migrate to 2.6.0, it cannot rollback to older version of Quorum.
+    The recommendation is to take a backup of the data directory before upgrading to 2.6.0 which can be used to revert back to older version if necessary.
 
 A node running on GoQuorum 2.6.0 can coexist on a network where other nodes are running on lower version of GoQuorum and thus supports node by node upgrade to GoQuorum 2.6.0. The suggested upgrade process is as described below:
 
