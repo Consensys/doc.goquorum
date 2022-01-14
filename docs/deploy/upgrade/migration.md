@@ -1,8 +1,8 @@
 # Migrating GoQuroum
 
-The following information is for migrating GoQuroum only. 
+The following information is for migrating GoQuroum only.
 
-You can have multiple versions of GoQuroum running on the same network, providing you with the opportunity to perform a rolling upgrade. We recommend you ensure your network maintains full uptime availability whilst upgrading. It provides a level of redundancy and reversibility if anything goes wrong.  
+You can have multiple versions of GoQuroum running on the same network, providing you with the opportunity to perform a rolling upgrade. We recommend you ensure your network maintains full uptime availability whilst upgrading. It provides a level of redundancy and reversibility if anything goes wrong.
 
 ## Incremental upgrades
 
