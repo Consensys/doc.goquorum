@@ -133,7 +133,7 @@ In order of precedence, users have the following three options to specify a priv
 
 ### Accessing a private state using web3j
 
-To access private state using web3j you need to specify the query parameter in the URL when initialising the `HttpService`. It's also likely that you will have auth enabled and will need to specify a bearer token in the `Authorization` header.
+To access private state using [web3j](https://github.com/web3j/web3j), specify the query parameter in the URL when initializing the `HttpService`. If you have authentication enabled you must specify a bearer token in the `Authorization` header.
 
 ```java
 HttpService service = new HttpService("https://secure_endpoint?PSI=$PSI");
