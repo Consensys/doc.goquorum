@@ -57,7 +57,7 @@ web3.setProvider(provider);
 
 ### `web3j-quorum`
 
-Using web3j-quorum Java library:
+Use the [web3j-quorum](https://github.com/web3j/web3j-quorum) Java library:
 
 ```java
 HttpService service = new HttpService("https://...");
