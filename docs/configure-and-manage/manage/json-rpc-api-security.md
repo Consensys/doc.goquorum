@@ -60,7 +60,7 @@ web3.setProvider(provider);
 Use the [web3j-quorum](https://github.com/web3j/web3j-quorum) Java library:
 
 ```java
-HttpService service = new HttpService("https://...");
+HttpService service = new HttpService("<JSON-RPC HTTPS endpoint>");
 service.addHeader("Authorization", "bearer $accessToken");
 
 quorum = Quorum.build(service);
