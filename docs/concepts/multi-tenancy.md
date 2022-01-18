@@ -130,3 +130,14 @@ In order of precedence, users have the following three options to specify a priv
 1. HTTP header. Every RPC request must have an HTTP header "PSI" attached that specifies the private state to use.
 
 1. IPC and inproc connections. Prepend the PSI to the ID field of the `jsonrpcMessage`.
+
+### Accessing a private state using web3j
+
+To access a private state using [web3j](https://github.com/web3j/web3j), specify the query parameter in the URL when initializing the `HttpService`. If you have authentication enabled you must specify a bearer token in the `Authorization` header.
+
+```java
+HttpService service = new HttpService("https://secure_endpoint?PSI=$PSI");
+service.addHeader("Authorization", "bearer $accessToken");
+
+quorum = Quorum.build(service);
+```

@@ -22,7 +22,7 @@ nav:
           - Ansible: deploy/install/ansible.md
           - Docker and Docker Compose: deploy/install/docker-and-compose.md
           - Kubernetes: deploy/install/kubernetes.md
-      - Upgrade to GoQuorum 2.6.0: deploy/upgrade/migration.md
+      - Upgrade GoQuorum: deploy/upgrade/migration.md
   - Configure and manage:
       - Configure:
           - Consensus protocols:
