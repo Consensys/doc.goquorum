@@ -98,6 +98,12 @@ nav:
           - Getting started: tutorials/quorum-dev-quickstart/getting-started.md
           - Using the quickstart: tutorials/quorum-dev-quickstart/using-the-quickstart.md
           - Remix: tutorials/quorum-dev-quickstart/remix.md
+      - Kubernetes:
+          - Overview: tutorials/kubernetes/overview.md
+          - Create a cluster: tutorials/kubernetes/create-cluster.md
+          - Deploy charts: tutorials/kubernetes/deploy-charts.md
+          - Maintenance: tutorials/kubernetes/maintenance.md
+          - Production: tutorials/kubernetes/production.md
       - Create a private network:
           - Using IBFT: tutorials/private-network/create-ibft-network.md
           - Using QBFT: tutorials/private-network/create-qbft-network.md
