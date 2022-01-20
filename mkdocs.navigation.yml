@@ -100,6 +100,7 @@ nav:
           - Remix: tutorials/quorum-dev-quickstart/remix.md
       - Kubernetes:
           - Overview: tutorials/kubernetes/overview.md
+          - Local playground: tutorials/kubernetes/playground.md
           - Create a cluster: tutorials/kubernetes/create-cluster.md
           - Deploy charts: tutorials/kubernetes/deploy-charts.md
           - Maintenance: tutorials/kubernetes/maintenance.md
