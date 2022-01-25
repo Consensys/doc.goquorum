@@ -108,6 +108,13 @@ nav:
           - Deploy a contract: tutorials/contracts/deploying-contracts.md
           - Interact with a deployed contract: tutorials/contracts/calling-contract-functions.md
           - Transfer account funds: tutorials/contracts/account-funds-transfers.md
+      - Kubernetes:
+          - Overview: tutorials/kubernetes/overview.md
+          - Local playground: tutorials/kubernetes/playground.md
+          - Create a cluster: tutorials/kubernetes/create-cluster.md
+          - Deploy charts: tutorials/kubernetes/deploy-charts.md
+          - Maintenance: tutorials/kubernetes/maintenance.md
+          - Production: tutorials/kubernetes/production.md
       - Create a privacy-enabled network: tutorials/create-privacy-enabled-network.md
       - Send private transactions: tutorials/send-private-transaction.md
       - Create a permissioned network: tutorials/create-permissioned-network.md
