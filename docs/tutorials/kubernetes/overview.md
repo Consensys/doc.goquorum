@@ -5,11 +5,12 @@ description: Deploying GoQuorum with Kubernetes
 
 # Deploying GoQuorum with Kubernetes
 
-Use the [reference implementations](https://github.com/ConsenSys/quorum-kubernetes) to install
-private networks using Kubernetes (K8s). Reference implementations are available using:
+Use the [reference implementations](https://github.com/ConsenSys/quorum-kubernetes) to install private networks using
+Kubernetes (K8s).
+Reference implementations are available using:
 
-* [Helm](https://github.com/ConsenSys/quorum-kubernetes/tree/master/dev)
-* [Helmfile](https://github.com/roboll/helmfile)
+* [Helm](https://github.com/ConsenSys/quorum-kubernetes/tree/master/dev).
+* [Helmfile](https://github.com/roboll/helmfile).
 * [`kubectl`](https://github.com/ConsenSys/quorum-kubernetes/tree/master/playground/kubectl).
 
 Familiarize yourself with the reference implementations and customize them for your requirements.
@@ -21,7 +22,7 @@ Helm charts that you can customize and deploy on a local cluster or in the cloud
 
 !!! important
 
-    We recommend starting with the [playground](https://github.com/ConsenSys/quorum-kubernetes/tree/master/playground)
+    We recommend starting with the [`playground`](https://github.com/ConsenSys/quorum-kubernetes/tree/master/playground)
     directory and working through the example setups before moving to the
     [`dev`](https://github.com/ConsenSys/quorum-kubernetes/tree/master/dev) directory, and finally to the
     [`prod`](https://github.com/ConsenSys/quorum-kubernetes/tree/master/prod) directory.
@@ -32,15 +33,16 @@ Manager in AWS), and CSI drivers.
 
 All setups use monitoring and we recommend deploying the monitoring manifests or charts to get an overview of the
 network, nodes, and volumes, and you can create alerts accordingly.
-In addition, there's an example configuration for ingress and routes that you can customize to suit your requirements.
+In addition, there's an example configuration for Ingress and routes that you can customize to suit your requirements.
 
-### Cloud Support
+### Cloud support
 
-The repository's `dev` charts support on premise and cloud providers like AWS, Azure, GCP, IBM etc. The `prod` charts
-currently only supports AWS EKS and Azure AKS natively. You can configure the provider in
-the [values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/dev/helm/values/genesis-goquorum.yml)
-file by setting `provider` to `local`, `aws`, or `azure`.
-You can also pass in extra configuration such as a KeyVault name (Azure only).
+The repository's `dev` charts support on-premise and cloud providers such as AWS, Azure, GCP, and IBM.
+The `prod` charts currently only support AWS EKS and Azure AKS natively.
+You can configure the provider in the
+[values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/dev/helm/values/genesis-goquorum.yml) file by
+setting `provider` to `local`, `aws`, or `azure`.
+You can also pass in extra configuratiosn such as a KeyVault name (Azure only).
 
 The repository also contains [Azure ARM templates](https://github.com/ConsenSys/quorum-kubernetes/tree/master/azure) and
 [AWS `eksctl` templates](https://github.com/ConsenSys/quorum-kubernetes/tree/master/aws) to deploy the required base infrastructure.
@@ -61,7 +63,7 @@ Use the following solutions to mitigate this limitation:
 With the traditional `kubenet` networking mode, nodes get an IP from the virtual network subnet.
 Each node in turn uses NAT to configure the pods so that they reach other pods on the virtual network.
 This limits where they can reach but also more specifically what can reach them.
-For example, an external VM which must have custom routes does not scale well.
+For example, an external VM which must have custom routes doesn't scale well.
 
 ![without-CNI](../../images/kubernetes/kubenet.jpg)
 
@@ -70,7 +72,7 @@ Therefore, it has a limit on the maximum number of pods that can be spun up, so 
 
 ![with-CNI](../../images/kubernetes/kubenet.jpg)
 
-## Multi-Cluster
+## Multi-cluster
 
 You must enable [CNI](#cni) to use multi-cluster, or to connect external nodes to an existing Kubernetes cluster.
 To connect multiple clusters, they must each have different CIDR blocks to ensure no conflicts, and the first step is to
@@ -86,15 +88,18 @@ cloud or on premise.
 
 ### Storage
 
-We recommend you use [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) and
-[Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims). In
-particular, when using Persistent Volume Claims (PVCs) ensure that you set the `allowVolumeExpansion` to `true`. This will help keep costs low and enables growing the volume over time rather than creating new volumes and copying data across.
+We recommend using [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) and
+[Persistent Volume Claims (PVCs)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims).
+When using PVCs, set the `allowVolumeExpansion` to `true`.
+This helps keep costs low and enables growing the volume over time rather than creating new volumes and copying data across.
 
-### [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+### Namespaces
 
-In Kubernetes, namespaces provide a mechanism for isolating groups of resources within a single cluster. Both
-namespaces and resources (for example StatefulSets, Services, etc) within a namespaces need to be unique, but not
-resources across namespaces.
+In Kubernetes, [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) provide a
+mechanism for isolating groups of resources within a single cluster.
+Both namespaces and resources (for example, StatefulSets or Services) within a namespace must be unique, but resources
+across namespaces don't need to be.
 
-!!!note
-    Namespace-based scoping is not applicable for cluster-wide objects (for example StorageClass, PersistentVolumes, etc).
+!!! note
+
+    Namespace-based scoping is not applicable for cluster-wide objects (for example, StorageClass or PersistentVolumes).
