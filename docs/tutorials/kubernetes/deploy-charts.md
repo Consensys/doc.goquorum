@@ -80,7 +80,7 @@ helm install monitoring ./charts/quorum-monitoring --namespace quorum --values .
 
 !!! warning
 
-     For production use cases, configure Grafana with one of the supported [native auth mechanisms](https://grafana.com/docs/grafana/latest/auth/).
+    For production use cases, configure Grafana with one of the supported [native auth mechanisms](https://grafana.com/docs/grafana/latest/auth/).
 
 Once complete, you can view deployments in the Kubernetes dashboard (or equivalent).
 
