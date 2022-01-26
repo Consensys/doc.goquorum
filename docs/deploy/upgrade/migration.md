@@ -35,7 +35,6 @@ We recommend that you sign transactions using the ChainID on your network. If yo
 
 From v22.1.0 you will be able to start GoQuorum with the flag `--rpc.allow-unprotected-txs`. This will allow you to submit transactions that are not signed with a ChainID.
 
-
 ## Upgrade to GoQuorum 2.6.0
 
 GoQuorum 2.6.0 upgrades the base Geth version from 1.8.18 to 1.9.7.
