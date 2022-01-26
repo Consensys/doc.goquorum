@@ -20,15 +20,19 @@ Check the [release log](https://github.com/ConsenSys/quorum/releases) for any ac
 There are several significant changes to the underlying version of geth v1.10 in the release of GoQuorum v22.1.0. Before you upgrade to this version, consider and prepare for these changes. New geth features are detailed in https://blog.ethereum.org/2021/03/03/geth-v1-10-0/. The main things to be aware of are Flag deprecations and ChainID enforcement
 
 ### Flag deprecations
+
 Several cli flags have been marked as deprecated throughout the v1.9.x releases of geth (first merged into GoQuorum as of v2.6.0). Support for deprecated flags will be removed in v22.1.0. Further info available at https://blog.ethereum.org/2021/03/03/geth-v1-10-0/#flag-deprecations
 
 ### ChainID enforcement
+
 Signing transactions with a ChainID will now be enforced as the default behaviour in geth and GoQuorum for raw transactions; this impacts client libraries, tooling and applications. You can send signed raw private transactions that include a ChainID to GoQuorum today. But when you use `sendTransaction` for private transactions, GoQuorum will continue to sign it using the Homestead signer (i.e. without ChainId). Further infor available at https://blog.ethereum.org/2021/03/03/geth-v1-10-0/#chainid-enforcement
 
 #### Changes we think you should make
+
 We recommend that you sign transactions using the ChainID on your network. If you are using a client library, for example, `web3j-quorum`, you need to use the latest `QuorumTransactionManager` to specify a ChainID. With `web3js-quorum` you can add the chainId property to the transaction, as seen in the quorum-dev-quickstart examples.
 
 #### if you don't want to make application changes
+
 From v22.1.0 you will be able to start GoQuorum with the flag `--rpc.allow-unprotected-txs`. This will allow you to submit transactions that are not signed with a ChainID.
 
 
