@@ -15,25 +15,44 @@ Check that the node starts without errors and has the latest block from the netw
 We don't recommend jumping versions during an upgrade; some versions require manual intervention.
 Check the [release log](https://github.com/ConsenSys/quorum/releases) for any actions you might need to take.
 
-## Before you upgrade to GoQuorum v22.1.0
+## Upgrade to GoQuorum 22.1.0
 
-There are several significant changes to the underlying version of geth v1.10 in the release of GoQuorum v22.1.0. Before you upgrade to this version, consider and prepare for these changes. New geth features are detailed in https://blog.ethereum.org/2021/03/03/geth-v1-10-0/. The main things to be aware of are Flag deprecations and ChainID enforcement
+There are [several significant changes to the underlying Geth 1.10](https://blog.ethereum.org/2021/03/03/geth-v1-10-0/)
+in the release of GoQuorum 22.1.0.
+Before you upgrade to this GoQuorum version, consider and prepare for these changes.
+The main things to be aware of are [option deprecations](#option-deprecations) and [chain ID enforcement](#chain-id-enforcement).
 
-### Flag deprecations
+### Option deprecations
 
-Several cli flags have been marked as deprecated throughout the v1.9.x releases of geth (first merged into GoQuorum as of v2.6.0). Support for deprecated flags will be removed in v22.1.0. Further info available at https://blog.ethereum.org/2021/03/03/geth-v1-10-0/#flag-deprecations
+Several command line interface (CLI) options are deprecated in the 1.9.x releases of Geth (first merged into GoQuorum as
+of version 2.6.0).
+Support for deprecated options will be removed in GoQuorum 22.1.0.
 
-### ChainID enforcement
+See the [full list of deprecated options](https://blog.ethereum.org/2021/03/03/geth-v1-10-0/#flag-deprecations).
 
-Signing transactions with a ChainID will now be enforced as the default behaviour in geth and GoQuorum for raw transactions; this impacts client libraries, tooling and applications. You can send signed raw private transactions that include a ChainID to GoQuorum today. But when you use `sendTransaction` for private transactions, GoQuorum will continue to sign it using the Homestead signer (i.e. without ChainId). Further infor available at https://blog.ethereum.org/2021/03/03/geth-v1-10-0/#chainid-enforcement
+### Chain ID enforcement
 
-#### Changes we think you should make
+Signing transactions with a [chain ID](https://consensys.net/docs/goquorum/en/stable/concepts/network-and-chain-id/) is
+[enforced as the default behavior in Geth 1.10](https://blog.ethereum.org/2021/03/03/geth-v1-10-0/#chainid-enforcement)
+and GoQuorum 22.1.0 for raw transactions.
+This impacts client libraries, tooling, and applications.
 
-We recommend that you sign transactions using the ChainID on your network. If you are using a client library, for example, `web3j-quorum`, you need to use the latest `QuorumTransactionManager` to specify a ChainID. With `web3js-quorum` you can add the chainId property to the transaction, as seen in the quorum-dev-quickstart examples.
+You can send signed raw private transactions that include a chain ID to GoQuorum, but when you use `sendTransaction` for
+private transactions, GoQuorum continues to sign it using the Homestead signer (that is, without chain ID).
 
-#### if you don't want to make application changes
+#### Recommended changes
 
-From v22.1.0 you will be able to start GoQuorum with the flag `--rpc.allow-unprotected-txs`. This will allow you to submit transactions that are not signed with a ChainID.
+We recommend you sign transactions using the chain ID on your network.
+If you use a client library, for example, `web3j-quorum`, you must use the latest `QuorumTransactionManager` to specify
+a chain ID.
+With `web3js-quorum` you can add the `chainId` property to the transaction, as seen in the
+[Quorum Developer Quickstart](https://consensys.net/docs/goquorum/en/stable/tutorials/quorum-dev-quickstart/getting-started/)
+examples.
+
+#### If you don't want to make application changes
+
+From version 22.1.0, you can start GoQuorum with the option `--rpc.allow-unprotected-txs`.
+This allows you to submit transactions that aren't signed with a chain ID.
 
 ## Upgrade to GoQuorum 2.6.0
 
