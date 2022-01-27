@@ -10,7 +10,7 @@ hide:
   - navigation
 
 profiles:
-  - link: deploy/install/getting-started-overview/
+  - link: deploy/deployment-overview/
     title: Deploy GoQuorum
     text: Install GoQuorum or upgrade from an earlier version.
       Run the Quorum Developer Quickstart to set up a local development environment.
