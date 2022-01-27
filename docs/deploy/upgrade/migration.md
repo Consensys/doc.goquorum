@@ -26,7 +26,7 @@ The main things to be aware of are [option deprecations](#option-deprecations) a
 
 Several command line interface (CLI) options are deprecated in the 1.9.x releases of Geth (first merged into GoQuorum as
 of version 2.6.0).
-Support for deprecated options will be removed in GoQuorum 22.1.0.
+Support for deprecated options is removed in GoQuorum 22.1.0.
 
 See the [full list of deprecated options](https://blog.ethereum.org/2021/03/03/geth-v1-10-0/#flag-deprecations).
 
