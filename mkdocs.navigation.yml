@@ -16,6 +16,7 @@ INHERIT: mkdocs.extra.yml # DO NOT MODIFY THIS LINE
 
 nav:
   - Deploy:
+      - Overview: deploy/deployment-overview.md
       - Install:
           - Overview: deploy/install/getting-started-overview.md
           - Install binaries: deploy/install/binaries.md
