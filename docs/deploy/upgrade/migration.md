@@ -15,6 +15,45 @@ Check that the node starts without errors and has the latest block from the netw
 We don't recommend jumping versions during an upgrade; some versions require manual intervention.
 Check the [release log](https://github.com/ConsenSys/quorum/releases) for any actions you might need to take.
 
+## Upgrade to GoQuorum 22.1.0
+
+There are [several significant changes to the underlying Geth 1.10](https://blog.ethereum.org/2021/03/03/geth-v1-10-0/)
+in the release of GoQuorum 22.1.0.
+Before you upgrade to this GoQuorum version, consider and prepare for these changes.
+The main things to be aware of are [option deprecations](#option-deprecations) and [chain ID enforcement](#chain-id-enforcement).
+
+### Option deprecations
+
+Several command line interface (CLI) options are deprecated in the 1.9.x releases of Geth (first merged into GoQuorum as
+of version 2.6.0).
+Support for deprecated options is removed in GoQuorum 22.1.0.
+
+See the [full list of deprecated options](https://blog.ethereum.org/2021/03/03/geth-v1-10-0/#flag-deprecations).
+
+### Chain ID enforcement
+
+Signing transactions with a [chain ID](https://consensys.net/docs/goquorum/en/stable/concepts/network-and-chain-id/) is
+[enforced as the default behavior in Geth 1.10](https://blog.ethereum.org/2021/03/03/geth-v1-10-0/#chainid-enforcement)
+and GoQuorum 22.1.0 for raw transactions.
+This impacts client libraries, tooling, and applications.
+
+You can send signed raw private transactions that include a chain ID to GoQuorum, but when you use `sendTransaction` for
+private transactions, GoQuorum continues to sign it using the Homestead signer (that is, without chain ID).
+
+#### Recommended changes
+
+We recommend you sign transactions using the chain ID on your network.
+If you use a client library, for example, `web3j-quorum`, you must use the latest `QuorumTransactionManager` to specify
+a chain ID.
+With `web3js-quorum` you can add the `chainId` property to the transaction, as seen in the
+[Quorum Developer Quickstart](https://consensys.net/docs/goquorum/en/stable/tutorials/quorum-dev-quickstart/getting-started/)
+examples.
+
+#### If you don't want to make application changes
+
+From version 22.1.0, you can start GoQuorum with the option `--rpc.allow-unprotected-txs`.
+This allows you to submit transactions that aren't signed with a chain ID.
+
 ## Upgrade to GoQuorum 2.6.0
 
 GoQuorum 2.6.0 upgrades the base Geth version from 1.8.18 to 1.9.7.
