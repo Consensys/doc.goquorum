@@ -23,6 +23,7 @@ nav:
           - Docker and Docker Compose: deploy/install/docker-and-compose.md
           - Kubernetes: deploy/install/kubernetes.md
       - Upgrade GoQuorum: deploy/upgrade/migration.md
+      - Quorum deployment examples: deploy/deployment-overview.md
   - Configure and manage:
       - Configure:
           - Consensus protocols:
