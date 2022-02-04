@@ -103,7 +103,7 @@ All GoQuorum nodes in the network must be initialized with the same `privacyEnha
 
 !!! note
 
-    You need to re-run `geth init` when you change the genesis file, this will not delete or modify any current sync process or saved blocks.
+    You need to re-run `geth init` when you update the genesis file to incorporate the changes. This does not delete or modify any current sync process or saved blocks.
 
 You can disable `enablePrivacyEnhancements` in the Tessera configuration if your GoQuorum node is not ready to support privacy enhancements.
 This allows the GoQuorum node to reject PP, MPP, and PSV transactions from other nodes until the node is ready to support
