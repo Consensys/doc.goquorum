@@ -22,7 +22,7 @@ to transfer funds to a newly created account.
 
 !!! critical "Security warning"
 
-    **Do not use the test accounts on Ethereum MainNet or any production network.**
+    **Do not use the test accounts on Ethereum Mainnet or any production network.**
 
     The private key is publicly displayed, which means the account is not secure.
 
