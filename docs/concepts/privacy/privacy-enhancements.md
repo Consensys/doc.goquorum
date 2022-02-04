@@ -101,6 +101,10 @@ To enable privacy enhancements in GoQuorum, set the `privacyEnhancementsBlock` i
 ready to transact with privacy-enhanced transactions.
 All GoQuorum nodes in the network must be initialized with the same `privacyEnhancementsBlock` value.
 
+!!! note
+
+    You need to re-run `geth init` when you change the genesis file, this will not delete or modify any current sync process or saved blocks.
+
 You can disable `enablePrivacyEnhancements` in the Tessera configuration if your GoQuorum node is not ready to support privacy enhancements.
 This allows the GoQuorum node to reject PP, MPP, and PSV transactions from other nodes until the node is ready to support
 privacy-enhanced transactions.
