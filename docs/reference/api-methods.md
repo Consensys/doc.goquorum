@@ -1,5 +1,6 @@
 ---
 description: GoQuorum JSON-RPC API methods reference
+toc_depth: 3
 ---
 
 # GoQuorum API methods
