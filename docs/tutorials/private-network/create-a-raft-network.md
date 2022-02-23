@@ -120,7 +120,7 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
     ```json
     [
       "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30300?discport=0&raftport=50000",
-      "enode://0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c@127.0.0.1:30301?discport=0&raftport=53000"
+      "enode://0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c@127.0.0.1:30301?discport=0&raftport=53001"
     ]
     ```
 
@@ -129,8 +129,8 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
 Copy the `static-nodes.json`, `genesis.json` and `permissioned-nodes.json` (if applicable) to the data directory for each node:
 
 ```bash
-cp static-nodes.json genesis.json permissioned-nodes.json ./../Node-0/data/
-cp static-nodes.json genesis.json permissioned-nodes.json ./../Node-1/data/
+cp static-nodes.json genesis.json ./../Node-0/data/
+cp static-nodes.json genesis.json ./../Node-1/data/
 ```
 
 Change directory to each of the validator folders and copy the `nodekey` files and `address` for each node to the data directory for each node:
@@ -164,12 +164,11 @@ export PRIVATE_CONFIG=ignore
 geth --datadir data \
     --networkid 1337 --nodiscover --verbosity 5 \
     --syncmode full --nousb \
-    --raft --raftport 50000 --emitcheckpoints
-    --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port 9545 \
-    --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \
-    --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
-    --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
-    --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
+    --raft --raftport 50000 --emitcheckpoints \
+    --http --http.addr 127.0.0.1 --http.port 22000 --http.corsdomain "*" --http.vhosts "*" \
+    --ws --ws.addr 127.0.0.1 --ws.port 32000 --ws.origins "*" \
+    --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft \
+    --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft \
     --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
      --port 30300
 ```
@@ -177,7 +176,7 @@ geth --datadir data \
 The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled.
 
 
-### 7. Start nodes 1
+### 7. Start node 1
 
 In a new terminal for node-1 in the node-1 directory, start the remaining node using the same command except
 specifying different ports for DevP2P and RPC.
@@ -194,12 +193,11 @@ specifying different ports for DevP2P and RPC.
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
         --syncmode full --nousb \
-        --raft --raftport 50000 --emitcheckpoints
-        --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port 9545 \
-        --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \
-        --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
-        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
-        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
+        --raft --raftport 50000 --emitcheckpoints \
+        --http --http.addr 127.0.0.1 --http.port 22001 --http.corsdomain "*" --http.vhosts "*" \
+        --ws --ws.addr 127.0.0.1 --ws.port 32001 --ws.origins "*" \
+        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft \
+        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft \
         --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
         --port 30300
     ```
@@ -353,7 +351,7 @@ In the `Node-2` directory, start node 2 using the same command as for node 1 exc
 * Specify the Raft ID using the `--raftjoinexisting` option.
 
 ```bash
-PRIVATE_CONFIG=ignore geth  --datadir data --nodiscover --verbosity 5 --networkid 31337 --raft --raftjoinexisting 2 --raftport 50001 --http --http.addr 0.0.0.0 --http.port 22001 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port 21001
+PRIVATE_CONFIG=ignore geth  --datadir data --nodiscover --verbosity 5 --networkid 31337 --raft --raftjoinexisting 2 --raftport 50001 --http --http.addr 127.0.0.1 --http.port 22001 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port 21001
 ```
 
 Node 2 connects to node 1.
