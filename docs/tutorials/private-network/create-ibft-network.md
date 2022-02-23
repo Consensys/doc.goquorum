@@ -14,7 +14,6 @@ with five nodes.
 
 ## Prerequisites
 
-
 * [Node.js version 15 or later](https://nodejs.org/en/download/).
 * [GoQuorum](../../deploy/install/binaries.md#release-binaries).
   Ensure that `PATH` contains `geth` and `bootnode`.
@@ -177,6 +176,7 @@ cp nodekey* address ../../Node-4/data
 ```
 
 Copy the individual account keys to the keystore folder for each node:
+
 ```bash
 cp account* ../../Node-0/data/keystore
 cp account* ../../Node-1/data/keystore
@@ -213,7 +213,6 @@ geth --datadir data \
 ```
 
 The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled.
-
 
 ### 7. Start nodes 1, 2, 3, and 4
 

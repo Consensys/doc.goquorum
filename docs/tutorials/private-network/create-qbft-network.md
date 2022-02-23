@@ -179,6 +179,7 @@ cp nodekey* address ../../Node-4/data
 ```
 
 Copy the individual account keys to the keystore folder for each node:
+
 ```bash
 cp account* ../../Node-0/data/keystore
 cp account* ../../Node-1/data/keystore
