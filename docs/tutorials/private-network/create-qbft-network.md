@@ -27,7 +27,6 @@ with five nodes.
 
 ## Steps
 
-
 ### 1. Create directories
 
 Create directories for your private network and 5 nodes.
@@ -35,25 +34,23 @@ Create directories for your private network and 5 nodes.
 ```bash
 QBFT-Network/
 ├── Node-0
-│   └── data
+│    └── data
 │        └── keystore
 ├── Node-1
-│   └── data
+│    └── data
 │        └── keystore
 ├── Node-2
-│   └── data
+│    └── data
 │        └── keystore
 ├── Node-3
-│   └── data
+│    └── data
 │        └── keystore
 ├── Node-4
-│   └── data
+│    └── data
 │        └── keystore
 ```
 
-
-
-### 2. Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) 
+### 2. Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool)
 
 This can be done either interactively or by cli args. Below we will use cli args to create the genesis file and node keys
 
@@ -67,7 +64,7 @@ Node keys for five nodes, along with `static-nodes.json`, `permissioned-nodes.js
 
     ```bash
     Need to install the following packages:
-    quorum-genesis-tool@0.1.3
+    quorum-genesis-tool
     Ok to proceed? (y) y
     Creating bootnodes...
     Creating members...
@@ -82,44 +79,44 @@ QBFT-Network
 ├── artifacts
     └──2022-02-23-12-34-35
         ├── goQuorum
-        │   ├── disallowed-nodes.json
-        │   ├── genesis.json
-        │   ├── permissioned-nodes.json
-        │   └── static-nodes.json
+        │         ├── disallowed-nodes.json
+        │         ├── genesis.json
+        │         ├── permissioned-nodes.json
+        │         └── static-nodes.json
         ├── README.md
         ├── userData.json
         ├── validator0
-        │   ├── accountAddress
-        │   ├── accountKeystore
-        │   ├── accountPassword
-        │   ├── accountPrivateKey
-        │   ├── address
-        │   ├── nodekey
-        │   └── nodekey.pub
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
         ├── validator1
-        │   ├── accountAddress
-        │   ├── accountKeystore
-        │   ├── accountPassword
-        │   ├── accountPrivateKey
-        │   ├── address
-        │   ├── nodekey
-        │   └── nodekey.pub
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
         ├── validator2
-        │   ├── accountAddress
-        │   ├── accountKeystore
-        │   ├── accountPassword
-        │   ├── accountPrivateKey
-        │   ├── address
-        │   ├── nodekey
-        │   └── nodekey.pub
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
         ├── validator3
-        │   ├── accountAddress
-        │   ├── accountKeystore
-        │   ├── accountPassword
-        │   ├── accountPrivateKey
-        │   ├── address
-        │   ├── nodekey
-        │   └── nodekey.pub
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
         └── validator4
             ├── accountAddress
             ├── accountKeystore
@@ -147,8 +144,8 @@ cd artifacts/goQuorum
 
 Update the IP and port numbers for all initial validator nodes in `static-nodes.json` and `permissioned-nodes.json` (if applicable)
 
-!!! example static-nodes.json 
-    
+!!! example static-nodes.json
+
     ```json
     [
       "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30300?discport=0&raftport=53000",
@@ -189,12 +186,13 @@ cp account* ../../Node-2/data/keystore
 cp account* ../../Node-3/data/keystore
 cp account* ../../Node-4/data/keystore
 ```
+
 ### 5. Initialize nodes
 
 In each node directory (that is, `Node-0`, `Node-1`, `Node-2`, `Node-3`, and `Node-4`), initalize each node.
 
 ```bash
-geth --datadir data init ../genesis.json
+geth --datadir data init data/genesis.json
 ```
 
 ### 6. Start node 0
@@ -202,24 +200,23 @@ geth --datadir data init ../genesis.json
 In the `Node-0` directory, start the first node:
 
 ```bash
-export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
 export PRIVATE_CONFIG=ignore
 geth --datadir data \
     --networkid 1337 --nodiscover --verbosity 5 \
     --syncmode full --nousb \
-    --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
-    --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port 9545 \
-    --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \ 
-    --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
+    --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+    --http --http.addr 127.0.0.1 --http.port 22000 --http.corsdomain "*" --http.vhosts "*" \
+    --ws --ws.addr 127.0.0.1 --ws.port 32000 --ws.origins "*" \
     --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
     --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-    --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
-     --port 30300
+    --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
+    --port 30300
 ```
 
 The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled.
 
-### 8. Start nodes 1, 2, 3, and 4
+### 7. Start nodes 1, 2, 3, and 4
 
 In a new terminal for each node in each node directory, start the remaining nodes using the same command except
 specifying different ports for DevP2P and RPC.
@@ -231,76 +228,72 @@ specifying different ports for DevP2P and RPC.
 === "Node 1"
 
     ```bash
-    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
         --syncmode full --nousb \
-        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
-        --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port 9545 \
-        --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \ 
-        --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+        --http --http.addr 127.0.0.1 --http.port 22001 --http.corsdomain "*" --http.vhosts "*" \
+        --ws --ws.addr 127.0.0.1 --ws.port 32001 --ws.origins "*" \
         --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
         --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30301
     ```
 
 === "Node 2"
 
     ```bash
-    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
         --syncmode full --nousb \
         --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
-        --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port 9545 \
-        --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \ 
-        --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
+        --http --http.addr 127.0.0.1 --http.port 22002 --http.corsdomain "*" --http.vhosts "*" \
+        --ws --ws.addr 127.0.0.1 --ws.port 32002--ws.origins "*" \
         --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
         --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30302
     ```
 
 === "Node 3"
 
     ```bash
-    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
         --syncmode full --nousb \
-        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
-        --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port 9545 \
-        --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \ 
-        --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+        --http --http.addr 127.0.0.1 --http.port 22003 --http.corsdomain "*" --http.vhosts "*" \
+        --ws --ws.addr 127.0.0.1 --ws.port 32003 --ws.origins "*" \
         --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
         --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30303
     ```
 
 === "Node 4"
 
     ```bash
-    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
         --syncmode full --nousb \
-        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
-        --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port 9545 \
-        --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \ 
-        --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+        --http --http.addr 127.0.0.1 --http.port 22004 --http.corsdomain "*" --http.vhosts "*" \
+        --ws --ws.addr 127.0.0.1 --ws.port 32004 --ws.origins "*" \
         --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
         --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30304
     ```
 
-### 9. Attach to node 0
+### 8. Attach to node 0
 
 In another terminal in the `Node-0` directory, attach to node 0:
 
@@ -308,7 +301,7 @@ In another terminal in the `Node-0` directory, attach to node 0:
 geth attach data/geth.ipc
 ```
 
-### 10. Check peer count
+### 9. Check peer count
 
 Use the JavaScript console to check the peer count:
 
@@ -337,7 +330,7 @@ Use the JavaScript console to check the peer count:
     INFO [12-08|10:44:55.044] Started P2P networking   self="enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30301?discport=0"
     ```
 
-### 11. List current validators
+### 10. List current validators
 
 Use [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators) to view the validator addresses.
 

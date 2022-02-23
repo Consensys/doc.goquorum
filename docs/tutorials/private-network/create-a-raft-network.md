@@ -13,6 +13,8 @@ A private network provides a configurable network for testing. This private netw
 
 ## Prerequisites
 
+
+* [Node.js version 15 or later](https://nodejs.org/en/download/).
 * [GoQuorum](../../deploy/install/binaries.md#release-binaries). Ensure that `PATH` contains `geth`
   and `bootnode`.
 
@@ -30,119 +32,182 @@ with two nodes.
 Create directories for your private network and two nodes:
 
 ```text
+
+Create directories for your private network and 5 nodes.
+
+```bash
 Raft-Network/
+├── Node-0
+│   └── data
+│        └── keystore
 ├── Node-1
-│   ├── data
-├── Node-2
-│   ├── data
+│   └── data
+         └── keystore
+
 ```
 
-### 2. Create genesis file
+### 2. Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) 
 
-Copy the following configuration file definition to a file called `raftGenesis.json` and save it
-in the `Raft-Network` directory:
-
-``` json
-{
-  "alloc": {
-    "fe3b557e8fb62b89f4916b721be55ceb828dbd73": {
-      "privateKey": "8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63",
-      "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
-      "balance": "0xad78ebc5ac6200000"
-    },
-    "627306090abaB3A6e1400e9345bC60c78a8BEf57": {
-      "privateKey": "c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3",
-      "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
-      "balance": "90000000000000000000000"
-    },
-    "f17f52151EbEF6C7334FAD080c5704D77216b732": {
-      "privateKey": "ae6ae8e5ccbfb04590405997ee2d52d2b330726137b875053c36d94e974d162f",
-      "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
-      "balance": "90000000000000000000000"
-    }
-  },
-  "coinbase": "0x0000000000000000000000000000000000000000",
-  "config": {
-    "homesteadBlock": 0,
-    "byzantiumBlock": 0,
-    "constantinopleBlock": 0,
-    "chainId": 10,
-    "eip150Block": 0,
-    "eip155Block": 0,
-    "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "eip158Block": 0,
-    "maxCodeSizeConfig": [
-      {
-        "block": 0,
-        "size": 35
-      }
-    ],
-    "isQuorum": true
-  },
-  "difficulty": "0x0",
-  "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000",
-  "gasLimit": "0xE0000000",
-  "mixhash": "0x00000000000000000000000000000000000000647572616c65787365646c6578",
-  "nonce": "0x0",
-  "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-  "timestamp": "0x00"
-}
-```
-
-### 3. Generate node key
-
-In the `Node-1` directory, generate a node key and copy the key into the data directory.
+This can be done either interactively or by cli args. Below we will use cli args to create the genesis file and node keys
 
 ```bash
-bootnode --genkey=nodekey
-cp nodekey data/
+npx quorum-genesis-tool --consensus raft --chainID 1337 --blockperiod 5 --requestTimeout 10 --epochLength 30000 --difficulty 1 --gasLimit '0xFFFFFF' --coinbase '0x0000000000000000000000000000000000000000' --validators 2 --members 0 --bootnodes 0 --outputPath 'artifacts'
 ```
 
-### 4. Add node to static nodes file
+Node keys for two nodes, along with `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json` and the `genesis.json` files are generated.
 
-In the `Node-1` directory, display the enode ID for node 1.
+!!! example "output"
+
+    ```bash
+    Need to install the following packages:
+    quorum-genesis-tool
+    Ok to proceed? (y) y
+    Creating bootnodes...
+    Creating members...
+    Creating validators...
+    Artifacts in folder: artifacts/2022-02-23-12-34-35
+    ```
+
+The following is the folder structure of the artifacts generated:
 
 ```bash
-bootnode --nodekey=nodekey --writeaddress
+Raft-Network
+├── artifacts
+    └──2022-02-23-12-34-35
+        ├── goQuorum
+        │   ├── disallowed-nodes.json
+        │   ├── genesis.json
+        │   ├── permissioned-nodes.json
+        │   └── static-nodes.json
+        ├── README.md
+        ├── userData.json
+        ├── validator0
+        │   ├── accountAddress
+        │   ├── accountKeystore
+        │   ├── accountPassword
+        │   ├── accountPrivateKey
+        │   ├── address
+        │   ├── nodekey
+        │   └── nodekey.pub
+        ├── validator1
+            ├── accountAddress
+            ├── accountKeystore
+            ├── accountPassword
+            ├── accountPrivateKey
+            ├── address
+            ├── nodekey
+            └── nodekey.pub
 ```
 
-Copy the following to a file called `static-nodes.json` in the `Node-1/data` directory.
+Move all the keys into the `artifacts` folder directly, for ease of use in the next steps
 
-=== "static-nodes.json"
+```bash
+cd Raft-Network
+mv artifacts/2022-02-23-12-34-35/* artifacts
+```
 
+### 3. Update IP and port numbers
+
+Change directory into the `goQuorum` folder of the artifacts
+
+```bash
+cd artifacts/goQuorum
+```
+
+Update the IP and port numbers for all initial validator nodes in `static-nodes.json` and `permissioned-nodes.json` (if applicable)
+
+!!! example static-nodes.json 
+    
     ```json
     [
-      "enode://<EnodeID>@127.0.0.1:21000?discport=0&raftport=50000"
+      "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30300?discport=0&raftport=50000",
+      "enode://0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c@127.0.0.1:30301?discport=0&raftport=53000"
     ]
     ```
 
-    Replace the `<EnodeID>` placeholder with the enode ID returned by the `bootnode` command.
+### 4. Copy the static nodes file and node keys to each node
 
-=== "Example"
+Copy the `static-nodes.json`, `genesis.json` and `permissioned-nodes.json` (if applicable) to the data directory for each node:
 
-    ```json
-    [
-      "enode://212655378f4f48ec6aa57648f9bd4ab86b596553a0825d68ae34ad55176920b0ae06bf68fd682633b0ef3662cbe68a06166aa3053077b93fd4afa9cf8855ea0b@127.0.0.1:21000?discport=0&raftport=50000"
-    ]
-    ```
+```bash
+cp static-nodes.json genesis.json permissioned-nodes.json ./../Node-0/data/
+cp static-nodes.json genesis.json permissioned-nodes.json ./../Node-1/data/
+```
+
+Change directory to each of the validator folders and copy the `nodekey` files and `address` for each node to the data directory for each node:
+
+```bash
+cp nodekey* address ../../Node-0/data
+cp nodekey* address ../../Node-1/data
+```
+
+Copy the individual account keys to the keystore folder for each node:
+```bash
+cp account* ../../Node-0/data/keystore
+cp account* ../../Node-1/data/keystore
+```
 
 ### 5. Initialize node 1
 
 In the `Node-1` directory, initialize node 1.
 
 ```bash
-geth --datadir data init ../raftGenesis.json
+geth --datadir data init data/genesis.json
 ```
 
-### 6. Start node 1
+### 6. Start node 0
 
-In the `Node-1` directory, start node 1.
+In the `Node-0` directory, start the first node:
 
 ```bash
-PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --verbosity 5 --networkid 31337 --raft --raftport 50000 --http --http.addr 0.0.0.0 --http.port 22000 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft --emitcheckpoints --port 21000
+export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+export PRIVATE_CONFIG=ignore
+geth --datadir data \
+    --networkid 1337 --nodiscover --verbosity 5 \
+    --syncmode full --nousb \
+    --raft --raftport 50000 --emitcheckpoints
+    --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port 9545 \
+    --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \ 
+    --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
+    --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
+    --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
+    --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
+     --port 30300
 ```
 
 The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled.
+
+
+### 7. Start nodes 1 
+
+In a new terminal for node-1 in the node-1 directory, start the remaining node using the same command except
+specifying different ports for DevP2P and RPC.
+
+!!! important
+
+    The DevP2P port numbers must match the port numbers in [`static-nodes.json`](#4-update-ip-and-port-numbers).
+
+=== "Node 1"
+
+    ```bash
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export PRIVATE_CONFIG=ignore
+    geth --datadir data \
+        --networkid 1337 --nodiscover --verbosity 5 \
+        --syncmode full --nousb \
+        --raft --raftport 50000 --emitcheckpoints
+        --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port 9545 \
+        --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \ 
+        --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
+        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
+        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
+        --port 30300
+    ```
+
+
+#####################################################3
+
 
 ### 7. Attach to node 1
 
