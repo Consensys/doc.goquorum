@@ -48,7 +48,7 @@ You can provide these flags when running `quorum-dev-quickstart`:
 | `--clientType=<STRING>`      | Yes                     | Use `quorum` for GoQuorum.                                                              |
 | `--privacy=<true|false>`     | Yes                     | Enables or disables private transaction support.                                        |
 | `--orchestrate=<true|false>` | No                      | Enables support for [ConsenSys Orchestrate](https://consensys.net/codefi/orchestrate/). |
-| `--monitoring=<STRING>`      | No                      | Use `default` for Prometheus, Grafana, and Cakeshop; `elk` to add ELK; `splunk` to add Splunk. |
+| `--monitoring=<STRING>`      | No                      | Use `default` for Prometheus, Grafana,`elk` to add ELK; `splunk` to add Splunk. |
 | `--outputPath=<PATH>`        | No                      | Path to output artifacts.                                                               |
 | `-h`, `--help`               | No                      | Show help.                                                                              |
 
