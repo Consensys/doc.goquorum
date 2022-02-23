@@ -48,7 +48,7 @@ IBFT-Network/
 │        └── keystore
 ```
 
-### 2. Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) 
+### 2. Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool)
 
 This can be done either interactively or by cli args. Below we will use cli args to create the genesis file and node keys
 
@@ -77,44 +77,44 @@ IBFT-Network
 ├── artifacts
     └──2022-02-23-12-34-35
         ├── goQuorum
-        │   ├── disallowed-nodes.json
-        │   ├── genesis.json
-        │   ├── permissioned-nodes.json
-        │   └── static-nodes.json
+        │         ├── disallowed-nodes.json
+        │         ├── genesis.json
+        │         ├── permissioned-nodes.json
+        │         └── static-nodes.json
         ├── README.md
         ├── userData.json
         ├── validator0
-        │   ├── accountAddress
-        │   ├── accountKeystore
-        │   ├── accountPassword
-        │   ├── accountPrivateKey
-        │   ├── address
-        │   ├── nodekey
-        │   └── nodekey.pub
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
         ├── validator1
-        │   ├── accountAddress
-        │   ├── accountKeystore
-        │   ├── accountPassword
-        │   ├── accountPrivateKey
-        │   ├── address
-        │   ├── nodekey
-        │   └── nodekey.pub
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
         ├── validator2
-        │   ├── accountAddress
-        │   ├── accountKeystore
-        │   ├── accountPassword
-        │   ├── accountPrivateKey
-        │   ├── address
-        │   ├── nodekey
-        │   └── nodekey.pub
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
         ├── validator3
-        │   ├── accountAddress
-        │   ├── accountKeystore
-        │   ├── accountPassword
-        │   ├── accountPrivateKey
-        │   ├── address
-        │   ├── nodekey
-        │   └── nodekey.pub
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
         └── validator4
             ├── accountAddress
             ├── accountKeystore
@@ -142,8 +142,8 @@ cd artifacts/goQuorum
 
 Update the IP and port numbers for all initial validator nodes in `static-nodes.json` and `permissioned-nodes.json` (if applicable)
 
-!!! example static-nodes.json 
-    
+!!! example static-nodes.json
+
     ```json
     [
       "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30300?discport=0&raftport=53000",
@@ -198,17 +198,17 @@ geth --datadir data init data/genesis.json
 In the `Node-0` directory, start the first node:
 
 ```bash
-export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
 export PRIVATE_CONFIG=ignore
 geth --datadir data \
     --networkid 1337 --nodiscover --verbosity 5 \
     --syncmode full --nousb \
-    --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
-    --http --http.addr 127.0.0.1 --http.port 22000 --http.corsdomain "*" --http.vhosts "*" \ 
+    --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+    --http --http.addr 127.0.0.1 --http.port 22000 --http.corsdomain "*" --http.vhosts "*" \
     --ws --ws.addr 127.0.0.1 --ws.port 32000 --ws.origins "*" \
     --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
     --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
-    --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
+    --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
     --port 30300
 ```
 
@@ -227,68 +227,68 @@ specifying different ports for DevP2P and RPC.
 === "Node 1"
 
     ```bash
-    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
         --syncmode full --nousb \
-        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
-        --http --http.addr 127.0.0.1 --http.port 22001 --http.corsdomain "*" --http.vhosts "*" \ 
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+        --http --http.addr 127.0.0.1 --http.port 22001 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 127.0.0.1 --ws.port 32001 --ws.origins "*" \
         --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
         --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30301
     ```
 
 === "Node 2"
 
     ```bash
-    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
         --syncmode full --nousb \
-        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
-        --http --http.addr 127.0.0.1 --http.port 22002 --http.corsdomain "*" --http.vhosts "*" \ 
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+        --http --http.addr 127.0.0.1 --http.port 22002 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 127.0.0.1 --ws.port 32002 --ws.origins "*" \
         --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
         --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30302
     ```
 
 === "Node 3"
 
     ```bash
-    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
         --syncmode full --nousb \
-        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
-        --http --http.addr 127.0.0.1 --http.port 22003 --http.corsdomain "*" --http.vhosts "*" \ 
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+        --http --http.addr 127.0.0.1 --http.port 22003 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 127.0.0.1 --ws.port 32003 --ws.origins "*" \
         --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
         --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30303
     ```
 
 === "Node 4"
 
     ```bash
-    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
         --syncmode full --nousb \
-        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
-        --http --http.addr 127.0.0.1 --http.port 22004 --http.corsdomain "*" --http.vhosts "*" \ 
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+        --http --http.addr 127.0.0.1 --http.port 22004 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 127.0.0.1 --ws.port 32004 --ws.origins "*" \
         --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
         --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --unlock ${ADDRESS} --allow-insecure-unlock --password /data/keystore/accountPassword \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30304
     ```
 

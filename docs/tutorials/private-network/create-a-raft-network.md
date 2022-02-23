@@ -46,7 +46,7 @@ Raft-Network/
 
 ```
 
-### 2. Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) 
+### 2. Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool)
 
 This can be done either interactively or by cli args. Below we will use cli args to create the genesis file and node keys
 
@@ -75,29 +75,28 @@ Raft-Network
 ├── artifacts
     └──2022-02-23-12-34-35
         ├── goQuorum
-        │   ├── disallowed-nodes.json
-        │   ├── genesis.json
-        │   ├── permissioned-nodes.json
-        │   └── static-nodes.json
+        │         ├── disallowed-nodes.json
+        │         ├── genesis.json
+        │         ├── permissioned-nodes.json
+        │         └── static-nodes.json
         ├── README.md
         ├── userData.json
         ├── validator0
-        │   ├── accountAddress
-        │   ├── accountKeystore
-        │   ├── accountPassword
-        │   ├── accountPrivateKey
-        │   ├── address
-        │   ├── nodekey
-        │   └── nodekey.pub
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
         ├── validator1
-            ├── accountAddress
-            ├── accountKeystore
-            ├── accountPassword
-            ├── accountPrivateKey
-            ├── address
-            ├── nodekey
-            └── nodekey.pub
-```
+        │         ├── accountAddress
+                  ├── accountKeystore
+                  ├── accountPassword
+                  ├── accountPrivateKey
+                  ├── address
+                  ├── nodekey
+                  └── nodekey.pub
 
 Move all the keys into the `artifacts` folder directly, for ease of use in the next steps
 
@@ -116,8 +115,8 @@ cd artifacts/goQuorum
 
 Update the IP and port numbers for all initial validator nodes in `static-nodes.json` and `permissioned-nodes.json` (if applicable)
 
-!!! example static-nodes.json 
-    
+!!! example static-nodes.json
+
     ```json
     [
       "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30300?discport=0&raftport=50000",
@@ -167,7 +166,7 @@ geth --datadir data \
     --syncmode full --nousb \
     --raft --raftport 50000 --emitcheckpoints
     --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port 9545 \
-    --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \ 
+    --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \
     --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
     --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
     --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
@@ -178,7 +177,7 @@ geth --datadir data \
 The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled.
 
 
-### 7. Start nodes 1 
+### 7. Start nodes 1
 
 In a new terminal for node-1 in the node-1 directory, start the remaining node using the same command except
 specifying different ports for DevP2P and RPC.
@@ -197,7 +196,7 @@ specifying different ports for DevP2P and RPC.
         --syncmode full --nousb \
         --raft --raftport 50000 --emitcheckpoints
         --metrics --pprof --pprof.addr 0.0.0.0 --pprof.port 9545 \
-        --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \ 
+        --http --http.addr 0.0.0.0 --http.port 8545 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.origins "*" \
         --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
         --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
