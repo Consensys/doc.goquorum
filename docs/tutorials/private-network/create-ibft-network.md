@@ -26,7 +26,7 @@ with five nodes.
 
 ### 1. Create directories
 
-Create directories for your private network and 5 nodes.
+Create directories for your private network and five nodes.
 
 ```bash
 IBFT-Network/
@@ -47,17 +47,18 @@ IBFT-Network/
 │        └── keystore
 ```
 
-### 2. Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool)
+### 2. Run the Quorum Genesis Tool
 
-This can be done either interactively or by cli args. Below we will use cli args to create the genesis file and node keys
+Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) interactively or by using CLI options.
+The following example uses CLI options to create the genesis file and node keys:
 
 ```bash
 npx quorum-genesis-tool --consensus ibft --chainID 1337 --blockperiod 5 --requestTimeout 10 --epochLength 30000 --difficulty 1 --gasLimit '0xFFFFFF' --coinbase '0x0000000000000000000000000000000000000000' --validators 5 --members 0 --bootnodes 0 --outputPath 'artifacts'
 ```
 
-Node keys for five nodes, along with `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json` and the `genesis.json` files are generated.
+Node keys for five nodes, along with `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json`, and `genesis.json` are generated.
 
-!!! example "output"
+!!! example "Example output"
 
     ```bash
     Need to install the following packages:
@@ -124,7 +125,7 @@ IBFT-Network
             └── nodekey.pub
 ```
 
-Move all the keys into the `artifacts` folder directly, for ease of use in the next steps
+Move all the keys into the `artifacts` folder directly, for ease of use in the next steps:
 
 ```bash
 cd IBFT-Network
@@ -133,15 +134,15 @@ mv artifacts/2022-02-23-12-34-35/* artifacts
 
 ### 3. Update IP and port numbers
 
-Change directory into the `goQuorum` folder of the artifacts
+Go to the `goQuorum` directory of the artifacts:
 
 ```bash
 cd artifacts/goQuorum
 ```
 
-Update the IP and port numbers for all initial validator nodes in `static-nodes.json` and `permissioned-nodes.json` (if applicable)
+Update the IP and port numbers for all initial validator nodes in `static-nodes.json` and `permissioned-nodes.json` (if applicable).
 
-!!! example static-nodes.json
+!!! example "`static-nodes.json`"
 
     ```json
     [
@@ -155,7 +156,7 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
 
 ### 4. Copy the static nodes file and node keys to each node
 
-Copy the `static-nodes.json`, `genesis.json` and `permissioned-nodes.json` (if applicable) to the data directory for each node:
+Copy `static-nodes.json`, `genesis.json`, and `permissioned-nodes.json` (if applicable) to the data directory for each node:
 
 ```bash
 cp static-nodes.json genesis.json permissioned-nodes.json ./../Node-0/data/
@@ -165,7 +166,7 @@ cp static-nodes.json genesis.json permissioned-nodes.json ./../Node-3/data/
 cp static-nodes.json genesis.json permissioned-nodes.json ./../Node-4/data/
 ```
 
-Change directory to each of the validator folders and copy the `nodekey` files and `address` for each node to the data directory for each node:
+In each validator directory, copy the `nodekey` files and `address` to the data directory:
 
 ```bash
 cp nodekey* address ../../Node-0/data
@@ -175,7 +176,7 @@ cp nodekey* address ../../Node-3/data
 cp nodekey* address ../../Node-4/data
 ```
 
-Copy the individual account keys to the keystore folder for each node:
+Copy the individual account keys to the keystore directory for each node:
 
 ```bash
 cp account* ../../Node-0/data/keystore
@@ -187,7 +188,7 @@ cp account* ../../Node-4/data/keystore
 
 ### 5. Initialize nodes
 
-In each node directory (that is, `Node-0`, `Node-1`, `Node-2`, `Node-3`, and `Node-4`), initalize each node.
+In each node directory (`Node-0`, `Node-1`, `Node-2`, `Node-3`, and `Node-4`), initialize the node:
 
 ```bash
 geth --datadir data init data/genesis.json
@@ -316,11 +317,13 @@ Use the JavaScript console to check the peer count:
     ```
 
 !!! tip
-    If the peer count is 0, check the [`static-nodes.json` was updated with the correct port numbers](#3-update-ip-and-port-numbers)
+
+    If the peer count is 0, check that [`static-nodes.json` was updated with the correct port numbers](#3-update-ip-and-port-numbers)
     and [copied to the `data` directory for each node](#4-copy-static-nodes-file-and-node-keys-to-each-node).
 
     The enode ID displayed in the logs on startup must match the enode listed in `static-nodes.json`
-    for each node including the port number specified using [`--port` on startup](#8-start-node-1-2-3-and-4).
+    for each node, including the port number specified using [`--port` on startup](#8-start-node-1-2-3-and-4).
+
     The log message is:
 
     ```
@@ -343,6 +346,6 @@ Use [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalida
     ["e1a8d6a6866a6c8f25ed853e3f957b0ed06a8f1c", "6028d68da1df3c54d5f0949de6082fb69a7239d1", "c1ed779faf6975399c5bdb90b40e2f324185bad0", "6480d9bf06fc8ba9a0393976386e47a5c4f014de", "da4d64ac5fea8aaf2943680241ce9ca4befed870"]
     ```
 
-### Next
+### Next steps
 
-[Add and remove validators](adding-removing-ibft-validators.md).
+You can [add and remove validators](adding-removing-ibft-validators.md).

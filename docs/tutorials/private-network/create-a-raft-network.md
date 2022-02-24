@@ -31,10 +31,6 @@ with two nodes.
 Create directories for your private network and two nodes:
 
 ```text
-
-Create directories for your private network and 5 nodes.
-
-```bash
 Raft-Network/
 ├── Node-0
 │   └── data
@@ -44,17 +40,18 @@ Raft-Network/
          └── keystore
 ```
 
-### 2. Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool)
+### 2. Run the Quorum Genesis Tool
 
-This can be done either interactively or by cli args. Below we will use cli args to create the genesis file and node keys
+Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) interactively or by using CLI options.
+The following example uses CLI options to create the genesis file and node keys:
 
 ```bash
 npx quorum-genesis-tool --consensus raft --chainID 1337 --blockperiod 5 --requestTimeout 10 --epochLength 30000 --difficulty 1 --gasLimit '0xFFFFFF' --coinbase '0x0000000000000000000000000000000000000000' --validators 2 --members 0 --bootnodes 0 --outputPath 'artifacts'
 ```
 
-Node keys for two nodes, along with `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json` and the `genesis.json` files are generated.
+Node keys for two nodes, along with `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json`, `genesis.json` are generated.
 
-!!! example "output"
+!!! example "Example output"
 
     ```bash
     Need to install the following packages:
@@ -95,8 +92,9 @@ Raft-Network
                   ├── address
                   ├── nodekey
                   └── nodekey.pub
+```
 
-Move all the keys into the `artifacts` folder directly, for ease of use in the next steps
+Move all the keys into the `artifacts` folder directly, for ease of use in the next steps:
 
 ```bash
 cd Raft-Network
@@ -105,15 +103,15 @@ mv artifacts/2022-02-23-12-34-35/* artifacts
 
 ### 3. Update IP and port numbers
 
-Change directory into the `goQuorum` folder of the artifacts
+Go to the `goQuorum` directory of the artifacts:
 
 ```bash
 cd artifacts/goQuorum
 ```
 
-Update the IP and port numbers for all initial validator nodes in `static-nodes.json` and `permissioned-nodes.json` (if applicable)
+Update the IP and port numbers for all initial validator nodes in `static-nodes.json` and `permissioned-nodes.json` (if applicable).
 
-!!! example static-nodes.json
+!!! example "`static-nodes.json`"
 
     ```json
     [
@@ -124,21 +122,21 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
 
 ### 4. Copy the static nodes file and node keys to each node
 
-Copy the `static-nodes.json`, `genesis.json` and `permissioned-nodes.json` (if applicable) to the data directory for each node:
+Copy `static-nodes.json`, `genesis.json`, and `permissioned-nodes.json` (if applicable) to the data directory for each node:
 
 ```bash
 cp static-nodes.json genesis.json ./../Node-0/data/
 cp static-nodes.json genesis.json ./../Node-1/data/
 ```
 
-Change directory to each of the validator folders and copy the `nodekey` files and `address` for each node to the data directory for each node:
+In each validator directory, copy the `nodekey` files and `address` to the data directory:
 
 ```bash
 cp nodekey* address ../../Node-0/data
 cp nodekey* address ../../Node-1/data
 ```
 
-Copy the individual account keys to the keystore folder for each node:
+Copy the individual account keys to the keystore directory for each node:
 
 ```bash
 cp account* ../../Node-0/data/keystore
@@ -147,7 +145,7 @@ cp account* ../../Node-1/data/keystore
 
 ### 5. Initialize node 1
 
-In the `Node-1` directory, initialize node 1.
+In the `Node-1` directory, initialize node 1:
 
 ```bash
 geth --datadir data init data/genesis.json
@@ -176,39 +174,37 @@ The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enable
 
 ### 7. Start node 1
 
-In a new terminal for node-1 in the node-1 directory, start the remaining node using the same command except
-specifying different ports for DevP2P and RPC.
+In a new terminal in the `Node-1` directory, start the remaining node using the same command except
+specifying different ports for DevP2P and RPC:
 
 !!! important
 
     The DevP2P port numbers must match the port numbers in [`static-nodes.json`](#4-update-ip-and-port-numbers).
 
-=== "Node 1"
-
-    ```bash
-    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
-    export PRIVATE_CONFIG=ignore
-    geth --datadir data \
-        --networkid 1337 --nodiscover --verbosity 5 \
-        --syncmode full --nousb \
-        --raft --raftport 53001 --raftblocktime 300 --emitcheckpoints \
-        --http --http.addr 127.0.0.1 --http.port 22001 --http.corsdomain "*" --http.vhosts "*" \
-        --ws --ws.addr 127.0.0.1 --ws.port 32001 --ws.origins "*" \
-        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft \
-        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft \
-        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
-        --port 30301
-    ```
+```bash
+export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+export PRIVATE_CONFIG=ignore
+geth --datadir data \
+    --networkid 1337 --nodiscover --verbosity 5 \
+    --syncmode full --nousb \
+    --raft --raftport 53001 --raftblocktime 300 --emitcheckpoints \
+    --http --http.addr 127.0.0.1 --http.port 22001 --http.corsdomain "*" --http.vhosts "*" \
+    --ws --ws.addr 127.0.0.1 --ws.port 32001 --ws.origins "*" \
+    --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft \
+    --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,raft \
+    --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
+    --port 30301
+```
 
 ### 8. Attach to node 1
 
-In another terminal in the `Node-1` directory, attach to your node.
+In another terminal in the `Node-1` directory, attach to your node:
 
 ```bash
 geth attach data/geth.ipc
 ```
 
-Use the Raft `cluster` command to confirm cluster now has two nodes.
+Use the Raft `cluster` command to confirm the cluster now has two nodes:
 
 === "Command"
 
@@ -236,7 +232,7 @@ Use the Raft `cluster` command to confirm cluster now has two nodes.
 
 ### 9. Add more nodes
 
-The process is exactly the same as above, except:
+The process to add more nodes to a Raft network is exactly the same as the previous steps, except:
 
 * Specify different ports for DevP2P, RPC, and Raft.
 * Specify the Raft ID using the `--raftjoinexisting` option.
@@ -256,8 +252,7 @@ geth --datadir data \
     --port 30302
 ```
 
-Node 2 connects to the other nodes
-
 !!! important
+
     For a Raft network to work, 51% of the peers must be up and running.
     We recommend having an odd number of at least 3 peers in a network.
