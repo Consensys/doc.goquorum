@@ -92,6 +92,7 @@ nav:
       - Plugins: concepts/plugins.md
       - Security framework: concepts/security-framework.md
       - Multi-tenancy: concepts/multi-tenancy.md
+      - Quorum light client: concepts/light-node.md
       - Quorum profiling: concepts/profiling.md
       - Network and chain ID: concepts/network-and-chain-id.md
   - Try the tutorials:
