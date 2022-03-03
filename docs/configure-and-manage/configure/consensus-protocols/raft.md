@@ -8,6 +8,11 @@ GoQuorum implements the Raft Proof-of-Authority (PoA) consensus protocol.
 To enable Raft consensus, specify the [`--raft`](../../../reference/cli-syntax.md#raft) command line option when starting GoQuorum.
 You can [create a private network using Raft](../../../tutorials/private-network/create-a-raft-network.md).
 
+!!! warning
+
+    Raft is not suitable for production environments. Use only in development environments. Also, you can't migrate to
+    another consensus protocol from Raft.
+
 Raft requires that all initial nodes in the cluster are configured as
 [static peers](https://github.com/ethereum/go-ethereum/wiki/connecting-to-the-network#static-nodes).
 The order of the enode IDs in the `static-nodes.json` file must be the same across all peers.

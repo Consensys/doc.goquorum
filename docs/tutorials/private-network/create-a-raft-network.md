@@ -7,7 +7,13 @@ description: Creating a network using Raft consensus
 A private network provides a configurable network for testing. This private network uses the
 [Raft consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md).
 
-!!!important
+!!! warning
+
+    Raft is not suitable for production environments. Use only in development environments. Also, you can't migrate to
+    another consensus protocol from Raft.
+
+!!! important
+
     The steps in this tutorial create an isolated, but not protected or secure, Ethereum private
     network. We recommend running the private network behind a properly configured firewall.
 
