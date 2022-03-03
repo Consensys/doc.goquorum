@@ -54,7 +54,7 @@ maximum number of peers where N is expected size of the cluster.
 
 ## Migrate from Raft to another consensus protocol
 
-Migrating a network using Raft to a consensus mechanism suitable for production such as [QBFT](qbft.md) requires one of:
+Migrating a network using Raft to a consensus mechanism suitable for production such as [QBFT](qbft.md) requires one of the following:
 
 * Stopping the Raft network and starting the new network with the state at the time of migration.
   That is, historical transactions and state history are lost.
