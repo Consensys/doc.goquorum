@@ -117,8 +117,8 @@ You can migrate an existing [IBFT](ibft.md) network to a QBFT network with the f
 
 1. Stop the network.
 1. Update the IBFT genesis file with a non-zero `testQBFTBlock` fork block.
-   For example, if the current block number in your IBFT network is 100, set `testQBFTBlock` to any block greater than
-   100, and once that fork block is reached, QBFT consensus will be used instead of IBFT.
+    For example, if the current block number in your IBFT network is 100, set `testQBFTBlock` to any block greater than
+    100, and once that fork block is reached, QBFT consensus will be used instead of IBFT.
 
     !!! example "Sample QBFT genesis file"
 
