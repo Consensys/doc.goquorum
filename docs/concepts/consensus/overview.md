@@ -7,10 +7,6 @@ GoQuorum implements the following Proof of Authority consensus protocols:
 * [Raft](../../configure-and-manage/configure/consensus-protocols/raft.md)
 * [Clique](../../configure-and-manage/configure/consensus-protocols/clique.md).
 
-!!! warning
-
-    QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
-
 !!! note
 
     You can't create a network of GoQuorum nodes using different consensus protocols.

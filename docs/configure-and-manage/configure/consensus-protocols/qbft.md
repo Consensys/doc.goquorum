@@ -7,9 +7,6 @@ description: Configuring QBFT consensus
 GoQuorum implements the QBFT Proof-of-Authority (PoA) consensus protocol.
 You can [create a private network using QBFT](../../../tutorials/private-network/create-qbft-network.md).
 
-!!! warning
-    QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
-
 In QBFT networks, approved accounts known as validators validate transactions and blocks.
 Validators take turns to create the next block.
 Before inserting a block onto the chain, a super-majority (greater than 66%) of validators must first sign the block.
