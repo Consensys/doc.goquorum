@@ -9,10 +9,10 @@ GoQuorum implements the following Proof of Authority consensus protocols:
 
 !!! warning
 
-    - QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
-
-    - Raft is not suitable for production environments. Use only in development environments. Also, you can't migrate to
-      another consensus protocol from Raft.
+    Raft is not suitable for production environments.
+    Use only in development environments.
+    You can [migrate a network using Raft to another consensus protocol]
+    (../../configure-and-manage/configure/consensus-protocols/raft.md#migrate-from-raft-to-another-consensus-protocol).
 
 !!! note
 
