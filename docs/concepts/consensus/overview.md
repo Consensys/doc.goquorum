@@ -11,8 +11,7 @@ GoQuorum implements the following Proof of Authority consensus protocols:
 
     Raft is not suitable for production environments.
     Use only in development environments.
-    You can [migrate a network using Raft to another consensus protocol]
-    (../../configure-and-manage/configure/consensus-protocols/raft.md#migrate-from-raft-to-another-consensus-protocol).
+    You can [migrate a network using Raft to another consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md#migrate-from-raft-to-another-consensus-protocol).
 
 !!! note
 
