@@ -14,6 +14,7 @@ with five nodes.
 
 ## Prerequisites
 
+* [Node.js version 15 or later](https://nodejs.org/en/download/).
 * [GoQuorum](../../deploy/install/binaries.md#release-binaries).
   Ensure that `PATH` contains `geth` and `bootnode`.
 
@@ -23,219 +24,198 @@ with five nodes.
 
 ## Steps
 
-### 1. Install Istanbul tools
-
-The [`istanbul-tools`](https://github.com/ConsenSys/istanbul-tools) repository contains tools for configuring QBFT networks.
-
-```bash
-git clone https://github.com/ConsenSys/istanbul-tools.git
-cd istanbul-tools
-make qbft
-```
-
-### 2. Create directories
+### 1. Create directories
 
 Create directories for your private network and five nodes.
 
 ```bash
 QBFT-Network/
 ├── Node-0
-│   ├── data
+│    └── data
+│        └── keystore
 ├── Node-1
-│   ├── data
+│    └── data
+│        └── keystore
 ├── Node-2
-│   ├── data
+│    └── data
+│        └── keystore
 ├── Node-3
-│   ├── data
+│    └── data
+│        └── keystore
 ├── Node-4
-│   ├── data
+│    └── data
+│        └── keystore
 ```
 
-### 3. Generate keys and configuration
+### 2. Run the Quorum Genesis Tool
 
-In the `QBFT-Network` directory, generate keys and configuration for five nodes.
+Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) interactively or by using CLI options.
+The following example uses CLI options to create the genesis file and node keys:
 
 ```bash
-<path to istanbul-tools>/istanbul-tools/build/bin/qbft setup --num 5 --nodes --quorum --save --verbose
+npx quorum-genesis-tool --consensus qbft --chainID 1337 --blockperiod 5 --requestTimeout 10 --epochLength 30000 --difficulty 1 --gasLimit '0xFFFFFF' --coinbase '0x0000000000000000000000000000000000000000' --validators 5 --members 0 --bootnodes 0 --outputPath 'artifacts'
 ```
 
-Node keys for five nodes, a `static-nodes.json` files, and a `genesis.json` files are generated.
+Node keys for five nodes, along with `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json`, and `genesis.json` are generated.
 
-!!! example "Example files"
+!!! example "output"
 
     ```bash
-    validators
-    {
-     "Address": "0x66f976d16c906b1b7e0e110d6950b109f146120f",
-     "Nodekey": "25c125f25955a6e026fb9fa97dddebcb6aa180edf440a16df282e50f3ee18168",
-     "NodeInfo": "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@0.0.0.0:30303?discport=0"
-    }
-    {
-     "Address": "0xc20f68dfb6b3707ec2ee5b4c1f5ca9e10e560d7b",
-     "Nodekey": "8cb0683ecdd533ba51e7802271652c73a37ac3daeb58db6f991d1dd77ae58d9d",
-     "NodeInfo": "enode://0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c@0.0.0.0:30303?discport=0"
-    }
-    {
-     "Address": "0x85ceceb205c67da0029d6852f0fc486b4324b5dc",
-     "Nodekey": "6dc8c9e6163a55bbf512f690f0fc375e4bde313c3d9dbf5307033dfb50789920",
-     "NodeInfo": "enode://d40a766cb6fe75f052fe21f61bc84ca3851abb6f999d73f97dd76e14fc2dea175d4cf554ccbcc2c7c639a0901932775b523554cb73facdfab08def975208f8e6@0.0.0.0:30303?discport=0"
-    }
-    {
-     "Address": "0x608e7dfbbb6ebcc24fabeb67b3597b166b114142",
-     "Nodekey": "78cb7974f759cd790d14923adc8614fdac204a31627dcb8b9337b1317b47ce7e",
-     "NodeInfo": "enode://80a98f66d243c6604cda0e1c722eed3d9e080591c81710eec70794e0909e58661f4863e29a7a63bf7fb9387afc8609df37bacbf3d5c523d97bf598c3470840f5@0.0.0.0:30303?discport=0"
-    }
-    {
-     "Address": "0xc5db99d2cd30fd3ab58fe2738a3513c6ccdb0d2b",
-     "Nodekey": "dfdda5e2c8cedaa4468baaa46b619f5e227a7f07c4b6163edaf197991461490d",
-     "NodeInfo": "enode://7fa183662285993efaf7a59e303ec5543bbcd09cb2883e7611d9576ed90f3bcf0400b70af11c5266e5110eebe8afd4e817437bde574d686f440df1ec85822add@0.0.0.0:30303?discport=0"
-    }
-
-    static-nodes.json
-    [
-     "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@0.0.0.0:30303?discport=0",
-     "enode://0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c@0.0.0.0:30303?discport=0",
-     "enode://d40a766cb6fe75f052fe21f61bc84ca3851abb6f999d73f97dd76e14fc2dea175d4cf554ccbcc2c7c639a0901932775b523554cb73facdfab08def975208f8e6@0.0.0.0:30303?discport=0",
-     "enode://80a98f66d243c6604cda0e1c722eed3d9e080591c81710eec70794e0909e58661f4863e29a7a63bf7fb9387afc8609df37bacbf3d5c523d97bf598c3470840f5@0.0.0.0:30303?discport=0",
-     "enode://7fa183662285993efaf7a59e303ec5543bbcd09cb2883e7611d9576ed90f3bcf0400b70af11c5266e5110eebe8afd4e817437bde574d686f440df1ec85822add@0.0.0.0:30303?discport=0"
-    ]
-
-    genesis.json
-    {
-        "config": {
-            "chainId": 10,
-            "homesteadBlock": 0,
-            "eip150Block": 0,
-            "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-            "eip155Block": 0,
-            "eip158Block": 0,
-            "byzantiumBlock": 0,
-            "constantinopleBlock": 0,
-            "istanbul": {
-                "epoch": 30000,
-                "policy": 0,
-                "ceil2Nby3Block": 0,
-                "testQBFTBlock": 0
-            },
-            "txnSizeLimit": 64,
-            "maxCodeSize": 0,
-            "isQuorum": true
-        },
-        "nonce": "0x0",
-        "timestamp": "0x5fc06d3d",
-        "extraData": "0xf87aa00000000000000000000000000000000000000000000000000000000000000000f8549493917cadbace5dfce132b991732c6cda9bcc5b8a9427a97c9aaf04f18f3014c32e036dd0ac76da5f1894ce412f988377e31f4d0ff12d74df73b51c42d0ca9498c1334496614aed49d2e81526d089f7264fed9cc080c0",
-        "gasLimit": "0xe0000000",
-        "difficulty": "0x1",
-        "mixHash": "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
-        "coinbase": "0x0000000000000000000000000000000000000000",
-        "alloc": {
-            "fe3b557e8fb62b89f4916b721be55ceb828dbd73": {
-              "privateKey": "8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63",
-              "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
-              "balance": "0xad78ebc5ac6200000"
-            },
-            "627306090abaB3A6e1400e9345bC60c78a8BEf57": {
-              "privateKey": "c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3",
-              "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
-              "balance": "90000000000000000000000"
-            },
-            "f17f52151EbEF6C7334FAD080c5704D77216b732": {
-              "privateKey": "ae6ae8e5ccbfb04590405997ee2d52d2b330726137b875053c36d94e974d162f",
-              "comment": "private key and this comment are ignored.  In a real chain, the private key should NOT be stored",
-              "balance": "90000000000000000000000"
-            }
-        },
-        "number": "0x0",
-        "gasUsed": "0x0",
-        "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
-    }
+    Need to install the following packages:
+    quorum-genesis-tool
+    Ok to proceed? (y) y
+    Creating bootnodes...
+    Creating members...
+    Creating validators...
+    Artifacts in folder: artifacts/2022-02-23-12-34-35
     ```
 
-Directory structure after generating keys and configuration files:
+The following is the folder structure of the artifacts generated:
 
 ```bash
-QBFT-Network/
-├── 0
-│   ├── nodekey
-├── 1
-│   ├── nodekey
-├── 2
-│   ├── nodekey
-├── 3
-│   ├── nodekey
-├── 4
-│   ├── nodekey
-├── genesis.json
-├── Node-0
-│   ├── data
-├── Node-1
-│   ├── data
-├── Node-2
-│   ├── data
-├── Node-3
-│   ├── data
-├── Node-4
-│   ├── data
-├── static-nodes.json
+QBFT-Network
+├── artifacts
+    └──2022-02-23-12-34-35
+        ├── goQuorum
+        │         ├── disallowed-nodes.json
+        │         ├── genesis.json
+        │         ├── permissioned-nodes.json
+        │         └── static-nodes.json
+        ├── README.md
+        ├── userData.json
+        ├── validator0
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
+        ├── validator1
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
+        ├── validator2
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
+        ├── validator3
+        │         ├── accountAddress
+        │         ├── accountKeystore
+        │         ├── accountPassword
+        │         ├── accountPrivateKey
+        │         ├── address
+        │         ├── nodekey
+        │         └── nodekey.pub
+        └── validator4
+            ├── accountAddress
+            ├── accountKeystore
+            ├── accountPassword
+            ├── accountPrivateKey
+            ├── address
+            ├── nodekey
+            └── nodekey.pub
 ```
 
-### 4. Update IP and port numbers
+Move all the keys into the `artifacts` folder directly, for ease of use in the next steps:
 
-Update the IP and port numbers for all initial validator nodes in `static-nodes.json`.
+```bash
+cd QBFT-Network
+mv artifacts/2022-02-23-12-34-35/* artifacts
+```
 
-!!! example
+### 3. Update IP and port numbers
+
+Go to the `goQuorum` directory of the artifacts:
+
+```bash
+cd artifacts/goQuorum
+```
+
+Update the IP and port numbers for all initial validator nodes in `static-nodes.json` and `permissioned-nodes.json` (if applicable).
+
+!!! example "`static-nodes.json`"
 
     ```json
     [
-      "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30300?discport=0",
-      "enode://0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c@127.0.0.1:30301?discport=0",
-      "enode://d40a766cb6fe75f052fe21f61bc84ca3851abb6f999d73f97dd76e14fc2dea175d4cf554ccbcc2c7c639a0901932775b523554cb73facdfab08def975208f8e6@127.0.0.1:30302?discport=0",
-      "enode://80a98f66d243c6604cda0e1c722eed3d9e080591c81710eec70794e0909e58661f4863e29a7a63bf7fb9387afc8609df37bacbf3d5c523d97bf598c3470840f5@127.0.0.1:30303?discport=0",
-      "enode://7fa183662285993efaf7a59e303ec5543bbcd09cb2883e7611d9576ed90f3bcf0400b70af11c5266e5110eebe8afd4e817437bde574d686f440df1ec85822add@127.0.0.1:30304?discport=0"
+      "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30300?discport=0&raftport=53000",
+      "enode://0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c@127.0.0.1:30301?discport=0&raftport=53001",
+      "enode://d40a766cb6fe75f052fe21f61bc84ca3851abb6f999d73f97dd76e14fc2dea175d4cf554ccbcc2c7c639a0901932775b523554cb73facdfab08def975208f8e6@127.0.0.1:30302?discport=0&raftport=53002",
+      "enode://80a98f66d243c6604cda0e1c722eed3d9e080591c81710eec70794e0909e58661f4863e29a7a63bf7fb9387afc8609df37bacbf3d5c523d97bf598c3470840f5@127.0.0.1:30303?discport=0&raftport=53003",
+      "enode://7fa183662285993efaf7a59e303ec5543bbcd09cb2883e7611d9576ed90f3bcf0400b70af11c5266e5110eebe8afd4e817437bde574d686f440df1ec85822add@127.0.0.1:30304?discport=0&raftport=53004"
     ]
     ```
 
-### 5. Copy static nodes file and node keys to each node
+### 4. Copy the static nodes file and node keys to each node
 
-Copy the `static-nodes.json` to the data directory for each node:
-
-```bash
-cp static-nodes.json Node-0/data/
-cp static-nodes.json Node-1/data/
-cp static-nodes.json Node-2/data/
-cp static-nodes.json Node-3/data/
-cp static-nodes.json Node-4/data/
-```
-
-Copy the `nodekey` file for each node to the data directory for each node:
+Copy `static-nodes.json`, `genesis.json`, and `permissioned-nodes.json` (if applicable) to the data directory for each node:
 
 ```bash
-cp 0/nodekey Node-0/data
-cp 1/nodekey Node-1/data
-cp 2/nodekey Node-2/data
-cp 3/nodekey Node-3/data
-cp 4/nodekey Node-4/data
+cp static-nodes.json genesis.json ./../Node-0/data/
+cp static-nodes.json genesis.json ./../Node-1/data/
+cp static-nodes.json genesis.json ./../Node-2/data/
+cp static-nodes.json genesis.json ./../Node-3/data/
+cp static-nodes.json genesis.json ./../Node-4/data/
 ```
 
-### 6. Initialize nodes
-
-In each node directory (that is, `Node-0`, `Node-1`, `Node-2`, `Node-3`, and `Node-4`), initalize each node.
+In each validator directory, copy the `nodekey` files and `address` to the data directory:
 
 ```bash
-geth --datadir data init ../genesis.json
+cp nodekey* address ../../Node-0/data
+cp nodekey* address ../../Node-1/data
+cp nodekey* address ../../Node-2/data
+cp nodekey* address ../../Node-3/data
+cp nodekey* address ../../Node-4/data
 ```
 
-### 7. Start node 0
+Copy the individual account keys to the keystore directory for each node:
+
+```bash
+cp account* ../../Node-0/data/keystore
+cp account* ../../Node-1/data/keystore
+cp account* ../../Node-2/data/keystore
+cp account* ../../Node-3/data/keystore
+cp account* ../../Node-4/data/keystore
+```
+
+### 5. Initialize nodes
+
+In each node directory (`Node-0`, `Node-1`, `Node-2`, `Node-3`, and `Node-4`), initialize the node:
+
+```bash
+geth --datadir data init data/genesis.json
+```
+
+### 6. Start node 0
 
 In the `Node-0` directory, start the first node:
 
 ```bash
-PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22000 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30300
+export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+export PRIVATE_CONFIG=ignore
+geth --datadir data \
+    --networkid 1337 --nodiscover --verbosity 5 \
+    --syncmode full --nousb \
+    --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+    --http --http.addr 127.0.0.1 --http.port 22000 --http.corsdomain "*" --http.vhosts "*" \
+    --ws --ws.addr 127.0.0.1 --ws.port 32000 --ws.origins "*" \
+    --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+    --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+    --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
+    --port 30300
 ```
 
 The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enabled.
 
-### 8. Start nodes 1, 2, 3, and 4
+### 7. Start nodes 1, 2, 3, and 4
 
 In a new terminal for each node in each node directory, start the remaining nodes using the same command except
 specifying different ports for DevP2P and RPC.
@@ -247,28 +227,72 @@ specifying different ports for DevP2P and RPC.
 === "Node 1"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22001 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30301
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export PRIVATE_CONFIG=ignore
+    geth --datadir data \
+        --networkid 1337 --nodiscover --verbosity 5 \
+        --syncmode full --nousb \
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+        --http --http.addr 127.0.0.1 --http.port 22001 --http.corsdomain "*" --http.vhosts "*" \
+        --ws --ws.addr 127.0.0.1 --ws.port 32001 --ws.origins "*" \
+        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
+        --port 30301
     ```
 
 === "Node 2"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22002 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30302
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export PRIVATE_CONFIG=ignore
+    geth --datadir data \
+        --networkid 1337 --nodiscover --verbosity 5 \
+        --syncmode full --nousb \
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
+        --http --http.addr 127.0.0.1 --http.port 22002 --http.corsdomain "*" --http.vhosts "*" \
+        --ws --ws.addr 127.0.0.1 --ws.port 32002--ws.origins "*" \
+        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
+        --port 30302
     ```
 
 === "Node 3"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22003 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30303
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export PRIVATE_CONFIG=ignore
+    geth --datadir data \
+        --networkid 1337 --nodiscover --verbosity 5 \
+        --syncmode full --nousb \
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+        --http --http.addr 127.0.0.1 --http.port 22003 --http.corsdomain "*" --http.vhosts "*" \
+        --ws --ws.addr 127.0.0.1 --ws.port 32003 --ws.origins "*" \
+        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
+        --port 30303
     ```
 
 === "Node 4"
 
     ```bash
-    PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22004 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft --emitcheckpoints --port 30304
+    export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
+    export PRIVATE_CONFIG=ignore
+    geth --datadir data \
+        --networkid 1337 --nodiscover --verbosity 5 \
+        --syncmode full --nousb \
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
+        --http --http.addr 127.0.0.1 --http.port 22004 --http.corsdomain "*" --http.vhosts "*" \
+        --ws --ws.addr 127.0.0.1 --ws.port 32004 --ws.origins "*" \
+        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
+        --port 30304
     ```
 
-### 9. Attach to node 0
+### 8. Attach to node 0
 
 In another terminal in the `Node-0` directory, attach to node 0:
 
@@ -276,7 +300,7 @@ In another terminal in the `Node-0` directory, attach to node 0:
 geth attach data/geth.ipc
 ```
 
-### 10. Check peer count
+### 9. Check peer count
 
 Use the JavaScript console to check the peer count:
 
@@ -299,13 +323,14 @@ Use the JavaScript console to check the peer count:
 
     The enode ID displayed in the logs on startup must match the enode listed in `static-nodes.json`
     for each node including the port number specified using [`--port` on startup](#8-start-node-1-2-3-and-4).
+
     The log message is:
 
     ```
-    INFO [12-08|10:44:55.044] Started P2P networking   self="enode://a54bc6e32febe789f9d2da61b370c1cd269ef7a6fdb0ea26b7c3767f56265c4e40e81bfb6e4e1aff56d2a9a8bcae5bfc168f106c2ca81b8eb3dfe09445718629@127.0.0.1:30301?discport=0"
+    INFO [12-08|10:44:55.044] Started P2P networking   self="enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30301?discport=0"
     ```
 
-### 11. List current validators
+### 10. List current validators
 
 Use [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators) to view the validator addresses.
 
@@ -316,10 +341,11 @@ Use [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalida
     ```
 
 === "Result"
+
     ```bash
-    ["0x608e7dfbbb6ebcc24fabeb67b3597b166b114142", "0x66f976d16c906b1b7e0e110d6950b109f146120f", "0x85ceceb205c67da0029d6852f0fc486b4324b5dc", "0xc20f68dfb6b3707ec2ee5b4c1f5ca9e10e560d7b", "0xc5db99d2cd30fd3ab58fe2738a3513c6ccdb0d2b"]
+    ["e1a8d6a6866a6c8f25ed853e3f957b0ed06a8f1c", "6028d68da1df3c54d5f0949de6082fb69a7239d1", "c1ed779faf6975399c5bdb90b40e2f324185bad0", "6480d9bf06fc8ba9a0393976386e47a5c4f014de", "da4d64ac5fea8aaf2943680241ce9ca4befed870"]
     ```
 
-### Next
+### Next steps
 
-[Add and remove validators](adding-removing-qbft-validators.md).
+You can [add and remove validators](adding-removing-qbft-validators.md).

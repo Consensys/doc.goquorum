@@ -51,7 +51,7 @@ consensus protocols.
 
 In public networks, the milestone blocks specify the blocks at which the network changed protocol.
 
-!!! example "Ethereum MainNet milestone blocks"
+!!! example "Ethereum Mainnet milestone blocks"
 
     ```json
     {

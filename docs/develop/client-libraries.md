@@ -11,7 +11,7 @@ using tools such as [Truffle](https://trufflesuite.com/),  [web3.js] and
 
 ## Prerequisites
 
-* [Node.js version 10 or later](https://nodejs.org/en/download/).
+* [Node.js version 15 or later](https://nodejs.org/en/download/).
 * [The web3 library must be installed in your project](https://github.com/ChainSafe/web3.js#installation).
 * A [private network](../tutorials/private-network/create-ibft-network.md) if deploying a public contract.
 * A [privacy-enabled network](../tutorials/create-privacy-enabled-network.md) if deploying a private contract.
