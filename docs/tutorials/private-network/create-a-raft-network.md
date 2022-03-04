@@ -11,7 +11,7 @@ A private network provides a configurable network for testing. This private netw
 
     Raft is not suitable for production environments.
     Use only in development environments.
-    You can [migrate a network using Raft to another consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md).
+    You can [migrate a Raft network to another consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md).
 
 !!! important
 

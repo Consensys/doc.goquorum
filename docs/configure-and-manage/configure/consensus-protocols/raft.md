@@ -12,7 +12,7 @@ You can [create a private network using Raft](../../../tutorials/private-network
 
     Raft is not suitable for production environments.
     Use only in development environments.
-    You can [migrate a network using Raft to another consensus protocol](#migrate-from-raft-to-another-consensus-protocol).
+    You can [migrate a Raft network to another consensus protocol](#migrate-from-raft-to-another-consensus-protocol).
 
 Raft requires that all initial nodes in the cluster are configured as
 [static peers](https://github.com/ethereum/go-ethereum/wiki/connecting-to-the-network#static-nodes).
@@ -60,7 +60,7 @@ Migrating a network using Raft to a consensus mechanism suitable for production 
   That is, historical transactions and state history are lost.
 
 * Replaying the historical transactions on the new network.
-  The historical transactions will be at different block heights, but otherwise the transactions and state history will
+  The historical transactions will be at different block heights, but the transactions and state history will
   be the same on the new network as on the Raft network.
 
 If you want enterprise support to migrate a Raft network, contact [support](https://consensys.net/quorum/contact-us/).
