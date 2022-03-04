@@ -8,6 +8,12 @@ GoQuorum implements the Raft Proof-of-Authority (PoA) consensus protocol.
 To enable Raft consensus, specify the [`--raft`](../../../reference/cli-syntax.md#raft) command line option when starting GoQuorum.
 You can [create a private network using Raft](../../../tutorials/private-network/create-a-raft-network.md).
 
+!!! warning
+
+    Raft is not suitable for production environments.
+    Use only in development environments.
+    You can [migrate a Raft network to another consensus protocol](#migrate-from-raft-to-another-consensus-protocol).
+
 Raft requires that all initial nodes in the cluster are configured as
 [static peers](https://github.com/ethereum/go-ethereum/wiki/connecting-to-the-network#static-nodes).
 The order of the enode IDs in the `static-nodes.json` file must be the same across all peers.
@@ -45,3 +51,16 @@ By default, GoQuorum listens on port 50400 for the Raft transport. Use the
 
 By default, the number of peers is 25. Use the `--maxpeers N` command line option to configure the
 maximum number of peers where N is expected size of the cluster.
+
+## Migrate from Raft to another consensus protocol
+
+Migrating a network using Raft to a consensus mechanism suitable for production such as [QBFT](qbft.md) requires one of the following:
+
+* Stopping the Raft network and starting the new network with the state at the time of migration.
+  That is, historical transactions and state history are lost.
+
+* Replaying the historical transactions on the new network.
+  The historical transactions will be at different block heights, but the transactions and state history will
+  be the same on the new network as on the Raft network.
+
+If you want enterprise support to migrate a Raft network, contact [support](https://consensys.net/quorum/contact-us/).
