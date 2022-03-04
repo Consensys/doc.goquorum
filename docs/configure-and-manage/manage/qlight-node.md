@@ -1,4 +1,4 @@
-# Setting up a GoQuorum light node
+# Setting up a GoQuorum qlight node
 
 A qlight client node requires a node configured to act as a qlight server. The server node must support Multiple Private States (MPS).
 The qlight client will be set up to use a Private State Identifier (PSI) which is managed by the server node.
