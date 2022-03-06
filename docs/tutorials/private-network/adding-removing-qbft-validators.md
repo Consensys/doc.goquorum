@@ -4,10 +4,6 @@ description: Adding and removing QBFT validators
 
 # Adding and removing QBFT validators
 
-!!! warning
-
-    QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
-
 ## Prerequisites
 
 * A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
@@ -92,8 +88,8 @@ description: Adding and removing QBFT validators
         instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
         coinbase: 0x4c1ccd426833b9782729a212c857f2f03b7b4c0d
         at block: 137 (Tue, 11 Jun 2019 16:32:47 BST)
-         datadir: /Users/username/fromscratchistanbul/node0/data
-         modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+        datadir: /Users/username/fromscratchistanbul/node0/data
+        modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
         ```
 
     Check existing validators:
@@ -248,7 +244,7 @@ description: Adding and removing QBFT validators
           PID TTY           TIME CMD
         10554 ttys000    0:00.11 -bash
         21829 ttys001    0:00.03 -bash
-         9125 ttys002    0:00.93 -bash
+        9125  ttys002    0:00.93 -bash
         36432 ttys002    0:24.48 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22000 --http.api admin,
         36433 ttys002    0:23.36 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22001 --http.api admin,
         36434 ttys002    0:24.32 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22002 --http.api admin,
@@ -278,8 +274,8 @@ description: Adding and removing QBFT validators
         instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
         coinbase: 0xc1056df7c02b6f1a353052eaf0533cc7cb743b52
         at block: 181 (Tue, 11 Jun 2019 16:36:27 BST)
-         datadir: /Users/username/fromscratchistanbul/node0/data
-         modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+        datadir: /Users/username/fromscratchistanbul/node0/data
+        modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
         ```
 
     Run `istanbul.getValidators`:
@@ -346,7 +342,7 @@ description: Adding and removing QBFT validators
           PID TTY           TIME CMD
         10554 ttys000    0:00.11 -bash
         21829 ttys001    0:00.03 -bash
-         9125 ttys002    0:00.94 -bash
+        9125  ttys002    0:00.94 -bash
         36432 ttys002    0:31.93 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22000 --http.api admin,
         36433 ttys002    0:30.75 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22001 --http.api admin,
         36434 ttys002    0:31.72 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22002 --http.api admin,

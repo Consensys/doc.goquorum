@@ -8,9 +8,6 @@ A private network provides a configurable network for testing.
 This tutorial walks you through creating an [QBFT](../../configure-and-manage/configure/consensus-protocols/qbft.md) private network
 with five nodes.
 
-!!! warning
-    QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
-
 !!! important
     The steps in this tutorial create an isolated, but not protected or secure, Ethereum private network.
     We recommend running the private network behind a properly configured firewall.

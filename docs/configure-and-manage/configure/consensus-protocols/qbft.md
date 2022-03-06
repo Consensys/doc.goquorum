@@ -7,9 +7,6 @@ description: Configuring QBFT consensus
 GoQuorum implements the QBFT Proof-of-Authority (PoA) consensus protocol.
 You can [create a private network using QBFT](../../../tutorials/private-network/create-qbft-network.md).
 
-!!! warning
-    QBFT is currently an early access feature. It is not recommended for production networks with business critical impact.
-
 In QBFT networks, approved accounts known as validators validate transactions and blocks.
 Validators take turns to create the next block.
 Before inserting a block onto the chain, a super-majority (greater than 66%) of validators must first sign the block.
@@ -120,8 +117,8 @@ You can migrate an existing [IBFT](ibft.md) network to a QBFT network with the f
 
 1. Stop the network.
 1. Update the IBFT genesis file with a non-zero `testQBFTBlock` fork block.
-   For example, if the current block number in your IBFT network is 100, set `testQBFTBlock` to any block greater than
-   100, and once that fork block is reached, QBFT consensus will be used instead of IBFT.
+    For example, if the current block number in your IBFT network is 100, set `testQBFTBlock` to any block greater than
+    100, and once that fork block is reached, QBFT consensus will be used instead of IBFT.
 
     !!! example "Sample QBFT genesis file"
 
