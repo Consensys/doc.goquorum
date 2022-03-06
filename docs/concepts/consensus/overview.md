@@ -7,6 +7,12 @@ GoQuorum implements the following Proof of Authority consensus protocols:
 * [Raft](../../configure-and-manage/configure/consensus-protocols/raft.md)
 * [Clique](../../configure-and-manage/configure/consensus-protocols/clique.md).
 
+!!! warning
+
+    Raft is not suitable for production environments.
+    Use only in development environments.
+    You can [migrate a Raft network to another consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md#migrate-from-raft-to-another-consensus-protocol).
+
 !!! note
 
     You can't create a network of GoQuorum nodes using different consensus protocols.

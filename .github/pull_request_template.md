@@ -33,13 +33,11 @@ For content changes:
 
 For tool changes:
 
-- [ ] CircleCI workflow
-- [ ] Build and QA tools (e.g., lint or vale)
+- [ ] Build and QA tools (e.g., lint)
 - [ ] MkDocs templates
 - [ ] MkDocs configuration
 - [ ] Python dependencies
 - [ ] Node dependencies and JavaScript
-- [ ] Read the Docs configuration
 - [ ] GitHub integration
 
 ## After creating your PR and tests have finished
