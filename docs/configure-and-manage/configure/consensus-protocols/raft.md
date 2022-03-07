@@ -4,7 +4,7 @@ description: Configuring Raft consensus
 
 # Configuring Raft consensus
 
-GoQuorum implements the Raft Proof-of-Authority (PoA) consensus protocol.
+GoQuorum implements the Raft proof of authority [consensus protocol](../../../concepts/consensus/overview.md).
 To enable Raft consensus, specify the [`--raft`](../../../reference/cli-syntax.md#raft) command line option when starting GoQuorum.
 You can [create a private network using Raft](../../../tutorials/private-network/create-a-raft-network.md).
 

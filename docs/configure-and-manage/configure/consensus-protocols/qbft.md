@@ -4,7 +4,8 @@ description: Configuring QBFT consensus
 
 # Configuring QBFT consensus
 
-GoQuorum implements the QBFT Proof-of-Authority (PoA) consensus protocol.
+GoQuorum implements the QBFT proof of authority [consensus protocol](../../../concepts/consensus/overview.md).
+QBFT is the recommended enterprise-grade consensus protocol for private networks.
 You can [create a private network using QBFT](../../../tutorials/private-network/create-qbft-network.md).
 
 In QBFT networks, approved accounts known as validators validate transactions and blocks.
@@ -15,6 +16,7 @@ Existing validators propose and vote to add or remove validators.
 Adding or removing a validator requires a majority vote (greater than 50%) of validators.
 
 !!! important
+
     Configure your network to ensure you never lose 1/3 or more of your validators.
     If more than 1/3 of validators stop participating, new blocks are no longer created, and the network stalls.
     It may take significant time to recover once nodes are restarted.
