@@ -113,7 +113,7 @@ You can also set a `requesttimeout` by using the
     The quickest method to resume block production is to restart all validators, which resets `requesttimeoutseconds` to
     its genesis value.
 
-## Migrating from IBFT to QBFT
+## Migrate from IBFT to QBFT
 
 You can migrate an existing [IBFT](ibft.md) network to a QBFT network with the following steps:
 

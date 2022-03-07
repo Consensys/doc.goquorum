@@ -42,7 +42,7 @@ Implementations using IBFT and Clique must be aware of forks and chain reorganiz
 
 ### Minimum number of validators
 
-To be Byzantine fault tolerant, IBFT and QBFT require a minimum of four validators.
+To be Byzantine fault tolerant, QBFT and IBFT require a minimum of four validators.
 Byzantine fault tolerance is the ability to function correctly and reach consensus despite nodes failing or propagating
 incorrect information to peers.
 

@@ -21,13 +21,14 @@ You can refer to the following Clique documentation:
 
 ## Migrate from Clique to another consensus protocol
 
-Migrating a network using Clique to a consensus mechanism suitable for production such as [QBFT](qbft.md) requires one of the following:
+To migrate a network using Clique to a consensus protocol suitable for production such as [QBFT](qbft.md), do one of
+the following:
 
-* Stopping the Clique network and starting the new network with the state at the time of migration.
-  That is, historical transactions and state history are lost.
+* Stop the Clique network and start the new network with the state at the time of migration.
+  Historical transactions and state history are lost.
 
-* Replaying the historical transactions on the new network.
-  The historical transactions will be at different block heights, but the transactions and state history will
-  be the same on the new network as on the Clique network.
+* Replay the historical transactions on the new network.
+  The historical transactions are at different block heights on the new network, but the transactions and state history
+  are the same on the new network as on the Clique network.
 
 If you want enterprise support to migrate a Clique network, contact [support](https://consensys.net/quorum/contact-us/).

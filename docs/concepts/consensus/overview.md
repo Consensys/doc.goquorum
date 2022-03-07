@@ -5,13 +5,13 @@ GoQuorum implements the following proof of authority (PoA) consensus protocols:
 * [QBFT](../../configure-and-manage/configure/consensus-protocols/qbft.md): QBFT is the recommended enterprise-grade
   consensus protocol for private networks.
 * [IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md): IBFT is supported for existing users for
-  private networks, but you can [migrate a network using IBFT to QBFT](../../configure-and-manage/configure/consensus-protocols/qbft.md#migrating-from-ibft-to-qbft).
+  private networks, but you can [migrate a network using IBFT to QBFT](../../configure-and-manage/configure/consensus-protocols/qbft.md#migrate-from-ibft-to-qbft).
 * [Raft](../../configure-and-manage/configure/consensus-protocols/raft.md): Raft is not suitable for production networks.
   You can [migrate a network using Raft to another consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md#migrate-from-raft-to-another-consensus-protocol).
 * [Clique](../../configure-and-manage/configure/consensus-protocols/clique.md): Clique is not suitable for production networks.
   You can [mgirate a network using Clique to another consensus protocol](../../configure-and-manage/configure/consensus-protocols/clique.md#migrate-from-clique-to-another-consensus-protocol).
 
-You can view a [comparison of the PoA consensus protocols](comparing-poa.md).
+See a [comparison of the PoA consensus protocols](comparing-poa.md).
 
 !!! note
 
