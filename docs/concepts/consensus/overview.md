@@ -9,7 +9,7 @@ GoQuorum implements the following proof of authority (PoA) consensus protocols:
 * [Raft](../../configure-and-manage/configure/consensus-protocols/raft.md): Raft is not suitable for production networks.
   You can [migrate a network using Raft to another consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md#migrate-from-raft-to-another-consensus-protocol).
 * [Clique](../../configure-and-manage/configure/consensus-protocols/clique.md): Clique is not suitable for production networks.
-  You can [mgirate a network using Clique to another consensus protocol](../../configure-and-manage/configure/consensus-protocols/clique.md#migrate-from-clique-to-another-consensus-protocol).
+  You can [migrate a network using Clique to another consensus protocol](../../configure-and-manage/configure/consensus-protocols/clique.md#migrate-from-clique-to-another-consensus-protocol).
 
 See a [comparison of the PoA consensus protocols](comparing-poa.md).
 

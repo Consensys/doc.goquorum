@@ -2,13 +2,13 @@
 description: Adding and removing IBFT validators
 ---
 
-# Adding and removing IBFT validators
+# Add and remove IBFT validators
 
 ## Prerequisites
 
 * An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
 
-## Adding a validator
+## Add a validator
 
 1. Create a working directory for the new node that needs to be added:
 
@@ -254,7 +254,7 @@ description: Adding and removing IBFT validators
         36467 ttys003    0:00.32 geth attach node3/data/geth.ipc
         ```
 
-## Removing a validator
+## Remove a validator
 
 1. Attach a `geth` console to a running validator, run [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators),
    and identify the address of the validator that needs to be removed:
@@ -358,10 +358,10 @@ description: Adding and removing IBFT validators
     kill 36485
     ```
 
-## Adding a non-validator node
+## Add a non-validator node
 
-Same instructions as [adding a validator](#adding-a-validator) **excluding** step 3, which proposes the node as validator.
+Same instructions as [adding a validator](#add-a-validator) **excluding** step 3, which proposes the node as validator.
 
-## Removing a non-validator node
+## Remove a non-validator node
 
-Just execute **step 4** from [removing a validator](#removing-a-validator).
+Just execute **step 4** from [removing a validator](#remove-a-validator).
