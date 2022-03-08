@@ -252,7 +252,7 @@ management contract to the blockchain.
     === "geth console request"
 
         ```javascript
-        quorumExtension.extendContract("0x9aff347f193ca4560276c3322193224dcdbbe578", "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=", "0xed9d02e382b34818e88b88a309c7fe71e65f419d",{from: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e", privateFor:["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
+        quorumExtension.extendContract("0x9aff347f193ca4560276c3322193224dcdbbe578", "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=", "0xed9d02e382b34818e88b88a309c7fe71e65f419d",{from: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e", "privateFor":["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
         ```
 
     === "geth console result"
@@ -2513,7 +2513,7 @@ sent to participants with this API, and the resulting hash set as the PMT's `dat
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_distributePrivateTransaction","params":["0xf88d01808347b7608080b84034ec48699ce5877f0f97a5bea4550d52296368b1dcdc89667559555066c9894525e4878d0689cfeb4b6fda3dd6566aa06ce772f2e19e0404e45fe6351ebf640326a0ffecedc570d3520d283508f00d8b2c162096ebddca753979da95062c1df234cea033ceb36d46e3e86a399e8fde35b078248c90fb71344aadcc7e83b9324958a4ed", {privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_distributePrivateTransaction","params":["0xf88d01808347b7608080b84034ec48699ce5877f0f97a5bea4550d52296368b1dcdc89667559555066c9894525e4878d0689cfeb4b6fda3dd6566aa06ce772f2e19e0404e45fe6351ebf640326a0ffecedc570d3520d283508f00d8b2c162096ebddca753979da95062c1df234cea033ceb36d46e3e86a399e8fde35b078248c90fb71344aadcc7e83b9324958a4ed", {"privateFor": ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -2529,7 +2529,7 @@ sent to participants with this API, and the resulting hash set as the PMT's `dat
     === "geth console request"
 
         ```js
-        web3.eth.distributePrivateTransaction("0xf88d01808347b7608080b84034ec48699ce5877f0f97a5bea4550d52296368b1dcdc89667559555066c9894525e4878d0689cfeb4b6fda3dd6566aa06ce772f2e19e0404e45fe6351ebf640326a0ffecedc570d3520d283508f00d8b2c162096ebddca753979da95062c1df234cea033ceb36d46e3e86a399e8fde35b078248c90fb71344aadcc7e83b9324958a4ed", {privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+        web3.eth.distributePrivateTransaction("0xf88d01808347b7608080b84034ec48699ce5877f0f97a5bea4550d52296368b1dcdc89667559555066c9894525e4878d0689cfeb4b6fda3dd6566aa06ce772f2e19e0404e45fe6351ebf640326a0ffecedc570d3520d283508f00d8b2c162096ebddca753979da95062c1df234cea033ceb36d46e3e86a399e8fde35b078248c90fb71344aadcc7e83b9324958a4ed", {"privateFor": ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
         ```
 
     === "geth console result"
@@ -2957,7 +2957,7 @@ the contract address after the transaction is mined.
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendRawPrivateTransaction","params":["0xf889808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000571ca08a8bbf888cfa37bbf0bb965423625641fc956967b81d12e23709cead01446075a01ce999b56a8a88504be365442ea61239198e23d1fce7d00fcfc5cd3b44b7215f", {privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendRawPrivateTransaction","params":["0xf889808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000571ca08a8bbf888cfa37bbf0bb965423625641fc956967b81d12e23709cead01446075a01ce999b56a8a88504be365442ea61239198e23d1fce7d00fcfc5cd3b44b7215f", {"privateFor": ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -2973,7 +2973,7 @@ the contract address after the transaction is mined.
     === "geth console request"
 
         ```js
-        web3.eth.sendRawPrivateTransaction("0xf889808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000571ca08a8bbf888cfa37bbf0bb965423625641fc956967b81d12e23709cead01446075a01ce999b56a8a88504be365442ea61239198e23d1fce7d00fcfc5cd3b44b7215f", {privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+        web3.eth.sendRawPrivateTransaction("0xf889808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000571ca08a8bbf888cfa37bbf0bb965423625641fc956967b81d12e23709cead01446075a01ce999b56a8a88504be365442ea61239198e23d1fce7d00fcfc5cd3b44b7215f", {"privateFor": ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
         ```
 
     === "geth console result"
@@ -3048,7 +3048,7 @@ If the transaction is a contract creation, use
     === "curl HTTP request"
 
         ```bash
-        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getContractPrivacyMetadata","params":[{data:"603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3",privateFor:["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
+        curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getContractPrivacyMetadata","params":[{"data":"603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3","privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
         ```
 
     === "JSON result"
@@ -3064,7 +3064,7 @@ If the transaction is a contract creation, use
     === "geth console request"
 
         ```js
-        web3.eth.sendTransaction({data:"603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3",privateFor:["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
+        web3.eth.sendTransaction({"data":"603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3","privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]})
         ```
 
     === "geth console result"
