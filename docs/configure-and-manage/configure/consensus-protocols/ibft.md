@@ -6,9 +6,9 @@ description: Configuring IBFT consensus
 
 GoQuorum implements the [IBFT](https://medium.com/getamis/istanbul-bft-ibft-c2758b7fe6ff) proof of authority
 [consensus protocol](../../../concepts/consensus/overview.md).
-IBFT is supported for existing users for private networks, but [QBFT](qbft.md) is the recommended enterprise-grade
+IBFT is supported for existing private networks, but [QBFT](qbft.md) is the recommended enterprise-grade
 consensus protocol for private networks.
-You can [migrate an existing network using IBFT 2.0 to QBFT](qbft.md#migrate-from-ibft-to-qbft).
+You can [migrate an IBFT network to QBFT](qbft.md#migrate-from-ibft-to-qbft).
 
 You can [create a private network using IBFT](../../../tutorials/private-network/create-ibft-network.md).
 

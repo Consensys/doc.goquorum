@@ -70,7 +70,7 @@ Networks with three or fewer validators can produce blocks but do not guarantee 
 
 !!! important
 
-    We don't recommend using QBFT and IBFT networks with three nodes for production purposes.
+    We recommend using QBFT and IBFT networks with at least four nodes in production environments.
 
 ### Speed
 
