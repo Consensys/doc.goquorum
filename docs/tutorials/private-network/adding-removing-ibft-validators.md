@@ -134,7 +134,7 @@ description: Adding and removing IBFT validators
         [`istanbul.discard`](../../reference/api-methods.md#istanbul_discard).
 
 1. Verify that the new validator is now in the list of validators by running [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators)
-   in a `geth` console attached to any of your nodes:
+    in a `geth` console attached to any of your nodes:
 
     === "geth console request"
 
@@ -151,7 +151,7 @@ description: Adding and removing IBFT validators
     The list of validators contains six addresses now.
 
 1. Copy `static-nodes.json` and `genesis.json` from the existing chain, placing `static-nodes.json` into the new node's
-   data directory:
+    data directory:
 
     ```bash
     cd node5
@@ -243,7 +243,7 @@ description: Adding and removing IBFT validators
           PID TTY           TIME CMD
         10554 ttys000    0:00.11 -bash
         21829 ttys001    0:00.03 -bash
-         9125 ttys002    0:00.93 -bash
+        9125 ttys002     0:00.93 -bash
         36432 ttys002    0:24.48 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22000 --http.api admin,
         36433 ttys002    0:23.36 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22001 --http.api admin,
         36434 ttys002    0:24.32 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22002 --http.api admin,
@@ -257,7 +257,7 @@ description: Adding and removing IBFT validators
 ## Remove a validator
 
 1. Attach a `geth` console to a running validator, run [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators),
-   and identify the address of the validator that needs to be removed:
+    and identify the address of the validator that needs to be removed:
 
     === "geth attach"
 
@@ -273,8 +273,8 @@ description: Adding and removing IBFT validators
         instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
         coinbase: 0xc1056df7c02b6f1a353052eaf0533cc7cb743b52
         at block: 181 (Tue, 11 Jun 2019 16:36:27 BST)
-         datadir: /Users/username/fromscratchistanbul/node0/data
-         modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+        datadir: /Users/username/fromscratchistanbul/node0/data
+        modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
         ```
 
     Run `istanbul.getValidators`:
@@ -294,7 +294,7 @@ description: Adding and removing IBFT validators
     We will remove `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` from the validator list in this tutorial.
 
 1. Run [`istanbul.propose(<address>, false)`](../../reference/api-methods.md#istanbul_propose) by passing the address of
-   the validator that needs to be removed from more than half of the current validators:
+    the validator that needs to be removed from more than half of the current validators:
 
     === "geth console request"
 
@@ -311,7 +311,7 @@ description: Adding and removing IBFT validators
     Repeat `istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)` for node 1, node 2, and node 3.
 
 1. Verify that the validator has been removed by running [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators)
-   in one of the nodes' attached `geth` console:
+    in one of the nodes' attached `geth` console:
 
     === "geth console request"
 
@@ -341,7 +341,7 @@ description: Adding and removing IBFT validators
           PID TTY           TIME CMD
         10554 ttys000    0:00.11 -bash
         21829 ttys001    0:00.03 -bash
-         9125 ttys002    0:00.94 -bash
+        9125 ttys002     0:00.94 -bash
         36432 ttys002    0:31.93 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22000 --http.api admin,
         36433 ttys002    0:30.75 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22001 --http.api admin,
         36434 ttys002    0:31.72 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22002 --http.api admin,
