@@ -756,5 +756,5 @@ via a [dapp](https://github.com/ConsenSys/permissioning-smart-contracts) or via 
 [API](https://docs.goquorum.consensys.net/en/latest/Reference/API-Methods/#permission-methods) calls.
 
 [bootnodes]: ../create-permissioned-network.md#2-setup-bootnode
-[permissions file]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/permissioned-nodes.json
-[static nodes]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/static-nodes.json
+[permissions file]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/data/permissioned-nodes.json
+[static nodes]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/data/static-nodes.json

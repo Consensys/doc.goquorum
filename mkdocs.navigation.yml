@@ -23,7 +23,7 @@ nav:
           - Docker and Docker Compose: deploy/install/docker-and-compose.md
           - Kubernetes: deploy/install/kubernetes.md
       - Upgrade GoQuorum: deploy/upgrade/migration.md
-      - Quorum deployment examples: deploy/deployment-index.md
+      - Quorum deployment examples: deploy/deployment-overview.md
   - Configure and manage:
       - Configure:
           - Consensus protocols:
@@ -88,7 +88,7 @@ nav:
           - Privacy marker transactions: concepts/privacy/privacy-marker-transactions.md
           - Private transaction lifecycle: concepts/privacy/private-transaction-lifecycle.md
           - Contract state extension: concepts/privacy/contract-extension.md
-      - Permissioning: concepts/permissions-index.md
+      - Permissioning: concepts/permissions-overview.md
       - Plugins: concepts/plugins.md
       - Security framework: concepts/security-framework.md
       - Multi-tenancy: concepts/multi-tenancy.md
