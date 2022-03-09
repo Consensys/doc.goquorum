@@ -17,13 +17,13 @@ INHERIT: mkdocs.extra.yml # DO NOT MODIFY THIS LINE
 nav:
   - Deploy:
       - Install:
-          - Overview: deploy/install/getting-started-overview.md
+          - deploy/install/index.md
           - Install binaries: deploy/install/binaries.md
           - Ansible: deploy/install/ansible.md
           - Docker and Docker Compose: deploy/install/docker-and-compose.md
           - Kubernetes: deploy/install/kubernetes.md
       - Upgrade GoQuorum: deploy/upgrade/migration.md
-      - Quorum deployment examples: deploy/deployment-overview.md
+      - Quorum deployment examples: deploy/deployment-index.md
   - Configure and manage:
       - Configure:
           - Consensus protocols:
@@ -67,28 +67,28 @@ nav:
       - Client libraries: develop/client-libraries.md
       - Smart contracts and transactions: develop/smart-contracts-transactions.md
       - Manage keys:
-          - Overview: develop/manage-keys/managing-keys.md
+          - develop/manage-keys/index.md
           - Use clef: develop/manage-keys/clef.md
           - Use account plugins: develop/manage-keys/account-plugins.md
       - Develop plugins: develop/develop-plugins.md
   - Learn:
       - Blockchain basics:
-          - Introduction: concepts/blockchain-basics/what-is-blockchain.md
+          - concepts/blockchain-basics/index.md
           - Components: concepts/blockchain-basics/blockchain-components.md
       - Architecture: concepts/architecture.md
       - Consensus:
-          - Overview: concepts/consensus/overview.md
+          - concepts/consensus/index.md
           - Comparing PoA consensus protocols: concepts/consensus/comparing-poa.md
       - Account management: concepts/account-management.md
       - Free gas network: concepts/free-gas-network.md
       - Privacy:
-          - Overview: concepts/privacy/privacy.md
+          - concepts/privacy/index.md
           - Public and private transactions: concepts/privacy/private-and-public.md
           - Privacy enhancements: concepts/privacy/privacy-enhancements.md
           - Privacy marker transactions: concepts/privacy/privacy-marker-transactions.md
           - Private transaction lifecycle: concepts/privacy/private-transaction-lifecycle.md
           - Contract state extension: concepts/privacy/contract-extension.md
-      - Permissioning: concepts/permissions-overview.md
+      - Permissioning: concepts/permissions-index.md
       - Plugins: concepts/plugins.md
       - Security framework: concepts/security-framework.md
       - Multi-tenancy: concepts/multi-tenancy.md
@@ -96,8 +96,8 @@ nav:
       - Network and chain ID: concepts/network-and-chain-id.md
   - Try the tutorials:
       - Quorum Developer Quickstart:
-          - Getting started: tutorials/quorum-dev-quickstart/getting-started.md
-          - Using the quickstart: tutorials/quorum-dev-quickstart/using-the-quickstart.md
+          - tutorials/quorum-dev-quickstart/index.md
+          - Use the quickstart: tutorials/quorum-dev-quickstart/using-the-quickstart.md
           - Remix: tutorials/quorum-dev-quickstart/remix.md
       - Create a private network:
           - Using IBFT: tutorials/private-network/create-ibft-network.md
@@ -110,7 +110,7 @@ nav:
           - Interact with a deployed contract: tutorials/contracts/calling-contract-functions.md
           - Transfer account funds: tutorials/contracts/account-funds-transfers.md
       - Kubernetes:
-          - Overview: tutorials/kubernetes/overview.md
+          - tutorials/kubernetes/index.md
           - Local playground: tutorials/kubernetes/playground.md
           - Create a cluster: tutorials/kubernetes/create-cluster.md
           - Deploy charts: tutorials/kubernetes/deploy-charts.md

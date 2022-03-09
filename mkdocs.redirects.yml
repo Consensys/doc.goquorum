@@ -23,7 +23,7 @@ plugins:
       # old_path.md: new_path.md
       # you can't use an already redirected path as an old_path.
       # new_path can be a file inside the docs/ folder or any URL (http://...)
-      Tutorials/Quorum-Dev-Quickstart.md: tutorials/quorum-dev-quickstart/getting-started.md
+      Tutorials/Quorum-Dev-Quickstart.md: tutorials/quorum-dev-quickstart/index.md
 #      GetStarted/Install.md: Deployment/Binaries.md
 #      Account-Key-Management/Overview.md: Concepts/AccountManagement.md
 #      Account-Key-Management/Quorum/Overview.md: Concepts/AccountManagement.md

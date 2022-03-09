@@ -6,7 +6,7 @@ description: Using Quorum Reporting tool
 
 [Quorum Reporting](https://github.com/ConsenSys/quorum-reporting) is a tool that provides APIs for generating reports
 about contracts deployed to your GoQuorum network.
-You can access Quorum Reporting when using the [Quorum Developer Quickstart](../../tutorials/quorum-dev-quickstart/getting-started.md)
+You can access Quorum Reporting when using the [Quorum Developer Quickstart](../../tutorials/quorum-dev-quickstart/index.md)
 or by following the instructions on the repository [README](https://github.com/ConsenSys/quorum-reporting#readme).
 
 Once a contract is registered, you can use Quorum Reporting to inspect the transactions related to that contract and see

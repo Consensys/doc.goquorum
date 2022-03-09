@@ -8,7 +8,7 @@ description: connecting to a node
 
 Set up a GoQuorum network using one of the following tutorials:
 
-* The [Quorum Developer Quickstart](../tutorials/quorum-dev-quickstart/getting-started.md)
+* The [Quorum Developer Quickstart](../tutorials/quorum-dev-quickstart/index.md)
 * [Create a private network](../tutorials/private-network/create-ibft-network.md)
 * [Create a privacy-enabled network](../tutorials/create-privacy-enabled-network.md)
 

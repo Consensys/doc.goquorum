@@ -6,7 +6,7 @@ description: Creating a network with privacy enabled
 
 This tutorial shows you how to create a privacy-enabled network.
 The network uses [Tessera]({{ extra.othersites.tessera }}/), a private transaction manager,
-to encrypt and distribute [private transactions](../concepts/privacy/privacy.md).
+to encrypt and distribute [private transactions](../concepts/privacy/index.md).
 
 !!! important
     The steps in this tutorial create an isolated, but not protected or secure, Ethereum private

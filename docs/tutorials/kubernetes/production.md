@@ -74,7 +74,7 @@ Where possible, we recommend you use multiple bootnodes and static nodes to spee
 
 Connecting to APIs and services outside the cluster should work as normal, but connecting into your network (such as
 adding an on-premise node to the network) may require more configuration.
-Please check the [limitations](./overview.md#limitations) and use CNI where possible.
+Please check the [limitations](index.md#limitations) and use CNI where possible.
 To connect an external node to your cluster, the easiest way is to use a VPN as seen in the
 following [multi-cluster](#multi-cluster-support) setup.
 
@@ -92,7 +92,7 @@ Once done, peer the VPCs together and update the subnet route table, so they are
 
 ![multi-cluster](../../images/kubernetes/cni_peering.png)
 
-When you [spin up clusters](./create-cluster.md), use [CNI](./overview.md#limitations) and CIDR blocks to match the
+When you [spin up clusters](./create-cluster.md), use [CNI](index.md#limitations) and CIDR blocks to match the
 subnet's CIDR settings.
 Then deploy the genesis chart on one cluster and copy across the genesis file and static nodes config maps.
 Depending on your DNS settings, they might be fine as is or they might need to be actual IPs.

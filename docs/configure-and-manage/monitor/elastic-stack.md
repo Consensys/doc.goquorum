@@ -5,7 +5,7 @@ description: Using Elastic Stack (ELK) with GoQuorum
 # Elastic Stack
 
 [Elastic Stack] (ELK) is an open-source log management platform that is available when using the
-[Quorum Developer Quickstart](../../tutorials/quorum-dev-quickstart/getting-started.md).
+[Quorum Developer Quickstart](../../tutorials/quorum-dev-quickstart/index.md).
 
 The [Filebeat] configuration ingests logs and the [Metricbeat] configuration collects metrics from the nodes at regular
 defined intervals and outputs them to Redis for storage.

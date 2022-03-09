@@ -1,7 +1,7 @@
 # Configure the private transaction manager
 
 You can configure a connection to the
-[private transaction manager](../../concepts/privacy/privacy.md#private-transaction-manager) and enable private
+[private transaction manager](../../concepts/privacy/index.md#private-transaction-manager) and enable private
 transactions using any of the following methods.
 
 * [Direct IPC connection configuration](#direct-ipc-connection-configuration)

@@ -35,7 +35,7 @@ npx quorum-dev-quickstart
 
 Follow the prompts displayed to run GoQuorum and [logging with ELK](../../configure-and-manage/monitor/elastic-stack.md).
 Enter `n` for [Codefi Orchestrate](https://docs.orchestrate.consensys.net/en/stable/) and `y` for
-[private transactions](../../concepts/privacy/privacy.md).
+[private transactions](../../concepts/privacy/index.md).
 
 ## Start the network
 
