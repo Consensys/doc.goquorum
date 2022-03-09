@@ -14,7 +14,7 @@ interested in.
 To view the GoQuorum Quickstart network logs in Splunk:
 
 1. [Start the Quorum Developer Quickstart with GoQuorum](../../tutorials/quorum-dev-quickstart/using-the-quickstart.md),
-   selecting Splunk monitoring.
+    selecting Splunk monitoring.
 1. Open the Splunk UI at [`http://localhost:8000`](http://localhost:8000).
 
 ![Splunk](../../images/splunk.png)

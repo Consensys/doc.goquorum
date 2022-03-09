@@ -15,8 +15,8 @@ how the state of the contract has changed over time.
 To access Quorum Reporting for your GoQuorum Quickstart network:
 
 1. [Start the Quorum Developer Quickstart with GoQuorum](../../tutorials/quorum-dev-quickstart/using-the-quickstart.md),
-   selecting default monitoring.
+    selecting default monitoring.
 1. Open the Reporting UI at [`http://localhost:3000`](http://localhost:3000).
-   The RPC API runs at [`http://localhost:4000`](http://localhost:4000).
+    The RPC API runs at [`http://localhost:4000`](http://localhost:4000).
 
 ![Reporting Tool](../../images/reporting2.png)

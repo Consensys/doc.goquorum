@@ -172,9 +172,9 @@ HTTP using TLS requires:
 
     ```bash
     geth <other parameters> \
-         --ptm.url "https://127.0.0.1:9101" \
-         --ptm.tls.mode "strict" \
-         --ptm.tls.rootca "path/to/certfile.pem,dir/with/cert/files/" \
-         --ptm.tls.clientcert "path/to/client.cert.pem" \
-         --ptm.tls.clientkey "path/to/client.key.pem" \
+        --ptm.url "https://127.0.0.1:9101" \
+        --ptm.tls.mode "strict" \
+        --ptm.tls.rootca "path/to/certfile.pem,dir/with/cert/files/" \
+        --ptm.tls.clientcert "path/to/client.cert.pem" \
+        --ptm.tls.clientkey "path/to/client.key.pem" \
     ```

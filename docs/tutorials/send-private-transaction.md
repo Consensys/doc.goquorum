@@ -75,8 +75,8 @@ Unlock the account using the account key displayed by `eth.accounts`.
 
 === "Unlock"
     ```javascript
-     personal.unlockAccount("<account key>")
-     ```
+    personal.unlockAccount("<account key>")
+    ```
 
 === "Example"
     ```javascript
