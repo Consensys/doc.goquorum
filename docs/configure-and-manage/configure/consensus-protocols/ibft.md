@@ -2,7 +2,7 @@
 description: Configuring IBFT consensus
 ---
 
-# Configuring IBFT consensus
+# Configure IBFT consensus
 
 GoQuorum implements the [IBFT](https://medium.com/getamis/istanbul-bft-ibft-c2758b7fe6ff) proof of authority
 [consensus protocol](../../../concepts/consensus/overview.md).
