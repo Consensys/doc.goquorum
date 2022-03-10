@@ -1,8 +1,8 @@
 ---
-description: Getting started with GoQuorum overview
+description: Install GoQuorum overview
 ---
 
-# Getting started overview
+# Installation overview
 
 You can get started with GoQuorum in multiple ways.
 They range from using the quickstart to generate a local network, to creating and configuring a full network from scratch.
@@ -47,7 +47,7 @@ use a cloud service (for example Google GKE, Azure AKS, AWS EKS) or a self-hoste
 
 ## Creating a network from scratch
 
-Follow the step-by-step walk-throughs to create and configure GoQuorum networks for [IBFT](../../tutorials/private-network/create-ibft-network.md), [QBFT](../../tutorials/private-network/create-qbft-network.md), and [Raft](../../tutorials/private-network/create-a-raft-network.md) consensus.
+Follow the step-by-step walk-throughs to create and configure GoQuorum networks for [QBFT](../../tutorials/private-network/create-qbft-network.md), [IBFT](../../tutorials/private-network/create-ibft-network.md), and [Raft](../../tutorials/private-network/create-a-raft-network.md) consensus.
 It also shows how to enable privacy and add/remove nodes as required.
 
 ## Creating a network deployed in the cloud

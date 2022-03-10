@@ -2468,7 +2468,7 @@ This can only be performed for the master organization and requires the majority
 
 ## Privacy methods
 
-The following API methods provide functionality for GoQuorum [privacy](../concepts/privacy/privacy.md).
+The following API methods provide functionality for GoQuorum [privacy](../concepts/privacy/index.md).
 
 !!! note
 

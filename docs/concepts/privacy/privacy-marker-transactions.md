@@ -9,7 +9,7 @@ You can use privacy marker transactions (PMTs) instead of [normal private transa
 
 PMTs are public transactions.
 PMTs each have a corresponding [internal private transaction](#internal-private-transaction) stored in the
-[private transaction manager](privacy.md#private-transaction-manager) (Tessera) and only available to participants.
+[private transaction manager](index.md#private-transaction-manager) (Tessera) and only available to participants.
 
 The advantages of using a PMT over a normal private transaction are:
 

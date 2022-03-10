@@ -5,7 +5,7 @@ description: Using Elastic Stack (ELK) with GoQuorum
 # Elastic Stack
 
 [Elastic Stack] (ELK) is an open-source log management platform that is available when using the
-[Quorum Developer Quickstart](../../tutorials/quorum-dev-quickstart/getting-started.md).
+[Quorum Developer Quickstart](../../tutorials/quorum-dev-quickstart/index.md).
 
 The [Filebeat] configuration ingests logs and the [Metricbeat] configuration collects metrics from the nodes at regular
 defined intervals and outputs them to Redis for storage.
@@ -22,9 +22,9 @@ The [pipeline configuration] defines the JSON format used for GoQuorum logs and 
 To view the GoQuorum Quickstart network logs in Kibana:
 
 1. [Start the Quorum Developer Quickstart with GoQuorum](../../tutorials/quorum-dev-quickstart/using-the-quickstart.md),
-   selecting ELK monitoring.
+    selecting ELK monitoring.
 1. Open the [`Kibana logs address`](http://localhost:5601/app/kibana#/discover) listed by the sample networks `list.sh` script.
-   The logs display in Kibana.
+    The logs display in Kibana.
 
     ![Kibana](../../images/KibanaQuickstart.png)
 
