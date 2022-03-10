@@ -6,7 +6,7 @@ description: Creating a network with privacy enabled
 
 This tutorial shows you how to create a privacy-enabled network.
 The network uses [Tessera]({{ extra.othersites.tessera }}/), a private transaction manager,
-to encrypt and distribute [private transactions](../concepts/privacy/privacy.md).
+to encrypt and distribute [private transactions](../concepts/privacy/index.md).
 
 !!! important
     The steps in this tutorial create an isolated, but not protected or secure, Ethereum private
@@ -66,54 +66,54 @@ with the path to your network.
 
 ```json hl_lines="6 19 44 45" linenums="1"
 {
-   "useWhiteList": false,
-   "jdbc": {
-       "username": "sa",
-       "password": "",
-       "url": "jdbc:h2:/<path to IBFT-network>/IBFT-network/Tessera-0/db1;MODE=Oracle;TRACE_LEVEL_SYSTEM_OUT=0",
-       "autoCreateTables": true
-   },
-   "serverConfigs":[
-       {
-           "app":"ThirdParty",
-           "enabled": true,
-           "serverAddress": "http://localhost:9081",
-           "communicationType" : "REST"
-       },
-       {
-           "app":"Q2T",
-           "enabled": true,
-           "serverAddress":"unix:/<path to IBFT-network>/IBFT-network/Tessera-0/tm.ipc",
-           "communicationType" : "REST"
-       },
-       {
-           "app":"P2P",
-           "enabled": true,
-           "serverAddress":"http://localhost:9001",
-           "sslConfig": {
-               "tls": "OFF"
-           },
-           "communicationType" : "REST"
-       }
-   ],
-   "peer": [
-       {
-           "url": "http://localhost:9001"
-       },
-       {
-           "url": "http://localhost:9003"
-       }
-   ],
-   "keys": {
-       "passwords": [],
-       "keyData": [
-           {
-               "privateKeyPath": "<path to IBFT-network>/IBFT-network/Tessera-0/tessera0.key",
-               "publicKeyPath": "<path to IBFT-network>/IBFT-network/Tessera-0/tessera0.pub"
-           }
-       ]
-   },
-   "alwaysSendTo": []
+    "useWhiteList": false,
+    "jdbc": {
+        "username": "sa",
+        "password": "",
+        "url": "jdbc:h2:/<path to IBFT-network>/IBFT-network/Tessera-0/db1;MODE=Oracle;TRACE_LEVEL_SYSTEM_OUT=0",
+        "autoCreateTables": true
+    },
+    "serverConfigs":[
+        {
+            "app":"ThirdParty",
+            "enabled": true,
+            "serverAddress": "http://localhost:9081",
+            "communicationType" : "REST"
+        },
+        {
+            "app":"Q2T",
+            "enabled": true,
+            "serverAddress":"unix:/<path to IBFT-network>/IBFT-network/Tessera-0/tm.ipc",
+            "communicationType" : "REST"
+        },
+        {
+            "app":"P2P",
+            "enabled": true,
+            "serverAddress":"http://localhost:9001",
+            "sslConfig": {
+                "tls": "OFF"
+            },
+            "communicationType" : "REST"
+        }
+    ],
+    "peer": [
+        {
+            "url": "http://localhost:9001"
+        },
+        {
+            "url": "http://localhost:9003"
+        }
+    ],
+    "keys": {
+        "passwords": [],
+        "keyData": [
+            {
+                "privateKeyPath": "<path to IBFT-network>/IBFT-network/Tessera-0/tessera0.key",
+                "publicKeyPath": "<path to IBFT-network>/IBFT-network/Tessera-0/tessera0.pub"
+            }
+        ]
+    },
+    "alwaysSendTo": []
 }
 ```
 
@@ -134,54 +134,54 @@ replace `<path to IBFT-network>` with the path to your network.
 
 ```json hl_lines="6 19 44 45" linenums="1"
 {
-   "useWhiteList": false,
-   "jdbc": {
-       "username": "sa",
-       "password": "",
-       "url": "jdbc:h2:/<path to IBFT-network>/IBFT-network/Tessera-1/db1;MODE=Oracle;TRACE_LEVEL_SYSTEM_OUT=0",
-       "autoCreateTables": true
-   },
-   "serverConfigs":[
-       {
-           "app":"ThirdParty",
-           "enabled": true,
-           "serverAddress": "http://localhost:9083",
-           "communicationType" : "REST"
-       },
-       {
-           "app":"Q2T",
-           "enabled": true,
-           "serverAddress":"unix:/<path to IBFT-network>/IBFT-network/Tessera-1/tm.ipc",
-           "communicationType" : "REST"
-       },
-       {
-           "app":"P2P",
-           "enabled": true,
-           "serverAddress":"http://localhost:9003",
-           "sslConfig": {
-               "tls": "OFF"
-           },
-           "communicationType" : "REST"
-       }
-   ],
-   "peer": [
-       {
-           "url": "http://localhost:9001"
-       },
-       {
-           "url": "http://localhost:9003"
-       }
-   ],
-   "keys": {
-       "passwords": [],
-       "keyData": [
-           {
-               "privateKeyPath": "<path to IBFT-network>/IBFT-network/Tessera-1/tessera1.key",
-               "publicKeyPath": "<path to IBFT-network>/IBFT-network/Tessera-1/tessera1.pub"
-           }
-       ]
-   },
-   "alwaysSendTo": []
+    "useWhiteList": false,
+    "jdbc": {
+        "username": "sa",
+        "password": "",
+        "url": "jdbc:h2:/<path to IBFT-network>/IBFT-network/Tessera-1/db1;MODE=Oracle;TRACE_LEVEL_SYSTEM_OUT=0",
+        "autoCreateTables": true
+    },
+    "serverConfigs":[
+        {
+            "app":"ThirdParty",
+            "enabled": true,
+            "serverAddress": "http://localhost:9083",
+            "communicationType" : "REST"
+        },
+        {
+            "app":"Q2T",
+            "enabled": true,
+            "serverAddress":"unix:/<path to IBFT-network>/IBFT-network/Tessera-1/tm.ipc",
+            "communicationType" : "REST"
+        },
+        {
+            "app":"P2P",
+            "enabled": true,
+            "serverAddress":"http://localhost:9003",
+            "sslConfig": {
+                "tls": "OFF"
+            },
+            "communicationType" : "REST"
+        }
+    ],
+    "peer": [
+        {
+            "url": "http://localhost:9001"
+        },
+        {
+            "url": "http://localhost:9003"
+        }
+    ],
+    "keys": {
+        "passwords": [],
+        "keyData": [
+            {
+                "privateKeyPath": "<path to IBFT-network>/IBFT-network/Tessera-1/tessera1.key",
+                "publicKeyPath": "<path to IBFT-network>/IBFT-network/Tessera-1/tessera1.pub"
+            }
+        ]
+    },
+    "alwaysSendTo": []
 }
 ```
 

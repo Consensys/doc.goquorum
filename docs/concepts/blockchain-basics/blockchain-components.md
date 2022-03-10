@@ -4,6 +4,8 @@ description: What are the various parts of a Blockchain
 
 # Blockchain components
 
+This section introduces the components of [blockchains](index.md).
+
 ## Nodes
 
 Blockchains are decentralized, which means that they store data across a network of members who collaborate to monitor
@@ -52,7 +54,7 @@ access the network.
 
 ## Privacy
 
-In a blockchain network, [*privacy*](../privacy/privacy.md) refers to
+In a blockchain network, [*privacy*](../privacy/index.md) refers to
 the ability to keep transactions private between the involved participants.
 Often in a consortium network, some of the participants prefer to restrict how much information they share or who they
 transact with.

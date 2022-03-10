@@ -21,7 +21,7 @@ GoQuorum includes the following changes to geth:
 * The P2P layer is changed to only allow connections between [permissioned](permissions-overview.md) nodes.
 * The block generation logic is changed to replace the `global state root` check with a `global public state root` check.
 * The block validation logic is changed to replace the `global state root` in the block header with the `global public state root`.
-* The State Patricia trie is split into two: [a public state trie and a private state trie](privacy/privacy.md#public-and-private-state).
+* The State Patricia trie is split into two: [a public state trie and a private state trie](privacy/index.md#public-and-private-state).
 * Block validation logic is changed to handle [private transactions](privacy/private-and-public.md#private-transactions).
 * Transaction creation is changed to allow for replacing transaction data with encrypted hashes to preserve private data
   where required.

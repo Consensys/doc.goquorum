@@ -35,7 +35,7 @@ npx quorum-dev-quickstart
 
 Follow the prompts displayed to run GoQuorum and [logging with ELK](../../configure-and-manage/monitor/elastic-stack.md).
 Enter `n` for [Codefi Orchestrate](https://docs.orchestrate.consensys.net/en/stable/) and `y` for
-[private transactions](../../concepts/privacy/privacy.md).
+[private transactions](../../concepts/privacy/index.md).
 
 ## Start the network
 
@@ -427,7 +427,7 @@ using the GoQuorum and Tessera URLs in the [Private transactions](#private-trans
 1. Open [`http://localhost:8999`](http://localhost:8999) in your browser.
 1. Select the **Contracts** tab and **Deploy** the contract registry.
 1. Go to the **Sandbox**, select the `SimpleStorage` sample contract from the Contract Library, and deploy with
-   `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`).
+    `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`).
 1. Return to the main Cakeshop page, go to the **Contracts** tab again, and you should be able to see the contract you just deployed.
 1. Interact with it from there, and switch between nodes using the dropdown in the top right corner of the page.
 
@@ -530,7 +530,7 @@ The script:
 
     > Saving migration to chain.
     > Saving artifacts
-       -------------------------------------
+      -------------------------------------
     > Total cost:                   0 ETH
 
 
@@ -554,7 +554,7 @@ The script:
 
     > Saving migration to chain.
     > Saving artifacts
-       -------------------------------------
+      -------------------------------------
     > Total cost:                   0 ETH
 
 
@@ -756,5 +756,5 @@ via a [dapp](https://github.com/ConsenSys/permissioning-smart-contracts) or via 
 [API](https://docs.goquorum.consensys.net/en/latest/Reference/API-Methods/#permission-methods) calls.
 
 [bootnodes]: ../create-permissioned-network.md#2-setup-bootnode
-[permissions file]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/permissioned-nodes.json
-[static nodes]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/static-nodes.json
+[permissions file]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/data/permissioned-nodes.json
+[static nodes]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/data/static-nodes.json

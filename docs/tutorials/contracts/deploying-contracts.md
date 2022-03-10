@@ -5,7 +5,7 @@ description: deploying smart contracts
 # Deploy a smart contract
 
 This tutorial shows you how to deploy smart contracts as transactions onto a running network.
-Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/getting-started.md) to rapidly generate a local blockchain network.
+Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/index.md) to rapidly generate a local blockchain network.
 
 ## Prerequisites
 

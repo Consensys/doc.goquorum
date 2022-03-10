@@ -5,7 +5,7 @@ description: calling smart contracts functions
 # Interact with a deployed smart contract
 
 This tutorial shows you how to interact with smart contracts that have been deployed to a network.
-Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/getting-started.md) to rapidly generate a local blockchain network.
+Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/index.md) to rapidly generate a local blockchain network.
 
 ## Prerequisites
 

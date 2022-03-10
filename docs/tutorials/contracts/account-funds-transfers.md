@@ -5,13 +5,13 @@ description: funds transfer transactions
 # Transfer funds between accounts
 
 This tutorial shows you how to transfer funds (ETH) between accounts in a transaction on a running network.
-Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/getting-started.md) to rapidly generate a local blockchain network.
+Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/index.md) to rapidly generate a local blockchain network.
 
 ## Prerequisites
 
 * A private network.
   You can use a [private network tutorial](../private-network/create-ibft-network.md) or the
-  [Quorum Developer Quickstart](../quorum-dev-quickstart/getting-started.md).
+  [Quorum Developer Quickstart](../quorum-dev-quickstart/index.md).
 
 ## Using `eth_sendSignedTransaction`
 

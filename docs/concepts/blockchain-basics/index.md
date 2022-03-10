@@ -2,7 +2,10 @@
 description: Blockchain Introduction
 ---
 
-# Blockchain introduction
+# Blockchain basics
+
+This section introduces the concept of a blockchain.
+Learn more about [blockchain components](blockchain-components.md).
 
 ## What is a blockchain?
 

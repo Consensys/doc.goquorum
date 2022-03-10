@@ -3,7 +3,7 @@ title: Deploy a GoQuorum private network with Kubernetes
 description: Deploying GoQuorum with Kubernetes
 ---
 
-# Deploying GoQuorum with Kubernetes
+# Deploy GoQuorum with Kubernetes
 
 Use the [reference implementations](https://github.com/ConsenSys/quorum-kubernetes) to install private networks using
 Kubernetes (K8s).
