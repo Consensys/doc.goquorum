@@ -18,9 +18,9 @@ To ensure that transactions are written to the chain, and that there is agreemen
 blockchains use a *consensus* mechanism that is a fault-tolerant.
 Consensus mechanisms include:
 
-* Proof of Work (PoW) - PoW is a consensus mechanism used in Bitcoin that is both time- and computation-intensive.
+* Proof of work (PoW) - PoW is a consensus mechanism used in Bitcoin that is both time- and computation-intensive.
   PoW blocks are created by nodes called *miners*.
-* Proof of Authority (PoA) - PoA involves a set of trusted nodes that validate transactions and create blocks.
+* Proof of authority (PoA) - PoA involves a set of trusted nodes that validate transactions and create blocks.
   These trusted nodes are called *validators*, and other nodes in the network are called *non-validating nodes*.
   Non-validating nodes still validate the blocks that the validators create, but they don't produce them.
 

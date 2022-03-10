@@ -2,9 +2,14 @@
 description: Configuring IBFT consensus
 ---
 
-# Configuring IBFT consensus
+# Configure IBFT consensus
 
-GoQuorum implements the [IBFT](https://medium.com/getamis/istanbul-bft-ibft-c2758b7fe6ff) Proof-of-Authority (PoA) consensus protocol.
+GoQuorum implements the [IBFT](https://medium.com/getamis/istanbul-bft-ibft-c2758b7fe6ff) proof of authority
+[consensus protocol](../../../concepts/consensus/index.md).
+IBFT is supported for existing private networks, but [QBFT](qbft.md) is the recommended enterprise-grade
+consensus protocol for private networks.
+You can [migrate an IBFT network to QBFT](qbft.md#migrate-from-ibft-to-qbft).
+
 You can [create a private network using IBFT](../../../tutorials/private-network/create-ibft-network.md).
 
 In IBFT networks, approved accounts known as validators validate transactions and blocks.
@@ -15,6 +20,7 @@ Existing validators propose and vote to [add or remove validators](../../../tuto
 Adding or removing a validator requires a majority vote (greater than 50%) of validators.
 
 !!! important
+
     Configure your network to ensure you never lose 1/3 or more of your validators.
     If more than 1/3 of validators stop participating, new blocks are no longer created, and the network stalls.
     It may take significant time to recover once nodes are restarted.

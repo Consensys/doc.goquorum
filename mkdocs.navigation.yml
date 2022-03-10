@@ -27,8 +27,8 @@ nav:
   - Configure and manage:
       - Configure:
           - Consensus protocols:
-              - IBFT: configure-and-manage/configure/consensus-protocols/ibft.md
               - QBFT: configure-and-manage/configure/consensus-protocols/qbft.md
+              - IBFT: configure-and-manage/configure/consensus-protocols/ibft.md
               - Raft: configure-and-manage/configure/consensus-protocols/raft.md
               - Clique: configure-and-manage/configure/consensus-protocols/clique.md
           - Genesis files:
@@ -100,11 +100,11 @@ nav:
           - Use the quickstart: tutorials/quorum-dev-quickstart/using-the-quickstart.md
           - Remix: tutorials/quorum-dev-quickstart/remix.md
       - Create a private network:
-          - Using IBFT: tutorials/private-network/create-ibft-network.md
-          - Using QBFT: tutorials/private-network/create-qbft-network.md
-          - Using Raft: tutorials/private-network/create-a-raft-network.md
-          - Adding and removing IBFT validators: tutorials/private-network/adding-removing-ibft-validators.md
-          - Adding and removing QBFT validators: tutorials/private-network/adding-removing-qbft-validators.md
+          - Use QBFT: tutorials/private-network/create-qbft-network.md
+          - Use IBFT: tutorials/private-network/create-ibft-network.md
+          - Use Raft: tutorials/private-network/create-a-raft-network.md
+          - Add and remove QBFT validators: tutorials/private-network/adding-removing-qbft-validators.md
+          - Add and remove IBFT validators: tutorials/private-network/adding-removing-ibft-validators.md
       - Smart contracts and transactions:
           - Deploy a contract: tutorials/contracts/deploying-contracts.md
           - Interact with a deployed contract: tutorials/contracts/calling-contract-functions.md
