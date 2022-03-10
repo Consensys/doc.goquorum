@@ -4,7 +4,7 @@ description: Configuring QBFT consensus
 
 # Configure QBFT consensus
 
-GoQuorum implements the QBFT proof of authority [consensus protocol](../../../concepts/consensus/overview.md).
+GoQuorum implements the QBFT proof of authority [consensus protocol](../../../concepts/consensus/index.md).
 QBFT is the recommended enterprise-grade consensus protocol for private networks.
 You can [create a private network using QBFT](../../../tutorials/private-network/create-qbft-network.md).
 

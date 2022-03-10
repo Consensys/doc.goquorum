@@ -8,7 +8,7 @@ GoQuorum implements the [QBFT](../../configure-and-manage/configure/consensus-pr
 [IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md),
 [Raft](../../configure-and-manage/configure/consensus-protocols/raft.md), and
 [Clique](../../configure-and-manage/configure/consensus-protocols/clique.md)
-proof of authority (PoA) [consensus protocols](overview.md).
+proof of authority (PoA) [consensus protocols](index.md).
 PoA consensus protocols work when participants know each other and there is a level of trust between them (for example,
 in a permissioned consortium network).
 

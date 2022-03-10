@@ -4,7 +4,7 @@ description: Clique Consensus Overview
 
 # Clique consensus
 
-Clique is a proof of authority [consensus protocol](../../../concepts/consensus/overview.md) implemented in Go Ethereum
+Clique is a proof of authority [consensus protocol](../../../concepts/consensus/index.md) implemented in Go Ethereum
 (Geth) and included in GoQuorum.
 
 !!! warning
