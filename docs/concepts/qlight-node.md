@@ -10,14 +10,17 @@ You can also use a qlight node for anything that could thrash the API, such as m
 
 Qlight nodes have specific differences from standard quorum nodes, they:
 
-- Depend on a multi-tenancy (MT) 'server' node for receiving data and will only connect to the server node. There is no communication with any other node.
+- Depend on a 'server' full node for receiving data and will only connect to the server node. There is no communication with any other node.
 - Only receive blocks from the server node, processing them locally to build up the public and private state.
 - Do not require a transaction manager. Instead, private data is sent directly by the server node via the qlight P2P protocol.
 - Act as a proxy for locally submitted transactions, performing minimal validation. API calls like `SendTansaction`/`SendRawTransaction`/`StoreRaw` are forwarded to the server node for processing.
 - Have the same RPC APIs that are required for dApps, delegating calls to the server node if needed.
-- Do not partake in the consenus mechanism.
+- Do not partake in the consensus mechanism.
 
 If the qlight node is halted, then on restart it will resync with any blocks that were missed whilst it was not running.
+
+It is worth noting that the server node would normally be set up as a multi-tenant (MT) node with Multiple Private States (MPS).
+However this is not essential, for example when setting up a qlight client for the purpose of offloading processing from a full node.
 
 ## Terminology
 
