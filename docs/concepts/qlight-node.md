@@ -38,6 +38,7 @@ A peer-to-peer protocol is implemented for communication between the qlight clie
 ### Security
 
 A number of security features are available for the qlight client-server connection:
+
 - Native transport layer security (TLS): this can be used to encrypt communications and ensure the security of private transaction data.
 - Network restriction: restricts communication to specified IP networks (CIDR masks).
 - File based permissioning: allows qlight peers to be checked against a permissioned list and a disallowed list.

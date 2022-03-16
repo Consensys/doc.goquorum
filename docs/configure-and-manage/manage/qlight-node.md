@@ -6,12 +6,14 @@ The server node is usually set up to support Multiple Private States (MPS), with
 ## Configure qlight client
 
 The qlight client is configured using the following command line options:
+
 - `--qlight.client`: This marks the node as a qlight client.
 - `--qlight.client.psi`: This specifies the PSI which this client will support (default = "private").
 - `--qlight.client.serverNode`: The Node Id of the server node.
 - `--qlight.client.serverNodeRPC`: The RPC URL of the server node.
 
 Additionally, if the server node has the RPC API secured using TLS, then the qlight client requires the following:
+
 - `--qlight.client.rpc.tls`: Use TLS when forwarding RPC API calls.
 - `--qlight.client.rpc.tls.insecureskipverify`: Skip TLS verification.
 - `--qlight.client.rpc.tls.cacert`: The qlight client certificate authority.
@@ -21,6 +23,7 @@ Additionally, if the server node has the RPC API secured using TLS, then the qli
 ## Configure server node
 
 The qlight server is configured using the following command line options:
+
 - `--qlight.server`: This marks the node as a qlight server.
 - `--qlight.server.p2p.port`: The RPC listening port.
 - `--qlight.server.p2p.maxpeers`: The maximum number of qlight clients that are supported.
@@ -49,6 +52,7 @@ The token is then passed on the qlight client command line using `--qlight.clien
 
 An encryption layer can be used on the qlight client-server communication.
 This is configured using the following options:
+
 - `--qlight.tls`: Enable TLS on the P2P connection.
 - `--qlight.tls.cert`: The certificate file to use.
 - `--qlight.tls.key`: The key file to use.
