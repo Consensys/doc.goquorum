@@ -21,7 +21,7 @@ They require governance structures that fulfill the concerns of participants equ
 
 ### Security checklist
 
-- Use a [Byzantine fault tolerant consensus protocol](consensus/overview.md) in case nodes are managed by non-trusted participants.
+- Use a [Byzantine fault tolerant consensus protocol](consensus/index.md) in case nodes are managed by non-trusted participants.
 - Ensure consortium members provide a reasonable network service-level agreement (SLA).
 - Ensure private and public payload data is stored in an appropriate geographical legislation area.
 - Document:

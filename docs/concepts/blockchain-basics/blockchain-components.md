@@ -4,6 +4,8 @@ description: What are the various parts of a Blockchain
 
 # Blockchain components
 
+This section introduces the components of [blockchains](index.md).
+
 ## Nodes
 
 Blockchains are decentralized, which means that they store data across a network of members who collaborate to monitor
@@ -16,9 +18,9 @@ To ensure that transactions are written to the chain, and that there is agreemen
 blockchains use a *consensus* mechanism that is a fault-tolerant.
 Consensus mechanisms include:
 
-* Proof of Work (PoW) - PoW is a consensus mechanism used in Bitcoin that is both time- and computation-intensive.
+* Proof of work (PoW) - PoW is a consensus mechanism used in Bitcoin that is both time- and computation-intensive.
   PoW blocks are created by nodes called *miners*.
-* Proof of Authority (PoA) - PoA involves a set of trusted nodes that validate transactions and create blocks.
+* Proof of authority (PoA) - PoA involves a set of trusted nodes that validate transactions and create blocks.
   These trusted nodes are called *validators*, and other nodes in the network are called *non-validating nodes*.
   Non-validating nodes still validate the blocks that the validators create, but they don't produce them.
 
@@ -52,7 +54,7 @@ access the network.
 
 ## Privacy
 
-In a blockchain network, [*privacy*](../privacy/privacy.md) refers to
+In a blockchain network, [*privacy*](../privacy/index.md) refers to
 the ability to keep transactions private between the involved participants.
 Often in a consortium network, some of the participants prefer to restrict how much information they share or who they
 transact with.

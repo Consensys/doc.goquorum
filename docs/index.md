@@ -10,7 +10,7 @@ hide:
   - navigation
 
 profiles:
-  - link: deploy/install/getting-started-overview/
+  - link: deploy/install/
     title: Deploy GoQuorum
     text: Install GoQuorum or upgrade from an earlier version.
       Run the Quorum Developer Quickstart to set up a local development environment.
@@ -28,12 +28,12 @@ profiles:
       applications for the GoQuorum network.
     image: assets/illustrations/undraw_web_development_0l6v.svg
 
-  - link: concepts/blockchain-basics/what-is-blockchain/
+  - link: concepts/blockchain-basics/
     title: Learn about GoQuorum
     text: Read about blockchain concepts and GoQuorum architecture and features.
     image: assets/illustrations/undraw_knowledge_g-5-gf.svg
 
-  - link: tutorials/quorum-dev-quickstart/getting-started/
+  - link: tutorials/quorum-dev-quickstart/
     title: Try the tutorials
     text: Use the Quorum Developer Quickstart, deploy and interact with smart contracts, and create private networks.
     image: assets/illustrations/undraw_setup_wizard_re_nday.svg
