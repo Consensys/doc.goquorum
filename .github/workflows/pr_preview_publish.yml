@@ -6,7 +6,7 @@ on: [ pull_request_target ]
 jobs:
   deploy:
     name: Build and publish PR preview
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, X64, generic]
     environment: preview
     permissions:
       contents: write
