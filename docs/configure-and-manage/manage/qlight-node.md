@@ -58,5 +58,5 @@ This is configured using the following options:
 - `--qlight.tls.key`: The key file to use.
 - `--qlight.tls.clientcacerts`: The certificate authorities file to use for validating the connection (server configuration parameter).
 - `--qlight.tls.cacerts`: The certificate authorities file to use for validating the connection (client configuration parameter).
-- `--qlight.tls.clientauth`: The way the client is authenticated. Possible values: 0=NoClientCert(default) 1=tRequestClientCert 2=RequireAnyClientCert 3=VerifyClientCertIfGiven 4=RequireAndVerifyClientCert (default: 0).
+- `--qlight.tls.clientauth`: The way the client is authenticated. Possible values: 0=NoClientCert(default) 1=RequestClientCert 2=RequireAnyClientCert 3=VerifyClientCertIfGiven 4=RequireAndVerifyClientCert (default: 0).
 - `--qlight.tls.ciphersuites`: The cipher suites to use for the connection.
