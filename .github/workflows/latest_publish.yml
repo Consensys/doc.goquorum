@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     name: Build and publish latest site
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, X64, generic]
     environment: production
     permissions:
       contents: read
