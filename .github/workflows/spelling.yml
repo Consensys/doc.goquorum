@@ -10,7 +10,7 @@ on:
 jobs:
   spelling:
     name: Vale
-    runs-on: [self-hosted, linux, X64, generic]
+    runs-on: ubuntu-latest
     environment: no-secret
     permissions:
       contents: read
