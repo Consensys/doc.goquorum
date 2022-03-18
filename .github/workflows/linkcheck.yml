@@ -6,7 +6,7 @@ on: [push, pull_request]
 jobs:
   links-check:
     name: Check links
-    runs-on: [self-hosted, linux, X64, generic]
+    runs-on: ubuntu-latest
     environment: no-secret
     permissions:
       contents: read

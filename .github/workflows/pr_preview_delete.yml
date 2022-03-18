@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     name: Remove PR preview from pages
-    runs-on: [self-hosted, linux, X64, generic]
+    runs-on: ubuntu-latest
     environment: no-secret
     permissions:
       contents: write
