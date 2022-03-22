@@ -717,7 +717,7 @@ Add an entry for the new node into the docker-compose file:
       - 30303
       - 9545
     environment:
-      - NODE_ID=41
+      - GOQUORUM_GENESIS_MODE=standard
       - PRIVATE_CONFIG=ignore
     volumes:
       - ./config/goquorum:/quorum

@@ -19,6 +19,13 @@ A consortium network connects multiple independent networks.
 Consortiums come with risks such as accidental data exposure and potential liabilities that must be managed.
 They require governance structures that fulfill the concerns of participants equally.
 
+!!! note
+
+    In a consortium network, every member does not need to be a validator, and can remain as members. Each
+    member will still have a full copy of the chain data and has full ability to transact (private or public)
+    on the network. To prevent the network halting, all validator have additional responsibility to ensure
+    that their node does not go down and is available per SLAs of the consortium agreements.
+
 ### Security checklist
 
 - Use a [Byzantine fault tolerant consensus protocol](consensus/index.md) in case nodes are managed by non-trusted participants.
