@@ -133,7 +133,7 @@ attacks and provide a secure environment.
 
 The following are additional resources for blockchain network and dapp security best practices.
 
-- [Decentralized Application Security Project](https://www.dasp.co/)
+- Decentralized Application Security Project
 - [Solidity documentation](https://docs.soliditylang.org/en/v0.8.10/)
 - [Smart Contract Federated Identity Management without Third Party Authentication Services](https://ws680.nist.gov/publication/get_pdf.cfm?pub_id=925957)
 - [Advancing Blockchain Cybersecurity: Technical and Policy Considerations for the Financial Services Industry](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE1TH5G)
