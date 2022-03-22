@@ -21,9 +21,9 @@ They require governance structures that fulfill the concerns of participants equ
 
 !!! note
 
-    In a consortium network, every member does not need to be a validator, and can remain as members. Each
+    In a consortium network, every member does not need to be a validator. Each non-validating
     member will still have a full copy of the chain data and has full ability to transact (private or public)
-    on the network. To prevent the network halting, all validator have additional responsibility to ensure
+    on the network. To prevent the network halting, all validators have additional responsibility to ensure
     that their node does not go down and is available per SLAs of the consortium agreements.
 
 ### Security checklist
