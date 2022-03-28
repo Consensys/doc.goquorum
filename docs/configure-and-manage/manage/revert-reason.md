@@ -30,8 +30,8 @@ client an optional string message containing information about the error.
 
 ## Enabling revert reason
 
-Restart you GoQuorum node with the [`--revertreason`](../../reference/cli-syntax.md#revertreason) command line option enabled. 
-Any subsequent reverted transactions will have the revert reason stored locally.
+Restart your GoQuorum node with the [`--revertreason`](../../reference/cli-syntax.md#revertreason) command line option enabled. 
+Any subsequent reverted transactions store the revert reason locally.
 
 ## Where is the revert reason included
 
