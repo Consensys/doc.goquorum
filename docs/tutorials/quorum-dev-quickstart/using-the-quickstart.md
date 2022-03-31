@@ -668,6 +668,9 @@ module.exports = {
     quickstartWallet: {
       provider: () => new PrivateKeyProvider(privateKey, "http://localhost:8545"),
       network_id: "*",
+      type: "quorum",
+      gasPrice: 0,
+      chainId: 1337
     }
   }
 };
