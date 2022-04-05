@@ -47,7 +47,7 @@ This leverages the security model described under [JSON-RPC security](json-rpc-a
 
 When using [JSON-RPC security](json-rpc-api-security.md#enterprise-authorization-protocol-integration) an access token must be provided to communicate to the qlight server. How the token is obtained and refreshed is down to the node operator.
 
-To enable auth tokens in the qlight client one must use the flag `--qlight.client.token.enable`.
+To enable auth tokens in the qlight client one must use the flag `--qlight.client.token.enabled`.
 
 Once enabled one may specify an initial value using the flag `--qlight.client.token.value <token>`.
 
