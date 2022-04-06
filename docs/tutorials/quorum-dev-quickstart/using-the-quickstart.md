@@ -622,9 +622,9 @@ The script:
 In the browser where you have MetaMask enabled and one of the test accounts loaded, open a new tab and navigate
 to [the Pet Shop dapp](http://localhost:3001) where you can adopt lovely pets (sorry, not for real, it's a demo).
 
-When you click on **Adopt**, a MetaMask window will pop up and request your permissions to continue with the transaction.
+When you select **Adopt**, a MetaMask window pops up and requests your permission to continue with the transaction.
 
-After the transaction is complete and successful, the status of the pet you adopted will show **Success**.
+After the transaction is complete and successful, the status of the pet you adopted shows **Success**.
 
 ![Dapp UI](../../images/quickstart/dapp-ui.png)
 
@@ -635,6 +635,52 @@ You can also search for the transaction and view its details in the [Block Explo
 The MetaMask UI also keeps a record of the transaction.
 
 ![Dapp UI](../../images/quickstart/dapp-metamask-tx.png)
+
+### Deploy your own dapp
+
+You can deploy your own dapp to the Quorum Developer Quickstart by configuring your dapp to point to the Quickstart
+network.
+
+If you're using [Truffle](https://trufflesuite.com/truffle/), update the `networks` object in the
+[Truffle configuration file](https://trufflesuite.com/docs/truffle/reference/configuration#networks) to specify which
+networks to connect to for deployments and testing.
+The Quickstart's RPC service endpoint is `http://localhost:8545`.
+
+For example, the following is the Truffle configuration file for the Pet Shop dapp used in the Quickstart GoQuorum
+network:
+
+```js
+const PrivateKeyProvider = require("@truffle/hdwallet-provider");
+
+// insert the private key of the account used in MetaMask, e.g. Account 1 (Miner Coinbase Account)
+const privateKey = "c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3";
+
+module.exports = {
+  networks: {
+    development: {
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: "*" // Match any network id
+    },
+    develop: {
+      port: 8545
+    },
+    quickstartWallet: {
+      provider: () => new PrivateKeyProvider(privateKey, "http://localhost:8545"),
+      network_id: "*",
+      type: "quorum",
+      gasPrice: 0,
+      chainId: 1337
+    }
+  }
+};
+```
+
+Deploy the dapp using:
+
+```bash
+truffle migrate --network quickstartWallet
+```
 
 ## Stop and restart the private network without removing containers
 
