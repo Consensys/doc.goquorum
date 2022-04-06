@@ -53,9 +53,9 @@ Once enabled one may specify an initial value using the flag `--qlight.client.to
 
 In addition to the above a refresh mechanism for the token should be specified using the flag `--qlight.client.token.management`. The valid values are:
 
-- none - the token is not refreshed (this mechanism is for development/testing purposes only)
-- external - the refreshed token must be updated in the running qlight client process by invoking the `qlight.setCurrentToken` RPC API
-- client-security-plugin (default) - the client security plugin is used to periodically refresh the access token. Please see the client-security-plugin documentation for further details.
+- `none` - the token is not refreshed (this mechanism is for development/testing purposes only)
+- `external` - the refreshed token must be updated in the running qlight client process by invoking the `qlight.setCurrentToken` RPC API
+- `client-security-plugin` (default) - the client security plugin is used to periodically refresh the access token. Please see the client-security-plugin documentation for further details.
 
 ## Native transport layer security (TLS) for P2P communication
 
