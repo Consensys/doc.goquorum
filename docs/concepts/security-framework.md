@@ -19,6 +19,13 @@ A consortium network connects multiple independent networks.
 Consortiums come with risks such as accidental data exposure and potential liabilities that must be managed.
 They require governance structures that fulfill the concerns of participants equally.
 
+!!! note
+
+    In a consortium network, every member does not need to be a validator. Each non-validating
+    member will still have a full copy of the chain data and has full ability to transact (private or public)
+    on the network. To prevent the network halting, all validators have additional responsibility to ensure
+    that their node does not go down and is available per SLAs of the consortium agreements.
+
 ### Security checklist
 
 - Use a [Byzantine fault tolerant consensus protocol](consensus/index.md) in case nodes are managed by non-trusted participants.
@@ -126,7 +133,7 @@ attacks and provide a secure environment.
 
 The following are additional resources for blockchain network and dapp security best practices.
 
-- [Decentralized Application Security Project](https://www.dasp.co/)
+- Decentralized Application Security Project
 - [Solidity documentation](https://docs.soliditylang.org/en/v0.8.10/)
 - [Smart Contract Federated Identity Management without Third Party Authentication Services](https://ws680.nist.gov/publication/get_pdf.cfm?pub_id=925957)
 - [Advancing Blockchain Cybersecurity: Technical and Policy Considerations for the Financial Services Industry](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE1TH5G)
