@@ -1,12 +1,22 @@
 # GoQuorum qlight node
 
+## What is Qlight?
+
+A qlight node is a lightweight replica of a full node, with transactions being proxied to the full node;
+it can be deployed to reduce the amount of data that is available and that is shared by the full nodes with external parties.
+
+The qlight node can be used for a number of use cases:
+
+- Anything that could thrash the API (monitoring, state querying etc). Thus avoiding impact to main nodes which are processing transactions.
+- Security concerns where the main node is handling multiple private parties (multi-tenant). The qlight client will deal with private state for one party only, and only that user will have access to the qlight client.
+
+## Details of qlight node
+
 A standard GoQuorum node will process all blocks and associated transactions; It also requires a local Private Transaction Manager to handle private data.
 This can require significant resources and may make it more difficult to scale networks.
 Additionally, since the node processes all transactions, privacy concerns could be raised by business partners.
 
-A Quorum qlight node can be deployed to reduce the amount of data that is available and that is shared by the full nodes with external parties.
-
-You can also use a qlight node for anything that could thrash the API, such as monitoring, debugging, state querying etc. This can alleviate any concerns around impact to the performance of a main node, or having to deal with network throttling due to third party network limits, or multiple clients all hitting the same main node.
+Using a qlight node for process-intensive tasks can also alleviate any concerns around impact to the performance of a main node, or having to deal with network throttling due to third party network limits, or multiple clients all hitting the same main node.
 
 Qlight nodes have specific differences from standard quorum nodes, they:
 
