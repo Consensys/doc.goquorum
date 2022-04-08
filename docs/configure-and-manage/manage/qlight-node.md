@@ -10,7 +10,6 @@ The server node is usually set up to support [multiple private states](../../con
     A server node is normally be set up as a multi-tenant node with Multiple Private States (MPS).
     However this is not essential, for example when setting up a qlight client for the purpose of offloading processing from a full node.
 
-
 ## Configure qlight client
 
 Configure the qlight client using the following command line options:
