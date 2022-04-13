@@ -589,9 +589,9 @@ Enables the client to use a token when connecting to the qlight server.
 
 Mechanism used to refresh the token. Possible values:
 
-- `none` - Developer mode
-- `external` - A new token must be injected via the qlight RPC API
-- `client-security-plugin` - The client security plugin must be deployed/configured
+* `none` - Developer mode
+* `external` - A new token must be injected via the qlight RPC API
+* `client-security-plugin` - The client security plugin must be deployed/configured
 
 ### `qlight.client.token.value`
 
@@ -767,11 +767,11 @@ Cipher suites to use for the qlight P2P connection.
 
 Sets the method the client is authenticated. Possible values:
 
-- 0=`NoClientCert` This is the default.
-- 1=`RequestClientCert`
-- 2=`RequireAnyClientCert`
-- 3=`VerifyClientCertIfGiven`
-- 4=`RequireAndVerifyClientCert`
+* 0=`NoClientCert` This is the default.
+* 1=`RequestClientCert`
+* 2=`RequireAnyClientCert`
+* 3=`VerifyClientCertIfGiven`
+* 4=`RequireAndVerifyClientCert`
 
 ### `qlight.tls.key`
 
