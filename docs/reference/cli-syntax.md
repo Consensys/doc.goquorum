@@ -604,7 +604,7 @@ Mechanism used to refresh the token. Possible values:
 === "Example"
 
     ```bash
-    --qlight.client.token.value AYjcyMzY3ZDhiNmJkNTY
+    --qlight.client.token.value "bearer AYjcyMzY3ZDhiNmJkNTY"
     ```
 
 Token the qlight client uses to connect to a server node.
