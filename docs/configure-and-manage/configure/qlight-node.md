@@ -15,7 +15,7 @@ Configure the qlight client using the [`--qlight.client.*`](../../reference/cli-
 
 If the server node has the RPC API secured using TLS, then you must set the [`--qlight.client.rpc.tls.*`](../../reference/cli-syntax.md#qlightclientrpctls) command line options.
 
-If the qlight client node is halted, on restart it resyncs with any blocks that were missed when it was not running.
+If you stop the qlight client node, on restart it resyncs with any blocks it missed when it was not running.
 
 ## Configure server node
 
@@ -28,12 +28,11 @@ Specify the network mask on the qlight server using [`--qlight.server.p2p.netres
 
 ### File based permissioning
 
-File based permissioning allows qlight clients to be checked against a permissioned list and a disallowed list.
+File based permissioning allows you to check qlight clients against a permissioned list and a disallowed list.
 Enable file based permissioning on the server node using [`--qlight.server.p2p.permissioning`](../../reference/cli-syntax.md#qlightserverp2ppermissioning).
 
 The default files are `permissioned-nodes.json` and `disallowed-nodes.json`.
-However, you can specify a file prefix using [`--qlight.server.p2p.permissioning.prefix`](../../reference/cli-syntax.md#qlightserverp2ppermissioningprefix),
-in which case the filename is: the prefix, followed by a hyphen, followed by the default file name.
+You can specify a file prefix using [`--qlight.server.p2p.permissioning.prefix`](../../reference/cli-syntax.md#qlightserverp2ppermissioningprefix).
 
 ## Configure enterprise authorization
 
