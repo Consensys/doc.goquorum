@@ -37,7 +37,7 @@ in which case the filename is: the prefix, followed by a hyphen, followed by the
 
 ## Configure enterprise authorization
 
-The [enterprise authorization protocol integration](json-rpc-api-security.md#enterprise-authorization-protocol-integration)
+The [enterprise authorization protocol integration](../manage/json-rpc-api-security.md#enterprise-authorization-protocol-integration)
 only allows authenticated clients to connect to the server.
 
 When using [JSON-RPC security](../manage/json-rpc-api-security.md#enterprise-authorization-protocol-integration)
