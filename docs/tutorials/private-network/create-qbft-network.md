@@ -159,11 +159,11 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
 Copy `static-nodes.json`, `genesis.json`, and `permissioned-nodes.json` (if applicable) to the data directory for each node:
 
 ```bash
-cp static-nodes.json genesis.json ./../Node-0/data/
-cp static-nodes.json genesis.json ./../Node-1/data/
-cp static-nodes.json genesis.json ./../Node-2/data/
-cp static-nodes.json genesis.json ./../Node-3/data/
-cp static-nodes.json genesis.json ./../Node-4/data/
+cp static-nodes.json genesis.json ../../Node-0/data/
+cp static-nodes.json genesis.json ../../Node-1/data/
+cp static-nodes.json genesis.json ../../Node-2/data/
+cp static-nodes.json genesis.json ../../Node-3/data/
+cp static-nodes.json genesis.json ../../Node-4/data/
 ```
 
 In each validator directory, copy the `nodekey` files and `address` to the data directory:
