@@ -12,14 +12,14 @@ The server node is usually set up to support [multiple private states](../../con
 
 ## Configure qlight client
 
-Configure the qlight client using the following command line options:
+Configure the qlight client using the [`--qlight.client.*`](../../reference/cli-syntax.md#qlightclient) command line options.
 
 - [`--qlight.client`](../../reference/cli-syntax.md#qlightclient): This marks the node as a qlight client.
 - [`--qlight.client.psi`](../../reference/cli-syntax.md#qlightclientpsi): This specifies the PSI which this client will support (The default is `private`).
 - [`--qlight.client.serverNode`](../../reference/cli-syntax.md#qlightclientservernode): The Node ID of the server node.
 - [`--qlight.client.serverNodeRPC`](../../reference/cli-syntax.md#qlightclientservernoderpc): The RPC URL of the server node.
 
-If the server node has the RPC API secured using TLS, then the qlight client requires the following:
+If the server node has the RPC API secured using TLS, then you must set the [`--qlight.client.rpc.tls.*`](../../reference/cli-syntax.md#qlightclientrpctls) command line options.
 
 - [`--qlight.client.rpc.tls`](../../reference/cli-syntax.md#qlightclientrpctls): Use TLS when forwarding RPC API calls.
 - [`--qlight.client.rpc.tls.insecureskipverify`](../../reference/cli-syntax.md#qlightclientrpctlsinsecureskipverify): Skip TLS verification.
@@ -31,7 +31,7 @@ If the qlight client node is halted, on restart it resyncs with any blocks that 
 
 ## Configure server node
 
-Configure the qlight server using the following command line options:
+Configure the qlight server using the [`--qlight.server.*`](../../reference/cli-syntax.md#qlightserver) command line options.
 
 - [`--qlight.server`](../../reference/cli-syntax.md#qlightserver): This marks the node as a qlight server.
 - [`--qlight.server.p2p.port`](../../reference/cli-syntax.md#qlightserverp2pport): The RPC listening port.
@@ -51,7 +51,7 @@ The default files are `permissioned-nodes.json` and `disallowed-nodes.json`.
 However, you can specify a file prefix using [`--qlight.server.p2p.permissioning.prefix`](../../reference/cli-syntax.md#qlightserverp2ppermissioningprefix),
 in which case the filename is: the prefix, followed by a hyphen, followed by the default file name.
 
-## Using the enterprise authorization protocol integration
+## Configure enterprise authorization
 
 This leverages the security model described under [JSON-RPC security](json-rpc-api-security.md#enterprise-authorization-protocol-integration) to only allow authenticated clients to connect to the server.
 
@@ -72,7 +72,7 @@ The valid values are:
 ## Native transport layer security (TLS) for P2P communication
 
 You can add an encryption layer on the qlight client-server communication.
-Configure the encryption layer using the following options:
+Configure the encryption layer using the [`qlight.tls.*`](../../reference/cli-syntax.md#qlighttls) command line options.
 
 - [`--qlight.tls`](../../reference/cli-syntax.md#qlighttls): Enable TLS on the P2P connection.
 - [`--qlight.tls.cert`](../../reference/cli-syntax.md#qlighttlscert): The certificate file to use.

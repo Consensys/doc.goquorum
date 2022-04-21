@@ -589,9 +589,9 @@ Enables the client to use a token when connecting to the qlight server.
 
 Mechanism used to refresh the token. Possible values:
 
-* `none` - Developer mode
-* `external` - A new token must be injected via the qlight RPC API
-* `client-security-plugin` - The client security plugin must be deployed/configured
+* `none` - Developer mode. The token is not refreshed.
+* `external` - You must update the refreshed token in the running qlight client process by invoking the `qlight.setCurrentToken` RPC API.
+* `client-security-plugin` - You must deploy the client security plugin, which periodically refreshes the access token.
 
 ### `qlight.client.token.value`
 
@@ -675,7 +675,7 @@ Enables the qlight peers to check against a permissioned list and a disallowed l
     --qlight.server.p2p.permissioning.prefix "permissioned-nodes.json"
     ```
 
-Prefix for the permissioned-nodes.json and disallowed-nodes.json files.
+Prefix for the `permissioned-nodes.json` and `disallowed-nodes.json` files.
 
 ### `qlight.server.p2p.port`
 
@@ -767,7 +767,7 @@ Cipher suites to use for the qlight P2P connection.
 
 Sets the method the client is authenticated. Possible values:
 
-* 0=`NoClientCert` This is the default.
+* 0=`NoClientCert` (default)
 * 1=`RequestClientCert`
 * 2=`RequireAnyClientCert`
 * 3=`VerifyClientCertIfGiven`
