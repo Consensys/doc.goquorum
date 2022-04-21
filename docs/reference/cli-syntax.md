@@ -445,7 +445,7 @@ URL when using an HTTP/HTTPS [connection to the private transaction manager](../
     --qlight.client
     ```
 
-Enables the [qlight client](../configure-and-manage/manage/qlight-node.md) P2P protocol.
+Enables the [qlight client](../configure-and-manage/configure/qlight-node.md) P2P protocol.
 
 ### `qlight.client.psi`
 
@@ -617,7 +617,7 @@ Token the qlight client uses to connect to a server node.
     --qlight.server
     ```
 
-Enables the [qlight server](../configure-and-manage/manage/qlight-node.md) P2P protocol.
+Enables the [qlight server](../configure-and-manage/configure/qlight-node.md) P2P protocol.
 
 ### `qlight.server.p2p.maxpeers`
 
