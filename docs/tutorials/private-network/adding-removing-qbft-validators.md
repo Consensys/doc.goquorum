@@ -6,7 +6,7 @@ description: Adding and removing QBFT validators
 
 ## Prerequisites
 
-* A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
+A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
 
 ## Add a validator
 
@@ -16,7 +16,8 @@ description: Adding and removing QBFT validators
     mkdir -p Node-5/data/keystore
     ```
 
-1. Generate one new validator in the artifacts:
+1. In the `artifacts` directory, generate one new validator using the
+   [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool):
 
     ```bash
     npx quorum-genesis-tool \
@@ -26,7 +27,7 @@ description: Adding and removing QBFT validators
     --outputPath artifacts
     ```
 
-1. Copy the latest generated artifacts
+1. Copy the latest generated artifacts:
 
     ```bash
     cd artifacts/2022-04-21-08-10-29/validator0
@@ -163,9 +164,7 @@ description: Adding and removing QBFT validators
         INFO [06-11|16:42:27.142] Successfully wrote genesis state         database=lightchaindata                                                  hash=b992be…533db7
         ```
 
-1. Start node 5
-
-    In the `Node-5` directory, start the first node:
+1. In the `Node-5` directory, start the first node:
 
     ```bash
     export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
@@ -182,7 +181,7 @@ description: Adding and removing QBFT validators
         --port 30305
     ```
 
-1. Check that node 5 is validator
+1. Check that node 5 is validator:
 
     ```bash
     geth attach http://localhost:22005
@@ -266,7 +265,7 @@ description: Adding and removing QBFT validators
 
     The validator `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` was removed and the validators list now only has five addresses.
 
-1. Check that node 5 is not validator
+1. Check that node 5 is not validator:
 
     ```bash
     geth attach http://localhost:22005
@@ -310,8 +309,8 @@ description: Adding and removing QBFT validators
 
 ## Add a non-validator node
 
-Same instructions as [adding a validator](#add-a-validator) **excluding** step 3, which proposes the node as validator.
+Same instructions as [adding a validator](#add-a-validator) excluding step 4, which proposes the node as validator.
 
 ## Remove a non-validator node
 
-Just execute **step 4** from [removing a validator](#remove-a-validator).
+Just execute step 5 from [removing a validator](#remove-a-validator).
