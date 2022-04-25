@@ -1,4 +1,4 @@
-# GoQuorum qlight node
+# GoQuorum qlight
 
 A qlight node is a lightweight replica of a full node that proxies transactions to the full node.
 You can [configure a qlight node](../configure-and-manage/configure/qlight-node.md) to reduce the amount of data that is shared with external parties by the full nodes.

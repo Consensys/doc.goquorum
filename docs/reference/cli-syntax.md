@@ -666,19 +666,20 @@ Enables the qlight peers to check against a permissioned list and a disallowed l
 === "Syntax"
 
     ```bash
-    --qlight.server.p2p.permissioning.prefix <prefix-defautltfilename>
+    --qlight.server.p2p.permissioning.prefix <prefix>
     ```
 
 === "Example"
 
     ```bash
-    --qlight.server.p2p.permissioning.prefix "qlight-permissioned-nodes.json"
+    --qlight.server.p2p.permissioning.prefix "qlight"
     ```
 
 Prefix for the `permissioned-nodes.json` and `disallowed-nodes.json` files
 specific for the [qlight server](../configure-and-manage/configure/qlight-node.md#file-based-permissioning)
 to distinguish from other [permissioned nodes](../configure-and-manage/manage/add-nodes.md#permissioned-nodes).
-Format is the prefix name, followed by a hyphen, followed by the default file name.
+File format is the prefix name, followed by a hyphen, followed by the default file name.
+For example, `qlight-permissioned-nodes.json`.
 
 ### `qlight.server.p2p.port`
 

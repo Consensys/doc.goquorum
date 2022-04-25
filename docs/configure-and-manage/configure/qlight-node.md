@@ -1,4 +1,4 @@
-# Configure a GoQuorum qlight node
+# Configure GoQuorum qlight
 
 A [qlight client node](../../concepts/qlight-node.md) requires a full node configured to act as a qlight server.
 The server node is usually set up to support [multiple private states](../../concepts/multi-tenancy.md#multiple-private-states)

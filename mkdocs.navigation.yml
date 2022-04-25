@@ -37,7 +37,7 @@ nav:
           - Use a configuration file: configure-and-manage/configure/use-configuration-file.md
           - Bootnodes: configure-and-manage/configure/bootnodes.md
           - Static nodes: configure-and-manage/configure/static-nodes.md
-          - GoQuorum qlight node: configure-and-manage/configure/qlight-node.md
+          - GoQuorum qlight: configure-and-manage/configure/qlight-node.md
           - High availability: configure-and-manage/configure/high-availability.md
           - Permissioning:
               - Basic permissioning: configure-and-manage/configure/permissioning/basic-permissions.md
@@ -93,7 +93,7 @@ nav:
       - Plugins: concepts/plugins.md
       - Security framework: concepts/security-framework.md
       - Multi-tenancy: concepts/multi-tenancy.md
-      - GoQuorum qlight client: concepts/qlight-node.md
+      - GoQuorum qlight: concepts/qlight-node.md
       - GoQuorum profiling: concepts/profiling.md
       - Network and chain ID: concepts/network-and-chain-id.md
   - Try the tutorials:
