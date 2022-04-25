@@ -437,6 +437,362 @@ The default is the host's certificates.
 
 URL when using an HTTP/HTTPS [connection to the private transaction manager](../configure-and-manage/configure/private-transaction-manager.md).
 
+### `qlight.client`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client
+    ```
+
+Enables the [qlight client](../configure-and-manage/configure/qlight-node.md) P2P protocol.
+
+### `qlight.client.psi`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client.psi <STRING>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.client.psi "private"
+    ```
+
+PSI the qlight client uses to connect to a server node. The default is `private`.
+
+### `qlight.client.rpc.tls`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client.rpc.tls
+    ```
+
+Enables the qlight client RPC connection to use TLS.
+
+### `qlight.client.rpc.tls.cacert`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client.rpc.tls.cacert <path>/<to>/<client-RPC certicate-auth-file>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.client.rpc.tls.cacert certfile.pem
+    ```
+
+Path to the qlight client RPC client certificate authority file.
+
+### `qlight.client.rpc.tls.cert`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client.rpc.tls.cert <path>/<to>/<client-RPC-client-certificate-file>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.client.rpc.tls.cert certfile.pem
+    ```
+
+Path to the qlight client RPC client certificate file.
+
+### `qlight.client.rpc.tls.insecureskipverify`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client.rpc.tls.insecureskipverify
+    ```
+
+Enables the qlight client RPC connection to skip TLS verification.
+
+### `qlight.client.rpc.tls.key`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client.rpc.tls.key <path>/<to>/<client_TLS_key_pem_file>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.client.rpc.tls.key client.TLS.key.pem
+    ```
+
+Path to the qlight client RPC client certificate private key.
+
+### `qlight.client.serverNode`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client.serverNode <nodeID>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.client.serverNode 0xc35c3...d615f
+    ```
+
+The node ID of the target server node.
+
+### `qlight.client.serverNodeRPC`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client.serverNodeRPC <URL>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.client.serverNodeRPC "http://127.0.0.1:8888"
+    ```
+
+The RPC URL of the target server node.
+
+### `qlight.client.token.enabled`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client.token.enabled
+    ```
+
+Enables the client to use a token when connecting to the qlight server.
+
+### `qlight.client.token.management`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client.token.management <string>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.client.token.management "none"
+    ```
+
+Mechanism used to refresh the token. Possible values:
+
+* `none` - Developer mode. The token is not refreshed.
+* `external` - You must update the refreshed token in the running qlight client process by invoking the `qlight.setCurrentToken` RPC API.
+* `client-security-plugin` - You must deploy the client security plugin, which periodically refreshes the access token.
+
+### `qlight.client.token.value`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.client.token.value <TOKEN>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.client.token.value "bearer AYjcyMzY3ZDhiNmJkNTY"
+    ```
+
+Token the qlight client uses to connect to a server node.
+
+### `qlight.server`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.server
+    ```
+
+Enables the [qlight server](../configure-and-manage/configure/qlight-node.md) P2P protocol.
+
+### `qlight.server.p2p.maxpeers`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.server.p2p.maxpeers <INTEGER>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.server.p2p.maxpeers 10
+    ```
+
+Maximum number of qlight peers. The default is 10.
+
+### `qlight.server.p2p.netrestrict`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.server.p2p.netrestrict <NETWORK MASK>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.server.p2p.netrestrict "xyz"
+    ```
+
+Restricts network communication to the given IP networks (CIDR masks).
+
+### `qlight.server.p2p.permissioning`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.server.p2p.permissioning
+    ```
+
+Enables the qlight peers to check against a permissioned list and a disallowed list.
+
+### `qlight.server.p2p.permissioning.prefix`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.server.p2p.permissioning.prefix <prefix>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.server.p2p.permissioning.prefix "qlight"
+    ```
+
+Prefix for the `permissioned-nodes.json` and `disallowed-nodes.json` files
+specific for the [qlight server](../configure-and-manage/configure/qlight-node.md#file-based-permissioning)
+to distinguish from other [permissioned nodes](../configure-and-manage/manage/add-nodes.md#permissioned-nodes).
+File format is the prefix name, followed by a hyphen, followed by the default file name.
+For example, `qlight-permissioned-nodes.json`.
+
+### `qlight.server.p2p.port`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.server.p2p.port=<INTEGER>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.server.p2p.port=30305
+    ```
+
+Port the qlight network listens to. The default is 30305.
+
+### `qlight.tls`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.tls
+    ```
+
+Enables the qlight client P2P protocol to use TLS.
+
+### `qlight.tls.cacerts`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.tls.cacerts <path>/<to>/<qlight_tls_cacert_file>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.tls.cacerts certfile.pem
+    ```
+
+Path to the certificate authorities file to use for validating P2P connection.
+
+### `qlight.tls.cert`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.tls.cert` <path>/<to>/<qlight_tls_cert_file>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.tls.cert certfile.pem
+    ```
+
+Path to the certificate file to use for the qlight P2P connection.
+
+### `qlight.tls.ciphersuites`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.tls.ciphersuites <STRING>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.tls.ciphersuites "CIPHER_SUITE_1,CIPHER_SUITE_2"
+    ```
+
+Cipher suites to use for the qlight P2P connection.
+
+### `qlight.tls.clientauth`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.tls.clientauth <INTEGER>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.tls.clientauth 0
+    ```
+
+Sets the method the client is authenticated. Possible values:
+
+* 0=`NoClientCert` (default)
+* 1=`RequestClientCert`
+* 2=`RequireAnyClientCert`
+* 3=`VerifyClientCertIfGiven`
+* 4=`RequireAndVerifyClientCert`
+
+### `qlight.tls.key`
+
+=== "Syntax"
+
+    ```bash
+    --qlight.tls.key <path>/<to>/<qlight_tls_key_file>
+    ```
+
+=== "Example"
+
+    ```bash
+    --qlight.tls.key certfile.pem
+    ```
+
+Path to the key file to use for qlight P2P connection.
+
 ### `raft`
 
 === "Syntax"
