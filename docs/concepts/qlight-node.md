@@ -48,7 +48,7 @@ Unlike standard GoQuorum nodes, qlight nodes:
 
 ## Architecture
 
-![Qlight](../images/qlight_diagram_1.jpeg)
+![qlight architecture](../images/qlight-architecture.png)
 
 ## Communication protocol
 
