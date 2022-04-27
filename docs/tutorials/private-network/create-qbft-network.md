@@ -56,7 +56,8 @@ The following example uses CLI options to create the genesis file and node keys:
 npx quorum-genesis-tool --consensus qbft --chainID 1337 --blockperiod 5 --requestTimeout 10 --epochLength 30000 --difficulty 1 --gasLimit '0xFFFFFF' --coinbase '0x0000000000000000000000000000000000000000' --validators 5 --members 0 --bootnodes 0 --outputPath 'artifacts'
 ```
 
-Node keys for five nodes, along with `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json`, and `genesis.json` are generated.
+This command generates node keys for five nodes, `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json`,
+and `genesis.json`.
 
 !!! example "output"
 
@@ -159,11 +160,11 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
 Copy `static-nodes.json`, `genesis.json`, and `permissioned-nodes.json` (if applicable) to the data directory for each node:
 
 ```bash
-cp static-nodes.json genesis.json ./../Node-0/data/
-cp static-nodes.json genesis.json ./../Node-1/data/
-cp static-nodes.json genesis.json ./../Node-2/data/
-cp static-nodes.json genesis.json ./../Node-3/data/
-cp static-nodes.json genesis.json ./../Node-4/data/
+cp static-nodes.json genesis.json ../../Node-0/data/
+cp static-nodes.json genesis.json ../../Node-1/data/
+cp static-nodes.json genesis.json ../../Node-2/data/
+cp static-nodes.json genesis.json ../../Node-3/data/
+cp static-nodes.json genesis.json ../../Node-4/data/
 ```
 
 In each validator directory, copy the `nodekey` files and `address` to the data directory:
