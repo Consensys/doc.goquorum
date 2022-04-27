@@ -17,7 +17,7 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
     ```
 
 1. In the `artifacts` directory, generate one new validator using the
-   [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool):
+    [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool):
 
     ```bash
     npx quorum-genesis-tool \
