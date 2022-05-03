@@ -186,12 +186,12 @@ helm install blockscout ./charts/blockscout --namespace quorum --values ./values
 You can optionally deploy the [Quorum-Explorer](https://github.com/ConsenSys/quorum-explorer) as a lightweight
 blockchain explorer.  The Quorum Explorer is not recommended for use in production and is intended for
 demonstration/dev purposes only. The Explorer can give an overview over the whole network, such as querying
-each node on the network for block information, voting or removing validators from the network, 
+each node on the network for block information, voting or removing validators from the network,
 demonstrating a SimpleStorage smart contract with privacy enabled, and sending transactions between
-wallets in one interface.
+wallets in one interface. Please see the [Explorer](./quorum-explorer.md) for details on how to use the app.
 
 To do this, update the [Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yml)
-with details of your nodes and endpoints and then deploy. 
+with details of your nodes and endpoints and then deploy.
 
 !!! warning
 
