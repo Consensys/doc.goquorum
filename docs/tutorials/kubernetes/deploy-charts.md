@@ -12,17 +12,53 @@ description: Deploying GoQuorum Helm Charts for a Kubernetes cluster
 
 ## Provisioning with Helm charts
 
-Helm is a method of packaging a collection of objects into a chart which can then be deployed to the cluster. For the
-rest of this tutorial we use the **[Dev](https://github.com/ConsenSys/quorum-kubernetes/tree/master/dev)** Helm charts.
+Helm is a method of packaging a collection of objects into a chart which can then be deployed to the cluster.
 After you have cloned the [Quorum-Kubernetes](https://github.com/ConsenSys/quorum-kubernetes) repository, change
-the directory to `dev` for the rest of this tutorial.
+the directory to `helm` for the rest of this tutorial.
 
 ```bash
-cd dev/helm
+cd helm
 ```
 
-If you're running the cluster on AWS or Azure, please remember to update the `values.yml` with `provider: aws` or
-`provider: azure` as well.
+Each helm chart that you can use has the following keys and you need to set them. The `cluster.provider` is used
+as a key for the various cloud features enabled. Please specify only one cloud provider, not both. At present, the
+charts have full support for cloud native services in both AWS and Azure. Please note that if you use
+GCP, IBM etc please set `cluster.provider: local` and set `cluster.cloudNativeServices: false`. 
+
+Please update the `aws` or `azure` map as shown below if you deploy to either cloud provider.
+
+```bash
+cluster:
+  provider: local  # choose from: local | aws | azure
+  cloudNativeServices: false # set to true to use Cloud Native Services (SecretsManager and IAM for AWS; KeyVault & Managed Identities for Azure)
+  reclaimPolicy: Delete # set to either Retain or Delete; note that PVCs and PVs will still exist after a 'helm delete'. Setting to Retain will keep volumes even if PVCs/PVs are deleted in kubernetes. Setting to Delete will remove volumes from EC2 EBS when PVC is deleted
+
+quorumFlags:
+  privacy: false
+  removeKeysOnDelete: false
+
+aws:
+  # the aws cli commands uses the name 'quorum-node-secrets-sa' so only change this if you altered the name
+  serviceAccountName: quorum-node-secrets-sa
+  # the region you are deploying to
+  region: ap-southeast-2
+
+azure:
+  # the script/bootstrap.sh uses the name 'quorum-pod-identity' so only change this if you altered the name
+  identityName: quorum-pod-identity
+  # the clientId of the user assigned managed identity created in the template
+  identityClientId: azure-clientId
+  keyvaultName: azure-keyvault
+  # the tenant ID of the key vault
+  tenantId: azure-tenantId
+  # the subscription ID to use - this needs to be set explictly when using multi tenancy
+  subscriptionId: azure-subscriptionId
+```
+
+Setting the `cluster.cloudNativeServices: true` will:
+
+* Store keys in Azure KeyVault or AWS Secrets Manager
+* Make use of Azure Managed Identities or AWS IAMs for pod identity access
 
 !!! note
 
@@ -31,7 +67,7 @@ If you're running the cluster on AWS or Azure, please remember to update the `va
 
 ### 1. Check that you can connect to the cluster with `kubectl`
 
-Verify kubectl is connected to cluster with:
+Once you have your cluster up and runinng, verify kubectl is connected to your cluster with: (use the latest version)
 
 ```bash
 kubectl version
@@ -39,7 +75,7 @@ Client Version: version.Info{Major:"1", Minor:"23", GitVersion:"v1.23.1", GitCom
 Server Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.3", GitCommit:"c92036820499fedefec0f847e2054d824aea6cd1", GitTreeState:"clean", BuildDate:"2021-10-27T18:35:25Z", GoVersion:"go1.16.9", Compiler:"gc", Platform:"linux/amd64"}
 ```
 
-### 2. Deploy the network
+### 2. Create the namespace
 
 This tutorial isolates groups of resources (for example, StatefulSets and Services) within a single cluster.
 
@@ -47,7 +83,7 @@ This tutorial isolates groups of resources (for example, StatefulSets and Servic
 
     The rest of this tutorial uses `quorum` as the namespace,
     but you're free to pick any name when deploying, as long as it's consistent across the
-    [infrastructure scripts](./create-cluster.md) and charts.
+    [infrastructure setup](./create-cluster.md) and charts.
 
 Run the following in a terminal window:
 
@@ -57,8 +93,19 @@ kubectl create namespace quorum
 
 ### 3. Deploy the monitoring chart
 
-This chart deploys Prometheus and Grafana to monitor the cluster, nodes, and state of the network.
-Each Besu pod has [`annotations`](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
+This chart deploys Prometheus and Grafana to monitor the cluster, nodes and state of the network.
+
+Update the admin `username` and `password` in the [monitoring values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/monitoring.yml).
+Configure alerts to the receiver of your choice (for example, email or Slack), then deploy the chart using:
+
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install monitoring prometheus-community/kube-prometheus-stack --version 34.10.0 --namespace=quorum --create-namespace --values ./values/monitoring.yml --wait
+kubectl --namespace quorum apply -f  ./values/monitoring/
+```
+
+Each GoQuorum pod has [`annotations`](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
 which allow Prometheus to scrape metrics from the pod at a specified port and path. For example:
 
 ```bash
@@ -70,37 +117,27 @@ which allow Prometheus to scrape metrics from the pod at a specified port and pa
         prometheus.io/path: "/debug/metrics/prometheus"
 ```
 
-Update the admin `username` and `password` in the [monitoring values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/dev/helm/values/monitoring.yml).
-Configure alerts to the receiver of your choice (for example, email or Slack), then deploy the chart using:
-
-```bash
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo update
-helm install monitoring prometheus-community/kube-prometheus-stack --version 34.6.0 --namespace=quorum --create-namespace --values ./values/monitoring.yml --wait
-kubectl --namespace quorum apply -f  ./values/monitoring/
-```
-
 !!! warning
 
     For production use cases, configure Grafana with one of the supported [native auth mechanisms](https://grafana.com/docs/grafana/latest/auth/).
-
-Once complete, you can view deployments in the Kubernetes dashboard (or equivalent).
 
 Optionally you can also deploy the [Elastic Stack](https://www.elastic.co/elastic-stack/) to view logs (and metrics).
 
 ```bash
 helm repo add elastic https://helm.elastic.co
 helm repo update
-helm install elasticsearch --version 7.16.3 elastic/elasticsearch --namespace quorum --create-namespace --values ./values/elasticsearch.yml
-helm install kibana --version 7.16.3 elastic/kibana --namespace quorum --values ./values/kibana.yml
-helm install filebeat elastic/filebeat  --namespace quorum --values ./values/filebeat.yml
-# to get metrics, please install metricbeat with config that is similar to filebeat and once complete create a `metricbeat` index in kibana
+# if on cloud
+helm install elasticsearch --version 7.17.1 elastic/elasticsearch --namespace quorum --create-namespace --values ./values/elasticsearch.yml
+# if local - set the replicas to 1
+helm install elasticsearch --version 7.17.1 elastic/elasticsearch --namespace quorum --create-namespace --values ./values/elasticsearch.yml --set replicas=1 --set minimumMasterNodes: 1
+helm install kibana --version 7.17.1 elastic/kibana --namespace quorum --values ./values/kibana.yml
+helm install filebeat --version 7.17.1 elastic/filebeat  --namespace quorum --values ./values/filebeat.yml
 ```
 
 If you install `filebeat`, please create a `filebeat-*` index pattern in `kibana`. All the logs from the nodes are sent to the `filebeat` index.
 
 You can optionally deploy BlockScout to aid with monitoring the network. To do this, update the
-[BlockScout values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/dev/helm/values/blockscout-besu.yml)
+[BlockScout values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/blockscout-besu.yml)
 and set the `database` and `secret_key_base` values.
 
 !!! important
@@ -116,19 +153,78 @@ helm install blockscout ./charts/blockscout --namespace quorum --values ./values
 
 ### 4. Deploy the genesis chart
 
-The genesis chart creates the genesis file and keys for the validators and bootnodes.
+The genesis chart creates the genesis file and keys for the validators. 
 
 !!! warning
 
-    It's important to keep the release names of the bootnodes and validators as per this tutorial, that is `bootnode-n` and
-    `validator-n` (for the initial validator pool), where `n` is the node number. Any validators created after the initial
-    pool can be named to anything you like.
+    It's important to keep the release names of the initial validator pool as per this tutorial, that is
+    `validator-n`, where `n` is the node number. Any validators created after the initial pool can be named
+    to anything you like.
 
-Update the number of validators, accounts, chain ID, and any parameters for the genesis file in the
-[`genesis-besu` values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/dev/helm/values/genesis-besu.yml), then
-deploy the chart using:
+The override [values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/genesis-goquorum.yml)
+looks like below:
 
 ```bash
+---
+quorumFlags:
+  removeGenesisOnDelete: true
+
+cluster:
+  provider: local  # choose from: local | aws | azure
+  cloudNativeServices: false 
+  
+aws:
+  # the aws cli commands uses the name 'quorum-node-secrets-sa' so only change this if you altered the name
+  serviceAccountName: quorum-node-secrets-sa
+  # the region you are deploying to
+  region: ap-southeast-2
+
+azure:
+  # the script/bootstrap.sh uses the name 'quorum-pod-identity' so only change this if you altered the name
+  identityName: quorum-pod-identity
+  # the clientId of the user assigned managed identity created in the template
+  identityClientId: azure-clientId
+  keyvaultName: azure-keyvault
+  # the tenant ID of the key vault
+  tenantId: azure-tenantId
+  # the subscription ID to use - this needs to be set explictly when using multi tenancy
+  subscriptionId: azure-subscriptionId
+
+# the raw Genesis config
+# rawGenesisConfig.blockchain.nodes set the number of validators/signers
+rawGenesisConfig:
+  genesis:
+    config:
+      chainId: 1337
+      algorithm:
+        consensus: qbft # choose from: ibft | qbft | raft | clique
+        blockperiodseconds: 10
+        epochlength: 30000
+        requesttimeoutseconds: 20
+    gasLimit: '0x47b760'
+    difficulty: '0x1'
+    coinbase: '0x0000000000000000000000000000000000000000'
+  blockchain:
+    nodes:
+      generate: true
+      count: 4
+    accountPassword: 'password'
+```
+
+
+Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning) step.
+`quorumFlags.removeGenesisOnDelete: true` tells the chart to delete the genesis file when the chart is deleted.
+If you may wish to retain the genesis on deletion, please set that value to `false`. 
+
+The last config item is `rawGenesisConfig` which has details of the chain you are creating, please edit any of the
+parameters in there to match your requirements. To set the number of initial valiators set the
+`rawGenesisConfig.blockchain.nodes` to the number that you'd like. We recommend using the Byzantine formula of `N=3F+1`
+when setting the number of validators.
+
+When you are ready deploy the chart with :
+
+```bash
+cd helm
 helm install genesis ./charts/goquorum-genesis --namespace quorum --create-namespace --values ./values/genesis-goquorum.yml
 ```
 
@@ -141,29 +237,61 @@ and the validator and bootnode node keys as secrets.
 
 ### 5. Deploy the validators
 
-This is the first set of nodes that we will deploy. The Dev charts use four validators to replicate best practices on
-a production network. Each GoQourum node has a few flags that tell the StatefulSet what to deploy and how to clean up.
-The default `values.yml` for the StatefulSet define the following flags and this dictionary is present in all the
-override values files.
+This is the first set of nodes that we will deploy. The charts use four validators (default) to replicate best practices
+for a network. The override
+[values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/validator.yml) for the
+StatefulSet looks like below:
 
 ```bash
-nodeFlags:
-  bootnode: false
-  generateKeys: false
+---
+quorumFlags:
   privacy: false
-  removeKeysOnDeletion: false
+  removeKeysOnDelete: false
+
+cluster:
+  provider: local  # choose from: local | aws | azure
+  cloudNativeServices: false 
+  reclaimPolicy: Delete # set to either Retain or Delete; note that PVCs and PVs will still exist after a 'helm delete'. Setting to Retain will keep volumes even if PVCs/PVs are deleted in kubernetes. Setting to Delete will remove volumes from EC2 EBS when PVC is deleted
+
+aws:
+  # the aws cli commands uses the name 'quorum-node-secrets-sa' so only change this if you altered the name
+  serviceAccountName: quorum-node-secrets-sa
+  # the region you are deploying to
+  region: ap-southeast-2
+
+azure:
+  # the script/bootstrap.sh uses the name 'quorum-pod-identity' so only change this if you altered the name
+  identityName: quorum-pod-identity
+  # the clientId of the user assigned managed identity created in the template
+  identityClientId: azure-clientId
+  keyvaultName: azure-keyvault
+  # the tenant ID of the key vault
+  tenantId: azure-tenantId
+  # the subscription ID to use - this needs to be set explictly when using multi tenancy
+  subscriptionId: azure-subscriptionId
+
+node:
+  goquorum:
+    metrics:
+      serviceMonitorEnabled: true
+    resources:
+      cpuLimit: 1
+      cpuRequest: 0.1
+      memLimit: "2G"
+      memRequest: "1G"
 ```
 
-We don't generate keys for only the initial validator pool; therefore, we set `generateKeys` to `true` for every node
-bar these. To create a Tessera pod paired to GoQuorum for private transactions, set the `privacy` flag to `true`. You
-can optionally remove the secrets for the node if you delete the StatefulSet (for example removing a member node) by
-setting the `removeKeysOnDeletion` flag to `true`. For the initial validator pool we set all the node flags to `false`
-and then deploy.
+Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning) step.
+`quorumFlags.removeKeysOnDelete: true` tells the chart to delete the node's keys when the chart is deleted.
+If you may wish to retain the keys on deletion, please set that value to `false`. 
 
 !!! warning
 
-    It's important to keep the release names of the validators the same as it is tied to the keys that the genesis chart
-    creates. So we use `validator-1`, `validator-2`, etc. in the following command.
+    Please note that if you delete a majority of the validators, the network will halt. Additionally, if the
+    validator keys are deleted you may not be able to recover as you need a majority of the validators up to vote to
+    add new validators into the pool
+
+Deploy the validators like so:
 
 ```bash
 helm install validator-1 ./charts/quorum-node --namespace quorum --values ./values/validator.yml
@@ -172,33 +300,43 @@ helm install validator-3 ./charts/quorum-node --namespace quorum --values ./valu
 helm install validator-4 ./charts/quorum-node --namespace quorum --values ./values/validator.yml
 ```
 
+!!! warning
+
+    It's important to keep the release names of the validators the same as it is tied to the keys that the genesis chart
+    creates. So we use `validator-1`, `validator-2`, etc. in the following command.
+
 Once complete, you may need to give the validators a few minutes to peer and for round changes, depending on when the
 first validator was spun up, before the logs display blocks being created.
 
 ![k8s-validator-logs](../../images/kubernetes/kubernetes-validator-logs.png)
 
-**To add a validator into the network**, deploy a normal RPC node (step 6) and then
-[vote](../../tutorials/private-network/adding-removing-ibft-validators.md) into the validator pool.
 
-### 6. Deploy RPC or transaction nodes
+### 6. Add/Remove additional validators to the validator pool
 
-These nodes need their own node keys, so set the `generateKeys` flag to `true` for a standard RPC node.
-For a transaction node (GoQuorum paired with Tessera for private transactions), set the `privacy` flag to `true` and
-deploy in the same manner as before.
+To add (or remove) more validators to the initial validator pool, you need to deploy a node such as an RPC node (step 7)
+and then [vote](../../tutorials/private-network/adding-removing-ibft-validators.md) that node in. The vote API call
+must be made on a majority of the existing pool and the new node will then become a validator
 
-For an RPC node with the release name `rpc-1`:
+### 7. Deploy RPC or Transaction nodes
+
+We define a Transaction or Member node as a node which has an accompaning Private Transaction Manager, such as Tessera,
+which allow you to make private transactions between nodes. 
+
+An RPC node in turn is simply a node that can be used to make public transactions or perform read heavy operations such
+as when connected to a chain explorer like [Blockscout](https://blockscout.com/xdai/mainnet/)
+
+The Transaction override
+[values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/txnode.yml) for the
+StatefulSet looks identical to that of the validators above and only has ``quorumFlags.privacy: true` to indicate that
+it is deploying a pair of GoQuorum and Tessera nodes. 
+
+To deploy a Transaction or Member node:
 
 ```bash
-helm install rpc-1 ./charts/quorum-node --namespace quorum --values ./values/reader.yml
+helm install member-1 ./charts/quorum-node --namespace quorum --values ./values/txnode.yml
 ```
 
-For a transaction node release name `tx-1`:
-
-```bash
-helm install tx-1 ./charts/quorum-node --namespace quorum --values ./values/txnode.yml
-```
-
-Logs for `tx-1` resemble the following for Tessera:
+Logs for `member-1` resemble the following for Tessera:
 
 ![`k8s-tx-tessera-logs`](../../images/kubernetes/kubernetes-tx-tessera-logs.png)
 
@@ -206,7 +344,22 @@ Logs for GoQuorum resemble the following:
 
 ![`k8s-tx-quorum-logs`](../../images/kubernetes/kubernetes-tx-quorum-logs.png)
 
-### 7. Connecting to the node from your local machine via an Ingress
+The RPC override
+[values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/reader.yml) for the
+StatefulSet looks identical to that of the validators above, and will create it's own nodekeys before the node starts
+
+To deploy an RPC node:
+
+```bash
+helm install rpc-1 ./charts/quorum-node --namespace quorum --values ./values/txnode.yml
+```
+
+!!! note
+
+    In the examples above we use `member-1` and `rpc-1` as release names for the deployments. You can pick any release
+    name that you'd like to use in place of those as per your requirements.
+
+### 8. Connecting to the node from your local machine via an Ingress
 
 In order to view the Grafana dashboards or connect to the nodes to make transactions from your local machine you can
 deploy an ingress controller with rules. We use the `ingress-nginx` ingress controller which can be deployed as follows:
@@ -223,16 +376,16 @@ helm install quorum-ingress ingress-nginx/ingress-nginx \
     --set controller.service.externalTrafficPolicy=Local
 ```
 
-Use [pre-defined rules](https://github.com/ConsenSys/quorum-kubernetes/blob/master/ingress/ingress-rules-besu.yml)
-to test functionality, and alter to suit your requirements (for example, to connect to multiple nodes via different paths).
+Use [pre-defined rules](https://github.com/ConsenSys/quorum-kubernetes/blob/master/ingress/ingress-rules-goquorum.yml)
+to test functionality, and alter to suit your requirements (for example, restrict access for API calls to trusted CIDR blocks).
 
-Edit the [rules](https://github.com/ConsenSys/quorum-kubernetes/blob/master/ingress/ingress-rules-quorum.yml) file so the
+Edit the [rules](https://github.com/ConsenSys/quorum-kubernetes/blob/master/ingress/ingress-rules-goquorum.yml) file so the
 service names match your release name. In the example, we deployed a transaction node with the release name `member-1`
-so the corresponding service is called `quorum-node-member-1` for the `rpc` and `ws` path prefixes. Once you have settings
+so the corresponding service is called `quorum-node-member-1`. Once you have settings
 that match your deployments, deploy the rules like so:
 
 ```bash
-kubectl apply -f ../../ingress/ingress-rules-quorum.yml
+kubectl apply -f ../ingress/ingress-rules-quorum.yml
 ```
 
 Once complete, view the IP address listed under the `Ingress` section if you're using the Kubernetes Dashboard
@@ -252,7 +405,7 @@ The following is an example RPC call, which confirms that the node running the J
 === "curl HTTP request"
 
     ```bash
-    curl -v -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://<INGRESS_IP>/rpc
+    curl -v -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://<INGRESS_IP>/rpc-1
     ```
 
 === "JSON result"
