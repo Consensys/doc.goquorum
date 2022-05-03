@@ -139,11 +139,13 @@ helm install filebeat --version 7.17.1 elastic/filebeat  --namespace quorum --va
 ```
 
 If you install `filebeat`, please create a `filebeat-*` index pattern in `kibana`. All the logs from the nodes are sent to the `filebeat` index.
+If you use The Elastic stack for logs and metrics, please deploy `metricbeat` in a similar manner to `filebeat` and create an index pattern in
+Kibana.
 
 ![k8s-elastic](../../images/kubernetes/kubernetes-elastic.png)
 
-In addition to the above, please deploy an ingress so you can access your monitoring endpoints publicly. We use nginx
-as our ingress here, and you are free to configure any ingress per your requirements.
+To connect to Kibana or Grafana, we also need to deploy an ingress so you can access your monitoring endpoints
+publicly. We use nginx as our ingress here, and you are free to configure any ingress per your requirements.
 
 ```bash
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -164,49 +166,14 @@ kubectl apply -f ../ingress/ingress-rules-external.yml
 Once complete, view the IP address listed under the `Ingress` section if you're using the Kubernetes Dashboard
 or equivalent `kubectl -n quorum get services` command.
 
+!!! note
+
+    We refer to the ingress here as `external-nginx` because it deals with monitoring endpoints specifically. We
+    also deploy a second ingress called `network-ingress` which is for the blockchain nodes only in [step 8](#8-connecting-to-the-node-from-your-local-machine-via-an-ingress)
+
 ![`k8s-ingress-external`](../../images/kubernetes/kubernetes-ingress.png)
 
-### 4. Blockchain explorer
-
-You can deploy [BlockScout](https://github.com/blockscout/blockscout) to aid with monitoring the blockchain.
-To do this, update the [BlockScout values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/blockscout-goquorum.yml)
-and set the `database` and `secret_key_base` values.
-
-!!! important
-
-    Changes to the database requires changes to both the `database` and the `blockscout` dictionaries.
-
-Once completed, deploy the chart using:
-
-```bash
-helm dependency update ./charts/blockscout
-helm install blockscout ./charts/blockscout --namespace quorum --values ./values/blockscout-goquorum.yaml
-```
-
-You can optionally deploy the [Quorum-Explorer](https://github.com/ConsenSys/quorum-explorer) as a lightweight
-blockchain explorer.  The Quorum Explorer is not recommended for use in production and is intended for
-demonstration/dev purposes only. The Explorer can give an overview over the whole network, such as querying
-each node on the network for block information, voting or removing validators from the network,
-demonstrating a SimpleStorage smart contract with privacy enabled, and sending transactions between
-wallets in one interface. Please see the [Explorer](./quorum-explorer.md) for details on how to use the app.
-
-To do this, update the [Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yml)
-with details of your nodes and endpoints and then deploy.
-
-!!! warning
-
-    The accounts listed in the file above are for test purposes only and should not be used on a production network.
-
-```bash
-helm install quorum-explorer ./charts/explorer --namespace quorum --values ./values/explorer-goquorum.yaml
-```
-
-As with the previous step, you will also need to deploy the ingress (if not already done) to access the monitoring
-endpoints
-
-![`k8s-explorer`](../../images/kubernetes/kubernetes-explorer.png)
-
-### 5. Deploy the genesis chart
+### 4. Deploy the genesis chart
 
 The genesis chart creates the genesis file and keys for the validators.
 
@@ -289,7 +256,7 @@ and the validator and bootnode node keys as secrets.
 
 ![k8s-genesis-secrets](../../images/kubernetes/kubernetes-genesis-secrets.png)
 
-### 6. Deploy the validators
+### 5. Deploy the validators
 
 This is the first set of nodes that we will deploy. The charts use four validators (default) to replicate best practices
 for a network. The override
@@ -364,13 +331,16 @@ first validator was spun up, before the logs display blocks being created.
 
 ![k8s-validator-logs](../../images/kubernetes/kubernetes-validator-logs.png)
 
-### 7. Add/Remove additional validators to the validator pool
+### 6. Add/Remove additional validators to the validator pool
 
 To add (or remove) more validators to the initial validator pool, you need to deploy a node such as an RPC node (step 7)
 and then [vote](../../tutorials/private-network/adding-removing-ibft-validators.md) that node in. The vote API call
-must be made on a majority of the existing pool and the new node will then become a validator
+must be made on a majority of the existing pool and the new node will then become a validator. 
 
-### 8. Deploy RPC or Transaction nodes
+Please refer to the [Ingress Section](#8-connecting-to-the-node-from-your-local-machine-via-an-ingress) for details on
+making the API calls from your local machine or equivalent.
+
+### 7. Deploy RPC or Transaction nodes
 
 We define a Transaction or Member node as a node which has an accompaning Private Transaction Manager, such as Tessera,
 which allow you to make private transactions between nodes.
@@ -412,7 +382,7 @@ helm install rpc-1 ./charts/quorum-node --namespace quorum --values ./values/txn
     In the examples above we use `member-1` and `rpc-1` as release names for the deployments. You can pick any release
     name that you'd like to use in place of those as per your requirements.
 
-### 9. Connecting to the node from your local machine via an Ingress
+### 8. Connecting to the node from your local machine via an Ingress
 
 In order to view the Grafana dashboards or connect to the nodes to make transactions from your local machine you can
 deploy an ingress controller with rules. We use the `ingress-nginx` ingress controller which can be deployed as follows:
@@ -470,3 +440,45 @@ The following is an example RPC call, which confirms that the node running the J
     "result" : "0x4e9"
     }
     ```
+
+### 9. Blockchain explorer
+
+You can deploy [BlockScout](https://github.com/blockscout/blockscout) to aid with monitoring the blockchain.
+To do this, update the [BlockScout values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/blockscout-goquorum.yml)
+and set the `database` and `secret_key_base` values.
+
+!!! important
+
+    Changes to the database requires changes to both the `database` and the `blockscout` dictionaries.
+
+Once completed, deploy the chart using:
+
+```bash
+helm dependency update ./charts/blockscout
+helm install blockscout ./charts/blockscout --namespace quorum --values ./values/blockscout-goquorum.yaml
+```
+
+You can optionally deploy the [Quorum-Explorer](https://github.com/ConsenSys/quorum-explorer) as a lightweight
+blockchain explorer.  The Quorum Explorer is not recommended for use in production and is intended for
+demonstration/dev purposes only. The Explorer can give an overview over the whole network, such as querying
+each node on the network for node or block information, voting (add/remove) validators from the network,
+demonstrating a SimpleStorage smart contract with privacy enabled, and sending transactions between
+wallets as you would do in Metamask. Please see the [Explorer](./quorum-explorer.md) page for details on how
+to use the application.
+
+!!! warning
+
+    The accounts listed in the file below are for test purposes only and should not be used on a production network.
+
+To deploy the application, update the
+[Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yml)
+with details of your nodes and endpoints and then deploy.
+
+```bash
+helm install quorum-explorer ./charts/explorer --namespace quorum --values ./values/explorer-goquorum.yaml
+```
+
+You will also need deploy the ingress (if not already done in [Mointoring](#3-deploy-the-monitoring-chart)) to
+access the endpoint on `http://<INGRESS_IP>/explorer`
+
+![`k8s-explorer`](../../images/kubernetes/kubernetes-explorer.png)
