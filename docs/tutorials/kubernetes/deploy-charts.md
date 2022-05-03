@@ -20,10 +20,10 @@ the directory to `helm` for the rest of this tutorial.
 cd helm
 ```
 
-Each helm chart that you can use has the following keys and you need to set them. The `cluster.provider` is used
+Each helm chart that you can use has the following key-map values which you will need to set depending on your needs. The `cluster.provider` is used
 as a key for the various cloud features enabled. Please specify only one cloud provider, not both. At present, the
 charts have full support for cloud native services in both AWS and Azure. Please note that if you use
-GCP, IBM etc please set `cluster.provider: local` and set `cluster.cloudNativeServices: false`. 
+GCP, IBM etc please set `cluster.provider: local` and set `cluster.cloudNativeServices: false`.
 
 Please update the `aws` or `azure` map as shown below if you deploy to either cloud provider.
 
@@ -153,7 +153,7 @@ helm install blockscout ./charts/blockscout --namespace quorum --values ./values
 
 ### 4. Deploy the genesis chart
 
-The genesis chart creates the genesis file and keys for the validators. 
+The genesis chart creates the genesis file and keys for the validators.
 
 !!! warning
 
@@ -171,8 +171,8 @@ quorumFlags:
 
 cluster:
   provider: local  # choose from: local | aws | azure
-  cloudNativeServices: false 
-  
+  cloudNativeServices: false
+
 aws:
   # the aws cli commands uses the name 'quorum-node-secrets-sa' so only change this if you altered the name
   serviceAccountName: quorum-node-secrets-sa
@@ -214,7 +214,7 @@ rawGenesisConfig:
 
 Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning) step.
 `quorumFlags.removeGenesisOnDelete: true` tells the chart to delete the genesis file when the chart is deleted.
-If you may wish to retain the genesis on deletion, please set that value to `false`. 
+If you may wish to retain the genesis on deletion, please set that value to `false`.
 
 The last config item is `rawGenesisConfig` which has details of the chain you are creating, please edit any of the
 parameters in there to match your requirements. To set the number of initial valiators set the
@@ -250,7 +250,7 @@ quorumFlags:
 
 cluster:
   provider: local  # choose from: local | aws | azure
-  cloudNativeServices: false 
+  cloudNativeServices: false
   reclaimPolicy: Delete # set to either Retain or Delete; note that PVCs and PVs will still exist after a 'helm delete'. Setting to Retain will keep volumes even if PVCs/PVs are deleted in kubernetes. Setting to Delete will remove volumes from EC2 EBS when PVC is deleted
 
 aws:
@@ -283,7 +283,7 @@ node:
 
 Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning) step.
 `quorumFlags.removeKeysOnDelete: true` tells the chart to delete the node's keys when the chart is deleted.
-If you may wish to retain the keys on deletion, please set that value to `false`. 
+If you may wish to retain the keys on deletion, please set that value to `false`.
 
 !!! warning
 
@@ -320,7 +320,7 @@ must be made on a majority of the existing pool and the new node will then becom
 ### 7. Deploy RPC or Transaction nodes
 
 We define a Transaction or Member node as a node which has an accompaning Private Transaction Manager, such as Tessera,
-which allow you to make private transactions between nodes. 
+which allow you to make private transactions between nodes.
 
 An RPC node in turn is simply a node that can be used to make public transactions or perform read heavy operations such
 as when connected to a chain explorer like [Blockscout](https://blockscout.com/xdai/mainnet/)
@@ -328,7 +328,7 @@ as when connected to a chain explorer like [Blockscout](https://blockscout.com/x
 The Transaction override
 [values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/txnode.yml) for the
 StatefulSet looks identical to that of the validators above and only has ``quorumFlags.privacy: true` to indicate that
-it is deploying a pair of GoQuorum and Tessera nodes. 
+it is deploying a pair of GoQuorum and Tessera nodes.
 
 To deploy a Transaction or Member node:
 

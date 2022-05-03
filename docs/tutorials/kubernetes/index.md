@@ -44,7 +44,7 @@ The repository's `helm` charts support on-premise and cloud providers such as AW
 configure the provider in the
 [values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/genesis-goquorum.yml) file of
 the respective charts by setting `cluster.provider` to `local`, `aws`, or `azure`. Please note that if you use
-GCP, IBM etc please set `cluster.provider: local` and set `cluster.cloudNativeServices: false`. 
+GCP, IBM etc please set `cluster.provider: local` and set `cluster.cloudNativeServices: false`.
 
 The repository also contains [Azure ARM templates](https://github.com/ConsenSys/quorum-kubernetes/tree/master/azure)
 and [AWS `eksctl` templates](https://github.com/ConsenSys/quorum-kubernetes/tree/master/aws) to deploy the
@@ -103,30 +103,29 @@ across namespaces don't need to be.
 
 ### Nodes:
 
-Consider the use of statefulsets instead of deployments for GoQuorum. The term 'client node' refers to bootnode, validator
-and member/rpc nodes. For configuration of GoQuorum nodes, we use CLI args only to keep things consistent.
+Consider the use of StatefulSets instead of Deployments for GoQuorum. The term 'client node' refers to bootnode, validator
+and member/rpc nodes. For configuration of GoQuorum nodes, we only use CLI args to keep things consistent.
 
 ### RBAC:
 
-We encourage the use of RBAC's for access to the private key of each node, ie. only a specific pod/statefulset is
+We encourage the use of RBACs for access to the private key of each node, ie. only a specific pod/statefulset is
 allowed to access a specific secret.
 
-If you need to specify a Kube config file to each pod please use the KUBE_CONFIG_PATH variable
+If you need to specify a Kube config file to each pod please use the KUBE_CONFIG_PATH variable.
 
 ### Storage
 
-We use seperate data volumes to store the blockchain data, over the default of the host nodes. This is similar to
-using seperate volumes to store data when using docker containers natively or via docker-compose. This is done for
+We use separate data volumes to store the blockchain data, over the default of the host nodes. This is similar to
+using separate volumes to store data when using docker containers natively or via docker-compose. This is done for
 a couple of reasons:
 
-* Firstly, containers are mortal and we don't want to store data on them
+* Firstly, containers are mortal and we do not want to store data on them.
 * Secondly, kubernetes host nodes can fail and we would like the chain data to persist.
 
 Please ensure that you provide enough capacity for data storage for all nodes that are going to be on the cluster.
-Select the appropriate type of [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) based
-on your cloud provider. In the templates, the size of the [volume claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) has been set small. If you have a different storage account than the one in the charts, please set that up
-in the
-[storageClass](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/charts/goquorum-node/templates/node-storage.yaml).
+Select the appropriate type of [Storage Class](https://kubernetes.io/docs/concepts/storage/storage-classes/) based
+on your cloud provider. In the templates, the size of the [volume claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) has been set to 20Gb by default; you may change this depending on your needs. If you have a different storage account than the one in the charts, you may edit those
+[storageClasses](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/charts/goquorum-node/templates/node-storage.yaml).
 
 When using PVCs, set the `allowVolumeExpansion` to `true`. This helps keep costs low and enables growing the volume
 over time rather than creating new volumes and copying data across.
