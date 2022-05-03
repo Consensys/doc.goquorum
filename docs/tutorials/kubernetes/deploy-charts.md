@@ -20,7 +20,7 @@ the directory to `helm` for the rest of this tutorial.
 cd helm
 ```
 
-Each helm chart that you can use has the following key-map values which you will need to set depending on your needs. The `cluster.provider` is used
+Each helm chart has the following key-map values which you will need to set depending on your needs. The `cluster.provider` is used
 as a key for the various cloud features enabled. Please specify only one cloud provider, not both. At present, the
 charts have full support for cloud native services in both AWS and Azure. Please note that if you use
 GCP, IBM etc please set `cluster.provider: local` and set `cluster.cloudNativeServices: false`.
@@ -93,20 +93,22 @@ kubectl create namespace quorum
 
 ### 3. Deploy the monitoring chart
 
-This chart deploys Prometheus and Grafana to monitor the cluster, nodes and state of the network.
+This chart deploys Prometheus and Grafana to monitor the metrics of the cluster, nodes and state of the network.
 
-Update the admin `username` and `password` in the [monitoring values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/monitoring.yml).
-Configure alerts to the receiver of your choice (for example, email or Slack), then deploy the chart using:
+Update the admin `username` and `password` in the [monitoring values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/monitoring.yml). Configure alerts to the receiver of your choice (for example, email or Slack), then deploy the chart using:
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
-helm install monitoring prometheus-community/kube-prometheus-stack --version 34.10.0 --namespace=quorum --create-namespace --values ./values/monitoring.yml --wait
+helm install monitoring prometheus-community/kube-prometheus-stack --version 34.10.0 --namespace=quorum --values ./values/monitoring.yml --wait
 kubectl --namespace quorum apply -f  ./values/monitoring/
 ```
 
-Each GoQuorum pod has [`annotations`](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
-which allow Prometheus to scrape metrics from the pod at a specified port and path. For example:
+Metrics are collected via a
+[ServiceMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md)
+that scrapes each GoQuorum pod using given
+[`annotations`](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) which specify the
+port and path to use. For example:
 
 ```bash
   template:
@@ -119,25 +121,55 @@ which allow Prometheus to scrape metrics from the pod at a specified port and pa
 
 !!! warning
 
-    For production use cases, configure Grafana with one of the supported [native auth mechanisms](https://grafana.com/docs/grafana/latest/auth/).
+    For production, please configure Grafana with one of the supported [native auth mechanisms](https://grafana.com/docs/grafana/latest/auth/).
 
-Optionally you can also deploy the [Elastic Stack](https://www.elastic.co/elastic-stack/) to view logs (and metrics).
+![k8s-metrics](../../images/kubernetes/kubernetes-grafana.png)
+
+Optionally, you can also deploy the [Elastic Stack](https://www.elastic.co/elastic-stack/) to view logs (and metrics).
 
 ```bash
 helm repo add elastic https://helm.elastic.co
 helm repo update
 # if on cloud
-helm install elasticsearch --version 7.17.1 elastic/elasticsearch --namespace quorum --create-namespace --values ./values/elasticsearch.yml
+helm install elasticsearch --version 7.17.1 elastic/elasticsearch --namespace quorum --values ./values/elasticsearch.yml
 # if local - set the replicas to 1
-helm install elasticsearch --version 7.17.1 elastic/elasticsearch --namespace quorum --create-namespace --values ./values/elasticsearch.yml --set replicas=1 --set minimumMasterNodes: 1
+helm install elasticsearch --version 7.17.1 elastic/elasticsearch --namespace quorum --values ./values/elasticsearch.yml --set replicas=1 --set minimumMasterNodes: 1
 helm install kibana --version 7.17.1 elastic/kibana --namespace quorum --values ./values/kibana.yml
 helm install filebeat --version 7.17.1 elastic/filebeat  --namespace quorum --values ./values/filebeat.yml
 ```
 
 If you install `filebeat`, please create a `filebeat-*` index pattern in `kibana`. All the logs from the nodes are sent to the `filebeat` index.
 
-You can optionally deploy BlockScout to aid with monitoring the network. To do this, update the
-[BlockScout values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/blockscout-besu.yml)
+![k8s-elastic](../../images/kubernetes/kubernetes-elastic.png)
+
+In addition to the above, please deploy an ingress so you can access your monitoring endpoints publicly. We use nginx
+as our ingress here, and you are free to configure any ingress per your requirements.
+
+```bash
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+helm install quorum-external-ingress ingress-nginx/ingress-nginx \
+    --namespace quorum \
+    --set controller.ingressClassResource.name="external-nginx" \
+    --set controller.ingressClassResource.controllerValue="k8s.io/external-ingress-nginx" \
+    --set controller.replicaCount=1 \
+    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.service.externalTrafficPolicy=Local
+
+kubectl apply -f ../ingress/ingress-rules-external.yml
+```
+
+Once complete, view the IP address listed under the `Ingress` section if you're using the Kubernetes Dashboard
+or equivalent `kubectl -n quorum get services` command.
+
+![`k8s-ingress-external`](../../images/kubernetes/kubernetes-ingress.png)
+
+### 4. Blockchain explorer
+
+You can deploy [BlockScout](https://github.com/blockscout/blockscout) to aid with monitoring the blockchain.
+To do this, update the [BlockScout values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/blockscout-goquorum.yml)
 and set the `database` and `secret_key_base` values.
 
 !!! important
@@ -151,7 +183,30 @@ helm dependency update ./charts/blockscout
 helm install blockscout ./charts/blockscout --namespace quorum --values ./values/blockscout-goquorum.yaml
 ```
 
-### 4. Deploy the genesis chart
+You can optionally deploy the [Quorum-Explorer](https://github.com/ConsenSys/quorum-explorer) as a lightweight
+blockchain explorer.  The Quorum Explorer is not recommended for use in production and is intended for
+demonstration/dev purposes only. The Explorer can give an overview over the whole network, such as querying
+each node on the network for block information, voting or removing validators from the network, 
+demonstrating a SimpleStorage smart contract with privacy enabled, and sending transactions between
+wallets in one interface.
+
+To do this, update the [Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yml)
+with details of your nodes and endpoints and then deploy. 
+
+!!! warning
+
+    The accounts listed in the file above are for test purposes only and should not be used on a production network.
+
+```bash
+helm install quorum-explorer ./charts/explorer --namespace quorum --values ./values/explorer-goquorum.yaml
+```
+
+As with the previous step, you will also need to deploy the ingress (if not already done) to access the monitoring
+endpoints
+
+![`k8s-explorer`](../../images/kubernetes/kubernetes-explorer.png)
+
+### 5. Deploy the genesis chart
 
 The genesis chart creates the genesis file and keys for the validators.
 
@@ -211,7 +266,6 @@ rawGenesisConfig:
     accountPassword: 'password'
 ```
 
-
 Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning) step.
 `quorumFlags.removeGenesisOnDelete: true` tells the chart to delete the genesis file when the chart is deleted.
 If you may wish to retain the genesis on deletion, please set that value to `false`.
@@ -235,7 +289,7 @@ and the validator and bootnode node keys as secrets.
 
 ![k8s-genesis-secrets](../../images/kubernetes/kubernetes-genesis-secrets.png)
 
-### 5. Deploy the validators
+### 6. Deploy the validators
 
 This is the first set of nodes that we will deploy. The charts use four validators (default) to replicate best practices
 for a network. The override
@@ -310,14 +364,13 @@ first validator was spun up, before the logs display blocks being created.
 
 ![k8s-validator-logs](../../images/kubernetes/kubernetes-validator-logs.png)
 
-
-### 6. Add/Remove additional validators to the validator pool
+### 7. Add/Remove additional validators to the validator pool
 
 To add (or remove) more validators to the initial validator pool, you need to deploy a node such as an RPC node (step 7)
 and then [vote](../../tutorials/private-network/adding-removing-ibft-validators.md) that node in. The vote API call
 must be made on a majority of the existing pool and the new node will then become a validator
 
-### 7. Deploy RPC or Transaction nodes
+### 8. Deploy RPC or Transaction nodes
 
 We define a Transaction or Member node as a node which has an accompaning Private Transaction Manager, such as Tessera,
 which allow you to make private transactions between nodes.
@@ -359,7 +412,7 @@ helm install rpc-1 ./charts/quorum-node --namespace quorum --values ./values/txn
     In the examples above we use `member-1` and `rpc-1` as release names for the deployments. You can pick any release
     name that you'd like to use in place of those as per your requirements.
 
-### 8. Connecting to the node from your local machine via an Ingress
+### 9. Connecting to the node from your local machine via an Ingress
 
 In order to view the Grafana dashboards or connect to the nodes to make transactions from your local machine you can
 deploy an ingress controller with rules. We use the `ingress-nginx` ingress controller which can be deployed as follows:
@@ -391,7 +444,7 @@ kubectl apply -f ../ingress/ingress-rules-quorum.yml
 Once complete, view the IP address listed under the `Ingress` section if you're using the Kubernetes Dashboard
 or equivalent `kubectl` command.
 
-![`k8s-ingress`](../../images/kubernetes/kubernetes-ingress.png)
+![`k8s-ingress-network`](../../images/kubernetes/kubernetes-ingress.png)
 
 You can view the Grafana dashboard by going to:
 

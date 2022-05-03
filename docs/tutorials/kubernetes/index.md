@@ -74,7 +74,7 @@ For example, an external VM which must have custom routes doesn't scale well.
 CNI, on the other hand, allows every pod to get a unique IP directly from the virtual subnet which removes this restriction.
 Therefore, it has a limit on the maximum number of pods that can be spun up, so you must plan ahead to avoid IP exhaustion.
 
-![with-CNI](../../images/kubernetes/kubenet.jpg)
+![with-CNI](../../images/kubernetes/cni.jpg)
 
 ## Multi-cluster
 
@@ -101,12 +101,12 @@ across namespaces don't need to be.
 
     Namespace-based scoping is not applicable for cluster-wide objects (for example, StorageClass or PersistentVolumes).
 
-### Nodes:
+### Nodes
 
 Consider the use of StatefulSets instead of Deployments for GoQuorum. The term 'client node' refers to bootnode, validator
 and member/rpc nodes. For configuration of GoQuorum nodes, we only use CLI args to keep things consistent.
 
-### RBAC:
+### RBAC
 
 We encourage the use of RBACs for access to the private key of each node, ie. only a specific pod/statefulset is
 allowed to access a specific secret.
