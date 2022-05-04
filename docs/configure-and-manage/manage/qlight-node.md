@@ -77,61 +77,62 @@ The valid values are:
 In this mode, a Go-Quorum plugin is called when reaching the expiration date, with a configuration anticipation time.
 This plugin is configurable and you can even develop your own implementation of this plugin.
 
-A GoQuorum plugin is based on the Hashicorp plugin model, there is a gRPC model for the interface interaction: [ProtoBuf model](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/qlight-token-manager.proto).
+The plugins are in the ConsenSys repository and are downloaded automatically in their absence in the plugins directory.
 
-The model is pre-compiled as an SDK you can refer to, so you can develop your own implementation: [QLight Token Manager Plugin SDK in Go](https://github.com/ConsenSys/quorum-qlight-token-manager-plugin-sdk-go).
+But, you can provide your own plugin implementation: you can refer to the [use of plugin with the hello world tutorial](/tutorials/use-plugins.md) and do the same with the projects below:
 
-The Go-Quorum implementation is using the Ory Hydra OAuth server: [GoQuorum Qlight Token Manager Plugin](https://github.com/ConsenSys/quorum-plugin-qlight-token-manager).
+- A GoQuorum plugin is based on the Hashicorp plugin model, there is a gRPC model for the communication interaction: [ProtoBuf model](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/qlight-token-manager.proto).
 
-You can refer to the GoQuorum examples Docker-compose file: [QLight Client with Token Manager Plugin](https://github.com/baptiste-b-pegasys/quorum-examples/pull/1/files#diff-f1ae6238d92e0b4f764eede62765302b1cfffee7e9a971a48ee97354b57b9686) (- [ ] TODO: fix this file in the quorum-example repository)
+- The model is pre-compiled as an SDK you can refer to, so you can develop your own implementation: [QLight Token Manager Plugin SDK in Go](https://github.com/ConsenSys/quorum-qlight-token-manager-plugin-sdk-go).
 
-The plugins are in the ConsenSys repository, they are downloed automatically when there are not present, an Internet connection is mandatory. You can provide your own plugin through the build of the plugin.
+- The Go-Quorum implementation is using the Ory Hydra OAuth server: [GoQuorum Qlight Token Manager Plugin](https://github.com/ConsenSys/quorum-plugin-qlight-token-manager).
 
-You can refer to the [use of plugin with the hello world tutorial](/tutorials/use-plugins.md).
+- You can refer to the GoQuorum examples Docker-compose file: [QLight Client with Token Manager Plugin](https://github.com/baptiste-b-pegasys/quorum-examples/pull/1/files#diff-f1ae6238d92e0b4f764eede62765302b1cfffee7e9a971a48ee97354b57b9686) (- [ ] TODO: fix this file in the quorum-example repository)
+
 
 ### Steps
 
 1. Configure the plugins (`plugins/geth-plugin-settings.json`)
 
-```
-{
- "baseDir": "./plugins",
- "providers": {
-   "qlighttokenmanager": {
-     "name":"quorum-plugin-qlight-token-manager",
-     "version":"1.0.0",
-     "config": "file://./plugins/qlight-token-manager-plugin-config.json"
-   },
-   "helloworld": {
-    "name":"quorum-plugin-hello-world",
-    "version":"1.0.0",
-    "config": "file://./plugins/hello-world-plugin-config.json"
-  }
- }
-}
-```
+    ```
+    {
+    "baseDir": "./plugins",
+    "providers": {
+    "qlighttokenmanager": {
+        "name":"quorum-plugin-qlight-token-manager",
+        "version":"1.0.0",
+        "config": "file://./plugins/qlight-token-manager-plugin-config.json"
+    },
+    "helloworld": {
+        "name":"quorum-plugin-hello-world",
+        "version":"1.0.0",
+        "config": "file://./plugins/hello-world-plugin-config.json"
+    }
+    }
+    }
+    ```
 
 1. Configure the qlight token manager (`plugins/qlight-token-manager-plugin-config.json`)
 
-```
-{
-    "url":"https://multi-tenancy-oauth2-server:4444/oauth2/token",
-    "method":"POST",
-    "parameters":{
-        "grant_type":"client_credentials",
-        "client_id":"${PSI}",
-        "client_secret":"foofoo",
-        "scope":"rpc://eth_* p2p://qlight rpc://admin_* rpc://personal_* rpc://quorumExtension_* rpc://rpc_modules psi://${PSI}?self.eoa=0x0&node.eoa=0x0",
-        "audience":"Node1"
+    ```
+    {
+        "url":"https://multi-tenancy-oauth2-server:4444/oauth2/token",
+        "method":"POST",
+        "parameters":{
+            "grant_type":"client_credentials",
+            "client_id":"${PSI}",
+            "client_secret":"foofoo",
+            "scope":"rpc://eth_* p2p://qlight rpc://admin_* rpc://personal_* rpc://quorumExtension_* rpc://rpc_modules psi://${PSI}?self.eoa=0x0&node.eoa=0x0",
+            "audience":"Node1"
+        }
     }
-}
-```
+    ```
 
 1. Enable the plugins configuration in the geth arguments
 
-Add the flag `--plugins file://./plugins/geth-plugin-settings.json --plugins.skipverify` so GoQuorum enables them.
+    Add the flag `--plugins file://./plugins/geth-plugin-settings.json --plugins.skipverify` so GoQuorum enables them.
 
-(`skipverify` will skip the verification of the plugins integrity)
+    (`skipverify` will skip the verification of the plugins integrity)
 
 ## Native transport layer security (TLS) for P2P communication
 
