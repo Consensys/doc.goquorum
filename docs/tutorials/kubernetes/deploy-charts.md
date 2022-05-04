@@ -176,14 +176,12 @@ or on the command line `kubectl -n quorum get services quorum-monitoring-ingress
 You can view the Grafana dashboard by going to:
 
 ```bash
-# For Grafana's grafana address:
 http://<INGRESS_IP>/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s
 ```
 
 You can view the Kibana dashboard (if deployed) by going to:
 
 ```bash
-# For Grafana's grafana address:
 http://<INGRESS_IP>/kibana
 ```
 
@@ -349,7 +347,7 @@ first validator was spun up, before the logs display blocks being created.
 
 To add (or remove) more validators to the initial validator pool, you need to deploy a node such as an RPC node (step 7)
 and then [vote](../../tutorials/private-network/adding-removing-ibft-validators.md) that node in. The vote API call
-must be made on a majority of the existing pool and the new node will then become a validator. 
+must be made on a majority of the existing pool and the new node will then become a validator.
 
 Please refer to the [Ingress Section](#8-connecting-to-the-node-from-your-local-machine-via-an-ingress) for details on
 making the API calls from your local machine or equivalent.
@@ -366,7 +364,7 @@ StatefulSet looks identical to that of the validators above, and will create it'
 To deploy an RPC node:
 
 ```bash
-helm install rpc-1 ./charts/quorum-node --namespace quorum --values ./values/txnode.yml
+helm install rpc-1 ./charts/quorum-node --namespace quorum --values ./values/reader.yml
 ```
 
 A Transaction or Member node in turn is one which has an accompaning Private Transaction Manager, such as Tessera;

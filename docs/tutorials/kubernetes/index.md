@@ -9,7 +9,7 @@ Use the [reference implementations](https://github.com/ConsenSys/quorum-kubernet
 Kubernetes (K8s).
 Reference implementations are available using:
 
-* [Helm](https://github.com/ConsenSys/quorum-kubernetes/tree/master/dev).
+* [Helm3](https://helm.sh/docs/intro/install/)
 * [Helmfile](https://github.com/roboll/helmfile).
 * [`kubectl`](https://github.com/ConsenSys/quorum-kubernetes/tree/master/playground/kubectl).
 
@@ -49,7 +49,6 @@ GCP, IBM etc please set `cluster.provider: local` and set `cluster.cloudNativeSe
 The repository also contains [Azure ARM templates](https://github.com/ConsenSys/quorum-kubernetes/tree/master/azure)
 and [AWS `eksctl` templates](https://github.com/ConsenSys/quorum-kubernetes/tree/master/aws) to deploy the
 required base infrastructure.
-
 
 ## Limitations
 

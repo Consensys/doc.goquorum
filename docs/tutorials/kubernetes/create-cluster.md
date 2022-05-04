@@ -63,7 +63,7 @@ It can build, push, pull and run container images. Built container images can be
     For Windows, you must [install Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install)
     to install Rancher Desktop.
 
-Refer to the [official documentation](https://docs.rancherdesktop.io/installation)
+Refer to the [official documentation](https://docs.rancherdesktop.io/getting-started/installation)
 for system requirements and installation instructions.
 
 ## Cloud clusters
@@ -147,7 +147,7 @@ that are specific to your deployment.
     ```bash
     helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
     helm install --namespace kube-system --create-namespace csi-secrets-store secrets-store-csi-driver/secrets-store-csi-driver
-    kubectl apply -f https://raw.githubusercontent.com/aws/secrets-store-csi-driver-provider-aws/main/deployment/aws-provider-installer.yaml 
+    kubectl apply -f https://raw.githubusercontent.com/aws/secrets-store-csi-driver-provider-aws/main/deployment/aws-provider-installer.yaml
 
     POLICY_ARN=$(aws --region AWS_REGION --query Policy.Arn --output text iam create-policy --policy-name quorum-node-secrets-mgr-policy --policy-document '{
         "Version": "2012-10-17",
@@ -170,7 +170,7 @@ that are specific to your deployment.
     !!!warning
 
         Please note that the above command creates a service account called `quorum-node-secrets-sa` and is
-        preconfigured in the helm charts override values.yml files, for ease of use. 
+        preconfigured in the helm charts override values.yml files, for ease of use.
 
 1. Optionally, deploy the
 [kubernetes dashboard](https://github.com/ConsenSys/quorum-kubernetes/tree/master/aws/templates/k8s-dashboard).

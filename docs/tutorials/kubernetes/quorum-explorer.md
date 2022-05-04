@@ -11,21 +11,21 @@ description: Using the Quorum Explorer on a Kubernetes cluster
 * [Helm3](https://helm.sh/docs/intro/install/)
 * [Existing network](./deploy-charts.md)
 
-## Deploying the Quorum Explorer helm chart 
+## Deploying the Quorum Explorer helm chart
 
 [Quorum-Explorer](https://github.com/ConsenSys/quorum-explorer) as a lightweight
 blockchain explorer.  The Quorum Explorer is **not** recommended for use in production and is intended for
-demonstration/dev purposes only. 
+demonstration/dev purposes only.
 
 The Explorer can give an overview over the whole network, such as querying
-each node on the network for block information, voting or removing validators from the network, 
+each node on the network for block information, voting or removing validators from the network,
 demonstrating a SimpleStorage smart contract with privacy enabled, and sending transactions between
 wallets in one interface.
 
 To do this, update the [Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yml)
-with details of your nodes and endpoints and then [deploy](./deploy-charts#4-blockchain-explorer)
+with details of your nodes and endpoints and then [deploy](./deploy-charts.md)
 
-## Nodes 
+## Nodes
 
 The Nodes page gives you an overview of the nodes on the network. Select the node you require from the drop down
 on the right and you will get details of the node as well as its sync state
@@ -82,4 +82,3 @@ The last view gives you the functionality provided by Metamask essentially and y
 one account to another on the block chain network.
 
 ![`k8s-explorer-wallet`](../../images/kubernetes/kubernetes-explorer-wallet.png)
-

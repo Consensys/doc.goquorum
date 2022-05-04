@@ -52,7 +52,7 @@ the rest of this tutorial.
 cd helm
 ```
 
-Each helm chart that you can use has the following keys and you need to set them. 
+Each helm chart that you can use has the following keys and you need to set them.
 
 Please specify either `aws` or `azure` for the `cluster.provider`. Additionally, set the `cloudNativeServices: true` and
 `reclaimPolicy: Retain` so it looks like below for AWS
