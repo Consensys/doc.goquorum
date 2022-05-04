@@ -12,13 +12,8 @@ description: Deploying GoQuorum Helm Charts for production on a Kubernetes clust
 
 ## Overview
 
-The charts in the `helm` folder are similar to those in the `dev` folder but use cloud native services for
-**identities** (IAM on AWS and a Managed Identity on Azure) and **secrets** (Secrets Manager on AWS and Key Vault on
-Azure). Any keys or secrets are created directly in Secrets Manager or Key Vault, and the Identity is given permission to
-retrieve those secrets at runtime. No Kubernetes secrets objects are created.
-
-Access to these secrets are done on the least privileges policy and access to them is denied for
-users. If any admins need access to them, they must update the IAM policy.
+To get things ready for production we will use the same charts and we need to set a few of
+the values in the `cluster` map as seen in the [Deploy](#deploy-the-network) section.
 
 !!!warning
 
