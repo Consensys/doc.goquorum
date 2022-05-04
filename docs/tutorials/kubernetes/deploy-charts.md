@@ -106,7 +106,7 @@ kubectl --namespace quorum apply -f  ./values/monitoring/
 
 Metrics are collected via a
 [ServiceMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md)
-that scrapes each GoQuorum pod using given
+that scrapes each GoQuorum pod, using given
 [`annotations`](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) which specify the
 port and path to use. For example:
 
@@ -245,7 +245,7 @@ rawGenesisConfig:
     accountPassword: 'password'
 ```
 
-Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning) step.
+Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning-with-helm-charts) step.
 `quorumFlags.removeGenesisOnDelete: true` tells the chart to delete the genesis file when the chart is deleted.
 If you may wish to retain the genesis on deletion, please set that value to `false`.
 
@@ -317,7 +317,7 @@ node:
       memRequest: "1G"
 ```
 
-Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning) step.
+Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning-with-helm-charts) step.
 `quorumFlags.removeKeysOnDelete: true` tells the chart to delete the node's keys when the chart is deleted.
 If you may wish to retain the keys on deletion, please set that value to `false`.
 
@@ -357,7 +357,7 @@ making the API calls from your local machine or equivalent.
 
 ### 7. Deploy RPC or Transaction nodes
 
-An RPC node in turn is simply a node that can be used to make public transactions or perform read heavy operations such
+An RPC node is simply a node that can be used to make public transactions or perform read heavy operations such
 as when connected to a chain explorer like [Blockscout](https://blockscout.com/xdai/mainnet/)
 
 The RPC override
