@@ -429,7 +429,7 @@ kubectl apply -f ../ingress/ingress-rules-quorum.yml
 ```
 
 Once complete, view the IP address listed under the `Ingress` section if you're using the Kubernetes Dashboard
-or equivalent `kubectl` command.
+or on the command line `kubectl -n quorum get services quorum-network-ingress-ingress-nginx-controller`.
 
 ![`k8s-ingress-network`](../../images/kubernetes/kubernetes-ingress.png)
 
