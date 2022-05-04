@@ -150,21 +150,21 @@ publicly. We use nginx as our ingress here, and you are free to configure any in
 ```bash
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
-helm install quorum-external-ingress ingress-nginx/ingress-nginx \
+helm install quorum-monitoring-ingress ingress-nginx/ingress-nginx \
     --namespace quorum \
-    --set controller.ingressClassResource.name="external-nginx" \
-    --set controller.ingressClassResource.controllerValue="k8s.io/external-ingress-nginx" \
+    --set controller.ingressClassResource.name="monitoring-nginx" \
+    --set controller.ingressClassResource.controllerValue="k8s.io/monitoring-ingress-nginx" \
     --set controller.replicaCount=1 \
-    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
-    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
-    --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.nodeSelector."kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux \
+    --set controller.admissionWebhooks.patch.nodeSelector."kubernetes\.io/os"=linux \
     --set controller.service.externalTrafficPolicy=Local
 
-kubectl apply -f ../ingress/ingress-rules-external.yml
+kubectl apply -f ../ingress/ingress-rules-monitoring.yml
 ```
 
 Once complete, view the IP address listed under the `Ingress` section if you're using the Kubernetes Dashboard
-or equivalent `kubectl -n quorum get services` command.
+or on the command line `kubectl -n quorum get services quorum-monitoring-ingress-ingress-nginx-controller`.
 
 !!! note
 
@@ -172,6 +172,20 @@ or equivalent `kubectl -n quorum get services` command.
     also deploy a second ingress called `network-ingress` which is for the blockchain nodes only in [step 8](#8-connecting-to-the-node-from-your-local-machine-via-an-ingress)
 
 ![`k8s-ingress-external`](../../images/kubernetes/kubernetes-ingress.png)
+
+You can view the Grafana dashboard by going to:
+
+```bash
+# For Grafana's grafana address:
+http://<INGRESS_IP>/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s
+```
+
+You can view the Kibana dashboard (if deployed) by going to:
+
+```bash
+# For Grafana's grafana address:
+http://<INGRESS_IP>/kibana
+```
 
 ### 4. Deploy the genesis chart
 
@@ -342,15 +356,25 @@ making the API calls from your local machine or equivalent.
 
 ### 7. Deploy RPC or Transaction nodes
 
-We define a Transaction or Member node as a node which has an accompaning Private Transaction Manager, such as Tessera,
-which allow you to make private transactions between nodes.
-
 An RPC node in turn is simply a node that can be used to make public transactions or perform read heavy operations such
 as when connected to a chain explorer like [Blockscout](https://blockscout.com/xdai/mainnet/)
 
+The RPC override
+[values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/reader.yml) for the
+StatefulSet looks identical to that of the validators above, and will create it's own nodekeys before the node starts
+
+To deploy an RPC node:
+
+```bash
+helm install rpc-1 ./charts/quorum-node --namespace quorum --values ./values/txnode.yml
+```
+
+A Transaction or Member node in turn is one which has an accompaning Private Transaction Manager, such as Tessera;
+which allow you to make private transactions between nodes.
+
 The Transaction override
 [values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/txnode.yml) for the
-StatefulSet looks identical to that of the validators above and only has ``quorumFlags.privacy: true` to indicate that
+StatefulSet looks identical to that of the validators above and only has `quorumFlags.privacy: true` to indicate that
 it is deploying a pair of GoQuorum and Tessera nodes.
 
 To deploy a Transaction or Member node:
@@ -367,16 +391,6 @@ Logs for GoQuorum resemble the following:
 
 ![`k8s-tx-quorum-logs`](../../images/kubernetes/kubernetes-tx-quorum-logs.png)
 
-The RPC override
-[values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/reader.yml) for the
-StatefulSet looks identical to that of the validators above, and will create it's own nodekeys before the node starts
-
-To deploy an RPC node:
-
-```bash
-helm install rpc-1 ./charts/quorum-node --namespace quorum --values ./values/txnode.yml
-```
-
 !!! note
 
     In the examples above we use `member-1` and `rpc-1` as release names for the deployments. You can pick any release
@@ -390,12 +404,14 @@ deploy an ingress controller with rules. We use the `ingress-nginx` ingress cont
 ```bash
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
-helm install quorum-ingress ingress-nginx/ingress-nginx \
+helm install quorum-network-ingress ingress-nginx/ingress-nginx \
     --namespace quorum \
+    --set controller.ingressClassResource.name="network-nginx" \
+    --set controller.ingressClassResource.controllerValue="k8s.io/network-ingress-nginx" \
     --set controller.replicaCount=1 \
-    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
-    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
-    --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.nodeSelector."kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux \
+    --set controller.admissionWebhooks.patch.nodeSelector."kubernetes\.io/os"=linux \
     --set controller.service.externalTrafficPolicy=Local
 ```
 
@@ -415,13 +431,6 @@ Once complete, view the IP address listed under the `Ingress` section if you're 
 or equivalent `kubectl` command.
 
 ![`k8s-ingress-network`](../../images/kubernetes/kubernetes-ingress.png)
-
-You can view the Grafana dashboard by going to:
-
-```bash
-# For Grafana's grafana address:
-http://<INGRESS_IP>/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s
-```
 
 The following is an example RPC call, which confirms that the node running the JSON-RPC service is syncing:
 
@@ -478,7 +487,7 @@ with details of your nodes and endpoints and then deploy.
 helm install quorum-explorer ./charts/explorer --namespace quorum --values ./values/explorer-goquorum.yaml
 ```
 
-You will also need deploy the ingress (if not already done in [Mointoring](#3-deploy-the-monitoring-chart)) to
+You will also need deploy the ingress (if not already done in [Monitoring](#3-deploy-the-monitoring-chart)) to
 access the endpoint on `http://<INGRESS_IP>/explorer`
 
 ![`k8s-explorer`](../../images/kubernetes/kubernetes-explorer.png)
