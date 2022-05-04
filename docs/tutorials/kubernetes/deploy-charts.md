@@ -254,6 +254,9 @@ parameters in there to match your requirements. To set the number of initial val
 `rawGenesisConfig.blockchain.nodes` to the number that you'd like. We recommend using the Byzantine formula of `N=3F+1`
 when setting the number of validators.
 
+One more thing to note is that when `cluster.cloudNativeServices: true` is set, the genesis job will
+not add the [Quickstart](../quorum-dev-quickstart/index.md) test accounts into the genesis file.
+
 When you are ready deploy the chart with :
 
 ```bash
