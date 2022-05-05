@@ -481,7 +481,7 @@ to use the application.
     The accounts listed in the file below are for test purposes only and should not be used on a production network.
 
 To deploy the application, update the
-[Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yml)
+[Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yaml)
 with details of your nodes and endpoints and then deploy.
 
 ```bash

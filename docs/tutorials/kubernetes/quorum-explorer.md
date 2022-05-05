@@ -22,7 +22,7 @@ each node on the network for block information, voting or removing validators fr
 demonstrating a SimpleStorage smart contract with privacy enabled, and sending transactions between
 wallets in one interface.
 
-To achieve this, update the [Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yml)
+To achieve this, update the [Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yaml)
 with details of your nodes and endpoints and then [deploy](./deploy-charts.md).
 
 ## Nodes
