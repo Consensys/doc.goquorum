@@ -116,6 +116,7 @@ nav:
           - Local playground: tutorials/kubernetes/playground.md
           - Create a cluster: tutorials/kubernetes/create-cluster.md
           - Deploy charts: tutorials/kubernetes/deploy-charts.md
+          - Quorum Explorer: tutorials/kubernetes/quorum-explorer.md
           - Maintenance: tutorials/kubernetes/maintenance.md
           - Production: tutorials/kubernetes/production.md
       - Create a privacy-enabled network: tutorials/create-privacy-enabled-network.md
