@@ -77,8 +77,8 @@ To create a cluster in AWS, you must install the [AWS CLI](https://aws.amazon.co
 [`eksctl`](https://eksctl.io/).
 
 The [template](https://github.com/ConsenSys/quorum-kubernetes/tree/master/aws) comprises the base
-infrastructure used to build the cluster and other resources in AWS. We also use some native
-services along with the cluster for performance and best practices, these include:
+infrastructure used to build the cluster and other resources in AWS. We also use native
+services along with the cluster for performance and best practices. These include:
 
 * [Pod identities](hhttps://github.com/aws/amazon-eks-pod-identity-webhook).
 * [Secrets Store CSI drivers](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html).
@@ -111,37 +111,37 @@ To provision the cluster:
 
 1. Update [cluster.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/aws/templates/cluster.yml)
 
-1. Deploy the template:
+2. Deploy the template:
 
     ```bash
     eksctl create cluster -f ./templates/cluster.yml
     ```
 
-1. Your `.kube/config` should be connected to the cluster automatically, but if not please run the commands below
-and replace `AWS_REGION` and `CLUSTER_NAME` with details that are specific to your deployment.
+3. Your `.kube/config` connects to the cluster automatically, but if it does not run the following commands.
+Replace `<AWS_REGION>` and `<CLUSTER_NAME>` with details that are specific to your deployment.
 
     ```bash
     aws sts get-caller-identity
-    aws eks --region AWS_REGION update-kubeconfig --name CLUSTER_NAME
+    aws eks --region <AWS_REGION> update-kubeconfig --name <CLUSTER_NAME>
     ```
 
-1. After the deployment completes, provision the EBS drivers for the volumes. While it is possible to use the
+4. After the deployment completes, provision the EBS drivers for the volumes. While it is possible to use the
 in-tree `aws-ebs` driver natively supported by Kubernetes, it is no longer being updated and does not support
 newer EBS features such as the
-[cheaper and better gp3 volumes](https://stackoverflow.com/questions/68359043/whats-the-difference-between-ebs-csi-aws-com-vs-kubernetes-io-aws-ebs-for-provi). The cluster.yml file
-(from the steps above) that is included in this folder will automatically deploy the cluster with the EBS IAM
-policies, but you still need to install the EBS CSI drivers. This can be done through the AWS Management
-Console for simplicity or via a CLI command as below and replace `CLUSTER_NAME`, `AWS_REGION` and `AWS_ACCOUNT`
-with details that are specific to your deployment.
+[cheaper and better gp3 volumes](https://stackoverflow.com/questions/68359043/whats-the-difference-between-ebs-csi-aws-com-vs-kubernetes-io-aws-ebs-for-provi).
+The cluster.yml file (from the previous steps) that is included in this folder automatically deploys the cluster with the EBS IAM
+policies, but you still need to install the EBS CSI drivers.
+You can do this through the AWS Management Console or via a CLI command as following example.
+Replace `<CLUSTER_NAME>`, `<AWS_REGION>` and `<AWS_ACCOUNT>` with details that are specific to your deployment.
 
     ```bash
-    eksctl create iamserviceaccount --name ebs-csi-controller-sa --namespace kube-system --cluster CLUSTER_NAME --region AWS_REGION --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy --approve --role-only --role-name AmazonEKS_EBS_CSI_DriverRole
+    eksctl create iamserviceaccount --name ebs-csi-controller-sa --namespace kube-system --cluster <CLUSTER_NAME> --region <AWS_REGION> --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy --approve --role-only --role-name AmazonEKS_EBS_CSI_DriverRole
 
-    eksctl create addon --name aws-ebs-csi-driver --cluster CLUSTER_NAME --region AWS_REGION --service-account-role-arn arn:aws:iam::AWS_ACCOUNT:role/AmazonEKS_EBS_CSI_DriverRole --force
+    eksctl create addon --name aws-ebs-csi-driver --cluster <CLUSTER_NAME> --region <AWS_REGION> --service-account-role-arn arn:aws:iam::<AWS_ACCOUNT>:role/AmazonEKS_EBS_CSI_DriverRole --force
     ```
 
-1. Once the deployment is completed, please provision the Secrets Manager IAM and CSI driver.
-Use `quorum` (or equivalent) for `NAMESPACE` and replace `CLUSTER_NAME`, `AWS_REGION` and `AWS_ACCOUNT` with details
+5. Once the deployment is completed, provision the Secrets Manager IAM and CSI driver.
+Use `quorum` (or equivalent) for `<NAMESPACE>` and replace `<CLUSTER_NAME>`, `<AWS_REGION>` and `<AWS_ACCOUNT>` with details
 that are specific to your deployment.
 
     ```bash
@@ -149,12 +149,12 @@ that are specific to your deployment.
     helm install --namespace kube-system --create-namespace csi-secrets-store secrets-store-csi-driver/secrets-store-csi-driver
     kubectl apply -f https://raw.githubusercontent.com/aws/secrets-store-csi-driver-provider-aws/main/deployment/aws-provider-installer.yaml
 
-    POLICY_ARN=$(aws --region AWS_REGION --query Policy.Arn --output text iam create-policy --policy-name quorum-node-secrets-mgr-policy --policy-document '{
+    POLICY_ARN=$(aws --region <AWS_REGION> --query Policy.Arn --output text iam create-policy --policy-name quorum-node-secrets-mgr-policy --policy-document '{
         "Version": "2012-10-17",
         "Statement": [ {
             "Effect": "Allow",
             "Action": ["secretsmanager:CreateSecret","secretsmanager:UpdateSecret","secretsmanager:DescribeSecret","secretsmanager:GetSecretValue","secretsmanager:PutSecretValue","secretsmanager:ReplicateSecretToRegions","secretsmanager:TagResource"],
-            "Resource": ["arn:aws:secretsmanager:AWS_REGION:AWS_ACCOUNT:secret:goquorum-node-*"]
+            "Resource": ["arn:aws:secretsmanager:<AWS_REGION>:<AWS_ACCOUNT>:secret:goquorum-node-*"]
         } ]
     }')
 
@@ -164,22 +164,22 @@ that are specific to your deployment.
     --query 'Policies[?PolicyName==`quorum-node-secrets-mgr-policy`].Arn' \
     --output text)
 
-    eksctl create iamserviceaccount --name quorum-node-secrets-sa --namespace NAMESPACE --region=AWS_REGION --cluster CLUSTER_NAME --attach-policy-arn "$POLICY_ARN" --approve --override-existing-serviceaccounts
+    eksctl create iamserviceaccount --name quorum-node-secrets-sa --namespace <NAMESPACE> --region=<AWS_REGION> --cluster <CLUSTER_NAME> --attach-policy-arn "$POLICY_ARN" --approve --override-existing-serviceaccounts
     ```
 
     !!!warning
 
-        Please note that the above command creates a service account called `quorum-node-secrets-sa` and is
+        The above command creates a service account called `quorum-node-secrets-sa` and is
         preconfigured in the helm charts override values.yml files, for ease of use.
 
-1. Optionally, deploy the
+6. Optionally, deploy the
 [kubernetes dashboard](https://github.com/ConsenSys/quorum-kubernetes/tree/master/aws/templates/k8s-dashboard).
 
-1. You can now use your cluster and you can deploy [Helm charts](./deploy-charts.md) to it.
+7. You can now use your cluster and you can deploy [Helm charts](./deploy-charts.md) to it.
 
 ### Azure Kubernetes Service
 
-[Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-au/services/kubernetes-service/) is also a popular cloud
+[Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-au/services/kubernetes-service/) is another popular cloud
 platform that you can use to deploy GoQuorum. To create a cluster in
 Azure, you must install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and have admin
 rights on your Azure subscription to enable some preview features on AKS.
@@ -211,7 +211,7 @@ exhaustion as your application demands grow, however makes it easier for externa
 
 !!!warning
 
-    Please do not create more than one AKS cluster in the same subnet. AKS clusters may not use `169.254.0.0/16`,
+    Do not create more than one AKS cluster in the same subnet. AKS clusters may not use `169.254.0.0/16`,
     `172.30.0.0/16`, `172.31.0.0/16`, or `192.0.2.0/24` for the Kubernetes service address range.
 
 To provision the cluster:

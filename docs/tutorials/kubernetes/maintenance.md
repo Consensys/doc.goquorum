@@ -14,8 +14,8 @@ description: Maintenance for GoQuorum on a Kubernetes cluster
 
 Over time, as the chain grows so will the amount of space used by the persistent volume claim (PVC).
 As of Kubernetes v1.11,
-[certain types of Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/#allow-volume-expansion)
-allow volume resizing. Our charts for Azure use Azure Files and on AWS use EBS Block Store which allow for volume expansion.
+[certain types of storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/#allow-volume-expansion)
+allow volume resizing. Our charts for Azure use Azure Files and the AWS charts use EBS Block Store, both of which allow for volume expansion.
 
 To update the volume size, you must update the override values file.
 For example, to increase the size on the transaction nodes volumes, add the following snippet to the

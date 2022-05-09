@@ -12,7 +12,7 @@ description: Deploying GoQuorum Helm Charts for production on a Kubernetes clust
 
 ## Overview
 
-To get things ready for production we will use the same charts and we need to set a few of
+To get things ready for production, use the same charts and set
 the values in the `cluster` map as seen in the [Deploy](#deploy-the-network) section.
 
 !!!warning
