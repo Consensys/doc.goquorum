@@ -491,6 +491,7 @@ The file looks like this (but will have different addresses)
 ```
 
 where:
+
 * permissionModel - Permission model to be used (v1 or v2).
 * upgradableAddress- Address of deployed contract PermissionsUpgradable.sol.
 * interfaceAddress - Address of deployed contract PermissionsInterface.sol.
@@ -523,6 +524,7 @@ here to add or remove permissions.
 
 !!! warning
     Important Considersations for production - on network initialisation a few things happen:
+    
     * A network admin organization is created with the `nwAdminOrg` name that was specified in the
     `permission-config.json`. All nodes which are part of the `static-nodes.json` will be automatically assigned
     to this organization
