@@ -521,6 +521,15 @@ restart the nodes. This can be done by running the script
 Once the network starts up you can use the [API methods](../../configure-and-manage/manage/enhanced-permissions.md)
 here to add or remove permissions.
 
+!!! warning
+    Important Considersations for production - on network initialisation a few things happen:
+    * A network admin organization is created with the `nwAdminOrg` name that was specified in the
+    `permission-config.json`. All nodes which are part of the `static-nodes.json` will be automatically assigned
+    to this organization
+    * A network admin role is created with the `nwAdminRole` name specified in the `permission-config.json`
+    * All accounts given in the `accounts` array of the `permission-config.json` file are assigned the network
+    admin role. These accounts can propose and approve new organizations in the network.
+
 ## Use Remix
 
 You can connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](remix.md).
