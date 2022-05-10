@@ -22,7 +22,7 @@ Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/index.md) to rapi
 
 You first need to create a smart contract.
 The following examples use the
-[`SimpleStorage.sol`](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/common/smart_contracts/contracts/SimpleStorage.sol)
+[`SimpleStorage.sol`](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/common/smart_contracts/privacy/contracts/SimpleStorage.sol)
 smart contract.
 
 Create a new file called `compile.js` with the following content:
@@ -223,7 +223,7 @@ As the example demonstrates, once the transaction `tx` is created, you can sign 
 You can then serialize it and call `eth_sendSignedTransaction` to deploy the contract.
 
 For reference, the Developer Quickstart provides an
-[example of a public transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/public_tx.js).
+[example of a public transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/privacy/smart_contracts/scripts/public_tx.js).
 
 ## Private contracts
 
@@ -302,7 +302,7 @@ transaction from Member1.
     ```
 
 For reference, the Developer Quickstart provides an
-[example of a private transaction script using web3](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/private_tx_web3.js).
+[example of a private transaction script using web3](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/private_tx_web3.js).
 
 ### 3. Using `priv.generateAndSendRawTransaction`
 
@@ -370,4 +370,4 @@ Create a new file `private_tx_web3js_quorum.js`(or run the following commands in
 * `data` - Binary of the contract (in this example there's also a constructor initialization value appended to the binary value).
 
 For reference, the Developer Quickstart provides an
-[example of a private transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/private_tx.js).
+[example of a private transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/private_tx.js).

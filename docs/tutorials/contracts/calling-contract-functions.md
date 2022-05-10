@@ -14,7 +14,7 @@ Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/index.md) to rapi
 ## Interact with public contracts
 
 This tutorial uses the
-[`SimpleStorage.sol`](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/common/smart_contracts/contracts/SimpleStorage.sol)
+[`SimpleStorage.sol`](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/common/smart_contracts/privacy/contracts/SimpleStorage.sol)
 contract:
 
 ```js
@@ -40,7 +40,7 @@ contract SimpleStorage {
 Once the contract is deployed, you can perform a read operation using the `get` function call and a write operation
 using the `set` function call.
 This tutorial uses the [web3js](https://www.npmjs.com/package/web3) library to interact with the contract.
-The Quorum Developer Quickstart provides a [full example of a public contract script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/public_tx.js).
+The Quorum Developer Quickstart provides a [full example of a public contract script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/public_tx.js).
 
 ### 1. Perform a read operation
 
@@ -90,7 +90,7 @@ This private contracts example uses the same `SimpleStorage.sol` contract as in 
 [public contracts example](#interact-with-public-contracts), but it uses the
 [`eth_sendRawPrivateTransaction`](../../reference/api-methods.md#eth_sendrawprivatetransaction) method to interact with the contract.
 Both read and write operations are performed using the `eea_sendRawTransaction` API call.
-The Quorum Developer quickstart provides a [full example of a private contract script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/private_tx_web3.js).
+The Quorum Developer quickstart provides a [full example of a private contract script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/private_tx_web3.js).
 
 ### 1. Perform a read operation
 
