@@ -468,7 +468,7 @@ When this is completed, an output `permission-config.json` is created which cont
 contract and any account addresses that will serve as admins. In this example we've used all accounts, if you
 deploy these contracts in a production network, please select only those which need to be admins.
 
-The file looks like this (but will have different addresses)
+The file looks similar to this
 
 ```bash
 {
@@ -516,7 +516,7 @@ The last step is to copy the above `permission-config.json` into `data` director
 restart the nodes. This can be done by running the script
 
 ```bash
-./scripts/restartNetwork.sh
+./scripts/copyAndRestart.sh
 ```
 
 Once the network starts up you can use the [API methods](../../configure-and-manage/manage/enhanced-permissions.md)
