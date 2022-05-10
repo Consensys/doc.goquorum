@@ -524,7 +524,7 @@ here to add or remove permissions.
 
 !!! warning
     Important Considersations for production - on network initialisation a few things happen:
-    
+
     * A network admin organization is created with the `nwAdminOrg` name that was specified in the
     `permission-config.json`. All nodes which are part of the `static-nodes.json` will be automatically assigned
     to this organization
