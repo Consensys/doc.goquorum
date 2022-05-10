@@ -90,7 +90,7 @@ This private contracts example uses the same `SimpleStorage.sol` contract as in 
 [public contracts example](#interact-with-public-contracts), but it uses the
 [`eth_sendRawPrivateTransaction`](../../reference/api-methods.md#eth_sendrawprivatetransaction) method to interact with the contract.
 Both read and write operations are performed using the `eea_sendRawTransaction` API call.
-The Quorum Developer quickstart provides a [full example of a private contract script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/private_tx_web3.js).
+The Quorum Developer quickstart provides a [full example of a private contract script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/private_tx.js).
 
 ### 1. Perform a read operation
 

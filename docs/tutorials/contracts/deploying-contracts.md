@@ -223,7 +223,7 @@ As the example demonstrates, once the transaction `tx` is created, you can sign 
 You can then serialize it and call `eth_sendSignedTransaction` to deploy the contract.
 
 For reference, the Developer Quickstart provides an
-[example of a public transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/privacy/smart_contracts/scripts/public_tx.js).
+[example of a public transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/public_tx.js).
 
 ## Private contracts
 
@@ -302,7 +302,7 @@ transaction from Member1.
     ```
 
 For reference, the Developer Quickstart provides an
-[example of a private transaction script using web3](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/private_tx_web3.js).
+[example of a private transaction script using web3](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/private_tx.js).
 
 ### 3. Using `priv.generateAndSendRawTransaction`
 
