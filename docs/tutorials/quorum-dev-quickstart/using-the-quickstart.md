@@ -423,7 +423,7 @@ GoQuorum supports two types of permissions:
 of permissions is specific to only a given node and is configured by placing a file with a list of allowed peers (similar to
 `static-nodes.json`), called `permissioned-nodes.json` in the `data` directory of a GoQuorum node
 * [Enhanced Permissions](../../concepts/permissions-overview.md#enhanced-network-permissioning) is a smart-contract-based
-permissioning model designed for enterprise-level needs and is applicable to all peers on the network. 
+permissioning model designed for enterprise-level needs and is applicable to all peers on the network.
 
 This example deploys permissioning contracts to the Quickstart and then uses API calls to set appropriate permissions.
 
@@ -491,7 +491,6 @@ The file looks like this (but will have different addresses)
 ```
 
 where:
-
 * permissionModel - Permission model to be used (v1 or v2).
 * upgradableAddress- Address of deployed contract PermissionsUpgradable.sol.
 * interfaceAddress - Address of deployed contract PermissionsInterface.sol.
@@ -524,7 +523,6 @@ here to add or remove permissions.
 
 !!! warning
     Important Considersations for production - on network initialisation a few things happen:
-    
     * A network admin organization is created with the `nwAdminOrg` name that was specified in the
     `permission-config.json`. All nodes which are part of the `static-nodes.json` will be automatically assigned
     to this organization
