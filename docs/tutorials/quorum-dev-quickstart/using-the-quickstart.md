@@ -419,34 +419,37 @@ private contracts.
 
 GoQuorum supports two types of permissions:
 
-* Basic Permissions is a feature which controls which peers can connect to (and also dial out to) a given node. This method
-of permissions is specific to only a given node and is configured by placing a file with a list of allowed peers (similar to
-`static-nodes.json`), called `permissioned-nodes.json` in the `data` directory of a GoQuorum node
+* [Basic permissioning](../../configure-and-manage/configure/permissioning/basic-permissions.md): Controls
+which peers can connect to a given node. This permissioning method is specific to a given node, and is
+configured by placing a file with a list of allowed peers (similar to `static-nodes.json`), called
+`permissioned-nodes.json` in the `data` directory of a GoQuorum node.
 * [Enhanced Permissions](../../concepts/permissions-overview.md#enhanced-network-permissioning) is a smart-contract-based
 permissioning model designed for enterprise-level needs and is applicable to all peers on the network.
 
-This example deploys permissioning contracts to the Quickstart and then uses API calls to set appropriate permissions.
+This example deploys permissioning contracts then uses API calls to set appropriate permissions.
 
-The first step is to pick a `GuardianAccount` or an admin account, and we will use the account of Validator1 which has an
-address of `0xed9d02e382b34818e88b88a309c7fe71e65f419d` and we will connect to Validator1's RPC endpoint
-`http://127.0.0.1:21001`
+First we'll select a `GuardianAccount` or an admin account. In thies example we'll use the account of Validator1
+which has an address of `0xed9d02e382b34818e88b88a309c7fe71e65f419d`, and we'll connect to Validator1's RPC endpoint
+`http://127.0.0.1:21001`.
 
-The next step is to compile the contracts and then deploy them in a specific order. The contracts folder
-`cd smart_contracts/permissioning/contracts` has two versions of contracts for reference. With `version 1`,
-the permissioning rules are applied only at the time of transaction entry with respect to the permissioning data
-stored in node memory. With `version 2`, the permissioning rules are applied both at the time of transaction entry
-and block minting with respect to the data stored in the permissioning contracts. This tutorial uses `version 2` of
-the contracts because it is more robust and suited for enterprise use.
+The next step is to compile the contracts and deploy them in a specific order. The `contracts` directory
+(`smart_contracts/permissioning/contracts`) has two versions of contracts.
+
+* `version 1`: Permissioning rules are applied during transaction entry using the permissioning
+data stored in node memory.
+* `version 2`: Permissioning rules are applied at the during transaction entry
+and block minting using the data stored in the permissioning contracts. This tutorial uses `version 2` because it is
+more robust and suited for enterprise use.
 
 The folder contains the following contracts:
 
-* PermissionsInterface.sol : Provide external interface, internal proxy to logical contract
-* PermissionsImplementation.sol : Logic contract, the actual logic of the contract is in this contract
-* OrgManager.sol : Data contract, storage organization related data
-* AccountManager.sol : Data contract, storage account related data
-* NodeManager.sol : Data contract, storage node first shuts down data
-* RoleManager.sol ：Data contract, store data first
-* VoterManager.sol : Data contract, which stores voter data
+* `PermissionsInterface.sol`: Provides an external interface, and internal proxy to `PermissionsImplementation.sol`.
+* `PermissionsImplementation.sol`: Contains the logic of the permissions-related functionality.
+* `OrgManager.sol`: Implements logic for all organization management functionality.
+* `AccountManager.sol`: Implements logic for all account management functionality.
+* `NodeManager.sol`: Contains the node management functionality.
+* `RoleManager.sol`：Implements logic for all role management functionality.
+* `VoterManager.sol`: Implements account voter and voting functionality.
 
 Navigate to the `smart_contracts/permissioning` directory and then compile the contracts:
 
@@ -456,19 +459,19 @@ npm install
 ./scripts/compile.sh
 ```
 
-Next, deploy the contracts and once complete, execute the `init` function of the `PermissionsUpgradable.sol`
-with the `Guardian account` address that was specified earlier. This has been wrapped up into a single script
-that you can run
+Next, deploy the contracts and once complete, execute the `init` function of `PermissionsUpgradable.sol`
+with the `GuardianAccount` address specified earlier. This is wrapped up into a single script
+that you can run:
 
 ```bash
 node ./scripts/deploy.js
 ```
 
-When this is completed, an output `permission-config.json` is created which contains the addresses of the
-contract and any account addresses that will serve as admins. In this example we've used all accounts, if you
+When completed, a `permission-config.json` file is created which contains the addresses of the
+contracts and any accounts that serve as admins. In this example we've used all accounts, if you
 deploy these contracts in a production network, please select only those which need to be admins.
 
-The file looks similar to this
+The file looks similar to:
 
 ```bash
 {
@@ -490,47 +493,48 @@ The file looks similar to this
 }
 ```
 
-where:
+Where:
 
-* permissionModel - Permission model to be used (v1 or v2).
-* upgradableAddress- Address of deployed contract PermissionsUpgradable.sol.
-* interfaceAddress - Address of deployed contract PermissionsInterface.sol.
-* implAddress - Address of deployed contract PermissionsImplementation.sol.
-* nodeMgrAddress - Address of deployed contract NodeManager.sol.
-* accountMgrAddress - Address of deployed contract AccountManager.sol.
-* roleMgrAddress - Address of deployed contract RoleManager.sol.
-* voterMgrAddress - Address of deployed contract VoterManager.sol.
-* orgMgrAddress - Address of deployed contract OrgManager.sol.
-* nwAdminOrg - Name of the initial organization to be created as a part of the network boot up
-with a new permissions model. This organization owns all the initial nodes and network
-administrator accounts at the network boot up.
-* nwAdminRole - Role ID to be assigned to the network administrator accounts.
-* orgAdminRole - Role ID to be assigned to the organization administrator account.
-* accounts - Initial list of accounts linked to the network administrator organization and assigned
-the network administrator role. These accounts have complete control of the network and can propose
-and approve new organizations into the network.
-* subOrgBreadth - Number of sub-organizations that any organization can have.
-* subOrgDepth - Maximum depth of sub-organization hierarchy allowed in the network.
+* `permissionModel` is the Permission model used (v1 or v2).
+* `upgradableAddress` is the address of the deployed `PermissionsUpgradable.sol `contract.
+* `interfaceAddress` is the address of the deployed `PermissionsInterface.sol` contract.
+* `implAddress` is the address of the deployed `PermissionsImplementation.sol` contract.
+* `nodeMgrAddress` is the address of the deployed `NodeManager.sol` contract.
+* `accountMgrAddress` is the address of the deployed `AccountManager.sol` contract.
+* `roleMgrAddress` is the address of the deployed `RoleManager.sol` contract.
+* `voterMgrAddress` is the address of the deployed `VoterManager.sol` contract.
+* `orgMgrAddress` is the address of the deployed `OrgManager.sol` contract.
+* `nwAdminOrg` - Name of the initial organization to be created as a part of the network boot up
+    with a new permissions model. This organization owns all the initial nodes and network
+    administrator accounts at network boot up.
+* `nwAdminRole` - Role ID assigned to the network administrator accounts.
+* `orgAdminRole` - Role ID assigned to the organization administrator account.
+* `accounts` - Initial list of accounts linked to the network administrator organization and assigned
+    the network administrator role. These accounts have complete control of the network and can propose
+    and approve new organizations into the network.
+* `subOrgBreadth` - Number of sub-organizations that any organization can have.
+* `subOrgDepth` - Maximum depth of the sub-organization hierarchy allowed in the network.
 
-The last step is to copy the above `permission-config.json` into `data` directory of each GoQuorum node and
-restart the nodes. This can be done by running the script
+The last step is to copy the above `permission-config.json` into the `data` directory of each GoQuorum node and
+restart the nodes. This can be done by running the script:
 
 ```bash
 ./scripts/copyAndRestart.sh
 ```
 
 Once the network starts up you can use the [API methods](../../configure-and-manage/manage/enhanced-permissions.md)
-here to add or remove permissions.
+to add or remove permissions.
 
-!!! warning
-    Important Considersations for production - on network initialisation a few things happen:
+!!! warning "Important considerations for production"
+
+    During network initialisation a few things happen:
 
     * A network admin organization is created with the `nwAdminOrg` name that was specified in the
-    `permission-config.json`. All nodes which are part of the `static-nodes.json` will be automatically assigned
-    to this organization
+        `permission-config.json`. All nodes which are part of the `static-nodes.json` will be automatically assigned
+        to this organization
     * A network admin role is created with the `nwAdminRole` name specified in the `permission-config.json`
     * All accounts given in the `accounts` array of the `permission-config.json` file are assigned the network
-    admin role. These accounts can propose and approve new organizations in the network.
+        admin role. These accounts can propose and approve new organizations in the network.
 
 ## Use Remix
 
