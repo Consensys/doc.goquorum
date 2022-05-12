@@ -74,14 +74,14 @@ The valid values are:
 
 ## client-security-plugin mode
 
-In this mode, a Go-Quorum plugin is called when reaching the expiration date, with a configuration anticipation time.
+In this mode, the configured Go-Quorum plugin is called when the token expiry is reached.
 This plugin is configurable and you can even develop your own implementation of this plugin.
 
 The plugins are in the ConsenSys repository and are downloaded automatically in their absence in the plugins directory.
 
 But, you can provide your own plugin implementation: you can refer to the [use of plugin with the hello world tutorial](/tutorials/use-plugins.md) and do the same with the projects below:
 
-- A GoQuorum plugin is based on the Hashicorp plugin model, there is a gRPC model for the communication interaction: [ProtoBuf model](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/qlight-token-manager.proto).
+- GoQuorum plugins are based on the Hashicorp plugin model, there is a gRPC model for the communication interaction: [ProtoBuf model](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/qlight-token-manager.proto).
 
 - The model is pre-compiled as an SDK you can refer to, so you can develop your own implementation: [QLight Token Manager Plugin SDK in Go](https://github.com/ConsenSys/quorum-qlight-token-manager-plugin-sdk-go).
 
