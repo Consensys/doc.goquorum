@@ -37,6 +37,7 @@ nav:
           - Use a configuration file: configure-and-manage/configure/use-configuration-file.md
           - Bootnodes: configure-and-manage/configure/bootnodes.md
           - Static nodes: configure-and-manage/configure/static-nodes.md
+          - GoQuorum qlight: configure-and-manage/configure/qlight-node.md
           - High availability: configure-and-manage/configure/high-availability.md
           - Permissioning:
               - Basic permissioning: configure-and-manage/configure/permissioning/basic-permissions.md
@@ -51,7 +52,6 @@ nav:
           - Multi-tenancy:
               - Use multi-tenancy: configure-and-manage/manage/multi-tenancy/multi-tenancy.md
               - Multiple private states migration: configure-and-manage/manage/multi-tenancy/migration.md
-          - GoQuorum qlight client: configure-and-manage/manage/qlight-node.md
           - Include revert reason: configure-and-manage/manage/revert-reason.md
           - GraphQL: configure-and-manage/manage/graphql.md
           - Backup and restore: configure-and-manage/manage/import-export.md
@@ -93,7 +93,7 @@ nav:
       - Plugins: concepts/plugins.md
       - Security framework: concepts/security-framework.md
       - Multi-tenancy: concepts/multi-tenancy.md
-      - GoQuorum qlight client: concepts/qlight-node.md
+      - GoQuorum qlight: concepts/qlight-node.md
       - GoQuorum profiling: concepts/profiling.md
       - Network and chain ID: concepts/network-and-chain-id.md
   - Try the tutorials:
@@ -116,6 +116,7 @@ nav:
           - Local playground: tutorials/kubernetes/playground.md
           - Create a cluster: tutorials/kubernetes/create-cluster.md
           - Deploy charts: tutorials/kubernetes/deploy-charts.md
+          - Quorum Explorer: tutorials/kubernetes/quorum-explorer.md
           - Maintenance: tutorials/kubernetes/maintenance.md
           - Production: tutorials/kubernetes/production.md
       - Create a privacy-enabled network: tutorials/create-privacy-enabled-network.md
