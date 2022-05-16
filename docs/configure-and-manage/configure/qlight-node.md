@@ -56,26 +56,25 @@ Configure the encryption layer using the [`qlight.tls.*`](../../reference/cli-sy
 ## Configure the `client-security-plugin` mode
 
 In this mode, the configured Go-Quorum plugin is called when the token expiry is reached.
-This plugin is configurable and you can even develop your own implementation of this plugin.
+You can configure and even develop your own implementation of this plugin.
 
-The plugins are in the ConsenSys repository and are downloaded automatically in their absence in the plugins directory.
+The plugins are in the ConsenSys repository and are downloaded automatically to the plugins directory.
 
-But, you can provide your own plugin implementation: you can refer to the [use of plugin with the hello world tutorial](/tutorials/use-plugins.md) and do the same with the projects below:
+You can provide your own plugin implementation. Refer to the [use of plugin with the hello world tutorial](../../tutorials/use-plugin.md) and follow the same steps with the following projects:
 
-- GoQuorum plugins are based on the Hashicorp plugin model, there is a gRPC model for the communication interaction: [ProtoBuf model](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/qlight-token-manager.proto).
+- [ProtoBuf model](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/qlight-token-manager.proto) - GoQuorum plugins are based on the Hashicorp plugin model, this is a gRPC model for the communication interaction.
 
-- The model is pre-compiled as an SDK you can refer to, so you can develop your own implementation: [QLight Token Manager Plugin SDK in Go](https://github.com/ConsenSys/quorum-qlight-token-manager-plugin-sdk-go).
+- [QLight Token Manager Plugin SDK in Go](https://github.com/ConsenSys/quorum-qlight-token-manager-plugin-sdk-go) - The model is pre-compiled as an SDK you can refer to, so you can develop your own implementation.
 
-- The Go-Quorum implementation is using the Ory Hydra OAuth server: [GoQuorum Qlight Token Manager Plugin](https://github.com/ConsenSys/quorum-plugin-qlight-token-manager).
+- [GoQuorum Qlight Token Manager Plugin](https://github.com/ConsenSys/quorum-plugin-qlight-token-manager) - The Go-Quorum implementation using the Ory Hydra OAuth server.
 
-- You can refer to the GoQuorum examples Docker-compose file: [QLight Client with Token Manager Plugin](https://github.com/baptiste-b-pegasys/quorum-examples/pull/1/files#diff-f1ae6238d92e0b4f764eede62765302b1cfffee7e9a971a48ee97354b57b9686) (- [ ] TODO: fix this file in the quorum-example repository)
-
+You can refer to the [QLight Client with Token Manager Plugin](https://github.com/baptiste-b-pegasys/quorum-examples/pull/1/files#diff-f1ae6238d92e0b4f764eede62765302b1cfffee7e9a971a48ee97354b57b9686) Docker-compose file in the GoQuorum examples.
 
 ### Steps
 
 1. Configure the plugins (`plugins/geth-plugin-settings.json`)
 
-    ```
+    ```json
     {
     "baseDir": "./plugins",
     "providers": {
@@ -93,9 +92,9 @@ But, you can provide your own plugin implementation: you can refer to the [use o
     }
     ```
 
-1. Configure the qlight token manager (`plugins/qlight-token-manager-plugin-config.json`)
+2. Configure the qlight token manager (`plugins/qlight-token-manager-plugin-config.json`)
 
-    ```
+    ```json
     {
         "url":"https://multi-tenancy-oauth2-server:4444/oauth2/token",
         "method":"POST",
@@ -109,7 +108,7 @@ But, you can provide your own plugin implementation: you can refer to the [use o
     }
     ```
 
-1. Enable the plugins configuration in the geth arguments
+3. Enable the plugins configuration in the geth arguments
 
     Add the flag `--plugins file://./plugins/geth-plugin-settings.json --plugins.skipverify` so GoQuorum enables them.
 
