@@ -71,7 +71,7 @@ Before making the transaction, the script checks the balances of both accounts t
     }
     ```
 
-For reference, the Quorum Developer Quickstart provides an [example of a funds transfer script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/scripts/eth_tx.js).
+For reference, the Quorum Developer Quickstart provides an [example of a funds transfer script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/eth_tx.js).
 
 ## Using `eth_sendTransaction`
 

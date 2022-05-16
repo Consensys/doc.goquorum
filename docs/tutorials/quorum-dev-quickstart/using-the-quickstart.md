@@ -17,6 +17,7 @@ The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private
 * [Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) version 14 or higher
 * [Docker and Docker-compose](https://docs.docker.com/compose/install/)
 * [Truffle](https://www.trufflesuite.com/truffle) development framework
+* [Solc](https://github.com/ethereum/solidity/releases/tag/v0.5.17)
 * [`curl` command line](https://curl.haxx.se/download.html)
 * [MetaMask](https://metamask.io/)
 
@@ -244,10 +245,10 @@ Member3Quorum RPC: http://localhost:20004
 Member1Tessera: http://localhost:9083
 ```
 
-Navigate to the `smart_contracts` directory and deploy the private transaction:
+Navigate to the `smart_contracts/privacy` directory and deploy the private transaction:
 
 ```bash
-cd smart_contracts
+cd smart_contracts/privacy
 npm install
 node scripts/private_tx.js
 ```
@@ -370,7 +371,7 @@ Get the value of the contract to confirm that only Member1 and Member3 can see t
     ```
 
 Member2 can't read the state.
-Look in `smart_contracts/node scripts/private_tx.js` to confirm that `123` was the value set when the contract was updated.
+Look in `smart_contracts/privacy/node scripts/private_tx.js` to confirm that `123` was the value set when the contract was updated.
 
 ### Write to the contract with `set()`
 
@@ -413,6 +414,127 @@ Member2 can't read the state.
 All nodes are validating the same blockchain of transactions, with the private transactions containing only a 512-bit hash
 in place of the transaction data, and only the parties to the private transactions can view and update the state of the
 private contracts.
+
+## Permissions
+
+GoQuorum supports two types of permissions:
+
+* [Basic permissioning](../../configure-and-manage/configure/permissioning/basic-permissions.md): Controls
+which peers can connect to a given node. This permissioning method is specific to a given node, and is
+configured by placing a file with a list of allowed peers (similar to `static-nodes.json`), called
+`permissioned-nodes.json` in the `data` directory of a GoQuorum node.
+* [Enhanced Permissions](../../concepts/permissions-overview.md#enhanced-network-permissioning) is a smart-contract-based
+permissioning model designed for enterprise-level needs and is applicable to all peers on the network.
+
+This example deploys permissioning contracts then uses API calls to set appropriate permissions.
+
+First we'll select a `GuardianAccount` or an admin account. In thies example we'll use the account of Validator1
+which has an address of `0xed9d02e382b34818e88b88a309c7fe71e65f419d`, and we'll connect to Validator1's RPC endpoint
+`http://127.0.0.1:21001`.
+
+The next step is to compile the contracts and deploy them in a specific order. The `contracts` directory
+(`smart_contracts/permissioning/contracts`) has two versions of contracts.
+
+* `version 1`: Permissioning rules are applied during transaction entry using the permissioning
+data stored in node memory.
+* `version 2`: Permissioning rules are applied at the during transaction entry
+and block minting using the data stored in the permissioning contracts. This tutorial uses `version 2` because it is
+more robust and suited for enterprise use.
+
+The folder contains the following contracts:
+
+* `PermissionsInterface.sol`: Provides an external interface, and internal proxy to `PermissionsImplementation.sol`.
+* `PermissionsImplementation.sol`: Contains the logic of the permissions-related functionality.
+* `OrgManager.sol`: Implements logic for all organization management functionality.
+* `AccountManager.sol`: Implements logic for all account management functionality.
+* `NodeManager.sol`: Contains the node management functionality.
+* `RoleManager.sol`：Implements logic for all role management functionality.
+* `VoterManager.sol`: Implements account voter and voting functionality.
+
+Navigate to the `smart_contracts/permissioning` directory and then compile the contracts:
+
+```bash
+cd smart_contracts/permissioning
+npm install
+./scripts/compile.sh
+```
+
+Next, deploy the contracts and once complete, execute the `init` function of `PermissionsUpgradable.sol`
+with the `GuardianAccount` address specified earlier. This is wrapped up into a single script
+that you can run:
+
+```bash
+node ./scripts/deploy.js
+```
+
+When completed, a `permission-config.json` file is created which contains the addresses of the
+contracts and any accounts that serve as admins. In this example we've used all accounts, if you
+deploy these contracts in a production network, please select only those which need to be admins.
+
+The file looks similar to:
+
+```bash
+{
+    "permissionModel": "v2",
+    "upgradableAddress": "0x1932c48b2bf8102ba33b4a6b545c32236e342f34",
+    "interfaceAddress": "0x4d3bfd7821e237ffe84209d8e638f9f309865b87",
+    "implAddress": "0xfe0602d820f42800e3ef3f89e1c39cd15f78d283",
+    "nodeMgrAddress": "0x8a5e2a6343108babed07899510fb42297938d41f",
+    "accountMgrAddress": "0x9d13c6d3afe1721beef56b55d303b09e021e27ab",
+    "roleMgrAddress": "0x1349f3e1b8d71effb47b840594ff27da7e603d17",
+    "voterMgrAddress": "0xd9d64b7dc034fafdba5dc2902875a67b5d586420",
+    "orgMgrAddress" : "0x938781b9796aea6376e40ca158f67fa89d5d8a18",
+    "nwAdminOrg": "ADMINORG",
+    "nwAdminRole" : "ADMIN",
+    "orgAdminRole" : "ORGADMIN",
+    "accounts":["0xed9d02e382b34818e88b88a309c7fe71e65f419d", "0xca843569e3427144cead5e4d5999a3d0ccf92b8e", ....],
+    "subOrgBreadth" : 3,
+    "subOrgDepth" : 4
+}
+```
+
+Where:
+
+* `permissionModel` is the Permission model used (v1 or v2).
+* `upgradableAddress` is the address of the deployed `PermissionsUpgradable.sol `contract.
+* `interfaceAddress` is the address of the deployed `PermissionsInterface.sol` contract.
+* `implAddress` is the address of the deployed `PermissionsImplementation.sol` contract.
+* `nodeMgrAddress` is the address of the deployed `NodeManager.sol` contract.
+* `accountMgrAddress` is the address of the deployed `AccountManager.sol` contract.
+* `roleMgrAddress` is the address of the deployed `RoleManager.sol` contract.
+* `voterMgrAddress` is the address of the deployed `VoterManager.sol` contract.
+* `orgMgrAddress` is the address of the deployed `OrgManager.sol` contract.
+* `nwAdminOrg` - Name of the initial organization to be created as a part of the network boot up
+    with a new permissions model. This organization owns all the initial nodes and network
+    administrator accounts at network boot up.
+* `nwAdminRole` - Role ID assigned to the network administrator accounts.
+* `orgAdminRole` - Role ID assigned to the organization administrator account.
+* `accounts` - Initial list of accounts linked to the network administrator organization and assigned
+    the network administrator role. These accounts have complete control of the network and can propose
+    and approve new organizations into the network.
+* `subOrgBreadth` - Number of sub-organizations that any organization can have.
+* `subOrgDepth` - Maximum depth of the sub-organization hierarchy allowed in the network.
+
+The last step is to copy the above `permission-config.json` into the `data` directory of each GoQuorum node and
+restart the nodes. This can be done by running the script:
+
+```bash
+./scripts/copyAndRestart.sh
+```
+
+Once the network starts up you can use the [API methods](../../configure-and-manage/manage/enhanced-permissions.md)
+to add or remove permissions.
+
+!!! warning "Important considerations for production"
+
+    During network initialisation a few things happen:
+
+    * A network admin organization is created with the `nwAdminOrg` name that was specified in the
+        `permission-config.json`. All nodes which are part of the `static-nodes.json` will be automatically assigned
+        to this organization
+    * A network admin role is created with the `nwAdminRole` name specified in the `permission-config.json`
+    * All accounts given in the `accounts` array of the `permission-config.json` file are assigned the network
+        admin role. These accounts can propose and approve new organizations in the network.
 
 ## Use Remix
 
