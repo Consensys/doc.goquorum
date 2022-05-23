@@ -58,6 +58,3 @@ To disable the plugin verification process, use the
 
 !!! warning
     Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.
-
-## DEBUG TEST!!!
-Spelling test ie. as well as
