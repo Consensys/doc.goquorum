@@ -243,7 +243,7 @@ The process to add more nodes to a Raft network is exactly the same as the previ
 
 * Use the [`raft_addPeer`](../../reference/api-methods.md#raft_addpeer) API method to add the peer to the network.
 * Specify different ports for DevP2P, RPC, and Raft.
-* Specify the Raft ID returned by `raft_addPeer` using the [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting) option.
+* Specify the Raft ID returned by [`raft_addPeer`](../../reference/api-methods/#raft_addpeer) using the [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting) option.
 
 ```bash
 export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
