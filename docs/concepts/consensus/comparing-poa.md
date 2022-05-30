@@ -37,7 +37,7 @@ Properties to consider when comparing the PoA consensus protocols are:
 QBFT, IBFT, and Raft have immediate finality.
 When using QBFT, IBFT, and Raft there are no forks and all valid blocks get included in the main chain.
 
-Clique does not have immediate finality.
+Clique doesn't have immediate finality.
 Implementations using Clique must be aware of forks and chain reorganizations occurring.
 
 ### Minimum number of validators
