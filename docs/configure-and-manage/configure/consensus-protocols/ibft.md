@@ -179,20 +179,20 @@ To update an existing network with a new `blockperiodseconds`:
             ```bash
             {
               "config": {
-                 ...
-                 "ibft": {
-                   "blockperiodseconds": 2,
-                   "epochlength": 30000,
-                   "requesttimeoutseconds": 4
-                 },
-                 "transitions": {
-                   "ibft": [
-                   {
-                     "block": <FutureBlockNumber>,
-                     "blockperiodseconds": <NewValue>
-                   }
-                   ]
-                 }
+                ...
+                "ibft": {
+                  "blockperiodseconds": 2,
+                  "epochlength": 30000,
+                  "requesttimeoutseconds": 4
+                },
+                "transitions": {
+                  "ibft": [
+                  {
+                    "block": <FutureBlockNumber>,
+                    "blockperiodseconds": <NewValue>
+                  }
+                  ]
+                }
               },
               ...
             }
@@ -203,20 +203,20 @@ To update an existing network with a new `blockperiodseconds`:
             ```bash
             {
               "config": {
-                 ...
-                 "ibft": {
-                   "blockperiodseconds": 2,
-                   "epochlength": 30000,
-                   "requesttimeoutseconds": 4
-                 },
-                 "transitions": {
-                   "ibft": [
-                   {
-                     "block": 1240,
-                     "blockperiodseconds": 4
-                   }
-                   ]
-                 }
+                ...
+                "ibft": {
+                  "blockperiodseconds": 2,
+                  "epochlength": 30000,
+                  "requesttimeoutseconds": 4
+                },
+                "transitions": {
+                  "ibft": [
+                  {
+                    "block": 1240,
+                    "blockperiodseconds": 4
+                  }
+                  ]
+                }
               },
               ...
             }
@@ -224,7 +224,7 @@ To update an existing network with a new `blockperiodseconds`:
 
 3. Restart all nodes in the network using the updated genesis file.
 4. To verify the changes after the transition block, call
-   [`istanbul_getValidators`](../../../reference/api-methods.md#istanbul_getvalidators), specifying `latest`.
+  [`istanbul_getValidators`](../../../reference/api-methods.md#istanbul_getvalidators), specifying `latest`.
 
 ### Swap validator management methods
 
@@ -244,21 +244,21 @@ To swap between block header validator selection and contract validator selectio
             ```bash
             {
               "config": {
-                 ...
-                 "ibft": {
-                   "blockperiodseconds": 5,
-                   "epochlength": 30000,
-                   "requesttimeoutseconds": 10
-                 },
-                 "transitions": {
-                   "ibft": [
-                   {
-                     "block": <FutureBlockNumber>,
-                     "validatorselectionmode": <SelectionMode>,
-                     "validatorcontractaddress": <ContractAddress>
-                   }
-                   ]
-                 }
+                ...
+                "ibft": {
+                  "blockperiodseconds": 5,
+                  "epochlength": 30000,
+                  "requesttimeoutseconds": 10
+                },
+                "transitions": {
+                  "ibft": [
+                  {
+                    "block": <FutureBlockNumber>,
+                    "validatorselectionmode": <SelectionMode>,
+                    "validatorcontractaddress": <ContractAddress>
+                  }
+                  ]
+                }
               },
               ...
             }
@@ -269,21 +269,21 @@ To swap between block header validator selection and contract validator selectio
             ```bash
             {
               "config": {
-                 ...
-                 "ibft": {
-                   "blockperiodseconds": 5,
-                   "epochlength": 30000,
-                   "requesttimeoutseconds": 10
-                 },
-                 "transitions": {
-                   "ibft": [
-                   {
-                     "block": 102885,
-                     "validatorselectionmode": "contract",
-                     "validatorcontractaddress": "0x0000000000000000000000000000000000007777"
-                   }
-                   ]
-                 }
+                ...
+                "ibft": {
+                  "blockperiodseconds": 5,
+                  "epochlength": 30000,
+                  "requesttimeoutseconds": 10
+                },
+                "transitions": {
+                  "ibft": [
+                  {
+                    "block": 102885,
+                    "validatorselectionmode": "contract",
+                    "validatorcontractaddress": "0x0000000000000000000000000000000000007777"
+                  }
+                  ]
+                }
               },
               ...
             }
