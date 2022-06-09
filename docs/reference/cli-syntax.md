@@ -73,49 +73,6 @@ Overrides the default immutability threshold for GoQuorum nodes.
 Blocks below the immutability threshold are moved to the `ancient` data folder.
 The default is 3162240.
 
-### `istanbul.blockperiod`
-
-=== "Syntax"
-
-    ```bash
-    --istanbul.blockperiod <INTEGER>
-    ```
-
-=== "Example"
-
-    ```bash
-    --istanbul.blockperiod 5
-    ```
-
-Minimum time between two consecutive [IBFT](../configure-and-manage/configure/consensus-protocols/ibft.md) or
-[QBFT](../configure-and-manage/configure/consensus-protocols/qbft.md) blocks' timestamps in seconds.
-Setting the block period determines how quickly blocks should be minted by the validators. The default is 1.
-
-!!! warning
-
-    Do not update this value after starting the network because this option is used by nodes to validate block times.
-
-### `istanbul.requesttimeout`
-
-=== "Syntax"
-
-    ```bash
-    --istanbul.requesttimeout <INTEGER>
-    ```
-
-=== "Example"
-
-    ```bash
-    --istanbul.requesttimeout 12000
-    ```
-
-Minimum request timeout for each [IBFT](../configure-and-manage/configure/consensus-protocols/ibft.md) or
-[QBFT](../configure-and-manage/configure/consensus-protocols/qbft.md) round in milliseconds.
-The request timeout is the timeout at which IBFT triggers a new round if the previous one did not complete.
-This period increases as the timeout is hit more often.
-
-The default is 10000.
-
 ### `multitenancy`
 
 === "Syntax"
