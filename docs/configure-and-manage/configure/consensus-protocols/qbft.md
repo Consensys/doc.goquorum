@@ -308,4 +308,4 @@ To swap between block header validator selection and contract validator selectio
             }
             ```
 
-3. Restart all nodes in the network using the updated genesis file.
+3. [Restart all nodes](../../../tutorials/private-network/create-qbft-network.md#5-initialize-nodes) in the network using the updated genesis file.

@@ -151,7 +151,7 @@ When `blockperiodseconds` expires, the protocol proposes the next new block.
 
 ## Transitions
 
-The `transitions` genesis configuration item allows you to specify a future block number at which to change QBFT
+The `transitions` genesis configuration item allows you to specify a future block number at which to change IBFT
 network configuration in an existing network.
 For example, you can update the [block time](#configure-block-time-on-an-existing-network) or
 [validator management method](#swap-validator-management-methods).
@@ -289,4 +289,4 @@ To swap between block header validator selection and contract validator selectio
             }
             ```
 
-3. Restart all nodes in the network using the updated genesis file.
+3. [Restart all nodes](../../../tutorials/private-network/create-ibft-network.md#5-initialize-nodes) in the network using the updated genesis file.
