@@ -47,6 +47,12 @@ QBFT-Network/
 │        └── keystore
 ```
 
+Command lines would be like:
+```
+cd QBFT-Network
+mkdir -p Node-0/data/keystore Node-1/data/keystore Node-2/data/keystore Node-3/data/keystore Node-4/data/keystore
+```
+
 ### 2. Run the Quorum Genesis Tool
 
 Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) interactively or by using CLI options.
@@ -154,6 +160,12 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
       "enode://7fa183662285993efaf7a59e303ec5543bbcd09cb2883e7611d9576ed90f3bcf0400b70af11c5266e5110eebe8afd4e817437bde574d686f440df1ec85822add@127.0.0.1:30304?discport=0&raftport=53004"
     ]
     ```
+    
+Replace `permissioned-nodes.json` with a copy of `static-nodes.json`, if you use permissions.
+
+```
+cp static-nodes.json permissioned-nodes.json
+```
 
 ### 4. Copy the static nodes file and node keys to each node
 
@@ -170,21 +182,21 @@ cp static-nodes.json genesis.json ../../Node-4/data/
 In each validator directory, copy the `nodekey` files and `address` to the data directory:
 
 ```bash
-cp nodekey* address ../../Node-0/data
-cp nodekey* address ../../Node-1/data
-cp nodekey* address ../../Node-2/data
-cp nodekey* address ../../Node-3/data
-cp nodekey* address ../../Node-4/data
+cd validator0; cp nodekey* address ../../Node-0/data
+cd ../validator1; cp nodekey* address ../../Node-1/data
+cd ../validator2; cp nodekey* address ../../Node-2/data
+cd ../validator3; cp nodekey* address ../../Node-3/data
+cd ../validator4; cp nodekey* address ../../Node-4/data
 ```
 
 Copy the individual account keys to the keystore directory for each node:
 
 ```bash
-cp account* ../../Node-0/data/keystore
-cp account* ../../Node-1/data/keystore
-cp account* ../../Node-2/data/keystore
-cp account* ../../Node-3/data/keystore
-cp account* ../../Node-4/data/keystore
+cd ../validator0; cp account* ../../Node-0/data/keystore
+cd ../validator1; cp account* ../../Node-1/data/keystore
+cd ../validator2; cp account* ../../Node-2/data/keystore
+cd ../validator3; cp account* ../../Node-3/data/keystore
+cd ../validator4; cp account* ../../Node-4/data/keystore
 ```
 
 ### 5. Initialize nodes
