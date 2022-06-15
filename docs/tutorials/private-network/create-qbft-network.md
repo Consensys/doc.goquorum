@@ -48,7 +48,7 @@ QBFT-Network/
 ```
 
 Command lines would be like:
-```
+```bash
 cd QBFT-Network
 mkdir -p Node-0/data/keystore Node-1/data/keystore Node-2/data/keystore Node-3/data/keystore Node-4/data/keystore
 ```
@@ -166,7 +166,7 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
 
 Replace `permissioned-nodes.json` with a copy of `static-nodes.json`, if you use permissions.
 
-```
+```bash
 cp static-nodes.json permissioned-nodes.json
 ```
 
@@ -342,7 +342,7 @@ Use the JavaScript console to check the peer count:
 
     The log message is:
 
-    ```
+    ```log
     INFO [12-08|10:44:55.044] Started P2P networking   self="enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30301?discport=0"
     ```
 
