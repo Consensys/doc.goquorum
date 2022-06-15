@@ -204,12 +204,12 @@ export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore |
 export PRIVATE_CONFIG=ignore
 geth --datadir data \
     --networkid 1337 --nodiscover --verbosity 5 \
-    --syncmode full --nousb \
+    --syncmode full \
     --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
     --http --http.addr 127.0.0.1 --http.port 22000 --http.corsdomain "*" --http.vhosts "*" \
     --ws --ws.addr 127.0.0.1 --ws.port 32000 --ws.origins "*" \
-    --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-    --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+        --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
     --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
     --port 30300
 ```
@@ -232,12 +232,12 @@ specifying different ports for DevP2P and RPC.
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
-        --syncmode full --nousb \
+        --syncmode full \
         --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
         --http --http.addr 127.0.0.1 --http.port 22001 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 127.0.0.1 --ws.port 32001 --ws.origins "*" \
-        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+        --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
         --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30301
     ```
@@ -249,12 +249,12 @@ specifying different ports for DevP2P and RPC.
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
-        --syncmode full --nousb \
-        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints
+        --syncmode full \
+        --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
         --http --http.addr 127.0.0.1 --http.port 22002 --http.corsdomain "*" --http.vhosts "*" \
-        --ws --ws.addr 127.0.0.1 --ws.port 32002--ws.origins "*" \
-        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --ws --ws.addr 127.0.0.1 --ws.port 32002 --ws.origins "*" \
+        --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+        --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
         --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30302
     ```
@@ -266,12 +266,12 @@ specifying different ports for DevP2P and RPC.
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
-        --syncmode full --nousb \
+        --syncmode full \
         --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
         --http --http.addr 127.0.0.1 --http.port 22003 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 127.0.0.1 --ws.port 32003 --ws.origins "*" \
-        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+        --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
         --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30303
     ```
@@ -283,12 +283,12 @@ specifying different ports for DevP2P and RPC.
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
-        --syncmode full --nousb \
+        --syncmode full \
         --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
         --http --http.addr 127.0.0.1 --http.port 22004 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 127.0.0.1 --ws.port 32004 --ws.origins "*" \
-        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+        --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
         --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30304
     ```
