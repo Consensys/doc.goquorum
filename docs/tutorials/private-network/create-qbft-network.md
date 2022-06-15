@@ -160,7 +160,10 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
       "enode://7fa183662285993efaf7a59e303ec5543bbcd09cb2883e7611d9576ed90f3bcf0400b70af11c5266e5110eebe8afd4e817437bde574d686f440df1ec85822add@127.0.0.1:30304?discport=0&raftport=53004"
     ]
     ```
-    
+
+!!! tip
+    for mac os users, prefer to used `localhost` instead of `127.0.0.1`
+
 Replace `permissioned-nodes.json` with a copy of `static-nodes.json`, if you use permissions.
 
 ```
