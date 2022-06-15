@@ -48,6 +48,7 @@ QBFT-Network/
 ```
 
 Command lines would be like:
+
 ```bash
 cd QBFT-Network
 mkdir -p Node-0/data/keystore Node-1/data/keystore Node-2/data/keystore Node-3/data/keystore Node-4/data/keystore
@@ -162,7 +163,7 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
     ```
 
 !!! tip
-    for mac os users, prefer to used `localhost` instead of `127.0.0.1`
+    for mac os users, prefer using `localhost` instead of `127.0.0.1`
 
 Replace `permissioned-nodes.json` with a copy of `static-nodes.json`, if you use permissions.
 
