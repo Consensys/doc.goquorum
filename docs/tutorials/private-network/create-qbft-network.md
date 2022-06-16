@@ -26,7 +26,14 @@ with five nodes.
 
 ### 1. Create directories
 
-Create directories for your private network and five nodes.
+Create directories for your private network and five nodes:
+
+```bash
+cd QBFT-Network
+mkdir -p Node-0/data/keystore Node-1/data/keystore Node-2/data/keystore Node-3/data/keystore Node-4/data/keystore
+```
+
+The following is the folder structure of the directories:
 
 ```bash
 QBFT-Network/
@@ -45,13 +52,6 @@ QBFT-Network/
 ├── Node-4
 │    └── data
 │        └── keystore
-```
-
-Command lines would be like:
-
-```bash
-cd QBFT-Network
-mkdir -p Node-0/data/keystore Node-1/data/keystore Node-2/data/keystore Node-3/data/keystore Node-4/data/keystore
 ```
 
 ### 2. Run the Quorum Genesis Tool
@@ -163,7 +163,7 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
     ```
 
 !!! tip
-    for mac os users, prefer using `localhost` instead of `127.0.0.1`
+    For MacOS users, we recommend using `localhost` instead of `127.0.0.1`.
 
 Replace `permissioned-nodes.json` with a copy of `static-nodes.json`, if you use permissions.
 
