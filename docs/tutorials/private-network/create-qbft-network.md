@@ -165,7 +165,7 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
 !!! tip
     For MacOS users, we recommend using `localhost` instead of `127.0.0.1`.
 
-Replace `permissioned-nodes.json` with a copy of `static-nodes.json`, if you use permissions.
+If you use permissions, replace `permissioned-nodes.json` with a copy of `static-nodes.json`.
 
 ```bash
 cp static-nodes.json permissioned-nodes.json
@@ -224,8 +224,8 @@ geth --datadir data \
     --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
     --http --http.addr 127.0.0.1 --http.port 22000 --http.corsdomain "*" --http.vhosts "*" \
     --ws --ws.addr 127.0.0.1 --ws.port 32000 --ws.origins "*" \
-        --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
-        --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+    --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+    --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
     --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
     --port 30300
 ```
