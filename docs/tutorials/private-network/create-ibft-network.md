@@ -165,7 +165,6 @@ If you use permissions, replace `permissioned-nodes.json` with a copy of `static
 cp static-nodes.json permissioned-nodes.json
 ```
 
-
 ### 4. Copy the static nodes file and node keys to each node
 
 Copy `static-nodes.json`, `genesis.json`, and `permissioned-nodes.json` (if applicable) to the data directory for each node:
