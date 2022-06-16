@@ -26,7 +26,7 @@ with five nodes.
 
 ### 1. Create directories
 
-Create directories for your private network and five nodes.
+Create directories for your private network and five nodes:
 
 ```bash
 IBFT-Network/
@@ -155,26 +155,37 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
     ]
     ```
 
+!!! tip
+
+    For MacOS users, we recommend using `localhost` instead of `127.0.0.1`.
+
+If you use permissions, replace `permissioned-nodes.json` with a copy of `static-nodes.json`.
+
+```bash
+cp static-nodes.json permissioned-nodes.json
+```
+
+
 ### 4. Copy the static nodes file and node keys to each node
 
 Copy `static-nodes.json`, `genesis.json`, and `permissioned-nodes.json` (if applicable) to the data directory for each node:
 
 ```bash
-cp static-nodes.json genesis.json permissioned-nodes.json ../../Node-0/data/
-cp static-nodes.json genesis.json permissioned-nodes.json ../../Node-1/data/
-cp static-nodes.json genesis.json permissioned-nodes.json ../../Node-2/data/
-cp static-nodes.json genesis.json permissioned-nodes.json ../../Node-3/data/
-cp static-nodes.json genesis.json permissioned-nodes.json ../../Node-4/data/
+cd validator0; cp nodekey* address ../../Node-0/data
+cd ../validator1; cp nodekey* address ../../Node-1/data
+cd ../validator2; cp nodekey* address ../../Node-2/data
+cd ../validator3; cp nodekey* address ../../Node-3/data
+cd ../validator4; cp nodekey* address ../../Node-4/data
 ```
 
 In each validator directory, copy the `nodekey` files and `address` to the data directory:
 
 ```bash
-cp nodekey* address ../../Node-0/data
-cp nodekey* address ../../Node-1/data
-cp nodekey* address ../../Node-2/data
-cp nodekey* address ../../Node-3/data
-cp nodekey* address ../../Node-4/data
+cd ../validator0; cp account* ../../Node-0/data/keystore
+cd ../validator1; cp account* ../../Node-1/data/keystore
+cd ../validator2; cp account* ../../Node-2/data/keystore
+cd ../validator3; cp account* ../../Node-3/data/keystore
+cd ../validator4; cp account* ../../Node-4/data/keystore
 ```
 
 Copy the individual account keys to the keystore directory for each node:
@@ -204,12 +215,12 @@ export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore |
 export PRIVATE_CONFIG=ignore
 geth --datadir data \
     --networkid 1337 --nodiscover --verbosity 5 \
-    --syncmode full --nousb \
+    --syncmode full \
     --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
     --http --http.addr 127.0.0.1 --http.port 22000 --http.corsdomain "*" --http.vhosts "*" \
     --ws --ws.addr 127.0.0.1 --ws.port 32000 --ws.origins "*" \
-    --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
-    --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul \
+    --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+    --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
     --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
     --port 30300
 ```
@@ -232,12 +243,12 @@ specifying different ports for DevP2P and RPC.
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
-        --syncmode full --nousb \
+        --syncmode full \
         --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
         --http --http.addr 127.0.0.1 --http.port 22001 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 127.0.0.1 --ws.port 32001 --ws.origins "*" \
-        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+        --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
         --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30301
     ```
@@ -249,12 +260,12 @@ specifying different ports for DevP2P and RPC.
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
-        --syncmode full --nousb \
+        --syncmode full \
         --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
         --http --http.addr 127.0.0.1 --http.port 22002 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 127.0.0.1 --ws.port 32002 --ws.origins "*" \
-        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+        --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
         --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30302
     ```
@@ -266,12 +277,12 @@ specifying different ports for DevP2P and RPC.
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
-        --syncmode full --nousb \
+        --syncmode full \
         --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
         --http --http.addr 127.0.0.1 --http.port 22003 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 127.0.0.1 --ws.port 32003 --ws.origins "*" \
-        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+        --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
         --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30303
     ```
@@ -283,12 +294,12 @@ specifying different ports for DevP2P and RPC.
     export PRIVATE_CONFIG=ignore
     geth --datadir data \
         --networkid 1337 --nodiscover --verbosity 5 \
-        --syncmode full --nousb \
+        --syncmode full \
         --istanbul.blockperiod 5 --mine --miner.threads 1 --miner.gasprice 0 --emitcheckpoints \
         --http --http.addr 127.0.0.1 --http.port 22004 --http.corsdomain "*" --http.vhosts "*" \
         --ws --ws.addr 127.0.0.1 --ws.port 32004 --ws.origins "*" \
-        --http.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
-        --ws.api admin,trace,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul,qbft \
+        --http.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
+        --ws.api admin,eth,debug,miner,net,txpool,personal,web3,istanbul \
         --unlock ${ADDRESS} --allow-insecure-unlock --password ./data/keystore/accountPassword \
         --port 30304
     ```
@@ -327,7 +338,7 @@ Use the JavaScript console to check the peer count:
 
     The log message is:
 
-    ```
+    ```log
     INFO [12-08|10:44:55.044] Started P2P networking   self="enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30301?discport=0"
     ```
 
