@@ -17,7 +17,7 @@ Validators take turns to create the next block.
 Before inserting a block onto the chain, a super-majority (greater than 66%) of validators must first sign the block.
 
 Existing validators propose and vote to [add or remove validators](../../../tutorials/private-network/adding-removing-ibft-validators.md).
-Adding or removing a validator requires a majority vote (greater than 50%) of validators. Voting takes place on chain (in the block header) your network must be producing blocks to be able to vote.
+Adding or removing a validator requires a majority vote (greater than 50%) of validators. Voting takes place on chain (in the block header), so your network must produce blocks to be able to vote.
 
 !!! important
 
