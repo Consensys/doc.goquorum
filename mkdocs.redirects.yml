@@ -171,3 +171,6 @@ plugins:
 #      Concepts/Qubernetes/Qubernetes-Overview.md: Deployment/Kubernetes.md
 #      Concepts/Qubernetes/Multicluster.md: Deployment/Kubernetes.md
 #      Reference/FAQ.md: https://consensys.net/quorum/faq/
+#      Concepts/Multitenancy.md: concepts/multi-tenancy.md
+#      Concepts/Privacy/PrivacyEnhancements.md: concepts/privacy/privacy-enhancements.md
+#      Concepts/Privacy/PrivateAndPublic.md: concepts/privacy/private-and-public.md
