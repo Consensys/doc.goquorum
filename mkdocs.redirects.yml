@@ -28,6 +28,9 @@ plugins:
       concepts/consensus/overview.md: concepts/consensus/index.md
       concepts/blockchain-basics/what-is-blockchain.md: concepts/blockchain-basics/index.md
       deploy/install/getting-started-overview.md: deploy/install/index.md
+      Concepts/Multitenancy.md: concepts/multi-tenancy.md
+      Concepts/Privacy/PrivacyEnhancements.md: concepts/privacy/privacy-enhancements.md
+      Concepts/Privacy/PrivateAndPublic.md: concepts/privacy/private-and-public.md
 #      GetStarted/Install.md: Deployment/Binaries.md
 #      Account-Key-Management/Overview.md: Concepts/AccountManagement.md
 #      Account-Key-Management/Quorum/Overview.md: Concepts/AccountManagement.md
@@ -171,6 +174,3 @@ plugins:
 #      Concepts/Qubernetes/Qubernetes-Overview.md: Deployment/Kubernetes.md
 #      Concepts/Qubernetes/Multicluster.md: Deployment/Kubernetes.md
 #      Reference/FAQ.md: https://consensys.net/quorum/faq/
-#      Concepts/Multitenancy.md: concepts/multi-tenancy.md
-#      Concepts/Privacy/PrivacyEnhancements.md: concepts/privacy/privacy-enhancements.md
-#      Concepts/Privacy/PrivateAndPublic.md: concepts/privacy/private-and-public.md
