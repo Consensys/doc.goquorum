@@ -75,4 +75,3 @@ On Clique, it means the transaction is only processed when the current node beco
 The Clique block signer is rewarded for creating the block, this is the coinbase account of the miner and will be present in the `extraData` field of the genesis block or have been added using `clique.propose()` (otherwise an "unathorized signer" error will occur).
 
 Note that `miner.SetEtherbase()`, and the command line flag `--miner.etherbase` have no effect for Clique.
-
