@@ -20,7 +20,7 @@ transaction cost.
 ### Enabling gas price
 
 To enable gas price in GoQuorum, set `enableGasPriceBlock` in the GoQuorum
-[genesis file](../../configure-and-manage/configure/genesis-file/genesis-options.md) `config` object to a future block, when the entire network is
+[genesis file](../configure-and-manage/configure/genesis-file/genesis-options.md) `config` object to a future block, when the entire network is
 ready to transact with gas price enabled transactions.
 All GoQuorum nodes in the network must be initialized with the same `enableGasPriceBlock` value.
 
