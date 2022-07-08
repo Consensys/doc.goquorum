@@ -25,6 +25,6 @@ GoQuorum includes the following changes to geth:
 * Block validation logic is changed to handle [private transactions](privacy/private-and-public.md#private-transactions).
 * Transaction creation is changed to allow for replacing transaction data with encrypted hashes to preserve private data
   where required.
-* [The pricing of gas is removed.](free-gas-network.md) Gas itself remains.
+* [The pricing of gas is removed unless explicitly enabled.](free-gas-network.md) Gas itself remains.
 
 For more information about the GoQuorum architecture and its differences from geth, contact us on [GoQuorum support](../support.md).
