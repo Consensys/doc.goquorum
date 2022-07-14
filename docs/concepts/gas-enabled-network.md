@@ -54,6 +54,12 @@ Therefore we suggest starting all raft nodes with ‘--mine'.
 Standard geth behaviour is that if a transaction has less gas than the accepted minimum (set using `--miner.gasprice`) then it will not be mined by remote miner nodes.
 On Raft, there is no rotation of miners, therefore if the local node is not the minter then it means the transaction will remain pending until it is resubmitted with an above minimum gas value (or until the local node becomes the miner).
 
+Raft inherits the static block reward that is awarded to miners on upstream geth. The static block reward amount varies according to the current release, with the following values currently defined:
+
+- FrontierBlockReward           = big.NewInt(5e+18) // Block reward in wei for successfully mining a block
+- ByzantiumBlockReward          = big.NewInt(3e+18) // Block reward in wei for successfully mining a block upward from Byzantium
+- ConstantinopleBlockReward     = big.NewInt(2e+18) // Block reward in wei for successfully mining a block upward from Constantinople
+
 !!! info
 
     The block `miner` field is now populated with the rewarded account.
