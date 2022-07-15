@@ -4,7 +4,7 @@ description: Gas enabled networks
 
 # Gas enabled networks
 
-By default, GoQuorum is a [free gas network](free-gas-network.md), which means gas is not consumed by transactions.
+By default, GoQuorum is a [free gas network](free-gas-network.md), which means gas is priced at zero and is not consumed when transactions are processed.
 However, gas price can be enabled if required.
 
 Transactions use computational resources, so they have associated costs.
@@ -36,10 +36,16 @@ These will impact how a gas enabled GoQuorum network is set up, and are describe
 ### Private transactions
 
 The amount of gas consumed by a private transaction is only the `intrinsic gas` value, and this is based on the private transaction hash held in the `data` field (rather than the entire private payload).
-The actual cost of creating or executing a private contract cannot be used, as the minter might not be a party to the transaction, and hence unable to calculate the real cost.
+The actual cost of creating or executing a private contract cannot be used. Members who are not party to the transaction will be unable to calculate the private gas cost and the network will not be able to reach a consensus.
 
 Also, the amount of gas used is by a private transaction is not show in the transaction receipt.
 This is to avoid leakage of details about the private transaction.
+
+### Privacy marker transactions
+
+The (public) privacy marker transaction will consume gas as normal.
+However, the inner private transaction is not available to non-participants, therefore members who are not party to the transaction will be unable to even calculate the intrinsic gas.
+Therefore the private transaction will not consume any gas.
 
 ### Raft
 
