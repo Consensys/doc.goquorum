@@ -2,7 +2,7 @@
 description: Gas enabled networks
 ---
 
-# Gas enabled networks
+# Gas-enabled networks
 
 By default, GoQuorum is a [free gas network](free-gas-network.md), which means gas is priced at zero and is not consumed when transactions are processed.
 However, gas price can be enabled if required.
@@ -17,11 +17,11 @@ transaction cost.
 
 ## Using gas in GoQuorum
 
-### Enabling gas price
+## Enabling gas price
 
 To enable gas price in GoQuorum, set `enableGasPriceBlock` in the GoQuorum
 [genesis file](../configure-and-manage/configure/genesis-file/genesis-options.md) `config` object to a future block,
-when the entire network is ready to transact with gas price enabled transactions.
+when the entire network is ready to transact with gas-enabled transactions.
 All GoQuorum nodes in the network must be initialized with the same `enableGasPriceBlock` value.
 
 !!! note
@@ -52,6 +52,28 @@ However, the inner private transaction isn't available to non-participants,
 therefore members who aren't party to the transaction can't calculate the intrinsic gas.
 Therefore, the private transaction doesn't consume any gas.
 
+### IBFT
+
+Standard geth behavior is that if a transaction has less gas than the accepted minimum
+(set using `--miner.gasprice`) then it is not mined by remote miner nodes.
+On Istanbul, it means the transaction is only processed when the current node becomes voted in as minter.
+
+The Istanbul block signer is rewarded for creating the block, using the account number derived from the nodekey of the miner.
+
+Note that `miner.SetEtherbase()`, and the command line flag `--miner.etherbase` have no effect for Istanbul.
+
+### Clique
+
+Standard geth behavior is that if a transaction has less gas than the accepted minimum
+(set using `--miner.gasprice`) then it is not mined by remote miner nodes.
+On Clique, it means the transaction is only processed when the current node becomes voted in as minter.
+
+The Clique block signer is rewarded for creating the block through the coinbase account of the miner.
+The account is in the `extraData` field of the genesis block or has been added using `clique.propose()`
+Otherwise an `unauthorized signer` error occurs.
+
+Note that `miner.SetEtherbase()`, and the command line flag `--miner.etherbase` have no effect for Clique.
+
 ### Raft
 
 The transaction cost is rewarded to the etherbase account (aka coinbase account), which is the default primary local account.
@@ -60,10 +82,10 @@ Note that for technical reasons the etherbase account can't be changed at runtim
 
 If `--mine` is not provided on the command line then the (leader) node still mints blocks,
 but `--miner.gasprice` is ignored.
-Also, the txpool default `gasPrice` won’t be set to `1000000000`.
+Also, the transaction pool default `gasPrice` won’t be set to `1000000000`.
 Therefore, we suggest starting all raft nodes with `--mine`.
 
-Standard geth behaviour is that if a transaction has less gas than the accepted minimum
+Standard geth behavior is that if a transaction has less gas than the accepted minimum
 (set using `--miner.gasprice`) then it is not mined by remote miner nodes.
 On Raft, there is no rotation of miners, so if the local node is not the minter then the transaction remains pending
 until it is resubmitted with an above minimum gas value (or until the local node becomes the miner).
@@ -78,25 +100,3 @@ The static block reward amount varies according to the current release, with the
 !!! info
 
     The block `miner` field is now populated with the rewarded account.
-
-### Istanbul
-
-Standard geth behaviour is that if a transaction has less gas than the accepted minimum
-(set using `--miner.gasprice`) then it is not mined by remote miner nodes.
-On Istanbul, it means the transaction is only processed when the current node becomes voted in as minter.
-
-The Istanbul block signer is rewarded for creating the block, using the account number derived from the nodekey of the miner.
-
-Note that `miner.SetEtherbase()`, and the command line flag `--miner.etherbase` have no effect for Istanbul.
-
-### Clique
-
-Standard geth behaviour is that if a transaction has less gas than the accepted minimum
-(set using `--miner.gasprice`) then it is not mined by remote miner nodes.
-On Clique, it means the transaction is only processed when the current node becomes voted in as minter.
-
-The Clique block signer is rewarded for creating the block through the coinbase account of the miner.
-The account is in the `extraData` field of the genesis block or has been added using `clique.propose()`
-Otherwise an "unathorized signer" error occurs.
-
-Note that `miner.SetEtherbase()`, and the command line flag `--miner.etherbase` have no effect for Clique.
