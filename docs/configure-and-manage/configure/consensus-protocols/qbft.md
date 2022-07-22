@@ -148,9 +148,9 @@ You can pre-deploy the validator smart contract in a new QBFT network by specify
 
 You can migrate an existing [IBFT](ibft.md) network to a QBFT network with the following steps:
 
-1. Stop the network.
-1. Update the IBFT genesis file with a non-zero `testQBFTBlock` fork block.
-    For example, if the current block number in your IBFT network is 100, set `testQBFTBlock` to any block greater than
+1. Stop all nodes in the network.
+1. Update the genesis file with a suitable transition block, this needs to be far enough in the future so that you can co-ordinate ahead of time.
+    For example, if the current block number in your IBFT network is 100, set transiton block to any block greater than
     100, and once that fork block is reached, QBFT consensus will be used instead of IBFT.
 
     !!! example "Sample QBFT genesis file"
@@ -160,12 +160,15 @@ You can migrate an existing [IBFT](ibft.md) network to a QBFT network with the f
         "istanbul": {
             "epoch": 30000,
             "policy": 0,
-            "ceil2Nby3Block": 0,
-            "testQBFTBlock": 120
+            "ceil2Nby3Block": 0
           },
+          "transitions": [{
+            "block": 120,
+            "algorithm": "qbft"
+          }]
         ...
         ```
-
+1. run `geth init` with the new genesis file
 1. Restart the network with the updated genesis file.
 
 ## Transitions
@@ -186,7 +189,7 @@ For example, you can update the [block time](#configure-block-time-on-an-existin
 To update an existing network with a new `blockperiodseconds`:
 
 1. Stop all nodes in the network.
-2. In the [genesis file](#genesis-file), add the `transitions` configuration item where:
+1. In the [genesis file](#genesis-file), add the `transitions` configuration item where:
 
     * `<FutureBlockNumber>` is the upcoming block at which to change `blockperiodseconds`.
     * `<NewValue>` is the updated value for `blockperiodseconds`.
@@ -204,14 +207,10 @@ To update an existing network with a new `blockperiodseconds`:
                   "epochlength": 30000,
                   "requesttimeoutseconds": 4
                 },
-                "transitions": {
-                  "qbft": [
-                  {
-                    "block": <FutureBlockNumber>,
-                    "blockperiodseconds": <NewValue>
-                  }
-                  ]
-                }
+                "transitions": [{
+                  "block": <FutureBlockNumber>,
+                  "blockperiodseconds": <NewValue>
+                }]
               },
               ...
             }
@@ -228,21 +227,18 @@ To update an existing network with a new `blockperiodseconds`:
                   "epochlength": 30000,
                   "requesttimeoutseconds": 4
                 },
-                "transitions": {
-                  "qbft": [
-                  {
-                    "block": 1240,
-                    "blockperiodseconds": 4
-                  }
-                  ]
-                }
-              },
-              ...
+                "transitions": [{
+                  "block": 1240,
+                  "blockperiodseconds": 4
+                }]
+              }
+            ...
             }
             ```
 
-3. Restart all nodes in the network using the updated genesis file.
-4. To verify the changes after the transition block, call
+1. run `geth init` with the new genesis file
+1. Restart all nodes in the network using the updated genesis file.
+1. To verify the changes after the transition block, call
   [`istanbul_getValidators`](../../../reference/api-methods.md#istanbul_getvalidators), specifying `latest`.
 
 ### Swap validator management methods
@@ -269,15 +265,11 @@ To swap between block header validator selection and contract validator selectio
                   "epochlength": 30000,
                   "requesttimeoutseconds": 10
                 },
-                "transitions": {
-                  "qbft": [
-                  {
-                    "block": <FutureBlockNumber>,
-                    "validatorselectionmode": <SelectionMode>,
-                    "validatorcontractaddress": <ContractAddress>
-                  }
-                  ]
-                }
+                "transitions": [{
+                  "block": <FutureBlockNumber>,
+                  "validatorselectionmode": <SelectionMode>,
+                  "validatorcontractaddress": <ContractAddress>
+                }]
               },
               ...
             }
@@ -294,15 +286,11 @@ To swap between block header validator selection and contract validator selectio
                   "epochlength": 30000,
                   "requesttimeoutseconds": 10
                 },
-                "transitions": {
-                  "qbft": [
-                  {
-                    "block": 102885,
-                    "validatorselectionmode": "contract",
-                    "validatorcontractaddress": "0x0000000000000000000000000000000000007777"
-                  }
-                  ]
-                }
+                "transitions": [{
+                  "block": 102885,
+                  "validatorselectionmode": "contract",
+                  "validatorcontractaddress": "0x0000000000000000000000000000000000007777"
+                }]
               },
               ...
             }
