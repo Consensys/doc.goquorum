@@ -15,9 +15,7 @@ If gas is enabled, then similar to public Ethereum networks, the account submitt
 The miner (or validator, in [proof of authority networks](consensus/comparing-poa.md)) that includes the transaction in a block receives the
 transaction cost.
 
-## Using gas in GoQuorum
-
-## Enabling gas price
+## Enable gas price
 
 To enable gas price in GoQuorum, set `enableGasPriceBlock` in the GoQuorum
 [genesis file](../configure-and-manage/configure/genesis-file/genesis-options.md) `config` object to a future block,
@@ -56,11 +54,11 @@ Therefore, the private transaction doesn't consume any gas.
 
 Standard geth behavior is that if a transaction has less gas than the accepted minimum
 (set using `--miner.gasprice`) then it is not mined by remote miner nodes.
-On Istanbul, it means the transaction is only processed when the current node becomes voted in as minter.
+On IBFT, it means the transaction is only processed when the current node becomes voted in as minter.
 
-The Istanbul block signer is rewarded for creating the block, using the account number derived from the nodekey of the miner.
+The IBFT block signer is rewarded for creating the block, using the account number derived from the node key of the miner.
 
-Note that `miner.SetEtherbase()`, and the command line flag `--miner.etherbase` have no effect for Istanbul.
+Note that `miner.SetEtherbase()`, and the command line flag `--miner.etherbase` have no effect for IBFT.
 
 ### Clique
 
