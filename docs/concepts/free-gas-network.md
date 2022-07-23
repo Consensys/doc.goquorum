@@ -4,7 +4,7 @@ description: Free gas networks
 
 # Free gas networks
 
-GoQuorum is a free gas network, which means there's no gas price.
+By default, GoQuorum is a free gas network, which means there's no gas price.
 
 Transactions use computational resources, so they have associated costs.
 *Gas* is the cost unit and *gas price* is the price per gas unit.
@@ -22,7 +22,7 @@ Some private networks might allocate Ether and use a non-zero gas price to limit
 In free gas networks, the gas price is zero but transactions still use gas, so the transaction cost (gas used multiplied
 by the gas price) is zero.
 
-In GoQuorum, gas price is completely removed.
+In GoQuorum, gas price is completely removed unless [explicitly enabled](gas-enabled-network.md).
 Gas price is not included as a transaction object parameter in [GoQuorum privacy API methods](../reference/api-methods.md#privacy-methods).
 When using standard Ethereum JSON-RPC methods such as
 [`sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.3.4/web3-eth.html#sendsignedtransaction), you must set
