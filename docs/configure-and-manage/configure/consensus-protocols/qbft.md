@@ -297,3 +297,56 @@ To swap between block header validator selection and contract validator selectio
             ```
 
 3. [Restart all nodes](../../../tutorials/private-network/create-qbft-network.md#5-initialize-nodes) in the network using the updated genesis file.
+
+### Configure Empty Block Period
+
+A block is produced every block period, whether there are transactions or not. This can lead to your network being bloated with many empty blocks, especially if you have a low block period e.g 1 second. Configuring `emptyBlockPeriodSeconds` aims to solve this by reducing (and optionally eliminating) the number of empty blocks produced in your network. You can specify `emptyBlockPeriodSeconds` using the config section or with a transition.
+
+Take the following example:
+
+```bash
+"transitions": [{
+  "block": ...,
+  "blockPeriodSeconds": 2
+  "emptyBlockPeriodSeconds": 60
+}]
+```
+
+A block will be produced every two seconds if there are transactions pending to be mined. If no transactions are pending, then no block will be produced for 60 seconds.
+
+You may end up with something that looks a little like this:
+
+```yaml
+block: 10
+timestamp: 07:00:00
+transactions: 1
+
+block: 11
+timestamp: 07:00:02
+transactions: 3
+
+block: 12
+timestamp: 07:01:02
+transactions: 0
+
+block: 13
+timestamp: 07:02:02
+transactions: 0
+
+block: 14
+timestamp: 07:02:08
+transactions: 2
+
+block: 15
+timestamp: 07:02:42
+transactions: 1
+
+block: 16
+timestamp: 07:03:12
+transactions: 1
+
+```
+
+!!! Note
+
+    If the `emptyBlockPeriodSeconds` is less than `blockPeriodSeconds` empty blocks will continue to be produced.
