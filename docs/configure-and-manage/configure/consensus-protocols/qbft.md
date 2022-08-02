@@ -241,6 +241,59 @@ To update an existing network with a new `blockperiodseconds`:
 1. To verify the changes after the transition block, call
   [`istanbul_getValidators`](../../../reference/api-methods.md#istanbul_getvalidators), specifying `latest`.
 
+### Configure empty block period
+
+A block is produced every block period, whether there are transactions or not. This can lead to your network being bloated with many empty blocks, especially if you have a low block period such as one second. Configuring `emptyBlockPeriodSeconds` helps reduce the number of empty blocks produced in your network. You can specify `emptyBlockPeriodSeconds` using the config section or with a transition.
+
+!!! example
+
+    ```bash
+    "transitions": [{
+      "block": ...,
+      "blockPeriodSeconds": 2
+      "emptyBlockPeriodSeconds": 60
+    }]
+    ```
+
+In the preceding example, a block is produced every two seconds if there are transactions pending to be mined. If no transactions are pending, then blocks are not produced until after 60 seconds.
+
+The blocks produced with those settings could have timestamps similar to the following:
+
+```yaml
+block: 10
+timestamp: 07:00:00
+transactions: 1
+
+block: 11
+timestamp: 07:00:02
+transactions: 3
+
+block: 12
+timestamp: 07:01:02
+transactions: 0
+
+block: 13
+timestamp: 07:02:02
+transactions: 0
+
+block: 14
+timestamp: 07:02:08
+transactions: 2
+
+block: 15
+timestamp: 07:02:42
+transactions: 1
+
+block: 16
+timestamp: 07:03:12
+transactions: 1
+
+```
+
+!!! Note
+
+    If the `emptyBlockPeriodSeconds` is less than `blockPeriodSeconds`, empty blocks continue to be produced.
+
 ### Swap validator management methods
 
 To swap between block header validator selection and contract validator selection methods in an existing network:
@@ -297,56 +350,3 @@ To swap between block header validator selection and contract validator selectio
             ```
 
 3. [Restart all nodes](../../../tutorials/private-network/create-qbft-network.md#5-initialize-nodes) in the network using the updated genesis file.
-
-### Configure Empty Block Period
-
-A block is produced every block period, whether there are transactions or not. This can lead to your network being bloated with many empty blocks, especially if you have a low block period e.g 1 second. Configuring `emptyBlockPeriodSeconds` aims to solve this by reducing (and optionally eliminating) the number of empty blocks produced in your network. You can specify `emptyBlockPeriodSeconds` using the config section or with a transition.
-
-Take the following example:
-
-```bash
-"transitions": [{
-  "block": ...,
-  "blockPeriodSeconds": 2
-  "emptyBlockPeriodSeconds": 60
-}]
-```
-
-A block will be produced every two seconds if there are transactions pending to be mined. If no transactions are pending, then no block will be produced for 60 seconds.
-
-You may end up with something that looks a little like this:
-
-```yaml
-block: 10
-timestamp: 07:00:00
-transactions: 1
-
-block: 11
-timestamp: 07:00:02
-transactions: 3
-
-block: 12
-timestamp: 07:01:02
-transactions: 0
-
-block: 13
-timestamp: 07:02:02
-transactions: 0
-
-block: 14
-timestamp: 07:02:08
-transactions: 2
-
-block: 15
-timestamp: 07:02:42
-transactions: 1
-
-block: 16
-timestamp: 07:03:12
-transactions: 1
-
-```
-
-!!! Note
-
-    If the `emptyBlockPeriodSeconds` is less than `blockPeriodSeconds` empty blocks will continue to be produced.
