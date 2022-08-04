@@ -243,7 +243,7 @@ To update an existing network with a new `blockperiodseconds`:
 
 ### Configure empty block period
 
-A block is produced every block period, whether there are transactions or not. This can lead to your network being bloated with many empty blocks, especially if you have a low block period such as one second. Configuring `emptyBlockPeriodSeconds` helps reduce the number of empty blocks produced in your network. You can specify `emptyBlockPeriodSeconds` using the config section or with a transition.
+A block is produced every block period, whether there are transactions or not. This can lead to your network being bloated with many empty blocks, especially if you have a low block period such as one second. Configuring `emptyBlockPeriodSeconds` helps to reduce the number of empty blocks produced in your network. You can specify `emptyBlockPeriodSeconds` using the config section or with a transition.
 
 !!! example
 
