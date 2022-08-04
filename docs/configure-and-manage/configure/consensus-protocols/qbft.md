@@ -292,7 +292,7 @@ transactions: 1
 
 !!! Note
 
-    If the `emptyBlockPeriodSeconds` is less than `blockPeriodSeconds`, empty blocks continue to be produced.
+    If `emptyBlockPeriodSeconds` is less than `blockPeriodSeconds`, empty blocks continue to be produced at the rate specefied in `blockPeriodSeconds`.
 
 ### Swap validator management methods
 
