@@ -20,4 +20,3 @@ jobs:
         uses: ConsenSys/doctools.action-builder/actions/tests/lint@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
