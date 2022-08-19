@@ -1,29 +1,29 @@
----
-name: Delete PR preview
+# ---
+# name: Delete PR preview
 
-on:
-  pull_request_target:
-    types: [closed]
+# on:
+#   pull_request_target:
+#     types: [closed]
 
-jobs:
-  deploy:
-    name: Remove PR preview from pages
-    runs-on: ubuntu-latest
-    environment: no-secret
-    permissions:
-      contents: write
-      pull-requests: write
+# jobs:
+#   deploy:
+#     name: Remove PR preview from pages
+#     runs-on: ubuntu-latest
+#     environment: no-secret
+#     permissions:
+#       contents: write
+#       pull-requests: write
 
-    steps:
-      - name: 'checkout code from repos'
-        uses: actions/checkout@v2
-        with:
-          ref: gh-pages
+#     steps:
+#       - name: 'checkout code from repos'
+#         uses: actions/checkout@v2
+#         with:
+#           ref: gh-pages
 
-      - name: Checkout actions
-        uses: actions/checkout@v2
-        with:
-          path: actions
+#       - name: Checkout actions
+#         uses: actions/checkout@v2
+#         with:
+#           path: actions
 
-      - name: Delete PR preview
-        uses: ConsenSys/doctools.action-builder/actions/pr_preview_delete@main
+#       - name: Delete PR preview
+#         uses: ConsenSys/doctools.action-builder/actions/pr_preview_delete@main
