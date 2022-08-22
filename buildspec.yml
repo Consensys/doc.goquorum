@@ -12,10 +12,7 @@ phases:
   post_build:
     commands:
       - ls -la .
-      - aws s3 sync ${OUTPUT_DIR}/ s3://${S3_OUTPUT_BUCKET}/goquorum/${CODEBUILD_RESOLVED_SOURCE_VERSION}/
-# artifacts:
-#   files:
-#     - ${OUTPUT_DIR}/**/*
-#   name: ${CODEBUILD_RESOLVED_SOURCE_VERSION}-$(date '+%Y-%m-%d')
-  #discard-paths: yes
-  #base-directory: location
+      - env
+      - if [[ "$CODEBUILD_WEBHOOK_EVENT" == "PUSH" ]]; then export SITE_ROOT=fred; fi
+      - env
+      - aws s3 sync ${OUTPUT_DIR}/ s3://${S3_OUTPUT_BUCKET}/goquorum/${SITE_ROOT}/
