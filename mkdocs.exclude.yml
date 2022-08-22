@@ -15,7 +15,9 @@
 INHERIT: /common/custom_theme/base.yml # DO NOT MODIFY THIS LINE
 
 plugins:
-  exclude:
+  - exclude:
       glob:
-#        - examples/excluded_file.md
+        #        - examples/excluded_file.md
         - global/test_accounts.md
+  - git-revision-date-localized:
+    fallback_to_build_date: true
