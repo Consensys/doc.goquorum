@@ -26,3 +26,5 @@ repo_url: https://github.com/ConsenSys/quorum
 site_author: GoQuorum community
 copyright: GoQuorum is licensed under GPLv3 License /
   This documentation is maintained by <a href="https://consensys.net/">ConsenSys</a>.
+
+strict: false
