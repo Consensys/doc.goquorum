@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - ls -la .
+      - env
+  build:
+    commands:
+      - aws --version
+      - docker run --rm -e SITE_ROOT="${SITE_ROOT}" -e SITE_URL="${SITE_ROOT}/${LANGUAGE}/${VERSION}/" -e VERSION=${VERSION} -e LANGUAGE=${LANGUAGE} -v ${PWD}:/workspace/ -w /workspace/ ghcr.io/consensys/doctools-builder:${DOCTOOLS_IMAGE_VERSION} build -s -d ${OUTPUT_DIR} --config-file ${MKDOCS_CONFIG}
+  post_build:
+    commands:
+      - ls -la .
+      - aws s3 sync ${OUTPUT_DIR}/ s3://${S3_OUTPUT_BUCKET}/goquorum/${CODEBUILD_RESOLVED_SOURCE_VERSION}/
+# artifacts:
+#   files:
+#     - ${OUTPUT_DIR}/**/*
+#   name: ${CODEBUILD_RESOLVED_SOURCE_VERSION}-$(date '+%Y-%m-%d')
+  #discard-paths: yes
+  #base-directory: location
