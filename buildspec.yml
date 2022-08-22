@@ -15,4 +15,4 @@ phases:
       - env
       - if [[ "$CODEBUILD_WEBHOOK_EVENT" == "PUSH" ]]; then export SITE_ROOT=fred; fi
       - env
-      - aws s3 sync ${OUTPUT_DIR}/ s3://${S3_OUTPUT_BUCKET}/goquorum/${SITE_ROOT}/
+      - aws s3 sync ${OUTPUT_DIR}/ s3://${S3_DOCS_BUCKET}/goquorum/${SITE_ROOT}/
