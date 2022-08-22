@@ -16,7 +16,7 @@ In some cases, they may have their own options to achieve similar tasks, but mus
 ## Prerequisites
 
 - [GoQuorum installed](../../deploy/install/binaries.md)
-- [Tessera]({{ extra.othersites.tessera }})
+- Tessera
 - [A running network](../../tutorials/private-network/create-ibft-network.md)
 
 ## Adding GoQuorum nodes

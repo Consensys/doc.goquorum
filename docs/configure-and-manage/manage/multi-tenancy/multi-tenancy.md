@@ -7,7 +7,7 @@ use the same GoQuorum node, with each tenant having its own private state(s).
 
 ### Prerequisites
 
-- [Tessera]({{ extra.othersites.tessera }}) version `21.4.0` or later installed
+- Tesera version `21.4.0` or later installed
 - GoQuorum version `21.4.2` or later installed
 
 !!! important

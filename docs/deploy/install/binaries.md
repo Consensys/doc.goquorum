@@ -4,7 +4,7 @@ description: GoQuorum and Tessera deployment via binaries
 
 # Install binaries
 
-You can install and use GoQuorum and [Tessera]({{ extra.othersites.tessera }}) using Docker containers, building
+You can install and use GoQuorum and Tessera using Docker containers, building
 from source, or by downloading pre-built release binaries.
 
 ## Release binaries

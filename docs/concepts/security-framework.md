@@ -101,7 +101,7 @@ The GoQuorum network produces logs that should be monitored for security anomali
 
 ## Transaction manager
 
-[Tessera]({{ extra.othersites.tessera }}) is GoQuorum's transaction manager.
+Tessera is GoQuorum's transaction manager.
 GoQuorum privacy features depend on Tessera to encrypt, decrypt, and broadcast the orchestrations of private
 transaction payloads.
 

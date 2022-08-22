@@ -99,7 +99,7 @@ From the token, the private state manager derives the private state the user is 
 
 ### Tessera resident groups
 
-MPS uses [Tessera resident groups]({{ extra.othersites.tessera }}/Concepts/Privacy-Groups/) to map tenants
+MPS uses [Tessera resident groups](/Concepts/Privacy-Groups/) to map tenants
 to private states.
 During Tessera startup, `residentGroups` are validated to check each Tessera key is part of a single resident group.
 Every Tessera key must be in a resident group for Tessera to start.

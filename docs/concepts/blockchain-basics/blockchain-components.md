@@ -61,7 +61,7 @@ transact with.
 In other cases, this may not be a concern at all.
 
 GoQuorum supports privacy using a *private transaction manager (PTM)* paired to your member node, typically
-[Tessera]({{ extra.othersites.tessera }}/).
+Tessera
 Tessera uses an enclave for cryptographic functionality and stores and allows access to encrypted transaction data, and
 exchanges encrypted payloads with other Tessera nodes.
 Tessera is restful/stateless and can be load balanced easily.
