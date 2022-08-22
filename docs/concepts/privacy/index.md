@@ -9,7 +9,7 @@ Other participants can't access the transaction content.
 
 ## Private transaction manager
 
-GoQuorum uses [Tessera]({{ extra.othersites.tessera }}) as the private transaction manager to implement private transactions.
+GoQuorum uses Tessera as the private transaction manager to implement private transactions.
 
 Tessera:
 

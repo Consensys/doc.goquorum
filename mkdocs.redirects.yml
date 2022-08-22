@@ -12,6 +12,7 @@
 
 # This configuration must inherit the base configuration file available in the Doctools docker image.
 # See source at https://github.com/ConsenSys/doctools.action-builder/blob/main/common/custom_theme/base.yml
+
 INHERIT: mkdocs.navigation.yml # DO NOT MODIFY THIS LINE
 
 # Configure redirects.

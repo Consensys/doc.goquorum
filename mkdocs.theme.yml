@@ -26,5 +26,5 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
-  logo: 'assets/logo.svg'
-  favicon: 'assets/favicon.svg'
+  logo: "assets/logo.svg"
+  favicon: "assets/favicon.svg"

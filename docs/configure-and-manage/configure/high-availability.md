@@ -29,4 +29,4 @@ configuration requirements for GoQuorum and Tessera.
         failover connection details. In a cloud environment this is taken care of by the providers;
         we recommend using AWS RDS or Azure Database.
 
-[Quorum-to-Tessera (Q2T) server configuration]: {{ extra.othersites.tessera }}/HowTo/Configure/TesseraAPI
+[Quorum-to-Tessera (Q2T) server configuration]: /HowTo/Configure/TesseraAPI
