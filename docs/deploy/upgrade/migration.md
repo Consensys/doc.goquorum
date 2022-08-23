@@ -17,11 +17,11 @@ Check the [release log](https://github.com/ConsenSys/quorum/releases) for any ac
 
 ## Upgrade to GoQuorum 22.4.1 - ⚠️ Berlin Hard Fork ⚠️
 
-When upgrading to and past this version, you need to specify `berlinBlock` in your genesis and run `geth init` again. The block needs to be sufficiently in the future to allow **ALL** your nodes in the network to upgrade before that block height is reached.
+When upgrading to and past this version, you need to specify a block for `berlinBlock` as the [milestone block in your genesis file](../../reference/genesis.md#milestone-blocks) and run `geth init` again. The block needs to be sufficiently in the future to allow **ALL** your nodes in the network to upgrade before that block height is reached.
 
-If you upgrade to this version and do not specify a value for `berlinBlock` it will default to `0`. So your network may work for a while, but if you need to resync your node, it will result in a forked state with a `Bad block error`.
+If you do not specify a value for `berlinBlock`, the default is `0`. So your network might work for a while, but if you need to resync your node, it results in a forked state with a `Bad block error`.
 
-More details about EIPs included in this upgrade and how they impact gas calculations. https://blog.ethereum.org/2021/03/08/ethereum-berlin-upgrade-announcement/
+For more details about EIPs included in this upgrade and how they impact gas calculations, refer to the [Ethereum blog](https://blog.ethereum.org/2021/03/08/ethereum-berlin-upgrade-announcement/).
 
 ## Upgrade to GoQuorum 22.1.0
 
