@@ -15,6 +15,22 @@ Check that the node starts without errors and has the latest block from the netw
 We don't recommend jumping versions during an upgrade; some versions require manual intervention.
 Check the [release log](https://github.com/ConsenSys/quorum/releases) for any actions you might need to take.
 
+## Upgrade to GoQuorum 22.7.0 - ⚠️ Berlin Hard Fork ⚠️
+
+When upgrading to and past this version, you should specify a block for `berlinBlock` if you wish to continue using snap sync.
+
+!!! warning
+
+    If you are using any privacy features you must use `--syncmode full`
+
+## Upgrade to GoQuorum 22.4.1 - ⚠️ Berlin Hard Fork ⚠️
+
+When upgrading to and past this version, you can specify a block for `berlinBlock` as the [milestone block in your genesis file](../../reference/genesis.md#milestone-blocks) and run `geth init` again. The block needs to be sufficiently in the future to allow **ALL** your nodes in the network to upgrade before that block height is reached.
+
+If you do not specify a value for `berlinBlock`, it will not be applied. However, specifying a `berlinBlock` is required for some features to continue you working (e.g snap sync)
+
+For more details about EIPs included in this upgrade and how they impact gas calculations, refer to the [Ethereum blog](https://blog.ethereum.org/2021/03/08/ethereum-berlin-upgrade-announcement/).
+
 ## Upgrade to GoQuorum 22.1.0
 
 There are [several significant changes to the underlying Geth 1.10](https://blog.ethereum.org/2021/03/03/geth-v1-10-0/)
