@@ -48,7 +48,7 @@ You can provide these flags when running `quorum-dev-quickstart`:
 | `--clientType=<STRING>`      | Yes                     | Use `quorum` for GoQuorum.                                                              |
 | `--privacy=<true|false>`     | Yes                     | Enables or disables private transaction support.                                        |
 | `--orchestrate=<true|false>` | No                      | Enables support for [ConsenSys Orchestrate](https://consensys.net/codefi/orchestrate/). |
-| `--monitoring=<STRING>`      | No                      | Use `default` for Prometheus, Grafana,`elk` to add ELK; `splunk` to add Splunk. |
+| `--monitoring=<STRING>`      | No                      | Use `loki` for Prometheus, Grafana and Loki, `elk` to add ELK; `splunk` to add Splunk.  |
 | `--outputPath=<PATH>`        | No                      | Path to output artifacts.                                                               |
 | `-h`, `--help`               | No                      | Show help.                                                                              |
 
@@ -66,6 +66,7 @@ You can use:
 * [Prometheus and Grafana](../../configure-and-manage/monitor/metrics.md) to collect and visualize metrics.
 * [Cakeshop](../../configure-and-manage/monitor/cakeshop.md) to explore the chain, work with contracts, and manage peers and permissions.
 * [Quorum Reporting](../../configure-and-manage/monitor/quorum-reporting.md) to inspect contracts.
+* [Grafana Loki](../../configure-and-manage/monitor/loki.md) to manage logs.
 * [Elastic Stack](../../configure-and-manage/monitor/elastic-stack.md) to manage logs.
 * [Splunk](../../configure-and-manage/monitor/splunk.md) to manage logs.
 

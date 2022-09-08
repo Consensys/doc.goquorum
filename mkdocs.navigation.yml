@@ -57,6 +57,7 @@ nav:
           - Backup and restore: configure-and-manage/manage/import-export.md
       - Monitor nodes:
           - Use metrics: configure-and-manage/monitor/metrics.md
+          - Use Grafana Loki: configure-and-manage/monitor/loki.md
           - Use Elastic Stack: configure-and-manage/monitor/elastic-stack.md
           - Use GoQuorum Hibernate: configure-and-manage/monitor/quorum-hibernate.md
           - Use Splunk: configure-and-manage/monitor/splunk.md
