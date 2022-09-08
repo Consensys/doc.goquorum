@@ -28,6 +28,5 @@ To view the GoQuorum Quickstart network logs in Loki:
 
 <!-- Links -->
 [Promtail configuration]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/common/promtail/promtail.yml
-[pipeline configuration]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/common/promtail/promtail.yml
 [Loki]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/common/loki/loki.yml
 [Grafana Loki]: https://grafana.com/oss/loki/
