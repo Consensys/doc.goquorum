@@ -101,5 +101,5 @@ The static block reward amount varies according to the current release, with the
 
 ### QBFT
 
-QBFT consensus protocol has its own specific way to reward the validated blocks, compatible with besu or with other modes.
+QBFT consensus protocol has its own specific way to reward block validators, compatible with besu or with other nodes.
 For more information, see the [block reward section](../configure-and-manage/configure/consensus-protocols/qbft.md#block-reward) in QBFT protocol.
