@@ -330,7 +330,7 @@ To do so, we have multiple modes, one compatible with Besu, with the miningBenef
     ```bash
     "transitions": [{
       "block": ...,
-      "blockRewar": "13",
+      "blockReward": "13",
       "beneficiaryList": ["0xa...", "0xb..."],
       "beneficiaryMode": "list"
     }]
@@ -344,7 +344,7 @@ To do so, we have multiple modes, one compatible with Besu, with the miningBenef
     ```bash
     "transitions": [{
       "block": ...,
-      "blockRewar": "13",
+      "blockReward": "13",
       "beneficiaryMode": "validators"
     }]
     ```
