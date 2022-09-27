@@ -98,3 +98,8 @@ The static block reward amount varies according to the current release, with the
 !!! info
 
     The block `miner` field is now populated with the rewarded account.
+
+### QBFT
+
+QBFT consensus protocol has its own specific way to reward the validated blocks, compatible with besu or with other modes.
+For more information, see the [block reward section](../configure-and-manage/configure/consensus-protocols/qbft.md#block-reward) in QBFT protocol.

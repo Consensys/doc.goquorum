@@ -294,6 +294,61 @@ transactions: 1
 
     If `emptyBlockPeriodSeconds` is less than `blockPeriodSeconds`, empty blocks continue to be produced at the rate specefied in `blockPeriodSeconds`.
 
+### Block reward
+
+When you are using gas fee, you may want to reward some faucets or accounts at every block.
+
+To do so, we have multiple modes, one compatible with Besu, with the miningBeneficiary field, another one where you can provide a list of accounts to reward or an automatic setup where all validators get the reward without the need to configure the list of accounts.
+
+#### Mining Beneficiary, the one account
+
+!!! example
+
+    ```bash
+    "transitions": [{
+      "block": ...,
+      "blockReward": "12",
+      "miningBeneficiary": "0x..."
+    }]
+    ```
+
+!!! example
+
+    ```bash
+    "transitions": [{
+      "block": ...,
+      "blockReward": "0xc",
+      "miningBeneficiary": "0x...",
+      "beneficiaryMode":"besu"
+    }]
+    ```
+
+#### List of Beneficiaries, multiple accounts
+
+!!! example
+
+    ```bash
+    "transitions": [{
+      "block": ...,
+      "blockRewar": "13",
+      "beneficiaryList": ["0xa...", "0xb..."],
+      "beneficiaryMode": "list"
+    }]
+    ```
+
+#### Validators
+
+
+!!! example
+
+    ```bash
+    "transitions": [{
+      "block": ...,
+      "blockRewar": "13",
+      "beneficiaryMode": "validators"
+    }]
+    ```
+
 ### Swap validator management methods
 
 To swap between block header validator selection and contract validator selection methods in an existing network:
