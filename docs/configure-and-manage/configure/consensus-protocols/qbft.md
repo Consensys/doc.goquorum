@@ -300,6 +300,8 @@ When you are using gas fee, you may want to reward some faucets or accounts at e
 
 To do so, we have multiple modes, one compatible with Besu, with the miningBeneficiary field, another one where you can provide a list of accounts to reward or an automatic setup where all validators get the reward without the need to configure the list of accounts.
 
+The block reward is in wei, can be either a decimal or hexadecimal encoded value in a string.
+
 #### Mining Beneficiary, the one account
 
 !!! example
@@ -337,7 +339,6 @@ To do so, we have multiple modes, one compatible with Besu, with the miningBenef
     ```
 
 #### Validators
-
 
 !!! example
 
