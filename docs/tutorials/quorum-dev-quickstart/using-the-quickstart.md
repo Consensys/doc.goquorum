@@ -68,6 +68,7 @@ When execution is successfully finished, the process lists the available service
     Prometheus address                             : http://localhost:9090/graph
     Cakeshop toolkit address                       : http://localhost:8999
     Grafana address                                : http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All
+    Collated logs using Grafana Loki               : http://localhost:3000/d/Ak6eXLsPxFemKYKEXfcH/quorum-logs-loki?orgId=1&var-app=quorum&var-search=
 
     For more information on the endpoints and services, refer to README.md in the installation directory.
     ****************************************************************
@@ -81,7 +82,9 @@ When execution is successfully finished, the process lists the available service
 * Use the [**Prometheus address**](http://localhost:9090/graph) to access the Prometheus dashboard
     and [monitor nodes and view metrics](../../configure-and-manage/monitor/metrics.md).
 * Use the [**Grafana address**](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All)
-    to access the Grafana dashboard to [monitor nodes and view metrics](../../configure-and-manage/monitor/metrics.md).
+    to access the Grafana dashboard to [monitor nodes and view metrics](../../configure-and-manage/monitor/metrics.md)
+* Use the [**Loki address**](http://localhost:3000/d/Ak6eXLsPxFemKYKEXfcH/quorum-logs-loki?orgId=1&var-app=quorum&var-search=)
+    to view the container [logs](../../configure-and-manage/monitor/loki.md).
 * Use the [**Kibana logs address**](http://localhost:5601/app/kibana#/discover) to
   [access and manage logs in Kibana](../../configure-and-manage/monitor/elastic-stack.md).
 
@@ -134,13 +137,18 @@ You can directly access these tools from your browser at the addresses displayed
 
 * [Prometheus dashboard](http://localhost:9090/graph).
 * [Grafana dashboard](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All).
+* [Grafana Loki logs dashboard](http://localhost:3000/d/Ak6eXLsPxFemKYKEXfcH/quorum-logs-loki?orgId=1&var-app=quorum&var-search=).
 
 For more details on how to configure and use these tools for your own nodes, see our
-[performances monitoring documentation](../../configure-and-manage/monitor/metrics.md),
+[performance monitoring documentation](../../configure-and-manage/monitor/metrics.md),
 the [Prometheus documentation](https://prometheus.io/docs/introduction/overview/)
 and [Grafana documentation](https://grafana.com/docs/).
 
 ![Grafana](../../images/dashboard_grafana_1.png)
+
+and collated logs via Grafana Loki
+
+![Loki](../../images/dashboard_grafana_loki.png)
 
 ## Run JSON-RPC requests
 
@@ -836,7 +844,6 @@ To shut down the private network and delete all containers and images created fr
 
 <!-- Links -->
 
-[Import one of the existing accounts above into MetaMask]: https://metamask.zendesk.com/hc/en-us/articles/360015489331-Importing-an-Account-New-UI-
 [create another test account from scratch]: https://metamask.zendesk.com/hc/en-us/articles/360015289452-Creating-Additional-MetaMask-Wallets-New-UI-
 
 ## Add a new node to the network
