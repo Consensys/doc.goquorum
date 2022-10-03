@@ -306,7 +306,7 @@ To do so, add a `transitions` configuration item and set the following:
 
 !!! example
 
-    === "Mining beneficiary, single account"
+    === "Single account mining beneficiary"
 
         ```bash
         "transitions": [{
