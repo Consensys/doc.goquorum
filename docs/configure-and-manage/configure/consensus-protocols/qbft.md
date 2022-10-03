@@ -304,10 +304,9 @@ To do so, add a `transitions` configuration item and set the following:
 * `miningBeneficiary` is a single account, list of accounts, or all validators.
 * `beneficiaryMode` is `"fixed"` for a single account, `"list"` for a list of accounts, or `"validators"` for all validators.
 
-
 !!! example
 
-    === "Mining beneficiary, single account
+    === "Mining beneficiary, single account"
 
         ```bash
         "transitions": [{
