@@ -296,59 +296,48 @@ transactions: 1
 
 ### Block reward
 
-When you are using gas fee, you may want to reward some faucets or accounts at every block.
+When you are using a gas fee, you might want to reward some faucets or accounts at every block.
 
-To do so, we have multiple modes, one compatible with Besu, with the miningBeneficiary field, another one where you can provide a list of accounts to reward or an automatic setup where all validators get the reward without the need to configure the list of accounts.
+To do so, add a `transitions` configuration item and set the following:
 
-The block reward is in wei, can be either a decimal or hexadecimal encoded value in a string.
+* `blockReward` is in wei, and can be either a decimal or hexadecimal-encoded value in a string.
+* `miningBeneficiary` is a single account, list of accounts, or all validators.
+* `beneficiaryMode` is `"fixed"` for a single account, `"list"` for a list of accounts, or `"validators"` for all validators.
 
-#### Mining Beneficiary, the one account
-
-!!! example
-
-    ```bash
-    "transitions": [{
-      "block": ...,
-      "blockReward": "12",
-      "miningBeneficiary": "0x..."
-    }]
-    ```
 
 !!! example
 
-    ```bash
-    "transitions": [{
-      "block": ...,
-      "blockReward": "0xc",
-      "miningBeneficiary": "0x...",
-      "beneficiaryMode":"fixed"
-    }]
-    ```
+    === "Mining beneficiary, single account
 
-#### List of Beneficiaries, multiple accounts
+        ```bash
+        "transitions": [{
+          "block": ...,
+          "blockReward": "0xc",
+          "miningBeneficiary": "0x...",
+          "beneficiaryMode":"fixed"
+        }]
+        ```
 
-!!! example
+    === "Multiple beneficiaries in a list"
 
-    ```bash
-    "transitions": [{
-      "block": ...,
-      "blockReward": "13",
-      "beneficiaryList": ["0xa...", "0xb..."],
-      "beneficiaryMode": "list"
-    }]
-    ```
+        ```bash
+        "transitions": [{
+          "block": ...,
+          "blockReward": "13",
+          "beneficiaryList": ["0xa...", "0xb..."],
+          "beneficiaryMode": "list"
+        }]
+        ```
 
-#### Validators
+    === "All validators"
 
-!!! example
-
-    ```bash
-    "transitions": [{
-      "block": ...,
-      "blockReward": "13",
-      "beneficiaryMode": "validators"
-    }]
-    ```
+        ```bash
+        "transitions": [{
+          "block": ...,
+          "blockReward": "13",
+          "beneficiaryMode": "validators"
+        }]
+        ```
 
 ### Swap validator management methods
 
