@@ -321,7 +321,7 @@ The block reward is in wei, can be either a decimal or hexadecimal encoded value
       "block": ...,
       "blockReward": "0xc",
       "miningBeneficiary": "0x...",
-      "beneficiaryMode":"besu"
+      "beneficiaryMode":"fixed"
     }]
     ```
 
