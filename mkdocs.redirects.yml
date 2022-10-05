@@ -31,6 +31,7 @@ plugins:
       Concepts/Multitenancy.md: concepts/multi-tenancy.md
       Concepts/Privacy/PrivacyEnhancements.md: concepts/privacy/privacy-enhancements.md
       Concepts/Privacy/PrivateAndPublic.md: concepts/privacy/private-and-public.md
+      how-to-guides/adding_nodes.md: tutorials/private-network/adding-removing-qbft-validators.md
 #      GetStarted/Install.md: Deployment/Binaries.md
 #      Account-Key-Management/Overview.md: Concepts/AccountManagement.md
 #      Account-Key-Management/Quorum/Overview.md: Concepts/AccountManagement.md
