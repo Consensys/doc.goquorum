@@ -294,21 +294,52 @@ transactions: 1
 
     If `emptyBlockPeriodSeconds` is less than `blockPeriodSeconds`, empty blocks continue to be produced at the rate specefied in `blockPeriodSeconds`.
 
-### Block reward
+### Rewards
 
-When you are using a gas fee, you might want to reward some faucets or accounts at every block.
+When you are using a gas enabled network you can decide who gets the rewards. This is broken down into two concepts transaction cost rewards and block rewards. By default the transaction cost rewards go to the validator and there are no additional block rewards allocated.
 
-To do so, add a `transitions` configuration item and set the following:
+#### Transaction Cost Rewards
 
-* `blockReward` is in wei, and can be either a decimal or hexadecimal-encoded value in a string.
-* `miningBeneficiary` is a single account, list of accounts, or all validators.
-* `beneficiaryMode` is `"fixed"` for a single account, `"list"` for a list of accounts, or `"validators"` for all validators.
+When sending a transaction on a gas enabled network the cost of the transaction is deducted from the sender. This amount is then allocated depending upon the `beneficiaryMode`.
+
+#### Block Rewards
+
+In addition to transaction cost rewards block rewards can also be applied at each block.
+
+### Beneficary Mode
+
+The beneficiary mode is used to decide which account to send rewards too. This applies to both transaction cost rewards and block rewards. This can either be a single beneficiary that is applied to all blocks and transactions or to the validator of the block.
+
+To configure rewards add a `transitions` configuration item and set the following:
+
+* `blockReward` is in wei, and can be either a decimal or hexadecimal-encoded value in a string - this is optional.
+* `miningBeneficiary` is a single account to receive benefits.
+* `beneficiaryMode` is `"fixed"` for a fixed single account or `"validator"` for the validator that validates that block.
 
 !!! example
 
-    === "Single account mining beneficiary"
+    === "Single account no block reward"
 
-        ```bash
+        ```json
+        "transitions": [{
+          "block": ...,
+          "miningBeneficiary": "0x...",
+          "beneficiaryMode":"fixed"
+        }]
+        ```
+
+    === "validators no block rewards"
+
+        ```json
+        "transitions": [{
+          "block": ...,
+          "beneficiaryMode": "validator"
+        }]
+        ```
+
+    === "Single account with block reward"
+
+        ```json
         "transitions": [{
           "block": ...,
           "blockReward": "0xc",
@@ -317,24 +348,13 @@ To do so, add a `transitions` configuration item and set the following:
         }]
         ```
 
-    === "Multiple beneficiaries in a list"
+    === "validators with no block rewards"
 
-        ```bash
+        ```json
         "transitions": [{
           "block": ...,
           "blockReward": "13",
-          "beneficiaryList": ["0xa...", "0xb..."],
-          "beneficiaryMode": "list"
-        }]
-        ```
-
-    === "All validators"
-
-        ```bash
-        "transitions": [{
-          "block": ...,
-          "blockReward": "13",
-          "beneficiaryMode": "validators"
+          "beneficiaryMode": "validator"
         }]
         ```
 
