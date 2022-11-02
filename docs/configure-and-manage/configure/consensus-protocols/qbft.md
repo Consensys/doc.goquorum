@@ -175,7 +175,7 @@ You can migrate an existing [IBFT](ibft.md) network to a QBFT network with the f
 
 The `transitions` genesis configuration item allows you to specify a future block number at which to change QBFT
 network configuration in an existing network.
-For example, you can update the [block time](#configure-block-time-on-an-existing-network) or
+For example, you can update the [block time](#configure-block-time-on-an-existing-network), configure [rewards](#rewards), or
 [validator management method](#swap-validator-management-methods).
 
 !!! caution
@@ -294,21 +294,53 @@ transactions: 1
 
     If `emptyBlockPeriodSeconds` is less than `blockPeriodSeconds`, empty blocks continue to be produced at the rate specefied in `blockPeriodSeconds`.
 
-### Block reward
+### Rewards
 
-When you are using a gas fee, you might want to reward some faucets or accounts at every block.
+When you are using a [gas-enabled network](../../../concepts/gas-enabled-network.md), you can configure who receives the rewards using a transition.
+There are two types of rewards: transaction cost rewards and block rewards.
+By default, the transaction cost rewards go to the validator and there are no additional block rewards allocated.
 
-To do so, add a `transitions` configuration item and set the following:
+#### Transaction cost rewards
 
-* `blockReward` is in wei, and can be either a decimal or hexadecimal-encoded value in a string.
-* `miningBeneficiary` is a single account, list of accounts, or all validators.
-* `beneficiaryMode` is `"fixed"` for a single account, `"list"` for a list of accounts, or `"validators"` for all validators.
+When sending a transaction on a gas-enabled network, the cost of the transaction is deducted from the sender.
+This amount is then allocated as determined by the `beneficaryMode`.
+
+#### Block rewards
+
+In addition to transaction cost rewards, you can apply an optional, extra amount as a block reward at each block.
+
+#### Configure rewards
+
+To configure rewards, add a `transitions` configuration item and set the following:
+
+* `blockReward` is in wei, and can be either a decimal or hexadecimal-encoded value in a string - this is optional.
+* `miningBeneficiary` is a single account to receive benefits when the `miningBeneficiary` is set to `"fixed"`.
+* `beneficiaryMode` is `"fixed"` for a fixed single account or `"validator"` for the validator that validates that block. This applies to both transaction cost rewards and block rewards.
 
 !!! example
 
-    === "Single account mining beneficiary"
+    === "Single account no block reward"
 
-        ```bash
+        ```json
+        "transitions": [{
+          "block": ...,
+          "miningBeneficiary": "0x...",
+          "beneficiaryMode":"fixed"
+        }]
+        ```
+
+    === "validators no block rewards"
+
+        ```json
+        "transitions": [{
+          "block": ...,
+          "beneficiaryMode": "validator"
+        }]
+        ```
+
+    === "Single account with block reward"
+
+        ```json
         "transitions": [{
           "block": ...,
           "blockReward": "0xc",
@@ -317,24 +349,13 @@ To do so, add a `transitions` configuration item and set the following:
         }]
         ```
 
-    === "Multiple beneficiaries in a list"
+    === "validators with block rewards"
 
-        ```bash
+        ```json
         "transitions": [{
           "block": ...,
           "blockReward": "13",
-          "beneficiaryList": ["0xa...", "0xb..."],
-          "beneficiaryMode": "list"
-        }]
-        ```
-
-    === "All validators"
-
-        ```bash
-        "transitions": [{
-          "block": ...,
-          "blockReward": "13",
-          "beneficiaryMode": "validators"
+          "beneficiaryMode": "validator"
         }]
         ```
 
