@@ -13,4 +13,3 @@ for more information on support services.
 - :fontawesome-brands-discord: [Discord](https://discord.gg/5U9Jwp7)
 - :material-web: read more on [ConsenSys Quorum site](https://consensys.net/quorum/)
 - :fontawesome-brands-github: [create an issue on the repository](https://github.com/ConsenSys/quorum/issues).
-
