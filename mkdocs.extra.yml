@@ -31,7 +31,7 @@ extra:
     - icon: fontawesome/brands/discord
       link: https://discord.gg/5U9Jwp7
     - icon: fontawesome/solid/envelope
-      link: mailto:quorum@consensys.net
+      link: https://consensys.net/quorum/contact-us
     - icon: material/web
       link: https://consensys.net/quorum/developers
   version:
