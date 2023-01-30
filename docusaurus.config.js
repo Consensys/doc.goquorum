@@ -160,7 +160,7 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Learn",
+            title: "Docs",
             items: [
               {
                 label: "Deploy",
