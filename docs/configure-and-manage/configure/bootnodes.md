@@ -8,10 +8,13 @@ sidebar_position: 4
 
 You can use bootnodes in GoQuorum to initially discover peers. Bootnodes are regular nodes used to discover other nodes.
 
-!!! tip Bootnodes and [static nodes](static-nodes.md) are parallel methods for finding peers. Depending on your use case, you can use only bootnodes, only static nodes, or both.
+:::tip
 
-    To find peers, configure one or more bootnodes as described on this page.
-    To configure a specific set of peer connections, use [static nodes](static-nodes.md).
+Bootnodes and [static nodes](static-nodes.md) are parallel methods for finding peers. Depending on your use case, you can use only bootnodes, only static nodes, or both.
+
+To find peers, configure one or more bootnodes as described on this page. To configure a specific set of peer connections, use [static nodes](static-nodes.md).
+
+:::
 
 ## Development and testing networks
 
@@ -23,11 +26,9 @@ In production networks, [configure two or more nodes as bootnodes](#production-n
 
 To start a node, specify a bootnode [enode URL](https://eth.wiki/en/fundamentals/enode-url-format) for P2P discovery, using the [`--bootnodes`](https://geth.ethereum.org/docs/interface/command-line-options) option.
 
-!!! example
-
-    ```bash
-    geth --datadir nodeDataPath --bootnodes enode://c35c3ec90a8a51fd5703594c6303382f3ae6b2ecb99bab2c04b3794f2bc3fc2631dabb0c08af795787a6c004d8f532230ae6e9925cbbefb0b28b79295d615f@127.0.0.1:30303
-    ```
+```bash
+geth --datadir nodeDataPath --bootnodes enode://c35c3ec90a8a51fd5703594c6303382f3ae6b2ecb99bab2c04b3794f2bc3fc2631dabb0c08af795787a6c004d8f532230ae6e9925cbbefb0b28b79295d615f@127.0.0.1:30303
+```
 
 The default host and port advertised to other peers for P2P discovery is `127.0.0.1:30303`. To specify a different host or port, use the [`--discovery.dns`](https://geth.ethereum.org/docs/interface/command-line-options) and [`--port`](https://geth.ethereum.org/docs/interface/command-line-options) options.
 
@@ -48,18 +49,17 @@ We recommend that you store the bootnode configuration under source control.
 
 To allow for continuity in the event of failure, specify all bootnodes in a comma-separated list using the [`--bootnodes`](https://geth.ethereum.org/docs/interface/command-line-options) option for each node, including the bootnodes.
 
-!!! example
+If your network has two bootnodes, pass the following parameter to all nodes, including the bootnodes.
 
-    If your network has two bootnodes, pass the following parameter to all nodes, including the bootnodes.
+```bash
+--bootnodes=enode://<publicKeyBootnode1>@<ipBootnode1>:30303,<publicKeyBootnode2>@<ipBootnode2>:30303
+```
 
-    ```bash
-    --bootnodes=enode://<publicKeyBootnode1>@<ipBootnode1>:30303,<publicKeyBootnode2>@<ipBootnode2>:30303
-    ```
+:::tip
 
-!!! tip
+Having each bootnode include the other bootnodes increases the speed of discovery. Nodes ignore their own enode in the bootnodes list so you can use the same bootnode list for all bootnodes.
 
-    Having each bootnode include the other bootnodes increases the speed of discovery.
-    Nodes ignore their own enode in the bootnodes list so you can use the same bootnode list for all bootnodes.
+:::
 
 ### Adding and removing bootnodes
 

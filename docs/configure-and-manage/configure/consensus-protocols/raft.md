@@ -1,5 +1,5 @@
 ---
-title: RAFT
+title: Raft
 description: Configuring Raft consensus
 sidebar_position: 3
 ---
@@ -8,21 +8,23 @@ sidebar_position: 3
 
 GoQuorum implements the Raft proof of authority [consensus protocol](../../../concepts/consensus-index.md). To enable Raft consensus, specify the [`--raft`](../../../reference/cli-syntax.md#raft) command line option when starting GoQuorum. You can [create a private network using Raft](../../../tutorials/private-network/create-a-raft-network.md).
 
-!!! warning
+:::caution
 
-    Raft is not suitable for production environments.
-    Use only in development environments.
-    You can [migrate a Raft network to another consensus protocol](#migrate-from-raft-to-another-consensus-protocol).
+Raft is not suitable for production environments. Use only in development environments. You can [migrate a Raft network to another consensus protocol](#migrate-from-raft-to-another-consensus-protocol).
+
+:::
 
 Raft requires that all initial nodes in the cluster are configured as [static peers](https://github.com/ethereum/go-ethereum/wiki/connecting-to-the-network#static-nodes). The order of the enode IDs in the `static-nodes.json` file must be the same across all peers.
 
 The enode IDs must include a `raftport` querystring parameter specifying the Raft port for each peer.
 
-!!! example
+:::tip Example
 
-    ```bash
-    enode://abcd@127.0.0.1:30400?raftport=50400
-    ```
+```bash
+enode://abcd@127.0.0.1:30400?raftport=50400
+```
+
+:::
 
 For the Raft network to work, 51% of the peers must be up and running. We recommend having an odd number of at least 3 peers in the network.
 

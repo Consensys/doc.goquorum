@@ -8,9 +8,11 @@ sidebar_position: 6
 
 A [qlight client node](../../concepts/qlight-node.md) requires a full node configured to act as a qlight server. The server node is usually set up to support [multiple private states](../../concepts/multi-tenancy.md#multiple-private-states) (MPS), with the qlight client set up to use a [private state identifier](../../concepts/multi-tenancy.md#private-state-identifier) (PSI) which is managed by the server node.
 
-!!! note
+:::note
 
-    Setting up a server node to support MPS is not required, for example, when setting up a qlight client for offloading processing from a full node.
+Setting up a server node to support MPS is not required, for example, when setting up a qlight client for offloading processing from a full node.
+
+:::
 
 ## Configure qlight client
 

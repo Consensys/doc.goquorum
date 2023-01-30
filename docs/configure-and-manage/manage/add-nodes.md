@@ -13,7 +13,7 @@ When adding new nodes to the network, it's important to understand that the GoQu
 ## Prerequisites
 
 - [GoQuorum installed](../../deploy/install/binaries.md)
-- [Tessera
+- [Tessera](https://docs.tessera.consensys.net/en/stable/)
 - [A running network](../../tutorials/private-network/create-ibft-network.md)
 
 ## Adding GoQuorum nodes
@@ -37,19 +37,31 @@ After `addPeer` or `addLearner`:
     geth --datadir <NEW-NODE-DATA-DIRECTORY> init <GENESIS-FILE>
     ```
 
-    !!! note Where you get the genesis file is dependent on the network. You may get it from an existing peer, a network operator, or somewhere else.
+    :::note
+
+    Where you get the genesis file is dependent on the network. You may get it from an existing peer, a network operator, or somewhere else.
+
+    :::
 
 1.  Start the new GoQuorum node with the [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting) and [`--raft`](../../reference/cli-syntax.md#raft) command line options. Use the Raft ID returned by `addPeer` or `addLearner` as the argument for `--raftjoinexisting`.
 
-    !!! example
+    :::tip Example
 
-         ```bash
-          PRIVATE_CONFIG=ignore geth --datadir qdata/dd7 ... OTHER ARGS ... --raft --raftport 50407 --http.port 22006 --port 21006 --raftjoinexisting 7
-         ```
+    ```bash
+    PRIVATE_CONFIG=ignore geth --datadir qdata/dd7 ... OTHER ARGS ... --raft --raftport 50407 --http.port 22006 --port 21006 --raftjoinexisting 7
+    ```
+
+    :::
 
     The new node is now up and running, and will start syncing the blockchain from existing peers. Once this has completed, it can send new transactions just as any other peer.
 
-!!! important For a Raft network to work, 51% of the peers must be up and running. We recommend having an odd number of at least 3 peers in a network.
+:::caution
+
+For a Raft network to work, 51% of the peers must be up and running.
+
+We recommend having an odd number of at least 3 peers in a network.
+
+:::
 
 ### IBFT, QBFT, and Clique
 
@@ -61,10 +73,11 @@ Adding a non-validator node to an [IBFT](../configure/consensus-protocols/ibft.m
     geth --datadir <NEW-NODE-DATA-DIRECTORY> init <GENESIS-FILE>
     ```
 
-    !!! note
+    :::note
 
-        Where you get the genesis file is dependent on the network.
-        You may get it from an existing peer, a network operator, or somewhere else.
+    Where you get the genesis file is dependent on the network. You may get it from an existing peer, a network operator, or somewhere else.
+
+    :::
 
 1.  If you are using permissioning or peer-to-peer discovery, see the [extra options](#extra-options).
 
@@ -72,10 +85,11 @@ Adding a non-validator node to an [IBFT](../configure/consensus-protocols/ibft.m
 
 Adding a validator to an IBFT or QBFT network requires using the consensus APIs outlined in the [IBFT tutorial](../../tutorials/private-network/adding-removing-ibft-validators.md) and the [QBFT tutorial](../../tutorials/private-network/adding-removing-qbft-validators.md).
 
-!!! info
+:::info
 
-    Validator nodes require the [`--mine`](https://geth.ethereum.org/docs/interface/command-line-options) command line
-    option on startup, which enables mining, while non-validator nodes do not.
+Validator nodes require the [`--mine`](https://geth.ethereum.org/docs/interface/command-line-options) command line option on startup, which enables mining, while non-validator nodes do not.
+
+:::
 
 ### Extra options
 
@@ -95,11 +109,12 @@ When adding a new node, [configure static peers](../configure/static-nodes.md) i
 
 The more peers defined here, the better the network connectivity and fault tolerance.
 
-!!! note
+:::note
 
-    * You don't need to update the existing peers' static nodes for the connection to be established, although it is
-      good practice to do so.
-    * You don't need to specify every peer in your static nodes file if you do not wish to connect to every peer directly.
+- You don't need to update the existing peers' static nodes for the connection to be established, although it is good practice to do so.
+- You don't need to specify every peer in your static nodes file if you do not wish to connect to every peer directly.
+
+:::
 
 #### Peer-to-peer discovery
 
@@ -109,31 +124,37 @@ If using discovery, more options in addition to static nodes become available.
 
 - You may [specify bootnodes](../configure/bootnodes.md) using the `--bootnodes` parameter. This takes a comma-separated list of enode URLs, similar to the `static-nodes.json` file. These act in the same way as static nodes, letting you connect to them and find out about other peers, who you then connect to.
 
-!!! note
+:::note
 
-    If you have discovery disabled, you won't try to find other nodes to connect to, but others can still find and connect to you.
+If you have discovery disabled, you won't try to find other nodes to connect to, but others can still find and connect to you.
+
+:::
 
 ## Adding Tessera nodes
 
 Add a new [Tessera](https://github.com/ConsenSys/tessera) node by ensuring you have one of the existing nodes listed in your Tessera peer list.
 
-!!! example "Peer configuration example"
+:::tip Peer configuration example
 
-    ```json
+```json
+{
+  "peers": [
     {
-      "peers": [
-        {
-          "url": "http://existingpeer1.com:8080"
-        }
-      ]
+      "url": "http://existingpeer1.com:8080"
     }
-    ```
+  ]
+}
+```
+
+:::
 
 From there, Tessera connects to that peer and discovers and connects to all the other Tessera nodes in the network.
 
-!!! note
+:::note
 
-    You may want to include multiple peers in the peer list in case any of them are offline/unreachable.
+You may want to include multiple peers in the peer list in case any of them are offline/unreachable.
+
+:::
 
 ### IP allowlisting
 
@@ -151,23 +172,25 @@ To add a new Tessera node with allowlisting enabled:
 
 1.  Start the new peer, setting the `peers` configuration to mirror the existing network.
 
-    !!! example "Peers configuration example"
+    :::tip Peers configuration example
 
-        ```json
+    ```json
+    {
+      "peers": [
         {
-          "peers": [
-            {
-              "url": "http://existingpeer1.com:8080"
-            },
-            {
-              "url": "http://existingpeer2.com:8080"
-            },
-            {
-              "url": "http://existingpeer3.com:8080"
-            }
-          ]
+          "url": "http://existingpeer1.com:8080"
+        },
+        {
+          "url": "http://existingpeer2.com:8080"
+        },
+        {
+          "url": "http://existingpeer3.com:8080"
         }
-        ```
+      ]
+    }
+    ```
+
+    :::
 
     The new node now allows incoming connections from the existing peers, and existing peers allow incoming connections from the new peer.
 
@@ -177,12 +200,12 @@ You can [disable Tessera discovery](https://docs.tessera.consensys.net/en/stable
 
 This means that if Tessera finds any keys owned by a node not in its peer list, those keys are discarded and private transactions cannot be sent to that public key.
 
-!!! note "Notes"
+:::note
 
-    - This does not affect incoming transactions.
-      Someone not in your peer list can still send transactions to your node, unless you also enable the IP allowlist option.
-    - [IP allowlisting](#ip-allowlisting) blocks communications between nodes, whereas disabling discovery only affects
-      which public keys Tessera keeps track of.
+- This does not affect incoming transactions. Someone not in your peer list can still send transactions to your node, unless you also enable the IP allowlist option.
+- [IP allowlisting](#ip-allowlisting) blocks communications between nodes, whereas disabling discovery only affects which public keys Tessera keeps track of.
+
+:::
 
 To add a new Tessera node with discovery disabled:
 
@@ -192,24 +215,26 @@ To add a new Tessera node with discovery disabled:
     java -jar tessera.jar admin -configfile /path/to/existing-node-config.json -addpeer http://newpeer.com:8080
     ```
 
-1.  Start the new peer, setting the `peers` configuration to mirror the existing network.
+2.  Start the new peer, setting the `peers` configuration to mirror the existing network.
 
-    !!! example "Peers configuration example"
+    :::tip Peers configuration example
 
-        ```json
+    ```json
+    {
+      "peers": [
         {
-          "peers": [
-            {
-              "url": "http://existingpeer1.com:8080"
-            },
-            {
-              "url": "http://existingpeer2.com:8080"
-            },
-            {
-              "url": "http://existingpeer3.com:8080"
-            }
-          ]
+          "url": "http://existingpeer1.com:8080"
+        },
+        {
+          "url": "http://existingpeer2.com:8080"
+        },
+        {
+          "url": "http://existingpeer3.com:8080"
         }
-        ```
+      ]
+    }
+    ```
+
+    :::
 
     The new node now records public keys belonging to the existing peers, and existing peers record public keys belonging to the new peer. This allows private transactions to be sent both directions.

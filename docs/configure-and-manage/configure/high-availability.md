@@ -24,11 +24,10 @@ You can configure GoQuorum for end-to-end high availability (HA). This section c
 - The [Quorum-to-Tessera (Q2T) server configuration] uses HTTP or HTTPS.
 - The Tessera nodes share the same database.
 
-  !!! important
+  :::caution
 
-        We recommend using a relational database that is configured for HA. If you are maintaining
-        the database yourself, ensure mirroring is set up, and the supplied JDBC url includes the
-        failover connection details. In a cloud environment this is taken care of by the providers;
-        we recommend using AWS RDS or Azure Database.
+  We recommend using a relational database that is configured for HA. If you are maintaining the database yourself, ensure mirroring is set up, and the supplied JDBC url includes the failover connection details. In a cloud environment this is taken care of by the providers; we recommend using AWS RDS or Azure Database.
+
+  :::
 
 [Quorum-to-Tessera (Q2T) server configuration]: https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TesseraAPI

@@ -14,8 +14,7 @@ You can use an [Ansible Galaxy](https://galaxy.ansible.com/consensys/goquorum) r
 
 The first step is to include the role in the `requirements.yaml` file with any other roles that you use. For example the Prometheus exporter roles below publishes system metrics that can be scraped with Prometheus
 
-```bash
-# requirements.yaml
+```yaml title="requirements.yaml"
 ---
 roles:
   - src: consensys.goquorum
@@ -24,7 +23,6 @@ roles:
     version: v1.4.0
   - src: undergreen.prometheus-exporters-common
     version: v1.2.0
-
 ```
 
 Then install the role:
@@ -37,25 +35,35 @@ ansible-galaxy install --role-file requirements.yaml
 
 After you [install the role](#install-the-role), create a file called `goquorum.yml` where you can define variables to configure GoQuorum. For example, you can configure the JSON-RPC service as follows:
 
-```bash
-# goquorum.yml
+```yaml title="goquorum.yml"
 ---
 - hosts: localhost
   connection: local
   force_handlers: True
 
   roles:
-  - role: consensys.goquorum
-    vars:
-      goquorum_version: vX.Y.Z
-      goquorum_consensus_algorithm: "istanbul"
-      goquorum_genesis_path: "/path/to/genesis_file"
-      goquorum_http_enabled: true
-      goquorum_http_host: 127.0.0.1
-      goquorum_http_port: 8545
-      goquorum_http_api: ["admin","db","eth","debug","miner","net","web3","quorum","ibft"]
-      goquorum_http_cors_origins: ["all"]
-      goquorum_http_virtual_hosts: ["all"]
+    - role: consensys.goquorum
+      vars:
+        goquorum_version: vX.Y.Z
+        goquorum_consensus_algorithm: "istanbul"
+        goquorum_genesis_path: "/path/to/genesis_file"
+        goquorum_http_enabled: true
+        goquorum_http_host: 127.0.0.1
+        goquorum_http_port: 8545
+        goquorum_http_api:
+          [
+            "admin",
+            "db",
+            "eth",
+            "debug",
+            "miner",
+            "net",
+            "web3",
+            "quorum",
+            "ibft",
+          ]
+        goquorum_http_cors_origins: ["all"]
+        goquorum_http_virtual_hosts: ["all"]
 ```
 
 Run the file as follows:

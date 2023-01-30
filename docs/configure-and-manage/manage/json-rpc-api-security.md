@@ -81,87 +81,91 @@ Use the following command line options to allow a secured GoQuorum node connecti
 
 For example, connect to the node using `--rpcclitls.insecureskipverify` to ignore the server's certificate validation:
 
-=== "HTTP"
+<!--tabs-->
 
-    ```bash
-    geth attach https://localhost:22000 --rpcclitls.insecureskipverify
-    ```
+# HTTP
 
-=== "WebSocket"
+```bash
+geth attach https://localhost:22000 --rpcclitls.insecureskipverify
+```
 
-    ```bash
-    geth attach wss://localhost:23000 --rpcclitls.insecureskipverify
-    ```
+# WebSocket
+
+```bash
+geth attach wss://localhost:23000 --rpcclitls.insecureskipverify
+```
+
+<!--/tabs-->
 
 ### `ethclient`
 
 `ethclient` provides a Go client for the Ethereum RPC API. It also supports GoQuorum-specific APIs and protected APIs.
 
-=== "HTTP"
+<!--tabs-->
 
-    For the HTTP endpoint, the preauthenticated token is populated in the `Authorization` HTTP request header for each call.
-    The token value is obtained from the `rpc.HttpCredentialsProviderFunc` implementation, which is configured after
-    `rpc.Client` is instantiated.
+# HTTP
 
-    ```go
-    // obtain the preauthenticated bearer token
-    // by authenticating with the authorization server
-    token := ...
-    // instantiate rpc.Client
-    c, err := rpc.Dial("http://...")
-    if err != nil {
-        // handle err
-    }
-    var f rpc.HttpCredentialsProviderFunc = func(ctx context.Context) (string, error) {
-        // optionally to refresh the token if necessary
-        return "Bearer " + token, nil
-    }
-    // configure rpc.Client with preauthenticated token
-    authenticatedClient, err := c.WithHTTPCredentials(f)
-    if err != nil {
-        // handle err
-    }
+For the HTTP endpoint, the preauthenticated token is populated in the `Authorization` HTTP request header for each call. The token value is obtained from the `rpc.HttpCredentialsProviderFunc` implementation, which is configured after `rpc.Client` is instantiated.
 
-    // use authenticatedClient as usual
-    ```
+```go
+// obtain the preauthenticated bearer token
+// by authenticating with the authorization server
+token := ...
+// instantiate rpc.Client
+c, err := rpc.Dial("http://...")
+if err != nil {
+    // handle err
+}
+var f rpc.HttpCredentialsProviderFunc = func(ctx context.Context) (string, error) {
+    // optionally to refresh the token if necessary
+    return "Bearer " + token, nil
+}
+// configure rpc.Client with preauthenticated token
+authenticatedClient, err := c.WithHTTPCredentials(f)
+if err != nil {
+    // handle err
+}
 
-    To customize TLS client configuration:
+// use authenticatedClient as usual
+```
 
-    ```go
-    // instantiate a http.Client with custom TLS client config
-    myHttpClient := ...
-    // instantiate rpc.Client
-    c, err := rpc.DialHTTPWithClient("https://...", myHttpClient)
-    ```
+To customize TLS client configuration:
 
-=== "WebSocket"
+```go
+// instantiate a http.Client with custom TLS client config
+myHttpClient := ...
+// instantiate rpc.Client
+c, err := rpc.DialHTTPWithClient("https://...", myHttpClient)
+```
 
-    For the WS endpoint, the preauthenticated token is populated in the `Authorization` HTTP request header only once
-    during the handshake. The token value is obtained from the `rpc.HttpCredentialsProviderFunc` implementation via
-    `context.Context` when dialing.
+# WebSocket
 
-    ```go
-    // obtain the preauthenticated bearer token
-    // by authenticating with the authorization server
-    token := ...
+For the WS endpoint, the preauthenticated token is populated in the `Authorization` HTTP request header only once during the handshake. The token value is obtained from the `rpc.HttpCredentialsProviderFunc` implementation via `context.Context` when dialing.
 
-    var f rpc.HttpCredentialsProviderFunc = func(ctx context.Context) (string, error) {
-        // optionally to refresh the token if necessary
-        return "Bearer " + token, nil
-    }
-    ctx := context.WithValue(context.Background(), rpc.CtxCredentialsProvider, f)
-    authenticatedClient, err := rpc.DialContext(ctx, "ws://...)
-    if err != nil {
-        // handle err
-    }
+```go
+// obtain the preauthenticated bearer token
+// by authenticating with the authorization server
+token := ...
 
-    // use authenticatedClient as usual
-    ```
+var f rpc.HttpCredentialsProviderFunc = func(ctx context.Context) (string, error) {
+    // optionally to refresh the token if necessary
+    return "Bearer " + token, nil
+}
+ctx := context.WithValue(context.Background(), rpc.CtxCredentialsProvider, f)
+authenticatedClient, err := rpc.DialContext(ctx, "ws://...)
+if err != nil {
+    // handle err
+}
 
-    To customize the TLS client configuration, use `rpc.DialWebsocketWithCustomTLS()` instead of `rpc.DialContext()`:
+// use authenticatedClient as usual
+```
 
-    ```go
-    // create a tls.Config
-    tlsConfig := &tls.Config{...}
-    c, err := rpc.DialWebsocketWithCustomTLS(ctx, "wss://...", "", tlsConfig)
-    ```
+To customize the TLS client configuration, use `rpc.DialWebsocketWithCustomTLS()` instead of `rpc.DialContext()`:
+
+```go
+// create a tls.Config
+tlsConfig := &tls.Config{...}
+c, err := rpc.DialWebsocketWithCustomTLS(ctx, "wss://...", "", tlsConfig)
+```
+
+<!--/tabs-->

@@ -54,18 +54,24 @@ An IPC socket configuration file has the following parameters.
 - `timeout` - (optional) Timeout when sending messages, in seconds. Setting to 0 disables the timeout. The default is 5 seconds. You can increase this value if transaction manager responses are too slow.
 - `dialTimeout` - (optional) Timeout for connecting to the socket, in seconds. The default is 1 second.
 
-!!! example "ipc-config-file.toml"
+:::tip ipc-config-file.toml
 
-    ```toml
-    socket = "tm.ipc"
-    workdir = "path/to/ipc/file"
-    timeout = 5
-    dialTimeout = 1
-    ```
+```toml
+socket = "tm.ipc"
+workdir = "path/to/ipc/file"
+timeout = 5
+dialTimeout = 1
+```
+
+:::
 
 ### HTTP connection
 
-!!! warning This should only be used for development purposes, due to a lack of security on the connection. For production environments, you should enable TLS on the connection.
+:::caution
+
+This should only be used for development purposes, due to a lack of security on the connection. For production environments, you should enable TLS on the connection.
+
+:::
 
 An HTTP configuration file has the following parameters.
 
@@ -74,14 +80,16 @@ An HTTP configuration file has the following parameters.
 - `writeBufferSize` - (optional) Size of the write buffer, in bytes. Setting to 0 or not specifying uses the `http.Transport` default.
 - `readBufferSize` - (optional) Size of the read buffer, in bytes. Setting to 0 or not specifying uses the `http.Transport` default.
 
-!!! example "http-config-file.toml"
+:::tip http-config-file.toml
 
-    ```toml
-    httpUrl = "HTTP://127.0.0.1:9101"
-    timeout = 5
-    httpWriteBufferSize = 4096
-    httpReadBufferSize = 4096
-    ```
+```
+httpUrl = "HTTP://127.0.0.1:9101"
+timeout = 5
+httpWriteBufferSize = 4096
+httpReadBufferSize = 4096
+```
+
+:::
 
 ### HTTP connection using TLS
 
@@ -97,19 +105,21 @@ An HTTP configuration file using TLS has the following parameters.
 - `writeBufferSize` - (optional) Size of the write buffer, in bytes. Setting to 0 or not specifying uses the `http.Transport` default.
 - `readBufferSize` - (optional) Size of the read buffer, in bytes. Setting to 0 or not specifying uses the `http.Transport` default.
 
-!!! example "http-config-file.toml"
+:::tip http-config-file.toml
 
-    ```toml
-    httpUrl = "HTTPS://127.0.0.1:9101"
-    tlsMode = "STRICT"
-    tlsRootCA = "/path/to/ca-root.cert.pem"
-    tlsClientCert = "/path/to/client-ca-chain.cert.pem"
-    tlsClientKey = "/path/to/client.key.pem"
-    timeout = 5
-    httpIdleConnTimeout = 10
-    httpWriteBufferSize = 4096
-    httpReadBufferSize = 4096
-    ```
+```
+httpUrl = "HTTPS://127.0.0.1:9101"
+tlsMode = "STRICT"
+tlsRootCA = "/path/to/ca-root.cert.pem"
+tlsClientCert = "/path/to/client-ca-chain.cert.pem"
+tlsClientKey = "/path/to/client.key.pem"
+timeout = 5
+httpIdleConnTimeout = 10
+httpWriteBufferSize = 4096
+httpReadBufferSize = 4096
+```
+
+:::
 
 ## Using command line options
 
@@ -119,23 +129,31 @@ Use [`--ptm.*` command line options](../../reference/cli-syntax.md#ptmdialtimeou
 
 Specify the path to the IPC socket file using [`--ptm.socket`](../../reference/cli-syntax.md#ptmsocket).
 
-!!! example "Example IPC connection"
+:::tip Example IPC connection
 
-    ```bash
-    geth <other parameters> --ptm.socket qdata/c1/tm.ipc
-    ```
+```bash
+geth <other parameters> --ptm.socket qdata/c1/tm.ipc
+```
+
+:::
 
 ### HTTP connection
 
-!!! warning This should only be used for development purposes, due to a lack of security on the connection. For production environments, you should enable TLS on the connection.
+:::caution
+
+This should only be used for development purposes, due to a lack of security on the connection. For production environments, you should enable TLS on the connection.
+
+:::
 
 Specify the HTTP URL of the private transaction manager connection using [`--ptm.url`](../../reference/cli-syntax.md#ptmurl).
 
-!!! example "Example HTTP connection"
+:::tip Example HTTP connection
 
-    ```bash
-    geth <other parameters> --ptm.url "http://127.0.0.1:9101"
-    ```
+```bash
+geth <other parameters> --ptm.url "http://127.0.0.1:9101"
+```
+
+:::
 
 ### HTTP connection using TLS
 
@@ -145,13 +163,15 @@ HTTP using TLS requires:
 - Setting the TLS mode to `strict` using [`--ptm.tls.mode`](../../reference/cli-syntax.md#ptmtlsmode).
 - Specifying relevant certificates using [`--ptm.tls.rootca`](../../reference/cli-syntax.md#ptmtlsrootca), [`--ptm.tls.clientcert`](../../reference/cli-syntax.md#ptmtlsclientcert), and [`--ptm.tls.clientkey`](../../reference/cli-syntax.md#ptmtlsclientkey).
 
-!!! example "Example TLS connection"
+:::tip Example TLS connection
 
-    ```bash
-    geth <other parameters> \
-        --ptm.url "https://127.0.0.1:9101" \
-        --ptm.tls.mode "strict" \
-        --ptm.tls.rootca "path/to/certfile.pem,dir/with/cert/files/" \
-        --ptm.tls.clientcert "path/to/client.cert.pem" \
-        --ptm.tls.clientkey "path/to/client.key.pem" \
-    ```
+```bash
+geth <other parameters> \
+  --ptm.url "https://127.0.0.1:9101" \
+  --ptm.tls.mode "strict" \
+  --ptm.tls.rootca "path/to/certfile.pem,dir/with/cert/files/" \
+  --ptm.tls.clientcert "path/to/client.cert.pem" \
+  --ptm.tls.clientkey "path/to/client.key.pem" \
+```
+
+:::

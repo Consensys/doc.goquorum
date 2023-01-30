@@ -12,11 +12,11 @@ In QBFT networks, approved accounts known as validators validate transactions an
 
 Existing validators propose and vote to [add or remove validators](#add-and-remove-validators). Adding or removing a validator requires a majority vote (greater than 50%) of validators.
 
-!!! important
+:::caution
 
-    Configure your network to ensure you never lose more than 1/3 of your validators.
-    If more than 1/3 of validators stop participating, new blocks are no longer created, and the network stalls.
-    It may take significant time to recover once nodes are restarted.
+Configure your network to ensure you never lose more than 1/3 of your validators. If more than 1/3 of validators stop participating, new blocks are no longer created, and the network stalls. It may take significant time to recover once nodes are restarted.
+
+:::
 
 Blocks in QBFT are final, meaning there are no forks, and valid blocks must be in the main chain.
 
@@ -26,44 +26,46 @@ To prevent a faulty node from generating a different chain from the main chain, 
 
 To use QBFT, GoQuorum requires a [genesis file](../genesis-file/genesis-options.md). The genesis file defines properties specific to QBFT and to your specific network.
 
-!!! example "Example QBFT genesis file"
+:::tip Example QBFT genesis file
 
-    ```json
-      {
-        "config": {
-          "chainId": 1337,
-          "homesteadBlock": 0,
-          "eip150Block": 0,
-          "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-          "eip155Block": 0,
-          "eip158Block": 0,
-          "byzantiumBlock": 0,
-          "constantinopleBlock": 0,
-          "qbft": {
-            "epochlength": 30000,
-            "blockperiodseconds": 2
-            "requesttimeoutseconds": 4
-            "policy": 0,
-            "ceil2Nby3Block": 0,
-            "validatorcontractaddress": "0x0000000000000000000000000000000000007777"
-          },
-          "txnSizeLimit": 64,
-          "maxCodeSize": 0,
-          "isQuorum": true
-        },
-        "nonce": "0x0",
-        "timestamp": "0x5f1663fc",
-        "extraData": "0xf87aa00000000000000000000000000000000000000000000000000000000000000000f8549493917cadbace5dfce132b991732c6cda9bcc5b8a9427a97c9aaf04f18f3014c32e036dd0ac76da5f1894ce412f988377e31f4d0ff12d74df73b51c42d0ca9498c1334496614aed49d2e81526d089f7264fed9cc080c0",
-        "gasLimit" : "0xf7b760",
-        "difficulty": "0x1",
-        "mixHash": "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
-        "coinbase": "0x0000000000000000000000000000000000000000",
-        "alloc": {},
-        "number": "0x0",
-        "gasUsed": "0x0",
-        "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
-      }
-    ```
+```json
+  {
+    "config": {
+      "chainId": 1337,
+      "homesteadBlock": 0,
+      "eip150Block": 0,
+      "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "eip155Block": 0,
+      "eip158Block": 0,
+      "byzantiumBlock": 0,
+      "constantinopleBlock": 0,
+      "qbft": {
+        "epochlength": 30000,
+        "blockperiodseconds": 2
+        "requesttimeoutseconds": 4
+        "policy": 0,
+        "ceil2Nby3Block": 0,
+        "validatorcontractaddress": "0x0000000000000000000000000000000000007777"
+      },
+      "txnSizeLimit": 64,
+      "maxCodeSize": 0,
+      "isQuorum": true
+    },
+    "nonce": "0x0",
+    "timestamp": "0x5f1663fc",
+    "extraData": "0xf87aa00000000000000000000000000000000000000000000000000000000000000000f8549493917cadbace5dfce132b991732c6cda9bcc5b8a9427a97c9aaf04f18f3014c32e036dd0ac76da5f1894ce412f988377e31f4d0ff12d74df73b51c42d0ca9498c1334496614aed49d2e81526d089f7264fed9cc080c0",
+    "gasLimit" : "0xf7b760",
+    "difficulty": "0x1",
+    "mixHash": "0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365",
+    "coinbase": "0x0000000000000000000000000000000000000000",
+    "alloc": {},
+    "number": "0x0",
+    "gasUsed": "0x0",
+    "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  }
+```
+
+:::
 
 The properties specific to QBFT are in the `qbft` section:
 
@@ -83,7 +85,11 @@ If `requesttimeoutseconds` expires before adding the proposed block, a round cha
 
 Usually, the protocol adds the proposed block before reaching `requesttimeoutseconds`. A new round then starts, resetting the block time and round timeout timers. When `blockperiodseconds` expires, the protocol proposes the next new block.
 
-!!! important If more than 1/3 of validators stop participating, new blocks can no longer be created and `requesttimeoutseconds` doubles with each round change. The quickest method to resume block production is to restart all validators, which resets `requesttimeoutseconds` to its genesis value.
+:::caution
+
+If more than 1/3 of validators stop participating, new blocks can no longer be created and `requesttimeoutseconds` doubles with each round change. The quickest method to resume block production is to restart all validators, which resets `requesttimeoutseconds` to its genesis value.
+
+:::
 
 ## Add and remove validators
 
@@ -107,10 +113,11 @@ Users can create their own smart contracts to add or remove validators based on 
 
 You can pre-deploy the validator smart contract in a new QBFT network by specifying the contract details in the [genesis file](#genesis-file).
 
-!!! important
+:::caution
 
-    You can't use the JSON-RPC methods to add or remove validators when using a smart contract to manage nodes.
-    You must interact with the contract functions using transactions.
+You can't use the JSON-RPC methods to add or remove validators when using a smart contract to manage nodes. You must interact with the contract functions using transactions.
+
+:::
 
 ## Migrate from IBFT to QBFT
 
@@ -119,21 +126,23 @@ You can migrate an existing [IBFT](ibft.md) network to a QBFT network with the f
 1.  Stop all nodes in the network.
 1.  Update the genesis file with a suitable transition block, this needs to be far enough in the future so that you can co-ordinate ahead of time. For example, if the current block number in your IBFT network is 100, set transition block to any block greater than 100, and once that fork block is reached, QBFT consensus will be used instead of IBFT.
 
-    !!! example "Sample QBFT genesis file"
+    :::tip Sample QBFT genesis file
 
-        ```json
-        ...
-        "istanbul": {
-            "epoch": 30000,
-            "policy": 0,
-            "ceil2Nby3Block": 0
-          },
-          "transitions": [{
-            "block": 120,
-            "algorithm": "qbft"
-          }]
-        ...
-        ```
+    ```json
+    ...
+    "istanbul": {
+        "epoch": 30000,
+        "policy": 0,
+        "ceil2Nby3Block": 0
+      },
+      "transitions": [{
+        "block": 120,
+        "algorithm": "qbft"
+      }]
+    ...
+    ```
+
+    :::
 
 1.  run `geth init` with the new genesis file
 1.  Restart the network with the updated genesis file.
@@ -142,81 +151,91 @@ You can migrate an existing [IBFT](ibft.md) network to a QBFT network with the f
 
 The `transitions` genesis configuration item allows you to specify a future block number at which to change QBFT network configuration in an existing network. For example, you can update the [block time](#configure-block-time-on-an-existing-network), configure [rewards](#rewards), or [validator management method](#swap-validator-management-methods).
 
-!!! caution
+:::caution
 
-    Do not specify a transition block in the past.
-    Specifying a transition block in the past could result in unexpected behavior, such as causing
-    the network to fork.
+Do not specify a transition block in the past. Specifying a transition block in the past could result in unexpected behavior, such as causing the network to fork.
+
+:::
 
 ### Configure block time on an existing network
 
 To update an existing network with a new `blockperiodseconds`:
 
 1.  Stop all nodes in the network.
-1.  In the [genesis file](#genesis-file), add the `transitions` configuration item where:
+2.  In the [genesis file](#genesis-file), add the `transitions` configuration item where:
 
     - `<FutureBlockNumber>` is the upcoming block at which to change `blockperiodseconds`.
     - `<NewValue>` is the updated value for `blockperiodseconds`.
 
-    !!! example "Transitions configuration"
+    <br />
 
-        === "Syntax"
+    :::tip
 
-            ```bash
-            {
-              "config": {
-                ...
-                "qbft": {
-                  "blockperiodseconds": 2,
-                  "epochlength": 30000,
-                  "requesttimeoutseconds": 4
-                },
-                "transitions": [{
-                  "block": <FutureBlockNumber>,
-                  "blockperiodseconds": <NewValue>
-                }]
-              },
-              ...
-            }
-            ```
+    <!--tabs-->
 
-        === "Example"
+    # Syntax
 
-            ```bash
-            {
-              "config": {
-                ...
-                "qbft": {
-                  "blockperiodseconds": 2,
-                  "epochlength": 30000,
-                  "requesttimeoutseconds": 4
-                },
-                "transitions": [{
-                  "block": 1240,
-                  "blockperiodseconds": 4
-                }]
-              }
-            ...
-            }
-            ```
+    ```json
+    {
+      "config": {
+        ...
+        "qbft": {
+          "blockperiodseconds": 2,
+          "epochlength": 30000,
+          "requesttimeoutseconds": 4
+        },
+        "transitions": [{
+          "block": <FutureBlockNumber>,
+          "blockperiodseconds": <NewValue>
+        }]
+      },
+      ...
+    }
+    ```
 
-1.  run `geth init` with the new genesis file
-1.  Restart all nodes in the network using the updated genesis file.
-1.  To verify the changes after the transition block, call [`istanbul_getValidators`](../../../reference/api-methods.md#istanbul_getvalidators), specifying `latest`.
+    # Example
+
+    ```json
+    {
+      "config": {
+        ...
+        "qbft": {
+          "blockperiodseconds": 2,
+          "epochlength": 30000,
+          "requesttimeoutseconds": 4
+        },
+        "transitions": [{
+          "block": 1240,
+          "blockperiodseconds": 4
+        }]
+      }
+    ...
+    }
+    ```
+
+    <!--/tabs-->
+
+    :::
+
+3.  run `geth init` with the new genesis file
+4.  Restart all nodes in the network using the updated genesis file.
+5.  To verify the changes after the transition block, call [`istanbul_getValidators`](../../../reference/api-methods.md#istanbul_getvalidators), specifying `latest`.
 
 ### Configure empty block period
 
 A block is produced every block period, whether there are transactions or not. This can lead to your network being bloated with many empty blocks, especially if you have a low block period such as one second. Configuring `emptyBlockPeriodSeconds` helps to reduce the number of empty blocks produced in your network. You can specify `emptyBlockPeriodSeconds` using the config section or with a transition.
 
-!!! example
+:::tip
 
-    ```bash
-    "transitions": [{
-      "block": ...,
-      "blockPeriodSeconds": 2
-      "emptyBlockPeriodSeconds": 60
-    }]
-    ```
+```json
+"transitions": [{
+  "block": ...,
+  "blockPeriodSeconds": 2
+  "emptyBlockPeriodSeconds": 60
+}]
+```
+
+:::
 
 In the preceding example, a block is produced every two seconds if there are transactions pending to be mined. If no transactions are pending, then blocks are not produced until after 60 seconds.
 
@@ -253,9 +272,11 @@ transactions: 1
 
 ```
 
-!!! Note
+:::note
 
-    If `emptyBlockPeriodSeconds` is less than `blockPeriodSeconds`, empty blocks continue to be produced at the rate specified in `blockPeriodSeconds`.
+If `emptyBlockPeriodSeconds` is less than `blockPeriodSeconds`, empty blocks continue to be produced at the rate specified in `blockPeriodSeconds`.
+
+:::
 
 ### Rewards
 
@@ -277,47 +298,53 @@ To configure rewards, add a `transitions` configuration item and set the followi
 - `miningBeneficiary` is a single account to receive benefits when the `miningBeneficiary` is set to `"fixed"`.
 - `beneficiaryMode` is `"fixed"` for a fixed single account or `"validator"` for the validator that validates that block. This applies to both transaction cost rewards and block rewards.
 
-!!! example
+<!--tabs-->
 
-    === "Single account no block reward"
+# Single account no block reward
 
-        ```json
-        "transitions": [{
-          "block": ...,
-          "miningBeneficiary": "0x...",
-          "beneficiaryMode":"fixed"
-        }]
-        ```
+```json
+"transitions": [{
+  "block": ...,
+  "miningBeneficiary": "0x...",
+  "beneficiaryMode":"fixed"
+}]
+```
 
-    === "validators no block rewards"
+# Validators no block rewards
 
-        ```json
-        "transitions": [{
-          "block": ...,
-          "beneficiaryMode": "validator"
-        }]
-        ```
+```json
+"transitions": [{
+  "block": ...,
+  "beneficiaryMode": "validator"
+}]
+```
 
-    === "Single account with block reward"
+<!--/tabs-->
 
-        ```json
-        "transitions": [{
-          "block": ...,
-          "blockReward": "0xc",
-          "miningBeneficiary": "0x...",
-          "beneficiaryMode":"fixed"
-        }]
-        ```
+<!--tabs-->
 
-    === "validators with block rewards"
+# Single account with block reward
 
-        ```json
-        "transitions": [{
-          "block": ...,
-          "blockReward": "13",
-          "beneficiaryMode": "validator"
-        }]
-        ```
+```json
+"transitions": [{
+  "block": ...,
+  "blockReward": "0xc",
+  "miningBeneficiary": "0x...",
+  "beneficiaryMode":"fixed"
+}]
+```
+
+# Validators with block rewards
+
+```json
+"transitions": [{
+  "block": ...,
+  "blockReward": "13",
+  "beneficiaryMode": "validator"
+}]
+```
+
+<!--/tabs-->
 
 ### Swap validator management methods
 
@@ -330,48 +357,50 @@ To swap between block header validator selection and contract validator selectio
     - `<SelectionMode>` is the validator selection mode to switch to. Valid options are `contract` and `blockheader`.
     - `<ContractAddress>` is the smart contract address, if switching to the contract validator selection method.
 
-    !!! example "Transitions configuration"
+    <!--tabs-->
 
-        === "Syntax"
+    # Syntax
 
-            ```bash
-            {
-              "config": {
-                ...
-                "qbft": {
-                  "blockperiodseconds": 5,
-                  "epochlength": 30000,
-                  "requesttimeoutseconds": 10
-                },
-                "transitions": [{
-                  "block": <FutureBlockNumber>,
-                  "validatorselectionmode": <SelectionMode>,
-                  "validatorcontractaddress": <ContractAddress>
-                }]
-              },
-              ...
-            }
-            ```
+    ```json
+    {
+      "config": {
+        ...
+        "qbft": {
+          "blockperiodseconds": 5,
+          "epochlength": 30000,
+          "requesttimeoutseconds": 10
+        },
+        "transitions": [{
+          "block": <FutureBlockNumber>,
+          "validatorselectionmode": <SelectionMode>,
+          "validatorcontractaddress": <ContractAddress>
+        }]
+      },
+      ...
+    }
+    ```
 
-        === "Example"
+    # Example
 
-            ```bash
-            {
-              "config": {
-                ...
-                "qbft": {
-                  "blockperiodseconds": 5,
-                  "epochlength": 30000,
-                  "requesttimeoutseconds": 10
-                },
-                "transitions": [{
-                  "block": 102885,
-                  "validatorselectionmode": "contract",
-                  "validatorcontractaddress": "0x0000000000000000000000000000000000007777"
-                }]
-              },
-              ...
-            }
-            ```
+    ```json
+    {
+      "config": {
+        ...
+        "qbft": {
+          "blockperiodseconds": 5,
+          "epochlength": 30000,
+          "requesttimeoutseconds": 10
+        },
+        "transitions": [{
+          "block": 102885,
+          "validatorselectionmode": "contract",
+          "validatorcontractaddress": "0x0000000000000000000000000000000000007777"
+        }]
+      },
+      ...
+    }
+    ```
+
+    <!--/tabs-->
 
 3.  [Restart all nodes](../../../tutorials/private-network/create-qbft-network.md#5-initialize-nodes) in the network using the updated genesis file.

@@ -10,9 +10,11 @@ Use the following instructions to update a node's network configuration while en
 
 The following instructions use a three-node network, A, B, and C, as an example, where Node A is being migrated. You can apply these instructions to any number of migrated nodes on any network with any number of nodes.
 
-!!! important
+:::caution
 
-    Before migrating a node to a new network, [create a backup of each node's data directory].
+Before migrating a node to a new network, [create a backup of each node's data directory].
+
+:::
 
 ## Prerequisites
 
@@ -32,46 +34,51 @@ In this scenario, the migrated node has a new network configuration, but its pee
 
 1.  Stop Node A.
 
-1.  On Node B or C, obtain Node A's Raft ID (GoQuorum Raft node ID in the network):
+2.  On Node B or C, obtain Node A's Raft ID (GoQuorum Raft node ID in the network):
 
-    === "geth console request"
+    <!--tabs-->
 
-        ```bash
-        raft.cluster
-        ```
+    # geth console request
 
-    === "JSON result"
+    ```bash
+    raft.cluster
+    ```
 
-        ```js
-        {
-            "jsonrpc": "2.0",
-            "id": 10,
-            "result": [{
-                "raftId": 1,
-                "nodeId": "<enodeId>",
-                ...
-            }, ...]
-        }
-        ```
+    # JSON result
+
+    ```js
+    {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "result": [{
+            "raftId": 1,
+            "nodeId": "<enodeId>",
+            ...
+        }, ...]
+    }
+    ```
+
+    <!--/tabs-->
 
     In this example Node A's Raft ID is 1.
 
-1.  On Node B or C, remove Node A from the network using its Raft ID:
+3.  On Node B or C, remove Node A from the network using its Raft ID:
 
     ```bash
     raft.removePeer(<RAFT-ID>)
     ```
 
-1.  Update the network configuration in Node A's `static-nodes.json` file.
+4.  Update the network configuration in Node A's `static-nodes.json` file.
 
-    !!! note
+    :::note
 
-        Even if this file isn't specified with [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting),
-        it should be updated to keep in sync with the current cluster configuration.
+    Even if this file isn't specified with [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting), it should be updated to keep in sync with the current cluster configuration.
 
-1.  [Add Node A back to the Raft network](add-nodes.md#raft) with its new network configuration.
+    :::
 
-1.  The nodes can now connect with their peers, and [`raft.cluster`](../../reference/api-methods.md#raft_cluster) shows the updated information and network configuration.
+5.  [Add Node A back to the Raft network](add-nodes.md#raft) with its new network configuration.
+
+6.  The nodes can now connect with their peers, and [`raft.cluster`](../../reference/api-methods.md#raft_cluster) shows the updated information and network configuration.
 
 ### Peers need a new networking configuration
 

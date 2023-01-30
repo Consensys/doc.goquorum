@@ -29,4 +29,8 @@ For Raft, the whole network must be on GoQuorum version 2.4.0 or later for DNS t
 
 In a partially migrated network (where some nodes are on version 2.4.0 or later and others on lower versions) with DNS feature enabled for migrated nodes, [`raft_addPeer`](../../reference/api-methods.md#raft_addpeer) should not be invoked with a DNS name until the entire network migrates to version 2.4.0 or later. If invoked, this call will crash all nodes running in older versions and these nodes will have to be restarted with GoQuorum version 2.4.0 or later. `raft_addPeer` can still be invoked with an IP address without affecting nodes running older versions of GoQuorum.
 
-!!! note In a network where all nodes are running on GoQuorum version 2.4.0, with few nodes enabled for DNS, we recommend `--verbosity` to be 3 or below. Nodes not enabled for DNS fail to restart if `raft.addPeer` is invoked with a DNS name and `--verbosity` is set above 3.
+:::note
+
+In a network where all nodes are running on GoQuorum version 2.4.0, with few nodes enabled for DNS, we recommend `--verbosity` to be 3 or below. Nodes not enabled for DNS fail to restart if `raft.addPeer` is invoked with a DNS name and `--verbosity` is set above 3.
+
+:::

@@ -8,11 +8,11 @@ sidebar_position: 4
 
 Clique is a proof of authority [consensus protocol](../../../concepts/consensus-index.md) implemented in Go Ethereum (Geth) and included in GoQuorum.
 
-!!! warning
+:::caution
 
-    Clique is not suitable for production environments.
-    Use only in development environments.
-    You can [migrate a Clique network to another consensus protocol](#migrate-from-clique-to-another-consensus-protocol).
+Clique is not suitable for production environments. Use only in development environments. You can [migrate a Clique network to another consensus protocol](#migrate-from-clique-to-another-consensus-protocol).
+
+:::
 
 Refer to the following Clique documentation:
 
