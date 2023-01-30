@@ -207,7 +207,11 @@ In the `Node-0` directory, start GoQuorum node 0 specifying the Tessera 0 node t
 PRIVATE_CONFIG=/<path to IBFT network>/IBFT-network/Tessera-0/tm.ipc geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22000 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30300 --allow-insecure-unlock
 ```
 
-!!! caution The `--allow-insecure-unlock` option enables insecure account unlocking for educational purposes only. In production environments, ensure account keys are secured appropriately.
+:::caution
+
+The `--allow-insecure-unlock` option enables insecure account unlocking for educational purposes only. In production environments, ensure account keys are secured appropriately.
+
+:::
 
 ### 9. Start GoQuorum node 1
 
@@ -221,10 +225,29 @@ PRIVATE_CONFIG=/<path to IBFT network>/IBFT-network/Tessera-1/tm.ipc geth --data
 
 In new terminal for each node in each node directory, start the remaining nodes using the same command as in the IBFT tutorial. Nodes 2, 3, and 4 do not have an attached Tessera node.
 
-=== "Node 2" `bash PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22002 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30302 `
+<!--tabs-->
 
-=== "Node 3" `bash PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22003 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30303 `
+# Node 2
 
-=== "Node 4" `bash PRIVATE_CONFIG=ignore geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22004 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30304 `
+```bash
+PRIVATE_CONFIG=ignore \
+geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22002 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30302
+```
+
+# Node 3
+
+```bash
+PRIVATE_CONFIG=ignore \
+geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22003 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30303
+```
+
+# Node 4
+
+```bash
+PRIVATE_CONFIG=ignore \
+geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22004 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30304
+```
+
+<!--/tabs-->
 
 Your node can now [send and receive private transactions](send-private-transaction.md).

@@ -843,7 +843,11 @@ npm install
 node generate_node_keys.js --password "Password"
 ```
 
-!!! note The `--password` parameter is optional.
+:::note
+
+The `--password` parameter is optional.
+
+:::
 
 ### 2. Create new node directory
 
@@ -876,7 +880,11 @@ Add an entry for the new node into the docker-compose file:
 
 ```
 
-!!! important Select an IP address and port map that aren't being used for the other containers. Additionally mount the newly created folder `./config/nodes/newnode` to the `/config/keys` directory of the new node.
+:::caution
+
+Select an IP address and port map that aren't being used for the other containers. Additionally mount the newly created folder `./config/nodes/newnode` to the `/config/keys` directory of the new node.
+
+:::
 
 ### 4. Update files with the enode address
 

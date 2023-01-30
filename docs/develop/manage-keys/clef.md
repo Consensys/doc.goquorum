@@ -51,7 +51,11 @@ Read [the overview and step-by-step guide on `clef` initialization, startup, and
 1. As an external signer.
 1. As a `geth` signer.
 
-!!! warning In the long term, the preferred way of using `clef` will be as an external signer. However, while waiting for `clef` API support, the `go-ethereum` project has included the option to use `clef` as a `geth` signer. This ensures existing tooling and user flows can remain unchanged. The option to use `clef` as a `geth` signer **will be deprecated** in a future release of `go-ethereum` once the migration of account management from `geth` to `clef` is complete.
+:::caution
+
+In the long term, the preferred way of using `clef` will be as an external signer. However, while waiting for `clef` API support, the `go-ethereum` project has included the option to use `clef` as a `geth` signer. This ensures existing tooling and user flows can remain unchanged. The option to use `clef` as a `geth` signer **will be deprecated** in a future release of `go-ethereum` once the migration of account management from `geth` to `clef` is complete.
+
+:::
 
 ### As an external signer
 

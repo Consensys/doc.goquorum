@@ -19,7 +19,11 @@ You can configure a connection to the [private transaction manager](../../concep
     - [HTTP connection](#http-connection-1)
     - [HTTP connection using TLS](#http-connection-using-tls-1)
 
-!!! note To run a GoQuorum node without a private transaction manager, set the `PRIVATE_CONFIG` environment variable to `ignore`. Ensure there is no transaction manager running for the node. The node won't broadcast matching private keys and won't be able to participate in any private transactions.
+:::note
+
+To run a GoQuorum node without a private transaction manager, set the `PRIVATE_CONFIG` environment variable to `ignore`. Ensure there is no transaction manager running for the node. The node won't broadcast matching private keys and won't be able to participate in any private transactions.
+
+:::
 
 ## Direct IPC connection configuration
 
@@ -45,7 +49,11 @@ The configuration file can specify:
 
 ### IPC socket connection
 
-!!! note A configuration file is only necessary for an IPC socket connection if you need to change the timeout values from their default values. Otherwise, [direct IPC connection configuration](#direct-ipc-connection-configuration) is simpler.
+:::note
+
+A configuration file is only necessary for an IPC socket connection if you need to change the timeout values from their default values. Otherwise, [direct IPC connection configuration](#direct-ipc-connection-configuration) is simpler.
+
+:::
 
 An IPC socket configuration file has the following parameters.
 

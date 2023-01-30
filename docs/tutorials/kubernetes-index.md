@@ -18,11 +18,11 @@ Familiarize yourself with the reference implementations and customize them for y
 
 [Quorum-Kubernetes](https://github.com/ConsenSys/quorum-Kubernetes) is a repository containing Kubernetes manifests and Helm charts that you can customize and deploy on a local cluster or in the cloud.
 
-!!! important
+:::warning
 
-    We recommend starting with the [`playground`](https://github.com/ConsenSys/quorum-kubernetes/tree/master/playground)
-    directory and working through the example setups before moving to the
-    [`helm`](https://github.com/ConsenSys/quorum-kubernetes/tree/master/helm) directory.
+We recommend starting with the [`playground`](https://github.com/ConsenSys/quorum-kubernetes/tree/master/playground) directory and working through the example setups before moving to the [`helm`](https://github.com/ConsenSys/quorum-kubernetes/tree/master/helm) directory.
+
+:::
 
 The `helm` directory contains charts for the various components, and each chart has a `cluster` map with features that you can toggle.
 
@@ -71,9 +71,11 @@ The same setup also works to connect external nodes and business applications fr
 
 In Kubernetes, [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) provide a mechanism for isolating groups of resources within a single cluster. Both namespaces and resources (for example, StatefulSets or Services) within a namespace must be unique, but resources across namespaces don't need to be.
 
-!!! note
+:::note
 
-    Namespace-based scoping is not applicable for cluster-wide objects (for example, StorageClass or PersistentVolumes).
+Namespace-based scoping is not applicable for cluster-wide objects (for example, StorageClass or PersistentVolumes).
+
+:::
 
 ### Nodes
 
