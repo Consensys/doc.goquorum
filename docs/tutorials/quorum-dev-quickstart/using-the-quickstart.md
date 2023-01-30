@@ -4,11 +4,17 @@ description: Helps to generate local GoQuorum and Ethereum blockchain networks.
 sidebar_position: 1
 ---
 
+import TestAccounts from '../../global/\_test_accounts.md';
+
 # Use Quorum Developer Quickstart
 
 The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private [IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md) network of GoQuorum nodes managed by Docker Compose.
 
-!!! important This tutorial runs a private network suitable for education or demonstration purposes and is not intended for running production networks.
+:::warning
+
+This tutorial runs a private network suitable for education or demonstration purposes and is not intended for running production networks.
+
+:::
 
 ## Prerequisites
 
@@ -19,7 +25,11 @@ The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private 
 - [`curl` command line](https://curl.haxx.se/download.html)
 - [MetaMask](https://metamask.io/)
 
-!!! important Allow Docker up to 4G of memory or 6G if running the privacy examples. Refer to the **Resources** section in [Docker for Mac](https://docs.docker.com/docker-for-mac/) and [Docker Desktop](https://docs.docker.com/docker-for-windows/) for details.
+:::caution
+
+Allow Docker up to 4G of memory or 6G if running the privacy examples. Refer to the **Resources** section in [Docker for Mac](https://docs.docker.com/docker-for-mac/) and [Docker Desktop](https://docs.docker.com/docker-for-windows/) for details.
+
+:::
 
 ## Generate the tutorial blockchain configuration files
 
@@ -45,26 +55,24 @@ Four GoQuorum IBFT validator nodes and a non-validator node are created to simul
 
 When execution is successfully finished, the process lists the available services:
 
-!!! example "Services list"
+```
+*************************************
+Quorum Dev Quickstart
+*************************************
+----------------------------------
+List endpoints and services
+----------------------------------
+JSON-RPC HTTP service endpoint                 : http://localhost:8545
+JSON-RPC WebSocket service endpoint            : ws://localhost:8546
+Web block explorer address                     : http://localhost:25000/
+Prometheus address                             : http://localhost:9090/graph
+Cakeshop toolkit address                       : http://localhost:8999
+Grafana address                                : http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All
+Collated logs using Grafana Loki               : http://localhost:3000/d/Ak6eXLsPxFemKYKEXfcH/quorum-logs-loki?orgId=1&var-app=quorum&var-search=
 
-    ```log
-    *************************************
-    Quorum Dev Quickstart
-    *************************************
-    ----------------------------------
-    List endpoints and services
-    ----------------------------------
-    JSON-RPC HTTP service endpoint                 : http://localhost:8545
-    JSON-RPC WebSocket service endpoint            : ws://localhost:8546
-    Web block explorer address                     : http://localhost:25000/
-    Prometheus address                             : http://localhost:9090/graph
-    Cakeshop toolkit address                       : http://localhost:8999
-    Grafana address                                : http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All
-    Collated logs using Grafana Loki               : http://localhost:3000/d/Ak6eXLsPxFemKYKEXfcH/quorum-logs-loki?orgId=1&var-app=quorum&var-search=
-
-    For more information on the endpoints and services, refer to README.md in the installation directory.
-    ****************************************************************
-    ```
+For more information on the endpoints and services, refer to README.md in the installation directory.
+****************************************************************
+```
 
 - Use the **JSON-RPC HTTP service endpoint** to access the RPC node service from your dapp or from cryptocurrency wallets such as MetaMask.
 - Use the **JSON-RPC WebSocket service endpoint** to access the WebSocket node service from your dapp.
@@ -104,10 +112,11 @@ You can search for a specific block, transaction hash, or address by clicking th
 
 At the prompt **Do you wish to enable support for monitoring your network with BlockScout?**, enter `Y` to start BlockScout at [`http://localhost:26000`](http://localhost:26000).
 
-!!! note
+:::note
 
-    BlockScout's Docker image is resource heavy when running.
-    Ensure you have adequate CPU resources dedicated to the container.
+BlockScout's Docker image is resource heavy when running. Ensure you have adequate CPU resources dedicated to the container.
+
+:::
 
 The [quickstart BlockScout configuration](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/templates/goquorum/docker-compose.yml) is available as a reference for your own network.
 
@@ -148,25 +157,29 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],
 
 The result displays the client version of the running node:
 
-=== "Result example"
+<!--tabs-->
 
-    ```json
-    {
-    "jsonrpc" : "2.0",
-    "id" : 1,
-    "result" : "Geth/node5-istanbul/v1.9.20-stable-1d7926a1(quorum-v21.4.2)/linux-amd64/go1.15.5"
-    }
-    ```
+# Result example
 
-=== "Result explanation"
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "Geth/node5-istanbul/v1.9.20-stable-1d7926a1(quorum-v21.4.2)/linux-amd64/go1.15.5"
+}
+```
 
-    * `"jsonrpc" : "2.0"` indicates that the JSON-RPC 2.0 spec format is used.
-    * `"id" : 1` is the request identifier used to match the request and the response. This tutorial always uses 1.
-    * `"result"` contains the running GoQuorum information:
-        * `v1.9.20-stable-1d7926a1` is the Geth build that has been used for GoQuorum
-        * `quorum-v21.4.2` is the running GoQuorum version number. This may be different when you run this tutorial.
-        * `linux-amd64` is the architecture used to build this version.
-        * `go1.15.5` is the Go version used. This may be different when you run this tutorial.
+# Result explanation
+
+- `"jsonrpc" : "2.0"` indicates that the JSON-RPC 2.0 spec format is used.
+- `"id" : 1` is the request identifier used to match the request and the response. This tutorial always uses 1.
+- `"result"` contains the running GoQuorum information:
+  - `v1.9.20-stable-1d7926a1` is the Geth build that has been used for GoQuorum
+  - `quorum-v21.4.2` is the running GoQuorum version number. This may be different when you run this tutorial.
+  - `linux-amd64` is the architecture used to build this version.
+  - `go1.15.5` is the Go version used. This may be different when you run this tutorial.
+
+<!--/tabs-->
 
 Successfully calling this method shows that you can connect to the nodes using JSON-RPC over HTTP.
 
@@ -268,34 +281,44 @@ Use a separate terminal window for each of Member1, Member2, and Member3. In eac
 
 To view the private transaction, run the following command in one of the terminals:
 
-=== "geth console request"
+<!--tabs-->
 
-    ```js
-    eth.getTransaction("0x4d796b2ccac109fc54006105df44c519341696fa88e004ce5c614239cb9f92a2"); // replace with your transaction hash
-    ```
+# geth console request
 
-=== "JSON result"
+```js
+eth.getTransaction(
+  "0x4d796b2ccac109fc54006105df44c519341696fa88e004ce5c614239cb9f92a2",
+); // replace with your transaction hash
+```
 
-    ```json
-    {
-      blockHash: "0x3d69d2eb2a50a96072c549805f0ba04ce364b68ef7c16cd0ddac8e6c184e599e",
-      blockNumber: 823,
-      from: "0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5",
-      gas: 150050,
-      gasPrice: 0,
-      hash: "0x4d796b2ccac109fc54006105df44c519341696fa88e004ce5c614239cb9f92a2",
-      input: "0xe619b9d1469c34735145be181a28d18c09b575ef1a8fdbdcb0fe3934c2de5a8c62814e93b087ee918cfa294a0023aa6d42ef360ccf4997f1b94ae1e6c9145a3a",
-      nonce: 6,
-      r: "0x2660131d78ccd80773e8094d9fbf7d030f9753ddb1496af5b12f643ba95f900b",
-      s: "0x50f3e787595b88e5738adba373971d61394c9710d1a0dbee7287d10085d2fef5",
-      to: null,
-      transactionIndex: 0,
-      v: "0x26",
-      value: 0
-    }
-    ```
+# JSON result
 
-!!! note The `v` field value of `"0x25"` or `"0x26"` (37 or 38 in decimal) indicates this transaction has a private payload (input).
+```json
+{
+  "blockHash": "0x3d69d2eb2a50a96072c549805f0ba04ce364b68ef7c16cd0ddac8e6c184e599e",
+  "blockNumber": 823,
+  "from": "0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5",
+  "gas": 150050,
+  "gasPrice": 0,
+  "hash": "0x4d796b2ccac109fc54006105df44c519341696fa88e004ce5c614239cb9f92a2",
+  "input": "0xe619b9d1469c34735145be181a28d18c09b575ef1a8fdbdcb0fe3934c2de5a8c62814e93b087ee918cfa294a0023aa6d42ef360ccf4997f1b94ae1e6c9145a3a",
+  "nonce": 6,
+  "r": "0x2660131d78ccd80773e8094d9fbf7d030f9753ddb1496af5b12f643ba95f900b",
+  "s": "0x50f3e787595b88e5738adba373971d61394c9710d1a0dbee7287d10085d2fef5",
+  "to": null,
+  "transactionIndex": 0,
+  "v": "0x26",
+  "value": 0
+}
+```
+
+<!--/tabs-->
+
+:::note
+
+The `v` field value of `"0x25"` or `"0x26"` (37 or 38 in decimal) indicates this transaction has a private payload (input).
+
+:::
 
 ### Read the contract with `get()`
 
@@ -454,7 +477,7 @@ When completed, a `permission-config.json` file is created which contains the ad
 
 The file looks similar to:
 
-```bash
+```json
 {
     "permissionModel": "v2",
     "upgradableAddress": "0x1932c48b2bf8102ba33b4a6b545c32236e342f34",
@@ -500,16 +523,15 @@ The last step is to copy the above `permission-config.json` into the `data` dire
 
 Once the network starts up you can use the [API methods](../../configure-and-manage/manage/enhanced-permissions.md) to add or remove permissions.
 
-!!! warning "Important considerations for production"
+:::warning Important considerations for production
 
-    During network initialization a few things happen:
+During network initialization a few things happen:
 
-    * A network admin organization is created with the `nwAdminOrg` name that was specified in the
-        `permission-config.json`. All nodes which are part of the `static-nodes.json` will be automatically assigned
-        to this organization
-    * A network admin role is created with the `nwAdminRole` name specified in the `permission-config.json`
-    * All accounts given in the `accounts` array of the `permission-config.json` file are assigned the network
-        admin role. These accounts can propose and approve new organizations in the network.
+- A network admin organization is created with the `nwAdminOrg` name that was specified in the `permission-config.json`. All nodes which are part of the `static-nodes.json` will be automatically assigned to this organization
+- A network admin role is created with the `nwAdminRole` name specified in the `permission-config.json`
+- All accounts given in the `accounts` array of the `permission-config.json` file are assigned the network admin role. These accounts can propose and approve new organizations in the network.
+
+:::
 
 ## Use Remix
 
@@ -532,7 +554,7 @@ You can use [MetaMask](https://metamask.io/) to send a transaction on your priva
 - Open MetaMask and connect it to your private network RPC endpoint by selecting **Localhost 8545** in the network list.
 - Choose one of the following test accounts and [import it into MetaMask by copying the corresponding private key](https://metamask.zendesk.com/hc/en-us/articles/360015489331-How-to-import-an-Account).
 
-{!global/test_accounts.md!}
+<TestAccounts />
 
 After importing an existing test account, [create another test account from scratch] to use as the recipient for a test Ether transaction.
 
@@ -544,7 +566,11 @@ The new test account displays with a zero balance.
 
 [Send test Ether](https://metamask.zendesk.com/hc/en-us/articles/360015488931-How-to-send-ETH-and-ERC-20-tokens-from-your-MetaMask-Wallet) from the first test account (containing test Ether) to the new test account (which has a zero balance).
 
-!!! tip You can use a zero gas price here as this private test network is a free gas network, but the maximum amount of gas that can be used (the gas limit) for a value transaction must be at least 21000.
+:::tip
+
+You can use a zero gas price here as this private test network is a free gas network, but the maximum amount of gas that can be used (the gas limit) for a value transaction must be at least 21000.
+
+:::
 
 Refresh the Block Explorer page in your browser displaying the target test account.
 
@@ -573,139 +599,136 @@ The script:
 1. Runs the tests.
 1. Builds and runs a Docker image to serve the dapp website.
 
-!!! example "`./run_dapp.sh` example output"
-
-    ```text
-    Compiling your contracts...
-    ===========================
-    > Compiling ./contracts/Adoption.sol
-    > Compiling ./contracts/Migrations.sol
-    > Artifacts written to /home/jfernandes/workspace/quorum-dev-quickstart/quorum-test-network/dapps/pet-shop/pet-shop-box/build/contracts
-    > Compiled successfully using:
-    - solc: 0.5.16+commit.9c3226ce.Emscripten.clang
+```text title="./run_dapp.sh example output"
+Compiling your contracts...
+===========================
+> Compiling ./contracts/Adoption.sol
+> Compiling ./contracts/Migrations.sol
+> Artifacts written to /home/jfernandes/workspace/quorum-dev-quickstart/quorum-test-network/dapps/pet-shop/pet-shop-box/build/contracts
+> Compiled successfully using:
+- solc: 0.5.16+commit.9c3226ce.Emscripten.clang
 
 
-    Compiling your contracts...
-    ===========================
-    > Everything is up to date, there is nothing to compile.
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
 
 
 
-    Starting migrations...
-    ======================
-    > Network name:    'quickstartWallet'
-    > Network id:      1337
-    > Block gas limit: 700000000 (0x29b92700)
+Starting migrations...
+======================
+> Network name:    'quickstartWallet'
+> Network id:      1337
+> Block gas limit: 700000000 (0x29b92700)
 
 
-    1_initial_migration.js
-    ======================
+1_initial_migration.js
+======================
 
-    Deploying 'Migrations'
-    ----------------------
-    > transaction hash:    0x98c7d7754cf11b2ba5a8aa676b1299720bca0668b00b91b9d223c059f5456144
-    > Blocks: 1            Seconds: 4
-    > contract address:    0x8CdaF0CD259887258Bc13a92C0a6dA92698644C0
-    > block number:        154
-    > block timestamp:     0x60f7ca69
-    > account:             0x627306090abaB3A6e1400e9345bC60c78a8BEf57
-    > balance:             90000
-    > gas used:            221555 (0x36173)
-    > gas price:           0 gwei
-    > value sent:          0 ETH
-    > total cost:          0 ETH
-
-
-    > Saving migration to chain.
-    > Saving artifacts
-      -------------------------------------
-    > Total cost:                   0 ETH
+Deploying 'Migrations'
+----------------------
+> transaction hash:    0x98c7d7754cf11b2ba5a8aa676b1299720bca0668b00b91b9d223c059f5456144
+> Blocks: 1            Seconds: 4
+> contract address:    0x8CdaF0CD259887258Bc13a92C0a6dA92698644C0
+> block number:        154
+> block timestamp:     0x60f7ca69
+> account:             0x627306090abaB3A6e1400e9345bC60c78a8BEf57
+> balance:             90000
+> gas used:            221555 (0x36173)
+> gas price:           0 gwei
+> value sent:          0 ETH
+> total cost:          0 ETH
 
 
-    2_deploy_contracts.js
-    =====================
-
-    Deploying 'Adoption'
-    --------------------
-    > transaction hash:    0xc38e10fd2078f331d6e0f8cf27f958fad8a8a02c9789680da53f39806e407332
-    > Blocks: 0            Seconds: 4
-    > contract address:    0x345cA3e014Aaf5dcA488057592ee47305D9B3e10
-    > block number:        156
-    > block timestamp:     0x60f7ca73
-    > account:             0x627306090abaB3A6e1400e9345bC60c78a8BEf57
-    > balance:             90000
-    > gas used:            239851 (0x3a8eb)
-    > gas price:           0 gwei
-    > value sent:          0 ETH
-    > total cost:          0 ETH
+> Saving migration to chain.
+> Saving artifacts
+  -------------------------------------
+> Total cost:                   0 ETH
 
 
-    > Saving migration to chain.
-    > Saving artifacts
-      -------------------------------------
-    > Total cost:                   0 ETH
+2_deploy_contracts.js
+=====================
+
+Deploying 'Adoption'
+--------------------
+> transaction hash:    0xc38e10fd2078f331d6e0f8cf27f958fad8a8a02c9789680da53f39806e407332
+> Blocks: 0            Seconds: 4
+> contract address:    0x345cA3e014Aaf5dcA488057592ee47305D9B3e10
+> block number:        156
+> block timestamp:     0x60f7ca73
+> account:             0x627306090abaB3A6e1400e9345bC60c78a8BEf57
+> balance:             90000
+> gas used:            239851 (0x3a8eb)
+> gas price:           0 gwei
+> value sent:          0 ETH
+> total cost:          0 ETH
 
 
-    Summary
-    =======
-    > Total deployments:   2
-    > Final cost:          0 ETH
+> Saving migration to chain.
+> Saving artifacts
+  -------------------------------------
+> Total cost:                   0 ETH
 
 
-    Using network 'quickstartWallet'.
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0 ETH
 
 
-    Compiling your contracts...
-    ===========================
-    > Everything is up to date, there is nothing to compile.
+Using network 'quickstartWallet'.
 
-    Using network 'quickstartWallet'.
 
-    Compiling your contracts...
-    ===========================
-    > Compiling ./test/TestAdoption.sol
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
 
-    TestAdoption
-    ✓ testUserCanAdoptPet (2071ms)
-    ✓ testGetAdopterAddressByPetId (6070ms)
-    ✓ testGetAdopterAddressByPetIdInArray (6077ms)
+Using network 'quickstartWallet'.
 
-    3 passing (37s)
-    ```
+Compiling your contracts...
+===========================
+> Compiling ./test/TestAdoption.sol
 
-    After these tests are successful, the script builds a container for the Pet Shop dapp and deploys it,
-    binding it to port 3001 on your system.
+TestAdoption
+✓ testUserCanAdoptPet (2071ms)
+✓ testGetAdopterAddressByPetId (6070ms)
+✓ testGetAdopterAddressByPetIdInArray (6077ms)
 
-    ```text
-    Sending build context to Docker daemon  411.5MB
-    Step 1/5 : FROM node:12.14.1-stretch-slim
-    12.14.1-stretch-slim: Pulling from library/node
-    619014d83c02: Pull complete
-    8c5d9aed65fb: Pull complete
-    aaabe8e9daf2: Pull complete
-    f7567fa7b9f3: Pull complete
-    a989ed5f800b: Pull complete
-    Digest: sha256:59ac2f2c3a0c490d8424306032f9b638f5ea83327ffaf23c66490e0026d1a000
-    Status: Downloaded newer image for node:12.14.1-stretch-slim
-    ---> 2f7e25ad14ea
-    Step 2/5 : EXPOSE 3001
-    ---> Running in 3c818550ed02
-    Removing intermediate container 3c818550ed02
-    ---> 7839d0b263a2
-    Step 3/5 : WORKDIR /app
-    ---> Running in be4c761044b5
-    Removing intermediate container be4c761044b5
-    ---> 1a6e6d161952
-    Step 4/5 : COPY . /app
-    ---> f33c3b13bc5d
-    Step 5/5 : CMD npm run dev
-    ---> Running in f64911ca050f
-    Removing intermediate container f64911ca050f
-    ---> 16d28763e27b
-    Successfully built 16d28763e27b
-    Successfully tagged quorum-dev-quickstart_pet_shop:latest
-    fdbefa105bee995c56c2be23e9912f943973462bfc0b37df610e7feb7be4ca86
-    ```
+3 passing (37s)
+```
+
+After these tests are successful, the script builds a container for the Pet Shop dapp and deploys it, binding it to port 3001 on your system.
+
+```text
+Sending build context to Docker daemon  411.5MB
+Step 1/5 : FROM node:12.14.1-stretch-slim
+12.14.1-stretch-slim: Pulling from library/node
+619014d83c02: Pull complete
+8c5d9aed65fb: Pull complete
+aaabe8e9daf2: Pull complete
+f7567fa7b9f3: Pull complete
+a989ed5f800b: Pull complete
+Digest: sha256:59ac2f2c3a0c490d8424306032f9b638f5ea83327ffaf23c66490e0026d1a000
+Status: Downloaded newer image for node:12.14.1-stretch-slim
+---> 2f7e25ad14ea
+Step 2/5 : EXPOSE 3001
+---> Running in 3c818550ed02
+Removing intermediate container 3c818550ed02
+---> 7839d0b263a2
+Step 3/5 : WORKDIR /app
+---> Running in be4c761044b5
+Removing intermediate container be4c761044b5
+---> 1a6e6d161952
+Step 4/5 : COPY . /app
+---> f33c3b13bc5d
+Step 5/5 : CMD npm run dev
+---> Running in f64911ca050f
+Removing intermediate container f64911ca050f
+---> 16d28763e27b
+Successfully built 16d28763e27b
+Successfully tagged quorum-dev-quickstart_pet_shop:latest
+fdbefa105bee995c56c2be23e9912f943973462bfc0b37df610e7feb7be4ca86
+```
 
 In the browser where you have MetaMask enabled and one of the test accounts loaded, open a new tab and navigate to [the Pet Shop dapp](http://localhost:3001) where you can adopt lovely pets (sorry, not for real, it's a demo).
 

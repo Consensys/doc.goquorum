@@ -66,8 +66,8 @@ A trie of private states keeps track of all private states managed by a node. Th
 At each block:
 
 1. All affected private states are updated and their new root hashes are calculated.
-1. The trie is updated with the new private state root hashes at their PSIs.
-1. A new root of the trie of private states is calculated and mapped to the public block hash.
+2. The trie is updated with the new private state root hashes at their PSIs.
+3. A new root of the trie of private states is calculated and mapped to the public block hash.
 
 ### Private state manager
 
@@ -95,9 +95,9 @@ In order of precedence, users have the following three options to specify a priv
    geth attach http://localhost:22000/?PSI=PS1
    ```
 
-1. HTTP header. Every RPC request must have an HTTP header "PSI" attached that specifies the private state to use.
+2. HTTP header. Every RPC request must have an HTTP header "PSI" attached that specifies the private state to use.
 
-1. IPC and inproc connections. Prepend the PSI to the ID field of the `jsonrpcMessage`.
+3. IPC and inproc connections. Prepend the PSI to the ID field of the `jsonrpcMessage`.
 
 ### Accessing a private state using web3j
 

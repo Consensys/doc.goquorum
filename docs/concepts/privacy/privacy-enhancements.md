@@ -54,10 +54,11 @@ Depending on the complexity of the contracts and the throughput of the network, 
 
 Concurrency may also present a problem for PSV contracts. The execution hash calculation is based on the chain state at simulation time. Submitting multiple transactions to the same PSV contract from multiple nodes concurrently may result in most of the transactions failing.
 
-!!! important
+:::warning
 
-    Because of these limitations, use privacy-enhanced transactions only when the enhanced privacy is necessary and the
-    extra privacy benefits outweigh the potential shortfalls.
+Because of these limitations, use privacy-enhanced transactions only when the enhanced privacy is necessary and the extra privacy benefits outweigh the potential shortfalls.
+
+:::
 
 ### Transaction interactions
 
@@ -71,9 +72,11 @@ The privacy enhancements feature only performs its checks on published transacti
 
 To enable privacy enhancements in Tessera, set the `enablePrivacyEnhancements` parameter in the Tessera configuration file to `true`. To enable privacy enhancements in GoQuorum, set the `privacyEnhancementsBlock` in the GoQuorum [genesis file](../../configure-and-manage/configure/genesis-file/genesis-options.md) `config` object to a future block, when the entire network is ready to transact with privacy-enhanced transactions. All GoQuorum nodes in the network must be initialized with the same `privacyEnhancementsBlock` value.
 
-!!! note
+:::note
 
-    You need to re-run `geth init` when you update the genesis file to incorporate the changes. This does not delete or modify any current sync process or saved blocks.
+You need to re-run `geth init` when you update the genesis file to incorporate the changes. This does not delete or modify any current sync process or saved blocks.
+
+:::
 
 You can disable `enablePrivacyEnhancements` in the Tessera configuration if your GoQuorum node is not ready to support privacy enhancements. This allows the GoQuorum node to reject PP, MPP, and PSV transactions from other nodes until the node is ready to support privacy-enhanced transactions.
 
@@ -81,13 +84,11 @@ You can disable `enablePrivacyEnhancements` in the Tessera configuration if your
 
 An upgraded GoQuorum node can coexist on a network where other nodes are running earlier GoQuorum versions. However, it can't support privacy-enhanced contracts until all interested nodes are upgraded and enable privacy.
 
-!!! important
+:::warning
 
-    If an upgraded but non-privacy-enabled GoQuorum node receives a PP, MPP, or PSV transaction, the node logs a `BAD
-    BLOCK` error.
-    If the consensus algorithm is Raft, the node stops.
-    If the consensus algorithm is IBFT or QBFT, the node keeps trying to add the bad block, and reprints the errors.
-    It won't catch up with rest of nodes until restarted and reinitialized with the correct `privacyEnhancementsBlock`.
+If an upgraded but non-privacy-enabled GoQuorum node receives a PP, MPP, or PSV transaction, the node logs a `BAD BLOCK` error. If the consensus algorithm is Raft, the node stops. If the consensus algorithm is IBFT or QBFT, the node keeps trying to add the bad block, and reprints the errors. It won't catch up with rest of nodes until restarted and reinitialized with the correct `privacyEnhancementsBlock`.
+
+:::
 
 If you set the `enablePrivacyEnhancements` flag to `true` in Tessera without enabling privacy in GoQuorum, the node can crash, as the Tessera node accepts PP, MPP, and PSV transactions.
 

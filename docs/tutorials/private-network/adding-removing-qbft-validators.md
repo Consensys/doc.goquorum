@@ -18,7 +18,7 @@ A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
     mkdir -p Node-5/data/keystore
     ```
 
-1.  In the `artifacts` directory, generate one new validator using the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool):
+2.  In the `artifacts` directory, generate one new validator using the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool):
 
     ```bash
     npx quorum-genesis-tool \
@@ -28,7 +28,7 @@ A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
     --outputPath artifacts
     ```
 
-1.  Copy the latest generated artifacts:
+3.  Copy the latest generated artifacts:
 
     ```bash
     cd artifacts/2022-04-21-08-10-29/validator0
@@ -36,56 +36,74 @@ A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
     cp account* ../../../Node-5/data/keystore
     ```
 
-1.  Copy the address of the validator and propose it from more than half the number of current validators.
+4.  Copy the address of the validator and propose it from more than half the number of current validators.
 
     Attach a `geth` console to the node:
 
-    === "geth attach"
+    <!--tabs-->
 
-        ```bash
-        cd ..
-        geth attach node0/data/geth.ipc
-        ```
+    # geth attach
 
-    === "Result"
+    ```bash
+    cd ..
+    geth attach node0/data/geth.ipc
+    ```
 
-        ```text
-        Welcome to the Geth JavaScript console!
+    # Result
 
-        instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
-        coinbase: 0x4c1ccd426833b9782729a212c857f2f03b7b4c0d
-        at block: 137 (Tue, 11 Jun 2019 16:32:47 BST)
-        datadir: /Users/username/fromscratchistanbul/node0/data
-        modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
-        ```
+    ```text
+    Welcome to the Geth JavaScript console!
+
+    instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
+    coinbase: 0x4c1ccd426833b9782729a212c857f2f03b7b4c0d
+    at block: 137 (Tue, 11 Jun 2019 16:32:47 BST)
+    datadir: /Users/username/fromscratchistanbul/node0/data
+    modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+    ```
+
+    <!--/tabs-->
 
     Check existing validators:
 
-    === "geth console request"
+    <!--tabs-->
 
-        ```javascript
-        istanbul.getValidators()
-        ```
+    # geth console request
 
-    === "JSON result"
+    ```javascript
+    istanbul.getValidators();
+    ```
 
-        ```json
-        ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
-        ```
+    # JSON result
+
+    ```json
+    [
+      "0x189d23d201b03ae1cf9113672df29a5d672aefa3",
+      "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6",
+      "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d",
+      "0x7ae555d0f6faad7930434abdaac2274fd86ab516",
+      "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"
+    ]
+    ```
+
+    <!--/tabs-->
 
     Propose the new validator using the command [`istanbul.propose(<address>, true)`](../../reference/api-methods.md#istanbul_propose) with `<address>` replaced by the new validator candidate node address:
 
-    === "geth console request"
+    <!--tabs-->
 
-        ```javascript
-        istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",true)
-        ```
+    # geth console request
 
-    === "JSON result"
+    ```javascript
+    istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1", true);
+    ```
 
-        ```json
-        null
-        ```
+    # JSON result
+
+    ```json
+    null
+    ```
+
+    <!--/tabs-->
 
     Exit the console:
 
@@ -95,28 +113,40 @@ A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
 
     Repeat the proposal process for this candidate node by connecting your `geth` console to node 1, node 2, and node 3.
 
-    !!! note
+    :::note
 
-        To drop a currently running validator candidate and stop further votes from being cast either for or against it, use
-        [`istanbul.discard`](../../reference/api-methods.md#istanbul_discard).
+    To drop a currently running validator candidate and stop further votes from being cast either for or against it, use [`istanbul.discard`](../../reference/api-methods.md#istanbul_discard).
 
-1.  Verify that the new validator is now in the list of validators by running [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators) in a `geth` console attached to any of your nodes:
+    :::
 
-    === "geth console request"
+5.  Verify that the new validator is now in the list of validators by running [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators) in a `geth` console attached to any of your nodes:
 
-          ```javascript
-          istanbul.getValidators()
-          ```
+    <!--tabs-->
 
-    === "JSON result"
+    # geth console request
 
-          ```json
-          ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
-          ```
+    ```javascript
+    istanbul.getValidators();
+    ```
+
+    # JSON result
+
+    ```json
+    [
+      "0x189d23d201b03ae1cf9113672df29a5d672aefa3",
+      "0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",
+      "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6",
+      "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d",
+      "0x7ae555d0f6faad7930434abdaac2274fd86ab516",
+      "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"
+    ]
+    ```
+
+    <!--/tabs-->
 
     The list of validators contains six addresses now.
 
-1.  Copy `static-nodes.json` and `genesis.json` from the existing chain, placing `static-nodes.json` into the new node's data directory:
+6.  Copy `static-nodes.json` and `genesis.json` from the existing chain, placing `static-nodes.json` into the new node's data directory:
 
     ```bash
     cd node5
@@ -124,7 +154,7 @@ A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
     cp ../node0/genesis.json data
     ```
 
-1.  Edit `static-nodes.json` and add the new validator's node info to the end of the file.
+7.  Edit `static-nodes.json` and add the new validator's node info to the end of the file.
 
     The new validator's node info can be retrieved from the output of `qbft setup --num 1 --verbose --quorum --save` in step 2. Update the IP address and port of the node info to match the IP address of the validator and port you want to use.
 
@@ -139,29 +169,33 @@ A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
     ]
     ```
 
-1.  Initialize the new node with the following command:
+8.  Initialize the new node with the following command:
 
-    === "geth command"
+    <!--tabs-->
 
-        ```bash
-        geth --datadir data init data/genesis.json
-        ```
+    # geth command
 
-    === "Result"
+    ```bash
+    geth --datadir data init data/genesis.json
+    ```
 
-        ```text
-        INFO [06-11|16:42:27.120] Maximum peer count                       ETH=25 LES=0 total=25
-        INFO [06-11|16:42:27.130] Allocated cache and file handles         database=/Users/username/fromscratchistanbul/node5/data/geth/chaindata cache=16 handles=16
-        INFO [06-11|16:42:27.138] Writing custom genesis block
-        INFO [06-11|16:42:27.138] Persisted trie from memory database      nodes=6 size=1.01kB time=163.024µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
-        INFO [06-11|16:42:27.139] Successfully wrote genesis state         database=chaindata                                                  hash=b992be…533db7
-        INFO [06-11|16:42:27.139] Allocated cache and file handles         database=/Users/username/fromscratchistanbul/node5/data/geth/lightchaindata cache=16 handles=16
-        INFO [06-11|16:42:27.141] Writing custom genesis block
-        INFO [06-11|16:42:27.142] Persisted trie from memory database      nodes=6 size=1.01kB time=94.57µs   gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
-        INFO [06-11|16:42:27.142] Successfully wrote genesis state         database=lightchaindata                                                  hash=b992be…533db7
-        ```
+    # Result
 
-1.  In the `Node-5` directory, start the first node:
+    ```
+    INFO [06-11|16:42:27.120] Maximum peer count                       ETH=25 LES=0 total=25
+    INFO [06-11|16:42:27.130] Allocated cache and file handles         database=/Users/username/fromscratchistanbul/node5/data/geth/chaindata cache=16 handles=16
+    INFO [06-11|16:42:27.138] Writing custom genesis block
+    INFO [06-11|16:42:27.138] Persisted trie from memory database      nodes=6 size=1.01kB time=163.024µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+    INFO [06-11|16:42:27.139] Successfully wrote genesis state         database=chaindata                                                  hash=b992be…533db7
+    INFO [06-11|16:42:27.139] Allocated cache and file handles         database=/Users/username/fromscratchistanbul/node5/data/geth/lightchaindata cache=16 handles=16
+    INFO [06-11|16:42:27.141] Writing custom genesis block
+    INFO [06-11|16:42:27.142] Persisted trie from memory database      nodes=6 size=1.01kB time=94.57µs   gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+    INFO [06-11|16:42:27.142] Successfully wrote genesis state         database=lightchaindata                                                  hash=b992be…533db7
+    ```
+
+    <!--/tabs-->
+
+9.  In the `Node-5` directory, start the first node:
 
     ```bash
     export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
@@ -178,7 +212,7 @@ A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
         --port 30305
     ```
 
-1.  Check that node 5 is validator:
+10. Check that node 5 is validator:
 
     ```bash
     geth attach http://localhost:22005
@@ -193,69 +227,98 @@ A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
 
 1.  Attach a `geth` console to a running validator, run [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators), and identify the address of the validator that needs to be removed:
 
-    === "geth attach"
+    <!--tabs-->
 
-          ```bash
-          geth attach node0/data/geth.ipc
-          ```
+    # geth attach
 
-    === "Result"
+    ```bash
+    geth attach node0/data/geth.ipc
+    ```
 
-          ```text
-          Welcome to the Geth JavaScript console!
+    # Result
 
-          instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
-          coinbase: 0xc1056df7c02b6f1a353052eaf0533cc7cb743b52
-          at block: 181 (Tue, 11 Jun 2019 16:36:27 BST)
-          datadir: /Users/username/fromscratchistanbul/node0/data
-          modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
-          ```
+    ```
+    Welcome to the Geth JavaScript console!
+
+    instance: Geth/v1.8.18-stable-bb88608c(quorum-v2.2.3)/darwin-amd64/go1.10.2
+    coinbase: 0xc1056df7c02b6f1a353052eaf0533cc7cb743b52
+    at block: 181 (Tue, 11 Jun 2019 16:36:27 BST)
+    datadir: /Users/username/fromscratchistanbul/node0/data
+    modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+    ```
+
+    <!--/tabs-->
 
     Run `istanbul.getValidators`:
 
-    === "geth console request"
+    <!--tabs-->
 
-          ```javascript
-          istanbul.getValidators()
-          ```
+    # geth console request
 
-    === "JSON result"
+    ```javascript
+    istanbul.getValidators();
+    ```
 
-          ```json
-          ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
-          ```
+    # JSON result
+
+    ```json
+    [
+      "0x189d23d201b03ae1cf9113672df29a5d672aefa3",
+      "0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",
+      "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6",
+      "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d",
+      "0x7ae555d0f6faad7930434abdaac2274fd86ab516",
+      "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"
+    ]
+    ```
+
+    <!--/tabs-->
 
     We will remove `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` from the validator list in this tutorial.
 
 1.  Run [`istanbul.propose(<address>, false)`](../../reference/api-methods.md#istanbul_propose) by passing the address of the validator that needs to be removed from more than half of the current validators:
 
-    === "geth console request"
+    <!--tabs-->
 
-          ```javascript
-          istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)
-          ```
+    # geth console request
 
-    === "JSON result"
+    ```javascript
+    istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1", false);
+    ```
 
-          ```json
-          null
-          ```
+    # JSON result
+
+    ```json
+    null
+    ```
+
+    <!--/tabs-->
 
     Repeat `istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)` for node 1, node 2, and node 3.
 
 1.  Verify that the validator has been removed by running [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators) in one of the nodes' attached `geth` console:
 
-    === "geth console request"
+    <!--tabs-->
 
-          ```javascript
-          istanbul.getValidators()
-          ```
+    # geth console request
 
-    === "JSON result"
+    ```javascript
+    istanbul.getValidators();
+    ```
 
-          ```json
-          ["0x189d23d201b03ae1cf9113672df29a5d672aefa3", "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6", "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d", "0x7ae555d0f6faad7930434abdaac2274fd86ab516", "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"]
-          ```
+    # JSON result
+
+    ```json
+    [
+      "0x189d23d201b03ae1cf9113672df29a5d672aefa3",
+      "0x44b07d2c28b8ed8f02b45bd84ac7d9051b3349e6",
+      "0x4c1ccd426833b9782729a212c857f2f03b7b4c0d",
+      "0x7ae555d0f6faad7930434abdaac2274fd86ab516",
+      "0xc1056df7c02b6f1a353052eaf0533cc7cb743b52"
+    ]
+    ```
+
+    <!--/tabs-->
 
     The validator `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` was removed and the validators list now only has five addresses.
 
@@ -272,28 +335,32 @@ A QBFT network as configured in the [QBFT tutorial](create-qbft-network.md).
 
 1.  Stop the `geth` process corresponding to the validator that was removed:
 
-    === "Command"
+    <!--tabs-->
 
-        ```bash
-        ps
-        ```
+    # Command
 
-    === "Result"
+    ```bash
+    ps
+    ```
 
-        ```text
-          PID TTY           TIME CMD
-        10554 ttys000    0:00.11 -bash
-        21829 ttys001    0:00.03 -bash
-        9125  ttys002    0:00.94 -bash
-        36432 ttys002    0:31.93 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22000 --http.api admin,
-        36433 ttys002    0:30.75 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22001 --http.api admin,
-        36434 ttys002    0:31.72 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22002 --http.api admin,
-        36435 ttys002    0:31.65 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22003 --http.api admin,
-        36436 ttys002    0:31.63 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22004 --http.api admin,
-        36485 ttys002    0:06.86 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22005 --http.api admin,
-        36455 ttys003    0:00.05 -bash
-        36493 ttys003    0:00.22 geth attach node4/data/geth.ipc
-        ```
+    # Result
+
+    ```text
+      PID TTY           TIME CMD
+    10554 ttys000    0:00.11 -bash
+    21829 ttys001    0:00.03 -bash
+    9125  ttys002    0:00.94 -bash
+    36432 ttys002    0:31.93 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22000 --http.api admin,
+    36433 ttys002    0:30.75 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22001 --http.api admin,
+    36434 ttys002    0:31.72 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22002 --http.api admin,
+    36435 ttys002    0:31.65 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22003 --http.api admin,
+    36436 ttys002    0:31.63 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22004 --http.api admin,
+    36485 ttys002    0:06.86 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 0.0.0.0 --http.port 22005 --http.api admin,
+    36455 ttys003    0:00.05 -bash
+    36493 ttys003    0:00.22 geth attach node4/data/geth.ipc
+    ```
+
+    <!--/tabs-->
 
     Kill the `geth` process that uses port `22005`, corresponding to node 5 as indicated in `start5.sh`:
 

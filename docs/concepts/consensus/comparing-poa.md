@@ -10,9 +10,11 @@ PoA consensus protocols have faster block times and a much greater transaction t
 
 In the GoQuorum PoA consensus protocols, a group of nodes in the network act as validators (QBFT and IBFT), verifiers (Raft), or signers (Clique). Existing validators, verifiers, or signers vote to add or remove network nodes.
 
-!!! note
+:::note
 
-    For the rest of this page, the term "validator" is used to refer to validators, verifiers, and signers.
+For the rest of this page, the term "validator" is used to refer to validators, verifiers, and signers.
+
+:::
 
 ## Properties
 
@@ -41,10 +43,11 @@ Raft and Clique are more fault tolerant than QBFT and IBFT.
 
 Raft and Clique tolerate up to half of the validators failing.
 
-!!! important
+:::caution
 
-    While Clique is Byzantine fault tolerant, Raft is only crash fault tolerant because the Raft leader is assumed to
-    always act correctly.
+While Clique is Byzantine fault tolerant, Raft is only crash fault tolerant because the Raft leader is assumed to always act correctly.
+
+:::
 
 QBFT and IBFT networks require greater than or equal to two-thirds of validators to be operating to create blocks. For example, a QBFT network of:
 
@@ -53,9 +56,11 @@ QBFT and IBFT networks require greater than or equal to two-thirds of validators
 
 Networks with three or fewer validators can produce blocks but do not guarantee finality when operating in adversarial environments.
 
-!!! important
+:::caution
 
-    We recommend using QBFT and IBFT networks with at least four nodes in production environments.
+We recommend using QBFT and IBFT networks with at least four nodes in production environments.
+
+:::
 
 ### Speed
 

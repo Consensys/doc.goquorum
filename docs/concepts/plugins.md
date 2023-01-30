@@ -40,4 +40,8 @@ GoQuorum uses Plugin Central Server to download and verify plugin integrity usin
 
 To disable the plugin verification process, use the [`--plugins.skipverify`](../reference/cli-syntax.md#pluginsskipverify) command-line option.
 
-!!! warning Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.
+:::caution
+
+Using `--plugins.skipverify` introduces security risks and isn't recommended for production environments.
+
+:::

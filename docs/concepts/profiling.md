@@ -35,5 +35,3 @@ These metrics could be configured to be stored in an InfluxDB or Prometheus for 
 ## Sample JMeter dashboard
 
 ![JMeter dashboard](../images/jmeterDashboard.jpeg)
-
-\*[TPS]: Transactions Per Second

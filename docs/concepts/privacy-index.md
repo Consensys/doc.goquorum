@@ -50,5 +50,3 @@ When [privacy enhancements](./privacy/privacy-enhancements.md) are enabled and [
 ## Contract state extension
 
 [Contract state extension](./privacy/contract-extension.md) allows you to extend access to a private contract beyond its initial set of participants.
-
-\*[HSM]: Hardware security module

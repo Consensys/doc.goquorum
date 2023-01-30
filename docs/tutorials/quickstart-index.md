@@ -34,7 +34,11 @@ npm install -g quorum-dev-quickstart
 quorum-dev-quickstart
 ```
 
-!!! Note Many npm installations don't have permission to install global modules and will throw an EACCES error. npm has [a recommended solution](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally).
+:::note
+
+Many npm installations don't have permission to install global modules and will throw an EACCES error. npm has [a recommended solution](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally).
+
+:::
 
 ## Options
 

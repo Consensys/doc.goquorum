@@ -14,7 +14,8 @@ GoQuorum implements the following proof of authority (PoA) consensus protocols:
 
 See a [comparison of the PoA consensus protocols](./consensus/comparing-poa.md).
 
-!!! note
+:::note
 
-    You can't create a network of GoQuorum nodes using different consensus protocols.
-    GoQuorum nodes configured with one consensus protocol can only work correctly with other nodes running the same protocol.
+You can't create a network of GoQuorum nodes using different consensus protocols. GoQuorum nodes configured with one consensus protocol can only work correctly with other nodes running the same protocol.
+
+:::

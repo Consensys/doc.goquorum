@@ -18,7 +18,8 @@ In free gas networks, the gas price is zero but transactions still use gas, so t
 
 In GoQuorum, gas price is completely removed unless [explicitly enabled](gas-enabled-network.md). Gas price is not included as a transaction object parameter in [GoQuorum privacy API methods](../reference/api-methods.md#privacy-methods). When using standard Ethereum JSON-RPC methods such as [`sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.3.4/web3-eth.html#sendsignedtransaction), you must set `gasPrice` to 0.
 
-!!! tip
+:::tip
 
-    We use the term *free gas network* to refer to a network with a gas price of zero.
-    A network with a gas price of zero is also known as a *zero gas network* or *no gas network*.
+We use the term _free gas network_ to refer to a network with a gas price of zero. A network with a gas price of zero is also known as a _zero gas network_ or _no gas network_.
+
+:::

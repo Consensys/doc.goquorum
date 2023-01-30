@@ -16,10 +16,11 @@ If gas is enabled, then similar to public Ethereum networks, the account submitt
 
 To enable gas price in GoQuorum, set `enableGasPriceBlock` in the GoQuorum [genesis file](../configure-and-manage/configure/genesis-file/genesis-options.md) `config` object to a future block, when the entire network is ready to transact with gas-enabled transactions. All GoQuorum nodes in the network must be initialized with the same `enableGasPriceBlock` value.
 
-!!! note
+:::note
 
-    You need to re-run `geth init` when you update the genesis file to incorporate the changes.
-    This doesn't delete or modify any current sync process or saved blocks.
+You need to re-run `geth init` when you update the genesis file to incorporate the changes. This doesn't delete or modify any current sync process or saved blocks.
+
+:::
 
 ## Nuances of gas price in GoQuorum
 

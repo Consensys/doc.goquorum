@@ -19,12 +19,11 @@ You can view a [list of additional network and dapp security resources](#resourc
 
 A consortium network connects multiple independent networks. Consortiums come with risks such as accidental data exposure and potential liabilities that must be managed. They require governance structures that fulfill the concerns of participants equally.
 
-!!! note
+:::note
 
-    In a consortium network, every member does not need to be a validator. Each non-validating
-    member will still have a full copy of the chain data and has full ability to transact (private or public)
-    on the network. To prevent the network halting, all validators have additional responsibility to ensure
-    that their node does not go down and is available per SLAs of the consortium agreements.
+In a consortium network, every member does not need to be a validator. Each non-validating member will still have a full copy of the chain data and has full ability to transact (private or public) on the network. To prevent the network halting, all validators have additional responsibility to ensure that their node does not go down and is available per SLAs of the consortium agreements.
+
+:::
 
 ### Security checklist
 

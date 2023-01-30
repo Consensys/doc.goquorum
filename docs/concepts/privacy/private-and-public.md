@@ -11,13 +11,11 @@ GoQuorum achieves transaction privacy by:
 - Storing encrypted private data off-chain in a separate component called the [private transaction manager](../privacy-index.md#private-transaction-manager). The private transaction manager encrypts private data, distributes the encrypted data to other parties that are privy to the transaction, and returns the decrypted payload to those parties.
 - Replacing the payload of a private transaction with a key for the location of the encrypted payload, such that the original payload isn't visible to participants who aren't privy to the transaction.
 
-!!! note
+:::note
 
-    While GoQuorum introduces the notion of "public transactions" and "private transactions," it does not introduce new
-    transaction types.
-    Rather, it extends the Ethereum transaction model to include an optional `privateFor` parameter (the inclusion of
-    which results in GoQuorum treating a transaction as private) and the transaction type has a new `IsPrivate` method to
-    identify private transactions.
+While GoQuorum introduces the notion of "public transactions" and "private transactions," it does not introduce new transaction types. Rather, it extends the Ethereum transaction model to include an optional `privateFor` parameter (the inclusion of which results in GoQuorum treating a transaction as private) and the transaction type has a new `IsPrivate` method to identify private transactions.
+
+:::
 
 ## Public transactions
 
@@ -25,11 +23,11 @@ Public transactions have payloads that are visible to all participants of the sa
 
 Examples of public transactions include market data updates from a service provider, or a reference data update such as a correction to a bond security definition.
 
-!!! Note
+:::note
 
-    GoQuorum public transactions are not transactions from the public Ethereum network.
-    Perhaps a more appropriate term would be "common" or "global" transactions, but "public" is used to contrast with
-    "private" transactions.
+GoQuorum public transactions are not transactions from the public Ethereum network. Perhaps a more appropriate term would be "common" or "global" transactions, but "public" is used to contrast with "private" transactions.
+
+:::
 
 ## Private transactions
 
@@ -37,11 +35,12 @@ Private transactions have payloads that are visible only to the network particip
 
 When a GoQuorum node encounters a transaction with a non-null `privateFor` value, it sets the `v` value of the transaction signature to `37` or `38` (as opposed to public transactions, whose `v` values are set according to [EIP-155](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md)).
 
-!!! note "Notes"
+:::note
 
-    - `privateFor` is not shared with other participants; it's only used to identify which nodes to send the encrypted payload to.
-    - There's no direct restriction on private transaction size.
-      As with public transactions, the only restriction is the gas limit.
+- `privateFor` is not shared with other participants; it's only used to identify which nodes to send the encrypted payload to.
+- There's no direct restriction on private transaction size. As with public transactions, the only restriction is the gas limit.
+
+:::
 
 See the [private transaction high-level lifecycle](private-transaction-lifecycle.md#normal-private-transactions).
 
@@ -55,10 +54,11 @@ Private transactions are executed differently: before the sender's GoQuorum node
 
 If a private transaction is sent to an account that holds contract code, participants not privy to the transaction skip the transaction and don't execute the contract code. Participants privy to the transaction replace the hash and call the virtual machine for execution, and their state databases update accordingly.
 
-!!! note
+:::note
 
-    See the [private transaction high-level lifecycle](private-transaction-lifecycle.md#normal-private-transactions) for an
-    illustrated example.
+See the [private transaction high-level lifecycle](private-transaction-lifecycle.md#normal-private-transactions) for an illustrated example.
+
+:::
 
 As a result, these two sets of participants end up with different state databases and can't reach consensus. To support this forking of contract state, GoQuorum stores the state of public contracts in a public state trie that is globally synchronized, and the state of private contracts in a private state trie not globally synchronized.
 
