@@ -14,7 +14,7 @@ The first step is to generate the genesis block.
 
 The `7nodes` directory in the `quorum-examples` repository contains several keys (using an empty password) that are used in the example genesis file:
 
-```text
+```
 key1    vote key 1
 key2    vote key 2
 key3    vote key 3
@@ -53,7 +53,7 @@ Optionally you can set up a bootnode that all the other nodes will first connect
    bootnode -genkey tmp_file.txt  // this will start a bootnode with an enode address and generate a key inside a “tmp_file.txt” file`
    ```
 
-1. To later restart the bootnode using the same key (and hence use the same enode url):
+2. To later restart the bootnode using the same key (and hence use the same enode url):
 
    ```bash
    bootnode -nodekey tmp_file.txt

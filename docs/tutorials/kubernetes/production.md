@@ -15,15 +15,17 @@ sidebar_position: 6
 
 To get things ready for production, use the same charts and set the values in the `cluster` map as seen in the [Deploy](#deploy-the-network) section.
 
-!!!warning
+:::warning
 
-    The following tutorial ONLY supports AWS and Azure currently. Other cloud providers will be added in time.
+The following tutorial ONLY supports AWS and Azure currently. Other cloud providers will be added in time.
 
-!!!warning
+:::
 
-    We recommend using AWS RDS or Azure PostgreSQL in High Availability mode for any Tessera nodes that you use.
-    The templates don't include that functionality. They can be provisioned with CloudFormation or Azure Resource Manager,
-    respectively. Once created, please specify the connection details to the `values.yml`.
+:::warning
+
+We recommend using AWS RDS or Azure PostgreSQL in High Availability mode for any Tessera nodes that you use. The templates don't include that functionality. They can be provisioned with CloudFormation or Azure Resource Manager, respectively. Once created, please specify the connection details to the `values.yml`.
+
+:::
 
 ## Deploy
 

@@ -8,7 +8,11 @@ sidebar_position: 5
 
 This tutorial shows you how to create a privacy-enabled network. The network uses Tessera, a private transaction manager, to encrypt and distribute [private transactions](../concepts/privacy-index.md).
 
-!!! important The steps in this tutorial create an isolated, but not protected or secure, Ethereum private network. We recommend running the private network behind a properly configured firewall.
+:::warning
+
+The steps in this tutorial create an isolated, but not protected or secure, Ethereum private network. We recommend running the private network behind a properly configured firewall.
+
+:::
 
 ## Prerequisites
 
@@ -51,7 +55,11 @@ Press enter both times you are prompted for a password.
 
 The private and public key are created in files called `tessera0.key` and `tessera0.pub`.
 
-!!! caution In a production environment, ensure keys are secured appropriately.
+:::warning
+
+In a production environment, ensure keys are secured appropriately.
+
+:::
 
 ### 3. Create configuration file
 

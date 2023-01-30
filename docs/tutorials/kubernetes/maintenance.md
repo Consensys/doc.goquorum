@@ -31,11 +31,11 @@ helm upgrade member-1 ./charts/goquorum-node --namespace goquorum --values ./val
 
 ## Updating GoQuorum versions
 
-!!! important
+:::warning
 
-    When updating GoQuorum nodes across a cluster, perform the updates as a rolling update and not all at once,
-    especially for the validator pool. If all the validators are taken offline, the
-    chain halts, and you must wait for round changes to expire before blocks are created again.
+When updating GoQuorum nodes across a cluster, perform the updates as a rolling update and not all at once, especially for the validator pool. If all the validators are taken offline, the chain halts, and you must wait for round changes to expire before blocks are created again.
+
+:::
 
 Updates for GoQuorum can be done via Helm in exactly the same manner as other applications. Alternatively, this can be done via `kubectl`. This example updates a node called `goquorum-validator-3`:
 

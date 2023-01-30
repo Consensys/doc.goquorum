@@ -11,10 +11,10 @@ The [playground](https://github.com/ConsenSys/quorum-kubernetes/tree/master/play
 ## How to deploy locally
 
 1. Navigate to the playground [`README`](https://github.com/ConsenSys/quorum-kubernetes/tree/master/playground).
-1. Ensure that your system meets the requirements specified.
-1. Choose your Ethereum client (Hyperledger Besu or GoQuorum): `quorum-besu` or `quorum-go`.
-1. Choose your consensus algorithm. The playground supports Clique, Ethash (PoW), and IBFT2 for Besu, and IBFT for GoQuorum.
-1. Follow the instructions from the `README` for the chosen client and consensus algorithm folder.
+2. Ensure that your system meets the requirements specified.
+3. Choose your Ethereum client (Hyperledger Besu or GoQuorum): `quorum-besu` or `quorum-go`.
+4. Choose your consensus algorithm. The playground supports Clique, Ethash (PoW), and IBFT2 for Besu, and IBFT for GoQuorum.
+5. Follow the instructions from the `README` for the chosen client and consensus algorithm folder.
 
 ## Important notes
 

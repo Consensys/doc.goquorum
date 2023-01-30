@@ -56,10 +56,11 @@ Setting the `cluster.cloudNativeServices: true` will:
 - Store keys in Azure KeyVault or AWS Secrets Manager
 - Make use of Azure Managed Identities or AWS IAMs for pod identity access
 
-!!! note
+:::note
 
-    You can customize any of the charts in this repository to suit your requirements, and make pull requests to
-    extend functionality.
+You can customize any of the charts in this repository to suit your requirements, and make pull requests to extend functionality.
+
+:::
 
 ### 1. Check that you can connect to the cluster with `kubectl`
 
@@ -75,11 +76,11 @@ Server Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.3", GitCom
 
 This tutorial isolates groups of resources (for example, StatefulSets and Services) within a single cluster.
 
-!!! note
+:::note
 
-    The rest of this tutorial uses `quorum` as the namespace,
-    but you're free to pick any name when deploying, as long as it's consistent across the
-    [infrastructure setup](./create-cluster.md) and charts.
+The rest of this tutorial uses `quorum` as the namespace, but you're free to pick any name when deploying, as long as it's consistent across the [infrastructure setup](./create-cluster.md) and charts.
+
+:::
 
 Run the following in a terminal window:
 
@@ -111,9 +112,11 @@ Metrics are collected via a [ServiceMonitor](https://github.com/prometheus-opera
         prometheus.io/path: "/debug/metrics/prometheus"
 ```
 
-!!! warning
+:::warning
 
-    For production, please configure Grafana with one of the supported [native auth mechanisms](https://grafana.com/docs/grafana/latest/auth/).
+For production, please configure Grafana with one of the supported [native auth mechanisms](https://grafana.com/docs/grafana/latest/auth/).
+
+:::
 
 ![k8s-metrics](../../images/kubernetes/kubernetes-grafana.png)
 
@@ -154,10 +157,11 @@ kubectl apply -f ../ingress/ingress-rules-monitoring.yml
 
 Once complete, view the IP address listed under the `Ingress` section if you're using the Kubernetes Dashboard or on the command line `kubectl -n quorum get services quorum-monitoring-ingress-ingress-nginx-controller`.
 
-!!! note
+:::note
 
-    We refer to the ingress here as `external-nginx` because it deals with monitoring endpoints specifically. We
-    also deploy a second ingress called `network-ingress` which is for the blockchain nodes only in [step 8](#8-connecting-to-the-node-from-your-local-machine-via-an-ingress)
+We refer to the ingress here as `external-nginx` because it deals with monitoring endpoints specifically. We also deploy a second ingress called `network-ingress` which is for the blockchain nodes only in [step 8](#8-connecting-to-the-node-from-your-local-machine-via-an-ingress)
+
+:::
 
 ![`k8s-ingress-external`](../../images/kubernetes/kubernetes-ingress.png)
 
@@ -177,11 +181,11 @@ http://<INGRESS_IP>/kibana
 
 The genesis chart creates the genesis file and keys for the validators.
 
-!!! warning
+:::warning
 
-    It's important to keep the release names of the initial validator pool as per this tutorial, that is
-    `validator-n`, where `n` is the node number. Any validators created after the initial pool can be named
-    to anything you like.
+It's important to keep the release names of the initial validator pool as per this tutorial, that is `validator-n`, where `n` is the node number. Any validators created after the initial pool can be named to anything you like.
+
+:::
 
 The override [values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/genesis-goquorum.yml) looks like below:
 
@@ -296,11 +300,11 @@ node:
 
 Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning-with-helm-charts) step. `quorumFlags.removeKeysOnDelete: true` tells the chart to delete the node's keys when the chart is deleted. If you may wish to retain the keys on deletion, please set that value to `false`.
 
-!!! warning
+:::warning
 
-    Please note that if you delete a majority of the validators, the network will halt. Additionally, if the
-    validator keys are deleted you may not be able to recover as you need a majority of the validators up to vote to
-    add new validators into the pool
+Please note that if you delete a majority of the validators, the network will halt. Additionally, if the validator keys are deleted you may not be able to recover as you need a majority of the validators up to vote to add new validators into the pool
+
+:::
 
 Deploy the validators like so:
 
@@ -311,10 +315,11 @@ helm install validator-3 ./charts/quorum-node --namespace quorum --values ./valu
 helm install validator-4 ./charts/quorum-node --namespace quorum --values ./values/validator.yml
 ```
 
-!!! warning
+:::warning
 
-    It's important to keep the release names of the validators the same as it is tied to the keys that the genesis chart
-    creates. So we use `validator-1`, `validator-2`, etc. in the following command.
+It's important to keep the release names of the validators the same as it is tied to the keys that the genesis chart creates. So we use `validator-1`, `validator-2`, etc. in the following command.
+
+:::
 
 Once complete, you may need to give the validators a few minutes to peer and for round changes, depending on when the first validator was spun up, before the logs display blocks being created.
 
@@ -356,10 +361,11 @@ Logs for GoQuorum resemble the following:
 
 ![`k8s-tx-quorum-logs`](../../images/kubernetes/kubernetes-tx-quorum-logs.png)
 
-!!! note
+:::note
 
-    In the examples above we use `member-1` and `rpc-1` as release names for the deployments. You can pick any release
-    name that you'd like to use in place of those as per your requirements.
+In the examples above we use `member-1` and `rpc-1` as release names for the deployments. You can pick any release name that you'd like to use in place of those as per your requirements.
+
+:::
 
 ### 8. Connecting to the node from your local machine via an Ingress
 
@@ -393,29 +399,35 @@ Once complete, view the IP address listed under the `Ingress` section if you're 
 
 The following is an example RPC call, which confirms that the node running the JSON-RPC service is syncing:
 
-=== "curl HTTP request"
+<!--tabs-->
 
-    ```bash
-    curl -v -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://<INGRESS_IP>/rpc-1
-    ```
+# curl HTTP request
 
-=== "JSON result"
+```bash
+curl -v -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://<INGRESS_IP>/rpc-1
+```
 
-    ```json
-    {
-    "jsonrpc" : "2.0",
-    "id" : 1,
-    "result" : "0x4e9"
-    }
-    ```
+# JSON result
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x4e9"
+}
+```
+
+<!--/tabs-->
 
 ### 9. Blockchain explorer
 
 You can deploy [BlockScout](https://github.com/blockscout/blockscout) to aid with monitoring the blockchain. To do this, update the [BlockScout values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/blockscout-goquorum.yml) and set the `database` and `secret_key_base` values.
 
-!!! important
+:::caution
 
-    Changes to the database requires changes to both the `database` and the `blockscout` dictionaries.
+Changes to the database requires changes to both the `database` and the `blockscout` dictionaries.
+
+:::
 
 Once completed, deploy the chart using:
 
@@ -426,9 +438,11 @@ helm install blockscout ./charts/blockscout --namespace quorum --values ./values
 
 You can optionally deploy the [Quorum-Explorer](https://github.com/ConsenSys/quorum-explorer) as a lightweight blockchain explorer. The Quorum Explorer is not recommended for use in production and is intended for demonstration/dev purposes only. The Explorer can give an overview over the whole network, such as querying each node on the network for node or block information, voting (add/remove) validators from the network, demonstrating a SimpleStorage smart contract with privacy enabled, and sending transactions between wallets as you would do in Metamask. Please see the [Explorer](./quorum-explorer.md) page for details on how to use the application.
 
-!!! warning
+:::warning
 
-    The accounts listed in the file below are for test purposes only and should not be used on a production network.
+The accounts listed in the file below are for test purposes only and should not be used on a production network.
+
+:::
 
 To deploy the application, update the [Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yaml) with details of your nodes and endpoints and then deploy.
 

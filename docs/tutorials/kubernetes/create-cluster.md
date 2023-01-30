@@ -25,7 +25,11 @@ There are several options to create a local cluster. Select one listed below, or
 
 [Minikube](https://minikube.sigs.k8s.io/docs/start/) is one of the most popular options to spin up a local Kubernetes cluster for development. You can [install a version](https://minikube.sigs.k8s.io/docs/start/) based on your architecture.
 
-!!! note We recommend at least 2 CPUs and 16GB of RAM.
+:::note
+
+We recommend at least 2 CPUs and 16GB of RAM.
+
+:::
 
 To start the cluster run the following command:
 
@@ -49,9 +53,17 @@ kind create cluster
 
 It can build, push, pull and run container images. Built container images can be run without needing a registry.
 
-!!!note The official Docker-CLI is not supported but rather uses [nerdctl](https://github.com/containerd/nerdctl) which is a Docker-CLI compatible tool for containerd, and is automatically installed with Rancher Desktop.
+:::note
 
-!!!note For Windows, you must [install Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install) to install Rancher Desktop.
+The official Docker-CLI is not supported but rather uses [nerdctl](https://github.com/containerd/nerdctl) which is a Docker-CLI compatible tool for containerd, and is automatically installed with Rancher Desktop.
+
+:::
+
+:::note
+
+For Windows, you must [install Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install) to install Rancher Desktop.
+
+:::
 
 Refer to the [official documentation](https://docs.rancherdesktop.io/getting-started/installation) for system requirements and installation instructions.
 
@@ -70,14 +82,19 @@ The [template](https://github.com/ConsenSys/quorum-kubernetes/tree/master/aws) c
 - Dynamic storage classes backed by AWS EBS. The [volume claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) are fixed sizes and can be updated as you grow via helm updates, and won't need to re-provision the underlying storage class.
 - [CNI](https://docs.aws.amazon.com/eks/latest/userguide/pod-networking.html) networking mode for EKS. By default, EKS clusters use `kubenet` to create a virtual network and subnet. Nodes get an IP address from a virtual network subnet. Network address translation (NAT) is then configured on the nodes, and pods receive an IP address "hidden" behind the node IP.
 
-  !!! note This approach reduces the number of IP addresses that you must reserve in your network space for pods, but constrains what can connect to the nodes from outside the cluster (for example, on-premise nodes or those on another cloud provider).
+  :::note
+
+  This approach reduces the number of IP addresses that you must reserve in your network space for pods, but constrains what can connect to the nodes from outside the cluster (for example, on-premise nodes or those on another cloud provider).
+
+  :::
 
 AWS Container Networking Interface (CNI) provides each pod with an IP address from the subnet, and can be accessed directly. The IP addresses must be unique across your network space, and must be planned in advance. Each node has a configuration parameter for the maximum number of pods that it supports. The equivalent number of IP addresses per node are then reserved up front for that node. This approach requires more planning, and can lead to IP address exhaustion as your application demands grow, however makes it easier for external nodes to connect to your cluster.
 
-!!!warning
+:::warning
 
-    EKS clusters must not use 169.254.0.0/16, 172.30.0.0/16, 172.31.0.0/16, or 192.0.2.0/24 for the Kubernetes
-    service address range.
+EKS clusters must not use 169.254.0.0/16, 172.30.0.0/16, 172.31.0.0/16, or 192.0.2.0/24 for the Kubernetes service address range.
+
+:::
 
 To provision the cluster:
 
@@ -91,48 +108,48 @@ To provision the cluster:
 
 3.  Your `.kube/config` connects to the cluster automatically, but if it does not run the following commands. Replace `<AWS_REGION>` and `<CLUSTER_NAME>` with details that are specific to your deployment.
 
-        ```bash
-        aws sts get-caller-identity
-        aws eks --region <AWS_REGION> update-kubeconfig --name <CLUSTER_NAME>
-        ```
+    ```bash
+    aws sts get-caller-identity
+    aws eks --region <AWS_REGION> update-kubeconfig --name <CLUSTER_NAME>
+    ```
 
 4.  After the deployment completes, provision the EBS drivers for the volumes. While it is possible to use the in-tree `aws-ebs` driver natively supported by Kubernetes, it is no longer being updated and does not support newer EBS features such as the [cheaper and better gp3 volumes](https://stackoverflow.com/questions/68359043/whats-the-difference-between-ebs-csi-aws-com-vs-kubernetes-io-aws-ebs-for-provi). The cluster.yml file (from the previous steps) that is included in this folder automatically deploys the cluster with the EBS IAM policies, but you still need to install the EBS CSI drivers. You can do this through the AWS Management Console or via a CLI command as following example. Replace `<CLUSTER_NAME>`, `<AWS_REGION>` and `<AWS_ACCOUNT>` with details that are specific to your deployment.
 
-        ```bash
-        eksctl create iamserviceaccount --name ebs-csi-controller-sa --namespace kube-system --cluster <CLUSTER_NAME> --region <AWS_REGION> --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy --approve --role-only --role-name AmazonEKS_EBS_CSI_DriverRole
+    ```bash
+    eksctl create iamserviceaccount --name ebs-csi-controller-sa --namespace kube-system --cluster <CLUSTER_NAME> --region <AWS_REGION> --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy --approve --role-only --role-name AmazonEKS_EBS_CSI_DriverRole
 
-        eksctl create addon --name aws-ebs-csi-driver --cluster <CLUSTER_NAME> --region <AWS_REGION> --service-account-role-arn arn:aws:iam::<AWS_ACCOUNT>:role/AmazonEKS_EBS_CSI_DriverRole --force
-        ```
+    eksctl create addon --name aws-ebs-csi-driver --cluster <CLUSTER_NAME> --region <AWS_REGION> --service-account-role-arn arn:aws:iam::<AWS_ACCOUNT>:role/AmazonEKS_EBS_CSI_DriverRole --force
+    ```
 
 5.  Once the deployment is completed, provision the Secrets Manager IAM and CSI driver. Use `quorum` (or equivalent) for `<NAMESPACE>` and replace `<CLUSTER_NAME>`, `<AWS_REGION>` and `<AWS_ACCOUNT>` with details that are specific to your deployment.
 
-        ```bash
-        helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
-        helm install --namespace kube-system --create-namespace csi-secrets-store secrets-store-csi-driver/secrets-store-csi-driver
-        kubectl apply -f https://raw.githubusercontent.com/aws/secrets-store-csi-driver-provider-aws/main/deployment/aws-provider-installer.yaml
+    ```bash
+    helm repo add secrets-store-csi-driver https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
+    helm install --namespace kube-system --create-namespace csi-secrets-store secrets-store-csi-driver/secrets-store-csi-driver
+    kubectl apply -f https://raw.githubusercontent.com/aws/secrets-store-csi-driver-provider-aws/main/deployment/aws-provider-installer.yaml
 
-        POLICY_ARN=$(aws --region <AWS_REGION> --query Policy.Arn --output text iam create-policy --policy-name quorum-node-secrets-mgr-policy --policy-document '{
-            "Version": "2012-10-17",
-            "Statement": [ {
-                "Effect": "Allow",
-                "Action": ["secretsmanager:CreateSecret","secretsmanager:UpdateSecret","secretsmanager:DescribeSecret","secretsmanager:GetSecretValue","secretsmanager:PutSecretValue","secretsmanager:ReplicateSecretToRegions","secretsmanager:TagResource"],
-                "Resource": ["arn:aws:secretsmanager:<AWS_REGION>:<AWS_ACCOUNT>:secret:goquorum-node-*"]
-            } ]
-        }')
+    POLICY_ARN=$(aws --region <AWS_REGION> --query Policy.Arn --output text iam create-policy --policy-name quorum-node-secrets-mgr-policy --policy-document '{
+        "Version": "2012-10-17",
+        "Statement": [ {
+            "Effect": "Allow",
+            "Action": ["secretsmanager:CreateSecret","secretsmanager:UpdateSecret","secretsmanager:DescribeSecret","secretsmanager:GetSecretValue","secretsmanager:PutSecretValue","secretsmanager:ReplicateSecretToRegions","secretsmanager:TagResource"],
+            "Resource": ["arn:aws:secretsmanager:<AWS_REGION>:<AWS_ACCOUNT>:secret:goquorum-node-*"]
+        } ]
+    }')
 
+    # If you have deployed the above policy before, you can acquire its ARN:
+    POLICY_ARN=$(aws iam list-policies --scope Local \
+    --query 'Policies[?PolicyName==`quorum-node-secrets-mgr-policy`].Arn' \
+    --output text)
 
-        #If you have deployed the above policy before, you can acquire its ARN:
-        POLICY_ARN=$(aws iam list-policies --scope Local \
-        --query 'Policies[?PolicyName==`quorum-node-secrets-mgr-policy`].Arn' \
-        --output text)
+    eksctl create iamserviceaccount --name quorum-node-secrets-sa --namespace <NAMESPACE> --region=<AWS_REGION> --cluster <CLUSTER_NAME> --attach-policy-arn "$POLICY_ARN" --approve --override-existing-serviceaccounts
+    ```
 
-        eksctl create iamserviceaccount --name quorum-node-secrets-sa --namespace <NAMESPACE> --region=<AWS_REGION> --cluster <CLUSTER_NAME> --attach-policy-arn "$POLICY_ARN" --approve --override-existing-serviceaccounts
-        ```
+    :::warning
 
-        !!!warning
+    The above command creates a service account called `quorum-node-secrets-sa` and is preconfigured in the helm charts override values.yml files, for ease of use.
 
-            The above command creates a service account called `quorum-node-secrets-sa` and is
-            preconfigured in the helm charts override values.yml files, for ease of use.
+    :::
 
 6.  Optionally, deploy the [kubernetes dashboard](https://github.com/ConsenSys/quorum-kubernetes/tree/master/aws/templates/k8s-dashboard).
 
@@ -149,14 +166,19 @@ The [template](https://github.com/ConsenSys/quorum-kubernetes/tree/master/azure)
 - Dynamic storage classes backed by Azure Files. The [volume claims](https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv) are fixed sizes and can be updated as you grow via helm updates, and won't need to re-provision the underlying storage class.
 - [CNI](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni) networking mode for AKS. By default, AKS clusters use `kubenet`, to create a virtual network and subnet. Nodes get an IP address from a virtual network subnet. Network address translation (NAT) is then configured on the nodes, and pods receive an IP address "hidden" behind the node IP.
 
-  !!! note This approach reduces the number of IP addresses you must reserve in your network space for pods to use, but constrains what can connect to the nodes from outside the cluster (for example, on-premise nodes or other cloud providers).
+  :::note
+
+  This approach reduces the number of IP addresses you must reserve in your network space for pods to use, but constrains what can connect to the nodes from outside the cluster (for example, on-premise nodes or other cloud providers).
+
+  :::
 
 AKS Container Networking Interface (CNI) provides each pod with an IP address from the subnet, and can be accessed directly. These IP addresses must be unique across your network space, and must be planned in advance. Each node has a configuration parameter for the maximum number of pods that it supports. The equivalent number of IP addresses per node are then reserved up front for that node. This approach requires more planning, and can leads to IP address exhaustion as your application demands grow, however makes it easier for external nodes to connect to your cluster.
 
-!!!warning
+:::warning
 
-    Do not create more than one AKS cluster in the same subnet. AKS clusters may not use `169.254.0.0/16`,
-    `172.30.0.0/16`, `172.31.0.0/16`, or `192.0.2.0/24` for the Kubernetes service address range.
+Do not create more than one AKS cluster in the same subnet. AKS clusters may not use `169.254.0.0/16`, `172.30.0.0/16`, `172.31.0.0/16`, or `192.0.2.0/24` for the Kubernetes service address range.
+
+:::
 
 To provision the cluster:
 
@@ -179,28 +201,28 @@ To provision the cluster:
    az extension update --name aks-preview
    ```
 
-1. Create a resource group if you don't already have one:
+2. Create a resource group if you don't already have one:
 
    ```bash
    az group create --name QuorumGroup --location "East US"
    ```
 
-1. Deploy the template:
+3. Deploy the template:
 
    1. Navigate to the [Azure portal](https://portal.azure.com), select **+ Create a resource** in the upper left corner.
-   1. Search for `Template deployment (deploy using custom templates)` and select **Create**.
-   1. Select **Build your own template in the editor**.
-   1. Remove the contents (JSON) in the editor and paste in the contents of [`azuredeploy.json`](https://github.com/ConsenSys/quorum-kubernetes/blob/master/azure/arm/azuredeploy.json)
-   1. Select **Save**.
-   1. Input provisioning parameters in the displayed user interface.
+   2. Search for `Template deployment (deploy using custom templates)` and select **Create**.
+   3. Select **Build your own template in the editor**.
+   4. Remove the contents (JSON) in the editor and paste in the contents of [`azuredeploy.json`](https://github.com/ConsenSys/quorum-kubernetes/blob/master/azure/arm/azuredeploy.json)
+   5. Select **Save**.
+   6. Input provisioning parameters in the displayed user interface.
 
-1. Provision the drivers:
+4. Provision the drivers:
 
    1. Run the [bootstrap](https://github.com/ConsenSys/quorum-kubernetes/blob/master/azure/scripts/bootstrap.sh) script.
-   1. Use `quorum` for `AKS_NAMESPACE`, and update `AKS_RESOURCE_GROUP`, `AKS_CLUSTER_NAME`, and `AKS_MANAGED_IDENTITY` in the commands below to match your settings and deployed resources from step 3.
+   2. Use `quorum` for `AKS_NAMESPACE`, and update `AKS_RESOURCE_GROUP`, `AKS_CLUSTER_NAME`, and `AKS_MANAGED_IDENTITY` in the commands below to match your settings and deployed resources from step 3.
 
       ```bash
       ./scripts/bootstrap.sh "AKS_RESOURCE_GROUP" "AKS_CLUSTER_NAME" "AKS_MANAGED_IDENTITY" "AKS_NAMESPACE"
       ```
 
-1. You can now use your cluster and you can deploy [Helm charts](./deploy-charts.md) to it.
+5. You can now use your cluster and you can deploy [Helm charts](./deploy-charts.md) to it.
