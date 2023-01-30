@@ -1,0 +1,8 @@
+{
+  "label": "Monitor nodes",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Monitoring GoQuorum nodes"
+  }
+}

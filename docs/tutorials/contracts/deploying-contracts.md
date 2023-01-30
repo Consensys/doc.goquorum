@@ -1,17 +1,17 @@
 ---
+title: Deploy a contract
 description: deploying smart contracts
+sidebar_position: 1
 ---
 
 # Deploy a smart contract
 
-This tutorial shows you how to deploy smart contracts as transactions onto a running network.
-Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/index.md) to rapidly generate a local blockchain network.
+This tutorial shows you how to deploy smart contracts as transactions onto a running network. Use the [Quorum Developer Quickstart](../quickstart-index.md) to rapidly generate a local blockchain network.
 
 ## Prerequisites
 
-* A [private network](../private-network/create-ibft-network.md) if deploying a public contract.
-* A [privacy-enabled network](../create-privacy-enabled-network.md) if deploying a private contract
-    (public contracts can also be deployed on privacy-enabled networks).
+- A [private network](../private-network/create-ibft-network.md) if deploying a public contract.
+- A [privacy-enabled network](../create-privacy-enabled-network.md) if deploying a private contract (public contracts can also be deployed on privacy-enabled networks).
 
 !!! note
 
@@ -20,10 +20,7 @@ Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/index.md) to rapi
 
 ## Compile the contract
 
-You first need to create a smart contract.
-The following examples use the
-[`SimpleStorage.sol`](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/common/smart_contracts/privacy/contracts/SimpleStorage.sol)
-smart contract.
+You first need to create a smart contract. The following examples use the [`SimpleStorage.sol`](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/common/smart_contracts/privacy/contracts/SimpleStorage.sol) smart contract.
 
 Create a new file called `compile.js` with the following content:
 
@@ -74,9 +71,7 @@ Run `solc` to get the contract's bytecode and ABI:
 solc SimpleStorage.sol --bin --abi
 ```
 
-Once you have the bytecode and ABI, you can rename the output files to make them easier to use.
-This tutorial refers to them as `SimpleStorage.bin` and `SimpleStorage.abi`.
-You can now deploy this contract to a network as a public or private transaction.
+Once you have the bytecode and ABI, you can rename the output files to make them easier to use. This tutorial refers to them as `SimpleStorage.bin` and `SimpleStorage.abi`. You can now deploy this contract to a network as a public or private transaction.
 
 ## Public contracts
 
@@ -84,15 +79,14 @@ You can now deploy this contract to a network as a public or private transaction
 
 Call [`eth_sendTransaction`](https://eth.wiki/json-rpc/API) with the following parameters:
 
-* `from` - Address of the sender's account.
-* `to` - Address of the receiver. To deploy a contract, set to `null`.
-* `gas` - Amount of gas provided by the sender for the transaction.
-* `gasPrice` - Price for each unit of gas the sender is willing to pay. [Set to zero](../../concepts/free-gas-network.md) in GoQuorum networks.
-* `data` - One of the following:
-    * For contract deployments (this use case), the [compiled binary of the contract](#compile-the-contract).
-    * For contract interactions, the hash of the invoked method signature and encoded parameters
-      (see [Ethereum Contract ABI](https://solidity.readthedocs.io/en/develop/abi-spec.html)).
-    * For simple ether transfers, empty.
+- `from` - Address of the sender's account.
+- `to` - Address of the receiver. To deploy a contract, set to `null`.
+- `gas` - Amount of gas provided by the sender for the transaction.
+- `gasPrice` - Price for each unit of gas the sender is willing to pay. [Set to zero](../../concepts/free-gas-network.md) in GoQuorum networks.
+- `data` - One of the following:
+  - For contract deployments (this use case), the [compiled binary of the contract](#compile-the-contract).
+  - For contract interactions, the hash of the invoked method signature and encoded parameters (see [Ethereum Contract ABI](https://solidity.readthedocs.io/en/develop/abi-spec.html)).
+  - For simple ether transfers, empty.
 
 !!! example "Example eth_sendTransaction curl HTTP request"
 
@@ -100,16 +94,11 @@ Call [`eth_sendTransaction`](https://eth.wiki/json-rpc/API) with the following p
     curl -X POST --data '{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5", "to":null, "gas":"0x24A22","gasPrice":"0x0", "data":"0x608060405234801561001057600080fd5b5060405161014d38038061014d8339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000819055505060f38061005a6000396000f3fe6080604052348015600f57600080fd5b5060043610603c5760003560e01c80632a1afcd914604157806360fe47b114605d5780636d4ce63c146088575b600080fd5b604760a4565b6040518082815260200191505060405180910390f35b608660048036036020811015607157600080fd5b810190808035906020019092919050505060aa565b005b608e60b4565b6040518082815260200191505060405180910390f35b60005481565b8060008190555050565b6000805490509056fea2646970667358221220e6966e446bd0af8e6af40eb0d8f323dd02f771ba1f11ae05c65d1624ffb3c58264736f6c63430007060033"}], "id":1}' -H 'Content-Type: application/json' http://localhost:20000
     ```
 
-If using the [Quorum Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md), use the `from` address and
-RPC endoint of Member1.
+If using the [Quorum Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md), use the `from` address and RPC endpoint of Member1.
 
 ### 2. Using `web3.eth.Contract`
 
-Using the outputs from [compiling the contract](#compile-the-contract), create a new file
-`public_tx_web3.js` (or run the following commands in a JavaScript console) to send the transaction.
-The example code uses the
-[Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md) and sends the
-transaction from Member1.
+Using the outputs from [compiling the contract](#compile-the-contract), create a new file `public_tx_web3.js` (or run the following commands in a JavaScript console) to send the transaction. The example code uses the [Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md) and sends the transaction from Member1.
 
 !!! example "public_tx_web3.js"
 
@@ -161,11 +150,7 @@ transaction from Member1.
 
 ### 3. Using `eth_sendSignedTransaction`
 
-To deploy a smart contract using
-[`eth_sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#sendsignedtransaction), use an
-account's private key to sign and serialize the transaction, and send the API request.
-This example uses the [web3js](https://www.npmjs.com/package/web3) library to make the API calls and the outputs
-from [compiling the contract](#compile-the-contract).
+To deploy a smart contract using [`eth_sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#sendsignedtransaction), use an account's private key to sign and serialize the transaction, and send the API request. This example uses the [web3js](https://www.npmjs.com/package/web3) library to make the API calls and the outputs from [compiling the contract](#compile-the-contract).
 
 Create a new file `public_tx.js`(or run the following commands in a JavaScript console) to send the transaction.
 
@@ -211,19 +196,17 @@ Create a new file `public_tx.js`(or run the following commands in a JavaScript c
 
 `rawTxOptions` contains the following fields:
 
-* `nonce` - Number of transactions sent from this address.
-* `from` - Address of the EthSigner account.
-* `to` - Address of the receiver. To deploy a contract, set to `null`.
-* `gas` - Amount of gas provided by the sender for the transaction.
-* `gasPrice` - Price for each unit of gas. [Set to zero](../../concepts/free-gas-network.md) in GoQuorum networks.
-* `data` - Binary of the contract (in this example there's also a constructor initialization value appended to the binary value).
-* `value` - Amount of ETH in Wei transferred from the sender to the recipient.
+- `nonce` - Number of transactions sent from this address.
+- `from` - Address of the EthSigner account.
+- `to` - Address of the receiver. To deploy a contract, set to `null`.
+- `gas` - Amount of gas provided by the sender for the transaction.
+- `gasPrice` - Price for each unit of gas. [Set to zero](../../concepts/free-gas-network.md) in GoQuorum networks.
+- `data` - Binary of the contract (in this example there's also a constructor initialization value appended to the binary value).
+- `value` - Amount of ETH in Wei transferred from the sender to the recipient.
 
-As the example demonstrates, once the transaction `tx` is created, you can sign it with the private key of the account.
-You can then serialize it and call `eth_sendSignedTransaction` to deploy the contract.
+As the example demonstrates, once the transaction `tx` is created, you can sign it with the private key of the account. You can then serialize it and call `eth_sendSignedTransaction` to deploy the contract.
 
-For reference, the Developer Quickstart provides an
-[example of a public transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/public_tx.js).
+For reference, the Developer Quickstart provides an [example of a public transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/public_tx.js).
 
 ## Private contracts
 
@@ -231,19 +214,17 @@ For reference, the Developer Quickstart provides an
 
 Call [`eth_sendTransaction`](https://eth.wiki/json-rpc/API) with the following parameters:
 
-* `from` - Address of the sender's account.
-* `to` - Address of the receiver. To deploy a contract, set to `null`.
-* `gas` - Amount of gas provided by the sender for the transaction.
-* `gasPrice` - Price for each unit of gas.  [Set to zero](../../concepts/free-gas-network.md) in GoQuorum networks.
-* `privateFrom` - The sender's base-64-encoded public key.
-* `privateFor` - Array of the recipient's base-64-encoded public keys.
-* `privacyFlag` - 0 for standard private, 1 for [counter party protection](../../concepts/privacy/privacy-enhancements.md#counter-party-protection).
-  and 3 for [private state validation](../../concepts/privacy/privacy-enhancements.md#private-state-validation).
-* `data` - One of the following:
-    * For contract deployments (this use case), the [compiled binary of the contract](#compile-the-contract).
-    * For contract interactions, the hash of the invoked method signature and encoded parameters
-      (see [Ethereum Contract ABI](https://solidity.readthedocs.io/en/develop/abi-spec.html)).
-    * For simple ether transfers, empty.
+- `from` - Address of the sender's account.
+- `to` - Address of the receiver. To deploy a contract, set to `null`.
+- `gas` - Amount of gas provided by the sender for the transaction.
+- `gasPrice` - Price for each unit of gas. [Set to zero](../../concepts/free-gas-network.md) in GoQuorum networks.
+- `privateFrom` - The sender's base-64-encoded public key.
+- `privateFor` - Array of the recipient's base-64-encoded public keys.
+- `privacyFlag` - 0 for standard private, 1 for [counter party protection](../../concepts/privacy/privacy-enhancements.md#counter-party-protection). and 3 for [private state validation](../../concepts/privacy/privacy-enhancements.md#private-state-validation).
+- `data` - One of the following:
+  - For contract deployments (this use case), the [compiled binary of the contract](#compile-the-contract).
+  - For contract interactions, the hash of the invoked method signature and encoded parameters (see [Ethereum Contract ABI](https://solidity.readthedocs.io/en/develop/abi-spec.html)).
+  - For simple ether transfers, empty.
 
 !!! example "Example eth_sendTransaction curl HTTP request"
 
@@ -251,16 +232,11 @@ Call [`eth_sendTransaction`](https://eth.wiki/json-rpc/API) with the following p
     curl -X POST --data '{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xf0e2db6c8dc6c681bb5d6ad121a107f300e9b2b5", "to":null, "gas":"0x24A22","gasPrice":"0x0", "privateFrom": "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=", "privateFor": ["1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg="], "privacyFlag": 0,"data":"0x608060405234801561001057600080fd5b5060405161014d38038061014d8339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000819055505060f38061005a6000396000f3fe6080604052348015600f57600080fd5b5060043610603c5760003560e01c80632a1afcd914604157806360fe47b114605d5780636d4ce63c146088575b600080fd5b604760a4565b6040518082815260200191505060405180910390f35b608660048036036020811015607157600080fd5b810190808035906020019092919050505060aa565b005b608e60b4565b6040518082815260200191505060405180910390f35b60005481565b8060008190555050565b6000805490509056fea2646970667358221220e6966e446bd0af8e6af40eb0d8f323dd02f771ba1f11ae05c65d1624ffb3c58264736f6c63430007060033"}], "id":1}' -H 'Content-Type: application/json' http://localhost:20000
     ```
 
-If using the [Quorum Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md), use the `from` address and
-RPC endoint of Member1.
+If using the [Quorum Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md), use the `from` address and RPC endpoint of Member1.
 
 ### 2. Using `web3.eth.Contract`
 
-Using the outputs from [compiling the contract](#compile-the-contract), create a new file
-`private_tx_web3.js` (or run the following commands in a JavaScript console) to send the transaction.
-The example code uses the
-[Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md) and sends the
-transaction from Member1.
+Using the outputs from [compiling the contract](#compile-the-contract), create a new file `private_tx_web3.js` (or run the following commands in a JavaScript console) to send the transaction. The example code uses the [Developer Quickstart](../quorum-dev-quickstart/using-the-quickstart.md) and sends the transaction from Member1.
 
 !!! example "private_tx_web3.js"
 
@@ -301,15 +277,11 @@ transaction from Member1.
     }
     ```
 
-For reference, the Developer Quickstart provides an
-[example of a private transaction script using web3](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/private_tx.js).
+For reference, the Developer Quickstart provides an [example of a private transaction script using web3](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/private_tx.js).
 
 ### 3. Using `priv.generateAndSendRawTransaction`
 
-This example uses the [web3js-quorum](https://www.npmjs.com/package/web3js-quorum) library to make the
-[`priv.generateAndSendRawTransaction`](https://consensys.github.io/web3js-quorum/latest/module-priv.html#~generateAndSendRawTransaction)
-API call.
-Create a new file `private_tx_web3js_quorum.js`(or run the following commands in a JavaScript console) to send the transaction.
+This example uses the [web3js-quorum](https://www.npmjs.com/package/web3js-quorum) library to make the [`priv.generateAndSendRawTransaction`](https://consensys.github.io/web3js-quorum/latest/module-priv.html#~generateAndSendRawTransaction) API call. Create a new file `private_tx_web3js_quorum.js`(or run the following commands in a JavaScript console) to send the transaction.
 
 !!! example "private_tx_web3js_quorum.js"
 
@@ -359,15 +331,14 @@ Create a new file `private_tx_web3js_quorum.js`(or run the following commands in
 
 `txOptions` contains the following fields:
 
-* `nonce` - Number of transactions sent from this address.
-* `from` - Address of the EthSigner account.
-* `gasLimit` - Amount of gas provided by the sender for the transaction.
-* `gasPrice` - Price for each unit of gas. [Set to zero](../../concepts/free-gas-network.md) in GoQuorum networks.
-* `isPrivate` - Indicates that this is a private transaction.
-* `privateKey` - The sender's GoQuorum node private key.
-* `privateFrom` - The sender's base-64-encoded public key.
-* `privateFor` - Array of the recipient's base-64-encoded public keys.
-* `data` - Binary of the contract (in this example there's also a constructor initialization value appended to the binary value).
+- `nonce` - Number of transactions sent from this address.
+- `from` - Address of the EthSigner account.
+- `gasLimit` - Amount of gas provided by the sender for the transaction.
+- `gasPrice` - Price for each unit of gas. [Set to zero](../../concepts/free-gas-network.md) in GoQuorum networks.
+- `isPrivate` - Indicates that this is a private transaction.
+- `privateKey` - The sender's GoQuorum node private key.
+- `privateFrom` - The sender's base-64-encoded public key.
+- `privateFor` - Array of the recipient's base-64-encoded public keys.
+- `data` - Binary of the contract (in this example there's also a constructor initialization value appended to the binary value).
 
-For reference, the Developer Quickstart provides an
-[example of a private transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/private_tx.js).
+For reference, the Developer Quickstart provides an [example of a private transaction script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/private_tx.js).

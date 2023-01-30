@@ -1,13 +1,12 @@
 ---
+title: Include revert reason
 description: Including revert reason in transactions with GoQuorum
+sidebar_position: 6
 ---
 
 # Revert reason
 
-In smart contracts, the
-[`revert`](https://solidity.readthedocs.io/en/v0.5.10/control-structures.html#revert) operation
-triggers an exception to flag an error and revert the current call. The EVM passes back to the
-client an optional string message containing information about the error.
+In smart contracts, the [`revert`](https://solidity.readthedocs.io/en/v0.5.10/control-structures.html#revert) operation triggers an exception to flag an error and revert the current call. The EVM passes back to the client an optional string message containing information about the error.
 
 !!! example
 
@@ -30,14 +29,11 @@ client an optional string message containing information about the error.
 
 ## Enabling revert reason
 
-Restart your GoQuorum node with the [`--revertreason`](../../reference/cli-syntax.md#revertreason) command line option enabled.
-Any subsequent reverted transactions store the revert reason locally.
+Restart your GoQuorum node with the [`--revertreason`](../../reference/cli-syntax.md#revertreason) command line option enabled. Any subsequent reverted transactions store the revert reason locally.
 
 ## Where is the revert reason included
 
-With revert reason enabled, the transaction receipt returned by
-[`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt) includes
-the revert reason as an ABI-encoded string.
+With revert reason enabled, the transaction receipt returned by [`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt) includes the revert reason as an ABI-encoded string.
 
 !!! example
 
@@ -81,4 +77,5 @@ As described in the [Solidity documentation], the revert reason is an ABI-encode
     ```
 
 <!-- Links -->
+
 [Solidity documentation]: https://solidity.readthedocs.io/en/v0.5.10/control-structures.html#revert

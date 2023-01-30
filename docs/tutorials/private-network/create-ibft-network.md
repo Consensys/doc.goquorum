@@ -1,26 +1,21 @@
 ---
-description: Creating a network using IBFT consensus
+title: Use IBFT
+description: Creating a network with IBFT consensus
+sidebar_position: 2
 ---
 
 # Create a private network using the IBFT consensus protocol
 
-A private network provides a configurable network for testing.
-This tutorial walks you through creating an [IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md) private network
-with five nodes.
+A private network provides a configurable network for testing. This tutorial walks you through creating an [IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md) private network with five nodes.
 
-!!! important
-    The steps in this tutorial create an isolated, but not protected or secure, Ethereum private network.
-    We recommend running the private network behind a properly configured firewall.
+!!! important The steps in this tutorial create an isolated, but not protected or secure, Ethereum private network. We recommend running the private network behind a properly configured firewall.
 
 ## Prerequisites
 
-* [Node.js version 15 or later](https://nodejs.org/en/download/).
-* [GoQuorum](../../deploy/install/binaries.md#release-binaries).
-  Ensure that `PATH` contains `geth` and `bootnode`.
+- [Node.js version 15 or later](https://nodejs.org/en/download/).
+- [GoQuorum](../../deploy/install/binaries.md#release-binaries). Ensure that `PATH` contains `geth` and `bootnode`.
 
-!!! tip
-    GoQuorum is a fork of [geth](https://geth.ethereum.org/).
-    GoQuorum uses the `geth` command to start GoQuorum nodes.
+!!! tip GoQuorum is a fork of [geth](https://geth.ethereum.org/). GoQuorum uses the `geth` command to start GoQuorum nodes.
 
 ## Steps
 
@@ -49,15 +44,13 @@ IBFT-Network/
 
 ### 2. Run the Quorum Genesis Tool
 
-Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) interactively or by using CLI options.
-The following example uses CLI options to create the genesis file and node keys:
+Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) interactively or by using CLI options. The following example uses CLI options to create the genesis file and node keys:
 
 ```bash
 npx quorum-genesis-tool --consensus ibft --chainID 1337 --blockperiod 5 --requestTimeout 10 --epochLength 30000 --difficulty 1 --gasLimit '0xFFFFFF' --coinbase '0x0000000000000000000000000000000000000000' --validators 5 --members 0 --bootnodes 0 --outputPath 'artifacts'
 ```
 
-This command generates node keys for five nodes, `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json`,
-and `genesis.json`.
+This command generates node keys for five nodes, `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json`, and `genesis.json`.
 
 !!! example "Example output"
 
@@ -228,8 +221,7 @@ The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enable
 
 ### 7. Start nodes 1, 2, 3, and 4
 
-In a new terminal for each node in each node directory, start the remaining nodes using the same command except
-specifying different ports for DevP2P and RPC.
+In a new terminal for each node in each node directory, start the remaining nodes using the same command except specifying different ports for DevP2P and RPC.
 
 !!! important
 

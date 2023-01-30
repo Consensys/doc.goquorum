@@ -1,5 +1,7 @@
 ---
-description: Using GoQuorum metrics tools
+title: Use metrics
+description: Using metrics
+sidebar_position: 1
 ---
 
 # Use metrics to monitor node performance
@@ -13,12 +15,10 @@ This page explains how to configure a GoQuorum node to provide metrics and enabl
 A GoQuorum node can collect and expose the metrics data in the following formats:
 
 - [ExpVars] - The standard Go interface to instrument and expose metrics via HTTP.
-- [Prometheus] - An alternative to ExpVars, and the preferred option because it allows users to pull or push metrics,
-  and has a consistent metric format across languages.
+- [Prometheus] - An alternative to ExpVars, and the preferred option because it allows users to pull or push metrics, and has a consistent metric format across languages.
 - [InfluxDB] - Metrics can only be pushed to Influx.
 
-Use the [geth command line options] `--metrics`, `--pprof`, `--pprof.addr` and `--pprof.port` where applicable, and set
-the scraper endpoints to the following:
+Use the [geth command line options] `--metrics`, `--pprof`, `--pprof.addr` and `--pprof.port` where applicable, and set the scraper endpoints to the following:
 
 - In ExpVar format, `http://127.0.0.1:6060/debug/metrics`
 - In Prometheus format, `http://127.0.0.1:6060/debug/metrics/prometheus`
@@ -51,9 +51,7 @@ Use `--metric.influxdb` and associated [geth command line options] to push metri
 
 ## Visualize collected data
 
-You can visualize GoQuorum metrics data with many dashboard tools.
-For example, you can import the [GoQuorum dashboard](https://grafana.com/grafana/dashboards/14360) into your Grafana instance.
-The GoQuorum Dashboard provides network information such as blocks and transactions per second, CPU usage, and memory usage.
+You can visualize GoQuorum metrics data with many dashboard tools. For example, you can import the [GoQuorum dashboard](https://grafana.com/grafana/dashboards/14360) into your Grafana instance. The GoQuorum Dashboard provides network information such as blocks and transactions per second, CPU usage, and memory usage.
 
 !!! tip
 

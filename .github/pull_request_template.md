@@ -1,6 +1,6 @@
 # Pull request checklist
 
-Use the following template to make sure your PR fits the GoQuorum documentation standard.
+Use the following template to make sure your PR fits the ConsenSys documentation standard.
 
 ## Before creating the PR
 
@@ -33,7 +33,7 @@ For content changes:
 
 For tool changes:
 
-- [ ] Build and QA tools (e.g., lint)
+- [ ] Build and QA tools
 - [ ] MkDocs templates
 - [ ] MkDocs configuration
 - [ ] Python dependencies

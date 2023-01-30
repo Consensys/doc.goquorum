@@ -1,0 +1,8 @@
+{
+  "label": "Multi-tenancy",
+  "position": 5,
+  "link": {
+    "description": "Managing multi-tenancy in GoQuorum",
+    "slug": "configure-and-manage/manage/multi-tenancy"
+  }
+}

@@ -1,40 +1,32 @@
+---
+title: JSON-RPC API security
+description: Securing JSON-RPC API endpoints
+sidebar_position: 3
+---
+
 # Securing JSON-RPC
 
 ## Overview
 
-JSON-RPC servers are secured using a [security plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/security.proto).
-The [official implementation](https://github.com/ConsenSys/quorum-security-plugin-enterprise) enables the GoQuorum
-client to protect JSON-RPC APIs using the following features:
+JSON-RPC servers are secured using a [security plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/security.proto). The [official implementation](https://github.com/ConsenSys/quorum-security-plugin-enterprise) enables the GoQuorum client to protect JSON-RPC APIs using the following features:
 
 ### Native Transport Layer Security
 
-Native Transport Layer Security (TLS) introduces an encryption layer to the JSON-RPC request/response communication
-channel for both HTTP and WebSocket listeners.
-By using a simple configuration flag, this feature allows the automatic generation of a self-signed certificates for
-testing environments, or a smooth integration with certificate authorities for enterprise deployment.
+Native Transport Layer Security (TLS) introduces an encryption layer to the JSON-RPC request/response communication channel for both HTTP and WebSocket listeners. By using a simple configuration flag, this feature allows the automatic generation of a self-signed certificates for testing environments, or a smooth integration with certificate authorities for enterprise deployment.
 
 ### Enterprise authorization protocol integration
 
-Enterprise authorization protocol integration introduces an access control layer that authorizes each JSON-RPC
-invocation to an atomic module function level (for example `personal_OpenWallet`) using the industry standard
-[OAuth 2.0](https://tools.ietf.org/html/rfc6749) protocol and [JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519) method.
-This feature enables GoQuorum access control and dapp management.
+Enterprise authorization protocol integration introduces an access control layer that authorizes each JSON-RPC invocation to an atomic module function level (for example `personal_OpenWallet`) using the industry standard [OAuth 2.0](https://tools.ietf.org/html/rfc6749) protocol and [JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519) method. This feature enables GoQuorum access control and dapp management.
 
 ## Configuration
 
-Refer to the [plugin implementation](../../reference/plugins/security.md#for-users) for more details
-and find [examples on how to configure the plugin to work with different OAuth2 Authorization servers](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples).
+Refer to the [plugin implementation](../../reference/plugins/security.md#for-users) for more details and find [examples on how to configure the plugin to work with different OAuth2 Authorization servers](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples).
 
 ## Client usage
 
-Before invoking protected JSON-RPC APIs, the client must request an access token by authenticating with the
-authorization server.
-An access token can be opaque or a JWT.
-It's the client's responsibility to maintain this token's validity during its lifetime.
+Before invoking protected JSON-RPC APIs, the client must request an access token by authenticating with the authorization server. An access token can be opaque or a JWT. It's the client's responsibility to maintain this token's validity during its lifetime.
 
-When invoking a JSON-RPC API, the client must send the token in the `Authorization` request header field with the
-`Bearer` authentication scheme.
-All major HTTP client libraries have extensions to allow such customization.
+When invoking a JSON-RPC API, the client must send the token in the `Authorization` request header field with the `Bearer` authentication scheme. All major HTTP client libraries have extensions to allow such customization.
 
 ## Examples
 
@@ -103,8 +95,7 @@ For example, connect to the node using `--rpcclitls.insecureskipverify` to ignor
 
 ### `ethclient`
 
-`ethclient` provides a Go client for the Ethereum RPC API.
-It also supports GoQuorum-specific APIs and protected APIs.
+`ethclient` provides a Go client for the Ethereum RPC API. It also supports GoQuorum-specific APIs and protected APIs.
 
 === "HTTP"
 

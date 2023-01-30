@@ -5,8 +5,7 @@ description: GoQuorum support plans
 
 # GoQuorum support
 
-Need help on using GoQuorum? Ask our community or visit [Quorum Blockchain Service](https://consensys.net/quorum/qbs/)
-for more information on support services.
+Need help on using GoQuorum? Ask our community or visit [Quorum Blockchain Service](https://consensys.net/quorum/qbs/) for more information on support services.
 
 ## Community support
 

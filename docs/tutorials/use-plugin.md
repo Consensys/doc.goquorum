@@ -1,15 +1,14 @@
 ---
+title: Use a plugin
 description: HelloWorld plugin tutorial
+sidebar_position: 8
 ---
 
 # Use the `HelloWorld` plugin
 
-This tutorial shows you how to use the `HelloWorld` [plugin](../concepts/plugins.md), which exposes a JSON-RPC endpoint
-to return a greeting message in Spanish.
+This tutorial shows you how to use the `HelloWorld` [plugin](../concepts/plugins.md), which exposes a JSON-RPC endpoint to return a greeting message in Spanish.
 
-The [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/helloworld.proto) is
-implemented in Go and Java.
-The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from its JSON configuration.
+The [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/helloworld.proto) is implemented in Go and Java. The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from its JSON configuration.
 
 ## Prerequisites
 
@@ -18,24 +17,23 @@ The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from it
 
 ## Build the plugin distribution file
 
-1. Clone the plugin repository:
+1.  Clone the plugin repository:
 
     ```bash
     git clone --recursive https://github.com/ConsenSys/quorum-plugin-hello-world.git
     cd quorum-plugin-hello-world
     ```
 
-1. Use the Go implementation of the plugin:
+1.  Use the Go implementation of the plugin:
 
     ```bash
     cd go
     make
     ```
 
-    `quorum-plugin-hello-world-1.0.0.zip` is now created in the `build` directory.
-    The file `hello-world-plugin-config.json` is the JSON configuration file for the plugin.
+    `quorum-plugin-hello-world-1.0.0.zip` is now created in the `build` directory. The file `hello-world-plugin-config.json` is the JSON configuration file for the plugin.
 
-1. Rename `quorum-plugin-hello-world-1.0.0.zip` according to your operating system:
+1.  Rename `quorum-plugin-hello-world-1.0.0.zip` according to your operating system:
 
     === "Linux"
 
@@ -51,10 +49,9 @@ The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from it
 
 ## Start GoQuorum with plugin support
 
-1. Navigate to your GoQuorum installation directory.
-  Copy the `HelloWorld` plugin distribution file and its JSON configuration `hello-world-plugin-config.json` to `build/bin`.
+1.  Navigate to your GoQuorum installation directory. Copy the `HelloWorld` plugin distribution file and its JSON configuration `hello-world-plugin-config.json` to `build/bin`.
 
-1. Create `geth-plugin-settings.json`:
+1.  Create `geth-plugin-settings.json`:
 
     ```bash
     cat > build/bin/geth-plugin-settings.json <<EOF
@@ -75,7 +72,7 @@ The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from it
 
         For the configured locations, `./` means that you start from the working directory, from where the program is launched.
 
-1. Run `geth` with the plugin:
+1.  Run `geth` with the plugin:
 
     ```bash
     PRIVATE_CONFIG=ignore \
@@ -96,7 +93,7 @@ The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from it
 
 ## Test the plugin
 
-1. Test the `HelloWorld` plugin using the following command:
+1.  Test the `HelloWorld` plugin using the following command:
 
     === "curl HTTP request"
 
@@ -112,9 +109,9 @@ The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from it
         {"jsonrpc":"2.0","id":1,"result":"Hello Quorum Plugin!"}
         ```
 
-1. Update the plugin configuration `build/bin/hello-world-plugin-config.json` to support the `es` language (Spanish).
+1.  Update the plugin configuration `build/bin/hello-world-plugin-config.json` to support the `es` language (Spanish).
 
-1. Reload the plugin using the following command:
+1.  Reload the plugin using the following command:
 
     === "curl HTTP request"
 
@@ -130,7 +127,7 @@ The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from it
         {"jsonrpc":"2.0","id":1,"result":true}
         ```
 
-1. Re-run the `HelloWorld` plugin:
+1.  Re-run the `HelloWorld` plugin:
 
     === "curl HTTP request"
 

@@ -1,5 +1,7 @@
 ---
+title: Command line options
 description: GoQuorum command line interface reference
+sidebar_position: 1
 ---
 
 # GoQuorum command line options
@@ -17,13 +19,13 @@ This reference describes the syntax of the GoQuorum command line interface (CLI)
 
 You can specify GoQuorum options:
 
-* On the command line.
+- On the command line.
 
-    ```bash
-    geth [OPTIONS]
-    ```
+  ```bash
+  geth [OPTIONS]
+  ```
 
-* In a [configuration file](../configure-and-manage/configure/use-configuration-file.md).
+- In a [configuration file](../configure-and-manage/configure/use-configuration-file.md).
 
 ## Options
 
@@ -41,9 +43,7 @@ You can specify GoQuorum options:
     --allowedfutureblocktime 1
     ```
 
-Maximum time from current time allowed for blocks before they're considered future blocks, in seconds.
-This allows nodes to be slightly out of sync without receiving "Mining too far in the future" messages.
-The default is 0.
+Maximum time from current time allowed for blocks before they're considered future blocks, in seconds. This allows nodes to be slightly out of sync without receiving "Mining too far in the future" messages. The default is 0.
 
 ### `emitcheckpoints`
 
@@ -69,9 +69,7 @@ If included, emits specially formatted logging checkpoints.
     --immutabilitythreshold 1000000
     ```
 
-Overrides the default immutability threshold for GoQuorum nodes.
-Blocks below the immutability threshold are moved to the `ancient` data folder.
-The default is 3162240.
+Overrides the default immutability threshold for GoQuorum nodes. Blocks below the immutability threshold are moved to the `ancient` data folder. The default is 3162240.
 
 ### `multitenancy`
 
@@ -87,8 +85,7 @@ The default is 3162240.
     --multitenancy
     ```
 
-Enables [multi-tenancy](../concepts/multi-tenancy.md).
-This requires the [JSON-RPC Security plugin](../develop/json-rpc-apis.md) to also be configured.
+Enables [multi-tenancy](../concepts/multi-tenancy.md). This requires the [JSON-RPC Security plugin](../develop/json-rpc-apis.md) to also be configured.
 
 ### `override.istanbul`
 
@@ -104,9 +101,7 @@ This requires the [JSON-RPC Security plugin](../develop/json-rpc-apis.md) to als
     --override.istanbul 100
     ```
 
-Custom fork block when using [IBFT](../configure-and-manage/configure/consensus-protocols/ibft.md) or
-[QBFT](../configure-and-manage/configure/consensus-protocols/qbft.md) consensus.
-The default is 0.
+Custom fork block when using [IBFT](../configure-and-manage/configure/consensus-protocols/ibft.md) or [QBFT](../configure-and-manage/configure/consensus-protocols/qbft.md) consensus. The default is 0.
 
 ### `permissioned`
 
@@ -122,8 +117,7 @@ The default is 0.
     --permissioned
     ```
 
-Enables [basic network permissioning](../concepts/permissions-overview.md#basic-network-permissioning).
-The node allows only a defined list of nodes to connect.
+Enables [basic network permissioning](../concepts/permissions-overview.md#basic-network-permissioning). The node allows only a defined list of nodes to connect.
 
 ### `plugins`
 
@@ -139,8 +133,7 @@ The node allows only a defined list of nodes to connect.
     --plugins file:///opt/geth/plugins.json
     ```
 
-URI of the [plugins settings JSON file](../develop/develop-plugins.md).
-Use this to configure [plugins](../concepts/plugins.md).
+URI of the [plugins settings JSON file](../develop/develop-plugins.md). Use this to configure [plugins](../concepts/plugins.md).
 
 ### `plugins.localverify`
 
@@ -150,9 +143,7 @@ Use this to configure [plugins](../concepts/plugins.md).
     --plugins.localverify
     ```
 
-If included, verifies [plugin integrity](../concepts/plugins.md#plugin-integrity-verification) from the
-local file system.
-This requires a plugin signature file and [PGP public key file](#pluginspublickey) to be available.
+If included, verifies [plugin integrity](../concepts/plugins.md#plugin-integrity-verification) from the local file system. This requires a plugin signature file and [PGP public key file](#pluginspublickey) to be available.
 
 ### `plugins.publickey`
 
@@ -168,9 +159,7 @@ This requires a plugin signature file and [PGP public key file](#pluginspublicke
     --plugins.publickey file:///opt/geth/pubkey.pgp.asc
     ```
 
-URI of the PGP public key for local
-[plugin verification](../concepts/plugins.md#plugin-integrity-verification).
-This option is only valid if [`--plugins.localverify`](#pluginslocalverify) is set.
+URI of the PGP public key for local [plugin verification](../concepts/plugins.md#plugin-integrity-verification). This option is only valid if [`--plugins.localverify`](#pluginslocalverify) is set.
 
 ### `plugins.skipverify`
 
@@ -190,8 +179,7 @@ If included, disables the [plugin verification](../concepts/plugins.md#plugin-in
     --privacymarker.enable
     ```
 
-If included, GoQuorum creates a [privacy marker transaction](../concepts/privacy/privacy-marker-transactions.md) when a
-private transaction is submitted.
+If included, GoQuorum creates a [privacy marker transaction](../concepts/privacy/privacy-marker-transactions.md) when a private transaction is submitted.
 
 ### `ptm.dialtimeout`
 
@@ -207,9 +195,7 @@ private transaction is submitted.
     ---ptm.dialtimeout 0
     ```
 
-Dial timeout in seconds for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md).
-Setting to 0 disables the timeout.
-The default is 1 second.
+Dial timeout in seconds for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md). Setting to 0 disables the timeout. The default is 1 second.
 
 ### `ptm.http.idletimeout`
 
@@ -225,9 +211,7 @@ The default is 1 second.
     ---ptm.http.idletimeout 0
     ```
 
-Idle timeout in seconds for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md).
-Setting to 0 disables the timeout.
-The default is 10 seconds.
+Idle timeout in seconds for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md). Setting to 0 disables the timeout. The default is 10 seconds.
 
 ### `ptm.http.readbuffersize`
 
@@ -243,8 +227,7 @@ The default is 10 seconds.
     ---ptm.http.readbuffersize 0
     ```
 
-Size of the read buffer in bytes for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md).
-Setting to 0 or not specifying uses the `http.Transport` default.
+Size of the read buffer in bytes for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md). Setting to 0 or not specifying uses the `http.Transport` default.
 
 ### `ptm.http.writebuffersize`
 
@@ -260,8 +243,7 @@ Setting to 0 or not specifying uses the `http.Transport` default.
     ---ptm.http.writebuffersize 0
     ```
 
-Size of the write buffer in bytes for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md).
-Setting to 0 or not specifying uses the `http.Transport` default.
+Size of the write buffer in bytes for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md). Setting to 0 or not specifying uses the `http.Transport` default.
 
 ### `ptm.socket`
 
@@ -293,9 +275,7 @@ Path to the IPC file when using a Unix domain socket for the [private transactio
     ---ptm.timeout 0
     ```
 
-Timeout in seconds for communication over the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md).
-Setting to 0 disables the timeout.
-The default is 5 seconds.
+Timeout in seconds for communication over the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md). Setting to 0 disables the timeout. The default is 5 seconds.
 
 ### `ptm.tls.clientcert`
 
@@ -311,9 +291,7 @@ The default is 5 seconds.
     ---ptm.tls.clientcert client.cert.pem
     ```
 
-Path to the file containing the client certificate (or chain of certificates) when using a TLS
-[connection to the private transaction manager](../configure-and-manage/configure/private-transaction-manager.md).
-This is required if the server is configured to use two-way authentication.
+Path to the file containing the client certificate (or chain of certificates) when using a TLS [connection to the private transaction manager](../configure-and-manage/configure/private-transaction-manager.md). This is required if the server is configured to use two-way authentication.
 
 ### `ptm.tls.clientkey`
 
@@ -329,9 +307,7 @@ This is required if the server is configured to use two-way authentication.
     ---ptm.tls.clientkey client.key.pem
     ```
 
-Path to the file containing the client's private key when using a TLS
-[connection to private transaction manager](../configure-and-manage/configure/private-transaction-manager.md).
-This is required if the server is configured to use two-way authentication.
+Path to the file containing the client's private key when using a TLS [connection to private transaction manager](../configure-and-manage/configure/private-transaction-manager.md). This is required if the server is configured to use two-way authentication.
 
 ### `ptm.tls.insecureskipverify`
 
@@ -341,8 +317,7 @@ This is required if the server is configured to use two-way authentication.
     --ptm.tls.insecureskipverify
     ```
 
-If included, disables verification of the server's TLS certificate on
-[connection to private transaction manager](../configure-and-manage/configure/private-transaction-manager.md).
+If included, disables verification of the server's TLS certificate on [connection to private transaction manager](../configure-and-manage/configure/private-transaction-manager.md).
 
 ### `ptm.tls.mode`
 
@@ -358,8 +333,7 @@ If included, disables verification of the server's TLS certificate on
     ---ptm.tls.mode "strict"
     ```
 
-Setting to `off` disables TLS.
-Setting to `strict` enables TLS when using an HTTPS [connection to the private transaction manager](../configure-and-manage/configure/private-transaction-manager.md).
+Setting to `off` disables TLS. Setting to `strict` enables TLS when using an HTTPS [connection to the private transaction manager](../configure-and-manage/configure/private-transaction-manager.md).
 
 ### `ptm.tls.rootca`
 
@@ -375,8 +349,7 @@ Setting to `strict` enables TLS when using an HTTPS [connection to the private t
     ---ptm.tls.rootca certfile.pem
     ```
 
-Path to the file containing the root CA certificate when using a TLS [connection to the private transaction manager](../configure-and-manage/configure/private-transaction-manager.md).
-The default is the host's certificates.
+Path to the file containing the root CA certificate when using a TLS [connection to the private transaction manager](../configure-and-manage/configure/private-transaction-manager.md). The default is the host's certificates.
 
 ### `ptm.url`
 
@@ -546,9 +519,9 @@ Enables the client to use a token when connecting to the qlight server.
 
 Mechanism used to refresh the token. Possible values:
 
-* `none` - Developer mode. The token is not refreshed.
-* `external` - You must update the refreshed token in the running qlight client process by invoking the `qlight.setCurrentToken` RPC API.
-* `client-security-plugin` - You must deploy the client security plugin, which periodically refreshes the access token.
+- `none` - Developer mode. The token is not refreshed.
+- `external` - You must update the refreshed token in the running qlight client process by invoking the `qlight.setCurrentToken` RPC API.
+- `client-security-plugin` - You must deploy the client security plugin, which periodically refreshes the access token.
 
 ### `qlight.client.token.value`
 
@@ -632,11 +605,7 @@ Enables the qlight peers to check against a permissioned list and a disallowed l
     --qlight.server.p2p.permissioning.prefix "qlight"
     ```
 
-Prefix for the `permissioned-nodes.json` and `disallowed-nodes.json` files
-specific for the [qlight server](../configure-and-manage/configure/qlight-node.md#file-based-permissioning)
-to distinguish from other [permissioned nodes](../configure-and-manage/manage/add-nodes.md#permissioned-nodes).
-File format is the prefix name, followed by a hyphen, followed by the default file name.
-For example, `qlight-permissioned-nodes.json`.
+Prefix for the `permissioned-nodes.json` and `disallowed-nodes.json` files specific for the [qlight server](../configure-and-manage/configure/qlight-node.md#file-based-permissioning) to distinguish from other [permissioned nodes](../configure-and-manage/manage/add-nodes.md#permissioned-nodes). File format is the prefix name, followed by a hyphen, followed by the default file name. For example, `qlight-permissioned-nodes.json`.
 
 ### `qlight.server.p2p.port`
 
@@ -728,11 +697,11 @@ Cipher suites to use for the qlight P2P connection.
 
 Sets the method the client is authenticated. Possible values:
 
-* 0=`NoClientCert` (default)
-* 1=`RequestClientCert`
-* 2=`RequireAnyClientCert`
-* 3=`VerifyClientCertIfGiven`
-* 4=`RequireAndVerifyClientCert`
+- 0=`NoClientCert` (default)
+- 1=`RequestClientCert`
+- 2=`RequireAnyClientCert`
+- 3=`VerifyClientCertIfGiven`
+- 4=`RequireAndVerifyClientCert`
 
 ### `qlight.tls.key`
 
@@ -780,8 +749,7 @@ Enables [Raft](../configure-and-manage/configure/consensus-protocols/raft.md) fo
     --raftblocktime 100
     ```
 
-Time between Raft block creations in milliseconds.
-The default is 50.
+Time between Raft block creations in milliseconds. The default is 50.
 
 ### `raftdnsenable`
 
@@ -813,9 +781,7 @@ Enables [DNS resolution of peers](../configure-and-manage/configure/dns.md).
     --raftjoinexisting 1
     ```
 
-Raft ID to assume when
-[joining a pre-existing cluster](../configure-and-manage/manage/add-nodes.md#adding-goquorum-nodes).
-The default is 0.
+Raft ID to assume when [joining a pre-existing cluster](../configure-and-manage/manage/add-nodes.md#adding-goquorum-nodes). The default is 0.
 
 ### `raftlogdir`
 
@@ -831,8 +797,7 @@ The default is 0.
     --raftlogdir raftlogdir
     ```
 
-Raft log directory used for the `quorum-raft-state`, `raft-snap`, and `raft-wal` folders.
-Defaults to the [`datadir` option](https://geth.ethereum.org/docs/interface/command-line-options).
+Raft log directory used for the `quorum-raft-state`, `raft-snap`, and `raft-wal` folders. Defaults to the [`datadir` option](https://geth.ethereum.org/docs/interface/command-line-options).
 
 ### `raftport`
 
@@ -848,8 +813,7 @@ Defaults to the [`datadir` option](https://geth.ethereum.org/docs/interface/comm
     --raftport 50500
     ```
 
-Port to bind for the [Raft transport](../configure-and-manage/configure/consensus-protocols/raft.md#raft-transport-layer).
-The default is 50400.
+Port to bind for the [Raft transport](../configure-and-manage/configure/consensus-protocols/raft.md#raft-transport-layer). The default is 50400.
 
 ### `revertreason`
 
@@ -865,8 +829,7 @@ The default is 50400.
     --revertreason
     ```
 
-Enables including the [revert reason](../configure-and-manage/manage/revert-reason.md) in the
-[`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt) response.
+Enables including the [revert reason](../configure-and-manage/manage/revert-reason.md) in the [`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt) response.
 
 ### `rpcclitls.cacert`
 
@@ -882,8 +845,7 @@ Enables including the [revert reason](../configure-and-manage/manage/revert-reas
     --rpcclitls.cacert certfile.pem
     ```
 
-Path to the file containing the CA certificate for the [server's TLS certificate](#rpcclitlscert) when using a
-[secured GoQuorum node connection](../develop/json-rpc-apis.md).
+Path to the file containing the CA certificate for the [server's TLS certificate](#rpcclitlscert) when using a [secured GoQuorum node connection](../develop/json-rpc-apis.md).
 
 ### `rpcclitls.cert`
 
@@ -957,5 +919,4 @@ JSON-RPC client access token when using a [secured GoQuorum node connection](../
     --vm.calltimeout 2
     ```
 
-Timeout in seconds when executing [`eth_call`](https://geth.ethereum.org/docs/rpc/ns-eth#eth_call).
-The default is 5.
+Timeout in seconds when executing [`eth_call`](https://geth.ethereum.org/docs/rpc/ns-eth#eth_call). The default is 5.

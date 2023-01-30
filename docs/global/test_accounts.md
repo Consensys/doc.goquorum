@@ -1,5 +1,4 @@
-!!! critical "Security warning"
-    **Do not use the test accounts on Ethereum Mainnet or any production network.**
+!!! critical "Security warning" **Do not use the test accounts on Ethereum Mainnet or any production network.**
 
     The following accounts are test accounts and their private keys are publicly visible in this
     documentation and in publicly available source code.

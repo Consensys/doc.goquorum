@@ -1,13 +1,14 @@
 ---
+title: Use a configuration file
 description: Using the GoQuorum configuration file
+sidebar_position: 3
 ---
 
 # Using the GoQuorum configuration file
 
 You can specify [command line options](../../reference/cli-syntax.md) in a TOML configuration file.
 
-To do this, specify your options on the command line, and use the `dumpconfig` command to print the options into a new
-TOML configuration file.
+To do this, specify your options on the command line, and use the `dumpconfig` command to print the options into a new TOML configuration file.
 
 === "Syntax"
 
@@ -122,8 +123,7 @@ The configuration file contains your specified options and other default options
     Refresh = 5000000000
     ```
 
-You can reuse the configuration file across node startups.
-To specify the configuration file, use the [`--config`](https://geth.ethereum.org/docs/interface/command-line-options) option.
+You can reuse the configuration file across node startups. To specify the configuration file, use the [`--config`](https://geth.ethereum.org/docs/interface/command-line-options) option.
 
 === "Syntax"
 

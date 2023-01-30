@@ -1,11 +1,12 @@
 ---
-description: Creating a network using Raft consensus
+title: Use Raft
+description: Adding and removing Raft validators
+sidebar_position: 3
 ---
 
 # Create a private network using the Raft consensus protocol
 
-A private network provides a configurable network for testing. This private network uses the
-[Raft consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md).
+A private network provides a configurable network for testing. This private network uses the [Raft consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md).
 
 !!! warning
 
@@ -20,18 +21,14 @@ A private network provides a configurable network for testing. This private netw
 
 ## Prerequisites
 
-* [Node.js version 15 or later](https://nodejs.org/en/download/).
-* [GoQuorum](../../deploy/install/binaries.md#release-binaries). Ensure that `PATH` contains `geth`
-  and `bootnode`.
+- [Node.js version 15 or later](https://nodejs.org/en/download/).
+- [GoQuorum](../../deploy/install/binaries.md#release-binaries). Ensure that `PATH` contains `geth` and `bootnode`.
 
-!!! tip
-    GoQuorum is a fork of [geth](https://geth.ethereum.org/). GoQuorum uses the `geth` command to start
-    GoQuorum nodes.
+!!! tip GoQuorum is a fork of [geth](https://geth.ethereum.org/). GoQuorum uses the `geth` command to start GoQuorum nodes.
 
 ## Steps
 
-Listed on the right-hand side of the page are the steps to create a private network using Raft
-with two nodes.
+Listed on the right-hand side of the page are the steps to create a private network using Raft with two nodes.
 
 ### 1. Create directories
 
@@ -49,8 +46,7 @@ Raft-Network/
 
 ### 2. Run the Quorum Genesis Tool
 
-Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) interactively or by using CLI options.
-The following example uses CLI options to create the genesis file and node keys:
+Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) interactively or by using CLI options. The following example uses CLI options to create the genesis file and node keys:
 
 ```bash
 npx quorum-genesis-tool --consensus raft --chainID 1337 --blockperiod 5 --requestTimeout 10 --epochLength 30000 --difficulty 1 --gasLimit '0xFFFFFF' --coinbase '0x0000000000000000000000000000000000000000' --validators 2 --members 0 --bootnodes 0 --outputPath 'artifacts'
@@ -181,8 +177,7 @@ The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enable
 
 ### 7. Start node 1
 
-In a new terminal in the `Node-1` directory, start the remaining node using the same command except
-specifying different ports for DevP2P and RPC:
+In a new terminal in the `Node-1` directory, start the remaining node using the same command except specifying different ports for DevP2P and RPC:
 
 !!! important
 
@@ -241,9 +236,9 @@ Use the Raft `cluster` command to confirm the cluster now has two nodes:
 
 The process to add more nodes to a Raft network is exactly the same as the previous steps, except:
 
-* Use the [`raft_addPeer`](../../reference/api-methods.md#raft_addpeer) API method to add the peer to the network.
-* Specify different ports for DevP2P, RPC, and Raft.
-* Specify the Raft ID returned by [`raft_addPeer`](../../reference/api-methods.md#raft_addpeer) using the [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting) option.
+- Use the [`raft_addPeer`](../../reference/api-methods.md#raft_addpeer) API method to add the peer to the network.
+- Specify different ports for DevP2P, RPC, and Raft.
+- Specify the Raft ID returned by [`raft_addPeer`](../../reference/api-methods.md#raft_addpeer) using the [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting) option.
 
 ```bash
 export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')

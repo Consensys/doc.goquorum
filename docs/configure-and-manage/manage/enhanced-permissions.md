@@ -1,16 +1,16 @@
 ---
+title: Enhanced permissions
 description: Using enhanced smart contract based permissioning
+sidebar_position: 4
 ---
 
 # Using enhanced permissioning
 
-Managing the [enhanced permissioning model](../../concepts/permissions-overview.md#enhanced-network-permissioning)
-can be broadly categorized into the following activities:
+Managing the [enhanced permissioning model](../../concepts/permissions-overview.md#enhanced-network-permissioning) can be broadly categorized into the following activities:
 
 ## Setting up the initial network
 
-Please refer to the [configuration instructions](../configure/permissioning/enhanced-permissions.md) for detailed information.
-For an existing network running with an older version of GoQuorum:
+Please refer to the [configuration instructions](../configure/permissioning/enhanced-permissions.md) for detailed information. For an existing network running with an older version of GoQuorum:
 
 1. Upgrade GoQuorum to the latest version.
 2. Deploy the contracts.
@@ -29,17 +29,13 @@ For a new network using the latest version of GoQuorum:
 
 As part of network initialization:
 
-* A network admin organization is created with the `nwAdminOrg` name specified in `permission-config.json`.
-  All nodes which are part of `static-nodes.json` are assigned to this organization.
-* A network admin role is created with the `nwAdminRole` name specified in the config file.
-* All accounts given in the `accounts` array of the config file are assigned the network admin role.
-  These accounts will have the ability to propose and approve new organizations into the network.
+- A network admin organization is created with the `nwAdminOrg` name specified in `permission-config.json`. All nodes which are part of `static-nodes.json` are assigned to this organization.
+- A network admin role is created with the `nwAdminRole` name specified in the config file.
+- All accounts given in the `accounts` array of the config file are assigned the network admin role. These accounts will have the ability to propose and approve new organizations into the network.
 
 ### Example
 
-This example assumes that the network was started with the `permission-config.json` given in the
-[configuration instructions](../configure/permissioning/enhanced-permissions.md), and that the network was brought up with the
-`static-nodes.json` file as the following:
+This example assumes that the network was started with the `permission-config.json` given in the [configuration instructions](../configure/permissioning/enhanced-permissions.md), and that the network was brought up with the `static-nodes.json` file as the following:
 
 ```json
 [
@@ -132,9 +128,7 @@ Once the network is up, the network admin accounts can then propose a new organi
 
 Majority approval from the network admin accounts is required before an organization is approved.
 
-The APIs for [proposing](../../reference/api-methods.md#quorumpermission_addorg) and
-[approving](../../reference/api-methods.md#quorumpermission_approveorg) an organization are documented in
-[permission APIs](../../reference/api-methods.md#permission-methods).
+The APIs for [proposing](../../reference/api-methods.md#quorumpermission_addorg) and [approving](../../reference/api-methods.md#quorumpermission_approveorg) an organization are documented in [permission APIs](../../reference/api-methods.md#permission-methods).
 
 ### Example
 
@@ -178,8 +172,7 @@ View `ORG1`'s status:
     }
     ```
 
-The network admin accounts can then approve the proposed organizations with the following command, and once the majority
-approval is achieved, the organization status is updated to `Approved`:
+The network admin accounts can then approve the proposed organizations with the following command, and once the majority approval is achieved, the organization status is updated to `Approved`:
 
 === "geth console request"
 
@@ -253,34 +246,29 @@ View the details of the new approved organization:
 
 At this point:
 
-* An organization admin role with name as given in `orgAdminRole` in `permission-config.json` has been created and
-  linked to the `ORG1`.
+- An organization admin role with name as given in `orgAdminRole` in `permission-config.json` has been created and linked to the `ORG1`.
 
-* The account `0x0638e1574728b6d862dd5d3a3e0942c3be47d996` has been linked to `ORG1` and the organization admin role.
-  This account acts as the organization admin account and can manage further roles, nodes, and accounts at the
-  organization level.
+- The account `0x0638e1574728b6d862dd5d3a3e0942c3be47d996` has been linked to `ORG1` and the organization admin role. This account acts as the organization admin account and can manage further roles, nodes, and accounts at the organization level.
 
-* The node has been linked to the organization and its status has been updated as `Approved`.
+- The node has been linked to the organization and its status has been updated as `Approved`.
 
-The new node belonging to the organization can now join the network.
-In case the network is running in `Raft` consensus mode, before the node joins the network, ensure that:
+The new node belonging to the organization can now join the network. In case the network is running in `Raft` consensus mode, before the node joins the network, ensure that:
 
-* The node has been added as a peer using `raft.addPeer(<<enodeId>>)`.
+- The node has been added as a peer using `raft.addPeer(<<enodeId>>)`.
 
-* You bring up `geth` for the new node using `--raftjoinexisting` with the peer ID as obtained in the previous step.
+- You bring up `geth` for the new node using `--raftjoinexisting` with the peer ID as obtained in the previous step.
 
 ## Managing the organization-level permissions
 
 Once the organization is approved and the node of the organization has joined the network, the organization admin can:
 
-* Create sub-organizations, add roles, and add additional nodes at organization level.
+- Create sub-organizations, add roles, and add additional nodes at organization level.
 
-* Add accounts to the organization.
+- Add accounts to the organization.
 
-* Change roles of existing organization-level accounts.
+- Change roles of existing organization-level accounts.
 
-Use [`quorumPermission_addSubOrg`](../../reference/api-methods.md#quorumpermission_addsuborg) to add a sub-organization
-at the `ORG1` level.
+Use [`quorumPermission_addSubOrg`](../../reference/api-methods.md#quorumpermission_addsuborg) to add a sub-organization at the `ORG1` level.
 
 ### Example
 
@@ -323,10 +311,7 @@ Get the sub-organization's details:
 
 The enode ID is not mandatory for adding a sub-organization.
 
-If the organization admin wants to add an admin account for the newly created sub-organization, the organization admin
-account must first create a role using
-[`quorumPermission_addNewRole`](../../reference/api-methods.md#quorumpermission_addnewrole) with `isAdminRole` set to
-`true`, then assign this role to the account which belongs to the sub-organization.
+If the organization admin wants to add an admin account for the newly created sub-organization, the organization admin account must first create a role using [`quorumPermission_addNewRole`](../../reference/api-methods.md#quorumpermission_addnewrole) with `isAdminRole` set to `true`, then assign this role to the account which belongs to the sub-organization.
 
 Once assigned, the account will act as organization admin at the sub-organization level.
 
@@ -410,8 +395,7 @@ View `SUB1`'s details:
     }
     ```
 
-The account `0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0` is now the admin for `SUB1` and can add roles, accounts, and
-nodes to the sub-organization.
+The account `0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0` is now the admin for `SUB1` and can add roles, accounts, and nodes to the sub-organization.
 
 Add a new role `TRANSACT` to `SUB1` with the following command:
 
@@ -461,8 +445,7 @@ View `SUB1`'s role list:
     sub-organizations.
     However, the admin account at the sub-organization level has control only in its sub-organization.
 
-To add an account to an organization, use
-[`quorumPermission_addAccountToOrg`](../../reference/api-methods.md#quorumpermission_addaccounttoorg):
+To add an account to an organization, use [`quorumPermission_addAccountToOrg`](../../reference/api-methods.md#quorumpermission_addaccounttoorg):
 
 === "geth console request"
 
@@ -483,6 +466,7 @@ View the organization's account list:
     ```javascript
     quorumPermission.getOrgDetails("ORG1.SUB1").acctList
     ```
+
 === "geth console result"
 
     ```json
@@ -501,9 +485,7 @@ View the organization's account list:
     }]
     ```
 
-To suspend an account, use
-[`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus) with
-`action` set to 1:
+To suspend an account, use [`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus) with `action` set to 1:
 
 === "geth console request"
 
@@ -543,9 +525,7 @@ View the account's updated status in the organization's account list:
     }]
     ```
 
-To revoke suspension of an account, use
-[`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus)
-with `action` set to 2:
+To revoke suspension of an account, use [`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus) with `action` set to 2:
 
 === "geth console request"
 
@@ -553,7 +533,7 @@ with `action` set to 2:
     quorumPermission.updateAccountStatus("ORG1.SUB1", "0x283f3b8989ec20df621166973c93b56b0f4b5455", 2, {from: "0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0"})
     ```
 
-=== "geth console resultt"
+=== "geth console result"
 
     ```json
     "Action completed successfully"
@@ -585,9 +565,7 @@ View the account's updated status in the organization's account list:
     }]
     ```
 
-To exclude an account, use
-[`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus) with
-`action` set to 3:
+To exclude an account, use [`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus) with `action` set to 3:
 
 === "geth console request"
 
@@ -601,8 +579,7 @@ To exclude an account, use
     "Action completed successfully"
     ```
 
-Once excluded, no further activity is possible on the account.
-View the account's updated status in the organization's account list:
+Once excluded, no further activity is possible on the account. View the account's updated status in the organization's account list:
 
 === "geth console request"
 
@@ -628,8 +605,7 @@ View the account's updated status in the organization's account list:
     }]
     ```
 
-To add nodes at the organization and sub-organization level, use
-[`quorumPermission_addNode`](../../reference/api-methods.md#quorumpermission_addnode):
+To add nodes at the organization and sub-organization level, use [`quorumPermission_addNode`](../../reference/api-methods.md#quorumpermission_addnode):
 
 === "geth console request"
 
@@ -665,9 +641,7 @@ View the organization's updated node list:
     }]
     ```
 
-To manage the status of the nodes, use
-[`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus).
-To deactivate a node, call the method with `action` set to 1:
+To manage the status of the nodes, use [`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus). To deactivate a node, call the method with `action` set to 1:
 
 === "geth console request"
 
@@ -689,9 +663,7 @@ To deactivate a node, call the method with `action` set to 1:
     }]
     ```
 
-To re-activate a node, use
-[`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus) with `action`
-set to 2:
+To re-activate a node, use [`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus) with `action` set to 2:
 
 === "geth console request"
 
@@ -727,9 +699,7 @@ View the node's updated status in the organization's node list:
     }]
     ```
 
-To exclude a node, use
-[`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus) with `action`
-set to 3:
+To exclude a node, use [`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus) with `action` set to 3:
 
 === "geth console request"
 
@@ -765,9 +735,7 @@ Once excluded, a node can't re-join a network.
 
 ## Suspending an organization temporarily
 
-If you need to temporarily suspend all activities of an organization, use
-[`quorumPermission_updateOrgStatus`](../../reference/api-methods.md#quorumpermission_updateorgstatus) with
-`action` set to `. This can be invoked only by network admin accounts and requires majority approval.
+If you need to temporarily suspend all activities of an organization, use [`quorumPermission_updateOrgStatus`](../../reference/api-methods.md#quorumpermission_updateorgstatus) with `action` set to `. This can be invoked only by network admin accounts and requires majority approval.
 
 ### Example
 
@@ -807,9 +775,7 @@ View the organization's updated status in the organization list:
     }
     ```
 
-Suspending an organization requires majority approval from other network admin accounts, using
-[`quorumPermission_approveOrgStatus`](../../reference/api-methods.md#quorumpermission_approveorgstatus).
-Once approved the organization status is marked as `Suspended`.
+Suspending an organization requires majority approval from other network admin accounts, using [`quorumPermission_approveOrgStatus`](../../reference/api-methods.md#quorumpermission_approveorgstatus). Once approved the organization status is marked as `Suspended`.
 
 === "geth console request"
 
@@ -845,15 +811,11 @@ View the organization's updated status in the organization list:
     }
     ```
 
-When the organization is suspended, no transaction from any of the accounts linked to the organization or
-sub-organizations under it is allowed.
-However, the nodes linked to the organization are active and are syncing with the network.
+When the organization is suspended, no transaction from any of the accounts linked to the organization or sub-organizations under it is allowed. However, the nodes linked to the organization are active and are syncing with the network.
 
 ## Revoking suspension of an organization
 
-To revoke the suspension of an organization, use
-[`quorumPermission_updateOrgStatus`](../../reference/api-methods.md#quorumpermission_updateorgstatus) with `action` set
-to 2.
+To revoke the suspension of an organization, use [`quorumPermission_updateOrgStatus`](../../reference/api-methods.md#quorumpermission_updateorgstatus) with `action` set to 2.
 
 ### Example
 
@@ -871,9 +833,7 @@ Revoke the suspension of `ORG1` with the following command:
     "Action completed successfully"
     ```
 
-Revoking an organization's suspension requires majority approval using
-[`quorumPermission_approveOrgStatus`](../../reference/api-methods.md#quorumpermission_approveorgstatus) with `action`
-set to 2:
+Revoking an organization's suspension requires majority approval using [`quorumPermission_approveOrgStatus`](../../reference/api-methods.md#quorumpermission_approveorgstatus) with `action` set to 2:
 
 === "geth console request"
 
@@ -909,21 +869,17 @@ View the organization's updated status in the organization list:
     }
     ```
 
-Once the revoke is approved, all accounts in the organization and sub-organizations under it are able to
-transact as per role level access.
+Once the revoke is approved, all accounts in the organization and sub-organizations under it are able to transact as per role level access.
 
 ## Assigning admin privileges at organization and network level
 
-At times, an account at the organization level may need be able to perform network admin activities.
-Also, there may be a need to change the admin account at organization level.
+At times, an account at the organization level may need be able to perform network admin activities. Also, there may be a need to change the admin account at organization level.
 
-Both of these activities can be performed by existing network admin accounts only, and will require
-majority approval from the network admin accounts.
+Both of these activities can be performed by existing network admin accounts only, and will require majority approval from the network admin accounts.
 
 ### Example
 
-To assign a network admin or organization admin role to an account, use
-[`quorumPermission_assignAdminRole`](../../reference/api-methods.md#quorumpermission_assignadminrole):
+To assign a network admin or organization admin role to an account, use [`quorumPermission_assignAdminRole`](../../reference/api-methods.md#quorumpermission_assignadminrole):
 
 === "geth console request"
 
@@ -957,8 +913,7 @@ View the account's updated role in the account list:
     }
     ```
 
-To approve the assignment of a network admin role, use
-[`quorumPermission_approveAdminRole`](../../reference/api-methods.md#quorumpermission_approveadminrole):
+To approve the assignment of a network admin role, use [`quorumPermission_approveAdminRole`](../../reference/api-methods.md#quorumpermission_approveadminrole):
 
 === "geth console request"
 
@@ -992,5 +947,4 @@ View the account's updated status in the account list:
     }
     ```
 
-The account can now perform all activities allowable by a network admin account and can participate in the approval
-process for any actions at network level.
+The account can now perform all activities allowable by a network admin account and can participate in the approval process for any actions at network level.

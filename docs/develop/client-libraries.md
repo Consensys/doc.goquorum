@@ -1,25 +1,21 @@
 ---
+title: Client libraries
 description: GoQuorum client libraries
+sidebar_position: 3
 ---
 
 # Client libraries
 
-GoQuorum supports common smart contract and dapp development, deployment, and operational use cases,
-using tools such as [Truffle](https://trufflesuite.com/),  [web3.js] and
-[web3js-quorum](https://consensys.github.io/web3js-quorum/latest/index.html). The client supports common
-[JSON-RPC API](json-rpc-apis.md) methods, for example `eth`, `net`, `web3`, `debug`, and `miner`.
+GoQuorum supports common smart contract and dapp development, deployment, and operational use cases, using tools such as [Truffle](https://trufflesuite.com/), [web3.js] and [web3js-quorum](https://consensys.github.io/web3js-quorum/latest/index.html). The client supports common [JSON-RPC API](json-rpc-apis.md) methods, for example `eth`, `net`, `web3`, `debug`, and `miner`.
 
 ## Prerequisites
 
-* [Node.js version 15 or later](https://nodejs.org/en/download/).
-* [The web3 library must be installed in your project](https://github.com/ChainSafe/web3.js#installation).
-* A [private network](../tutorials/private-network/create-ibft-network.md) if deploying a public contract.
-* A [privacy-enabled network](../tutorials/create-privacy-enabled-network.md) if deploying a private contract.
-    Public contracts can also be deployed on privacy-enabled networks.
+- [Node.js version 15 or later](https://nodejs.org/en/download/).
+- [The web3 library must be installed in your project](https://github.com/ChainSafe/web3.js#installation).
+- A [private network](../tutorials/private-network/create-ibft-network.md) if deploying a public contract.
+- A [privacy-enabled network](../tutorials/create-privacy-enabled-network.md) if deploying a private contract. Public contracts can also be deployed on privacy-enabled networks.
 
-!!! note
-    You can use the Quorum Developer Quickstart to deploy either public contracts or private contracts.
-    To enable privacy, enter `Y` at the prompt for private transactions.
+!!! note You can use the Quorum Developer Quickstart to deploy either public contracts or private contracts. To enable privacy, enter `Y` at the prompt for private transactions.
 
 ## web3
 
@@ -35,7 +31,7 @@ npm install web3
 
 Initialize your client where:
 
-* `<GoQuorum JSON-RPC HTTP endpoint>` is the JSON-RPC HTTP endpoint of your GoQuorum node.
+- `<GoQuorum JSON-RPC HTTP endpoint>` is the JSON-RPC HTTP endpoint of your GoQuorum node.
 
 !!! example "Example connection"
 
@@ -54,9 +50,7 @@ Initialize your client where:
 
 ### Deploying a contract
 
-To deploy a private contract, you need the contract binary. You can use
-[Solidity](https://solidity.readthedocs.io/en/develop/using-the-compiler.html) to get the
-contract binary.
+To deploy a private contract, you need the contract binary. You can use [Solidity](https://solidity.readthedocs.io/en/develop/using-the-compiler.html) to get the contract binary.
 
 !!! example "Deploying a contract with `Contract.deploy`"
 
@@ -81,8 +75,7 @@ contract binary.
     });
     ```
 
-Alternatively, you can also deploy a contract using
-[`eth.sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth.html#sendsignedtransaction)
+Alternatively, you can also deploy a contract using [`eth.sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth.html#sendsignedtransaction)
 
 !!! example "Deploying a contract with `eth.sendSignedTransaction`"
 
@@ -110,24 +103,19 @@ Alternatively, you can also deploy a contract using
 
 ### web3 methods
 
-For more information about the web3 methods, see the
-[web3 reference documentation](https://web3js.readthedocs.io/en/v1.5.2/).
+For more information about the web3 methods, see the [web3 reference documentation](https://web3js.readthedocs.io/en/v1.5.2/).
 
 ## web3js-quorum
 
 The [web3js-quorum library] extends web3.js and adds supports for GoQuorum-specific JSON-RPC APIs and features.
 
-!!! note
-    The web3js-quorum library replaces the deprecated [quorum.js] and [web3js-eea] libraries, and includes all the
-    features of both libraries.
+!!! note The web3js-quorum library replaces the deprecated [quorum.js] and [web3js-eea] libraries, and includes all the features of both libraries.
 
-!!! important
-    web3js-quorum supports GoQuorum JSON-RPC over HTTP only.
+!!! important web3js-quorum supports GoQuorum JSON-RPC over HTTP only.
 
     Only the enclave connection can be configured over TLS.
 
-!!! information
-    If migrating to web3js-quorum, then update your Javascript code as indicated in the following examples.
+!!! information If migrating to web3js-quorum, then update your Javascript code as indicated in the following examples.
 
     [Read the migration guide for more information about updating your code.](https://consensys.github.io/web3js-quorum/latest/tutorial-Migrate%20from%20quorum.js.html)
 
@@ -141,12 +129,12 @@ npm install web3js-quorum
 
 Initialize your client where:
 
-* `<GoQuorum JSON-RPC HTTP endpoint>` is the JSON-RPC HTTP endpoint of your GoQuorum node.
-* `<Enclave IPC Path>` is the enclave IPC Unix socket path.
-* `<Enclave Private URL>` is the enclave HTTP endpoint.
-* `<enclave key file path>` is the enclave public key file path (see [Tessera keys documentation]({{ extra.othersites.tessera }}/HowTo/Generate-Keys/File-Stored-Keys/#store-keys-in-files)).
-* `<enclave TLS cert file path>` is the enclave TLS client certificate file path (see [Tessera TLS documentation]({{ extra.othersites.tessera }}/HowTo/Configure/TLS/)).
-* `<enclave TLS CA cert file path>` is the enclave TLS certification authority (CA) certificate file path (see [Tessera TLS documentation]({{ extra.othersites.tessera }}/HowTo/Configure/TLS/)).
+- `<GoQuorum JSON-RPC HTTP endpoint>` is the JSON-RPC HTTP endpoint of your GoQuorum node.
+- `<Enclave IPC Path>` is the enclave IPC Unix socket path.
+- `<Enclave Private URL>` is the enclave HTTP endpoint.
+- `<enclave key file path>` is the enclave public key file path (see Tessera keys documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Generate-Keys/File-Stored-Keys/#store-keys-in-files)).
+- `<enclave TLS cert file path>` is the enclave TLS client certificate file path (see Tessera TLS documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)).
+- `<enclave TLS CA cert file path>` is the enclave TLS certification authority (CA) certificate file path (see Tessera TLS documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)).
 
 !!! example "Example connection"
 
@@ -252,9 +240,7 @@ Initialize your client where:
 
 ### Deploying a contract with `generateAndSendRawTransaction`
 
-To deploy a private contract, you need the contract binary. You can use
-[Solidity](https://solidity.readthedocs.io/en/develop/using-the-compiler.html) to get the
-contract binary.
+To deploy a private contract, you need the contract binary. You can use [Solidity](https://solidity.readthedocs.io/en/develop/using-the-compiler.html) to get the contract binary.
 
 !!! example "Deploying a contract with `web3.priv.generateAndSendRawTransaction`"
 
@@ -268,13 +254,11 @@ contract binary.
     return web3.priv.generateAndSendRawTransaction(contractOptions);
     ```
 
-`web3.priv.generateAndSendRawTransaction(contractOptions)` returns the transaction hash. To get the private
-transaction receipt, use `web3.priv.waitForTransactionReceipt(txHash)`.
+`web3.priv.generateAndSendRawTransaction(contractOptions)` returns the transaction hash. To get the private transaction receipt, use `web3.priv.waitForTransactionReceipt(txHash)`.
 
 ### web3js-quorum methods
 
-For more information about the web3js-quorum methods, see the
-[web3js-quorum reference documentation](https://consensys.github.io/web3js-quorum/latest/index.html).
+For more information about the web3js-quorum methods, see the [web3js-quorum reference documentation](https://consensys.github.io/web3js-quorum/latest/index.html).
 
 [web3js-quorum library]: https://github.com/ConsenSys/web3js-quorum
 [web3.js]: https://github.com/ethereum/web3.js/

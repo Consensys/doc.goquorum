@@ -1,29 +1,25 @@
 ---
-title: GoQuorum Kubernetes - Deploying Charts
+title: Deploy charts
 description: Deploying GoQuorum Helm Charts for a Kubernetes cluster
+sidebar_position: 3
 ---
 
 ## Prerequisites
 
-* Clone the [Quorum-Kubernetes](https://github.com/ConsenSys/quorum-kubernetes) repository
-* A [running Kubernetes cluster](./create-cluster.md)
-* [Kubectl](https://kubernetes.io/docs/tasks/tools/)
-* [Helm3](https://helm.sh/docs/intro/install/)
+- Clone the [Quorum-Kubernetes](https://github.com/ConsenSys/quorum-kubernetes) repository
+- A [running Kubernetes cluster](./create-cluster.md)
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/)
+- [Helm3](https://helm.sh/docs/intro/install/)
 
 ## Provisioning with Helm charts
 
-Helm is a method of packaging a collection of objects into a chart which can then be deployed to the cluster.
-After you have cloned the [Quorum-Kubernetes](https://github.com/ConsenSys/quorum-kubernetes) repository, change
-the directory to `helm` for the rest of this tutorial.
+Helm is a method of packaging a collection of objects into a chart which can then be deployed to the cluster. After you have cloned the [Quorum-Kubernetes](https://github.com/ConsenSys/quorum-kubernetes) repository, change the directory to `helm` for the rest of this tutorial.
 
 ```bash
 cd helm
 ```
 
-Each helm chart has the following key-map values which you will need to set depending on your needs. The `cluster.provider` is used
-as a key for the various cloud features enabled. Please specify only one cloud provider, not both. At present, the
-charts have full support for cloud native services in both AWS and Azure. Please note that if you use
-GCP, IBM etc please set `cluster.provider: local` and set `cluster.cloudNativeServices: false`.
+Each helm chart has the following key-map values which you will need to set depending on your needs. The `cluster.provider` is used as a key for the various cloud features enabled. Please specify only one cloud provider, not both. At present, the charts have full support for cloud native services in both AWS and Azure. Please note that if you use GCP, IBM etc please set `cluster.provider: local` and set `cluster.cloudNativeServices: false`.
 
 Please update the `aws` or `azure` map as shown below if you deploy to either cloud provider.
 
@@ -51,14 +47,14 @@ azure:
   keyvaultName: azure-keyvault
   # the tenant ID of the key vault
   tenantId: azure-tenantId
-  # the subscription ID to use - this needs to be set explictly when using multi tenancy
+  # the subscription ID to use - this needs to be set explicitly when using multi tenancy
   subscriptionId: azure-subscriptionId
 ```
 
 Setting the `cluster.cloudNativeServices: true` will:
 
-* Store keys in Azure KeyVault or AWS Secrets Manager
-* Make use of Azure Managed Identities or AWS IAMs for pod identity access
+- Store keys in Azure KeyVault or AWS Secrets Manager
+- Make use of Azure Managed Identities or AWS IAMs for pod identity access
 
 !!! note
 
@@ -67,7 +63,7 @@ Setting the `cluster.cloudNativeServices: true` will:
 
 ### 1. Check that you can connect to the cluster with `kubectl`
 
-Once you have your cluster up and runinng, verify kubectl is connected to your cluster with: (use the latest version)
+Once you have your cluster up and running, verify kubectl is connected to your cluster with: (use the latest version)
 
 ```bash
 kubectl version
@@ -104,11 +100,7 @@ helm install monitoring prometheus-community/kube-prometheus-stack --version 34.
 kubectl --namespace quorum apply -f  ./values/monitoring/
 ```
 
-Metrics are collected via a
-[ServiceMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md)
-that scrapes each GoQuorum pod, using given
-[`annotations`](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) which specify the
-port and path to use. For example:
+Metrics are collected via a [ServiceMonitor](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md) that scrapes each GoQuorum pod, using given [`annotations`](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) which specify the port and path to use. For example:
 
 ```bash
   template:
@@ -138,14 +130,11 @@ helm install kibana --version 7.17.1 elastic/kibana --namespace quorum --values 
 helm install filebeat --version 7.17.1 elastic/filebeat  --namespace quorum --values ./values/filebeat.yml
 ```
 
-If you install `filebeat`, please create a `filebeat-*` index pattern in `kibana`. All the logs from the nodes are sent to the `filebeat` index.
-If you use The Elastic stack for logs and metrics, please deploy `metricbeat` in a similar manner to `filebeat` and create an index pattern in
-Kibana.
+If you install `filebeat`, please create a `filebeat-*` index pattern in `kibana`. All the logs from the nodes are sent to the `filebeat` index. If you use The Elastic stack for logs and metrics, please deploy `metricbeat` in a similar manner to `filebeat` and create an index pattern in Kibana.
 
 ![k8s-elastic](../../images/kubernetes/kubernetes-elastic.png)
 
-To connect to Kibana or Grafana, we also need to deploy an ingress so you can access your monitoring endpoints
-publicly. We use nginx as our ingress here, and you are free to configure any ingress per your requirements.
+To connect to Kibana or Grafana, we also need to deploy an ingress so you can access your monitoring endpoints publicly. We use nginx as our ingress here, and you are free to configure any ingress per your requirements.
 
 ```bash
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -163,8 +152,7 @@ helm install quorum-monitoring-ingress ingress-nginx/ingress-nginx \
 kubectl apply -f ../ingress/ingress-rules-monitoring.yml
 ```
 
-Once complete, view the IP address listed under the `Ingress` section if you're using the Kubernetes Dashboard
-or on the command line `kubectl -n quorum get services quorum-monitoring-ingress-ingress-nginx-controller`.
+Once complete, view the IP address listed under the `Ingress` section if you're using the Kubernetes Dashboard or on the command line `kubectl -n quorum get services quorum-monitoring-ingress-ingress-nginx-controller`.
 
 !!! note
 
@@ -195,8 +183,7 @@ The genesis chart creates the genesis file and keys for the validators.
     `validator-n`, where `n` is the node number. Any validators created after the initial pool can be named
     to anything you like.
 
-The override [values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/genesis-goquorum.yml)
-looks like below:
+The override [values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/genesis-goquorum.yml) looks like below:
 
 ```bash
 ---
@@ -245,17 +232,11 @@ rawGenesisConfig:
     accountPassword: 'password'
 ```
 
-Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning-with-helm-charts) step.
-`quorumFlags.removeGenesisOnDelete: true` tells the chart to delete the genesis file when the chart is deleted.
-If you may wish to retain the genesis on deletion, please set that value to `false`.
+Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning-with-helm-charts) step. `quorumFlags.removeGenesisOnDelete: true` tells the chart to delete the genesis file when the chart is deleted. If you may wish to retain the genesis on deletion, please set that value to `false`.
 
-The last config item is `rawGenesisConfig` which has details of the chain you are creating, please edit any of the
-parameters in there to match your requirements. To set the number of initial valiators set the
-`rawGenesisConfig.blockchain.nodes` to the number that you'd like. We recommend using the Byzantine formula of `N=3F+1`
-when setting the number of validators.
+The last config item is `rawGenesisConfig` which has details of the chain you are creating, please edit any of the parameters in there to match your requirements. To set the number of initial validators set the `rawGenesisConfig.blockchain.nodes` to the number that you'd like. We recommend using the Byzantine formula of `N=3F+1` when setting the number of validators.
 
-One more thing to note is that when `cluster.cloudNativeServices: true` is set, the genesis job will
-not add the [Quickstart](../quorum-dev-quickstart/index.md) test accounts into the genesis file.
+One more thing to note is that when `cluster.cloudNativeServices: true` is set, the genesis job will not add the [Quickstart](../quickstart-index.md) test accounts into the genesis file.
 
 When you are ready deploy the chart with :
 
@@ -264,8 +245,7 @@ cd helm
 helm install genesis ./charts/goquorum-genesis --namespace quorum --create-namespace --values ./values/genesis-goquorum.yml
 ```
 
-Once completed, view the genesis and enodes (the list of static nodes) configuration maps that every GoQuorum node uses,
-and the validator and bootnode node keys as secrets.
+Once completed, view the genesis and enodes (the list of static nodes) configuration maps that every GoQuorum node uses, and the validator and bootnode node keys as secrets.
 
 ![k8s-genesis-configmaps](../../images/kubernetes/kubernetes-genesis-configmaps.png)
 
@@ -273,10 +253,7 @@ and the validator and bootnode node keys as secrets.
 
 ### 5. Deploy the validators
 
-This is the first set of nodes that we will deploy. The charts use four validators (default) to replicate best practices
-for a network. The override
-[values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/validator.yml) for the
-StatefulSet looks like below:
+This is the first set of nodes that we will deploy. The charts use four validators (default) to replicate best practices for a network. The override [values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/validator.yml) for the StatefulSet looks like below:
 
 ```bash
 ---
@@ -303,7 +280,7 @@ azure:
   keyvaultName: azure-keyvault
   # the tenant ID of the key vault
   tenantId: azure-tenantId
-  # the subscription ID to use - this needs to be set explictly when using multi tenancy
+  # the subscription ID to use - this needs to be set explicitly when using multi tenancy
   subscriptionId: azure-subscriptionId
 
 node:
@@ -317,9 +294,7 @@ node:
       memRequest: "1G"
 ```
 
-Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning-with-helm-charts) step.
-`quorumFlags.removeKeysOnDelete: true` tells the chart to delete the node's keys when the chart is deleted.
-If you may wish to retain the keys on deletion, please set that value to `false`.
+Please set the `aws`, `azure` and `cluster` keys are as per the [Provisioning](#provisioning-with-helm-charts) step. `quorumFlags.removeKeysOnDelete: true` tells the chart to delete the node's keys when the chart is deleted. If you may wish to retain the keys on deletion, please set that value to `false`.
 
 !!! warning
 
@@ -341,28 +316,21 @@ helm install validator-4 ./charts/quorum-node --namespace quorum --values ./valu
     It's important to keep the release names of the validators the same as it is tied to the keys that the genesis chart
     creates. So we use `validator-1`, `validator-2`, etc. in the following command.
 
-Once complete, you may need to give the validators a few minutes to peer and for round changes, depending on when the
-first validator was spun up, before the logs display blocks being created.
+Once complete, you may need to give the validators a few minutes to peer and for round changes, depending on when the first validator was spun up, before the logs display blocks being created.
 
 ![k8s-validator-logs](../../images/kubernetes/kubernetes-validator-logs.png)
 
 ### 6. Add/Remove additional validators to the validator pool
 
-To add (or remove) more validators to the initial validator pool, you need to deploy a node such as an RPC node (step 7)
-and then [vote](../../tutorials/private-network/adding-removing-ibft-validators.md) that node in. The vote API call
-must be made on a majority of the existing pool and the new node will then become a validator.
+To add (or remove) more validators to the initial validator pool, you need to deploy a node such as an RPC node (step 7) and then [vote](../../tutorials/private-network/adding-removing-ibft-validators.md) that node in. The vote API call must be made on a majority of the existing pool and the new node will then become a validator.
 
-Please refer to the [Ingress Section](#8-connecting-to-the-node-from-your-local-machine-via-an-ingress) for details on
-making the API calls from your local machine or equivalent.
+Please refer to the [Ingress Section](#8-connecting-to-the-node-from-your-local-machine-via-an-ingress) for details on making the API calls from your local machine or equivalent.
 
 ### 7. Deploy RPC or Transaction nodes
 
-An RPC node is simply a node that can be used to make public transactions or perform read heavy operations such
-as when connected to a chain explorer like [Blockscout](https://blockscout.com/xdai/mainnet/)
+An RPC node is simply a node that can be used to make public transactions or perform read heavy operations such as when connected to a chain explorer like [Blockscout](https://blockscout.com/xdai/mainnet/)
 
-The RPC override
-[values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/reader.yml) for the
-StatefulSet looks identical to that of the validators above, and will create it's own nodekeys before the node starts
+The RPC override [values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/reader.yml) for the StatefulSet looks identical to that of the validators above, and will create it's own nodekeys before the node starts
 
 To deploy an RPC node:
 
@@ -370,13 +338,9 @@ To deploy an RPC node:
 helm install rpc-1 ./charts/quorum-node --namespace quorum --values ./values/reader.yml
 ```
 
-A Transaction or Member node in turn is one which has an accompaning Private Transaction Manager, such as Tessera;
-which allow you to make private transactions between nodes.
+A Transaction or Member node in turn is one which has an accompanying Private Transaction Manager, such as Tessera; which allow you to make private transactions between nodes.
 
-The Transaction override
-[values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/txnode.yml) for the
-StatefulSet looks identical to that of the validators above and only has `quorumFlags.privacy: true` to indicate that
-it is deploying a pair of GoQuorum and Tessera nodes.
+The Transaction override [values.yml](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/txnode.yml) for the StatefulSet looks identical to that of the validators above and only has `quorumFlags.privacy: true` to indicate that it is deploying a pair of GoQuorum and Tessera nodes.
 
 To deploy a Transaction or Member node:
 
@@ -399,8 +363,7 @@ Logs for GoQuorum resemble the following:
 
 ### 8. Connecting to the node from your local machine via an Ingress
 
-In order to view the Grafana dashboards or connect to the nodes to make transactions from your local machine you can
-deploy an ingress controller with rules. We use the `ingress-nginx` ingress controller which can be deployed as follows:
+In order to view the Grafana dashboards or connect to the nodes to make transactions from your local machine you can deploy an ingress controller with rules. We use the `ingress-nginx` ingress controller which can be deployed as follows:
 
 ```bash
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -416,20 +379,15 @@ helm install quorum-network-ingress ingress-nginx/ingress-nginx \
     --set controller.service.externalTrafficPolicy=Local
 ```
 
-Use [pre-defined rules](https://github.com/ConsenSys/quorum-kubernetes/blob/master/ingress/ingress-rules-goquorum.yml)
-to test functionality, and alter to suit your requirements (for example, restrict access for API calls to trusted CIDR blocks).
+Use [pre-defined rules](https://github.com/ConsenSys/quorum-kubernetes/blob/master/ingress/ingress-rules-goquorum.yml) to test functionality, and alter to suit your requirements (for example, restrict access for API calls to trusted CIDR blocks).
 
-Edit the [rules](https://github.com/ConsenSys/quorum-kubernetes/blob/master/ingress/ingress-rules-goquorum.yml) file so the
-service names match your release name. In the example, we deployed a transaction node with the release name `member-1`
-so the corresponding service is called `quorum-node-member-1`. Once you have settings
-that match your deployments, deploy the rules like so:
+Edit the [rules](https://github.com/ConsenSys/quorum-kubernetes/blob/master/ingress/ingress-rules-goquorum.yml) file so the service names match your release name. In the example, we deployed a transaction node with the release name `member-1` so the corresponding service is called `quorum-node-member-1`. Once you have settings that match your deployments, deploy the rules like so:
 
 ```bash
 kubectl apply -f ../ingress/ingress-rules-quorum.yml
 ```
 
-Once complete, view the IP address listed under the `Ingress` section if you're using the Kubernetes Dashboard
-or on the command line `kubectl -n quorum get services quorum-network-ingress-ingress-nginx-controller`.
+Once complete, view the IP address listed under the `Ingress` section if you're using the Kubernetes Dashboard or on the command line `kubectl -n quorum get services quorum-network-ingress-ingress-nginx-controller`.
 
 ![`k8s-ingress-network`](../../images/kubernetes/kubernetes-ingress.png)
 
@@ -453,9 +411,7 @@ The following is an example RPC call, which confirms that the node running the J
 
 ### 9. Blockchain explorer
 
-You can deploy [BlockScout](https://github.com/blockscout/blockscout) to aid with monitoring the blockchain.
-To do this, update the [BlockScout values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/blockscout-goquorum.yml)
-and set the `database` and `secret_key_base` values.
+You can deploy [BlockScout](https://github.com/blockscout/blockscout) to aid with monitoring the blockchain. To do this, update the [BlockScout values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/blockscout-goquorum.yml) and set the `database` and `secret_key_base` values.
 
 !!! important
 
@@ -468,27 +424,18 @@ helm dependency update ./charts/blockscout
 helm install blockscout ./charts/blockscout --namespace quorum --values ./values/blockscout-goquorum.yaml
 ```
 
-You can optionally deploy the [Quorum-Explorer](https://github.com/ConsenSys/quorum-explorer) as a lightweight
-blockchain explorer.  The Quorum Explorer is not recommended for use in production and is intended for
-demonstration/dev purposes only. The Explorer can give an overview over the whole network, such as querying
-each node on the network for node or block information, voting (add/remove) validators from the network,
-demonstrating a SimpleStorage smart contract with privacy enabled, and sending transactions between
-wallets as you would do in Metamask. Please see the [Explorer](./quorum-explorer.md) page for details on how
-to use the application.
+You can optionally deploy the [Quorum-Explorer](https://github.com/ConsenSys/quorum-explorer) as a lightweight blockchain explorer. The Quorum Explorer is not recommended for use in production and is intended for demonstration/dev purposes only. The Explorer can give an overview over the whole network, such as querying each node on the network for node or block information, voting (add/remove) validators from the network, demonstrating a SimpleStorage smart contract with privacy enabled, and sending transactions between wallets as you would do in Metamask. Please see the [Explorer](./quorum-explorer.md) page for details on how to use the application.
 
 !!! warning
 
     The accounts listed in the file below are for test purposes only and should not be used on a production network.
 
-To deploy the application, update the
-[Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yaml)
-with details of your nodes and endpoints and then deploy.
+To deploy the application, update the [Explorer values file](https://github.com/ConsenSys/quorum-kubernetes/blob/master/helm/values/explorer-goquorum.yaml) with details of your nodes and endpoints and then deploy.
 
 ```bash
 helm install quorum-explorer ./charts/explorer --namespace quorum --values ./values/explorer-goquorum.yaml
 ```
 
-You will also need deploy the ingress (if not already done in [Monitoring](#3-deploy-the-monitoring-chart)) to
-access the endpoint on `http://<INGRESS_IP>/explorer`
+You will also need deploy the ingress (if not already done in [Monitoring](#3-deploy-the-monitoring-chart)) to access the endpoint on `http://<INGRESS_IP>/explorer`
 
 ![`k8s-explorer`](../../images/kubernetes/kubernetes-explorer.png)

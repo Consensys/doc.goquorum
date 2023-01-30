@@ -1,15 +1,14 @@
 ---
+title: GoQuorum API methods
 description: GoQuorum JSON-RPC API methods reference
-toc_depth: 3
+sidebar_position: 2
 ---
 
 # GoQuorum API methods
 
 This reference describes the GoQuorum JSON-RPC API methods.
 
-!!! important
-    GoQuorum is based on [Geth Go Ethereum client](https://geth.ethereum.org/) but only the GoQuorum-specific API methods are listed here. Visit the
-    [Go Ethereum documentation](https://geth.ethereum.org/docs/rpc/server) to view the Geth API methods.
+!!! important GoQuorum is based on [Geth Go Ethereum client](https://geth.ethereum.org/) but only the GoQuorum-specific API methods are listed here. Visit the [Go Ethereum documentation](https://geth.ethereum.org/docs/rpc/server) to view the Geth API methods.
 
 ## Contract extension methods
 
@@ -25,19 +24,19 @@ None
 
 #### Returns
 
-`result`: *array* of *objects* - list of contract extension objects with the following fields:
+`result`: _array_ of _objects_ - list of contract extension objects with the following fields:
 
-* `managementContractAddress`: *string* - address of the extension management contract
+- `managementContractAddress`: _string_ - address of the extension management contract
 
-* `contractExtended`: *string* - address of the private contract getting extended
+- `contractExtended`: _string_ - address of the private contract getting extended
 
-* `creationData`: *data* - Tessera hash of creation data for extension management contract
+- `creationData`: _data_ - Tessera hash of creation data for extension management contract
 
-* `initiator`: *string* - contract extension initiator's Ethereum address
+- `initiator`: _string_ - contract extension initiator's Ethereum address
 
-* `recipient`: *string* - new participant's Ethereum address; the participant must later approve the extension using this address.
+- `recipient`: _string_ - new participant's Ethereum address; the participant must later approve the extension using this address.
 
-* `recipientPtmKey`: *string* - new participant's Tessera public key
+- `recipientPtmKey`: _string_ - new participant's Tessera public key
 
 !!! example
 
@@ -89,17 +88,15 @@ Submits an approval/denial vote to the specified extension management contract.
 
 #### Parameters
 
-* `addressToVoteOn`: *string* - address of the contract extension's management contract (this can be found using
-  [`quorumExtension_activeExtensionContracts`](#quorumextension_activeextensioncontracts))
+- `addressToVoteOn`: _string_ - address of the contract extension's management contract (this can be found using [`quorumExtension_activeExtensionContracts`](#quorumextension_activeextensioncontracts))
 
-* `vote`: *boolean* - `true` approves the extension process, `false` cancels the extension process
+- `vote`: _boolean_ - `true` approves the extension process, `false` cancels the extension process
 
-* `txArgs`: *object* - arguments for the vote submission transaction; `privateFor` must contain the public key of the node that
-  initiated the contract extension.
+- `txArgs`: _object_ - arguments for the vote submission transaction; `privateFor` must contain the public key of the node that initiated the contract extension.
 
 #### Returns
 
-`result`: *data* - hash of the vote submission transaction
+`result`: _data_ - hash of the vote submission transaction
 
 !!! example
 
@@ -156,19 +153,17 @@ Submits an approval/denial vote to the specified extension management contract.
 
 ### `quorumExtension_cancelExtension`
 
-Cancels the specified active contract extension.
-This can only be invoked by the initiator of the extension process (the caller of
-[`quorumExtension_extendContract`](#quorumextension_extendcontract)).
+Cancels the specified active contract extension. This can only be invoked by the initiator of the extension process (the caller of [`quorumExtension_extendContract`](#quorumextension_extendcontract)).
 
 #### Parameters
 
-* `extensionContract`: *string* - address of the contract extension's management contract
+- `extensionContract`: _string_ - address of the contract extension's management contract
 
-* `txArgs`: *object* - arguments for the cancellation transaction
+- `txArgs`: _object_ - arguments for the cancellation transaction
 
 #### Returns
 
-`result`: *data* - hash of the cancellation transaction
+`result`: _data_ - hash of the cancellation transaction
 
 !!! example
 
@@ -212,24 +207,21 @@ This can only be invoked by the initiator of the extension process (the caller o
 
 ### `quorumExtension_extendContract`
 
-Starts the process of extending an existing private contract to a new participant by deploying a new extension
-management contract to the blockchain.
+Starts the process of extending an existing private contract to a new participant by deploying a new extension management contract to the blockchain.
 
 #### Parameters
 
-* `toExtend`: *string* - address of the private contract to extend
+- `toExtend`: _string_ - address of the private contract to extend
 
-* `newRecipientPtmPublicKey`: *string* - new participant's Tessera public key
+- `newRecipientPtmPublicKey`: _string_ - new participant's Tessera public key
 
-* `recipientAddress`: *string* - new participant's Ethereum address; the participant must later
-  [approve](#quorumextension_approveextension) the extension using this address.
+- `recipientAddress`: _string_ - new participant's Ethereum address; the participant must later [approve](#quorumextension_approveextension) the extension using this address.
 
-* `txArgs`: *object* - arguments for the transaction that deploys the extension management contract; `privateFor` must contain
-  only the `newRecipientPtmPublicKey`.
+- `txArgs`: _object_ - arguments for the transaction that deploys the extension management contract; `privateFor` must contain only the `newRecipientPtmPublicKey`.
 
 #### Returns
 
-`result`: *data* - hash of the creation transaction for the new extension management contract
+`result`: _data_ - hash of the creation transaction for the new extension management contract
 
 !!! example
 
@@ -282,11 +274,11 @@ Retrieves the status of the specified contract extension.
 
 #### Parameters
 
-`managementContractAddress`: *string* - address of the extension management contract
+`managementContractAddress`: _string_ - address of the extension management contract
 
 #### Returns
 
-`result`: *string* - status of contract extension (`ACTIVE` or `DONE`)
+`result`: _string_ - status of contract extension (`ACTIVE` or `DONE`)
 
 !!! example
 
@@ -328,14 +320,13 @@ Retrieves the state of an address at the specified block number.
 
 #### Parameters
 
-* `address`: *string* - account address of the state to retrieve
+- `address`: _string_ - account address of the state to retrieve
 
-* `blockNumber`: *number* - integer representing a block number or one of the string tags `latest` (the last block mined) or `pending`
-  (the last block mined plus pending transactions)
+- `blockNumber`: _number_ - integer representing a block number or one of the string tags `latest` (the last block mined) or `pending` (the last block mined plus pending transactions)
 
 #### Returns
 
-`result`: *object* - state of the account address
+`result`: _object_ - state of the account address
 
 !!! example
 
@@ -386,12 +377,11 @@ Returns the private state root hash at the specified block number.
 
 #### Parameters
 
-`blockNumber`: *number* - integer representing a block number or one of the string tags `latest` (the last block mined)
-or `pending` (the last block mined plus pending transactions).
+`blockNumber`: _number_ - integer representing a block number or one of the string tags `latest` (the last block mined) or `pending` (the last block mined plus pending transactions).
 
 #### Returns
 
-`result`: *data* - private state root hash
+`result`: _data_ - private state root hash
 
 !!! Example
 
@@ -425,8 +415,7 @@ or `pending` (the last block mined plus pending transactions).
 
 ## IBFT methods
 
-The following API methods provide access to the [IBFT](../configure-and-manage/configure/consensus-protocols/ibft.md) and
-[QBFT](../configure-and-manage/configure/consensus-protocols/qbft.md) consensus engines.
+The following API methods provide access to the [IBFT](../configure-and-manage/configure/consensus-protocols/ibft) and [QBFT](../configure-and-manage/configure/consensus-protocols/qbft) consensus engines.
 
 To use these methods:
 
@@ -444,7 +433,7 @@ None
 
 #### Returns
 
-`result`: *map* of *strings* to *booleans* - current candidates map
+`result`: _map_ of _strings_ to _booleans_ - current candidates map
 
 !!! example
 
@@ -482,12 +471,11 @@ None
 
 ### `istanbul_discard`
 
-Drops a currently running candidate, stopping further [votes](#istanbul_propose) from being cast either for or against
-the candidate.
+Drops a currently running candidate, stopping further [votes](#istanbul_propose) from being cast either for or against the candidate.
 
 #### Parameters
 
-`address`: *string* - address of the candidate
+`address`: _string_ - address of the candidate
 
 #### Returns
 
@@ -525,24 +513,23 @@ the candidate.
 
 ### `istanbul_getSignersFromBlock`
 
-Retrieves the public addresses whose seals are included in the specified block number.
-This means that they participated in the consensus for this block and attested to its validity.
+Retrieves the public addresses whose seals are included in the specified block number. This means that they participated in the consensus for this block and attested to its validity.
 
 #### Parameters
 
-`blockNumber`: *number* - (optional) block number to retrieve; defaults to current block
+`blockNumber`: _number_ - (optional) block number to retrieve; defaults to current block
 
 #### Returns
 
-`result`: *object* - result object with the following fields:
+`result`: _object_ - result object with the following fields:
 
-* `number`: *number* - retrieved block's number
+- `number`: _number_ - retrieved block's number
 
-* `hash`: *string* - retrieved block's hash
+- `hash`: _string_ - retrieved block's hash
 
-* `author`: *string* - address of the block proposer
+- `author`: _string_ - address of the block proposer
 
-* `committers`: *array* of *strings* - list of all addresses whose seal appears in this block
+- `committers`: _array_ of _strings_ - list of all addresses whose seal appears in this block
 
 !!! example
 
@@ -592,24 +579,23 @@ This means that they participated in the consensus for this block and attested t
 
 ### `istanbul_getSignersFromBlockByHash`
 
-Retrieves the public addresses whose seals are included in the specified block number.
-This means that they participated in the consensus for this block and attested to its validity.
+Retrieves the public addresses whose seals are included in the specified block number. This means that they participated in the consensus for this block and attested to its validity.
 
 #### Parameters
 
-`blockHash`: *string* - hash of the block to retrieve (required)
+`blockHash`: _string_ - hash of the block to retrieve (required)
 
 #### Returns
 
-`result`: *object* - result object with the following fields:
+`result`: _object_ - result object with the following fields:
 
-* `number`: *number* - retrieved block's number
+- `number`: _number_ - retrieved block's number
 
-* `hash`: *string* - retrieved block's hash
+- `hash`: _string_ - retrieved block's hash
 
-* `author`: *string* - address of the block proposer
+- `author`: _string_ - address of the block proposer
 
-* `committers`: *array* of *strings* - list of all addresses whose seal appears in this block
+- `committers`: _array_ of _strings_ - list of all addresses whose seal appears in this block
 
 !!! example
 
@@ -663,12 +649,11 @@ Retrieves the state snapshot at the specified block number.
 
 #### Parameters
 
-`blockNumber`: *number* or *string* - (optional) integer representing a block number or the string tag `latest` (the last block
-mined); defaults to `latest`
+`blockNumber`: _number_ or _string_ - (optional) integer representing a block number or the string tag `latest` (the last block mined); defaults to `latest`
 
 #### Returns
 
-`result`: *object* - snapshot object
+`result`: _object_ - snapshot object
 
 !!! example
 
@@ -732,11 +717,11 @@ Retrieves the state snapshot at the specified block hash.
 
 #### Parameters
 
-`blockHash`: *string* - block hash
+`blockHash`: _string_ - block hash
 
 #### Returns
 
-`result`: *object* - snapshot object
+`result`: _object_ - snapshot object
 
 !!! example
 
@@ -775,12 +760,11 @@ Retrieves the list of authorized validators at the specified block number.
 
 #### Parameters
 
-`blockNumber`: *number* or *string* - (optional) integer representing a block number or the string tag `latest` (the
-last block mined); defaults to `latest`
+`blockNumber`: _number_ or _string_ - (optional) integer representing a block number or the string tag `latest` (the last block mined); defaults to `latest`
 
 #### Returns
 
-`result`: *array* of *strings* - list of validator addresses
+`result`: _array_ of _strings_ - list of validator addresses
 
 !!! example
 
@@ -826,11 +810,11 @@ Retrieves the list of authorized validators at the specified block hash.
 
 #### Parameters
 
-`blockHash`: *string* - block hash
+`blockHash`: _string_ - block hash
 
 #### Returns
 
-`result`: *array* of *strings* - list of validator addresses
+`result`: _array_ of _strings_ - list of validator addresses
 
 !!! example
 
@@ -876,11 +860,11 @@ Indicates if this node is the validator for the specified block number.
 
 #### Parameters
 
-`blockNumber`: *number* - (optional) block number; defaults to latest block number
+`blockNumber`: _number_ - (optional) block number; defaults to latest block number
 
 #### Returns
 
-`result`: *boolean* - `true` if this node is the validator for the given `blockNumber`, otherwise `false`
+`result`: _boolean_ - `true` if this node is the validator for the given `blockNumber`, otherwise `false`
 
 !!! example
 
@@ -922,7 +906,7 @@ None
 
 #### Returns
 
-`result`: *string* - node's public signing address
+`result`: _string_ - node's public signing address
 
 !!! example
 
@@ -955,14 +939,13 @@ None
 
 ### `istanbul_propose`
 
-Injects a new authorization candidate that the validator attempts to push through.
-If a majority of the validators vote the candidate in/out, the candidate is added/removed in the validator set.
+Injects a new authorization candidate that the validator attempts to push through. If a majority of the validators vote the candidate in/out, the candidate is added/removed in the validator set.
 
 #### Parameters
 
-* `address`: *string* - address of candidate
+- `address`: _string_ - address of candidate
 
-* `auth`: *boolean* - `true` votes the candidate in and `false` votes out
+- `auth`: _boolean_ - `true` votes the candidate in and `false` votes out
 
 #### Returns
 
@@ -1003,20 +986,19 @@ Returns the signing status of blocks for the specified block range.
 
 #### Parameters
 
-* `startBlockNumber`: *number* - start block number
+- `startBlockNumber`: _number_ - start block number
 
-* `endBlockNumber`: *number* - end block number
+- `endBlockNumber`: _number_ - end block number
 
 If the start block and end block numbers are not provided, the status of the last 64 blocks is returned.
 
 #### Returns
 
-`result`: *object* - result object with the following fields:
+`result`: _object_ - result object with the following fields:
 
-* `numBlocks`: *number* - number of blocks for which sealer activity is retrieved
+- `numBlocks`: _number_ - number of blocks for which sealer activity is retrieved
 
-* `sealerActivity`: *map* of *strings* to *numbers* - key is the validator and value is the number of blocks sealed by
-  the validator
+- `sealerActivity`: _map_ of _strings_ to _numbers_ - key is the validator and value is the number of blocks sealed by the validator
 
 !!! example
 
@@ -1073,17 +1055,17 @@ None
 
 #### Returns
 
-`result`: *array* of *objects* - list of permissioned account objects with the following fields:
+`result`: _array_ of _objects_ - list of permissioned account objects with the following fields:
 
-* `acctId`: *string* - account ID
+- `acctId`: _string_ - account ID
 
-* `isOrgAdmin`: *boolean* - indicates if the account is admin account for the organization
+- `isOrgAdmin`: _boolean_ - indicates if the account is admin account for the organization
 
-* `orgId`: *string* - organization ID
+- `orgId`: _string_ - organization ID
 
-* `roleId`: *string* - role assigned to the account
+- `roleId`: _string_ - role assigned to the account
 
-* `status`: *number* - [account status](permissioning-types.md#account-status-types)
+- `status`: _number_ - [account status](permissioning-types.md#account-status-types)
 
 !!! example
 
@@ -1141,22 +1123,21 @@ None
 
 ### `quorumPermission_addAccountToOrg`
 
-Adds an account to an organization and assigns a role to the account.
-This method can be called by an organization admin account.
+Adds an account to an organization and assigns a role to the account. This method can be called by an organization admin account.
 
 The account can only be linked to a single organization or sub-organization.
 
 #### Parameters
 
-* `acctId`: *string* - account ID
+- `acctId`: _string_ - account ID
 
-* `orgId`: *string* - organization ID
+- `orgId`: _string_ - organization ID
 
-* `roleId`: *string* - role ID
+- `roleId`: _string_ - role ID
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1190,20 +1171,19 @@ The account can only be linked to a single organization or sub-organization.
 
 ### `quorumPermission_addNewRole`
 
-Creates a new role for the organization.
-This method can be called by an organization admin account.
+Creates a new role for the organization. This method can be called by an organization admin account.
 
 #### Parameters
 
-* `orgId`: *string* - organization ID for which the role is being created
+- `orgId`: _string_ - organization ID for which the role is being created
 
-* `roleId`: *string* - unique role ID
+- `roleId`: _string_ - unique role ID
 
-* `accountAccess`: *number* - [account level access](permissioning-types.md#account-access-types)
+- `accountAccess`: _number_ - [account level access](permissioning-types.md#account-access-types)
 
-* `isVoter`: *boolean* - indicates if the role is a voting role
+- `isVoter`: _boolean_ - indicates if the role is a voting role
 
-* `isAdminRole`: *boolean* - indicates if the role is an admin role
+- `isAdminRole`: _boolean_ - indicates if the role is an admin role
 
 !!! note
 
@@ -1212,7 +1192,7 @@ This method can be called by an organization admin account.
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1246,19 +1226,17 @@ This method can be called by an organization admin account.
 
 ### `quorumPermission_addNode`
 
-Adds a node to the specified organization or sub-organization.
-This method can be called by an organization admin account.
-A node cannot be part of multiple organizations.
+Adds a node to the specified organization or sub-organization. This method can be called by an organization admin account. A node cannot be part of multiple organizations.
 
 #### Parameters
 
-* `orgId`: *string* - organization or sub-organization ID to which the node belongs
+- `orgId`: _string_ - organization or sub-organization ID to which the node belongs
 
-* `enodeId`: *string* - complete enode ID
+- `enodeId`: _string_ - complete enode ID
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1292,23 +1270,21 @@ A node cannot be part of multiple organizations.
 
 ### `quorumPermission_addOrg`
 
-Proposes a new organization into the network.
-This method can be called by a network admin account.
+Proposes a new organization into the network. This method can be called by a network admin account.
 
-If there are any pending items for approval, proposal of any new organization fails.
-Also, the enode ID and account ID can only be linked to one organization.
+If there are any pending items for approval, proposal of any new organization fails. Also, the enode ID and account ID can only be linked to one organization.
 
 #### Parameter
 
-* `orgId`: *string* - unique organization ID
+- `orgId`: _string_ - unique organization ID
 
-* `enodeId`: *string* - complete enode ID
+- `enodeId`: _string_ - complete enode ID
 
-* `accountId`: *string* - account to be the organization admin account
+- `accountId`: _string_ - account to be the organization admin account
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1342,12 +1318,11 @@ Also, the enode ID and account ID can only be linked to one organization.
 
 ### `quorumPermission_addSubOrg`
 
-Creates a sub-organization under the master organization.
-This method can be called by an organization admin account.
+Creates a sub-organization under the master organization. This method can be called by an organization admin account.
 
 #### Parameters
 
-* `parentOrgId`: *string* - parent organization ID under which the sub-organization is being added
+- `parentOrgId`: _string_ - parent organization ID under which the sub-organization is being added
 
 !!! note
 
@@ -1357,14 +1332,13 @@ This method can be called by an organization admin account.
     For example, if master organization `ABC` has a sub-organization `SUB1`, then while creating the sub-organization at
     `SUB1` level, the parent organization should be given as `ABC.SUB1`.
 
-* `subOrgId`: *string* - sub-organization ID
+- `subOrgId`: _string_ - sub-organization ID
 
-* `enodeId`: *string* - complete enode ID of the node linked to the sub-organization ID; if left as an empty string,
-  inherits the enode ID from the parent organization.
+- `enodeId`: _string_ - complete enode ID of the node linked to the sub-organization ID; if left as an empty string, inherits the enode ID from the parent organization.
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1398,20 +1372,17 @@ This method can be called by an organization admin account.
 
 ### `quorumPermission_approveAdminRole`
 
-Approves the [organization admin or network admin role assignment](#quorumpermission_assignadminrole) to the specified
-account.
-This method can be called by a network admin account.
-The role is approved once the majority of network admins approve.
+Approves the [organization admin or network admin role assignment](#quorumpermission_assignadminrole) to the specified account. This method can be called by a network admin account. The role is approved once the majority of network admins approve.
 
 #### Parameters
 
-* `orgId`: *string* - organization ID to which the account belongs
+- `orgId`: _string_ - organization ID to which the account belongs
 
-* `acctId`: *string* - account ID
+- `acctId`: _string_ - account ID
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1445,19 +1416,17 @@ The role is approved once the majority of network admins approve.
 
 ### `quorumPermission_approveBlackListedAccountRecovery`
 
-Approves the [recovery of the specified denylisted (blacklisted) account](#quorumpermission_recoverblacklistedaccount).
-This method can be called by a network admin account.
-Once a majority of the network admins approve, the account is marked as active.
+Approves the [recovery of the specified denylisted (blacklisted) account](#quorumpermission_recoverblacklistedaccount). This method can be called by a network admin account. Once a majority of the network admins approve, the account is marked as active.
 
 #### Parameters
 
-* `orgId`: *string* - organization or sub-organization ID to which the node belongs
+- `orgId`: _string_ - organization or sub-organization ID to which the node belongs
 
-* `acctId`: *string* - denylisted account ID
+- `acctId`: _string_ - denylisted account ID
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1491,19 +1460,17 @@ Once a majority of the network admins approve, the account is marked as active.
 
 ### `quorumPermission_approveBlackListedNodeRecovery`
 
-Approves the [recovery of the specified denylisted (blacklisted) node](#quorumpermission_approveblacklistednoderecovery).
-This method can be called by a network admin account.
-Once the majority of network admins approve, the denylisted node is marked as active.
+Approves the [recovery of the specified denylisted (blacklisted) node](#quorumpermission_approveblacklistednoderecovery). This method can be called by a network admin account. Once the majority of network admins approve, the denylisted node is marked as active.
 
 #### Parameters
 
-* `orgId`: *string* - organization or sub-organization ID to which the node belongs
+- `orgId`: _string_ - organization or sub-organization ID to which the node belongs
 
-* `enodeId`: *string* - complete enode ID
+- `enodeId`: _string_ - complete enode ID
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1537,20 +1504,19 @@ Once the majority of network admins approve, the denylisted node is marked as ac
 
 ### `quorumPermission_approveOrg`
 
-Approves the specified [proposed organization](#quorumpermission_addorg) into the network.
-This method can be called by a network admin account.
+Approves the specified [proposed organization](#quorumpermission_addorg) into the network. This method can be called by a network admin account.
 
 #### Parameters
 
-* `orgId`: *string* - unique organization ID
+- `orgId`: _string_ - unique organization ID
 
-* `enodeId`: *string* - complete enode ID
+- `enodeId`: _string_ - complete enode ID
 
-* `accountId`: *string* - account to be the organization admin account
+- `accountId`: _string_ - account to be the organization admin account
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1584,27 +1550,23 @@ This method can be called by a network admin account.
 
 ### `quorumPermission_approveOrgStatus`
 
-Approves an [organization status change proposal](#quorumpermission_updateorgstatus).
-This method can be called by a network admin account.
-Once a majority of the network admins approve the status update, the organization status is updated.
+Approves an [organization status change proposal](#quorumpermission_updateorgstatus). This method can be called by a network admin account. Once a majority of the network admins approve the status update, the organization status is updated.
 
-When an organization is in suspended status, no transactions or contract deployment activities are allowed from any
-nodes linked to the organization and sub-organizations under it.
-Similarly, no transactions are allowed from any accounts linked to the organization.
+When an organization is in suspended status, no transactions or contract deployment activities are allowed from any nodes linked to the organization and sub-organizations under it. Similarly, no transactions are allowed from any accounts linked to the organization.
 
 #### Parameters
 
-* `orgId`: *string* - organization ID
+- `orgId`: _string_ - organization ID
 
-* `action`: *number* -
+- `action`: _number_ -
 
-    * 1 - for approving organization suspension
+  - 1 - for approving organization suspension
 
-    * 2 - for approving activation of the suspended organization
+  - 2 - for approving activation of the suspended organization
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1638,22 +1600,19 @@ Similarly, no transactions are allowed from any accounts linked to the organizat
 
 ### `quorumPermission_assignAdminRole`
 
-Adds a new account as network admin or changes the organization admin account for an organization.
-This method can be called by a network admin account.
-Once a majority of the network admins [approve](#quorumpermission_approveadminrole), the role is approved.
+Adds a new account as network admin or changes the organization admin account for an organization. This method can be called by a network admin account. Once a majority of the network admins [approve](#quorumpermission_approveadminrole), the role is approved.
 
 #### Parameters
 
-* `orgId`: *string* - organization ID to which the account belongs
+- `orgId`: _string_ - organization ID to which the account belongs
 
-* `acctId`: *string* - account ID
+- `acctId`: _string_ - account ID
 
-* `roleId`: *string* - new role ID to be assigned to the account; this can be the network admin role or an organization
-  admin role only.
+- `roleId`: _string_ - new role ID to be assigned to the account; this can be the network admin role or an organization admin role only.
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1687,20 +1646,19 @@ Once a majority of the network admins [approve](#quorumpermission_approveadminro
 
 ### `quorumPermission_changeAccountRole`
 
-Assigns a role to the specified account.
-This method can be called by an organization admin account.
+Assigns a role to the specified account. This method can be called by an organization admin account.
 
 #### Parameters
 
-* `acctId`: *string* - account ID
+- `acctId`: _string_ - account ID
 
-* `orgId`: *string* - organization ID
+- `orgId`: _string_ - organization ID
 
-* `roleId`: *string* - new role ID to be assigned to the account
+- `roleId`: _string_ - new role ID to be assigned to the account
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -1738,15 +1696,15 @@ Checks if the specified node is allowed to join the network.
 
 #### Parameters
 
-* `enodeId`: *string* - enode ID
+- `enodeId`: _string_ - enode ID
 
-* `ipAddress`: *string* - IP address of the node
+- `ipAddress`: _string_ - IP address of the node
 
-* `portNum`: *number* - port number
+- `portNum`: _number_ - port number
 
 #### Returns
 
-`result`: *boolean* - indicates if the connection is allowed or not
+`result`: _boolean_ - indicates if the connection is allowed or not
 
 !!! example
 
@@ -1784,19 +1742,19 @@ Returns lists of accounts, nodes, roles, and sub-organizations linked to the spe
 
 #### Parameters
 
-`orgId`: *string* - organization or sub-organization ID
+`orgId`: _string_ - organization or sub-organization ID
 
 #### Returns
 
-`result`: *object* - result object with the following fields:
+`result`: _object_ - result object with the following fields:
 
-* `acctList`: *array* of *objects* - list of account objects
+- `acctList`: _array_ of _objects_ - list of account objects
 
-* `nodeList`: *array* of *objects* - list of node objects
+- `nodeList`: _array_ of _objects_ - list of node objects
 
-* `roleList`: *array* of *objects* - list of role objects
+- `roleList`: _array_ of _objects_ - list of role objects
 
-* `subOrgList`: *array* of *objects* - list of sub-organization objects
+- `subOrgList`: _array_ of _objects_ - list of sub-organization objects
 
 !!! example
 
@@ -1918,13 +1876,13 @@ None
 
 #### Returns
 
-`result`: *array* of *objects* - list of permissioned node objects with the following fields:
+`result`: _array_ of _objects_ - list of permissioned node objects with the following fields:
 
-* `orgId`: *string* - organization ID to which the node belongs
+- `orgId`: _string_ - organization ID to which the node belongs
 
-* `status`: *number* - [node status](permissioning-types.md#node-status-types)
+- `status`: _number_ - [node status](permissioning-types.md#node-status-types)
 
-* `url`: *string* - complete enode ID
+- `url`: _string_ - complete enode ID
 
 !!! example
 
@@ -1998,21 +1956,21 @@ None
 
 #### Returns
 
-`result`: *array* of *objects* - list of organization objects with the following fields:
+`result`: _array_ of _objects_ - list of organization objects with the following fields:
 
-* `fullOrgId`: *string* - complete organization ID including all the parent organization IDs separated by `.`
+- `fullOrgId`: _string_ - complete organization ID including all the parent organization IDs separated by `.`
 
-* `level`: *number* - level of the organization in the organization hierarchy
+- `level`: _number_ - level of the organization in the organization hierarchy
 
-* `orgId`: *string* - organization ID
+- `orgId`: _string_ - organization ID
 
-* `parentOrgId`: *string* - immediate parent organization ID
+- `parentOrgId`: _string_ - immediate parent organization ID
 
-* `status`: *number* - [organization status](permissioning-types.md#organization-status-types)
+- `status`: _number_ - [organization status](permissioning-types.md#organization-status-types)
 
-* `subOrgList`: *array* of *strings* - list of sub-organizations linked to the organization
+- `subOrgList`: _array_ of _strings_ - list of sub-organizations linked to the organization
 
-* `ultimateParent`: *string* - master organization under which the organization falls
+- `ultimateParent`: _string_ - master organization under which the organization falls
 
 !!! example
 
@@ -2062,20 +2020,17 @@ None
 
 ### `quorumPermission_recoverBlackListedAccount`
 
-Initiates the recovery of the specified denylisted (blacklisted) account.
-This method can be called by a network admin account.
-Once a majority of the network admins [approve](#quorumpermission_approveblacklistedaccountrecovery), the denylisted
-account is marked as active.
+Initiates the recovery of the specified denylisted (blacklisted) account. This method can be called by a network admin account. Once a majority of the network admins [approve](#quorumpermission_approveblacklistedaccountrecovery), the denylisted account is marked as active.
 
 #### Parameters
 
-* `orgId`: *string* - organization or sub-organization ID to which the node belongs
+- `orgId`: _string_ - organization or sub-organization ID to which the node belongs
 
-* `acctId`: *string* - denylisted account ID
+- `acctId`: _string_ - denylisted account ID
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -2109,20 +2064,17 @@ account is marked as active.
 
 ### `quorumPermission_recoverBlackListedNode`
 
-Initiates the recovery of the specified denylisted (blacklisted) node.
-This method can be called by a network admin account.
-Once the majority of network admins [approve](#quorumpermission_approveblacklistednoderecovery), the denylisted node is
-marked as active.
+Initiates the recovery of the specified denylisted (blacklisted) node. This method can be called by a network admin account. Once the majority of network admins [approve](#quorumpermission_approveblacklistednoderecovery), the denylisted node is marked as active.
 
 #### Parameters
 
-* `orgId`: *string* - organization or sub-organization ID to which the node belongs
+- `orgId`: _string_ - organization or sub-organization ID to which the node belongs
 
-* `enodeId`: *string* - complete enode ID
+- `enodeId`: _string_ - complete enode ID
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -2156,18 +2108,17 @@ marked as active.
 
 ### `quorumPermission_removeRole`
 
-Removes the specified role from an organization.
-This method can be called by an organization admin account.
+Removes the specified role from an organization. This method can be called by an organization admin account.
 
 #### Parameters
 
-* `orgId`: *string* - organization or sub-organization ID to which the role belongs
+- `orgId`: _string_ - organization or sub-organization ID to which the role belongs
 
-* `roleId`: *string* - role ID
+- `roleId`: _string_ - role ID
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -2209,19 +2160,19 @@ None
 
 #### Returns
 
-`result`: *array* of *objects* - list of role objects with the following fields:
+`result`: _array_ of _objects_ - list of role objects with the following fields:
 
-* `access`: *number* - [account access](permissioning-types.md#account-access-types)
+- `access`: _number_ - [account access](permissioning-types.md#account-access-types)
 
-* `active`: *boolean* - indicates if the role is active or not
+- `active`: _boolean_ - indicates if the role is active or not
 
-* `isAdmin`: *boolean* - indicates if the role is organization admin role
+- `isAdmin`: _boolean_ - indicates if the role is organization admin role
 
-* `isVoter`: *boolean* - indicates if the role is enabled for voting - applicable only for network admin role
+- `isVoter`: _boolean_ - indicates if the role is enabled for voting - applicable only for network admin role
 
-* `orgId`: *string* - organization ID to which the role is linked
+- `orgId`: _string_ - organization ID to which the role is linked
 
-* `roleId`: *string* - unique role ID
+- `roleId`: _string_ - unique role ID
 
 !!! example
 
@@ -2273,11 +2224,11 @@ Checks if the account initiating the specified transaction has sufficient permis
 
 #### Parameters
 
-* `txArgs`: *object* - transaction arguments object
+- `txArgs`: _object_ - transaction arguments object
 
 #### Returns
 
-`result`: *boolean* - indicates if transaction is allowed or not
+`result`: _boolean_ - indicates if transaction is allowed or not
 
 !!! example
 
@@ -2311,26 +2262,25 @@ Checks if the account initiating the specified transaction has sufficient permis
 
 ### `quorumPermission_updateAccountStatus`
 
-Updates the status of the specified account.
-This method can be called by an organization admin account.
+Updates the status of the specified account. This method can be called by an organization admin account.
 
 #### Parameters
 
-* `orgId`: *string* - organization or sub-organization ID to which the account belongs
+- `orgId`: _string_ - organization or sub-organization ID to which the account belongs
 
-* `acctId`: *string* - account ID
+- `acctId`: _string_ - account ID
 
-* `action`: *number* -
+- `action`: _number_ -
 
-    * 1 - for suspending the account
+  - 1 - for suspending the account
 
-    * 2 - for activating the suspended account
+  - 2 - for activating the suspended account
 
-    * 3 - for denylisting (blacklisting) the account
+  - 3 - for denylisting (blacklisting) the account
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -2364,26 +2314,25 @@ This method can be called by an organization admin account.
 
 ### `quorumPermission_updateNodeStatus`
 
-Updates the status of the specified node.
-This method can be called by an organization admin account.
+Updates the status of the specified node. This method can be called by an organization admin account.
 
 #### Parameters
 
-* `orgId`: *string* - organization or sub-organization ID to which the node belongs
+- `orgId`: _string_ - organization or sub-organization ID to which the node belongs
 
-* `enodeId`: *string* - complete enode ID
+- `enodeId`: _string_ - complete enode ID
 
-* `action`: *number* -
+- `action`: _number_ -
 
-    * 1 - for deactivating the node
+  - 1 - for deactivating the node
 
-    * 2 - for activating the deactivated node
+  - 2 - for activating the deactivated node
 
-    * 3 - for denylisting (blacklisting) the node
+  - 3 - for denylisting (blacklisting) the node
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -2417,24 +2366,21 @@ This method can be called by an organization admin account.
 
 ### `quorumPermission_updateOrgStatus`
 
-Temporarily suspends the specified organization or re-activates the specified suspended organization.
-This method can be called by a network admin account.
-This can only be performed for the master organization and requires the majority of network admins to
-[approve](#quorumpermission_approveorgstatus).
+Temporarily suspends the specified organization or re-activates the specified suspended organization. This method can be called by a network admin account. This can only be performed for the master organization and requires the majority of network admins to [approve](#quorumpermission_approveorgstatus).
 
 #### Parameters
 
-* `orgId`: *string* - organization ID
+- `orgId`: _string_ - organization ID
 
-* `action`: *number* -
+- `action`: _number_ -
 
-    * 1 - for suspending the organization
+  - 1 - for suspending the organization
 
-    * 2 - for activating the suspended organization
+  - 2 - for activating the suspended organization
 
 #### Returns
 
-`result`: *string* - response message
+`result`: _string_ - response message
 
 !!! example
 
@@ -2468,7 +2414,7 @@ This can only be performed for the master organization and requires the majority
 
 ## Privacy methods
 
-The following API methods provide functionality for GoQuorum [privacy](../concepts/privacy/index.md).
+The following API methods provide functionality for GoQuorum [privacy](../concepts/privacy-index.md).
 
 !!! note
 
@@ -2480,31 +2426,27 @@ The following API methods provide functionality for GoQuorum [privacy](../concep
 
 ### `eth_distributePrivateTransaction`
 
-Send a signed private transaction to the local private transaction manager and share with private participant's
-transaction managers.
+Send a signed private transaction to the local private transaction manager and share with private participant's transaction managers.
 
-This API method is to be used as part of the process for sending externally signed
-[privacy marker transactions](../concepts/privacy/privacy-marker-transactions.md). The private transaction should be signed,
-sent to participants with this API, and the resulting hash set as the PMT's `data`.
+This API method is to be used as part of the process for sending externally signed [privacy marker transactions](../concepts/privacy/privacy-marker-transactions.md). The private transaction should be signed, sent to participants with this API, and the resulting hash set as the PMT's `data`.
 
-!!! note
-    Two step process:
+!!! note Two step process:
 
     1. Performs the same as eth_sendRawPrivateTransaction (simulation and calling `/sendsignedtx`), but doesn’t submit private transaction to txpool.
     2. Sends the private transaction to Tessera to generate a hash, which should be placed in the privacy marker transaction.
 
 #### Parameters
 
-* string - signed private transaction in hex format
-* object - private data to send, with the following fields:
-    * `privateFor`: `List<String>`  - an array of the recipients' base64-encoded public keys
-    * `privateFrom`: `String` - (optional) the sending party’s base64-encoded public key to use (Privacy Manager default if not provided)
-    * `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
-    * `mandatoryFor`: `List<String>` - an array of the recipients' base64-encoded public keys
+- string - signed private transaction in hex format
+- object - private data to send, with the following fields:
+  - `privateFor`: `List<String>` - an array of the recipients' base64-encoded public keys
+  - `privateFrom`: `String` - (optional) the sending party’s base64-encoded public key to use (Privacy Manager default if not provided)
+  - `privacyFlag`: `Number` - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
+  - `mandatoryFor`: `List<String>` - an array of the recipients' base64-encoded public keys
 
 #### Returns
 
-* string - Transaction Manager hash to be used as a privacy marker transaction's `data` when externally signing
+- string - Transaction Manager hash to be used as a privacy marker transaction's `data` when externally signing
 
 #### Example
 
@@ -2540,33 +2482,29 @@ sent to participants with this API, and the resulting hash set as the PMT's `dat
 
 ### `eth_fillTransaction`
 
-Supports offline signing of the specified transaction.
-This can be used to fill and sign both public and private transactions.
-Defaults to `RLP` plus `json`.
+Supports offline signing of the specified transaction. This can be used to fill and sign both public and private transactions. Defaults to `RLP` plus `json`.
 
 #### Parameters
 
-`transaction`: *object* - transaction object to send, with the following fields:
+`transaction`: _object_ - transaction object to send, with the following fields:
 
-* `from`: *string* - address for the sending account
+- `from`: _string_ - address for the sending account
 
-* `to`: *string* - (optional) destination address of the message
+- `to`: _string_ - (optional) destination address of the message
 
-* `value`: *number* - (optional) value transferred for the transaction in Wei, also the endowment if it's a contract-creation
-  transaction
+- `value`: _number_ - (optional) value transferred for the transaction in Wei, also the endowment if it's a contract-creation transaction
 
-* `data`: *data* - (optional) either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the
-  associated data of the message, or in the case of a contract-creation transaction, the initialization code
+- `data`: _data_ - (optional) either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the message, or in the case of a contract-creation transaction, the initialization code
 
-* `privateFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients' base64-encoded public keys
+- `privateFor`: _array_ of _strings_ - (optional) when sending a private transaction, an array of the recipients' base64-encoded public keys
 
 #### Returns
 
-`result`: *object* - result object with the following fields:
+`result`: _object_ - result object with the following fields:
 
-* `raw`: *data* - `RLP`-encoded bytes for the passed transaction object
+- `raw`: _data_ - `RLP`-encoded bytes for the passed transaction object
 
-* `tx`: *object* - transaction object
+- `tx`: _object_ - transaction object
 
 !!! example
 
@@ -2632,17 +2570,17 @@ Queries the privacy metadata for the specified contract account address.
 
 #### Parameter
 
-*string* - contract address
+_string_ - contract address
 
 #### Returns
 
-`result`: *object* - result object with the following fields:
+`result`: _object_ - result object with the following fields:
 
-* `creationTxHash`: *data* - affected contract's original transaction's encrypted payload hash
+- `creationTxHash`: _data_ - affected contract's original transaction's encrypted payload hash
 
-* `privacyFlag`: *number* - `0` for SP, `1` for PP, `2` for MPP, and `3` for PSV transactions
+- `privacyFlag`: _number_ - `0` for SP, `1` for PP, `2` for MPP, and `3` for PSV transactions
 
-* `mandatoryFor`: *string* - an array of the recipients' base64-encoded public keys
+- `mandatoryFor`: _string_ - an array of the recipients' base64-encoded public keys
 
 !!! example
 
@@ -2684,8 +2622,7 @@ Queries the privacy metadata for the specified contract account address.
 
 ### `eth_getPrivacyPrecompileAddress`
 
-Get the address of the privacy precompile contract, to be used as the `to` address for
-[privacy marker transactions](../concepts/privacy/privacy-marker-transactions.md).
+Get the address of the privacy precompile contract, to be used as the `to` address for [privacy marker transactions](../concepts/privacy/privacy-marker-transactions.md).
 
 #### Parameters
 
@@ -2693,7 +2630,7 @@ None
 
 #### Returns
 
-* string - contract address for the privacy precompile in hex format
+- string - contract address for the privacy precompile in hex format
 
 #### Examples
 
@@ -2725,16 +2662,15 @@ None
 
 ### `eth_getPrivateTransactionByHash`
 
-Retrieve the details of a [privacy marker transaction](../concepts/privacy/privacy-marker-transactions.md)'s internal
-private transaction using the PMT's transaction hash.
+Retrieve the details of a [privacy marker transaction](../concepts/privacy/privacy-marker-transactions.md)'s internal private transaction using the PMT's transaction hash.
 
 #### Parameters
 
-* string - privacy marker transaction's hash in hex format
+- string - privacy marker transaction's hash in hex format
 
 #### Returns
 
-* object - private transaction (nil if caller is not a participant)
+- object - private transaction (nil if caller is not a participant)
 
 #### Examples
 
@@ -2781,16 +2717,15 @@ private transaction using the PMT's transaction hash.
 
 ### `eth_getPrivateTransactionReceipt`
 
-Retrieve the receipt of a [privacy marker transaction's (PMT)](../concepts/privacy/privacy-marker-transactions.md) internal
-private transaction using the PMT's transaction hash.
+Retrieve the receipt of a [privacy marker transaction's (PMT)](../concepts/privacy/privacy-marker-transactions.md) internal private transaction using the PMT's transaction hash.
 
 #### Parameters
 
-* string - privacy marker transaction's hash in hex format
+- string - privacy marker transaction's hash in hex format
 
 #### Returns
 
-* object - private transaction receipt (nil if caller is not a participant)
+- object - private transaction receipt (nil if caller is not a participant)
 
 #### Examples
 
@@ -2835,8 +2770,7 @@ private transaction using the PMT's transaction hash.
 
 ### `eth_getPSI`
 
-When using [multiple private states](../concepts/multi-tenancy.md#multiple-private-states), returns the private
-state the user is operating on.
+When using [multiple private states](../concepts/multi-tenancy.md#multiple-private-states), returns the private state the user is operating on.
 
 #### Parameters
 
@@ -2844,7 +2778,7 @@ None
 
 #### Returns
 
-`result`: *string* - the [private state identifier (PSI)](../concepts/multi-tenancy.md#private-state-identifier)
+`result`: _string_ - the [private state identifier (PSI)](../concepts/multi-tenancy.md#private-state-identifier)
 
 !!! example
 
@@ -2878,16 +2812,15 @@ None
 
 ### `eth_getQuorumPayload`
 
-Returns the [unencrypted payload from Tessera]({{ extra.othersites.tessera }}/Concepts/Transaction-manager/#private-transaction-flow).
+Returns the [unencrypted payload from Tessera](https://docs.tessera.consensys.net/en/stable/Concepts/Transaction-manager/#private-transaction-flow).
 
 #### Parameters
 
-`id`: *string* - the generated SHA3-512 hash of the encrypted payload from the Private Transaction Manager, in hex
-(This is seen in the transaction as the `input` field.)
+`id`: _string_ - the generated SHA3-512 hash of the encrypted payload from the Private Transaction Manager, in hex (This is seen in the transaction as the `input` field.)
 
 #### Returns
 
-`result`: *string* - unencrypted transaction payload in hex format
+`result`: _string_ - unencrypted transaction payload in hex format
 
 !!! example
 
@@ -2921,36 +2854,29 @@ Returns the [unencrypted payload from Tessera]({{ extra.othersites.tessera }}/Co
 
 ### `eth_sendRawPrivateTransaction`
 
-Sends the specified pre-signed transaction, for example using
-[`SilentCicero/ethereumjs-accounts`](https://github.com/SilentCicero/ethereumjs-accounts).
+Sends the specified pre-signed transaction, for example using [`SilentCicero/ethereumjs-accounts`](https://github.com/SilentCicero/ethereumjs-accounts).
 
-If the transaction is a contract creation, use
-[`web3.eth.getTransactionReceipt()`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#gettransactionreceipt) to get
-the contract address after the transaction is mined.
+If the transaction is a contract creation, use [`web3.eth.getTransactionReceipt()`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#gettransactionreceipt) to get the contract address after the transaction is mined.
 
-!!! important
-    Before calling this method, [`storeraw`](https://consensys.github.io/tessera/#operation/encryptAndStoreVersion)
-    needs to be called to Tessera.
+!!! important Before calling this method, [`storeraw`](https://consensys.github.io/tessera/#operation/encryptAndStoreVersion) needs to be called to Tessera.
 
 #### Parameters
 
-* *string* - signed transaction data in hex format
+- _string_ - signed transaction data in hex format
 
-* *object* - private data to send, with the following fields:
+- _object_ - private data to send, with the following fields:
 
-    * `privateFor`: *array* of *strings* - when sending a private transaction, an array of the recipients' base64-encoded
-      public keys
+  - `privateFor`: _array_ of _strings_ - when sending a private transaction, an array of the recipients' base64-encoded public keys
 
-    * `privacyFlag`: *number* - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
+  - `privacyFlag`: _number_ - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
 
-    * `mandatoryFor`: *array* of *strings* - when sending a private transaction, an array of the recipients' base64-encoded
-      public keys
+  - `mandatoryFor`: _array_ of _strings_ - when sending a private transaction, an array of the recipients' base64-encoded public keys
 
-* `callback`: *function* - (optional) callback function; if you pass a callback, the HTTP request is made asynchronous.
+- `callback`: _function_ - (optional) callback function; if you pass a callback, the HTTP request is made asynchronous.
 
 #### Returns
 
-`result`: *string* - 32-byte transaction hash as a hex string
+`result`: _string_ - 32-byte transaction hash as a hex string
 
 !!! example
 
@@ -2992,56 +2918,41 @@ the contract address after the transaction is mined.
 
 Sends the specified transaction to the network.
 
-If the transaction is a contract creation, use
-[`web3.eth.getTransactionReceipt()`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#gettransactionreceipt)
-([`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API)) to get the contract address after the transaction is mined.
+If the transaction is a contract creation, use [`web3.eth.getTransactionReceipt()`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#gettransactionreceipt) ([`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API)) to get the contract address after the transaction is mined.
 
 #### Parameters
 
-* `transaction`: *object* - transaction object to send, with the following fields:
+- `transaction`: _object_ - transaction object to send, with the following fields:
 
-    * `from`: *string* - address for the sending account; defaults to `web3.eth.defaultAccount`
+  - `from`: _string_ - address for the sending account; defaults to `web3.eth.defaultAccount`
 
-    * `to`: *string* - (optional) destination address of the message; defaults to `undefined`
+  - `to`: _string_ - (optional) destination address of the message; defaults to `undefined`
 
-    * `value`: *number* - (optional) value transferred for the transaction in Wei, also the endowment if it's a contract-creation
-      transaction
+  - `value`: _number_ - (optional) value transferred for the transaction in Wei, also the endowment if it's a contract-creation transaction
 
-    * `gas`: *number* - (optional) amount of gas to use for the transaction (unused gas is refunded)
+  - `gas`: _number_ - (optional) amount of gas to use for the transaction (unused gas is refunded)
 
-    * `data`: *data* - (optional) either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI)
-      containing the associated data of the message, or in the case of a contract-creation transaction, the
-      initialization code
+  - `data`: _data_ - (optional) either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the message, or in the case of a contract-creation transaction, the initialization code
 
-    * `input`: *data* - (optional) either a
-      [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the
-      message, or in the case of a contract-creation transaction, the initialization code
+  - `input`: _data_ - (optional) either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the message, or in the case of a contract-creation transaction, the initialization code
 
-    * `nonce`: *number* - (optional) integer of a nonce; allows you to overwrite your own pending transactions that use
-      the same nonce
+  - `nonce`: _number_ - (optional) integer of a nonce; allows you to overwrite your own pending transactions that use the same nonce
 
-    * `privateFrom`: *string* - (optional) when sending a private transaction, the sending party's base64-encoded public key to use;
-      if not present *and* passing `privateFor`, use the default key as configured in the
-      `TransactionManager`.
+  - `privateFrom`: _string_ - (optional) when sending a private transaction, the sending party's base64-encoded public key to use; if not present _and_ passing `privateFor`, use the default key as configured in the `TransactionManager`.
 
-    * `privateFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
-      base64-encoded public keys
+  - `privateFor`: _array_ of _strings_ - (optional) when sending a private transaction, an array of the recipients' base64-encoded public keys
 
-    * `privacyFlag`: *number* - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
+  - `privacyFlag`: _number_ - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
 
-    * `mandatoryFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
-      base64-encoded public keys
+  - `mandatoryFor`: _array_ of _strings_ - (optional) when sending a private transaction, an array of the recipients' base64-encoded public keys
 
-* `callback`: *function* - (optional) callback function; if you pass a callback, the HTTP request is made asynchronous.
+- `callback`: _function_ - (optional) callback function; if you pass a callback, the HTTP request is made asynchronous.
 
-!!! note
-    `input` cannot co-exist with `data` if they are set to different values.
-    `input` is the new naming of `data`.
-    They are the same parameters, but both remain for backwards compatibility.
+!!! note `input` cannot co-exist with `data` if they are set to different values. `input` is the new naming of `data`. They are the same parameters, but both remain for backwards compatibility.
 
 #### Returns
 
-`result`: *string* - 32-byte transaction hash as a hex string
+`result`: _string_ - 32-byte transaction hash as a hex string
 
 !!! example
 
@@ -3075,70 +2986,53 @@ If the transaction is a contract creation, use
 
 ### `eth_sendTransactionAsync`
 
-Sends the specified transaction to the network asynchronously.
-This returns immediately, potentially before the transaction has been submitted to the transaction pool.
-A callback can be provided to receive the result of submitting the transaction; a server must be set up to receive POST
-requests at the given URL.
+Sends the specified transaction to the network asynchronously. This returns immediately, potentially before the transaction has been submitted to the transaction pool. A callback can be provided to receive the result of submitting the transaction; a server must be set up to receive POST requests at the given URL.
 
-If the transaction is a contract creation, use
-[`web3.eth.getTransactionReceipt()`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#gettransactionreceipt) to get
-the contract address after the transaction is mined.
+If the transaction is a contract creation, use [`web3.eth.getTransactionReceipt()`](https://web3js.readthedocs.io/en/v1.2.0/web3-eth.html#gettransactionreceipt) to get the contract address after the transaction is mined.
 
 #### Parameters
 
-`transaction`: *object* - transaction object to send, with the following fields:
+`transaction`: _object_ - transaction object to send, with the following fields:
 
-* `from`: *string* - address for the sending account; defaults to `web3.eth.defaultAccount`
+- `from`: _string_ - address for the sending account; defaults to `web3.eth.defaultAccount`
 
-* `to`: *string* - (optional) destination address of the message; defaults to `undefined`
+- `to`: _string_ - (optional) destination address of the message; defaults to `undefined`
 
-* `value`: *number* - (optional) value transferred for the transaction in Wei, also the endowment if it's a contract-creation
-  transaction
+- `value`: _number_ - (optional) value transferred for the transaction in Wei, also the endowment if it's a contract-creation transaction
 
-* `gas`: *number* - (optional) amount of gas to use for the transaction (unused gas is refunded)
+- `gas`: _number_ - (optional) amount of gas to use for the transaction (unused gas is refunded)
 
-* `data`: *data* - (optional) either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI)
-  containing the associated data of the message, or in the case of a contract-creation transaction, the
-  initialization code
+- `data`: _data_ - (optional) either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the message, or in the case of a contract-creation transaction, the initialization code
 
-* `input`: *data* - (optional) either a
-  [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the
-  message, or in the case of a contract-creation transaction, the initialization code
+- `input`: _data_ - (optional) either a [byte string](https://github.com/ethereum/wiki/wiki/Solidity,-Docs-and-ABI) containing the associated data of the message, or in the case of a contract-creation transaction, the initialization code
 
-* `nonce`: *number* - (optional) integer of a nonce; allows you to overwrite your own pending transactions that use the
-  same nonce
+- `nonce`: _number_ - (optional) integer of a nonce; allows you to overwrite your own pending transactions that use the same nonce
 
-* `privateFrom`: *string* - (optional) when sending a private transaction, the sending party's base64-encoded public key
-  to use; if not present *and* passing `privateFor`, use the default key as configured in the `TransactionManager`.
+- `privateFrom`: _string_ - (optional) when sending a private transaction, the sending party's base64-encoded public key to use; if not present _and_ passing `privateFor`, use the default key as configured in the `TransactionManager`.
 
-* `privateFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
-  base64-encoded public keys
+- `privateFor`: _array_ of _strings_ - (optional) when sending a private transaction, an array of the recipients' base64-encoded public keys
 
-* `privacyFlag`: *number* - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
+- `privacyFlag`: _number_ - (optional) `0` for SP (default if not provided), `1` for PP, `2` for MPP, and `3` for PSV transactions
 
-* `mandatoryFor`: *array* of *strings* - (optional) when sending a private transaction, an array of the recipients'
-  base64-encoded public keys
+- `mandatoryFor`: _array_ of _strings_ - (optional) when sending a private transaction, an array of the recipients' base64-encoded public keys
 
-* `callbackUrl`: *string* - (optional) URL to perform a POST request to post the result of submitting the transaction
+- `callbackUrl`: _string_ - (optional) URL to perform a POST request to post the result of submitting the transaction
 
-!!! note
-    `input` cannot co-exist with `data` if they are set to different values.
-    `input` is the new naming of `data`.
-    They are the same parameters, but both remain for backwards compatibility.
+!!! note `input` cannot co-exist with `data` if they are set to different values. `input` is the new naming of `data`. They are the same parameters, but both remain for backwards compatibility.
 
 #### Returns
 
-* `result`: *string* - empty hash, defined as `0x0000000000000000000000000000000000000000000000000000000000000000`
+- `result`: _string_ - empty hash, defined as `0x0000000000000000000000000000000000000000000000000000000000000000`
 
 The callback URL receives the following object:
 
-* `result`: *object* - result object with the following fields:
+- `result`: _object_ - result object with the following fields:
 
-    * `id`: *string* - ID in the original RPC call, used to match this result to the request
+  - `id`: _string_ - ID in the original RPC call, used to match this result to the request
 
-    * `txHash`: *string* - transaction hash that was generated, if successful
+  - `txHash`: _string_ - transaction hash that was generated, if successful
 
-    * `error`: *string* - error that occurred while submitting the transaction
+  - `error`: _string_ - error that occurred while submitting the transaction
 
 !!! example
 
@@ -3208,19 +3102,17 @@ The callback URL receives the following object:
 
 ### `eth_storageRoot`
 
-Returns the storage root hash of the specified address.
-If the contract is a [private contract](../concepts/privacy/private-and-public.md#state-verification), returns the storage root
-hash from the private state database.
+Returns the storage root hash of the specified address. If the contract is a [private contract](../concepts/privacy/private-and-public.md#state-verification), returns the storage root hash from the private state database.
 
 #### Parameters
 
-* `address`: *String* - address to fetch the storage root from in hex
+- `address`: _String_ - address to fetch the storage root from in hex
 
-* `block`: *string* - (optional) block number to fetch the storage root from in hex; defaults to the latest block
+- `block`: _string_ - (optional) block number to fetch the storage root from in hex; defaults to the latest block
 
 #### Returns
 
-`result`: *string* - 32-byte storage root hash as a hex string
+`result`: _string_ - 32-byte storage root hash as a hex string
 
 !!! example
 
@@ -3258,17 +3150,15 @@ The following API methods provide access to the [Raft](../configure-and-manage/c
 
 ### `raft_addLearner`
 
-Adds a new node to the network as a learner node.
-The learner node syncs with the network and can transact, but isn't part of the Raft cluster and doesn't provide block
-confirmation to the minter node.
+Adds a new node to the network as a learner node. The learner node syncs with the network and can transact, but isn't part of the Raft cluster and doesn't provide block confirmation to the minter node.
 
 #### Parameters
 
-`enodeId`: *string* - enode ID of the node to add
+`enodeId`: _string_ - enode ID of the node to add
 
 #### Returns
 
-`result`: *string* - Raft ID for the node being added
+`result`: _string_ - Raft ID for the node being added
 
 !!! example
 
@@ -3306,11 +3196,11 @@ Adds a new peer to the network.
 
 #### Parameters
 
-`enodeId`: *string* - enode ID of the node to be added to the network
+`enodeId`: _string_ - enode ID of the node to be added to the network
 
 #### Returns
 
-`result`: *string* - Raft ID for the node being added, or an error message if the node is already part of the network
+`result`: _string_ - Raft ID for the node being added, or an error message if the node is already part of the network
 
 !!! example
 
@@ -3352,21 +3242,21 @@ None
 
 #### Returns
 
-`result`: *array* - list of node objects with the following fields:
+`result`: _array_ - list of node objects with the following fields:
 
-* `hostName`: *string* - DNS name or the host IP address
+- `hostName`: _string_ - DNS name or the host IP address
 
-* `nodeActive`: *boolean* - indicates if the node is active in the Raft cluster
+- `nodeActive`: _boolean_ - indicates if the node is active in the Raft cluster
 
-* `nodeId`: *string* - enode ID of the node
+- `nodeId`: _string_ - enode ID of the node
 
-* `p2pPort`: *number* - p2p port
+- `p2pPort`: _number_ - p2p port
 
-* `raftId`: *string* - Raft ID of the node
+- `raftId`: _string_ - Raft ID of the node
 
-* `raftPort`: *number* - Raft port
+- `raftPort`: _number_ - Raft port
 
-* `role`: *string* - role of the node in the Raft cluster (minter/verifier/learner); `""` if there is no leader at the network level
+- `role`: _string_ - role of the node in the Raft cluster (minter/verifier/learner); `""` if there is no leader at the network level
 
 !!! example
 
@@ -3456,7 +3346,7 @@ None
 
 #### Returns
 
-`result`: *string* - enode ID of the leader, or an error message if there is no leader
+`result`: _string_ - enode ID of the leader, or an error message if there is no leader
 
 !!! example
 
@@ -3494,11 +3384,11 @@ Promotes the specified learner node to peer and thus to be part of the Raft clus
 
 #### Parameters
 
-`raftId`: *string* - Raft ID of the node to be promoted
+`raftId`: _string_ - Raft ID of the node to be promoted
 
 #### Returns
 
-`result`: *boolean* - indicates if the node is promoted
+`result`: _boolean_ - indicates if the node is promoted
 
 !!! example
 
@@ -3536,7 +3426,7 @@ Removes the specified peer from the Raft cluster.
 
 #### Parameters
 
-`raftId`: *string* - Raft ID of the peer to be removed from the cluster
+`raftId`: _string_ - Raft ID of the peer to be removed from the cluster
 
 #### Returns
 
@@ -3582,8 +3472,7 @@ None
 
 #### Returns
 
-`result`: *string* - role of the node in the Raft cluster (minter/verifier/learner); `""` if there is no leader at the
-network level
+`result`: _string_ - role of the node in the Raft cluster (minter/verifier/learner); `""` if there is no leader at the network level
 
 !!! example
 
@@ -3615,7 +3504,4 @@ network level
         "minter"
         ```
 
-*[PP]: Counter-Party Protection
-*[MPP]: Mandatory Party Protection
-*[PSV]: Private State Validation
-*[SP]: Standard Private
+_[PP]: Counter-Party Protection _[MPP]: Mandatory Party Protection _[PSV]: Private State Validation _[SP]: Standard Private

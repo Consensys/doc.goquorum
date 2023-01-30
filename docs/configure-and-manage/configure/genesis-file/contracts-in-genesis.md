@@ -1,5 +1,7 @@
 ---
+title: Predeploy a contract in the genesis file
 description: Pre-deploying contracts in the genesis file
+sidebar_position: 2
 ---
 
 # Pre-deploying contracts in the genesis file
@@ -27,7 +29,7 @@ To pre-deploy contracts when starting GoQuorum, specify the contract code in the
 
 The contract code in the genesis file defines the:
 
-* Address.
-* Balance.
-* Bytecode.
-* Key value pairs for contract storage.
+- Address.
+- Balance.
+- Bytecode.
+- Key value pairs for contract storage.

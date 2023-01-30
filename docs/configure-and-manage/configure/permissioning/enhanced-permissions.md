@@ -1,18 +1,22 @@
+---
+title: Enhanced permissioning
+description: Configure enhanced permissions
+sidebar_position: 2
+---
+
 # Configure enhanced permissions
 
-[Enhanced network permissioning](../../../concepts/permissions-overview.md#enhanced-network-permissioning) is a
-smart-contract-based permissioning model designed for enterprise-level needs.
-You can configure enhanced permissioning for a [new network](#new-network) or when [migrating from an earlier version](#migrating-from-an-earlier-version).
+[Enhanced network permissioning](../../../concepts/permissions-overview.md#enhanced-network-permissioning) is a smart-contract-based permissioning model designed for enterprise-level needs. You can configure enhanced permissioning for a [new network](#new-network) or when [migrating from an earlier version](#migrating-from-an-earlier-version).
 
 ## New network
 
-1. Start the initial set of nodes.
+1.  Start the initial set of nodes.
 
-1. Deploy the `PermissionsUpgradable.sol` contract in the network, which requires specifying a guardian account.
+1.  Deploy the `PermissionsUpgradable.sol` contract in the network, which requires specifying a guardian account.
 
-1. Deploy the rest of the contracts, which requires specifying the address of `PermissionsUpgradable.sol`.
+1.  Deploy the rest of the contracts, which requires specifying the address of `PermissionsUpgradable.sol`.
 
-1. Once all the contracts are deployed, create a file `permission-config.json` with the following construct:
+1.  Once all the contracts are deployed, create a file `permission-config.json` with the following construct:
 
     !!! example "permission-config.json"
 
@@ -54,10 +58,9 @@ You can configure enhanced permissioning for a [new network](#new-network) or wh
         * `subOrgBreadth` - Number of sub-organizations that any organization can have.
         * `subOrgDepth` - Maximum depth of sub-organization hierarchy allowed in the network.
 
-1. Once the contracts are deployed, execute `init` in `PermissionsUpgradable.sol` through the guardian account.
-   This links the interface and implementation contracts.
+1.  Once the contracts are deployed, execute `init` in `PermissionsUpgradable.sol` through the guardian account. This links the interface and implementation contracts.
 
-1. At the `geth` prompt, load the following script after replacing the contract addresses appropriately:
+1.  At the `geth` prompt, load the following script after replacing the contract addresses appropriately:
 
     !!! example
 
@@ -70,9 +73,9 @@ You can configure enhanced permissioning for a [new network](#new-network) or wh
         var intr = "0x4d3bfd7821e237ffe84209d8e638f9f309865b87" // address of the interface contracts
         ```
 
-1. Execute `upgr.init(intr, impl, {from: <guardian account>, gas: 4500000})`.
+1.  Execute `upgr.init(intr, impl, {from: <guardian account>, gas: 4500000})`.
 
-1. Stop all `geth` nodes in the network and copy `permission-config.json` into the data directory of each node.
+1.  Stop all `geth` nodes in the network and copy `permission-config.json` into the data directory of each node.
 
 ## Migrating from an earlier version
 
@@ -80,19 +83,19 @@ You can configure enhanced permissioning for a [new network](#new-network) or wh
 
 1. Set the `maxCodeSize` attribute in `genesis.json` to 35.
 
-    ```javascript
-    "config": {
-      "homesteadBlock": 0,
-      "byzantiumBlock": 0,
-      "chainId": 10,
-      "eip150Block": 0,
-      "eip155Block": 0,
-      "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-      "eip158Block": 0,
-      "maxCodeSize" : 35,
-      "isQuorum": true
-    }
-    ```
+   ```javascript
+   "config": {
+     "homesteadBlock": 0,
+     "byzantiumBlock": 0,
+     "chainId": 10,
+     "eip150Block": 0,
+     "eip155Block": 0,
+     "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+     "eip158Block": 0,
+     "maxCodeSize" : 35,
+     "isQuorum": true
+   }
+   ```
 
 1. Execute `geth --datadir <data dir path> init genesis.json`.
 

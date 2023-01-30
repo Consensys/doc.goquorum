@@ -1,19 +1,19 @@
 ---
-title: GoQuorum Kubernetes - Getting ready for production
+title: Production
 description: Deploying GoQuorum Helm Charts for production on a Kubernetes cluster
+sidebar_position: 6
 ---
 
 ## Prerequisites
 
-* Clone the [Quorum-Kubernetes](https://github.com/ConsenSys/quorum-kubernetes) repository
-* A [running Kubernetes cluster](./create-cluster.md)
-* [Kubectl](https://kubernetes.io/docs/tasks/tools/)
-* [Helm3](https://helm.sh/docs/intro/install/)
+- Clone the [Quorum-Kubernetes](https://github.com/ConsenSys/quorum-kubernetes) repository
+- A [running Kubernetes cluster](./create-cluster.md)
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/)
+- [Helm3](https://helm.sh/docs/intro/install/)
 
 ## Overview
 
-To get things ready for production, use the same charts and set
-the values in the `cluster` map as seen in the [Deploy](#deploy-the-network) section.
+To get things ready for production, use the same charts and set the values in the `cluster` map as seen in the [Deploy](#deploy-the-network) section.
 
 !!!warning
 
@@ -39,9 +39,7 @@ Server Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.3", GitCom
 
 ### Deploy the network
 
-For the rest of this tutorial we use Helm charts. After you have cloned the
-[Quorum-Kubernetes](https://github.com/ConsenSys/quorum-kubernetes) repository, change the directory to `helm` for
-the rest of this tutorial.
+For the rest of this tutorial we use Helm charts. After you have cloned the [Quorum-Kubernetes](https://github.com/ConsenSys/quorum-kubernetes) repository, change the directory to `helm` for the rest of this tutorial.
 
 ```bash
 cd helm
@@ -49,8 +47,7 @@ cd helm
 
 Each helm chart that you can use has the following keys and you need to set them.
 
-Please specify either `aws` or `azure` for the `cluster.provider`. Additionally, set the `cloudNativeServices: true` and
-`reclaimPolicy: Retain` so it looks like below for AWS
+Please specify either `aws` or `azure` for the `cluster.provider`. Additionally, set the `cloudNativeServices: true` and `reclaimPolicy: Retain` so it looks like below for AWS
 
 ```bash
 cluster:
@@ -63,43 +60,18 @@ Follow the steps outlined in the [deploy charts](./deploy-charts.md) tutorial to
 
 ## Best practices
 
-The most important thing is to plan your network out on paper first and then test it in a Dev cluster to make sure
-connectivity works with your applications and you get the required throughput in transactions per second (TPS).
-We also recommend you test the entire process, from provisioning infrastructure to updating nodes on a
-Dev cluster, prior to launching your production network.
+The most important thing is to plan your network out on paper first and then test it in a Dev cluster to make sure connectivity works with your applications and you get the required throughput in transactions per second (TPS). We also recommend you test the entire process, from provisioning infrastructure to updating nodes on a Dev cluster, prior to launching your production network.
 
-By default, the cloud Kubernetes clusters should take care of availability and do multi-zones within a region.
-The scheduler also ensures that deployments are spread out across zones.
-Where possible, we recommend you use multiple bootnodes and static nodes to speed up peering.
+By default, the cloud Kubernetes clusters should take care of availability and do multi-zones within a region. The scheduler also ensures that deployments are spread out across zones. Where possible, we recommend you use multiple bootnodes and static nodes to speed up peering.
 
-Connecting to APIs and services outside the cluster should work as normal, but connecting into your network (such as
-adding an on-premise node to the network) may require more configuration.
-Please check the [limitations](index.md#limitations) and use CNI where possible.
-To connect an external node to your cluster, the easiest way is to use a VPN as seen in the
-following [multi-cluster](#multi-cluster-support) setup.
+Connecting to APIs and services outside the cluster should work as normal, but connecting into your network (such as adding an on-premise node to the network) may require more configuration. Please check the [limitations](../kubernetes-index.md#limitations) and use CNI where possible. To connect an external node to your cluster, the easiest way is to use a VPN as seen in the following [multi-cluster](#multi-cluster-support) setup.
 
-Finally, we recommend setting up monitoring and alerting from the beginning so you can get early warnings of issues
-rather than after failure.
-We have a monitoring chart which uses Grafana and you can use it in conjunction with Alertmanager to create alerts or
-alternatively alert via Cloudwatch or Azure Monitoring.
+Finally, we recommend setting up monitoring and alerting from the beginning so you can get early warnings of issues rather than after failure. We have a monitoring chart which uses Grafana and you can use it in conjunction with Alertmanager to create alerts or alternatively alert via Cloudwatch or Azure Monitoring.
 
 ## Multi-cluster support
 
-When CNI is used, multi-cluster support is simple, but you have to cater for cross-cluster DNS names.
-Ideally, you want to create two separate VPCs (or VNets) and make sure they have different base CIDR blocks so that IPs
-don't conflict.
-Once done, peer the VPCs together and update the subnet route table, so they are effectively a giant single network.
+When CNI is used, multi-cluster support is simple, but you have to cater for cross-cluster DNS names. Ideally, you want to create two separate VPCs (or VNets) and make sure they have different base CIDR blocks so that IPs don't conflict. Once done, peer the VPCs together and update the subnet route table, so they are effectively a giant single network.
 
 ![multi-cluster](../../images/kubernetes/cni_peering.png)
 
-When you [spin up clusters](./create-cluster.md), use [CNI](index.md#limitations) and CIDR blocks to match the
-subnet's CIDR settings.
-Then deploy the genesis chart on one cluster and copy across the genesis file and static nodes config maps.
-Depending on your DNS settings, they might be fine as is or they might need to be actual IPs.
-That is, you can provision cluster B only after cluster A has GoQuorum nodes up and running.
-Deploy the network on cluster A, and then on cluster B.
-GoQuorum nodes on cluster A should work as expected, and GoQuorum nodes on cluster B should use the list of peers provided to
-communicate with the nodes on cluster A.
-Keeping the list of peers on the clusters live and up to date can be challenging, so we recommend using the cloud
-service provider's DNS service such as Route 53 or Azure DNS and adapting the charts to create entries for each node
-when it comes up.
+When you [spin up clusters](./create-cluster.md), use [CNI](../kubernetes-index.md#limitations) and CIDR blocks to match the subnet's CIDR settings. Then deploy the genesis chart on one cluster and copy across the genesis file and static nodes config maps. Depending on your DNS settings, they might be fine as is or they might need to be actual IPs. That is, you can provision cluster B only after cluster A has GoQuorum nodes up and running. Deploy the network on cluster A, and then on cluster B. GoQuorum nodes on cluster A should work as expected, and GoQuorum nodes on cluster B should use the list of peers provided to communicate with the nodes on cluster A. Keeping the list of peers on the clusters live and up to date can be challenging, so we recommend using the cloud service provider's DNS service such as Route 53 or Azure DNS and adapting the charts to create entries for each node when it comes up.

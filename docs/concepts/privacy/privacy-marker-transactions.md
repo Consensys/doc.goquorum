@@ -1,21 +1,20 @@
 ---
-title: Privacy Marker Transactions
+title: Privacy marker transactions
 description: Privacy marker transactions are an alternative method of processing private transactions.
+sidebar_position: 3
 ---
 
 # Privacy marker transactions
 
 You can use privacy marker transactions (PMTs) instead of [normal private transactions](private-and-public.md#private-transactions).
 
-PMTs are public transactions.
-PMTs each have a corresponding [internal private transaction](#internal-private-transaction) stored in the
-[private transaction manager](index.md#private-transaction-manager) (Tessera) and only available to participants.
+PMTs are public transactions. PMTs each have a corresponding [internal private transaction](#internal-private-transaction) stored in the [private transaction manager](../privacy-index.md#private-transaction-manager) (Tessera) and only available to participants.
 
 The advantages of using a PMT over a normal private transaction are:
 
-* The contract address is hidden from public view.
-* The private transaction receipt is only visible to participants of the private transaction.
-* The private transaction itself is stored in the private transaction manager and is only visible to participants.
+- The contract address is hidden from public view.
+- The private transaction receipt is only visible to participants of the private transaction.
+- The private transaction itself is stored in the private transaction manager and is only visible to participants.
 
 PMTs use a privacy precompile contract, which retrieves the internal private transaction from Tessera and executes it.
 
@@ -25,11 +24,11 @@ See the [PMT high-level lifecycle](private-transaction-lifecycle.md#privacy-mark
 
 A PMT is a public transaction with the following parameters:
 
-* `to` - privacy precompile contract address
-* `input` or `data` - sender address and Tessera hash of the encrypted [internal private transaction](#internal-private-transaction)
-* `from` - the same signing account as the [internal private transaction](#internal-private-transaction)
-* `contractAddress` - (in receipt if the PMT is a contract creation transaction) null
-* `logs` and `logsBloom` (in receipt) - empty
+- `to` - privacy precompile contract address
+- `input` or `data` - sender address and Tessera hash of the encrypted [internal private transaction](#internal-private-transaction)
+- `from` - the same signing account as the [internal private transaction](#internal-private-transaction)
+- `contractAddress` - (in receipt if the PMT is a contract creation transaction) null
+- `logs` and `logsBloom` (in receipt) - empty
 
 !!! example "Example PMT and its receipt"
 
@@ -67,14 +66,9 @@ A PMT is a public transaction with the following parameters:
 
 ## Internal private transaction
 
-Each PMT has a corresponding internal private transaction.
-The content of this private transaction is the same as the content of a
-[normal private transaction](private-and-public.md#private-transactions), except it has the same `from` and `nonce` values
-as the PMT.
+Each PMT has a corresponding internal private transaction. The content of this private transaction is the same as the content of a [normal private transaction](private-and-public.md#private-transactions), except it has the same `from` and `nonce` values as the PMT.
 
-Only the hash of the encrypted internal private transaction is stored on chain (as part of the `data` field of the PMT).
-The internal private transaction is stored and encrypted in each participant's Tessera node.
-As a result, the internal private transaction is only available to participants of the private transaction.
+Only the hash of the encrypted internal private transaction is stored on chain (as part of the `data` field of the PMT). The internal private transaction is stored and encrypted in each participant's Tessera node. As a result, the internal private transaction is only available to participants of the private transaction.
 
 At execution time, GoQuorum retrieves the internal private transaction from Tessera.
 
@@ -123,14 +117,9 @@ At execution time, GoQuorum retrieves the internal private transaction from Tess
 
 ## Using privacy marker transactions
 
-To enable PMTs in GoQuorum, set the `privacyPrecompileBlock` in the GoQuorum
-[genesis file](../../configure-and-manage/configure/genesis-file/genesis-options.md) `config` object to a block where the network is
-ready to support the privacy precompile.
-Once the fork block is reached, the node can process and use PMTs.
-All GoQuorum nodes in the network should be initialized with the same `privacyPrecompileBlock` value.
+To enable PMTs in GoQuorum, set the `privacyPrecompileBlock` in the GoQuorum [genesis file](../../configure-and-manage/configure/genesis-file/genesis-options.md) `config` object to a block where the network is ready to support the privacy precompile. Once the fork block is reached, the node can process and use PMTs. All GoQuorum nodes in the network should be initialized with the same `privacyPrecompileBlock` value.
 
-Use the [`--privacymarker.enable`](../../reference/cli-syntax.md#privacymarkerenable) command line option when starting
-GoQuorum to enable PMTs.
+Use the [`--privacymarker.enable`](../../reference/cli-syntax.md#privacymarkerenable) command line option when starting GoQuorum to enable PMTs.
 
 !!! note
 
@@ -139,36 +128,30 @@ GoQuorum to enable PMTs.
 
 Use the following API methods to interact with PMTs:
 
-* [`eth_distributePrivateTransaction`](../../reference/api-methods.md#eth_distributeprivatetransaction)
-* [`eth_getPrivacyPrecompileAddress`](../../reference/api-methods.md#eth_getprivacyprecompileaddress)
-* [`eth_getPrivateTransactionByHash`](../../reference/api-methods.md#eth_getprivatetransactionbyhash)
-* [`eth_getPrivateTransactionReceipt`](../../reference/api-methods.md#eth_getprivatetransactionreceipt)
+- [`eth_distributePrivateTransaction`](../../reference/api-methods.md#eth_distributeprivatetransaction)
+- [`eth_getPrivacyPrecompileAddress`](../../reference/api-methods.md#eth_getprivacyprecompileaddress)
+- [`eth_getPrivateTransactionByHash`](../../reference/api-methods.md#eth_getprivatetransactionbyhash)
+- [`eth_getPrivateTransactionReceipt`](../../reference/api-methods.md#eth_getprivatetransactionreceipt)
 
-    !!! important
+  !!! important
 
         The PMT and internal private transaction are separate transactions and have separate transaction receipts.
 
 ### Sending unsigned private transactions
 
-To send an unsigned private transaction as a PMT, use the same API methods as with normal private transactions, such as
-[`eth_sendTransaction`](../../reference/api-methods.md#eth_sendtransaction).
+To send an unsigned private transaction as a PMT, use the same API methods as with normal private transactions, such as [`eth_sendTransaction`](../../reference/api-methods.md#eth_sendtransaction).
 
 If the following conditions are met, the private transaction is created as a PMT and internal private transaction:
 
-* `privateFor` is provided.
-* The `privacyPrecompileBlock` has been reached.
-* The GoQuorum node is started with the [`--privacymarker.enable`](../../reference/cli-syntax.md#privacymarkerenable) option.
+- `privateFor` is provided.
+- The `privacyPrecompileBlock` has been reached.
+- The GoQuorum node is started with the [`--privacymarker.enable`](../../reference/cli-syntax.md#privacymarkerenable) option.
 
 ### Sending signed private transactions
 
-1. Use [`eth_fillTransaction`](../../reference/api-methods.md#eth_filltransaction) or Tessera's third party `/storeraw`
-  API to encrypt the private transaction payload.
-1. Create the private transaction, replacing the `data` value with the hash of the encrypted private transaction payload
-  from Tessera.
+1. Use [`eth_fillTransaction`](../../reference/api-methods.md#eth_filltransaction) or Tessera's third party `/storeraw` API to encrypt the private transaction payload.
+1. Create the private transaction, replacing the `data` value with the hash of the encrypted private transaction payload from Tessera.
 1. Externally sign the private transaction.
-1. Use [`eth_distributePrivateTransaction`](../../reference/api-methods.md#eth_distributeprivatetransaction) to encrypt
-  the signed private transaction and share with all participants.
-1. Create the PMT, with the `data` value set to the hash returned by `eth_distributePrivateTransaction`.
-  The `from` and `nonce` values must be the same as the private transaction.
-1. Send the PMT using the same APIs as with normal private transactions, such as
-  [`eth_sendTransaction`](../../reference/api-methods.md#eth_sendtransaction).
+1. Use [`eth_distributePrivateTransaction`](../../reference/api-methods.md#eth_distributeprivatetransaction) to encrypt the signed private transaction and share with all participants.
+1. Create the PMT, with the `data` value set to the hash returned by `eth_distributePrivateTransaction`. The `from` and `nonce` values must be the same as the private transaction.
+1. Send the PMT using the same APIs as with normal private transactions, such as [`eth_sendTransaction`](../../reference/api-methods.md#eth_sendtransaction).

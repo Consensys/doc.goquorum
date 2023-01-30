@@ -1,20 +1,18 @@
 ---
+title: Ansible
 description: GoQuorum deployment Ansible
+sidebar_position: 2
 ---
 
-GoQuorum can be installed using Ansible on a linux VM or OSX machine. Additionally, you can use the same role in conjuction
-with other orchestration tooling like Terraform.
+GoQuorum can be installed using Ansible on a linux VM or OSX machine. Additionally, you can use the same role in conjunction with other orchestration tooling like Terraform.
 
 ## Ansible-Galaxy
 
-You can use an [Ansible Galaxy](https://galaxy.ansible.com/consensys/goquorum) role to install, configure, and run
-GoQuourum
+You can use an [Ansible Galaxy](https://galaxy.ansible.com/consensys/goquorum) role to install, configure, and run GoQuorum
 
 ### Install the role
 
-The first step is to include the role in the `requirements.yaml` file with any other roles that you use.
-For example the Prometheus exporter roles below publishes system metrics that can be scraped with
-Prometheus
+The first step is to include the role in the `requirements.yaml` file with any other roles that you use. For example the Prometheus exporter roles below publishes system metrics that can be scraped with Prometheus
 
 ```bash
 # requirements.yaml
@@ -37,8 +35,7 @@ ansible-galaxy install --role-file requirements.yaml
 
 ### Use the role
 
-After you [install the role](#install-the-role), create a file called `goquorum.yml` where you can define
-variables to configure GoQuorum. For example, you can configure the JSON-RPC service as follows:
+After you [install the role](#install-the-role), create a file called `goquorum.yml` where you can define variables to configure GoQuorum. For example, you can configure the JSON-RPC service as follows:
 
 ```bash
 # goquorum.yml

@@ -1,5 +1,7 @@
 ---
-description: connecting to a node
+title: Connect to a node
+description: Connecting to a node
+sidebar_position: 1
 ---
 
 # Connect to a node
@@ -8,16 +10,13 @@ description: connecting to a node
 
 Set up a GoQuorum network using one of the following tutorials:
 
-* The [Quorum Developer Quickstart](../tutorials/quorum-dev-quickstart/index.md)
-* [Create a private network](../tutorials/private-network/create-ibft-network.md)
-* [Create a privacy-enabled network](../tutorials/create-privacy-enabled-network.md)
+- The [Quorum Developer Quickstart](../tutorials/quickstart-index.md)
+- [Create a private network](../tutorials/private-network/create-ibft-network.md)
+- [Create a privacy-enabled network](../tutorials/create-privacy-enabled-network.md)
 
 ## Use `geth attach`
 
-The Geth JavaScript console exposes the [Web3 JavaScript API](https://web3js.readthedocs.io/en/v1.2.9/) for development
-use, and can be started using the `console` or `attach` Geth subcommands.
-The `console` subcommand starts the Geth node and opens the console, while the `attach` subcommand attaches an
-already-running Geth instance to the console.
+The Geth JavaScript console exposes the [Web3 JavaScript API](https://web3js.readthedocs.io/en/v1.2.9/) for development use, and can be started using the `console` or `attach` Geth subcommands. The `console` subcommand starts the Geth node and opens the console, while the `attach` subcommand attaches an already-running Geth instance to the console.
 
 Run the `attach` subcommand and connect to the IPC socket, or, if enabled, to the RPC or WebSocket API endpoints:
 
@@ -55,8 +54,7 @@ Run the `attach` subcommand and connect to the IPC socket, or, if enabled, to th
         To exit, press ctrl-d
         ```
 
-Once connected you can execute commands as normal.
-For example, check existing validators using the following command:
+Once connected you can execute commands as normal. For example, check existing validators using the following command:
 
 !!! example "`istanbul.getValidators`"
 
@@ -75,7 +73,7 @@ For example, check existing validators using the following command:
 Exit the console using the following command:
 
 ```javascript
-exit
+exit;
 ```
 
 ## Use the RPC interface
@@ -119,11 +117,9 @@ For example, run the following command to get the list of validators at a given 
         }
         ```
 
-You can any tool to make requests, such as [curl](https://curl.se/), [Postman](https://www.postman.com/), or
-[Web3](https://web3js.readthedocs.io/en/latest/).
+You can any tool to make requests, such as [curl](https://curl.se/), [Postman](https://www.postman.com/), or [Web3](https://web3js.readthedocs.io/en/latest/).
 
-!!! note
-    Use the [security plugin](../develop/json-rpc-apis.md) to secure the JSON-RPC server.
+!!! note Use the [security plugin](../develop/json-rpc-apis.md) to secure the JSON-RPC server.
 
 ## Use the WebSocket interface
 

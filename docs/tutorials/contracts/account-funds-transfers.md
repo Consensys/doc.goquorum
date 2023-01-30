@@ -1,24 +1,20 @@
 ---
+title: Transfer account funds
 description: funds transfer transactions
+sidebar_position: 3
 ---
 
 # Transfer funds between accounts
 
-This tutorial shows you how to transfer funds (ETH) between accounts in a transaction on a running network.
-Use the [Quorum Developer Quickstart](../quorum-dev-quickstart/index.md) to rapidly generate a local blockchain network.
+This tutorial shows you how to transfer funds (ETH) between accounts in a transaction on a running network. Use the [Quorum Developer Quickstart](../quickstart-index.md) to rapidly generate a local blockchain network.
 
 ## Prerequisites
 
-* A private network.
-  You can use a [private network tutorial](../private-network/create-ibft-network.md) or the
-  [Quorum Developer Quickstart](../quorum-dev-quickstart/index.md).
+- A private network. You can use a [private network tutorial](../private-network/create-ibft-network.md) or the [Quorum Developer Quickstart](../quickstart-index.md).
 
 ## Using `eth_sendSignedTransaction`
 
-The simplest way to transfer funds between externally-owned accounts is using
-[`eth_sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.2.11/web3-eth.html#sendsignedtransaction).
-This example uses `eth_sendSignedTransaction` and one of the [test accounts](../../reference/accounts-for-testing.md)
-to transfer funds to a newly created account.
+The simplest way to transfer funds between externally-owned accounts is using [`eth_sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.2.11/web3-eth.html#sendsignedtransaction). This example uses `eth_sendSignedTransaction` and one of the [test accounts](../../reference/accounts-for-testing.md) to transfer funds to a newly created account.
 
 !!! critical "Security warning"
 
@@ -26,8 +22,7 @@ to transfer funds to a newly created account.
 
     The private key is publicly displayed, which means the account is not secure.
 
-Create a new file `eth_tx.js` (or run the following commands in a JavaScript console) to send the transaction.
-Before making the transaction, the script checks the balances of both accounts to verify the funds transfer after the transaction.
+Create a new file `eth_tx.js` (or run the following commands in a JavaScript console) to send the transaction. Before making the transaction, the script checks the balances of both accounts to verify the funds transfer after the transaction.
 
 !!! example "eth_tx.js using eth_sendSignedTransaction"
 
@@ -67,7 +62,7 @@ Before making the transaction, the script checks the balances of both accounts t
     var accountABalance = await getAccountBalance(host, accountA);
     console.log("Account A has an updated balance of: " + accountABalance);
     var accountBBalance = await getAccountBalance(host, accountB);
-    console.log("Account B has an updatedbalance of: " + accountBBalance);
+    console.log("Account B has an updated balance of: " + accountBBalance);
     }
     ```
 
@@ -75,8 +70,7 @@ For reference, the Quorum Developer Quickstart provides an [example of a funds t
 
 ## Using `eth_sendTransaction`
 
-An alternative to using `eth_sendSignedTransaction` is using
-[`eth_sendTransaction`](https://web3js.readthedocs.io/en/v1.2.11/web3-eth.html#sendtransaction).
+An alternative to using `eth_sendSignedTransaction` is using [`eth_sendTransaction`](https://web3js.readthedocs.io/en/v1.2.11/web3-eth.html#sendtransaction).
 
 Create a new file `eth_tx.js` (or run the following commands in a JavaScript console) to send the transaction.
 
@@ -111,6 +105,6 @@ Create a new file `eth_tx.js` (or run the following commands in a JavaScript con
     var accountABalance = await getAccountBalance(host, accountA);
     console.log("Account A has an updated balance of: " + accountABalance);
     var accountBBalance = await getAccountBalance(host, accountB);
-    console.log("Account B has an updatedbalance of: " + accountBBalance);
+    console.log("Account B has an updated balance of: " + accountBBalance);
     }
     ```

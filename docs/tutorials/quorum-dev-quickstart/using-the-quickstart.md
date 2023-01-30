@@ -1,30 +1,25 @@
 ---
-title: Quorum Developer Quickstart
+title: Use the quickstart
 description: Helps to generate local GoQuorum and Ethereum blockchain networks.
+sidebar_position: 1
 ---
 
 # Use Quorum Developer Quickstart
 
-The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private
-[IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md) network of GoQuorum nodes managed by Docker Compose.
+The Quorum Developer Quickstart uses the GoQuorum Docker image to run a private [IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md) network of GoQuorum nodes managed by Docker Compose.
 
-!!! important
-    This tutorial runs a private network suitable for education or demonstration purposes
-    and is not intended for running production networks.
+!!! important This tutorial runs a private network suitable for education or demonstration purposes and is not intended for running production networks.
 
 ## Prerequisites
 
-* [Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) version 14 or higher
-* [Docker and Docker-compose](https://docs.docker.com/compose/install/)
-* [Truffle](https://www.trufflesuite.com/truffle) development framework
-* [Solc](https://github.com/ethereum/solidity/releases/tag/v0.5.17)
-* [`curl` command line](https://curl.haxx.se/download.html)
-* [MetaMask](https://metamask.io/)
+- [Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) version 14 or higher
+- [Docker and Docker-compose](https://docs.docker.com/compose/install/)
+- [Truffle](https://www.trufflesuite.com/truffle) development framework
+- [Solc](https://github.com/ethereum/solidity/releases/tag/v0.5.17)
+- [`curl` command line](https://curl.haxx.se/download.html)
+- [MetaMask](https://metamask.io/)
 
-!!! important
-    Allow Docker up to 4G of memory or 6G if running the privacy examples.
-    Refer to the **Resources** section in [Docker for Mac](https://docs.docker.com/docker-for-mac/) and
-    [Docker Desktop](https://docs.docker.com/docker-for-windows/) for details.
+!!! important Allow Docker up to 4G of memory or 6G if running the privacy examples. Refer to the **Resources** section in [Docker for Mac](https://docs.docker.com/docker-for-mac/) and [Docker Desktop](https://docs.docker.com/docker-for-windows/) for details.
 
 ## Generate the tutorial blockchain configuration files
 
@@ -34,9 +29,7 @@ To create the tutorial `docker-compose` files and artifacts, run:
 npx quorum-dev-quickstart
 ```
 
-Follow the prompts displayed to run GoQuorum and [logging with ELK](../../configure-and-manage/monitor/elastic-stack.md).
-Enter `n` for [Codefi Orchestrate](https://docs.orchestrate.consensys.net/en/stable/) and `y` for
-[private transactions](../../concepts/privacy/index.md).
+Follow the prompts displayed to run GoQuorum and [logging with ELK](../../configure-and-manage/monitor/elastic-stack.md). Enter `n` for [Codefi Orchestrate](https://docs.orchestrate.consensys.net/en/stable/) and `y` for [private transactions](../../concepts/privacy-index.md).
 
 ## Start the network
 
@@ -48,8 +41,7 @@ To start the network, go to the installation directory (`quorum-test-network` if
 
 The script builds the Docker images, and runs the Docker containers.
 
-Four GoQuorum IBFT validator nodes and a non-validator node are created to simulate a base network.
-In addition, there are three member pairs (GoQuorum and Tessera sets) to simulate private nodes on the network.
+Four GoQuorum IBFT validator nodes and a non-validator node are created to simulate a base network. In addition, there are three member pairs (GoQuorum and Tessera sets) to simulate private nodes on the network.
 
 When execution is successfully finished, the process lists the available services:
 
@@ -74,19 +66,13 @@ When execution is successfully finished, the process lists the available service
     ****************************************************************
     ```
 
-* Use the **JSON-RPC HTTP service endpoint** to access the RPC node service from your dapp or from
-  cryptocurrency wallets such as MetaMask.
-* Use the **JSON-RPC WebSocket service endpoint** to access the WebSocket node service from your
-  dapp.
-* Use the [**Web block explorer address**](http://localhost:25000) to display the block explorer web application.
-* Use the [**Prometheus address**](http://localhost:9090/graph) to access the Prometheus dashboard
-    and [monitor nodes and view metrics](../../configure-and-manage/monitor/metrics.md).
-* Use the [**Grafana address**](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All)
-    to access the Grafana dashboard to [monitor nodes and view metrics](../../configure-and-manage/monitor/metrics.md)
-* Use the [**Loki address**](http://localhost:3000/d/Ak6eXLsPxFemKYKEXfcH/quorum-logs-loki?orgId=1&var-app=quorum&var-search=)
-    to view the container [logs](../../configure-and-manage/monitor/loki.md).
-* Use the [**Kibana logs address**](http://localhost:5601/app/kibana#/discover) to
-  [access and manage logs in Kibana](../../configure-and-manage/monitor/elastic-stack.md).
+- Use the **JSON-RPC HTTP service endpoint** to access the RPC node service from your dapp or from cryptocurrency wallets such as MetaMask.
+- Use the **JSON-RPC WebSocket service endpoint** to access the WebSocket node service from your dapp.
+- Use the [**Web block explorer address**](http://localhost:25000) to display the block explorer web application.
+- Use the [**Prometheus address**](http://localhost:9090/graph) to access the Prometheus dashboard and [monitor nodes and view metrics](../../configure-and-manage/monitor/metrics.md).
+- Use the [**Grafana address**](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All) to access the Grafana dashboard to [monitor nodes and view metrics](../../configure-and-manage/monitor/metrics.md)
+- Use the [**Loki address**](http://localhost:3000/d/Ak6eXLsPxFemKYKEXfcH/quorum-logs-loki?orgId=1&var-app=quorum&var-search=) to view the container [logs](../../configure-and-manage/monitor/loki.md).
+- Use the [**Kibana logs address**](http://localhost:5601/app/kibana#/discover) to [access and manage logs in Kibana](../../configure-and-manage/monitor/elastic-stack.md).
 
 To display the list of endpoints again, run:
 
@@ -96,13 +82,11 @@ To display the list of endpoints again, run:
 
 ## Use a block explorer
 
-The quickstart supports a modified version of the [Alethio Ethereum Lite Explorer](#alethio-ethereum-lite-explorer)
-and [BlockScout](#blockscout).
+The quickstart supports a modified version of the [Alethio Ethereum Lite Explorer](#alethio-ethereum-lite-explorer) and [BlockScout](#blockscout).
 
 ### Alethio Ethereum Lite Explorer
 
-Access the [Alethio Ethereum Lite Explorer](https://github.com/Alethio/ethereum-lite-explorer) at
-[`http://localhost:25000`](http://localhost:25000) as displayed when starting the private network.
+Access the [Alethio Ethereum Lite Explorer](https://github.com/Alethio/ethereum-lite-explorer) at [`http://localhost:25000`](http://localhost:25000) as displayed when starting the private network.
 
 The block explorer displays a summary of the private network, indicating four peers.
 
@@ -118,31 +102,24 @@ You can search for a specific block, transaction hash, or address by clicking th
 
 ### BlockScout
 
-At the prompt **Do you wish to enable support for monitoring your network with BlockScout?**, enter `Y` to start
-BlockScout at [`http://localhost:26000`](http://localhost:26000).
+At the prompt **Do you wish to enable support for monitoring your network with BlockScout?**, enter `Y` to start BlockScout at [`http://localhost:26000`](http://localhost:26000).
 
 !!! note
 
     BlockScout's Docker image is resource heavy when running.
     Ensure you have adequate CPU resources dedicated to the container.
 
-The [quickstart BlockScout configuration](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/templates/goquorum/docker-compose.yml)
-is available as a reference for your own network.
+The [quickstart BlockScout configuration](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/templates/goquorum/docker-compose.yml) is available as a reference for your own network.
 
 ## Monitor nodes with Prometheus and Grafana
 
-The sample network also includes Prometheus and Grafana monitoring tools to let you visualize
-node health and usage.
-You can directly access these tools from your browser at the addresses displayed in the endpoint list.
+The sample network also includes Prometheus and Grafana monitoring tools to let you visualize node health and usage. You can directly access these tools from your browser at the addresses displayed in the endpoint list.
 
-* [Prometheus dashboard](http://localhost:9090/graph).
-* [Grafana dashboard](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All).
-* [Grafana Loki logs dashboard](http://localhost:3000/d/Ak6eXLsPxFemKYKEXfcH/quorum-logs-loki?orgId=1&var-app=quorum&var-search=).
+- [Prometheus dashboard](http://localhost:9090/graph).
+- [Grafana dashboard](http://localhost:3000/d/a1lVy7ycin9Yv/goquorum-overview?orgId=1&refresh=10s&from=now-30m&to=now&var-system=All).
+- [Grafana Loki logs dashboard](http://localhost:3000/d/Ak6eXLsPxFemKYKEXfcH/quorum-logs-loki?orgId=1&var-app=quorum&var-search=).
 
-For more details on how to configure and use these tools for your own nodes, see our
-[performance monitoring documentation](../../configure-and-manage/monitor/metrics.md),
-the [Prometheus documentation](https://prometheus.io/docs/introduction/overview/)
-and [Grafana documentation](https://grafana.com/docs/).
+For more details on how to configure and use these tools for your own nodes, see our [performance monitoring documentation](../../configure-and-manage/monitor/metrics.md), the [Prometheus documentation](https://prometheus.io/docs/introduction/overview/) and [Grafana documentation](https://grafana.com/docs/).
 
 ![Grafana](../../images/dashboard_grafana_1.png)
 
@@ -154,8 +131,8 @@ and collated logs via Grafana Loki
 
 You can run JSON-RPC requests on:
 
-* HTTP with `http://localhost:8545`.
-* WebSockets with `ws://localhost:8546`.
+- HTTP with `http://localhost:8545`.
+- WebSockets with `ws://localhost:8546`.
 
 ### Run with `curl`
 
@@ -193,8 +170,7 @@ The result displays the client version of the running node:
 
 Successfully calling this method shows that you can connect to the nodes using JSON-RPC over HTTP.
 
-From here, you can walk through more interesting requests demonstrated in the rest of this section,
-or skip ahead to [Create a transaction using MetaMask](#create-a-transaction-using-metamask).
+From here, you can walk through more interesting requests demonstrated in the rest of this section, or skip ahead to [Create a transaction using MetaMask](#create-a-transaction-using-metamask).
 
 ### Count the peers
 
@@ -210,9 +186,9 @@ The result indicates seven peers (our validators):
 
 ```json
 {
-  "jsonrpc" : "2.0",
-  "id" : 1,
-  "result" : "0x7"
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x7"
 }
 ```
 
@@ -228,19 +204,17 @@ The result indicates the highest block number synchronized on this node.
 
 ```json
 {
-  "jsonrpc" : "2.0",
-  "id" : 1,
-  "result" : "0x2a"
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x2a"
 }
 ```
 
-Here the hexadecimal value `0x2a` translates to decimal as `42`, the number of blocks received by the node so far,
-about two minutes after the new network started.
+Here the hexadecimal value `0x2a` translates to decimal as `42`, the number of blocks received by the node so far, about two minutes after the new network started.
 
 ## Private transactions
 
-This example uses the [web3.js](https://www.npmjs.com/package/web3) library to make the API calls, creating three member
-nodes pairs (a GoQuorum node which has a corresponding Tessera node for privacy) that can be accessed using APIs on the following ports:
+This example uses the [web3.js](https://www.npmjs.com/package/web3) library to make the API calls, creating three member nodes pairs (a GoQuorum node which has a corresponding Tessera node for privacy) that can be accessed using APIs on the following ports:
 
 ```bash
 Member1Quorum RPC: http://localhost:20000
@@ -267,9 +241,7 @@ Once done, it performs a read operation on the contract using the `get` function
 
 It then performs a write operation using the `set` function and the contract's ABI, at the address and sets the value to `123`.
 
-Lastly, it performs a read operation on all three members to verify that this is private between `Member1` and `Member3`
-only, and you should see that only `Member1` and `Member3` return the result of `123`, and `Member2` has an undefined
-value.
+Lastly, it performs a read operation on all three members to verify that this is private between `Member1` and `Member3` only, and you should see that only `Member1` and `Member3` return the result of `123`, and `Member2` has an undefined value.
 
 ```bash
 node scripts/private_tx.js
@@ -288,12 +260,11 @@ Member2 obtained value at deployed contract is: undefined
 
 You can inspect any of the GoQuorum nodes by using `attach.sh` to open the geth JavaScript console.
 
-Use a separate terminal window for each of Member1, Member2, and Member3.
-In each terminal, go to the main directory where `docker-compose.yml` is located, then:
+Use a separate terminal window for each of Member1, Member2, and Member3. In each terminal, go to the main directory where `docker-compose.yml` is located, then:
 
-* In terminal 1, run `./attach.sh 1` to attach to Member1.
-* In terminal 2, run `./attach.sh 2` to attach to Member2.
-* In terminal 3, run `./attach.sh 3` to attach to Member3.
+- In terminal 1, run `./attach.sh 1` to attach to Member1.
+- In terminal 2, run `./attach.sh 2` to attach to Member2.
+- In terminal 3, run `./attach.sh 3` to attach to Member3.
 
 To view the private transaction, run the following command in one of the terminals:
 
@@ -324,20 +295,14 @@ To view the private transaction, run the following command in one of the termina
     }
     ```
 
-!!! note
-    The `v` field value of `"0x25"` or `"0x26"` (37 or 38 in decimal) indicates this transaction has a private payload (input).
+!!! note The `v` field value of `"0x25"` or `"0x26"` (37 or 38 in decimal) indicates this transaction has a private payload (input).
 
 ### Read the contract with `get()`
 
-For each of the three nodes, create a variable called `address` using the geth console, and assign to it the address
-of the contract created by Member1.
-The contract address can be found:
+For each of the three nodes, create a variable called `address` using the geth console, and assign to it the address of the contract created by Member1. The contract address can be found:
 
-* In Member1's log file `data/logs/1.log`.
-* Using [`eth.getTransactionReceipt(txHash)`](https://web3js.readthedocs.io/en/v1.4.0/web3-eth.html#gettransactionreceipt),
-  where `txHash` is the hash printed to the terminal after sending the transaction.
-  The contract address is found in the result parameter `contractAddress`.
-  It is also printed in the terminal when the private transaction is processed.
+- In Member1's log file `data/logs/1.log`.
+- Using [`eth.getTransactionReceipt(txHash)`](https://web3js.readthedocs.io/en/v1.4.0/web3-eth.html#gettransactionreceipt), where `txHash` is the hash printed to the terminal after sending the transaction. The contract address is found in the result parameter `contractAddress`. It is also printed in the terminal when the private transaction is processed.
 
 After identifying the contract address, run the following command in each terminal:
 
@@ -348,38 +313,63 @@ var address = "0x695Baaf717370fcBb42aB45CD83C531C27D79eF1"; // replace with your
 Use [`eth.contract`](https://web3js.readthedocs.io/en/v1.4.0/web3-eth-contract.html#eth-contract) to define a contract class with the simpleStorage ABI definition in each terminal:
 
 ```js
-var address = "0x695baaf717370fcbb42ab45cd83c531c27d79ef1" // replace with your address
-var abi = [{"constant":true,"inputs":[],"name":"storedData","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"x","type":"uint256"}],"name":"set","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"retVal","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[{"name":"initVal","type":"uint256"}],"type":"constructor"}];
-var private = eth.contract(abi).at(address)
+var address = "0x695baaf717370fcbb42ab45cd83c531c27d79ef1"; // replace with your address
+var abi = [
+  {
+    constant: true,
+    inputs: [],
+    name: "storedData",
+    outputs: [{ name: "", type: "uint256" }],
+    payable: false,
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [{ name: "x", type: "uint256" }],
+    name: "set",
+    outputs: [],
+    payable: false,
+    type: "function",
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: "get",
+    outputs: [{ name: "retVal", type: "uint256" }],
+    payable: false,
+    type: "function",
+  },
+  { inputs: [{ name: "initVal", type: "uint256" }], type: "constructor" },
+];
+var private = eth.contract(abi).at(address);
 ```
 
 The function calls are available on the contract instance, and you can call those methods on the contract.
 
 Get the value of the contract to confirm that only Member1 and Member3 can see the value.
 
-* In terminal window 1 (Member1):
+- In terminal window 1 (Member1):
 
-    ```js
-    private.get()
-    123
-    ```
+  ```js
+  private.get();
+  123;
+  ```
 
-* In terminal window 2 (Member2):
+- In terminal window 2 (Member2):
 
-    ```js
-    private.get()
-    undefined
-    ```
+  ```js
+  private.get();
+  undefined;
+  ```
 
-* In terminal window 3 (Member3):
+- In terminal window 3 (Member3):
 
-    ```js
-    private.get()
-    123
-    ```
+  ```js
+  private.get();
+  123;
+  ```
 
-Member2 can't read the state.
-Look in `smart_contracts/privacy/node scripts/private_tx.js` to confirm that `123` was the value set when the contract was updated.
+Member2 can't read the state. Look in `smart_contracts/privacy/node scripts/private_tx.js` to confirm that `123` was the value set when the contract was updated.
 
 ### Write to the contract with `set()`
 
@@ -393,71 +383,58 @@ private.set(200,{from:eth.accounts[0],privateFor:["1iTZde/ndBHvzhcl7V68x44Vx7pl8
 "0xacf293b491cccd1b99d0cfb08464a68791cc7b5bc14a9b6e4ff44b46889a8f70"
 ```
 
-You can check the log files in `data/logs/` to see each node validating the block with this new private transaction.
-Once the block containing the transaction is validated, you can check the state from each of the members.
+You can check the log files in `data/logs/` to see each node validating the block with this new private transaction. Once the block containing the transaction is validated, you can check the state from each of the members.
 
-* In terminal window 1 (Member1):
+- In terminal window 1 (Member1):
 
-    ```js
-    private.get()
-    200
-    ```
+  ```js
+  private.get();
+  200;
+  ```
 
-* In terminal window 2 (Member2):
+- In terminal window 2 (Member2):
 
-    ```js
-    private.get()
-    undefined
-    ```
+  ```js
+  private.get();
+  undefined;
+  ```
 
-* In terminal window 3 (Member3):
+- In terminal window 3 (Member3):
 
-    ```js
-    private.get()
-    200
-    ```
+  ```js
+  private.get();
+  200;
+  ```
 
 Member2 can't read the state.
 
-All nodes are validating the same blockchain of transactions, with the private transactions containing only a 512-bit hash
-in place of the transaction data, and only the parties to the private transactions can view and update the state of the
-private contracts.
+All nodes are validating the same blockchain of transactions, with the private transactions containing only a 512-bit hash in place of the transaction data, and only the parties to the private transactions can view and update the state of the private contracts.
 
 ## Permissions
 
 GoQuorum supports two types of permissions:
 
-* [Basic permissioning](../../configure-and-manage/configure/permissioning/basic-permissions.md): Controls
-which peers can connect to a given node. This permissioning method is specific to a given node, and is
-configured by placing a file with a list of allowed peers (similar to `static-nodes.json`), called
-`permissioned-nodes.json` in the `data` directory of a GoQuorum node.
-* [Enhanced Permissions](../../concepts/permissions-overview.md#enhanced-network-permissioning) is a smart-contract-based
-permissioning model designed for enterprise-level needs and is applicable to all peers on the network.
+- [Basic permissioning](../../configure-and-manage/configure/permissioning/basic-permissions.md): Controls which peers can connect to a given node. This permissioning method is specific to a given node, and is configured by placing a file with a list of allowed peers (similar to `static-nodes.json`), called `permissioned-nodes.json` in the `data` directory of a GoQuorum node.
+- [Enhanced Permissions](../../concepts/permissions-overview.md#enhanced-network-permissioning) is a smart-contract-based permissioning model designed for enterprise-level needs and is applicable to all peers on the network.
 
 This example deploys permissioning contracts then uses API calls to set appropriate permissions.
 
-First we'll select a `GuardianAccount` or an admin account. In thies example we'll use the account of Validator1
-which has an address of `0xed9d02e382b34818e88b88a309c7fe71e65f419d`, and we'll connect to Validator1's RPC endpoint
-`http://127.0.0.1:21001`.
+First we'll select a `GuardianAccount` or an admin account. In this example we'll use the account of Validator1 which has an address of `0xed9d02e382b34818e88b88a309c7fe71e65f419d`, and we'll connect to Validator1's RPC endpoint `http://127.0.0.1:21001`.
 
-The next step is to compile the contracts and deploy them in a specific order. The `contracts` directory
-(`smart_contracts/permissioning/contracts`) has two versions of contracts.
+The next step is to compile the contracts and deploy them in a specific order. The `contracts` directory (`smart_contracts/permissioning/contracts`) has two versions of contracts.
 
-* `version 1`: Permissioning rules are applied during transaction entry using the permissioning
-data stored in node memory.
-* `version 2`: Permissioning rules are applied at the during transaction entry
-and block minting using the data stored in the permissioning contracts. This tutorial uses `version 2` because it is
-more robust and suited for enterprise use.
+- `version 1`: Permissioning rules are applied during transaction entry using the permissioning data stored in node memory.
+- `version 2`: Permissioning rules are applied at the during transaction entry and block minting using the data stored in the permissioning contracts. This tutorial uses `version 2` because it is more robust and suited for enterprise use.
 
 The folder contains the following contracts:
 
-* `PermissionsInterface.sol`: Provides an external interface, and internal proxy to `PermissionsImplementation.sol`.
-* `PermissionsImplementation.sol`: Contains the logic of the permissions-related functionality.
-* `OrgManager.sol`: Implements logic for all organization management functionality.
-* `AccountManager.sol`: Implements logic for all account management functionality.
-* `NodeManager.sol`: Contains the node management functionality.
-* `RoleManager.sol`：Implements logic for all role management functionality.
-* `VoterManager.sol`: Implements account voter and voting functionality.
+- `PermissionsInterface.sol`: Provides an external interface, and internal proxy to `PermissionsImplementation.sol`.
+- `PermissionsImplementation.sol`: Contains the logic of the permissions-related functionality.
+- `OrgManager.sol`: Implements logic for all organization management functionality.
+- `AccountManager.sol`: Implements logic for all account management functionality.
+- `NodeManager.sol`: Contains the node management functionality.
+- `RoleManager.sol`：Implements logic for all role management functionality.
+- `VoterManager.sol`: Implements account voter and voting functionality.
 
 Navigate to the `smart_contracts/permissioning` directory and then compile the contracts:
 
@@ -467,17 +444,13 @@ npm install
 ./scripts/compile.sh
 ```
 
-Next, deploy the contracts and once complete, execute the `init` function of `PermissionsUpgradable.sol`
-with the `GuardianAccount` address specified earlier. This is wrapped up into a single script
-that you can run:
+Next, deploy the contracts and once complete, execute the `init` function of `PermissionsUpgradable.sol` with the `GuardianAccount` address specified earlier. This is wrapped up into a single script that you can run:
 
 ```bash
 node ./scripts/deploy.js
 ```
 
-When completed, a `permission-config.json` file is created which contains the addresses of the
-contracts and any accounts that serve as admins. In this example we've used all accounts, if you
-deploy these contracts in a production network, please select only those which need to be admins.
+When completed, a `permission-config.json` file is created which contains the addresses of the contracts and any accounts that serve as admins. In this example we've used all accounts, if you deploy these contracts in a production network, please select only those which need to be admins.
 
 The file looks similar to:
 
@@ -503,39 +476,33 @@ The file looks similar to:
 
 Where:
 
-* `permissionModel` is the Permission model used (v1 or v2).
-* `upgradableAddress` is the address of the deployed `PermissionsUpgradable.sol `contract.
-* `interfaceAddress` is the address of the deployed `PermissionsInterface.sol` contract.
-* `implAddress` is the address of the deployed `PermissionsImplementation.sol` contract.
-* `nodeMgrAddress` is the address of the deployed `NodeManager.sol` contract.
-* `accountMgrAddress` is the address of the deployed `AccountManager.sol` contract.
-* `roleMgrAddress` is the address of the deployed `RoleManager.sol` contract.
-* `voterMgrAddress` is the address of the deployed `VoterManager.sol` contract.
-* `orgMgrAddress` is the address of the deployed `OrgManager.sol` contract.
-* `nwAdminOrg` - Name of the initial organization to be created as a part of the network boot up
-    with a new permissions model. This organization owns all the initial nodes and network
-    administrator accounts at network boot up.
-* `nwAdminRole` - Role ID assigned to the network administrator accounts.
-* `orgAdminRole` - Role ID assigned to the organization administrator account.
-* `accounts` - Initial list of accounts linked to the network administrator organization and assigned
-    the network administrator role. These accounts have complete control of the network and can propose
-    and approve new organizations into the network.
-* `subOrgBreadth` - Number of sub-organizations that any organization can have.
-* `subOrgDepth` - Maximum depth of the sub-organization hierarchy allowed in the network.
+- `permissionModel` is the Permission model used (v1 or v2).
+- `upgradableAddress` is the address of the deployed `PermissionsUpgradable.sol `contract.
+- `interfaceAddress` is the address of the deployed `PermissionsInterface.sol` contract.
+- `implAddress` is the address of the deployed `PermissionsImplementation.sol` contract.
+- `nodeMgrAddress` is the address of the deployed `NodeManager.sol` contract.
+- `accountMgrAddress` is the address of the deployed `AccountManager.sol` contract.
+- `roleMgrAddress` is the address of the deployed `RoleManager.sol` contract.
+- `voterMgrAddress` is the address of the deployed `VoterManager.sol` contract.
+- `orgMgrAddress` is the address of the deployed `OrgManager.sol` contract.
+- `nwAdminOrg` - Name of the initial organization to be created as a part of the network boot up with a new permissions model. This organization owns all the initial nodes and network administrator accounts at network boot up.
+- `nwAdminRole` - Role ID assigned to the network administrator accounts.
+- `orgAdminRole` - Role ID assigned to the organization administrator account.
+- `accounts` - Initial list of accounts linked to the network administrator organization and assigned the network administrator role. These accounts have complete control of the network and can propose and approve new organizations into the network.
+- `subOrgBreadth` - Number of sub-organizations that any organization can have.
+- `subOrgDepth` - Maximum depth of the sub-organization hierarchy allowed in the network.
 
-The last step is to copy the above `permission-config.json` into the `data` directory of each GoQuorum node and
-restart the nodes. This can be done by running the script:
+The last step is to copy the above `permission-config.json` into the `data` directory of each GoQuorum node and restart the nodes. This can be done by running the script:
 
 ```bash
 ./scripts/copyAndRestart.sh
 ```
 
-Once the network starts up you can use the [API methods](../../configure-and-manage/manage/enhanced-permissions.md)
-to add or remove permissions.
+Once the network starts up you can use the [API methods](../../configure-and-manage/manage/enhanced-permissions.md) to add or remove permissions.
 
 !!! warning "Important considerations for production"
 
-    During network initialisation a few things happen:
+    During network initialization a few things happen:
 
     * A network admin organization is created with the `nwAdminOrg` name that was specified in the
         `permission-config.json`. All nodes which are part of the `static-nodes.json` will be automatically assigned
@@ -546,9 +513,7 @@ to add or remove permissions.
 
 ## Use Remix
 
-You can connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](remix.md).
-Follow the instructions for activating the remix plugin in [Getting Started](remix.md),
-using the GoQuorum and Tessera URLs in the [Private transactions](#private-transactions) section.
+You can connect your nodes to [Remix](http://remix.ethereum.org) by using the [GoQuorum Plugin](remix.md). Follow the instructions for activating the remix plugin in [Getting Started](remix.md), using the GoQuorum and Tessera URLs in the [Private transactions](#private-transactions) section.
 
 ## Use Cakeshop
 
@@ -556,8 +521,7 @@ using the GoQuorum and Tessera URLs in the [Private transactions](#private-trans
 
 1. Open [`http://localhost:8999`](http://localhost:8999) in your browser.
 1. Select the **Contracts** tab and **Deploy** the contract registry.
-1. Go to the **Sandbox**, select the `SimpleStorage` sample contract from the Contract Library, and deploy with
-    `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`).
+1. Go to the **Sandbox**, select the `SimpleStorage` sample contract from the Contract Library, and deploy with `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`).
 1. Return to the main Cakeshop page, go to the **Contracts** tab again, and you should be able to see the contract you just deployed.
 1. Interact with it from there, and switch between nodes using the dropdown in the top right corner of the page.
 
@@ -565,27 +529,22 @@ using the GoQuorum and Tessera URLs in the [Private transactions](#private-trans
 
 You can use [MetaMask](https://metamask.io/) to send a transaction on your private network.
 
-* Open MetaMask and connect it to your private network RPC endpoint by selecting **Localhost 8545** in the network list.
-* Choose one of the following test accounts and [import it into MetaMask by copying the corresponding private key](https://metamask.zendesk.com/hc/en-us/articles/360015489331-How-to-import-an-Account).
+- Open MetaMask and connect it to your private network RPC endpoint by selecting **Localhost 8545** in the network list.
+- Choose one of the following test accounts and [import it into MetaMask by copying the corresponding private key](https://metamask.zendesk.com/hc/en-us/articles/360015489331-How-to-import-an-Account).
 
 {!global/test_accounts.md!}
 
-After importing an existing test account, [create another test account from scratch]
-to use as the recipient for a test Ether transaction.
+After importing an existing test account, [create another test account from scratch] to use as the recipient for a test Ether transaction.
 
 In MetaMask, select the new test account and [copy its address](https://metamask.zendesk.com/hc/en-us/articles/360015289512-How-to-copy-your-MetaMask-Account-Public-Address).
 
-In the [Block Explorer](http://localhost:25000), search for the new test account by clicking on the :mag: and pasting
-the test account address into the search box.
+In the [Block Explorer](http://localhost:25000), search for the new test account by clicking on the :mag: and pasting the test account address into the search box.
 
 The new test account displays with a zero balance.
 
-[Send test Ether](https://metamask.zendesk.com/hc/en-us/articles/360015488931-How-to-send-ETH-and-ERC-20-tokens-from-your-MetaMask-Wallet)
-from the first test account (containing test Ether) to the new test account (which has a zero balance).
+[Send test Ether](https://metamask.zendesk.com/hc/en-us/articles/360015488931-How-to-send-ETH-and-ERC-20-tokens-from-your-MetaMask-Wallet) from the first test account (containing test Ether) to the new test account (which has a zero balance).
 
-!!! tip
-    You can use a zero gas price here as this private test network is a free gas network, but the maximum amount of
-    gas that can be used (the gas limit) for a value transaction must be at least 21000.
+!!! tip You can use a zero gas price here as this private test network is a free gas network, but the maximum amount of gas that can be used (the gas limit) for a value transaction must be at least 21000.
 
 Refresh the Block Explorer page in your browser displaying the target test account.
 
@@ -597,8 +556,7 @@ You can use a demo dapp called Pet Shop, provided by [Truffle](https://www.truff
 
 The dapp runs a local website using Docker, and uses smart contracts deployed on the network.
 
-The directory created by `quorum-dev-quickstart` includes a `dapps` directory with a `pet-shop` subdirectory,
-which contains the source code for the dapp, including the smart contracts, website, and configurations to run this tutorial.
+The directory created by `quorum-dev-quickstart` includes a `dapps` directory with a `pet-shop` subdirectory, which contains the source code for the dapp, including the smart contracts, website, and configurations to run this tutorial.
 
 With the blockchain running and MetaMask connected to **Localhost 8545**, run the following command to start the Pet Shop dapp:
 
@@ -749,8 +707,7 @@ The script:
     fdbefa105bee995c56c2be23e9912f943973462bfc0b37df610e7feb7be4ca86
     ```
 
-In the browser where you have MetaMask enabled and one of the test accounts loaded, open a new tab and navigate
-to [the Pet Shop dapp](http://localhost:3001) where you can adopt lovely pets (sorry, not for real, it's a demo).
+In the browser where you have MetaMask enabled and one of the test accounts loaded, open a new tab and navigate to [the Pet Shop dapp](http://localhost:3001) where you can adopt lovely pets (sorry, not for real, it's a demo).
 
 When you select **Adopt**, a MetaMask window pops up and requests your permission to continue with the transaction.
 
@@ -768,41 +725,38 @@ The MetaMask UI also keeps a record of the transaction.
 
 ### Deploy your own dapp
 
-You can deploy your own dapp to the Quorum Developer Quickstart by configuring your dapp to point to the Quickstart
-network.
+You can deploy your own dapp to the Quorum Developer Quickstart by configuring your dapp to point to the Quickstart network.
 
-If you're using [Truffle](https://trufflesuite.com/truffle/), update the `networks` object in the
-[Truffle configuration file](https://trufflesuite.com/docs/truffle/reference/configuration#networks) to specify which
-networks to connect to for deployments and testing.
-The Quickstart's RPC service endpoint is `http://localhost:8545`.
+If you're using [Truffle](https://trufflesuite.com/truffle/), update the `networks` object in the [Truffle configuration file](https://trufflesuite.com/docs/truffle/reference/configuration#networks) to specify which networks to connect to for deployments and testing. The Quickstart's RPC service endpoint is `http://localhost:8545`.
 
-For example, the following is the Truffle configuration file for the Pet Shop dapp used in the Quickstart GoQuorum
-network:
+For example, the following is the Truffle configuration file for the Pet Shop dapp used in the Quickstart GoQuorum network:
 
 ```js
 const PrivateKeyProvider = require("@truffle/hdwallet-provider");
 
 // insert the private key of the account used in MetaMask, e.g. Account 1 (Miner Coinbase Account)
-const privateKey = "c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3";
+const privateKey =
+  "c87509a1c067bbde78beb793e6fa76530b6382a4c0241e5e4a9ec0a0f44dc0d3";
 
 module.exports = {
   networks: {
     development: {
       host: "127.0.0.1",
       port: 7545,
-      network_id: "*" // Match any network id
+      network_id: "*", // Match any network id
     },
     develop: {
-      port: 8545
+      port: 8545,
     },
     quickstartWallet: {
-      provider: () => new PrivateKeyProvider(privateKey, "http://localhost:8545"),
+      provider: () =>
+        new PrivateKeyProvider(privateKey, "http://localhost:8545"),
       network_id: "*",
       type: "quorum",
       gasPrice: 0,
-      chainId: 1337
-    }
-  }
+      chainId: 1337,
+    },
+  },
 };
 ```
 
@@ -850,11 +804,9 @@ To shut down the private network and delete all containers and images created fr
 
 New nodes joining an existing network require the following:
 
-* The same genesis file used by all other nodes on the running network.
-* A list of nodes to connect to; this is done by specifying [bootnodes], or by providing a list of [static nodes].
-* A node key pair and optionally an account. If the running network is using permissions, then you need
-    to add the new node's enode details to the [permissions file] used by existing nodes, or update
-    the onchain permissioning contract.
+- The same genesis file used by all other nodes on the running network.
+- A list of nodes to connect to; this is done by specifying [bootnodes], or by providing a list of [static nodes].
+- A node key pair and optionally an account. If the running network is using permissions, then you need to add the new node's enode details to the [permissions file] used by existing nodes, or update the onchain permissioning contract.
 
 The following steps describe the process to add a new node to the Quorum Dev Quickstart.
 
@@ -868,14 +820,11 @@ npm install
 node generate_node_keys.js --password "Password"
 ```
 
-!!! note
-    The `--password` parameter is optional.
+!!! note The `--password` parameter is optional.
 
 ### 2. Create new node directory
 
-In the [`config/nodes`](https://github.com/ConsenSys/quorum-dev-quickstart/tree/master/files/common/config/nodes)
-directory, create a subdirectory for the new node (for example, `newnode`), and move the
-`nodekey`, `nodekey.pub`, `address` and `accountkey` files from the previous step into this directory.
+In the [`config/nodes`](https://github.com/ConsenSys/quorum-dev-quickstart/tree/master/files/common/config/nodes) directory, create a subdirectory for the new node (for example, `newnode`), and move the `nodekey`, `nodekey.pub`, `address` and `accountkey` files from the previous step into this directory.
 
 ### 3. Update docker-compose
 
@@ -904,31 +853,23 @@ Add an entry for the new node into the docker-compose file:
 
 ```
 
-!!! important
-    Select an IP address and port map that aren't being used for the other containers. Additionally mount the newly created
-    folder `./config/nodes/newnode` to the `/config/keys` directory of the new node.
+!!! important Select an IP address and port map that aren't being used for the other containers. Additionally mount the newly created folder `./config/nodes/newnode` to the `/config/keys` directory of the new node.
 
 ### 4. Update files with the enode address
 
 Add the new node's enode address to the [static nodes] file and [permissions file].
 
-The enode uses the format `enode://pubkey@ip_address:30303?discport=0&raftport=53000`. where raftport is only required for
-the [Raft](../../configure-and-manage/configure/consensus-protocols/raft.md) consensus algorithm
+The enode uses the format `enode://pubkey@ip_address:30303?discport=0&raftport=53000`. where raftport is only required for the [Raft](../../configure-and-manage/configure/consensus-protocols/raft.md) consensus algorithm
 
-If the `nodekey.pub` is `4540ea...9c1d78` and the IP address is `172.16.239.41`, then the enode
-address would be `"enode://4540ea...9c1d78@172.16.239.41:30303?discport=0&raftport=53000"`,
-which must be added to both files.
+If the `nodekey.pub` is `4540ea...9c1d78` and the IP address is `172.16.239.41`, then the enode address would be `"enode://4540ea...9c1d78@172.16.239.41:30303?discport=0&raftport=53000"`, which must be added to both files.
 
 #### 5. Start the network
 
 Once complete, start the network up with `./run.sh`
 
-On a live network the process is the same when using local permissions with the `permissioned-nodes.json` file.
-You don't need to restart the network and subsequent changes to the files are picked up by the servers.
+On a live network the process is the same when using local permissions with the `permissioned-nodes.json` file. You don't need to restart the network and subsequent changes to the files are picked up by the servers.
 
-When using the smart contract you can either make changes
-via a [dapp](https://github.com/ConsenSys/permissioning-smart-contracts) or via RPC
-[API](https://docs.goquorum.consensys.net/en/latest/Reference/API-Methods/#permission-methods) calls.
+When using the smart contract you can either make changes via a [dapp](https://github.com/ConsenSys/permissioning-smart-contracts) or via RPC [API](https://docs.goquorum.consensys.net/en/latest/Reference/API-Methods/#permission-methods) calls.
 
 [bootnodes]: ../create-permissioned-network.md#2-setup-bootnode
 [permissions file]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/data/permissioned-nodes.json

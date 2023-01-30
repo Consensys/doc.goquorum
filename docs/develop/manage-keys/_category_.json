@@ -1,0 +1,8 @@
+{
+  "label": "Manage keys",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "develop/manage-keys-index"
+  }
+}

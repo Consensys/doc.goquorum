@@ -1,21 +1,20 @@
 ---
+title: Create a genesis file
 description: Configuring a network using a genesis file.
+sidebar_position: 1
 ---
 
 # Creating the GoQuorum genesis file
 
-The genesis file defines the first block in the chain, and the first block defines which chain you
-want to join.
+The genesis file defines the first block in the chain, and the first block defines which chain you want to join.
 
-[Create a JSON genesis file](https://consensys.net/blog/quorum/hyperledger-besu-how-to-create-an-ethereum-genesis-file/),
-then specify the genesis file when initalizing GoQuorum with:
+[Create a JSON genesis file](https://consensys.net/blog/quorum/hyperledger-besu-how-to-create-an-ethereum-genesis-file/), then specify the genesis file when initializing GoQuorum with:
 
 ```bash
 geth init <PATH-TO-GENESIS-FILE>
 ```
 
-The genesis file specifies the [network-wide settings](../../../reference/genesis.md), so all nodes in a network must use
-the same genesis file.
+The genesis file specifies the [network-wide settings](../../../reference/genesis.md), so all nodes in a network must use the same genesis file.
 
 !!! example "Example Raft genesis file"
 
