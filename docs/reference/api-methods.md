@@ -155,19 +155,19 @@ quorumExtension.approveExtension(
 
 - If you attempt to extend a contract in the process of being extended, the following error is returned:
 
-  ```text
+  ```
   Error: contract extension in progress for the given contract address
   ```
 
 - The recipient can approve the extension only once. Executing `quorumExtension.approveExtension` once the extension process is completed results in the following error:
 
-  ```text
+  ```
   Error: contract extension process complete. nothing to accept
   ```
 
 - The approver (the `from` address in `txArgs`) must be the receiver of the extension (`recipientAddress` from `quorumExtension_extendContract`):
 
-  ```text
+  ```
   Error: account is not acceptor of this extension request
   ```
 
@@ -225,11 +225,11 @@ quorumExtension.cancelExtension("0x622aff909c081783613c9d3f5f4c47be78b310ac", {
 
 :::warning Frequent issues
 
-- The canceller (`from` address in `txArgs`) must be the same as the initiator of the extension (the `from` address in `txArgs` for the [`quorumExtension_extendContract`](#quorumextension_extendcontract) call) or the following error is returned:
+The canceller (`from` address in `txArgs`) must be the same as the initiator of the extension (the `from` address in `txArgs` for the [`quorumExtension_extendContract`](#quorumextension_extendcontract) call) or the following error is returned:
 
-  ```text
-  Error: account is not the creator of this extension request
-  ```
+```
+Error: account is not the creator of this extension request
+```
 
 :::
 
@@ -295,9 +295,9 @@ quorumExtension.extendContract(
 
 - If you attempt to extend a contract in the process of being extended, the following error is returned:
 
-      ```text
-      Error: contract extension in progress for the given contract address
-      ```
+```
+Error: contract extension in progress for the given contract address
+```
 
 - You must execute `quorumExtension_extendContract` from the node that initially created the contract.
 
