@@ -234,10 +234,12 @@ delimiter := "." or "_"
 method-name := string
 ```
 
-!!! example "Example scopes: Protecting APIs"
+:::tip Example scopes: Protecting APIs
 
-    | Scope                                      | Description                                                                                        |
-    |:-------------------------------------------|:---------------------------------------------------------------------------------------------------|
-    | `rpc://web3.clientVersion`                 | Allow access to the `web3_clientVersion` API.                                                      |
-    | `rpc://eth_*` <br/>or `rpc://eth_`         | Allow access to all APIs under the `eth` namespace.                                                |
-    | `rpc://*_version` <br/>or `rpc://_version` | Allow access to the `version` method of all namespaces. For example, `net_version`, `ssh_version`. |
+| Scope | Description |
+| :-- | :-- |
+| `rpc://web3.clientVersion` | Allow access to the `web3_clientVersion` API. |
+| `rpc://eth_*` <br/>or `rpc://eth_` | Allow access to all APIs under the `eth` namespace. |
+| `rpc://*_version` <br/>or `rpc://_version` | Allow access to the `version` method of all namespaces. For example, `net_version`, `ssh_version`. |
+
+:::

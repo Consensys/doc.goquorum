@@ -8,10 +8,11 @@ sidebar_position: 9
 
 The web3js-quorum Ethereum JavaScript library extends [web3.js] and adds supports for GoQuorum and Hyperledger Besu specific JSON-RPC APIs and features.
 
-!!! note
+:::note
 
-    The web3js-quorum library replaces the deprecated [quorum.js] and [web3js-eea] libraries, and includes all the
-    features of both libraries.
+The web3js-quorum library replaces the deprecated [quorum.js] and [web3js-eea] libraries, and includes all the features of both libraries.
+
+:::
 
 The [web3js-quorum documentation] contains information about the available APIs and features.
 

@@ -24,9 +24,11 @@ Network configuration items are specified in the genesis file in the `config` ob
 | `maxCodeSize` | Maximum smart contract code size. The default is `32` (kilobytes), increased from Ethereum's default `24`. This is configurable up to `128`. |
 | `isQuorum` | Set to `true` to enable `geth` to work as GoQuorum and make additional checks, for example, ensure the gas fee is zero. |
 
-!!! note
+:::note
 
-    Using the [Raft consensus protocol](../configure-and-manage/configure/consensus-protocols/raft.md) doesn't require a specific item in the `config` object.
+Using the [Raft consensus protocol](../configure-and-manage/configure/consensus-protocols/raft.md) doesn't require a specific item in the `config` object.
+
+:::
 
 ## Genesis block parameters
 
@@ -50,39 +52,47 @@ The following table describes the genesis block parameters with the same purpose
 
 In public networks, the milestone blocks specify the blocks at which the network changed protocol.
 
-!!! example "Ethereum Mainnet milestone blocks"
+:::tip Ethereum Mainnet milestone blocks
 
-    ```json
-    {
-      "config": {
-        ...
-        "homesteadBlock": 1150000,
-        "daoForkBlock": 1920000,
-        "daoForkSupport": true,
-        "eip150Block": 2463000,
-        "eip150Hash": "0x2086799aeebeae135c246c65021c82b4e15a2c451340993aacfd2751886514f0",
-        "eip155Block": 2675000,
-        "eip158Block": 2675000,
-        "byzantiumBlock": 4370000,
-        "constantinopleBlock": 7280000,
-        "constantinopleFixBlock": 7280000,
-        ...
-      },
-    }
-    ```
+```json
+{
+  "config": {
+    ...
+    "homesteadBlock": 1150000,
+    "daoForkBlock": 1920000,
+    "daoForkSupport": true,
+    "eip150Block": 2463000,
+    "eip150Hash": "0x2086799aeebeae135c246c65021c82b4e15a2c451340993aacfd2751886514f0",
+    "eip155Block": 2675000,
+    "eip158Block": 2675000,
+    "byzantiumBlock": 4370000,
+    "constantinopleBlock": 7280000,
+    "constantinopleFixBlock": 7280000,
+    ...
+  },
+}
+```
+
+:::
 
 In private networks, the milestone block defines the protocol version for the network.
 
-!!! example "Private network milestone blocks"
+:::tip Private network milestone blocks
 
-    ```json
-    {
-      "config": {
-        ...
-        "constantinopleFixBlock": 0,
-        ...
-      },
-    }
-    ```
+```json
+{
+  "config": {
+    ...
+    "constantinopleFixBlock": 0,
+    ...
+  },
+}
+```
 
-!!! tip When specifying the milestone block for private networks, you only need to specify the latest milestone. It is implied this includes the preceding milestones.
+:::
+
+:::note
+
+When specifying the milestone block for private networks, you only need to specify the latest milestone. It is implied this includes the preceding milestones.
+
+:::
