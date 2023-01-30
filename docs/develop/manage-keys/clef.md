@@ -17,7 +17,11 @@ sidebar_position: 1
 
 Instead of `geth` loading and using accounts directly, `geth` delegates account management responsibilities to `clef`.
 
-!!!important Account management will be deprecated within `geth` in the future and replaced with `clef`.
+:::warning
+
+Account management will be deprecated within `geth` in the future and replaced with `clef`.
+
+:::
 
 Using `clef` instead of `geth` for account management has several benefits:
 
@@ -53,26 +57,32 @@ Read [the overview and step-by-step guide on `clef` initialization, startup, and
 
 Using `clef` as an external signer requires interacting with `clef` through its RPC API. By default this is exposed over IPC socket. The API can also be exposed over HTTP by using the `--http.addr` CLI flag.
 
-!!!example
+:::tip Example
 
-    An example workflow:
+An example workflow:
 
-    1. Start `clef` and make your accounts available to it.
-    1. Sign a transaction with the account by using `clef`'s `account_signTransaction` API.  `clef` returns the signed transaction.
-    1. Use `eth_sendRawTransaction` or `eth_sendRawPrivateTransaction` to send the signed transaction to a GoQuorum node that doesn't have your accounts available to it.
-    1. The GoQuorum node validates the transaction and propagates it through the network for minting.
+1. Start `clef` and make your accounts available to it.
+2. Sign a transaction with the account by using `clef`'s `account_signTransaction` API. `clef` returns the signed transaction.
+3. Use `eth_sendRawTransaction` or `eth_sendRawPrivateTransaction` to send the signed transaction to a GoQuorum node that doesn't have your accounts available to it.
+4. The GoQuorum node validates the transaction and propagates it through the network for minting.
 
-    === "List accounts"
+<!--tabs-->
 
-        ```bash
-        echo '{"id": 1, "jsonrpc": "2.0", "method": "account_list"}' | nc -U /path/to/clef.ipc
-        ```
+# List accounts
 
-    === "Sign data"
+```bash
+echo '{"id": 1, "jsonrpc": "2.0", "method": "account_list"}' | nc -U /path/to/clef.ipc
+```
 
-        ```bash
-        echo '{"id": 1, "jsonrpc": "2.0", "method": "account_signData", "params": ["data/plain", "0x6038dc01869425004ca0b8370f6c81cf464213b3", "0xaaaaaa"]}' | nc -U /path/to/clef.ipc
-        ```
+# Sign data
+
+```bash
+echo '{"id": 1, "jsonrpc": "2.0", "method": "account_signData", "params": ["data/plain", "0x6038dc01869425004ca0b8370f6c81cf464213b3", "0xaaaaaa"]}' | nc -U /path/to/clef.ipc
+```
+
+<!--/tabs-->
+
+:::
 
 ### As a geth signer
 

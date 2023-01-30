@@ -65,9 +65,11 @@ Raft inherits the static block reward that is awarded to miners on upstream geth
 - `ByzantiumBlockReward` = big.NewInt(3e+18) // Block reward in wei for successfully mining a block upward from Byzantium
 - `ConstantinopleBlockReward` = big.NewInt(2e+18) // Block reward in wei for successfully mining a block upward from Constantinople
 
-!!! info
+:::info
 
-    The block `miner` field is now populated with the rewarded account.
+The block `miner` field is now populated with the rewarded account.
+
+:::
 
 ### QBFT
 

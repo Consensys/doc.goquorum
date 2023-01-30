@@ -82,7 +82,7 @@ An HTTP configuration file has the following parameters.
 
 :::tip http-config-file.toml
 
-```
+```toml
 httpUrl = "HTTP://127.0.0.1:9101"
 timeout = 5
 httpWriteBufferSize = 4096
@@ -107,7 +107,7 @@ An HTTP configuration file using TLS has the following parameters.
 
 :::tip http-config-file.toml
 
-```
+```toml
 httpUrl = "HTTPS://127.0.0.1:9101"
 tlsMode = "STRICT"
 tlsRootCA = "/path/to/ca-root.cert.pem"

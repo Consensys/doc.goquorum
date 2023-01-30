@@ -12,14 +12,16 @@ The [Promtail configuration] ingests logs at regular defined intervals and outpu
 
 The `pipeline configuration` in Promtail defines pipeline stages that can collate logs natively or using the JSON format.
 
-!!! note
+:::note
 
-    If using the pipeline regex stage in `Promtail`, configuration must match your log format.
+If using the pipeline regex stage in `Promtail`, configuration must match your log format.
+
+:::
 
 To view the GoQuorum Quickstart network logs in Loki:
 
 1. [Start the Quorum Developer Quickstart with GoQuorum](../../tutorials/quorum-dev-quickstart/using-the-quickstart.md), selecting Loki monitoring.
-1. Open the [`Grafana Loki address`](http://localhost:3000/d/Ak6eXLsPxFemKYKEXfcH/quorum-logs-loki?orgId=1&var-app=quorum&var-search=&from=now-15m&to=now) listed by the sample networks `list.sh` script.
+2. Open the [`Grafana Loki address`](http://localhost:3000/d/Ak6eXLsPxFemKYKEXfcH/quorum-logs-loki?orgId=1&var-app=quorum&var-search=&from=now-15m&to=now) listed by the sample networks `list.sh` script.
 
    The logs display in Loki.
 

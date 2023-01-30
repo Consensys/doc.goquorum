@@ -17,13 +17,13 @@ Each plugin starts as a separate process and communicates with the GoQuorum clie
 Developing plugins in Go is simplest. For [plugins written in other languages](#advanced-topics-for-non-go-plugins), plugin authors must understand the following lifecycle:
 
 1. `geth` looks for the plugin distribution file after reading the plugin definition from settings.
-1. `geth` verifies the plugin distribution file integrity.
-1. `geth` generates a self-signed certificate (client certificate).
-1. `geth` spawns the plugin with the client certificate.
-1. The plugin imports the client certificate and generates a self-signed server certificate for its RPC server.
-1. The plugin includes the RPC server certificate in the handshake.
-1. `geth` imports the plugin RPC server certificate.
-1. `geth` communicates with the plugin via RPC over TLS, using mutual TLS.
+2. `geth` verifies the plugin distribution file integrity.
+3. `geth` generates a self-signed certificate (client certificate).
+4. `geth` spawns the plugin with the client certificate.
+5. The plugin imports the client certificate and generates a self-signed server certificate for its RPC server.
+6. The plugin includes the RPC server certificate in the handshake.
+7. `geth` imports the plugin RPC server certificate.
+8. `geth` communicates with the plugin via RPC over TLS, using mutual TLS.
 
 Each plugin must implement the [`PluginInitializer` gRPC service interface](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/init.proto). After the plugin process starts and establishes a connection with the GoQuorum client, GoQuorum invokes the `Init()` gRPC method to initialize the plugin with data from the plugin configuration file, detailed below.
 
@@ -38,31 +38,35 @@ GoQuorum can load [plugins](../concepts/plugins.md) from:
 
 You can specify the plugin configuration file with the following content.
 
-=== "JSON file"
+<!--tabs-->
 
-    ```json
-    {
-      "baseDir": string,
-      "central": object(PluginCentralConfiguration),
-      "providers": {
-        <string>: object(PluginDefinition)
-      }
-    }
-    ```
+# JSON file
 
-=== "TOML file"
+```json
+{
+  "baseDir": string,
+  "central": object(PluginCentralConfiguration),
+  "providers": {
+    <string>: object(PluginDefinition)
+  }
+}
+```
 
-    ```toml
-    [Node.Plugins]
-        BaseDir = string
+# TOML file
 
-        [Node.Plugins.Central]
-            .. = .. from object(PluginCentralConfiguration)
+```toml
+[Node.Plugins]
+    BaseDir = string
 
-        [[Node.Plugins.Providers]]
-            [[Node.Plugins.Providers.<string>]]
-            .. = .. from object(PluginDefinition)
-    ```
+    [Node.Plugins.Central]
+        .. = .. from object(PluginCentralConfiguration)
+
+    [[Node.Plugins.Providers]]
+        [[Node.Plugins.Providers.<string>]]
+        .. = .. from object(PluginDefinition)
+```
+
+<!--/tabs-->
 
 | Field | Description |
 | :-- | :-- |
@@ -75,37 +79,41 @@ You can specify the plugin configuration file with the following content.
 
 [Plugin integrity verification](../concepts/plugins.md#plugin-integrity-verification) uses the GoQuorum Plugin Central Server by default. You can modify this section to configure your own local Plugin Central for plugin integrity verification.
 
-=== "JSON file"
+<!--tabs-->
 
-    ```json
+# JSON file
+
+```json
+{
+  "central": {
     {
-      "central": {
-        {
-          "baseURL": string,
-          "certFingerprint": string,
-          "publicKeyURI": string,
-          "insecureSkipTLSVerify": bool,
-          "pluginDistPathTemplate": string,
-          "pluginSigPathTemplate": string
-        }
-      },
-      ...
+      "baseURL": string,
+      "certFingerprint": string,
+      "publicKeyURI": string,
+      "insecureSkipTLSVerify": bool,
+      "pluginDistPathTemplate": string,
+      "pluginSigPathTemplate": string
     }
-    ```
+  },
+  ...
+}
+```
 
-=== "TOML file"
+# TOML file
 
-    ```toml
-    ...
-            [Node.Plugins.Central]
-            BaseURL = string
-            CertFingerPrint = string
-            PublicKeyURI = string
-            InsecureSkipTLSVerify = bool
-            PluginDistPathTemplate = string
-            PluginSigPathTemplate = string
-    ...
-    ```
+```toml
+...
+        [Node.Plugins.Central]
+        BaseURL = string
+        CertFingerPrint = string
+        PublicKeyURI = string
+        InsecureSkipTLSVerify = bool
+        PluginDistPathTemplate = string
+        PluginSigPathTemplate = string
+...
+```
+
+<!--/tabs-->
 
 | Field | Description |
 | :-- | :-- |
@@ -120,34 +128,38 @@ You can specify the plugin configuration file with the following content.
 
 You can define each supported plugin and its configuration in this section.
 
-=== "JSON file"
+<!--tabs-->
 
-    ```json
-    {
-      "providers": {
-        <string>: {
-          "name": string,
-          "version": string,
-          "config": file/string/array/object
-        },
-        ...
-      },
-      ...
-    }
-    ```
+# JSON file
 
-=== "TOML file"
-
-    ```toml
+```json
+{
+  "providers": {
+    <string>: {
+      "name": string,
+      "version": string,
+      "config": file/string/array/object
+    },
     ...
-        [[Node.Plugins.Providers]]
-            [[Node.Plugins.Providers.<string>]]
-            Name = string
-            Version = string
-            Config = file/string/array/object
-        ...
+  },
+  ...
+}
+```
+
+# TOML file
+
+```toml
+...
+    [[Node.Plugins.Providers]]
+        [[Node.Plugins.Providers.<string>]]
+        Name = string
+        Version = string
+        Config = file/string/array/object
     ...
-    ```
+...
+```
+
+<!--/tabs-->
 
 | Field | Description |
 | :-- | :-- |
@@ -167,27 +179,31 @@ A plugin metadata file `plugin-meta.json` must be included in the distribution Z
 
 The following key value pairs are required:
 
-=== "Syntax"
+<!--tabs-->
 
-    ```json
-    {
-        "name": string,
-        "version": string,
-        "entrypoint": string,
-        "parameters": array(string),
-        ...
-    }
-    ```
+# Syntax
 
-=== "Example"
+```json
+{
+    "name": string,
+    "version": string,
+    "entrypoint": string,
+    "parameters": array(string),
+    ...
+}
+```
 
-    ```json
-    {
-        "name": "quorum-plugin-helloWorld",
-        "version": "1.0.0",
-        "entrypoint": "helloWorldPlugin"
-    }
-    ```
+# Example
+
+```json
+{
+  "name": "quorum-plugin-helloWorld",
+  "version": "1.0.0",
+  "entrypoint": "helloWorldPlugin"
+}
+```
+
+<!--/tabs-->
 
 | Field        | Description                                                |
 | :----------- | :--------------------------------------------------------- |

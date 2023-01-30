@@ -12,16 +12,16 @@ The [Filebeat] configuration ingests logs and the [Metricbeat] configuration col
 
 The [pipeline configuration] defines the JSON format used for GoQuorum logs and automatically picks up any new log fields.
 
-!!! note
+:::note
 
-    The pipeline configuration must match the your log format.
-    If using the default, you can use the [grok plugin](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html)
-    to extract the log fields.
+The pipeline configuration must match the your log format. If using the default, you can use the [grok plugin](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) to extract the log fields.
+
+:::
 
 To view the GoQuorum Quickstart network logs in Kibana:
 
 1. [Start the Quorum Developer Quickstart with GoQuorum](../../tutorials/quorum-dev-quickstart/using-the-quickstart.md), selecting ELK monitoring.
-1. Open the [`Kibana logs address`](http://localhost:5601/app/kibana#/discover) listed by the sample networks `list.sh` script. The logs display in Kibana.
+2. Open the [`Kibana logs address`](http://localhost:5601/app/kibana#/discover) listed by the sample networks `list.sh` script. The logs display in Kibana.
 
    ![Kibana](../../images/KibanaQuickstart.png)
 

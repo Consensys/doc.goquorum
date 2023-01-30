@@ -8,9 +8,11 @@ sidebar_position: 8
 
 GoQuorum supports exporting and importing chain data with built-in tooling. This is a node backup mechanism adapted for the specific needs of GoQuorum such as private transactions, permissioning, and its supported consensus algorithms.
 
-!!! note
+:::note
 
-    GoQuorum chain data import and export must run after `geth` process is stopped.
+GoQuorum chain data import and export must run after `geth` process is stopped.
+
+:::
 
 ## Node backup (export)
 
@@ -34,11 +36,11 @@ GoQuorum import must run on a new node with an initialized `--datadir` after `ge
 
 Restore supports an arbitrary number of import files (at least one).
 
-!!! warning
+:::caution
 
-    If private transactions are used in the chain data, the Private Transaction Manager (PTM) process for the original exported
-    node must be running on the PTM ipc endpoint during import.
-    Otherwise, nil pointer exceptions are raised.
+If private transactions are used in the chain data, the Private Transaction Manager (PTM) process for the original exported node must be running on the PTM ipc endpoint during import. Otherwise, nil pointer exceptions are raised.
+
+:::
 
 ```bash
 PRIVATE_CONFIG=<PTM ipc endpoint> geth import <import file names...> --datadir <geth data dir>

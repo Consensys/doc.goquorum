@@ -20,17 +20,21 @@ See the [`account` plugin reference](../../reference/plugins/account.md) for mor
 
 Run an `account` plugin using GoQuorum or `clef`:
 
-=== "GoQuorum"
+<!--tabs-->
 
-    ```bash
-    geth --plugins file:///path/to/plugins.json ...
-    ```
+# GoQuorum
 
-=== "clef"
+```bash
+geth --plugins file:///path/to/plugins.json ...
+```
 
-    ```bash
-    clef --plugins file:///path/to/plugins.json ...
-    ```
+# clef
+
+```bash
+clef --plugins file:///path/to/plugins.json ...
+```
+
+<!--/tabs-->
 
 `plugins.json` is the [plugins configuration file](../develop-plugins.md) that defines an `account` provider:
 
@@ -50,7 +54,11 @@ Run an `account` plugin using GoQuorum or `clef`:
 
 A limited API allows users to interact directly with `account` plugins.
 
-!!! important GoQuorum must expose the API using the `--http.api plugin@account` or `--ws.api plugin@account` command line options.
+:::caution
+
+GoQuorum must expose the API using the `--http.api plugin@account` or `--ws.api plugin@account` command line options.
+
+:::
 
 ### `plugin@account_newAccount`
 
@@ -60,41 +68,47 @@ Creates a plugin-managed account with a new key.
 
 `config`: _object_ - Plugin-specific JSON configuration for creating an account. See the plugin's documentation for more information on the JSON configuration required.
 
-!!! example
+:::tip Example
 
-    === "GoQuorum"
+<!--tabs-->
 
-        ```bash
-        curl -X POST \
-            -H "Content-Type:application/json" \
-            -d '
-                {
-                    "jsonrpc":"2.0",
-                    "method":"plugin@account_newAccount",
-                    "params":[{<config>}],
-                    "id":1
-                }' \
-            http://localhost:22000
-        ```
+# GoQuorum
 
-    === "JS console"
+```bash
+curl -X POST \
+    -H "Content-Type:application/json" \
+    -d '
+        {
+            "jsonrpc":"2.0",
+            "method":"plugin@account_newAccount",
+            "params":[{<config>}],
+            "id":1
+        }' \
+    http://localhost:22000
+```
 
-        ```js
-        plugin_account.newAccount({<config>})
-        ```
+# JS console
 
-    === "clef"
+```js
+plugin_account.newAccount({<config>})
+```
 
-        ```bash
-        echo '
-            {
-                "jsonrpc":"2.0",
-                "method":"plugin@account_newAccount",
-                "params":[{<config>}],
-                "id":1
-            }
-        ' | nc -U /path/to/clef.ipc
-        ```
+# clef
+
+```bash
+echo '
+    {
+        "jsonrpc":"2.0",
+        "method":"plugin@account_newAccount",
+        "params":[{<config>}],
+        "id":1
+    }
+' | nc -U /path/to/clef.ipc
+```
+
+<!--tabs-->
+
+:::
 
 ### `plugin@account_importRawKey`
 
@@ -107,32 +121,38 @@ Creates a plugin-managed account from an existing private key.
 - `rawkey`: _string_ - Hex-encoded account private key (without the `0x` prefix).
 - `config`: _object_ - Plugin-specific JSON configuration for creating a new account. See the plugin's documentation for more information on the JSON configuration required.
 
-!!! example
+:::tip Example
 
-    === "GoQuorum"
+<!--tabs-->
 
-        ```bash
-        curl -X POST \
-            -H "Content-Type:application/json" \
-            -d '
-                {
-                    "jsonrpc":"2.0",
-                    "method":"plugin@account_importRawKey",
-                    "params":["<rawkey>", {<config>}],
-                    "id":1
-                }' \
-            http://localhost:22000
-        ```
+# GoQuorum
 
-    === "JS console"
+```bash
+curl -X POST \
+    -H "Content-Type:application/json" \
+    -d '
+        {
+            "jsonrpc":"2.0",
+            "method":"plugin@account_importRawKey",
+            "params":["<rawkey>", {<config>}],
+            "id":1
+        }' \
+    http://localhost:22000
+```
 
-        ```js
-        plugin_account.importRawKey(<rawkey>, {<config>})
-        ```
+# JS console
 
-    === "clef"
+```js
+plugin_account.importRawKey(<rawkey>, {<config>})
+```
 
-        Not supported, use CLI instead
+# clef
+
+Not supported, use CLI instead
+
+<!--/tabs-->
+
+:::
 
 ## Command line interface
 
@@ -142,7 +162,11 @@ A limited command line interface allows users to interact directly with `account
 geth account plugin --help
 ```
 
-!!! info Use the `--verbosity` option to hide log output. For example, `geth --verbosity 1 account plugin new ...`.
+:::info
+
+Use the `--verbosity` option to hide log output. For example, `geth --verbosity 1 account plugin new ...`.
+
+:::
 
 ### `geth account plugin new`
 
@@ -152,21 +176,25 @@ Creates a plugin-managed account from an existing key.
 
 `plugins.account.config`: Plugin-specific configuration for creating an account. The value can be `file://...` or inline JSON. See the plugin's documentation for more information on the JSON configuration required.
 
-=== "JSON file"
+<!--tabs-->
 
-    ```bash
-    geth account plugin new \
-        --plugins file:///path/to/plugin-config.json \
-        --plugins.account.config file:///path/to/new-acct-config.json
-    ```
+# JSON file
 
-=== "inline JSON"
+```bash
+geth account plugin new \
+    --plugins file:///path/to/plugin-config.json \
+    --plugins.account.config file:///path/to/new-acct-config.json
+```
 
-    ```bash
-    geth account plugin new \
-        --plugins file:///path/to/plugin-config.json \
-        --plugins.account.config '{<json>}'
-    ```
+# inline JSON
+
+```bash
+geth account plugin new \
+    --plugins file:///path/to/plugin-config.json \
+    --plugins.account.config '{<json>}'
+```
+
+<!--/tabs-->
 
 ### `geth account plugin import`
 
@@ -177,23 +205,27 @@ Creates a plugin-managed account from an existing private key.
 - `plugins.account.config`: Plugin-specific configuration for creating an account. The value can be `file://...` or inline JSON. See the plugin's documentation for more information on the JSON configuration required.
 - `rawkey`: Path to the file containing a hex-encoded account private key (without the `0x` prefix) (for example `/path/to/raw.key`).
 
-=== "JSON file"
+<!--tabs-->
 
-    ```bash
-    geth account plugin import \
-        --plugins file:///path/to/plugin-config.json \
-        --plugins.account.config file:///path/to/new-acct-config.json \
-        /path/to/raw.key
-    ```
+# JSON file
 
-=== "inline JSON"
+```bash
+geth account plugin import \
+    --plugins file:///path/to/plugin-config.json \
+    --plugins.account.config file:///path/to/new-acct-config.json \
+    /path/to/raw.key
+```
 
-    ```bash
-    geth account plugin import \
-        --plugins file:///path/to/plugin-config.json \
-        --plugins.account.config '{<json>}'
-        /path/to/raw.key
-    ```
+# inline JSON
+
+```bash
+geth account plugin import \
+    --plugins file:///path/to/plugin-config.json \
+    --plugins.account.config '{<json>}'
+    /path/to/raw.key
+```
+
+<!--/tabs-->
 
 ### `geth account plugin list`
 

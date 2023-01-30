@@ -22,30 +22,40 @@ The `mpsdbupgrade` command upgrades the existing database to an MPS-enabled data
 
 You must specify the directory containing the GoQuorum node database using the [`--datadir`](https://geth.ethereum.org/docs/interface/command-line-options) command line option.
 
-!!! important - The node must be offline during the upgrade process (we recommend backing up the node data directory before upgrading). - You can't use `mpsdbupgrade` to combine multiple GoQuorum databases/private states into a single GoQuorum database.
+:::caution
 
-!!! example "`mpsdbupgrade` command"
+The node must be offline during the upgrade process (we recommend backing up the node data directory before upgrading). - You can't use `mpsdbupgrade` to combine multiple GoQuorum databases/private states into a single GoQuorum database.
 
-    === "Syntax"
+:::
 
-        ```bash
-        geth mpsdbupgrade --datadir <DATA-DIRECTORY>
-        ```
+:::tip `mpsdbupgrade` command
 
-    === "Example"
+<!--tabs-->
 
-        ```bash
-        geth mpsdbupgrade --datadir data
-        ```
+# Syntax
 
-    === "Example result"
+```bash
+geth mpsdbupgrade --datadir <DATA-DIRECTORY>
+```
 
-        ```bash
-        Processing block 1 with hash 0xf668e8b8320040a0cabd1b6ec963a79a08536409d82b9ccaa31f62b0a1a4dc10
-        ...
-        Processing block 1232739 with hash 0x2423b5d0f4c2883172f657f08d7d359b81f144b8cb8393ee24ef285058d55ce8
-        MPS DB upgrade finished successfully.
-        ```
+# Example
+
+```bash
+geth mpsdbupgrade --datadir data
+```
+
+# Example result
+
+```bash
+Processing block 1 with hash 0xf668e8b8320040a0cabd1b6ec963a79a08536409d82b9ccaa31f62b0a1a4dc10
+...
+Processing block 1232739 with hash 0x2423b5d0f4c2883172f657f08d7d359b81f144b8cb8393ee24ef285058d55ce8
+MPS DB upgrade finished successfully.
+```
+
+<!--/tabs-->
+
+:::
 
 After execution, the node database contains the `empty` state and the `private` state (corresponding to the single private state that existed before the upgrade).
 

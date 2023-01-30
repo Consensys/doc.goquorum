@@ -23,10 +23,14 @@ To view Cakeshop with your GoQuorum Quickstart network:
 
 1. [Start the Quorum Developer Quickstart with GoQuorum](../../tutorials/quorum-dev-quickstart/using-the-quickstart.md),
 
-1. [Start cakeshop](https://github.com/ConsenSys/cakeshop#running-with-the-quorum-dev-quickstart),
+2. [Start cakeshop](https://github.com/ConsenSys/cakeshop#running-with-the-quorum-dev-quickstart),
 
-1. Open the Cakeshop UI at [http://localhost:8999](http://localhost:8999).
+3. Open the Cakeshop UI at [http://localhost:8999](http://localhost:8999).
 
-!!! tip The Quorum Developer Quickstart tutorial demonstrates how to [perform transactions directly using the Cakeshop UI](../../tutorials/quorum-dev-quickstart/using-the-quickstart.md#use-cakeshop).
+:::tip
+
+The Quorum Developer Quickstart tutorial demonstrates how to [perform transactions directly using the Cakeshop UI](../../tutorials/quorum-dev-quickstart/using-the-quickstart.md#use-cakeshop).
+
+:::
 
 ![Cakeshop](../../images/console.png)

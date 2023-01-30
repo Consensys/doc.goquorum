@@ -15,45 +15,51 @@ Use [multi-tenancy via multiple private states (MPS)](../../../concepts/multi-te
 - Tessera version `21.4.0` or later installed
 - GoQuorum version `21.4.2` or later installed
 
-!!! important
+:::caution
 
-    If running an earlier GoQuorum or Tessera version, upgrade your existing nodes to enable MPS and multi-tenancy using
-    the [migration guide](migration.md).
+If running an earlier GoQuorum or Tessera version, upgrade your existing nodes to enable MPS and multi-tenancy using the [migration guide](migration.md).
+
+:::
 
 ### Steps
 
 1.  Set `isMPS` to `true` in the `config` item of the [GoQuorum genesis file](../../configure/genesis-file/genesis-options.md).
 
-    !!! example "MPS configuration"
+    :::tip MPS configuration
 
-        ```json
-        {
-          "config": {
-            ...
-            "isMPS": true
-          },
-          ...
-        }
-        ```
+    ```json
+    {
+      "config": {
+        ...
+        "isMPS": true
+      },
+      ...
+    }
+    ```
 
-    !!! note
+    :::
 
-        There can be a mix of MPS-enabled and non-MPS-enabled nodes in a network.
+    :::note
 
-1.  Configure the [JSON-RPC security plugin](../json-rpc-api-security.md#configuration). This requires configuring an authorization server. View [examples of configuring the plugin to work with different OAuth2 authorization servers](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples).
+    There can be a mix of MPS-enabled and non-MPS-enabled nodes in a network.
 
-1.  Set [`enableMultiplePrivateStates`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#multiple-private-states) to `true` in the Tessera configuration file. The default is `false`.
+    :::
 
-    !!! important
+2.  Configure the [JSON-RPC security plugin](../json-rpc-api-security.md#configuration). This requires configuring an authorization server. View [examples of configuring the plugin to work with different OAuth2 authorization servers](https://github.com/ConsenSys/quorum-security-plugin-enterprise/tree/master/examples).
 
-         GoQuorum can't start if `isMPS` is `true` in the GoQuorum configuration and `enableMultiplePrivateStates` is
-         `false` in the Tessera configuration.
+3.  Set [`enableMultiplePrivateStates`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#multiple-private-states) to `true` in the Tessera configuration file. The default is `false`.
 
-         GoQuorum runs as a non-MPS-enabled node if `isMPS` is `false` and `enableMultiplePrivateStates` is `true`.
+    :::caution
 
-1.  [Configure `residentGroups`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#resident-groups) in the Tessera configuration file.
+    GoQuorum can't start if `isMPS` is `true` in the GoQuorum configuration and `enableMultiplePrivateStates` is `false` in the Tessera configuration.
 
-1.  Run GoQuorum with the [`--multitenancy`](../../../reference/cli-syntax.md#multitenancy) command line option.
+    GoQuorum runs as a non-MPS-enabled node if `isMPS` is `false` and `enableMultiplePrivateStates` is `true`.
+
+    :::
+
+4.  [Configure `residentGroups`](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/Multiple-private-state/#resident-groups) in the Tessera configuration file.
+
+5.  Run GoQuorum with the [`--multitenancy`](../../../reference/cli-syntax.md#multitenancy) command line option.
 
     ```bash
     geth [OPTIONS] --multitenancy --plugins file:///<path>/<to>/plugins.json
@@ -63,19 +69,17 @@ Use [multi-tenancy via multiple private states (MPS)](../../../concepts/multi-te
 
     For example, if you use [quorum-security-plugin-enterprise](https://github.com/ConsenSys/quorum-security-plugin-enterprise), `plugins.json` looks like the following:
 
-    !!! example "plugins.json"
-
-        ```json
-        {
-            "providers": {
-                "security": {
-                    "name":"quorum-security-plugin-enterprise",
-                    "version":"0.1.1",
-                    "config": "/path/to/config.json"
-                }
-            }
+    ```json title="plugins.json"
+    {
+      "providers": {
+        "security": {
+          "name": "quorum-security-plugin-enterprise",
+          "version": "0.1.1",
+          "config": "/path/to/config.json"
         }
-        ```
+      }
+    }
+    ```
 
 ## Configure custom scopes
 
@@ -85,11 +89,11 @@ A network operator must configure [scope values](../../../concepts/multi-tenancy
 
 This example network contains four nodes. Multi-tenant `Node1` is shared between tenant `J` and `G` (`isMPS=true`) and single-tenant `Node2` is used by tenant `D` alone (`isMPS=false`).
 
-!!! note
+:::note
 
-    A node consists of a GoQuorum client and Tessera private transaction manager.
-    We name privacy manager key pairs for easy referencing, for example: `J_K1` or `G_K1`.
-    In reality, their values are the pubic keys used in the `privateFor` and `privateFrom` fields.
+A node consists of a GoQuorum client and Tessera private transaction manager. We name privacy manager key pairs for easy referencing, for example: `J_K1` or `G_K1`. In reality, their values are the pubic keys used in the `privateFor` and `privateFrom` fields.
+
+:::
 
 Tenants are assigned to multi-tenant nodes as follows:
 

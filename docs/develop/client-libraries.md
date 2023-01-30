@@ -15,7 +15,11 @@ GoQuorum supports common smart contract and dapp development, deployment, and op
 - A [private network](../tutorials/private-network/create-ibft-network.md) if deploying a public contract.
 - A [privacy-enabled network](../tutorials/create-privacy-enabled-network.md) if deploying a private contract. Public contracts can also be deployed on privacy-enabled networks.
 
-!!! note You can use the Quorum Developer Quickstart to deploy either public contracts or private contracts. To enable privacy, enter `Y` at the prompt for private transactions.
+:::note
+
+You can use the Quorum Developer Quickstart to deploy either public contracts or private contracts. To enable privacy, enter `Y` at the prompt for private transactions.
+
+:::
 
 ## web3
 
@@ -33,73 +37,86 @@ Initialize your client where:
 
 - `<GoQuorum JSON-RPC HTTP endpoint>` is the JSON-RPC HTTP endpoint of your GoQuorum node.
 
-!!! example "Example connection"
+:::tip Example connection
 
-    === "HTTP example"
+<!--tabs-->
 
-        ```js
-        const Web3 = require("web3");
-        const web3 = new Web3("http://some.local.remote.endpoint:8545");
-        ```
-    === "WS example"
+# HTTP example
 
-        ```js
-        const Web3 = require("web3");
-        const web3 = new Web3("http://some.local.remote.endpoint:8546");
-        ```
+```js
+const Web3 = require("web3");
+const web3 = new Web3("http://some.local.remote.endpoint:8545");
+```
+
+# WS example
+
+```js
+const Web3 = require("web3");
+const web3 = new Web3("http://some.local.remote.endpoint:8546");
+```
+
+<!--/tabs-->
+
+:::
 
 ### Deploying a contract
 
 To deploy a private contract, you need the contract binary. You can use [Solidity](https://solidity.readthedocs.io/en/develop/using-the-compiler.html) to get the contract binary.
 
-!!! example "Deploying a contract with `Contract.deploy`"
+:::tip Deploying a contract with `Contract.deploy`
 
-    ```js
-    myContract.deploy({
-        data: '0x12345...',
-        arguments: [123, 'My String']
-    })
-    .send({
-        from: '0x1234567890123456789012345678901234567891',
-        gas: 1500000,
-        gasPrice: '30000000000000'
-    }, function(error, transactionHash){ ... })
-    .on('error', function(error){ ... })
-    .on('transactionHash', function(transactionHash){ ... })
-    .on('receipt', function(receipt){
-      console.log(receipt.contractAddress) // contains the new contract address
-    })
-    .on('confirmation', function(confirmationNumber, receipt){ ... })
-    .then(function(newContractInstance){
-        console.log(newContractInstance.options.address) // instance with the new contract address
-    });
-    ```
+```js
+myContract.deploy({
+    data: '0x12345...',
+    arguments: [123, 'My String']
+})
+.send({
+    from: '0x1234567890123456789012345678901234567891',
+    gas: 1500000,
+    gasPrice: '30000000000000'
+}, function(error, transactionHash){ ... })
+.on('error', function(error){ ... })
+.on('transactionHash', function(transactionHash){ ... })
+.on('receipt', function(receipt){
+  console.log(receipt.contractAddress) // contains the new contract address
+})
+.on('confirmation', function(confirmationNumber, receipt){ ... })
+.then(function(newContractInstance){
+    console.log(newContractInstance.options.address) // instance with the new contract address
+});
+```
+
+:::
 
 Alternatively, you can also deploy a contract using [`eth.sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth.html#sendsignedtransaction)
 
-!!! example "Deploying a contract with `eth.sendSignedTransaction`"
+:::tip Deploying a contract with `eth.sendSignedTransaction`
 
-    ```js
-    const rawTxOptions = {
-      nonce: "0x00",
-      from: account.address,
-      to: null, //public tx
-      value: "0x00",
-      data: '0x'+contractBin+contractConstructorInit,
-      gasPrice: "0x0", //ETH per unit of gas
-      gasLimit: "0x24A22" //max number of gas units the tx is allowed to use
-    };
-    console.log("Creating transaction...");
-    const tx = new Tx(rawTxOptions);
-    console.log("Signing transaction...");
-    tx.sign(Buffer.from(account.privateKey.substring(2), "hex"));
-    console.log("Sending transaction...");
-    var serializedTx = tx.serialize();
-    const pTx = await web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex').toString("hex"));
-    console.log("tx transactionHash: " + pTx.transactionHash);
-    console.log("tx contractAddress: " + pTx.contractAddress);
-    return pTx;
-    ```
+```js
+const rawTxOptions = {
+  nonce: "0x00",
+  from: account.address,
+  to: null, //public tx
+  value: "0x00",
+  data: "0x" + contractBin + contractConstructorInit,
+  gasPrice: "0x0", //ETH per unit of gas
+  gasLimit: "0x24A22", //max number of gas units the tx is allowed to use
+};
+console.log("Creating transaction...");
+const tx = new Tx(rawTxOptions);
+console.log("Signing transaction...");
+tx.sign(Buffer.from(account.privateKey.substring(2), "hex"));
+console.log("Sending transaction...");
+var serializedTx = tx.serialize();
+const pTx = await web3.eth.sendSignedTransaction(
+  "0x" + serializedTx.toString("hex").toString("hex"),
+);
+console.log("tx transactionHash: " + pTx.transactionHash);
+console.log("tx contractAddress: " + pTx.contractAddress);
+return pTx;
+```
+
+:::
 
 ### web3 methods
 
@@ -109,15 +126,27 @@ For more information about the web3 methods, see the [web3 reference documentati
 
 The [web3js-quorum library] extends web3.js and adds supports for GoQuorum-specific JSON-RPC APIs and features.
 
-!!! note The web3js-quorum library replaces the deprecated [quorum.js] and [web3js-eea] libraries, and includes all the features of both libraries.
+:::note
 
-!!! important web3js-quorum supports GoQuorum JSON-RPC over HTTP only.
+The web3js-quorum library replaces the deprecated [quorum.js] and [web3js-eea] libraries, and includes all the features of both libraries.
 
-    Only the enclave connection can be configured over TLS.
+:::
 
-!!! information If migrating to web3js-quorum, then update your Javascript code as indicated in the following examples.
+:::caution
 
-    [Read the migration guide for more information about updating your code.](https://consensys.github.io/web3js-quorum/latest/tutorial-Migrate%20from%20quorum.js.html)
+web3js-quorum supports GoQuorum JSON-RPC over HTTP only.
+
+Only the enclave connection can be configured over TLS.
+
+:::
+
+:::info
+
+If migrating to web3js-quorum, then update your Javascript code as indicated in the following examples.
+
+[Read the migration guide for more information about updating your code.](https://consensys.github.io/web3js-quorum/latest/tutorial-Migrate%20from%20quorum.js.html)
+
+:::
 
 ### Add web3js-quorum to your project
 
@@ -136,113 +165,137 @@ Initialize your client where:
 - `<enclave TLS cert file path>` is the enclave TLS client certificate file path (see Tessera TLS documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)).
 - `<enclave TLS CA cert file path>` is the enclave TLS certification authority (CA) certificate file path (see Tessera TLS documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)).
 
-!!! example "Example connection"
+<!--tabs-->
 
-    === "Full syntax"
+# Full syntax
 
-        ```js
-        const Web3 = require("web3");
-        const Web3Quorum = require("web3js-quorum");
-        const fs = require('fs');
+```js
+const Web3 = require("web3");
+const Web3Quorum = require("web3js-quorum");
+const fs = require("fs");
 
-        const isQuorum = true;
-        const keyFileBuffer = fs.readFileSync("<enclave key file path>");
-        const certFileBuffer = fs.readFileSync("<enclave TLS cert file path>");
-        const caCertFileBuffer = fs.readFileSync("<enclave TLS CA cert file path>");
-        const enclaveOptions = {
-          ipcPath: "<Enclave IPC Path>",
-          privateUrl: "<Enclave Private URL>",
-          tlsSettings: {
-            key: keyFileBuffer,
-            clcert: certFileBuffer,
-            cacert: caCertFileBuffer,
-            allowInsecure: true | false
-          }
-        };
+const isQuorum = true;
+const keyFileBuffer = fs.readFileSync("<enclave key file path>");
+const certFileBuffer = fs.readFileSync("<enclave TLS cert file path>");
+const caCertFileBuffer = fs.readFileSync("<enclave TLS CA cert file path>");
+const enclaveOptions = {
+  ipcPath: "<Enclave IPC Path>",
+  privateUrl: "<Enclave Private URL>",
+  tlsSettings: {
+    key: keyFileBuffer,
+    clcert: certFileBuffer,
+    cacert: caCertFileBuffer,
+    allowInsecure: true | false,
+  },
+};
 
-        const web3 = new Web3Quorum(new Web3("<GoQuorum JSON-RPC HTTP endpoint>"),
-          enclaveOptions, isQuorum);
-        ```
+const web3 = new Web3Quorum(
+  new Web3("<GoQuorum JSON-RPC HTTP endpoint>"),
+  enclaveOptions,
+  isQuorum,
+);
+```
 
-        !!! important
-            IPC and HTTP are mutually exclusive. Choose one or the other depending on your needs.
+:::caution
 
-    === "IPC example"
+IPC and HTTP are mutually exclusive. Choose one or the other depending on your needs.
 
-        ```js
-        const Web3 = require("web3");
-        const Web3Quorum = require("web3js-quorum");
+:::
 
-        const isQuorum = true;
-        const enclaveOptions = {
-          ipcPath: "unix:/tmp/enclave.ipc"
-        };
+# IPC example
 
-        const web3 = new Web3Quorum(new Web3("http://localhost:8545"),
-          enclaveOptions, isQuorum);
-        ```
+```js
+const Web3 = require("web3");
+const Web3Quorum = require("web3js-quorum");
 
-        !!! important
-            If IPC is enabled with `ipcPath`, then HTTP `privateUrl` and TLS options will be ignored.
+const isQuorum = true;
+const enclaveOptions = {
+  ipcPath: "unix:/tmp/enclave.ipc",
+};
 
-    === "HTTP example"
+const web3 = new Web3Quorum(
+  new Web3("http://localhost:8545"),
+  enclaveOptions,
+  isQuorum,
+);
+```
 
-        ```js
-        const Web3 = require("web3");
-        const Web3Quorum = require("web3js-quorum");
+:::warning
 
-        const isQuorum = true;
-        const enclaveOptions = {
-          privateUrl: "http://localhost:9081"
-        };
+If IPC is enabled with `ipcPath`, then HTTP `privateUrl` and TLS options will be ignored.
 
-        const web3 = new Web3Quorum(new Web3("http://localhost:8545"),
-          enclaveOptions, isQuorum);
-        ```
+:::
 
-        !!! important
-            If HTTP is enabled with `privateUrl`, then `ipcPath` options should not be used.
+# HTTP example
 
-    === "HTTP + enclave TLS example"
+```js
+const Web3 = require("web3");
+const Web3Quorum = require("web3js-quorum");
 
-        ```js
-        const Web3 = require("web3");
-        const Web3Quorum = require("web3js-quorum");
-        const fs = require('fs');
+const isQuorum = true;
+const enclaveOptions = {
+  privateUrl: "http://localhost:9081",
+};
 
-        const isQuorum = true;
-        const keyFileBuffer = fs.readFileSync("./cert.key");
-        const certFileBuffer = fs.readFileSync("./cert.pem");
-        const caCertFileBuffer = fs.readFileSync("./ca-cert.pem");
+const web3 = new Web3Quorum(
+  new Web3("http://localhost:8545"),
+  enclaveOptions,
+  isQuorum,
+);
+```
 
-        const enclaveOptions = {
-          privateUrl: "https://localhost:9081",
-          tlsSettings: {
-            key: keyFileBuffer,
-            clcert: certFileBuffer,
-            cacert: caCertFileBuffer,
-            allowInsecure: false
-          }
-        };
+:::warning
 
-        const web3 = new Web3Quorum(new Web3("http://localhost:8545"),
-          enclaveOptions, isQuorum);
-        ```
+If HTTP is enabled with `privateUrl`, then `ipcPath` options should not be used.
 
-        !!! important
+:::
 
-            * `allowInsecure: false` forces the private transaction manager's certificate to be verified.
+# HTTP + enclave TLS example
 
-                Setting `allowInsecure: true` disables the private transaction manager's certificate verification and allows
-                self-signed certificates.
+```js
+const Web3 = require("web3");
+const Web3Quorum = require("web3js-quorum");
+const fs = require("fs");
 
-            * If HTTPS is enabled with `privateUrl` and TLS options, then `ipcPath` options should not be used.
+const isQuorum = true;
+const keyFileBuffer = fs.readFileSync("./cert.key");
+const certFileBuffer = fs.readFileSync("./cert.pem");
+const caCertFileBuffer = fs.readFileSync("./ca-cert.pem");
+
+const enclaveOptions = {
+  privateUrl: "https://localhost:9081",
+  tlsSettings: {
+    key: keyFileBuffer,
+    clcert: certFileBuffer,
+    cacert: caCertFileBuffer,
+    allowInsecure: false,
+  },
+};
+
+const web3 = new Web3Quorum(
+  new Web3("http://localhost:8545"),
+  enclaveOptions,
+  isQuorum,
+);
+```
+
+:::caution
+
+- `allowInsecure: false` forces the private transaction manager's certificate to be verified.
+
+  Setting `allowInsecure: true` disables the private transaction manager's certificate verification and allows self-signed certificates.
+
+- If HTTPS is enabled with `privateUrl` and TLS options, then `ipcPath` options should not be used.
+
+:::
+
+<!--/tabs-->
 
 ### Deploying a contract with `generateAndSendRawTransaction`
 
 To deploy a private contract, you need the contract binary. You can use [Solidity](https://solidity.readthedocs.io/en/develop/using-the-compiler.html) to get the contract binary.
 
-!!! example "Deploying a contract with `web3.priv.generateAndSendRawTransaction`"
+:::tip Deploying a contract with `web3.priv.generateAndSendRawTransaction`
 
     ```js
     const contractOptions = {
@@ -253,6 +306,8 @@ To deploy a private contract, you need the contract binary. You can use [Solidit
     };
     return web3.priv.generateAndSendRawTransaction(contractOptions);
     ```
+
+:::
 
 `web3.priv.generateAndSendRawTransaction(contractOptions)` returns the transaction hash. To get the private transaction receipt, use `web3.priv.waitForTransactionReceipt(txHash)`.
 
