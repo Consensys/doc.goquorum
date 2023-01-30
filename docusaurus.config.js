@@ -189,7 +189,7 @@ const config = {
               },
               {
                 label: "Issues",
-                href: "https://github.com/ConsenSys/goquroum/issues",
+                href: "https://github.com/ConsenSys/quorum/issues",
               },
             ],
           },
