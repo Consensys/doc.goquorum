@@ -542,10 +542,10 @@ You can connect your nodes to [Remix](http://remix.ethereum.org) by using the [G
 [Cakeshop](../../configure-and-manage/monitor/cakeshop.md) allows you to perform transactions directly using the UI.
 
 1. Open [`http://localhost:8999`](http://localhost:8999) in your browser.
-1. Select the **Contracts** tab and **Deploy** the contract registry.
-1. Go to the **Sandbox**, select the `SimpleStorage` sample contract from the Contract Library, and deploy with `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`).
-1. Return to the main Cakeshop page, go to the **Contracts** tab again, and you should be able to see the contract you just deployed.
-1. Interact with it from there, and switch between nodes using the dropdown in the top right corner of the page.
+2. Select the **Contracts** tab and **Deploy** the contract registry.
+3. Go to the **Sandbox**, select the `SimpleStorage` sample contract from the Contract Library, and deploy with `Private For` set to the second node's public key (`QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=`).
+4. Return to the main Cakeshop page, go to the **Contracts** tab again, and you should be able to see the contract you just deployed.
+5. Interact with it from there, and switch between nodes using the dropdown in the top right corner of the page.
 
 ## Create a transaction using MetaMask
 
@@ -793,31 +793,39 @@ truffle migrate --network quickstartWallet
 
 To shut down the private network without deleting the containers:
 
-=== "Linux/MacOS"
+<!--tabs-->
 
-    ```bash
-    ./stop.sh
-    ```
+# Linux/MacOS
+
+```bash
+./stop.sh
+```
 
 This command stops the containers related to the services specified in the `docker-compose.yml` file.
 
 To restart the private network:
 
-=== "Linux/MacOS"
+# Linux/MacOS
 
-    ```bash
-    ./resume.sh
-    ```
+```bash
+./resume.sh
+```
+
+<!--/tabs-->
 
 ## Stop the private network and remove containers
 
 To shut down the private network and delete all containers and images created from running the sample network and the Pet Shop dapp:
 
-=== "Linux/MacOS"
+<!--tabs-->
 
-    ```bash
-    ./remove.sh
-    ```
+# Linux/MacOS
+
+```bash
+./remove.sh
+```
+
+<!--/tabs-->
 
 <!-- Links -->
 
