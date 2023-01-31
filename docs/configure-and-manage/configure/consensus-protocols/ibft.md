@@ -56,9 +56,7 @@ You can't use the JSON-RPC methods to add or remove validators when using a smar
 
 To use IBFT, GoQuorum requires a [genesis file](../genesis-file/genesis-options.md). The genesis file defines properties specific to IBFT and to your specific network.
 
-:::tip Example IBFT genesis file
-
-```json
+```json title="Example IBFT genesis file"
   {
     "config": {
       "chainId": 1337,
@@ -94,8 +92,6 @@ To use IBFT, GoQuorum requires a [genesis file](../genesis-file/genesis-options.
     "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
   }
 ```
-
-:::
 
 The properties specific to IBFT are in the `ibft` section:
 
@@ -143,12 +139,11 @@ To update an existing network with a new `blockperiodseconds`:
 
     <br />
 
-    :::tip Transitions configuration
     <!--tabs-->
 
     # Syntax
 
-    ```json
+    ```json title="Transitions configuration"
     {
       "config": {
         ...
@@ -168,7 +163,7 @@ To update an existing network with a new `blockperiodseconds`:
 
     # Example
 
-    ```json
+    ```json title="Transitions configuration"
     {
       "config": {
         ...
@@ -204,12 +199,11 @@ To swap between block header validator selection and contract validator selectio
 
     <br />
 
-    :::tip Transitions configuration
     <!--tabs-->
 
     # Syntax
 
-    ```json
+    ```json title="Transitions configuration"
     {
       "config": {
         ...
@@ -230,7 +224,7 @@ To swap between block header validator selection and contract validator selectio
 
     # Example
 
-    ```json
+    ```json title="Transitions configuration"
     {
       "config": {
         ...

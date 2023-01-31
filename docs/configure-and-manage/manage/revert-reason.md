@@ -66,13 +66,9 @@ As described in the [Solidity documentation], the revert reason is an ABI-encode
 0x4e6f7420656e6f7567682045746865722070726f76696465642e000000000000 // String data
 ```
 
-:::tip `Example of revert reason string for: "Not enough Ether provided"`
-
-```bash
+```bash title="Example of revert reason string for: 'Not enough Ether provided'"
 "0x08c379a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001a4e6f7420656e6f7567682045746865722070726f76696465642e000000000000"
 ```
-
-:::
 
 <!-- Links -->
 

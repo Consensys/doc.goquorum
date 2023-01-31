@@ -68,8 +68,6 @@ Creates a plugin-managed account with a new key.
 
 `config`: _object_ - Plugin-specific JSON configuration for creating an account. See the plugin's documentation for more information on the JSON configuration required.
 
-:::tip Example
-
 <!--tabs-->
 
 # GoQuorum
@@ -107,8 +105,6 @@ echo '
 ```
 
 <!--tabs-->
-
-:::
 
 ### `plugin@account_importRawKey`
 

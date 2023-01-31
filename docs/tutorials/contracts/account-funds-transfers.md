@@ -26,9 +26,7 @@ The private key is publicly displayed, which means the account is not secure.
 
 Create a new file `eth_tx.js` (or run the following commands in a JavaScript console) to send the transaction. Before making the transaction, the script checks the balances of both accounts to verify the funds transfer after the transaction.
 
-:::tip eth_tx.js using eth_sendSignedTransaction
-
-```js
+```js title="eth_tx.js using eth_sendSignedTransaction"
 const web3 = new Web3(host);
 // Pre-seeded account with 90000 ETH
 const privateKeyA =
@@ -76,8 +74,6 @@ var accountBBalance = await getAccountBalance(host, accountB);
 console.log("Account B has an updated balance of: " + accountBBalance);
 ```
 
-:::
-
 For reference, the Quorum Developer Quickstart provides an [example of a funds transfer script](https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/smart_contracts/privacy/scripts/eth_tx.js).
 
 ## Using `eth_sendTransaction`
@@ -86,9 +82,7 @@ An alternative to using `eth_sendSignedTransaction` is using [`eth_sendTransacti
 
 Create a new file `eth_tx.js` (or run the following commands in a JavaScript console) to send the transaction.
 
-::: eth_tx.js using eth_sendTransaction
-
-```js
+```js title="eth_tx.js using eth_sendTransaction"
 const web3 = new Web3(host);
 // Pre-seeded account with 90000 ETH
 const privateKeyA =
@@ -124,5 +118,3 @@ console.log("Account A has an updated balance of: " + accountABalance);
 var accountBBalance = await getAccountBalance(host, accountB);
 console.log("Account B has an updated balance of: " + accountBBalance);
 ```
-
-:::

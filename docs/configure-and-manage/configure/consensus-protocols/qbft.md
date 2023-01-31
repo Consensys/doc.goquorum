@@ -26,9 +26,7 @@ To prevent a faulty node from generating a different chain from the main chain, 
 
 To use QBFT, GoQuorum requires a [genesis file](../genesis-file/genesis-options.md). The genesis file defines properties specific to QBFT and to your specific network.
 
-:::tip Example QBFT genesis file
-
-```json
+```json title="Example QBFT genesis file"
   {
     "config": {
       "chainId": 1337,
@@ -64,8 +62,6 @@ To use QBFT, GoQuorum requires a [genesis file](../genesis-file/genesis-options.
     "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
   }
 ```
-
-:::
 
 The properties specific to QBFT are in the `qbft` section:
 
@@ -124,11 +120,9 @@ You can't use the JSON-RPC methods to add or remove validators when using a smar
 You can migrate an existing [IBFT](ibft.md) network to a QBFT network with the following steps:
 
 1.  Stop all nodes in the network.
-1.  Update the genesis file with a suitable transition block, this needs to be far enough in the future so that you can co-ordinate ahead of time. For example, if the current block number in your IBFT network is 100, set transition block to any block greater than 100, and once that fork block is reached, QBFT consensus will be used instead of IBFT.
+2.  Update the genesis file with a suitable transition block, this needs to be far enough in the future so that you can co-ordinate ahead of time. For example, if the current block number in your IBFT network is 100, set transition block to any block greater than 100, and once that fork block is reached, QBFT consensus will be used instead of IBFT.
 
-    :::tip Sample QBFT genesis file
-
-    ```json
+    ```json title="Sample QBFT genesis file"
     ...
     "istanbul": {
         "epoch": 30000,
@@ -142,10 +136,8 @@ You can migrate an existing [IBFT](ibft.md) network to a QBFT network with the f
     ...
     ```
 
-    :::
-
-1.  run `geth init` with the new genesis file
-1.  Restart the network with the updated genesis file.
+3.  run `geth init` with the new genesis file
+4.  Restart the network with the updated genesis file.
 
 ## Transitions
 
@@ -168,8 +160,6 @@ To update an existing network with a new `blockperiodseconds`:
     - `<NewValue>` is the updated value for `blockperiodseconds`.
 
     <br />
-
-    :::tip
 
     <!--tabs-->
 
@@ -215,8 +205,6 @@ To update an existing network with a new `blockperiodseconds`:
 
     <!--/tabs-->
 
-    :::
-
 3.  run `geth init` with the new genesis file
 4.  Restart all nodes in the network using the updated genesis file.
 5.  To verify the changes after the transition block, call [`istanbul_getValidators`](../../../reference/api-methods.md#istanbul_getvalidators), specifying `latest`.
@@ -225,8 +213,6 @@ To update an existing network with a new `blockperiodseconds`:
 
 A block is produced every block period, whether there are transactions or not. This can lead to your network being bloated with many empty blocks, especially if you have a low block period such as one second. Configuring `emptyBlockPeriodSeconds` helps to reduce the number of empty blocks produced in your network. You can specify `emptyBlockPeriodSeconds` using the config section or with a transition.
 
-:::tip
-
 ```json
 "transitions": [{
   "block": ...,
@@ -234,8 +220,6 @@ A block is produced every block period, whether there are transactions or not. T
   "emptyBlockPeriodSeconds": 60
 }]
 ```
-
-:::
 
 In the preceding example, a block is produced every two seconds if there are transactions pending to be mined. If no transactions are pending, then blocks are not produced until after 60 seconds.
 
@@ -269,7 +253,6 @@ transactions: 1
 block: 16
 timestamp: 07:03:12
 transactions: 1
-
 ```
 
 :::note
@@ -356,6 +339,8 @@ To swap between block header validator selection and contract validator selectio
     - `<FutureBlockNumber>` is the upcoming block at which to change the validator selection method.
     - `<SelectionMode>` is the validator selection mode to switch to. Valid options are `contract` and `blockheader`.
     - `<ContractAddress>` is the smart contract address, if switching to the contract validator selection method.
+
+    <br />
 
     <!--tabs-->
 

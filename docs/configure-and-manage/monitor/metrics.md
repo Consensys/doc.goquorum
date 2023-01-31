@@ -33,9 +33,7 @@ This endpoint can be used to trigger resource intensive operations.
 
 Use `--metric.influxdb` and associated [geth command line options] to push metrics data to [InfluxDB].
 
-:::note Excerpt of geth command line options
-
-```text
+```title="Excerpt of geth command line options"
 LOGGING AND DEBUGGING OPTIONS:
   --pprof                             Enable the pprof HTTP server
   --pprof.addr value                  pprof HTTP server listening interface (default: "127.0.0.1")
@@ -51,8 +49,6 @@ METRICS AND STATS OPTIONS:
   --metrics.influxdb.password value   Password to authorize access to the database (default: "test")
   --metrics.influxdb.tags value       Comma-separated InfluxDB tags (key/values) attached to all measurements (default: "host=localhost")
 ```
-
-:::
 
 ## Visualize collected data
 

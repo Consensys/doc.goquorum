@@ -8,9 +8,7 @@ sidebar_position: 2
 
 To pre-deploy contracts when starting GoQuorum, specify the contract code in the [genesis file](genesis-options.md).
 
-:::tip Contract code in the genesis file
-
-```json
+```json title="Contract code in the genesis file"
 {
   ...
   "alloc": {
@@ -26,8 +24,6 @@ To pre-deploy contracts when starting GoQuorum, specify the contract code in the
   ...
 }
 ```
-
-:::
 
 The contract code in the genesis file defines the:
 

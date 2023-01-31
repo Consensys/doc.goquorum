@@ -67,9 +67,7 @@ npx quorum-genesis-tool --consensus qbft --chainID 1337 --blockperiod 5 --reques
 
 This command generates node keys for five nodes, `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json`, and `genesis.json`.
 
-:::tip output
-
-```bash
+```bash title="Output"
 Need to install the following packages:
 quorum-genesis-tool
 Ok to proceed? (y) y
@@ -78,8 +76,6 @@ Creating members...
 Creating validators...
 Artifacts in folder: artifacts/2022-02-23-12-34-35
 ```
-
-:::
 
 The following is the folder structure of the artifacts generated:
 
@@ -153,9 +149,7 @@ cd artifacts/goQuorum
 
 Update the IP and port numbers for all initial validator nodes in `static-nodes.json` and `permissioned-nodes.json` (if applicable).
 
-:::tip `static-nodes.json`
-
-```json
+```json title="static-nodes.json"
 [
   "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30300?discport=0&raftport=53000",
   "enode://0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c@127.0.0.1:30301?discport=0&raftport=53001",
@@ -164,8 +158,6 @@ Update the IP and port numbers for all initial validator nodes in `static-nodes.
   "enode://7fa183662285993efaf7a59e303ec5543bbcd09cb2883e7611d9576ed90f3bcf0400b70af11c5266e5110eebe8afd4e817437bde574d686f440df1ec85822add@127.0.0.1:30304?discport=0&raftport=53004"
 ]
 ```
-
-:::
 
 :::info
 

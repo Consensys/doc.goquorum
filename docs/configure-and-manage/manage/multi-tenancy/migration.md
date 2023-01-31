@@ -28,8 +28,6 @@ The node must be offline during the upgrade process (we recommend backing up the
 
 :::
 
-:::tip `mpsdbupgrade` command
-
 <!--tabs-->
 
 # Syntax
@@ -54,8 +52,6 @@ MPS DB upgrade finished successfully.
 ```
 
 <!--/tabs-->
-
-:::
 
 After execution, the node database contains the `empty` state and the `private` state (corresponding to the single private state that existed before the upgrade).
 

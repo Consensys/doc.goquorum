@@ -594,12 +594,16 @@ cd dapps/pet-shop
 The script:
 
 1. Installs the dapp Node dependencies (you may see some warnings here, but it will not prevent the dapp from running).
-1. Compiles the contracts.
-1. Deploys the contracts to the blockchain.
-1. Runs the tests.
-1. Builds and runs a Docker image to serve the dapp website.
+2. Compiles the contracts.
+3. Deploys the contracts to the blockchain.
+4. Runs the tests.
+5. Builds and runs a Docker image to serve the dapp website.
 
-```text title="./run_dapp.sh example output"
+<details>
+  <summary>Sample output</summary>
+  <div>
+
+```bash title="./run_dapp.sh example output"
 Compiling your contracts...
 ===========================
 > Compiling ./contracts/Adoption.sol
@@ -729,6 +733,9 @@ Successfully built 16d28763e27b
 Successfully tagged quorum-dev-quickstart_pet_shop:latest
 fdbefa105bee995c56c2be23e9912f943973462bfc0b37df610e7feb7be4ca86
 ```
+
+  </div>
+</details>
 
 In the browser where you have MetaMask enabled and one of the test accounts loaded, open a new tab and navigate to [the Pet Shop dapp](http://localhost:3001) where you can adopt lovely pets (sorry, not for real, it's a demo).
 
@@ -866,26 +873,24 @@ In the [`config/nodes`](https://github.com/ConsenSys/quorum-dev-quickstart/tree/
 Add an entry for the new node into the docker-compose file:
 
 ```yaml
-
-  newnode:
-    << : *quorum-def
-    container_name: newnode
-    ports:
-      - 18545:8545/tcp
-      - 18546:8546/tcp
-      - 30303
-      - 9545
-    environment:
-      - GOQUORUM_GENESIS_MODE=standard
-      - PRIVATE_CONFIG=ignore
-    volumes:
-      - ./config/goquorum:/quorum
-      - ./config/nodes/newnode:/config/keys
-      - ./logs/quorum:/var/log/quorum/
-    networks:
-      quorum-dev-quickstart:
-        ipv4_address: 172.16.239.41
-
+newnode:
+  << : *quorum-def
+  container_name: newnode
+  ports:
+    - 18545:8545/tcp
+    - 18546:8546/tcp
+    - 30303
+    - 9545
+  environment:
+    - GOQUORUM_GENESIS_MODE=standard
+    - PRIVATE_CONFIG=ignore
+  volumes:
+    - ./config/goquorum:/quorum
+    - ./config/nodes/newnode:/config/keys
+    - ./logs/quorum:/var/log/quorum/
+  networks:
+    quorum-dev-quickstart:
+      ipv4_address: 172.16.239.41
 ```
 
 :::caution

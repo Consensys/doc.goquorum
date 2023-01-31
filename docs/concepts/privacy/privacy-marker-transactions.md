@@ -30,9 +30,7 @@ A PMT is a public transaction with the following parameters:
 - `contractAddress` - (in receipt if the PMT is a contract creation transaction) null
 - `logs` and `logsBloom` (in receipt) - empty
 
-:::tip Example PMT and its receipt
-
-```json
+```json title="Example PMT and its receipt"
 > eth.getTransaction("0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79")
 {
   ...
@@ -64,8 +62,6 @@ A PMT is a public transaction with the following parameters:
 }
 ```
 
-:::
-
 ## Internal private transaction
 
 Each PMT has a corresponding internal private transaction. The content of this private transaction is the same as the content of a [normal private transaction](private-and-public.md#private-transactions), except it has the same `from` and `nonce` values as the PMT.
@@ -74,9 +70,7 @@ Only the hash of the encrypted internal private transaction is stored on chain (
 
 At execution time, GoQuorum retrieves the internal private transaction from Tessera.
 
-:::tip Example internal private transaction and its receipt
-
-```json
+```json title="Example internal private transaction and its receipt"
 > eth.getPrivateTransaction("0x5b7f615e47a8a607ba2b11598f3eccb9be7ac43875f50abd54bdbbcfaeccbb79")
 {
   ...
@@ -116,8 +110,6 @@ At execution time, GoQuorum retrieves the internal private transaction from Tess
   ...
 }
 ```
-
-:::
 
 ## Using privacy marker transactions
 

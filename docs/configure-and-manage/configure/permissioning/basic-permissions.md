@@ -14,13 +14,11 @@ If `--permissioned` is specified but no nodes are added to the `permissioned-nod
 
 The `permissioned-nodes.json` file is structured as follows, which is similar to the `<data-dir>/static-nodes.json` file that is used to specify the list of static nodes a given node always connects to:
 
-:::tip permissioned-nodes.json
-
 <!--tabs-->
 
 # Syntax
 
-```json
+```json title="permissioned-nodes.json"
 [
   "enode://remotekey1@ip1:port1",
   "enode://remotekey2@ip2:port2",
@@ -30,15 +28,13 @@ The `permissioned-nodes.json` file is structured as follows, which is similar to
 
 # Example
 
-```json
+```json title="permissioned-nodes.json"
 [
   "enode://6598638ac5b15ee386210156a43f565fa8c48592489d3e66ac774eac759db9eb52866898cf0c5e597a1595d9e60e1a19c84f77df489324e2f3a967207c047470@127.0.0.1:30300"
 ]
 ```
 
 <!--/tabs-->
-
-:::
 
 :::note
 

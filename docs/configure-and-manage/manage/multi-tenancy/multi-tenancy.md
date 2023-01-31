@@ -25,9 +25,7 @@ If running an earlier GoQuorum or Tessera version, upgrade your existing nodes t
 
 1.  Set `isMPS` to `true` in the `config` item of the [GoQuorum genesis file](../../configure/genesis-file/genesis-options.md).
 
-    :::tip MPS configuration
-
-    ```json
+    ```json title="MPS configuration"
     {
       "config": {
         ...
@@ -36,8 +34,6 @@ If running an earlier GoQuorum or Tessera version, upgrade your existing nodes t
       ...
     }
     ```
-
-    :::
 
     :::note
 

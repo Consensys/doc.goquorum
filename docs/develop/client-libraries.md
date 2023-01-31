@@ -37,33 +37,27 @@ Initialize your client where:
 
 - `<GoQuorum JSON-RPC HTTP endpoint>` is the JSON-RPC HTTP endpoint of your GoQuorum node.
 
-:::tip Example connection
-
 <!--tabs-->
 
 # HTTP example
 
-```js
+```js title="Example connection"
 const Web3 = require("web3");
 const web3 = new Web3("http://some.local.remote.endpoint:8545");
 ```
 
 # WS example
 
-```js
+```js title="Example connection"
 const Web3 = require("web3");
 const web3 = new Web3("http://some.local.remote.endpoint:8546");
 ```
 
 <!--/tabs-->
 
-:::
-
 ### Deploying a contract
 
 To deploy a private contract, you need the contract binary. You can use [Solidity](https://solidity.readthedocs.io/en/develop/using-the-compiler.html) to get the contract binary.
-
-:::tip Deploying a contract with `Contract.deploy`
 
 ```js
 myContract.deploy({
@@ -86,11 +80,7 @@ myContract.deploy({
 });
 ```
 
-:::
-
 Alternatively, you can also deploy a contract using [`eth.sendSignedTransaction`](https://web3js.readthedocs.io/en/v1.5.2/web3-eth.html#sendsignedtransaction)
-
-:::tip Deploying a contract with `eth.sendSignedTransaction`
 
 ```js
 const rawTxOptions = {
@@ -115,8 +105,6 @@ console.log("tx transactionHash: " + pTx.transactionHash);
 console.log("tx contractAddress: " + pTx.contractAddress);
 return pTx;
 ```
-
-:::
 
 ### web3 methods
 
@@ -295,19 +283,15 @@ const web3 = new Web3Quorum(
 
 To deploy a private contract, you need the contract binary. You can use [Solidity](https://solidity.readthedocs.io/en/develop/using-the-compiler.html) to get the contract binary.
 
-:::tip Deploying a contract with `web3.priv.generateAndSendRawTransaction`
-
-    ```js
-    const contractOptions = {
-      data: `0x123`, // contract binary
-      privateFrom: "tesseraNode1PublicKey",
-      privateFor: ["tesseraNode3PublicKey"],
-      privateKey: "goquorumNode1PrivateKey"
-    };
-    return web3.priv.generateAndSendRawTransaction(contractOptions);
-    ```
-
-:::
+```js
+const contractOptions = {
+  data: `0x123`, // contract binary
+  privateFrom: "tesseraNode1PublicKey",
+  privateFor: ["tesseraNode3PublicKey"],
+  privateKey: "goquorumNode1PrivateKey",
+};
+return web3.priv.generateAndSendRawTransaction(contractOptions);
+```
 
 `web3.priv.generateAndSendRawTransaction(contractOptions)` returns the transaction hash. To get the private transaction receipt, use `web3.priv.waitForTransactionReceipt(txHash)`.
 

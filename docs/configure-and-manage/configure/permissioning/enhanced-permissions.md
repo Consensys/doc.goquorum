@@ -18,9 +18,7 @@ sidebar_position: 2
 
 4.  Once all the contracts are deployed, create a file `permission-config.json` with the following construct:
 
-    :::tip permission-config.json
-
-    ```json
+    ```json title="permission-config.json"
     {
       "permissionModel": "v2",
       "upgradableAddress": "0x1932c48b2bf8102ba33b4a6b545c32236e342f34",
@@ -42,8 +40,6 @@ sidebar_position: 2
       "subOrgDepth": 4
     }
     ```
-
-    :::
 
     - `permissionModel` - Permission model to be used (`v1` or `v2`).
     - `upgradableAddress`- Address of deployed contract `PermissionsUpgradable.sol`.

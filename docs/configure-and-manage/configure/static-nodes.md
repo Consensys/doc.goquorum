@@ -54,16 +54,12 @@ If the added peer does not appear in the peer list (returned by [`admin_peers`](
 
 The `static-nodes.json` file must be in the data directory (specified by [`--datadir`](https://geth.ethereum.org/docs/interface/command-line-options)) and contain a JSON array of [enode URLs](https://eth.wiki/en/fundamentals/enode-url-format).
 
-:::tip
-
 ```json
 [
   "enode://cea71cb65a471037e01508cebcc178f176f9d5267bf29507ea1f6431eb6a5dc67d086dc8dc54358a72299dab1161febc5d7af49d1609c69b42b5e54544145d4f@127.0.0.1:30303",
   "enode://ca05e940488614402705a6b6836288ea902169ecc67a89e1bd5ef94bc0d1933f20be16bc881ffb4be59f521afa8718fc26eec2b0e90f2cd0f44f99bc8103e60f@127.0.0.1:30304"
 ]
 ```
-
-:::
 
 :::note
 

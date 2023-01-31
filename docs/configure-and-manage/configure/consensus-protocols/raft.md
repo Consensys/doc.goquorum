@@ -18,13 +18,9 @@ Raft requires that all initial nodes in the cluster are configured as [static pe
 
 The enode IDs must include a `raftport` querystring parameter specifying the Raft port for each peer.
 
-:::tip Example
-
-```bash
+```bash title="Example"
 enode://abcd@127.0.0.1:30400?raftport=50400
 ```
-
-:::
 
 For the Raft network to work, 51% of the peers must be up and running. We recommend having an odd number of at least 3 peers in the network.
 

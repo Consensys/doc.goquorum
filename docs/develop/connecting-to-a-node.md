@@ -20,8 +20,6 @@ The Geth JavaScript console exposes the [Web3 JavaScript API](https://web3js.rea
 
 Run the `attach` subcommand and connect to the IPC socket, or, if enabled, to the RPC or WebSocket API endpoints:
 
-:::tip `geth attach`
-
 <!--tabs-->
 
 # IPC socket
@@ -58,11 +56,7 @@ To exit, press ctrl-d
 
 <!--/tabs-->
 
-:::
-
 Once connected you can execute commands as normal. For example, check existing validators using the following command:
-
-:::tip `istanbul.getValidators`
 
 <!--tabs-->
 
@@ -85,11 +79,9 @@ istanbul.getValidators();
 
 <!--/tabs-->
 
-:::
-
 Exit the console using the following command:
 
-```javascript
+```js
 exit;
 ```
 
@@ -111,8 +103,6 @@ To enable the RPC interface, start the GoQuorum node with the following paramete
 GoQuorum supports the [standard web3 JSON-RPC APIs](https://geth.ethereum.org/docs/rpc/server) and [custom methods](../reference/api-methods.md).
 
 For example, run the following command to get the list of validators at a given block in an IBFT or QBFT network:
-
-:::tip `istanbul_getValidators`
 
 <!--tabs-->
 
@@ -137,8 +127,6 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_g
 ```
 
 <!--/tabs-->
-
-:::
 
 You can any tool to make requests, such as [curl](https://curl.se/), [Postman](https://www.postman.com/), or [Web3](https://web3js.readthedocs.io/en/latest/).
 
@@ -165,8 +153,6 @@ To enable the WebSocket interface, start the GoQuorum node with the following pa
 
 For example, to connect to an endpoint and get logs, run the following JavaScript:
 
-:::tip `eth.subscribe`
-
 ```javascript
 const Web3 = require("web3");
 var web3 = new Web3("wss://localhost:8546");
@@ -181,5 +167,3 @@ var subscription = web3.eth.subscribe(
   },
 );
 ```
-
-:::

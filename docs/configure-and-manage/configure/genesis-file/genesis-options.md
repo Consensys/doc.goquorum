@@ -16,9 +16,7 @@ geth init <PATH-TO-GENESIS-FILE>
 
 The genesis file specifies the [network-wide settings](../../../reference/genesis.md), so all nodes in a network must use the same genesis file.
 
-:::tip Example Raft genesis file
-
-```json
+```json title="Example Raft genesis file"
 {
   "alloc": {
     "0xed9d02e382b34818e88b88a309c7fe71e65f419d": {
@@ -64,5 +62,3 @@ The genesis file specifies the [network-wide settings](../../../reference/genesi
   "timestamp": "0x00"
 }
 ```
-
-:::

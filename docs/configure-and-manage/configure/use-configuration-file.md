@@ -28,7 +28,9 @@ geth --wsapi "istanbul" --rpcapi "istanbul" --istanbul.requesttimeout 5000 --all
 
 The configuration file contains your specified options and other default options.
 
-:::tip Example configuration file
+<details>
+  <summary>Configuration file example</summary>
+  <div>
 
 ```toml
 [Eth]
@@ -127,7 +129,8 @@ Port = 8080
 Refresh = 5000000000
 ```
 
-:::
+  </div>
+</details>
 
 You can reuse the configuration file across node startups. To specify the configuration file, use the [`--config`](https://geth.ethereum.org/docs/interface/command-line-options) option.
 

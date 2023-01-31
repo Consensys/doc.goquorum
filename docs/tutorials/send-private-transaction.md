@@ -24,6 +24,10 @@ Don't include the sender's node in `privateFor`. To create a private contract vi
 
 :::
 
+<details>
+  <summary>Smart contract example</summary>
+  <div>
+
 ```javascript hl_lines="11" linenums="1"
 a = eth.accounts[0];
 web3.eth.defaultAccount = a;
@@ -92,6 +96,9 @@ var simple = simpleContract.new(
   },
 );
 ```
+
+  </div>
+</details>
 
 ### 2. Create account
 

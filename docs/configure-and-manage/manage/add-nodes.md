@@ -45,13 +45,9 @@ After `addPeer` or `addLearner`:
 
 1.  Start the new GoQuorum node with the [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting) and [`--raft`](../../reference/cli-syntax.md#raft) command line options. Use the Raft ID returned by `addPeer` or `addLearner` as the argument for `--raftjoinexisting`.
 
-    :::tip Example
-
-    ```bash
+    ```bash title="Example"
     PRIVATE_CONFIG=ignore geth --datadir qdata/dd7 ... OTHER ARGS ... --raft --raftport 50407 --http.port 22006 --port 21006 --raftjoinexisting 7
     ```
-
-    :::
 
     The new node is now up and running, and will start syncing the blockchain from existing peers. Once this has completed, it can send new transactions just as any other peer.
 
@@ -134,9 +130,7 @@ If you have discovery disabled, you won't try to find other nodes to connect to,
 
 Add a new [Tessera](https://github.com/ConsenSys/tessera) node by ensuring you have one of the existing nodes listed in your Tessera peer list.
 
-:::tip Peer configuration example
-
-```json
+```json title="Peer configuration example"
 {
   "peers": [
     {
@@ -145,8 +139,6 @@ Add a new [Tessera](https://github.com/ConsenSys/tessera) node by ensuring you h
   ]
 }
 ```
-
-:::
 
 From there, Tessera connects to that peer and discovers and connects to all the other Tessera nodes in the network.
 
@@ -170,11 +162,9 @@ To add a new Tessera node with allowlisting enabled:
     java -jar tessera.jar admin -configfile /path/to/existing-node-config.json -addpeer http://newpeer.com:8080
     ```
 
-1.  Start the new peer, setting the `peers` configuration to mirror the existing network.
+2.  Start the new peer, setting the `peers` configuration to mirror the existing network.
 
-    :::tip Peers configuration example
-
-    ```json
+    ```json title="Peers configuration example"
     {
       "peers": [
         {
@@ -189,8 +179,6 @@ To add a new Tessera node with allowlisting enabled:
       ]
     }
     ```
-
-    :::
 
     The new node now allows incoming connections from the existing peers, and existing peers allow incoming connections from the new peer.
 
@@ -217,9 +205,7 @@ To add a new Tessera node with discovery disabled:
 
 2.  Start the new peer, setting the `peers` configuration to mirror the existing network.
 
-    :::tip Peers configuration example
-
-    ```json
+    ```json title="Peers configuration example"
     {
       "peers": [
         {
@@ -234,7 +220,5 @@ To add a new Tessera node with discovery disabled:
       ]
     }
     ```
-
-    :::
 
     The new node now records public keys belonging to the existing peers, and existing peers record public keys belonging to the new peer. This allows private transactions to be sent both directions.

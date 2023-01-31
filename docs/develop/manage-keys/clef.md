@@ -61,7 +61,7 @@ In the long term, the preferred way of using `clef` will be as an external signe
 
 Using `clef` as an external signer requires interacting with `clef` through its RPC API. By default this is exposed over IPC socket. The API can also be exposed over HTTP by using the `--http.addr` CLI flag.
 
-:::tip Example
+:::tip
 
 An example workflow:
 
