@@ -182,12 +182,12 @@ The Tessera logs indicate the transaction payload was distributed and received.
 
 ```bash
 2020-12-08 13:53:09.548 [qtp1564775175-89] INFO c.q.tessera.p2p.TransactionResource - Enter Request : POST : /push
-2020-12-08 13:53:09.614 [qtp1564775175-89] INFO c.q.t.t.TransactionManagerImpl - Stored payload with hash +TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ== 2020-12-08 13:53:09.615
-[qtp1564775175-89] INFO c.q.tessera.p2p.TransactionResource - Exit Request : POST : /push 2020-12-08 13:53:09.615
-[qtp1564775175-89] INFO c.q.tessera.p2p.TransactionResource - Response for push : 201 Created 2020-12-08 13:53:12.024 [qtp1527084496-36] INFO c.q.tessera.q2t.TransactionResource - Enter Request : GET : /transaction/+TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ== 2020-12-08 13:53:12.047
-[qtp1527084496-36] INFO c.q.t.t.TransactionManagerImpl - Lookup transaction +TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ== 2020-12-08 13:53:12.088
-[qtp1527084496-36] INFO c.q.tessera.q2t.TransactionResource - Exit Request : GET : /transaction/+TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ== 2020-12-08 13:53:12.088
-[qtp1527084496-36] INFO c.q.tessera.q2t.TransactionResource - Response for transaction/+TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ== : 200 OK
+2020-12-08 13:53:09.614 [qtp1564775175-89] INFO c.q.t.t.TransactionManagerImpl - Stored payload with hash +TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ==
+2020-12-08 13:53:09.615 [qtp1564775175-89] INFO c.q.tessera.p2p.TransactionResource - Exit Request : POST : /push
+2020-12-08 13:53:09.615 [qtp1564775175-89] INFO c.q.tessera.p2p.TransactionResource - Response for push : 201 Created 2020-12-08 13:53:12.024 [qtp1527084496-36] INFO c.q.tessera.q2t.TransactionResource - Enter Request : GET : /transaction/+TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ==
+2020-12-08 13:53:12.047 [qtp1527084496-36] INFO c.q.t.t.TransactionManagerImpl - Lookup transaction +TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ==
+2020-12-08 13:53:12.088 [qtp1527084496-36] INFO c.q.tessera.q2t.TransactionResource - Exit Request : GET : /transaction/+TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ==
+2020-12-08 13:53:12.088 [qtp1527084496-36] INFO c.q.tessera.q2t.TransactionResource - Response for transaction/+TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ== : 200 OK
 ```
 
 <!--/tabs-->
