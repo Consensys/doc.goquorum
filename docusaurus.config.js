@@ -128,12 +128,39 @@ const config = {
             sidebarId: "docSidebar",
             docId: "index",
             position: "left",
-            label: "Docs",
+            label: "Deploy",
           },
           {
-            to: "/support",
-            label: "Support",
+            type: "docSidebar",
+            sidebarId: "learnSidebar",
+            position: "left",
+            label: "Learn",
           },
+          {
+            type: "docSidebar",
+            sidebarId: "configureAndManageSidebar",
+            position: "left",
+            label: "Configure",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "developSidebar",
+            position: "left",
+            label: "Develop",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "tutorialSidebar",
+            position: "left",
+            label: "Tutorials",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "referenceSidebar",
+            position: "left",
+            label: "Reference",
+          },
+
           {
             href: "https://github.com/ConsenSys/goquorum",
             className: "header-github-link",
@@ -164,19 +191,19 @@ const config = {
             items: [
               {
                 label: "Deploy",
-                to: "/deploy",
+                to: "/deploy/install/overview",
               },
               {
                 label: "Learn",
-                to: "/concepts",
+                to: "/concepts/blockchain-basics",
               },
               {
                 label: "Tutorials",
-                to: "/tutorials",
+                to: "/tutorials/quorum-dev-quickstart",
               },
               {
                 label: "Reference",
-                to: "/reference",
+                to: "/reference/cli-syntax",
               },
             ],
           },
@@ -203,6 +230,10 @@ const config = {
               {
                 label: "ConsenSys",
                 href: "https://consensys.net",
+              },
+              {
+                to: "/support",
+                label: "Support",
               },
             ],
           },

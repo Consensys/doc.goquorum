@@ -21,7 +21,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "🏁 Getting Started",
-    link: "/deploy",
+    link: "/deploy/install/overview",
     description: (
       <>
         Get started with GoQuorum by installing as binary, through Ansible,
@@ -33,7 +33,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "💭 Learn",
-    link: "/concepts",
+    link: "/concepts/blockchain-basics",
     description: (
       <>
         Check out some general concepts that will help you understand how
@@ -45,7 +45,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "👨‍💻 Reference",
-    link: "/reference",
+    link: "/reference/cli-syntax",
     description: (
       <>
         Find command line arguments, API methods through JSON-RPC, and general
