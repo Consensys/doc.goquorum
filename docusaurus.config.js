@@ -57,10 +57,6 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-        // gtag: {
-        //   trackingID: "G-999X9XX9XX",
-        //   anonymizeIP: true,
-        // },
       },
     ],
   ],
@@ -266,24 +262,23 @@ const config = {
           language: "nodejs",
           logoClass: "nodejs",
         },
-        // {
-        //  highlight: "ruby",
-        //  language: "ruby",
-        //  logoClass: "ruby",
-        // },
-        // {
-        //   highlight: "csharp",
-        //   language: "csharp",
-        //   logoClass: "csharp",
-        // },
-        // {
-        //   highlight: "php",
-        //   language: "php",
-        //   logoClass: "php",
-        // },
       ],
     }),
-  plugins: [],
+  plugins: [
+    [
+      "@docusaurus/plugin-google-gtag",
+      {
+        trackingID: "G-JSG72PC2R1",
+        anonymizeIP: true,
+      },
+    ],
+    [
+      "@docusaurus/plugin-google-tag-manager",
+      {
+        containerId: "GTM-WW76KXP",
+      },
+    ],
+  ],
   themes: [],
 };
 
