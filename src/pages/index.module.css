@@ -7,14 +7,6 @@
   .introductionBlock {
     padding: 2rem;
   }
-
-  .title {
-    font-size: 2.5rem;
-  }
-
-  .subtitle {
-    font-size: 0.8rem;
-  }
 }
 
 .buttons {
@@ -36,4 +28,12 @@
 
 html[data-theme="dark"] .forceColor {
   color: var(--ifm-font-color-secondary);
+}
+
+.title {
+  font-size: clamp(1.5rem, 5vw, 6rem);
+}
+
+.subtitle {
+  font-size: clamp(0.8rem, 1vw, 2rem);
 }

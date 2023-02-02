@@ -8,7 +8,7 @@ const baseUrl = isDev ? "/" : "/";
 const config = {
   title: "ConsenSys GoQuorum",
   tagline:
-    "GoQuorum is an open-source Ethereum client developed, written in Go, that runs private, permissioned networks and implements proof of authority (IBFT, QBFT, Raft, and Clique) consensus mechanisms.",
+    "An open-source Ethereum client, written in Go, that runs private, permissioned networks and implements proof of authority consensus mechanisms.",
   url: "https://consensys.github.io",
   baseUrl,
   onBrokenLinks: "throw",
