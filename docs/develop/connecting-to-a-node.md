@@ -1,5 +1,7 @@
 ---
-description: connecting to a node
+title: Connect to a node
+description: Connecting to a node
+sidebar_position: 1
 ---
 
 # Connect to a node
@@ -8,74 +10,79 @@ description: connecting to a node
 
 Set up a GoQuorum network using one of the following tutorials:
 
-* The [Quorum Developer Quickstart](../tutorials/quorum-dev-quickstart/index.md)
-* [Create a private network](../tutorials/private-network/create-ibft-network.md)
-* [Create a privacy-enabled network](../tutorials/create-privacy-enabled-network.md)
+- The [Quorum Developer Quickstart](../tutorials/quickstart-index.md)
+- [Create a private network](../tutorials/private-network/create-ibft-network.md)
+- [Create a privacy-enabled network](../tutorials/create-privacy-enabled-network.md)
 
 ## Use `geth attach`
 
-The Geth JavaScript console exposes the [Web3 JavaScript API](https://web3js.readthedocs.io/en/v1.2.9/) for development
-use, and can be started using the `console` or `attach` Geth subcommands.
-The `console` subcommand starts the Geth node and opens the console, while the `attach` subcommand attaches an
-already-running Geth instance to the console.
+The Geth JavaScript console exposes the [Web3 JavaScript API](https://web3js.readthedocs.io/en/v1.2.9/) for development use, and can be started using the `console` or `attach` Geth subcommands. The `console` subcommand starts the Geth node and opens the console, while the `attach` subcommand attaches an already-running Geth instance to the console.
 
 Run the `attach` subcommand and connect to the IPC socket, or, if enabled, to the RPC or WebSocket API endpoints:
 
-!!! example "`geth attach`"
+<!--tabs-->
 
-    === "IPC socket"
+# IPC socket
 
-        ```bash
-        geth attach /path/to/geth.ipc
-        ```
+```bash
+geth attach /path/to/geth.ipc
+```
 
-    === "RPC API endpoint"
+# RPC API endpoint
 
-        ```bash
-        geth attach http://host:8545  # connect over HTTP
-        ```
+```bash
+geth attach http://host:8545  # connect over HTTP
+```
 
-    === "WebSocket API endpoint"
+# WebSocket API endpoint
 
-        ```bash
-        geth attach ws://host:8546    # connect over websocket
-        ```
+```bash
+geth attach ws://host:8546    # connect over websocket
+```
 
-    === "Geth console result"
+# Geth console result
 
-        ```text
-        Welcome to the Geth JavaScript console!
+```text
+Welcome to the Geth JavaScript console!
 
-        instance: Geth/node1-/v1.9.24-stable-d5ef77ca(quorum-v21.7.1)/linux-amd64/go1.15.5
-        coinbase: 0x93917cadbace5dfce132b991732c6cda9bcc5b8a
-        at block: 8 (Wed Oct 27 2021 03:36:02 GMT+0000 (UTC))
-        datadir: /data
-        modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+instance: Geth/node1-/v1.9.24-stable-d5ef77ca(quorum-v21.7.1)/linux-amd64/go1.15.5
+coinbase: 0x93917cadbace5dfce132b991732c6cda9bcc5b8a
+at block: 8 (Wed Oct 27 2021 03:36:02 GMT+0000 (UTC))
+datadir: /data
+modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
 
-        To exit, press ctrl-d
-        ```
+To exit, press ctrl-d
+```
 
-Once connected you can execute commands as normal.
-For example, check existing validators using the following command:
+<!--/tabs-->
 
-!!! example "`istanbul.getValidators`"
+Once connected you can execute commands as normal. For example, check existing validators using the following command:
 
-    === "Geth console request"
+<!--tabs-->
 
-        ```javascript
-        istanbul.getValidators()
-        ```
+# Geth console request
 
-    === "JSON result"
+```javascript
+istanbul.getValidators();
+```
 
-        ```json
-        ["0x27a97c9aaf04f18f3014c32e036dd0ac76da5f18", "0x93917cadbace5dfce132b991732c6cda9bcc5b8a", "0x98c1334496614aed49d2e81526d089f7264fed9c", "0xce412f988377e31f4d0ff12d74df73b51c42d0ca"]
-        ```
+# JSON result
+
+```json
+[
+  "0x27a97c9aaf04f18f3014c32e036dd0ac76da5f18",
+  "0x93917cadbace5dfce132b991732c6cda9bcc5b8a",
+  "0x98c1334496614aed49d2e81526d089f7264fed9c",
+  "0xce412f988377e31f4d0ff12d74df73b51c42d0ca"
+]
+```
+
+<!--/tabs-->
 
 Exit the console using the following command:
 
-```javascript
-exit
+```js
+exit;
 ```
 
 ## Use the RPC interface
@@ -97,33 +104,37 @@ GoQuorum supports the [standard web3 JSON-RPC APIs](https://geth.ethereum.org/do
 
 For example, run the following command to get the list of validators at a given block in an IBFT or QBFT network:
 
-!!! example "`istanbul_getValidators`"
+<!--tabs-->
 
-    === "curl HTTP request"
+# curl HTTP request
 
-        ```bash
-        curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getValidators","params":[10],"id":1}' --header "Content-Type: application/json"
-        ```
+```bash
+curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getValidators","params":[10],"id":1}' --header "Content-Type: application/json"
+```
 
-    === "JSON result"
+# JSON result
 
-        ```JSON
-        {
-          "jsonrpc":"2.0",
-          "id":1,
-          "result": [
-            "0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7",
-            "0x71c7656ec7ab88b098defb751b7401b5f6d8976f",
-            "0xdc25ef3F5b8a186998338a2ada83795fba2d695"
-          ]
-        }
-        ```
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    "0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7",
+    "0x71c7656ec7ab88b098defb751b7401b5f6d8976f",
+    "0xdc25ef3F5b8a186998338a2ada83795fba2d695"
+  ]
+}
+```
 
-You can any tool to make requests, such as [curl](https://curl.se/), [Postman](https://www.postman.com/), or
-[Web3](https://web3js.readthedocs.io/en/latest/).
+<!--/tabs-->
 
-!!! note
-    Use the [security plugin](../develop/json-rpc-apis.md) to secure the JSON-RPC server.
+You can any tool to make requests, such as [curl](https://curl.se/), [Postman](https://www.postman.com/), or [Web3](https://web3js.readthedocs.io/en/latest/).
+
+:::note
+
+Use the [security plugin](../develop/json-rpc-apis.md) to secure the JSON-RPC server.
+
+:::
 
 ## Use the WebSocket interface
 
@@ -142,16 +153,17 @@ To enable the WebSocket interface, start the GoQuorum node with the following pa
 
 For example, to connect to an endpoint and get logs, run the following JavaScript:
 
-!!! example "`eth.subscribe`"
-
-    ```javascript
-    const Web3 = require('web3')
-    var web3 = new Web3('wss://localhost:8546');
-    var subscription = web3.eth.subscribe('logs', {
-        address: '0x123456..',
-        topics: ['0x12345...']
-    }, function(error, result){
-        if (!error)
-            console.log(result);
-    });
-    ```
+```javascript
+const Web3 = require("web3");
+var web3 = new Web3("wss://localhost:8546");
+var subscription = web3.eth.subscribe(
+  "logs",
+  {
+    address: "0x123456..",
+    topics: ["0x12345..."],
+  },
+  function (error, result) {
+    if (!error) console.log(result);
+  },
+);
+```

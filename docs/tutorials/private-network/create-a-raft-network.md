@@ -1,43 +1,45 @@
 ---
-description: Creating a network using Raft consensus
+title: Use Raft
+description: Adding and removing Raft validators
+sidebar_position: 3
 ---
 
 # Create a private network using the Raft consensus protocol
 
-A private network provides a configurable network for testing. This private network uses the
-[Raft consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md).
+A private network provides a configurable network for testing. This private network uses the [Raft consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md).
 
-!!! warning
+:::warning
 
-    Raft is not suitable for production environments.
-    Use only in development environments.
-    You can [migrate a Raft network to another consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md).
+Raft is not suitable for production environments. Use only in development environments. You can [migrate a Raft network to another consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md).
 
-!!! important
+:::
 
-    The steps in this tutorial create an isolated, but not protected or secure, Ethereum private
-    network. We recommend running the private network behind a properly configured firewall.
+:::caution
+
+The steps in this tutorial create an isolated, but not protected or secure, Ethereum private network. We recommend running the private network behind a properly configured firewall.
+
+:::
 
 ## Prerequisites
 
-* [Node.js version 15 or later](https://nodejs.org/en/download/).
-* [GoQuorum](../../deploy/install/binaries.md#release-binaries). Ensure that `PATH` contains `geth`
-  and `bootnode`.
+- [Node.js version 15 or later](https://nodejs.org/en/download/).
+- [GoQuorum](../../deploy/install/binaries.md#release-binaries). Ensure that `PATH` contains `geth` and `bootnode`.
 
-!!! tip
-    GoQuorum is a fork of [geth](https://geth.ethereum.org/). GoQuorum uses the `geth` command to start
-    GoQuorum nodes.
+:::info
+
+GoQuorum is a fork of [geth](https://geth.ethereum.org/). GoQuorum uses the `geth` command to start GoQuorum nodes.
+
+:::
 
 ## Steps
 
-Listed on the right-hand side of the page are the steps to create a private network using Raft
-with two nodes.
+Listed on the right-hand side of the page are the steps to create a private network using Raft with two nodes.
 
 ### 1. Create directories
 
 Create directories for your private network and two nodes:
 
-```text
+```
 Raft-Network/
 ├── Node-0
 │   └── data
@@ -49,8 +51,7 @@ Raft-Network/
 
 ### 2. Run the Quorum Genesis Tool
 
-Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) interactively or by using CLI options.
-The following example uses CLI options to create the genesis file and node keys:
+Run the [Quorum Genesis Tool](https://www.npmjs.com/package/quorum-genesis-tool) interactively or by using CLI options. The following example uses CLI options to create the genesis file and node keys:
 
 ```bash
 npx quorum-genesis-tool --consensus raft --chainID 1337 --blockperiod 5 --requestTimeout 10 --epochLength 30000 --difficulty 1 --gasLimit '0xFFFFFF' --coinbase '0x0000000000000000000000000000000000000000' --validators 2 --members 0 --bootnodes 0 --outputPath 'artifacts'
@@ -58,17 +59,15 @@ npx quorum-genesis-tool --consensus raft --chainID 1337 --blockperiod 5 --reques
 
 Node keys for two nodes, along with `static-nodes.json`, `permissioned-nodes.json`, `disallowed-nodes.json`, `genesis.json` are generated.
 
-!!! example "Example output"
-
-    ```bash
-    Need to install the following packages:
-    quorum-genesis-tool
-    Ok to proceed? (y) y
-    Creating bootnodes...
-    Creating members...
-    Creating validators...
-    Artifacts in folder: artifacts/2022-02-23-12-34-35
-    ```
+```bash title="Example output"
+Need to install the following packages:
+quorum-genesis-tool
+Ok to proceed? (y) y
+Creating bootnodes...
+Creating members...
+Creating validators...
+Artifacts in folder: artifacts/2022-02-23-12-34-35
+```
 
 The following is the folder structure of the artifacts generated:
 
@@ -118,14 +117,12 @@ cd artifacts/goQuorum
 
 Update the IP and port numbers for all initial validator nodes in `static-nodes.json` and `permissioned-nodes.json` (if applicable).
 
-!!! example "`static-nodes.json`"
-
-    ```json
-    [
-      "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30300?discport=0&raftport=50000",
-      "enode://0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c@127.0.0.1:30301?discport=0&raftport=53001"
-    ]
-    ```
+```json title="static-nodes.json"
+[
+  "enode://1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147@127.0.0.1:30300?discport=0&raftport=50000",
+  "enode://0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c@127.0.0.1:30301?discport=0&raftport=53001"
+]
+```
 
 ### 4. Copy the static nodes file and node keys to each node
 
@@ -181,12 +178,13 @@ The `PRIVATE_CONFIG` environment variable starts GoQuorum without privacy enable
 
 ### 7. Start node 1
 
-In a new terminal in the `Node-1` directory, start the remaining node using the same command except
-specifying different ports for DevP2P and RPC:
+In a new terminal in the `Node-1` directory, start the remaining node using the same command except specifying different ports for DevP2P and RPC:
 
-!!! important
+:::caution
 
-    The DevP2P port numbers must match the port numbers in [`static-nodes.json`](#4-update-ip-and-port-numbers).
+The DevP2P port numbers must match the port numbers in [`static-nodes.json`](#4-update-ip-and-port-numbers).
+
+:::
 
 ```bash
 export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
@@ -213,37 +211,46 @@ geth attach data/geth.ipc
 
 Use the Raft `cluster` command to confirm the cluster now has two nodes:
 
-=== "Command"
+<!--tabs-->
 
-    ```js
-    raft.cluster
-    ```
+# Command
 
-=== "Result"
+```js
+raft.cluster;
+```
 
-    ```js
-    [{
-        ip: "127.0.0.1",
-        nodeId: "1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147",
-        p2pPort: 30300,
-        raftId: 2,
-        raftPort: 53000
-      }, {
-        ip: "127.0.0.1",
-        nodeId: "0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c",
-        p2pPort: 30301,
-        raftId: 1,
-        raftPort: 53001
-    }]
-    ```
+# Result
+
+```js
+[
+  {
+    ip: "127.0.0.1",
+    nodeId:
+      "1647ade9de728630faff2a69d81b2071eac873d776bfdf012b1b9e7e9ae1ea56328e79e34b24b496722412f4348b9aecaf2fd203fa56772a1a5dcdaa4a550147",
+    p2pPort: 30300,
+    raftId: 2,
+    raftPort: 53000,
+  },
+  {
+    ip: "127.0.0.1",
+    nodeId:
+      "0e6f7fff39188535b6084fa57fe0277d022a4beb988924bbb58087a43dd24f5feb78ca9d1cd880e26dd5162b8d331eeffee777386a4ab181528b3817fa39652c",
+    p2pPort: 30301,
+    raftId: 1,
+    raftPort: 53001,
+  },
+];
+```
+
+<!--/tabs-->
 
 ### 9. Add more nodes
 
 The process to add more nodes to a Raft network is exactly the same as the previous steps, except:
 
-* Use the [`raft_addPeer`](../../reference/api-methods.md#raft_addpeer) API method to add the peer to the network.
-* Specify different ports for DevP2P, RPC, and Raft.
-* Specify the Raft ID returned by [`raft_addPeer`](../../reference/api-methods.md#raft_addpeer) using the [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting) option.
+- Use the [`raft_addPeer`](../../reference/api-methods.md#raft_addpeer) API method to add the peer to the network.
+- Specify different ports for DevP2P, RPC, and Raft.
+- Specify the Raft ID returned by [`raft_addPeer`](../../reference/api-methods.md#raft_addpeer) using the [`--raftjoinexisting`](../../reference/cli-syntax.md#raftjoinexisting) option.
 
 ```bash
 export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
@@ -260,7 +267,8 @@ geth --datadir data \
     --port 30302
 ```
 
-!!! important
+:::warning
 
-    For a Raft network to work, 51% of the peers must be up and running.
-    We recommend having an odd number of at least 3 peers in a network.
+For a Raft network to work, 51% of the peers must be up and running. We recommend having an odd number of at least 3 peers in a network.
+
+:::

@@ -1,0 +1,9 @@
+{
+  "label": "Configure",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "General configuration of GoQuorum",
+    "slug": "configure-and-manage/configure"
+  }
+}

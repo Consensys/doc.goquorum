@@ -1,15 +1,14 @@
 ---
+title: Use a plugin
 description: HelloWorld plugin tutorial
+sidebar_position: 8
 ---
 
 # Use the `HelloWorld` plugin
 
-This tutorial shows you how to use the `HelloWorld` [plugin](../concepts/plugins.md), which exposes a JSON-RPC endpoint
-to return a greeting message in Spanish.
+This tutorial shows you how to use the `HelloWorld` [plugin](../concepts/plugins.md), which exposes a JSON-RPC endpoint to return a greeting message in Spanish.
 
-The [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/helloworld.proto) is
-implemented in Go and Java.
-The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from its JSON configuration.
+The [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/blob/master/helloworld.proto) is implemented in Go and Java. The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from its JSON configuration.
 
 ## Prerequisites
 
@@ -18,43 +17,45 @@ The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from it
 
 ## Build the plugin distribution file
 
-1. Clone the plugin repository:
+1.  Clone the plugin repository:
 
     ```bash
     git clone --recursive https://github.com/ConsenSys/quorum-plugin-hello-world.git
     cd quorum-plugin-hello-world
     ```
 
-1. Use the Go implementation of the plugin:
+2.  Use the Go implementation of the plugin:
 
     ```bash
     cd go
     make
     ```
 
-    `quorum-plugin-hello-world-1.0.0.zip` is now created in the `build` directory.
-    The file `hello-world-plugin-config.json` is the JSON configuration file for the plugin.
+    `quorum-plugin-hello-world-1.0.0.zip` is now created in the `build` directory. The file `hello-world-plugin-config.json` is the JSON configuration file for the plugin.
 
-1. Rename `quorum-plugin-hello-world-1.0.0.zip` according to your operating system:
+3.  Rename `quorum-plugin-hello-world-1.0.0.zip` according to your operating system:
 
-    === "Linux"
+    <!--tabs-->
 
-        ```text
-        quorum-plugin-hello-world-1.0.0-linux-amd64.zip
-        ```
+    # Linux
 
-    === "Intel MacOS"
+    ```
+    quorum-plugin-hello-world-1.0.0-linux-amd64.zip
+    ```
 
-        ```text
-        quorum-plugin-hello-world-1.0.0-darwin-amd64.zip
-        ```
+    # Intel MacOS
+
+    ```
+    quorum-plugin-hello-world-1.0.0-darwin-amd64.zip
+    ```
+
+    <!--/tabs-->
 
 ## Start GoQuorum with plugin support
 
-1. Navigate to your GoQuorum installation directory.
-  Copy the `HelloWorld` plugin distribution file and its JSON configuration `hello-world-plugin-config.json` to `build/bin`.
+1.  Navigate to your GoQuorum installation directory. Copy the `HelloWorld` plugin distribution file and its JSON configuration `hello-world-plugin-config.json` to `build/bin`.
 
-1. Create `geth-plugin-settings.json`:
+2.  Create `geth-plugin-settings.json`:
 
     ```bash
     cat > build/bin/geth-plugin-settings.json <<EOF
@@ -71,11 +72,13 @@ The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from it
     EOF
     ```
 
-    !!! note
+    :::note
 
-        For the configured locations, `./` means that you start from the working directory, from where the program is launched.
+    For the configured locations, `./` means that you start from the working directory, from where the program is launched.
 
-1. Run `geth` with the plugin:
+    :::
+
+3.  Run `geth` with the plugin:
 
     ```bash
     PRIVATE_CONFIG=ignore \
@@ -96,52 +99,64 @@ The plugin can [reload](../concepts/plugins.md#plugin-reloading) changes from it
 
 ## Test the plugin
 
-1. Test the `HelloWorld` plugin using the following command:
+1.  Test the `HelloWorld` plugin using the following command:
 
-    === "curl HTTP request"
+    <!--tabs-->
 
-        ```bash
-        curl -X POST http://localhost:8545 \
-            -H "Content-type: application/json" \
-            --data '{"jsonrpc":"2.0","method":"plugin@helloworld_greeting","params":["Quorum Plugin"],"id":1}'
-        ```
+    # curl HTTP request
 
-    === "JSON result"
+    ```bash
+    curl -X POST http://localhost:8545 \
+        -H "Content-type: application/json" \
+        --data '{"jsonrpc":"2.0","method":"plugin@helloworld_greeting","params":["Quorum Plugin"],"id":1}'
+    ```
 
-        ```json
-        {"jsonrpc":"2.0","id":1,"result":"Hello Quorum Plugin!"}
-        ```
+    # JSON result
 
-1. Update the plugin configuration `build/bin/hello-world-plugin-config.json` to support the `es` language (Spanish).
+    ```json
+    { "jsonrpc": "2.0", "id": 1, "result": "Hello Quorum Plugin!" }
+    ```
 
-1. Reload the plugin using the following command:
+    <!--/tabs-->
 
-    === "curl HTTP request"
+2.  Update the plugin configuration `build/bin/hello-world-plugin-config.json` to support the `es` language (Spanish).
 
-        ```bash
-        curl -X POST http://localhost:8545 \
-            -H "Content-type: application/json" \
-            --data '{"jsonrpc":"2.0","method":"admin_reloadPlugin","params":["helloworld"],"id":1}'
-        ```
+3.  Reload the plugin using the following command:
 
-    === "JSON result"
+    <!--tabs-->
 
-        ```json
-        {"jsonrpc":"2.0","id":1,"result":true}
-        ```
+    # curl HTTP request
 
-1. Re-run the `HelloWorld` plugin:
+    ```bash
+    curl -X POST http://localhost:8545 \
+        -H "Content-type: application/json" \
+        --data '{"jsonrpc":"2.0","method":"admin_reloadPlugin","params":["helloworld"],"id":1}'
+    ```
 
-    === "curl HTTP request"
+    # JSON result
 
-        ```bash
-        curl -X POST http://localhost:8545 \
-            -H "Content-type: application/json" \
-            --data '{"jsonrpc":"2.0","method":"plugin@helloworld_greeting","params":["Quorum Plugin"],"id":1}'
-        ```
+    ```json
+    { "jsonrpc": "2.0", "id": 1, "result": true }
+    ```
 
-    === "JSON result"
+    <!--/tabs-->
 
-        ```json
-        {"jsonrpc":"2.0","id":1,"result":"Hola Quorum Plugin!"}
-        ```
+4.  Re-run the `HelloWorld` plugin:
+
+    <!--tabs-->
+
+    # curl HTTP request
+
+    ```bash
+    curl -X POST http://localhost:8545 \
+        -H "Content-type: application/json" \
+        --data '{"jsonrpc":"2.0","method":"plugin@helloworld_greeting","params":["Quorum Plugin"],"id":1}'
+    ```
+
+    # JSON result
+
+    ```json
+    { "jsonrpc": "2.0", "id": 1, "result": "Hola Quorum Plugin!" }
+    ```
+
+    <!--/tabs-->

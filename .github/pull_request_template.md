@@ -1,6 +1,6 @@
 # Pull request checklist
 
-Use the following template to make sure your PR fits the GoQuorum documentation standard.
+Use the following template to make sure your PR fits the ConsenSys documentation standard.
 
 ## Before creating the PR
 
@@ -33,10 +33,7 @@ For content changes:
 
 For tool changes:
 
-- [ ] Build and QA tools (e.g., lint)
-- [ ] MkDocs templates
-- [ ] MkDocs configuration
-- [ ] Python dependencies
+- [ ] Build and QA tools
 - [ ] Node dependencies and JavaScript
 - [ ] GitHub integration
 
@@ -45,4 +42,4 @@ For tool changes:
 Make sure that:
 
 - [ ] You've [fixed any issues](https://consensys.net/docs/doctools/en/latest/contribute/fix-cicd-errors/) raised by the tests.
-- [ ] You've [previewed your changes on GitHub Pages](https://consensys.net/docs/doctools/en/latest/preview/new-system/#preview-on-github-pages)
+- [ ] You've previewed your changes through Vercel below.

@@ -1,13 +1,18 @@
+---
+title: GoQuorum qlight
+description: How to configure GoQuorum qlight
+sidebar_position: 6
+---
+
 # Configure GoQuorum qlight
 
-A [qlight client node](../../concepts/qlight-node.md) requires a full node configured to act as a qlight server.
-The server node is usually set up to support [multiple private states](../../concepts/multi-tenancy.md#multiple-private-states)
-(MPS), with the qlight client set up to use a [private state identifier](../../concepts/multi-tenancy.md#private-state-identifier)
-(PSI) which is managed by the server node.
+A [qlight client node](../../concepts/qlight-node.md) requires a full node configured to act as a qlight server. The server node is usually set up to support [multiple private states](../../concepts/multi-tenancy.md#multiple-private-states) (MPS), with the qlight client set up to use a [private state identifier](../../concepts/multi-tenancy.md#private-state-identifier) (PSI) which is managed by the server node.
 
-!!! note
+:::note
 
-    Setting up a server node to support MPS is not required, for example, when setting up a qlight client for offloading processing from a full node.
+Setting up a server node to support MPS is not required, for example, when setting up a qlight client for offloading processing from a full node.
+
+:::
 
 ## Configure qlight client
 
@@ -23,24 +28,19 @@ Configure the qlight server using the [`--qlight.server.*`](../../reference/cli-
 
 ### Network IP restriction
 
-This restricts communication to specified IP networks (CIDR masks).
-Specify the network mask on the qlight server using [`--qlight.server.p2p.netrestrict`](../../reference/cli-syntax.md#qlightserverp2pnetrestrict).
+This restricts communication to specified IP networks (CIDR masks). Specify the network mask on the qlight server using [`--qlight.server.p2p.netrestrict`](../../reference/cli-syntax.md#qlightserverp2pnetrestrict).
 
 ### File based permissioning
 
-File based permissioning allows you to check qlight clients against a permissioned list and a disallowed list.
-Enable file based permissioning on the server node using [`--qlight.server.p2p.permissioning`](../../reference/cli-syntax.md#qlightserverp2ppermissioning).
+File based permissioning allows you to check qlight clients against a permissioned list and a disallowed list. Enable file based permissioning on the server node using [`--qlight.server.p2p.permissioning`](../../reference/cli-syntax.md#qlightserverp2ppermissioning).
 
-The default files are `permissioned-nodes.json` and `disallowed-nodes.json`.
-You can specify a file prefix using [`--qlight.server.p2p.permissioning.prefix`](../../reference/cli-syntax.md#qlightserverp2ppermissioningprefix).
+The default files are `permissioned-nodes.json` and `disallowed-nodes.json`. You can specify a file prefix using [`--qlight.server.p2p.permissioning.prefix`](../../reference/cli-syntax.md#qlightserverp2ppermissioningprefix).
 
 ## Configure enterprise authorization
 
-The [enterprise authorization protocol integration](../manage/json-rpc-api-security.md#enterprise-authorization-protocol-integration)
-only allows authenticated clients to connect to the server.
+The [enterprise authorization protocol integration](../manage/json-rpc-api-security.md#enterprise-authorization-protocol-integration) only allows authenticated clients to connect to the server.
 
-When using [JSON-RPC security](../manage/json-rpc-api-security.md#enterprise-authorization-protocol-integration)
-you must provide an access token to communicate to the qlight server.
+When using [JSON-RPC security](../manage/json-rpc-api-security.md#enterprise-authorization-protocol-integration) you must provide an access token to communicate to the qlight server.
 
 Enable auth tokens in the qlight client using [`--qlight.client.token.enabled`](../../reference/cli-syntax.md#qlightclienttokenenabled).
 
@@ -50,13 +50,11 @@ Specify a refresh mechanism for the token using [`--qlight.client.token.manageme
 
 ## Configure TLS for P2P communication
 
-You can add an encryption layer on the qlight client-server communication.
-Configure the encryption layer using the [`qlight.tls.*`](../../reference/cli-syntax.md#qlighttls) command line options.
+You can add an encryption layer on the qlight client-server communication. Configure the encryption layer using the [`qlight.tls.*`](../../reference/cli-syntax.md#qlighttls) command line options.
 
 ## Configure the `client-security-plugin` mode
 
-In this mode, the configured Go-Quorum plugin is called when the token expiry is reached.
-You can configure and even develop your own implementation of this plugin.
+In this mode, the configured Go-Quorum plugin is called when the token expiry is reached. You can configure and even develop your own implementation of this plugin.
 
 The plugins are in the ConsenSys repository and are downloaded automatically to the plugins directory.
 
@@ -74,42 +72,42 @@ You can refer to the [QLight Client with Token Manager Plugin](https://github.co
 
 1. Configure the plugins (`plugins/geth-plugin-settings.json`)
 
-    ```json
-    {
-    "baseDir": "./plugins",
-    "providers": {
-    "qlighttokenmanager": {
-        "name":"quorum-plugin-qlight-token-manager",
-        "version":"1.0.0",
-        "config": "file://./plugins/qlight-token-manager-plugin-config.json"
-    },
-    "helloworld": {
-        "name":"quorum-plugin-hello-world",
-        "version":"1.0.0",
-        "config": "file://./plugins/hello-world-plugin-config.json"
-    }
-    }
-    }
-    ```
+   ```json
+   {
+     "baseDir": "./plugins",
+     "providers": {
+       "qlighttokenmanager": {
+         "name": "quorum-plugin-qlight-token-manager",
+         "version": "1.0.0",
+         "config": "file://./plugins/qlight-token-manager-plugin-config.json"
+       },
+       "helloworld": {
+         "name": "quorum-plugin-hello-world",
+         "version": "1.0.0",
+         "config": "file://./plugins/hello-world-plugin-config.json"
+       }
+     }
+   }
+   ```
 
 2. Configure the qlight token manager (`plugins/qlight-token-manager-plugin-config.json`)
 
-    ```json
-    {
-        "url":"https://multi-tenancy-oauth2-server:4444/oauth2/token",
-        "method":"POST",
-        "parameters":{
-            "grant_type":"client_credentials",
-            "client_id":"${PSI}",
-            "client_secret":"foofoo",
-            "scope":"rpc://eth_* p2p://qlight rpc://admin_* rpc://personal_* rpc://quorumExtension_* rpc://rpc_modules psi://${PSI}?self.eoa=0x0&node.eoa=0x0",
-            "audience":"Node1"
-        }
-    }
-    ```
+   ```json
+   {
+     "url": "https://multi-tenancy-oauth2-server:4444/oauth2/token",
+     "method": "POST",
+     "parameters": {
+       "grant_type": "client_credentials",
+       "client_id": "${PSI}",
+       "client_secret": "foofoo",
+       "scope": "rpc://eth_* p2p://qlight rpc://admin_* rpc://personal_* rpc://quorumExtension_* rpc://rpc_modules psi://${PSI}?self.eoa=0x0&node.eoa=0x0",
+       "audience": "Node1"
+     }
+   }
+   ```
 
 3. Enable the plugins configuration in the geth arguments
 
-    Add the flag `--plugins file://./plugins/geth-plugin-settings.json --plugins.skipverify` so GoQuorum enables them.
+   Add the flag `--plugins file://./plugins/geth-plugin-settings.json --plugins.skipverify` so GoQuorum enables them.
 
-    (`skipverify` will skip the verification of the plugins integrity)
+   (`skipverify` will skip the verification of the plugins integrity)

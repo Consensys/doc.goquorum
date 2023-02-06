@@ -1,16 +1,17 @@
-# ConsenSys Quorum GoQuorum documentation
+# ConsenSys GoQuorum
 
-[![Publish latest doc site](https://github.com/ConsenSys/doc.goquorum/actions/workflows/latest_publish.yml/badge.svg)](https://github.com/ConsenSys/doc.goquorum/actions/workflows/latest_publish.yml)
-[![Publish release doc site](https://github.com/ConsenSys/doc.goquorum/actions/workflows/release_publish.yml/badge.svg)](https://github.com/ConsenSys/doc.goquorum/actions/workflows/release_publish.yml)
-[![Test the links](https://github.com/ConsenSys/doc.goquorum/actions/workflows/linkcheck.yml/badge.svg)](https://github.com/ConsenSys/doc.goquorum/actions/workflows/linkcheck.yml)
-[![Lint codebase](https://github.com/ConsenSys/doc.goquorum/actions/workflows/lint.yml/badge.svg)](https://github.com/ConsenSys/doc.goquorum/actions/workflows/lint.yml)
-[![Test spelling and guidelines](https://github.com/ConsenSys/doc.goquorum/actions/workflows/spelling.yml/badge.svg)](https://github.com/ConsenSys/doc.goquorum/actions/workflows/spelling.yml)
+This documentation repo is built using [Docusaurus 2](https://docusaurus.io/).
 
-[GoQuorum](https://github.com/ConsenSys/quorum) is a ConsenSys Quorum Go client
+### Local Development
 
-The software sources are hosted in [GoQuorum] repository
+    $ npm install
+    $ npm run prepare
+    $ npm start
 
-This repository only contains the sources for [GoQuorum documentation Web site](https://consensys.net/docs/goquorum/).
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-See the [Doctools documentation](https://consensys.net/docs/doctools/) for instructions on how to
-contribute to this documentation.
+### Build
+
+    $ npm run build
+
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
