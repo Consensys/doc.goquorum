@@ -158,7 +158,7 @@ const config = {
           },
 
           {
-            href: "https://github.com/ConsenSys/goquorum",
+            href: "https://github.com/ConsenSys/quorum",
             className: "header-github-link",
             position: "right",
           },
