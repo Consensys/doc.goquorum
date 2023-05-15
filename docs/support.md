@@ -9,6 +9,6 @@ Need help on using GoQuorum? Ask our community or visit [Quorum Blockchain Servi
 
 ## Community support
 
-- [Discord](https://discord.gg/5U9Jwp7)
+- [Discord](https://discord.com/invite/consensys)
 - [ConsenSys Quorum site](https://consensys.net/quorum/)
 - [Create an issue on the repository](https://github.com/ConsenSys/quorum/issues)
