@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Client libraries
 
-GoQuorum supports common smart contract and dapp development, deployment, and operational use cases, using tools such as [Truffle](https://trufflesuite.com/), [web3.js] and [web3js-quorum](https://consensys.github.io/web3js-quorum/latest/index.html). The client supports common [JSON-RPC API](json-rpc-apis.md) methods, for example `eth`, `net`, `web3`, `debug`, and `miner`.
+GoQuorum supports common smart contract and dapp development, deployment, and operational use cases, using tools such as [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#overview), [web3.js] and [web3js-quorum](https://consensys.github.io/web3js-quorum/latest/index.html). The client supports common [JSON-RPC API](json-rpc-apis.md) methods, for example `eth`, `net`, `web3`, `debug`, and `miner`.
 
 ## Prerequisites
 

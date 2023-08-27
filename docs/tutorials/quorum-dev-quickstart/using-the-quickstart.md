@@ -20,7 +20,7 @@ This tutorial runs a private network suitable for education or demonstration pur
 
 - [Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) version 14 or higher
 - [Docker and Docker-compose](https://docs.docker.com/compose/install/)
-- [Truffle](https://www.trufflesuite.com/truffle) development framework
+- [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#overview) development framework
 - [Solc](https://github.com/ethereum/solidity/releases/tag/v0.5.17)
 - [`curl` command line](https://curl.haxx.se/download.html)
 - [MetaMask](https://metamask.io/)
