@@ -580,7 +580,7 @@ The updated balance reflects the transaction completed using MetaMask.
 
 You can use a demo dapp called QuorumToken which makes use of an ERC20 token that is deployed to the chain.
 
-Behind the scenes uses [Hardhat](https://www.npmjs.com/package/hardhat), [Ethers](https://www.npmjs.com/package/ethers) and [Metamask](https://metamask.io/) to interact with the chain. As such the process comprises two parts:
+Behind the scenes uses [Hardhat](https://www.npmjs.com/package/hardhat), [Ethers](https://www.npmjs.com/package/ethers) and [MetaMask](https://metamask.io/) to interact with the chain. As such the process comprises two parts:
 
 1. Deploy the contract to the chain and **save the contract's address**
 2. Start the DApp and use the UI to read and transact on the chain with the token.
@@ -665,9 +665,9 @@ This starts the DApp, binding it to port 3001 on your system.
 ```
 
 In the browser where you have MetaMask enabled and one of the test accounts loaded, open a new tab and navigate to [the QuorumToken dapp](http://localhost:3001).
-Connect to Metmask and input the address from the previous step. Fox example our contract above deployed to `0x5FbDB2315678afecb367f032d93F642f64180aa3`. 
+Connect to MetaMask and input the address from the previous step. Fox example our contract above deployed to `0x5FbDB2315678afecb367f032d93F642f64180aa3`. 
 
-The DApp will then read the balance of the account from Metamask and get details of the contract. You can then send funds to another address (any of the other test accounts) on the network and Metamask will sign and send the transaction.
+The DApp will then read the balance of the account from MetaMask and get details of the contract. You can then send funds to another address (any of the other test accounts) on the network and MetaMask will sign and send the transaction.
 
 You can also search for the transaction and view its details in the [Block Explorer](http://localhost:25000/).
 
@@ -831,7 +831,7 @@ Once complete, start the network up with `./run.sh`
 
 On a live network the process is the same when using local permissions with the `permissioned-nodes.json` file. You don't need to restart the network and subsequent changes to the files are picked up by the servers.
 
-When using the smart contract you can either make changes via a [dapp](https://github.com/ConsenSys/permissioning-smart-contracts) or via RPC [API](https://docs.goquorum.consensys.net/en/latest/Reference/API-Methods/#permission-methods) calls.
+When using the smart contract you can either make changes via a [dapp](https://github.com/ConsenSys/permissioning-smart-contracts) or via RPC [API](../../reference/api-methods.md) calls.
 
 [bootnodes]: ../create-permissioned-network.md#2-setup-bootnode
 [permissions file]: https://github.com/ConsenSys/quorum-dev-quickstart/blob/master/files/goquorum/config/goquorum/data/permissioned-nodes.json
