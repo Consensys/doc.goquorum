@@ -18,7 +18,7 @@ The quickstart requires:
 
 - [Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and runs on Linux and Mac only.
 - [Docker and Docker-compose](https://docs.docker.com/compose/install/).
-- [Truffle](https://www.trufflesuite.com/truffle) development framework.
+- [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#overview) development framework.
 - [`curl` command line](https://curl.haxx.se/download.html).
 - [MetaMask](https://metamask.io/).
 

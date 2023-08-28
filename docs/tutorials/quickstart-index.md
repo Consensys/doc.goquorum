@@ -13,7 +13,7 @@ The [Quorum Developer Quickstart](https://github.com/ConsenSys/quorum-dev-quicks
 
 - [Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) version 14 or higher
 - [Docker and Docker-compose](https://docs.docker.com/compose/install/)
-- [Truffle](https://www.trufflesuite.com/truffle) development framework
+- [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#overview) development framework
 - [`curl` command line](https://curl.haxx.se/download.html)
 - [MetaMask](https://metamask.io/)
 
