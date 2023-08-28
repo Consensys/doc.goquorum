@@ -26,6 +26,9 @@ Typically transactions are used to [deploy contracts](../tutorials/contracts/dep
 
 # Dapps
 
-_Decentralized applications_ (dapps), like any other software application, can be a website or mobile app. Dapps are built on a decentralized network (Ethereum) and interact with smart contracts deployed to the network. They can be thought of as a GUI (front end) for a smart contract (back end), and can be written in any language (for example, JavaScript).
+_Decentralized applications_ (dapps), like any other software application, can be a website or mobile app. Dapps are built
+on a decentralized network (Ethereum) and interact with smart contracts deployed to the network. They can be thought of
+as a GUI (front end) for a smart contract (back end), and can be written in any language (for example, JavaScript).
 
-If using the [Quorum Developer Quickstart](../tutorials/quickstart-index.md), or existing blockchain, you can use a demo dapp called [QuorumToken] Shop]((../tutorials/quorum-dev-quickstart/using-the-quickstart#smart-contract-and-dapp-usage).
+If using the [Quorum Developer Quickstart](../tutorials/quickstart-index.md), or existing blockchain, you can use a demo
+dapp called [QuorumToken](../tutorials/quorum-dev-quickstart/using-the-quickstart.md#smart-contract-and-dapp-usage).
