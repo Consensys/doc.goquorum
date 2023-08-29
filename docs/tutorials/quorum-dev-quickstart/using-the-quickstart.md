@@ -240,12 +240,12 @@ Member3Quorum RPC: http://localhost:20004
 Member1Tessera: http://localhost:9083
 ```
 
-Navigate to the `smart_contracts/privacy` directory and deploy the private transaction:
+Navigate to the `smart_contracts` directory and deploy the private transaction:
 
 ```bash
-cd smart_contracts/privacy
+cd smart_contracts
 npm install
-node scripts/private_tx.js
+node scripts/private/private_tx.js
 ```
 
 This deploys the contract and sends an arbitrary value (`47`) from `Member1` to `Member3`.
@@ -257,7 +257,7 @@ It then performs a write operation using the `set` function and the contract's A
 Lastly, it performs a read operation on all three members to verify that this is private between `Member1` and `Member3` only, and you should see that only `Member1` and `Member3` return the result of `123`, and `Member2` has an undefined value.
 
 ```bash
-node scripts/private_tx.js
+node scripts/private/private_tx.js
 The transaction hash is: 0x4d796b2ccac109fc54006105df44c519341696fa88e004ce5c614239cb9f92a2
 Address of transaction:  0x695Baaf717370fcBb42aB45CD83C531C27D79eF1
 Use the smart contracts 'get' function to read the contract's constructor initialized value ..
