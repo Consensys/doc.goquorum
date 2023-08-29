@@ -227,7 +227,8 @@ Here the hexadecimal value `0x2a` translates to decimal as `42`, the number of b
 
 ## Public transactions
 
-This example uses the [web3.js](https://www.npmjs.com/package/web3) library to make the API calls, using the `rpcnode` that is accessed on `http://localhost:8545`
+This example uses the [web3.js](https://www.npmjs.com/package/web3) library to make the API calls, using the `rpcnode`
+accessed on `http://localhost:8545`.
 
 Navigate to the `smart_contracts` directory and deploy the public transaction:
 
@@ -239,16 +240,15 @@ node scripts/public/public_tx.js
 node scripts/public/public_tx_ethers.js
 ```
 
-This deploys the contract and sends an arbitrary value (`47`) from `Member1` to `Member3`.
+This deploys the contract and sends an arbitrary value (`47`) from `Member1` to `Member3`. The script then performs:
 
-Once done, it performs a read operation on the contract using the `get` function and the contract's ABI, at the address specified.
+1. A read operation on the contract using the `get` function and the contract's ABI, at the specified address.
+1. A write operation using the `set` function and the contract's ABI, at the address and sets the value to `123`.
+1. A read operation on all events emitted.
 
-It then performs a write operation using the `set` function and the contract's ABI, at the address and sets the value to `123`.
-
-Lastly, it performs a read operation on all events emitted.
+The script output is as follows:
 
 ```bash
-node scripts/public/public_tx.js
 {
   address: '0x03e034D03b04A348143F2C25884e1E4946fa6196',
   privateKey: '0xca3a6f8b83ed5876201605ae8507490d0a0205c0748e6376ed9661c9fecb98d7',
@@ -270,13 +270,18 @@ Obtained value at deployed contract is: 123
 Obtained all value events from deployed contract : [47,123]
 ```
 
-We also have a second example to show how to transfer eth between accounts. Navigate to the `smart_contracts` directory and deploy the `eth_tx` transaction:
+We also have a second example that shows how to transfer ETH between accounts. Navigate to the `smart_contracts` directory
+and deploy the `eth_tx` transaction:
 
 ```bash
 cd smart_contracts
 npm install
 node scripts/public/eth_tx.js
+```
 
+The output is as follows:
+
+```bash
 Account A has balance of: 90000
 Account B has balance of: 0
 create and sign the txn
