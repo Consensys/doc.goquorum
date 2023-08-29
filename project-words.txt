@@ -456,6 +456,7 @@ roadmap
 rocketvalidator
 rootca
 rpcapi
+rpcnode
 rpcprefix
 rtcts
 rtlcss

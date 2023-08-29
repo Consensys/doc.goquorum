@@ -225,6 +225,67 @@ The result indicates the highest block number synchronized on this node.
 
 Here the hexadecimal value `0x2a` translates to decimal as `42`, the number of blocks received by the node so far, about two minutes after the new network started.
 
+## Public transactions
+
+This example uses the [web3.js](https://www.npmjs.com/package/web3) library to make the API calls, using the `rpcnode` that is accessed on `http://localhost:8545`
+
+Navigate to the `smart_contracts` directory and deploy the public transaction:
+
+```bash
+cd smart_contracts
+npm install
+node scripts/public/public_tx.js
+# or via ethers
+node scripts/public/public_tx_ethers.js
+```
+
+This deploys the contract and sends an arbitrary value (`47`) from `Member1` to `Member3`.
+
+Once done, it performs a read operation on the contract using the `get` function and the contract's ABI, at the address specified.
+
+It then performs a write operation using the `set` function and the contract's ABI, at the address and sets the value to `123`.
+
+Lastly, it performs a read operation on all events emitted.
+
+```bash
+node scripts/public/public_tx.js
+{
+  address: '0x03e034D03b04A348143F2C25884e1E4946fa6196',
+  privateKey: '0xca3a6f8b83ed5876201605ae8507490d0a0205c0748e6376ed9661c9fecb98d7',
+  signTransaction: [Function: signTransaction],
+  sign: [Function: sign],
+  encrypt: [Function: encrypt]
+}
+create and sign the txn
+sending the txn
+tx transactionHash: 0x6e62d7db1ec001a127130da6434358f44af0f6adee0466902e3eb8160f31c950
+tx contractAddress: 0x1fBDd454d617E21c7121161b154B764Dc5844fc9
+Contract deployed at address: 0x1fBDd454d617E21c7121161b154B764Dc5844fc9
+Use the smart contracts 'get' function to read the contract's constructor initialized value .. 
+Obtained value at deployed contract is: 47
+Use the smart contracts 'set' function to update that value to 123 .. 
+Set value on contract at : 0xdcaf84bbdd35811820dbb13453e1532d5cd3e3ef718e12a49878de67948e0b9b
+Verify the updated value that was set .. 
+Obtained value at deployed contract is: 123
+Obtained all value events from deployed contract : [47,123]
+```
+
+We also have a second example to show how to transfer eth between accounts. Navigate to the `smart_contracts` directory and deploy the `eth_tx` transaction:
+
+```bash
+cd smart_contracts
+npm install
+node scripts/public/eth_tx.js
+
+Account A has balance of: 90000
+Account B has balance of: 0
+create and sign the txn
+sending the txn
+tx transactionHash: 0x8b9d247900f2b50a8dded3c0d73ee29f04487a268714ec4ebddf268e73080f98
+Account A has an updated balance of: 89999.999999999999999744
+Account B has an updated balance of: 0.000000000000000256
+```
+
 ## Private transactions
 
 This example uses the [web3.js](https://www.npmjs.com/package/web3) library to make the API calls, creating three member nodes pairs (a GoQuorum node which has a corresponding Tessera node for privacy) that can be accessed using APIs on the following ports:
