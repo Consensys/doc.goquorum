@@ -186,7 +186,7 @@ cp static-nodes.json genesis.json ../../Node-4/data/
 In each validator directory, copy the `nodekey` files and `address` to the data directory:
 
 ```bash
-cd validator0; cp nodekey* address ../../Node-0/data
+cd ../validator0; cp nodekey* address ../../Node-0/data
 cd ../validator1; cp nodekey* address ../../Node-1/data
 cd ../validator2; cp nodekey* address ../../Node-2/data
 cd ../validator3; cp nodekey* address ../../Node-3/data
