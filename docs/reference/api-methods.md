@@ -487,7 +487,8 @@ debug.privateStateRoot("latest");
 
 ## IBFT methods
 
-The following API methods provide access to the [IBFT](../configure-and-manage/configure/consensus-protocols/ibft) and [QBFT](../configure-and-manage/configure/consensus-protocols/qbft) consensus engines.
+The following API methods provide access to the [IBFT](../configure-and-manage/configure/consensus-protocols/ibft.md) and 
+[QBFT](../configure-and-manage/configure/consensus-protocols/qbft.md) consensus engines.
 
 To use these methods:
 
