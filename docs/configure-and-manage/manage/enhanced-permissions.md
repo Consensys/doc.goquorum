@@ -4,6 +4,10 @@ description: Using enhanced smart contract based permissioning
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Using enhanced permissioning
 
 Managing the [enhanced permissioning model](../../concepts/permissions-overview.md#enhanced-network-permissioning) can be broadly categorized into the following activities:
@@ -48,15 +52,15 @@ This example assumes that the network was started with the `permission-config.js
 
 View the organization list with the following command:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.orgList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -72,19 +76,20 @@ quorumPermission.orgList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View `ADMINORG`'s details:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ADMINORG");
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -140,7 +145,8 @@ quorumPermission.getOrgDetails("ADMINORG");
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ## Proposing a new organization into the network
 
@@ -156,9 +162,8 @@ This example is to propose and approve an organization by name `ORG1`.
 
 Propose to add `ORG1` with the following command:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addOrg(
@@ -169,27 +174,29 @@ quorumPermission.addOrg(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Once the organization is proposed, it will be in `Proposed` state awaiting approval from other network admin accounts.
 
 View `ORG1`'s status:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.orgList[1];
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -203,13 +210,13 @@ quorumPermission.orgList[1];
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 The network admin accounts can then approve the proposed organizations with the following command, and once the majority approval is achieved, the organization status is updated to `Approved`:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.approveOrg(
@@ -220,25 +227,27 @@ quorumPermission.approveOrg(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 See that `ORG1`'s status was updated in the organization list with the following command:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.orgList[1];
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -252,19 +261,20 @@ quorumPermission.orgList[1];
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the details of the new approved organization:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1");
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -298,7 +308,8 @@ quorumPermission.getOrgDetails("ORG1");
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 At this point:
 
@@ -330,9 +341,8 @@ Use [`quorumPermission_addSubOrg`](../../reference/api-methods.md#quorumpermissi
 
 Add a sub-organization with the following command:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addSubOrg(
@@ -343,25 +353,27 @@ quorumPermission.addSubOrg(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Get the sub-organization's details:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1.SUB1");
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -378,7 +390,8 @@ quorumPermission.getOrgDetails("ORG1.SUB1");
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 The enode ID is not mandatory for adding a sub-organization.
 
@@ -388,9 +401,8 @@ Once assigned, the account will act as organization admin at the sub-organizatio
 
 Add a new admin account for the sub-organization with the following command:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addNewRole("ORG1.SUB1", "SUBADMIN", 3, false, true, {
@@ -398,39 +410,41 @@ quorumPermission.addNewRole("ORG1.SUB1", "SUBADMIN", 3, false, true, {
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the organization admin account ID:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 eth.accounts[0];
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "0x0638e1574728b6d862dd5d3a3e0942c3be47d996"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 The sub-organization admin role `SUBADMIN` can now be assigned to an account at `SUB1`.
 
 Add the account as a `SUBADMIN` to `SUB1` with the following command:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addAccountToOrg(
@@ -441,25 +455,27 @@ quorumPermission.addAccountToOrg(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View `SUB1`'s details:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1.SUB1");
 ```
 
-# geth console results
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -493,15 +509,15 @@ quorumPermission.getOrgDetails("ORG1.SUB1");
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 The account `0x42ef6abedcb7ecd3e9c4816cd5f5a96df35bb9a0` is now the admin for `SUB1` and can add roles, accounts, and nodes to the sub-organization.
 
 Add a new role `TRANSACT` to `SUB1` with the following command:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addNewRole("ORG1.SUB1", "TRANSACT", 1, false, true, {
@@ -509,25 +525,27 @@ quorumPermission.addNewRole("ORG1.SUB1", "TRANSACT", 1, false, true, {
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View `SUB1`'s role list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1.SUB1").roleList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -550,7 +568,8 @@ quorumPermission.getOrgDetails("ORG1.SUB1").roleList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 :::note
 
@@ -560,9 +579,8 @@ The organization admin account at the master organization level has the admin ri
 
 To add an account to an organization, use [`quorumPermission_addAccountToOrg`](../../reference/api-methods.md#quorumpermission_addaccounttoorg):
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addAccountToOrg(
@@ -573,25 +591,27 @@ quorumPermission.addAccountToOrg(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the organization's account list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1.SUB1").acctList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -612,13 +632,13 @@ quorumPermission.getOrgDetails("ORG1.SUB1").acctList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 To suspend an account, use [`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus) with `action` set to 1:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.updateAccountStatus(
@@ -629,25 +649,27 @@ quorumPermission.updateAccountStatus(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the account's updated status in the organization's account list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1.SUB1").acctList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -668,13 +690,13 @@ quorumPermission.getOrgDetails("ORG1.SUB1").acctList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 To revoke suspension of an account, use [`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus) with `action` set to 2:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.updateAccountStatus(
@@ -685,7 +707,8 @@ quorumPermission.updateAccountStatus(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
@@ -693,19 +716,20 @@ quorumPermission.updateAccountStatus(
 
 :::
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the account's updated status in the organization's account list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1.SUB1").acctList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -726,13 +750,13 @@ quorumPermission.getOrgDetails("ORG1.SUB1").acctList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 To exclude an account, use [`quorumPermission_updateAccountStatus`](../../reference/api-methods.md#quorumpermission_updateaccountstatus) with `action` set to 3:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.updateAccountStatus(
@@ -743,25 +767,27 @@ quorumPermission.updateAccountStatus(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Once excluded, no further activity is possible on the account. View the account's updated status in the organization's account list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1.SUB1").acctList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -782,13 +808,13 @@ quorumPermission.getOrgDetails("ORG1.SUB1").acctList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 To add nodes at the organization and sub-organization level, use [`quorumPermission_addNode`](../../reference/api-methods.md#quorumpermission_addnode):
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addNode(
@@ -798,25 +824,27 @@ quorumPermission.addNode(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the organization's updated node list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1.SUB1").nodeList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -833,19 +861,20 @@ quorumPermission.getOrgDetails("ORG1.SUB1").nodeList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 To manage the status of the nodes, use [`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus). To deactivate a node, call the method with `action` set to 1:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1.SUB1").nodeList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -862,13 +891,13 @@ quorumPermission.getOrgDetails("ORG1.SUB1").nodeList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 To re-activate a node, use [`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus) with `action` set to 2:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.updateNodeStatus(
@@ -879,25 +908,27 @@ quorumPermission.updateNodeStatus(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the node's updated status in the organization's node list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1.SUB1").nodeList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -914,19 +945,20 @@ quorumPermission.getOrgDetails("ORG1.SUB1").nodeList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 To exclude a node, use [`quorumPermission_updateNodeStatus`](../../reference/api-methods.md#quorumpermission_updatenodestatus) with `action` set to 3:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.getOrgDetails("ORG1.SUB1").nodeList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -943,7 +975,8 @@ quorumPermission.getOrgDetails("ORG1.SUB1").nodeList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Once excluded, a node can't re-join a network.
 
@@ -963,9 +996,8 @@ If you need to temporarily suspend all activities of an organization, use [`quor
 
 Suspend `ORG1` with the following command:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.updateOrgStatus("ORG1", 1, {
@@ -973,25 +1005,27 @@ quorumPermission.updateOrgStatus("ORG1", 1, {
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the organization's updated status in the organization list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.orgList[2];
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -1005,13 +1039,13 @@ quorumPermission.orgList[2];
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Suspending an organization requires majority approval from other network admin accounts, using [`quorumPermission_approveOrgStatus`](../../reference/api-methods.md#quorumpermission_approveorgstatus). Once approved the organization status is marked as `Suspended`.
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.approveOrgStatus("ORG1", 1, {
@@ -1019,25 +1053,27 @@ quorumPermission.approveOrgStatus("ORG1", 1, {
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the organization's updated status in the organization list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.orgList[2];
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -1051,7 +1087,8 @@ quorumPermission.orgList[2];
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 When the organization is suspended, no transaction from any of the accounts linked to the organization or sub-organizations under it is allowed. However, the nodes linked to the organization are active and are syncing with the network.
 
@@ -1063,9 +1100,8 @@ To revoke the suspension of an organization, use [`quorumPermission_updateOrgSta
 
 Revoke the suspension of `ORG1` with the following command:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.updateOrgStatus("ORG1", 2, {
@@ -1073,19 +1109,20 @@ quorumPermission.updateOrgStatus("ORG1", 2, {
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Revoking an organization's suspension requires majority approval using [`quorumPermission_approveOrgStatus`](../../reference/api-methods.md#quorumpermission_approveorgstatus) with `action` set to 2:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.approveOrgStatus("ORG1", 2, {
@@ -1093,25 +1130,27 @@ quorumPermission.approveOrgStatus("ORG1", 2, {
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the organization's updated status in the organization list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.orgList[0];
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -1125,7 +1164,8 @@ quorumPermission.orgList[0];
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Once the revoke is approved, all accounts in the organization and sub-organizations under it are able to transact as per role level access.
 
@@ -1139,9 +1179,8 @@ Both of these activities can be performed by existing network admin accounts onl
 
 To assign a network admin or organization admin role to an account, use [`quorumPermission_assignAdminRole`](../../reference/api-methods.md#quorumpermission_assignadminrole):
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.assignAdminRole(
@@ -1152,25 +1191,27 @@ quorumPermission.assignAdminRole(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the account's updated role in the account list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.acctList[3];
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ````json
 {
@@ -1182,13 +1223,14 @@ quorumPermission.acctList[3];
 }
     ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
-To approve the assignment of a network admin role, use [`quorumPermission_approveAdminRole`](../../reference/api-methods.md#quorumpermission_approveadminrole):
+To approve the assignment of a network admin role, use
+[`quorumPermission_approveAdminRole`](../../reference/api-methods.md#quorumpermission_approveadminrole):
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.approveAdminRole(
@@ -1198,25 +1240,26 @@ quorumPermission.approveAdminRole(
 );
 ````
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
-
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 View the account's updated status in the account list:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.acctList[4];
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -1228,6 +1271,7 @@ quorumPermission.acctList[4];
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 The account can now perform all activities allowable by a network admin account and can participate in the approval process for any actions at network level.

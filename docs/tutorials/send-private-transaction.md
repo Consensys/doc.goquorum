@@ -4,6 +4,9 @@ description: Sending private transactions
 sidebar_position: 6
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Send private transactions
 
 This tutorial shows you how to send [private transactions](../concepts/privacy/private-and-public.md#private-transactions).
@@ -124,17 +127,18 @@ eth.accounts;
 
 Unlock the account using the account key displayed by `eth.accounts`.
 
-<!--tabs-->
-
-# Unlock
+<Tabs>
+  <TabItem value="Unlock" label="Unlock" default>
 
 `javascript personal.unlockAccount("<account key>") `
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example">
 
 `javascript personal.unlockAccount("0x0bc37b7dc68c24aee9d49fab70bb20cb8c6154c2")`
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Type in the account password when prompted.
 
@@ -160,9 +164,8 @@ loadScript("private-contract.js");
 
 The GoQuorum logs for node 0 indicate the private transaction was sent.
 
-<!--tabs-->
-
-# Node 0
+<Tabs>
+  <TabItem value="Node 0" label="Node 0">
 
 ```bash
 DEBUG[12-08|13:53:09.380] sending private tx txnType=3 data=606060…00002a privatefrom= privatefor="[yrrHrbeaXzZCYJ4DPXrunvms1/jy5zDvoH5KnNyW4VE=]" privacyFlag=0
@@ -175,7 +178,8 @@ INFO [12-08|13:53:09.630] Private transaction signing with QuorumPrivateTxSigner
 
 The Tessera logs indicate the transaction payload was distributed and received.
 
-# Node 1
+  </TabItem>
+  <TabItem value="Node 1" label="Node 1">
 
 ```bash
 2020-12-08 13:53:09.390 [qtp1487391298-33] INFO c.q.tessera.q2t.TransactionResource - Enter Request : POST : /send
@@ -185,7 +189,8 @@ The Tessera logs indicate the transaction payload was distributed and received.
 2020-12-08 13:53:09.622 [qtp1487391298-33] INFO c.q.tessera.q2t.TransactionResource - Response for send : 201 Created
 ```
 
-# Node 2
+  </TabItem>
+  <TabItem value="Node 2" label="Node 2">
 
 ```bash
 2020-12-08 13:53:09.548 [qtp1564775175-89] INFO c.q.tessera.p2p.TransactionResource - Enter Request : POST : /push
@@ -197,4 +202,5 @@ The Tessera logs indicate the transaction payload was distributed and received.
 2020-12-08 13:53:12.088 [qtp1527084496-36] INFO c.q.tessera.q2t.TransactionResource - Response for transaction/+TdE/ZNMX0IrqLSwLh6szKS4rxCuDB9NbpdLf7yXjfwS0ATYsnpSkCCJ+SSzh0D19CT4RZGzAiiFldF9pkBxEQ== : 200 OK
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>

@@ -4,6 +4,10 @@ description: GoQuorum JSON-RPC API methods reference
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # GoQuorum API methods
 
 This reference describes the GoQuorum JSON-RPC API methods.
@@ -44,15 +48,15 @@ None
 
 - `recipientPtmKey`: _string_ - new participant's Tessera public key
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_activeExtensionContracts","id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -71,13 +75,15 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExt
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumExtension.activeExtensionContracts;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -92,7 +98,8 @@ quorumExtension.activeExtensionContracts;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumExtension_approveExtension`
 
@@ -110,15 +117,15 @@ Submits an approval/denial vote to the specified extension management contract.
 
 `result`: _data_ - hash of the vote submission transaction
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_approveExtension","params":["0xb1c57951a2f3006910115eadf0f167890e99b9cb",true,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","privateFor":["QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc="]}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -128,7 +135,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExt
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumExtension.approveExtension(
@@ -141,15 +149,18 @@ quorumExtension.approveExtension(
 );
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
-# geth console result
+<Tabs>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "0x8d34a594b286087f45029daad2d5a8fd42f70abb0ae2492429a256a2ba4cb0dd"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 :::warning Frequent issues
 
@@ -187,15 +198,15 @@ Cancels the specified active contract extension. This can only be invoked by the
 
 `result`: _data_ - hash of the cancellation transaction
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"quorumExtension_cancelExtension","params":["0x622aff909c081783613c9d3f5f4c47be78b310ac",{"from":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e","value":"0x0","privateFor":["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="],"privacyFlag":1}],"id":63}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -205,7 +216,8 @@ curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"quorumExt
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumExtension.cancelExtension("0x622aff909c081783613c9d3f5f4c47be78b310ac", {
@@ -215,13 +227,15 @@ quorumExtension.cancelExtension("0x622aff909c081783613c9d3f5f4c47be78b310ac", {
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "0xb43da7dbeae5347df86c6933786b8c536b4622463b577a990d4c87214845d16a"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 :::warning Frequent issues
 
@@ -251,15 +265,15 @@ Starts the process of extending an existing private contract to a new participan
 
 `result`: _data_ - hash of the creation transaction for the new extension management contract
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"quorumExtension_extendContract","params":["0x9aff347f193ca4560276c3322193224dcdbbe578","BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=","0xed9d02e382b34818e88b88a309c7fe71e65f419d",{"from":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e","value":"0x0","privateFor":["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="],"privacyFlag":1}],"id":15}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -269,7 +283,8 @@ curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"quorumExt
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumExtension.extendContract(
@@ -283,13 +298,15 @@ quorumExtension.extendContract(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "0xceffe8051d098920ac84e33b8a05c48180ed9b26581a6a06ce9874a1bf1502bd"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 :::warning Frequent issues
 
@@ -317,15 +334,15 @@ Retrieves the status of the specified contract extension.
 
 `result`: _string_ - status of contract extension (`ACTIVE` or `DONE`)
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExtension_getExtensionStatus","params":["0x1349f3e1b8d71effb47b840594ff27da7e603d17"],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -335,7 +352,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumExt
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumExtension.getExtensionStatus(
@@ -343,13 +361,15 @@ quorumExtension.getExtensionStatus(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "DONE"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ## Debug methods
 
@@ -369,15 +389,15 @@ Retrieves the state of an address at the specified block number.
 
 `result`: _object_ - state of the account address
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"debug_dumpAddress","params":["0xfff7ac99c8e4feb60c9750054bdc14ce1857f181",10],"id":15}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -394,13 +414,15 @@ curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"debug_dum
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 debug.dumpAddress("0xfff7ac99c8e4feb60c9750054bdc14ce1857f181", 10);
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -413,7 +435,8 @@ debug.dumpAddress("0xfff7ac99c8e4feb60c9750054bdc14ce1857f181", 10);
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `debug_privateStateRoot`
 
@@ -427,15 +450,15 @@ Returns the private state root hash at the specified block number.
 
 `result`: _data_ - private state root hash
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"debug_privateStateRoot","params":["latest"],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -445,19 +468,22 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"debug_priv
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 debug.privateStateRoot("latest");
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421";
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ## IBFT methods
 
@@ -481,15 +507,15 @@ None
 
 `result`: _map_ of _strings_ to _booleans_ - current candidates map
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_candidates","id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -501,13 +527,15 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_c
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.candidates;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 {
@@ -515,7 +543,8 @@ istanbul.candidates;
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `istanbul_discard`
 
@@ -529,15 +558,15 @@ Drops a currently running candidate, stopping further [votes](#istanbul_propose)
 
 `result`: `null`
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_discard","params":["0xfff7ac99c8e4feb60c9750054bdc14ce1857f181"],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -547,19 +576,22 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_d
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.discard("0xfff7ac99c8e4feb60c9750054bdc14ce1857f181");
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 null;
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `istanbul_getSignersFromBlock`
 
@@ -581,15 +613,15 @@ Retrieves the public addresses whose seals are included in the specified block n
 
 - `committers`: _array_ of _strings_ - list of all addresses whose seal appears in this block
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSignersFromBlock","params":[10],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -607,13 +639,15 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_g
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.getSignersFromBlock(10);
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 {
@@ -627,7 +661,8 @@ istanbul.getSignersFromBlock(10);
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `istanbul_getSignersFromBlockByHash`
 
@@ -649,15 +684,15 @@ Retrieves the public addresses whose seals are included in the specified block n
 
 - `committers`: _array_ of _strings_ - list of all addresses whose seal appears in this block
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSignersFromBlockByHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -675,7 +710,8 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_g
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.getSignersFromBlockByHash(
@@ -683,7 +719,8 @@ istanbul.getSignersFromBlockByHash(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 {
@@ -697,7 +734,8 @@ istanbul.getSignersFromBlockByHash(
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `istanbul_getSnapshot`
 
@@ -711,15 +749,15 @@ Retrieves the state snapshot at the specified block number.
 
 `result`: _object_ - snapshot object
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSnapshot","params":[10],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -742,13 +780,15 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_g
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.getSnapshot(10);
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 {
@@ -767,7 +807,8 @@ istanbul.getSnapshot(10);
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `istanbul_getSnapshotAtHash`
 
@@ -781,15 +822,15 @@ Retrieves the state snapshot at the specified block hash.
 
 `result`: _object_ - snapshot object
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getSnapshotAtHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -799,7 +840,8 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_g
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.getSnapshotAtHash(
@@ -807,14 +849,16 @@ istanbul.getSnapshotAtHash(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 {
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `istanbul_getValidators`
 
@@ -828,15 +872,15 @@ Retrieves the list of authorized validators at the specified block number.
 
 `result`: _array_ of _strings_ - list of validator addresses
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getValidators","params":[10],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -850,13 +894,15 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_g
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.getValidators(10);
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 [
@@ -866,7 +912,8 @@ istanbul.getValidators(10);
 ];
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `istanbul_getValidatorsAtHash`
 
@@ -880,15 +927,15 @@ Retrieves the list of authorized validators at the specified block hash.
 
 `result`: _array_ of _strings_ - list of validator addresses
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getValidatorsAtHash","params":["0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553"],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -902,7 +949,8 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_g
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.getValidatorsAtHash(
@@ -910,7 +958,8 @@ istanbul.getValidatorsAtHash(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 [
@@ -920,7 +969,8 @@ istanbul.getValidatorsAtHash(
 ];
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `istanbul_isValidator`
 
@@ -934,15 +984,15 @@ Indicates if this node is the validator for the specified block number.
 
 `result`: _boolean_ - `true` if this node is the validator for the given `blockNumber`, otherwise `false`
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_isValidator","params":[10],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -952,19 +1002,22 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_i
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.isValidator(10);
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 true;
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `istanbul_nodeAddress`
 
@@ -978,15 +1031,15 @@ None
 
 `result`: _string_ - node's public signing address
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_nodeAddress","id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -996,19 +1049,22 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_n
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.nodeAddress();
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 "0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb";
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `istanbul_propose`
 
@@ -1024,15 +1080,15 @@ Injects a new authorization candidate that the validator attempts to push throug
 
 `result`: `null`
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_propose","params":["0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb",true],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1042,19 +1098,22 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_p
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.propose("0x9811ebc35d7b06b3fa8dc5809a1f9c52751e1deb", true);
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 null;
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `istanbul_status`
 
@@ -1076,15 +1135,15 @@ If the start block and end block numbers are not provided, the status of the las
 
 - `sealerActivity`: _map_ of _strings_ to _numbers_ - key is the validator and value is the number of blocks sealed by the validator
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_status","params":[1,10],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1100,13 +1159,15 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_s
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 istanbul.status(1, 10);
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 {
@@ -1118,7 +1179,8 @@ istanbul.status(1, 10);
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ## Permission methods
 
@@ -1146,15 +1208,15 @@ None
 
 - `status`: _number_ - [account status](permissioning-types.md#account-status-types)
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_acctList","id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1179,13 +1241,15 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.acctList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -1206,7 +1270,8 @@ quorumPermission.acctList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_addAccountToOrg`
 
@@ -1226,15 +1291,15 @@ The account can only be linked to a single organization or sub-organization.
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addAccountToOrg","params":["0xf017976fdf1521de2e108e63b423380307f501f8","ABC","TRANSACT",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1244,7 +1309,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addAccountToOrg(
@@ -1255,13 +1321,15 @@ quorumPermission.addAccountToOrg(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_addNewRole`
 
@@ -1289,15 +1357,15 @@ When adding a new role to a sub-organization, the role ID must exist in the mast
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNewRole","params":["ABC","TRANSACT",1,false,false,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1307,7 +1375,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addNewRole("ABC", "TRANSACT", 1, false, false, {
@@ -1315,13 +1384,15 @@ quorumPermission.addNewRole("ABC", "TRANSACT", 1, false, false, {
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_addNode`
 
@@ -1337,15 +1408,15 @@ Adds a node to the specified organization or sub-organization. This method can b
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addNode","params":["ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1355,7 +1426,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addNode(
@@ -1365,13 +1437,15 @@ quorumPermission.addNode(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_addOrg`
 
@@ -1391,15 +1465,15 @@ If there are any pending items for approval, proposal of any new organization fa
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addOrg","params":["ABC","enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404","0x0638e1574728b6d862dd5d3a3e0942c3be47d996",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1409,7 +1483,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addOrg(
@@ -1420,13 +1495,15 @@ quorumPermission.addOrg(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_addSubOrg`
 
@@ -1450,15 +1527,15 @@ The parent organization ID should contain the complete organization hierarchy fr
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_addSubOrg","params":["ABC.SUB1","SUB2","",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1468,19 +1545,22 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.addSubOrg("ABC.SUB1", "SUB2", "", { from: eth.accounts[0] });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_approveAdminRole`
 
@@ -1496,15 +1576,15 @@ Approves the [organization admin or network admin role assignment](#quorumpermis
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveAdminRole","params":["ABC","0xf017976fdf1521de2e108e63b423380307f501f8",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1514,7 +1594,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.approveAdminRole(
@@ -1524,13 +1605,15 @@ quorumPermission.approveAdminRole(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_approveBlackListedAccountRecovery`
 
@@ -1546,15 +1629,15 @@ Approves the [recovery of the specified denylisted (blacklisted) account](#quoru
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3","0xf017976fdf1521de2e108e63b423380307f501f8",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1564,7 +1647,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.approveBlackListedNodeRecovery(
@@ -1574,13 +1658,15 @@ quorumPermission.approveBlackListedNodeRecovery(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_approveBlackListedNodeRecovery`
 
@@ -1596,15 +1682,15 @@ Approves the [recovery of the specified denylisted (blacklisted) node](#quorumpe
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveBlackListedNodeRecovery","params":["ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1614,7 +1700,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.approveBlackListedNodeRecovery(
@@ -1624,13 +1711,15 @@ quorumPermission.approveBlackListedNodeRecovery(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_approveOrg`
 
@@ -1648,15 +1737,15 @@ Approves the specified [proposed organization](#quorumpermission_addorg) into th
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrg","params":["ABC","enode://3d9ca5956b38557aba991e31cf510d4df641dce9cc26bfeb7de082f0c07abb6ede3a58410c8f249dabeecee4ad3979929ac4c7c496ad20b8cfdd061b7401b4f5@127.0.0.1:21003?discport=0&raftport=50404","0x0638e1574728b6d862dd5d3a3e0942c3be47d996",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1666,7 +1755,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.approveOrg(
@@ -1677,13 +1767,15 @@ quorumPermission.approveOrg(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_approveOrgStatus`
 
@@ -1705,15 +1797,15 @@ When an organization is in suspended status, no transactions or contract deploym
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_approveOrgStatus","params":["ABC",1,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1723,19 +1815,22 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.approveOrgStatus("ABC", 1, { from: eth.accounts[0] });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_assignAdminRole`
 
@@ -1753,15 +1848,15 @@ Adds a new account as network admin or changes the organization admin account fo
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_assignAdminRole","params":["ABC","0xf017976fdf1521de2e108e63b423380307f501f8","NWADMIN",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1771,7 +1866,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.assignAdminRole(
@@ -1782,13 +1878,15 @@ quorumPermission.assignAdminRole(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_changeAccountRole`
 
@@ -1806,15 +1904,15 @@ Assigns a role to the specified account. This method can be called by an organiz
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_changeAccountRole","params":["0xf017976fdf1521de2e108e63b423380307f501f8","ABC","TRANSACT",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1824,7 +1922,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.changeAccountRole(
@@ -1835,13 +1934,15 @@ quorumPermission.changeAccountRole(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_connectionAllowed`
 
@@ -1859,15 +1960,15 @@ Checks if the specified node is allowed to join the network.
 
 `result`: _boolean_ - indicates if the connection is allowed or not
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_connectionAllowed","params":["239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf","127.0.0.1",21006],"id":50}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1877,7 +1978,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.connectionAllowed(
@@ -1887,13 +1989,15 @@ quorumPermission.connectionAllowed(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 true
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_getOrgDetails`
 
@@ -1915,15 +2019,15 @@ Returns lists of accounts, nodes, roles, and sub-organizations linked to the spe
 
 - `subOrgList`: _array_ of _objects_ - list of sub-organization objects
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_getOrgDetails","params":["INITORG"],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -1983,13 +2087,15 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission_getOrgDetails("INITORG");
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -2045,7 +2151,8 @@ quorumPermission_getOrgDetails("INITORG");
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_nodeList`
 
@@ -2065,15 +2172,15 @@ None
 
 - `url`: _string_ - complete enode ID
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_nodeList","id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2104,13 +2211,15 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.nodeList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -2137,7 +2246,8 @@ quorumPermission.nodeList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_orgList`
 
@@ -2165,15 +2275,15 @@ None
 
 - `ultimateParent`: _string_ - master organization under which the organization falls
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_orgList","id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2193,13 +2303,15 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.orgList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -2215,7 +2327,8 @@ quorumPermission.orgList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_recoverBlackListedAccount`
 
@@ -2231,15 +2344,15 @@ Initiates the recovery of the specified denylisted (blacklisted) account. This m
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedAccount","params":["ABC.SUB1.SUB2.SUB3","0xf017976fdf1521de2e108e63b423380307f501f8",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2249,7 +2362,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.recoverBlackListedAccount(
@@ -2259,13 +2373,15 @@ quorumPermission.recoverBlackListedAccount(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_recoverBlackListedNode`
 
@@ -2281,15 +2397,15 @@ Initiates the recovery of the specified denylisted (blacklisted) node. This meth
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_recoverBlackListedNode","params":["ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2299,7 +2415,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.recoverBlackListedNode(
@@ -2309,13 +2426,15 @@ quorumPermission.recoverBlackListedNode(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_removeRole`
 
@@ -2331,15 +2450,15 @@ Removes the specified role from an organization. This method can be called by an
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_removeRole","params":["ABC","TRANSACT",{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2349,7 +2468,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.removeRole("ABC.SUB1.SUB2.SUB3", "TRANSACT", {
@@ -2357,13 +2477,15 @@ quorumPermission.removeRole("ABC.SUB1.SUB2.SUB3", "TRANSACT", {
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_roleList`
 
@@ -2389,15 +2511,15 @@ None
 
 - `roleId`: _string_ - unique role ID
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_roleList","id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2416,13 +2538,15 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.roleList;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -2437,7 +2561,8 @@ quorumPermission.roleList;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_transactionAllowed`
 
@@ -2451,15 +2576,15 @@ Checks if the account initiating the specified transaction has sufficient permis
 
 `result`: _boolean_ - indicates if transaction is allowed or not
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_transactionAllowed","params":[{"from":"0xf2cd20ed7904c103ce2ca0ef73fb77539930c59f"}],"id":50}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2469,19 +2594,22 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.transactionAllowed({"from":eth.accounts[0]}
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 true
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_updateAccountStatus`
 
@@ -2505,15 +2633,15 @@ Updates the status of the specified account. This method can be called by an org
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateAccountStatus","params":["ABC","0xf017976fdf1521de2e108e63b423380307f501f8",1,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2523,7 +2651,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.updateAccountStatus(
@@ -2534,13 +2663,15 @@ quorumPermission.updateAccountStatus(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_updateNodeStatus`
 
@@ -2564,15 +2695,15 @@ Updates the status of the specified node. This method can be called by an organi
 
 `result`: _string_ - response message
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateNodeStatus","params":["ABC.SUB1.SUB2.SUB3","enode://239c1f044a2b03b6c4713109af036b775c5418fe4ca63b04b1ce00124af00ddab7cc088fc46020cdc783b6207efe624551be4c06a994993d8d70f684688fb7cf@127.0.0.1:21006?discport=0&raftport=50407",1,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2582,7 +2713,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.updateNodeStatus(
@@ -2593,13 +2725,15 @@ quorumPermission.updateNodeStatus(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `quorumPermission_updateOrgStatus`
 
@@ -2619,15 +2753,16 @@ Temporarily suspends the specified organization or re-activates the specified su
 
 `result`: _string_ - response message
 
-<!--tabs-->
+<Tabs>
+  <TabItem value="curl HTTP" label="curl HTTP" >
 
-# curl HTTP
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPermission_updateOrgStatus","params":["ABC",1,{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d"}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2637,19 +2772,22 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"quorumPer
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 quorumPermission.updateOrgStatus("ABC", 1, { from: eth.accounts[0] });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "Action completed successfully"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ## Privacy methods
 
@@ -2691,15 +2829,15 @@ Two step process:
 
 #### Example
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_distributePrivateTransaction","params":["0xf88d01808347b7608080b84034ec48699ce5877f0f97a5bea4550d52296368b1dcdc89667559555066c9894525e4878d0689cfeb4b6fda3dd6566aa06ce772f2e19e0404e45fe6351ebf640326a0ffecedc570d3520d283508f00d8b2c162096ebddca753979da95062c1df234cea033ceb36d46e3e86a399e8fde35b078248c90fb71344aadcc7e83b9324958a4ed", {"privateFor": ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2709,7 +2847,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_distr
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 web3.eth.distributePrivateTransaction(
@@ -2718,13 +2857,15 @@ web3.eth.distributePrivateTransaction(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 "0xb33c67830588b746d7824e650d242bbe31a72018560f82ffe69692fd087c068c61bf3ed82c76ece771e11fef4a85035053911c6ae7589cac4c3e06ffc23da34c";
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `eth_fillTransaction`
 
@@ -2752,15 +2893,15 @@ Supports offline signing of the specified transaction. This can be used to fill 
 
 - `tx`: _object_ - transaction object
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_fillTransaction","params":[{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data":"0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":0x47b760,"privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2784,7 +2925,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_fillT
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 eth.fillTransaction({
@@ -2795,7 +2937,8 @@ eth.fillTransaction({
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -2815,7 +2958,8 @@ eth.fillTransaction({
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `eth_getContractPrivacyMetadata`
 
@@ -2835,15 +2979,15 @@ _string_ - contract address
 
 - `mandatoryFor`: _string_ - an array of the recipients' base64-encoded public keys
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getContractPrivacyMetadata","params":["0x1932c48b2bf8102ba33b4a6b545c32236e342f34"],"id":15}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2857,13 +3001,15 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getCo
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 eth.getContractPrivacyMetadata("0x1932c48b2bf8102ba33b4a6b545c32236e342f34");
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -2873,7 +3019,8 @@ eth.getContractPrivacyMetadata("0x1932c48b2bf8102ba33b4a6b545c32236e342f34");
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `eth_getPrivacyPrecompileAddress`
 
@@ -2889,15 +3036,15 @@ None
 
 #### Examples
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:22000 --data '{ "jsonrpc":"2.0", "id":2, "method":"eth_getPrivacyPrecompileAddress"}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2907,19 +3054,22 @@ curl -X POST http://localhost:22000 --data '{ "jsonrpc":"2.0", "id":2, "method":
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 eth.getPrivacyPrecompileAddress();
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "0x000000000000000000000000000000000000007a"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `eth_getPrivateTransactionByHash`
 
@@ -2935,15 +3085,15 @@ Retrieve the details of a [privacy marker transaction](../concepts/privacy/priva
 
 #### Examples
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:22000 --data '{ "jsonrpc":"2.0", "id":2, "method":"eth_getPrivateTransactionByHash", "params": ["0xcb1f39245a88d5be49dca35e1a34a11f98bcb825ea4aa70829923ff5404c8a82"]}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -2968,7 +3118,8 @@ curl -X POST http://localhost:22000 --data '{ "jsonrpc":"2.0", "id":2, "method":
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 eth.getPrivateTransaction(
@@ -2976,7 +3127,8 @@ eth.getPrivateTransaction(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -2997,7 +3149,8 @@ eth.getPrivateTransaction(
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `eth_getPrivateTransactionReceipt`
 
@@ -3013,15 +3166,15 @@ Retrieve the receipt of a [privacy marker transaction's (PMT)](../concepts/priva
 
 #### Examples
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:22000 --data '{ "jsonrpc":"2.0", "id":2, "method":"eth_getPrivateTransactionReceipt", "params": ["0xcb1f39245a88d5be49dca35e1a34a11f98bcb825ea4aa70829923ff5404c8a82"]}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3044,7 +3197,8 @@ curl -X POST http://localhost:22000 --data '{ "jsonrpc":"2.0", "id":2, "method":
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 eth.getPrivateTransactionReceipt(
@@ -3052,7 +3206,8 @@ eth.getPrivateTransactionReceipt(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 {
@@ -3071,7 +3226,8 @@ eth.getPrivateTransactionReceipt(
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `eth_getPSI`
 
@@ -3085,15 +3241,15 @@ None
 
 `result`: _string_ - the [private state identifier (PSI)](../concepts/multi-tenancy.md#private-state-identifier)
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getPSI","id":1}'
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3103,19 +3259,22 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getPS
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 eth.getPSI;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 "PS1";
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `eth_getQuorumPayload`
 
@@ -3129,15 +3288,15 @@ Returns the [unencrypted payload from Tessera](https://docs.tessera.consensys.ne
 
 `result`: _string_ - unencrypted transaction payload in hex format
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getQuorumPayload","params":["0x5e902fa2af51b186468df6ffc21fd2c26235f4959bf900fc48c17dc1774d86d046c0e466230225845ddf2cf98f23ede5221c935aac27476e77b16604024bade0"],"id":67}'
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3147,7 +3306,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getQu
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 eth.getQuorumPayload(
@@ -3155,13 +3315,15 @@ eth.getQuorumPayload(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 "0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a";
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `eth_sendRawPrivateTransaction`
 
@@ -3193,15 +3355,15 @@ Before calling this method, [`storeraw`](https://consensys.github.io/tessera/#op
 
 `result`: _string_ - 32-byte transaction hash as a hex string
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendRawPrivateTransaction","params":["0xf889808609184e72a00082271094000000000000000000000000000000000000000080a47f74657374320000000000000000000000000000000000000000000000000000006000571ca08a8bbf888cfa37bbf0bb965423625641fc956967b81d12e23709cead01446075a01ce999b56a8a88504be365442ea61239198e23d1fce7d00fcfc5cd3b44b7215f", {"privateFor": ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3211,7 +3373,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendR
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 web3.eth.sendRawPrivateTransaction(
@@ -3220,13 +3383,15 @@ web3.eth.sendRawPrivateTransaction(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 "0x7f9fade1c0d57a7af66ab4ead79fade1c0d57a7af66ab4ead7c2c2eb7b11a91385";
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `eth_sendTransaction`
 
@@ -3278,15 +3443,15 @@ If the transaction is a contract creation, use [`web3.eth.getTransactionReceipt(
 
 `result`: _string_ - 32-byte transaction hash as a hex string
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getContractPrivacyMetadata","params":[{"data":"603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3","privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":15}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3296,7 +3461,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_getCo
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 web3.eth.sendTransaction({
@@ -3305,13 +3471,15 @@ web3.eth.sendTransaction({
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 "0x7f9fade1c0d57a7af66ab4ead7c2eb7b11a91385";
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `eth_sendTransactionAsync`
 
@@ -3369,15 +3537,15 @@ The callback URL receives the following object:
 
 The call and the immediate response:
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendTransactionAsync","params":[{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data":"0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":"0x47b760","privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]}],"id":67}'
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3387,7 +3555,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendT
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 eth.sendTransactionAsync({
@@ -3398,7 +3567,8 @@ eth.sendTransactionAsync({
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 "0x0000000000000000000000000000000000000000000000000000000000000000";
@@ -3412,7 +3582,8 @@ If you provide the callback URL, you receive the following response after submit
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendTransactionAsync","params":[{"from":"0xed9d02e382b34818e88b88a309c7fe71e65f419d","data":"0x6060604052341561000f57600080fd5b604051602080610149833981016040528080519060200190919050505b806000819055505b505b610104806100456000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632a1afcd914605157806360fe47b11460775780636d4ce63c146097575b600080fd5b3415605b57600080fd5b606160bd565b6040518082815260200191505060405180910390f35b3415608157600080fd5b6095600480803590602001909190505060c3565b005b341560a157600080fd5b60a760ce565b6040518082815260200191505060405180910390f35b60005481565b806000819055505b50565b6000805490505b905600a165627a7a72305820d5851baab720bba574474de3d09dbeaabc674a15f4dd93b974908476542c23f00029000000000000000000000000000000000000000000000000000000000000002a","gas":"0x47b760","privateFor":["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="],"callbackUrl":"http://localhost:8080"}],"id":67}'
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3421,7 +3592,8 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_sendT
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 eth.sendTransactionAsync({
@@ -3433,7 +3605,8 @@ eth.sendTransactionAsync({
 });
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 {
@@ -3442,7 +3615,8 @@ eth.sendTransactionAsync({
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `eth_storageRoot`
 
@@ -3458,15 +3632,15 @@ Returns the storage root hash of the specified address. If the contract is a [pr
 
 `result`: _string_ - 32-byte storage root hash as a hex string
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_storageRoot","params":["0x1349f3e1b8d71effb47b840594ff27da7e603d17","0x1"],"id":67}'
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3476,19 +3650,22 @@ curl -X POST http://127.0.0.1:22000 --data '{"jsonrpc":"2.0","method":"eth_stora
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 eth.storageRoot("0x1349f3e1b8d71effb47b840594ff27da7e603d17", "0x1");
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```js
 "0x81d1fa699f807735499cf6f7df860797cf66f6a66b565cfcda3fae3521eb6861";
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ## Raft methods
 
@@ -3506,15 +3683,15 @@ Adds a new node to the network as a learner node. The learner node syncs with th
 
 `result`: _string_ - Raft ID for the node being added
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_addLearner","params":["enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405"],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3524,7 +3701,8 @@ curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_addL
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 raft.addLearner(
@@ -3532,13 +3710,15 @@ raft.addLearner(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 5
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `raft_addPeer`
 
@@ -3552,15 +3732,15 @@ Adds a new peer to the network.
 
 `result`: _string_ - Raft ID for the node being added, or an error message if the node is already part of the network
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_addPeer","params":["enode://3701f007bfa4cb26512d7df18e6bbd202e8484a6e11d387af6e482b525fa25542d46ff9c99db87bd419b980c24a086117a397f6d8f88e74351b41693880ea0cb@127.0.0.1:21004?discport=0&raftport=50405"],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3570,7 +3750,8 @@ curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_addP
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 raft.addPeer(
@@ -3578,13 +3759,15 @@ raft.addPeer(
 );
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 5
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `raft_cluster`
 
@@ -3612,15 +3795,15 @@ None
 
 - `role`: _string_ - role of the node in the Raft cluster (minter/verifier/learner); `""` if there is no leader at the network level
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_cluster","id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3658,13 +3841,15 @@ curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_clus
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 raft.cluster;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 [
@@ -3698,7 +3883,8 @@ raft.cluster;
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `raft_leader`
 
@@ -3712,15 +3898,15 @@ None
 
 `result`: _string_ - enode ID of the leader, or an error message if there is no leader
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_leader","id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3730,19 +3916,22 @@ curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_lead
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 raft.leader;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `raft_promoteToPeer`
 
@@ -3756,15 +3945,15 @@ Promotes the specified learner node to peer and thus to be part of the Raft clus
 
 `result`: _boolean_ - indicates if the node is promoted
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_promoteToPeer","params":[4],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3774,19 +3963,22 @@ curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_prom
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 raft.promoteToPeer(4);
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 true
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `raft_removePeer`
 
@@ -3800,15 +3992,15 @@ Removes the specified peer from the Raft cluster.
 
 `result`: `null`
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_removePeer","params":[4],"id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3818,19 +4010,22 @@ curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_remo
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 raft.removePeer(4);
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 null
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `raft_role`
 
@@ -3844,15 +4039,15 @@ None
 
 `result`: _string_ - role of the node in the Raft cluster (minter/verifier/learner); `""` if there is no leader at the network level
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_role","id":10}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -3862,18 +4057,21 @@ curl -X POST http://127.0.0.1:22001 --data '{"jsonrpc":"2.0","method":"raft_role
 }
 ```
 
-# geth console request
+  </TabItem>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```javascript
 raft.role;
 ```
 
-# geth console result
+  </TabItem>
+  <TabItem value="geth console result" label="geth console result" >
 
 ```json
 "minter"
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 _[PP]: Counter-Party Protection _[MPP]: Mandatory Party Protection _[PSV]: Private State Validation _[SP]: Standard Private

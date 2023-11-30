@@ -4,6 +4,10 @@ description: Migrate a node to a new IP network
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Migrate nodes to a new IP network
 
 Use the following instructions to update a node's network configuration while ensuring the consensus protocol continues to work as expected. These instructions apply when using a static configuration through the `static-nodes.json` file.
@@ -36,15 +40,16 @@ In this scenario, the migrated node has a new network configuration, but its pee
 
 2.  On Node B or C, obtain Node A's Raft ID (GoQuorum Raft node ID in the network):
 
-    <!--tabs-->
+<Tabs>
 
-    # geth console request
+  <TabItem value="geth console request" label="geth console request" default>
 
     ```bash
     raft.cluster
     ```
 
-    # JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" default>
 
     ```js
     {
@@ -58,7 +63,8 @@ In this scenario, the migrated node has a new network configuration, but its pee
     }
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
     In this example Node A's Raft ID is 1.
 

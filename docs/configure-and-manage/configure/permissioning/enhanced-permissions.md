@@ -4,6 +4,10 @@ description: Configure enhanced permissions
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Configure enhanced permissions
 
 [Enhanced network permissioning](../../../concepts/permissions-overview.md#enhanced-network-permissioning) is a smart-contract-based permissioning model designed for enterprise-level needs. You can configure enhanced permissioning for a [new network](#new-network) or when [migrating from an earlier version](#migrating-from-an-earlier-version).

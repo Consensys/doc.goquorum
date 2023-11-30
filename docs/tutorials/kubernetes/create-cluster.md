@@ -4,6 +4,10 @@ description: Create a cluster for deployment
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Create a cluster
 
 You can create a [local](#local-clusters) or [cloud](#cloud-clusters) cluster to deploy a GoQuorum network using Kubernetes.

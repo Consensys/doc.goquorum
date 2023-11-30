@@ -4,6 +4,9 @@ description: Configuring IBFT consensus
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Configure IBFT consensus
 
 GoQuorum implements the [IBFT](https://medium.com/getamis/istanbul-bft-ibft-c2758b7fe6ff) proof of authority [consensus protocol](../../../concepts/consensus-index.md). IBFT is supported for existing private networks, but [QBFT](qbft.md) is the recommended enterprise-grade consensus protocol for private networks. You can [migrate an IBFT network to QBFT](qbft.md#migrate-from-ibft-to-qbft).
@@ -139,9 +142,9 @@ To update an existing network with a new `blockperiodseconds`:
 
     <br />
 
-    <!--tabs-->
+<Tabs>
 
-    # Syntax
+  <TabItem value="Syntax" label="Syntax" default>
 
     ```json title="Transitions configuration"
     {
@@ -161,7 +164,8 @@ To update an existing network with a new `blockperiodseconds`:
     }
     ```
 
-    # Example
+   </TabItem>
+  <TabItem value="Example" label="Example" >
 
     ```json title="Transitions configuration"
     {
@@ -181,7 +185,8 @@ To update an existing network with a new `blockperiodseconds`:
     }
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
 3.  Restart all nodes in the network using the updated genesis file.
 4.  To verify the changes after the transition block, call [`istanbul_getValidators`](../../../reference/api-methods.md#istanbul_getvalidators), specifying `latest`.
@@ -199,9 +204,9 @@ To swap between block header validator selection and contract validator selectio
 
     <br />
 
-    <!--tabs-->
+<Tabs>
 
-    # Syntax
+  <TabItem value="Syntax" label="Syntax" default>
 
     ```json title="Transitions configuration"
     {
@@ -222,7 +227,8 @@ To swap between block header validator selection and contract validator selectio
     }
     ```
 
-    # Example
+  </TabItem>
+  <TabItem value="Example" label="Example" >
 
     ```json title="Transitions configuration"
     {
@@ -243,6 +249,7 @@ To swap between block header validator selection and contract validator selectio
     }
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
 3.  [Restart all nodes](../../../tutorials/private-network/create-ibft-network.md#5-initialize-nodes) in the network using the updated genesis file.

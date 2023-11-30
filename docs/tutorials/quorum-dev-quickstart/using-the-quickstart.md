@@ -3,7 +3,8 @@ title: Use the quickstart
 description: Helps to generate local GoQuorum and Ethereum blockchain networks.
 sidebar_position: 1
 ---
-
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import TestAccounts from '../../global/\_test_accounts.md';
 
 # Use Quorum Developer Quickstart
@@ -157,9 +158,8 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],
 
 The result displays the client version of the running node:
 
-<!--tabs-->
-
-# Result example
+<Tabs>
+  <TabItem value="Result example" label="Result example" >
 
 ```json
 {
@@ -168,18 +168,19 @@ The result displays the client version of the running node:
   "result": "Geth/node5-istanbul/v1.9.20-stable-1d7926a1(quorum-v21.4.2)/linux-amd64/go1.15.5"
 }
 ```
+  </TabItem>
+  <TabItem value="Result explanation" label="Result explanation" >
 
-# Result explanation
-
-- `"jsonrpc" : "2.0"` indicates that the JSON-RPC 2.0 spec format is used.
-- `"id" : 1` is the request identifier used to match the request and the response. This tutorial always uses 1.
-- `"result"` contains the running GoQuorum information:
+  - `"jsonrpc" : "2.0"` indicates that the JSON-RPC 2.0 spec format is used.
+  - `"id" : 1` is the request identifier used to match the request and the response. This tutorial always uses 1.
+  - `"result"` contains the running GoQuorum information:
   - `v1.9.20-stable-1d7926a1` is the Geth build that has been used for GoQuorum
   - `quorum-v21.4.2` is the running GoQuorum version number. This may be different when you run this tutorial.
   - `linux-amd64` is the architecture used to build this version.
   - `go1.15.5` is the Go version used. This may be different when you run this tutorial.
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Successfully calling this method shows that you can connect to the nodes using JSON-RPC over HTTP.
 
@@ -347,9 +348,8 @@ Use a separate terminal window for each of Member1, Member2, and Member3. In eac
 
 To view the private transaction, run the following command in one of the terminals:
 
-<!--tabs-->
-
-# geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" >
 
 ```js
 eth.getTransaction(
@@ -357,7 +357,8 @@ eth.getTransaction(
 ); // replace with your transaction hash
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
 ```json
 {
@@ -378,7 +379,8 @@ eth.getTransaction(
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 :::note
 
@@ -793,39 +795,40 @@ npx hardhat run ./scripts/deploy_quorumtoken.ts --network quickstart
 
 To shut down the private network without deleting the containers:
 
-<!--tabs-->
-
-# Linux/MacOS
+<Tabs>
+  <TabItem value="Linux/MacOS" label="Linux/MacOS" >
 
 ```bash
 ./stop.sh
 ```
-
+  </TabItem>
+</Tabs>
 This command stops the containers related to the services specified in the `docker-compose.yml` file.
 
 To restart the private network:
 
-# Linux/MacOS
+<Tabs>
+  <TabItem value="Linux/MacOS" label="Linux/MacOS" >
 
 ```bash
 ./resume.sh
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ## Stop the private network and remove containers
 
 To shut down the private network and delete all containers and images created from running the sample network and the QuorumToken dapp:
 
-<!--tabs-->
-
-# Linux/MacOS
+<Tabs>
+  <TabItem value="Linux/MacOS" label="Linux/MacOS" >
 
 ```bash
 ./remove.sh
 ```
-
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 <!-- Links -->
 

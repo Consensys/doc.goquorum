@@ -4,6 +4,10 @@ description: Securing JSON-RPC API endpoints
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Securing JSON-RPC
 
 ## Overview
@@ -81,30 +85,28 @@ Use the following command line options to allow a secured GoQuorum node connecti
 
 For example, connect to the node using `--rpcclitls.insecureskipverify` to ignore the server's certificate validation:
 
-<!--tabs-->
-
-# HTTP
+<Tabs>
+  <TabItem value="HTTP" label="HTTP" default>
 
 ```bash
 geth attach https://localhost:22000 --rpcclitls.insecureskipverify
 ```
 
-# WebSocket
+  </TabItem>
+  <TabItem value="WebSocket" label="WebSocket" default>
 
 ```bash
 geth attach wss://localhost:23000 --rpcclitls.insecureskipverify
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### `ethclient`
 
 `ethclient` provides a Go client for the Ethereum RPC API. It also supports GoQuorum-specific APIs and protected APIs.
 
-<!--tabs-->
-
-# HTTP
-
+ 
 For the HTTP endpoint, the preauthenticated token is populated in the `Authorization` HTTP request header for each call. The token value is obtained from the `rpc.HttpCredentialsProviderFunc` implementation, which is configured after `rpc.Client` is instantiated.
 
 ```go
@@ -138,7 +140,8 @@ myHttpClient := ...
 c, err := rpc.DialHTTPWithClient("https://...", myHttpClient)
 ```
 
-# WebSocket
+<Tabs>
+  <TabItem value="WebSocket" label="WebSocket" default>
 
 For the WS endpoint, the preauthenticated token is populated in the `Authorization` HTTP request header only once during the handshake. The token value is obtained from the `rpc.HttpCredentialsProviderFunc` implementation via `context.Context` when dialing.
 
@@ -168,4 +171,5 @@ tlsConfig := &tls.Config{...}
 c, err := rpc.DialWebsocketWithCustomTLS(ctx, "wss://...", "", tlsConfig)
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>

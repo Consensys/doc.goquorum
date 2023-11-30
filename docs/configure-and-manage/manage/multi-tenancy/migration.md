@@ -4,6 +4,10 @@ description: Enabling multiple private states migration (MPS)
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Multiple private states migration
 
 If running GoQuorum version `21.4.1` or earlier or Tessera version `21.1.1` or earlier, you can upgrade your existing nodes to enable [multiple private states (MPS)](../../../concepts/multi-tenancy.md#multiple-private-states) to run as multi-tenant or single-tenant nodes.
@@ -28,21 +32,21 @@ The node must be offline during the upgrade process (we recommend backing up the
 
 :::
 
-<!--tabs-->
+<Tabs>
 
-# Syntax
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 geth mpsdbupgrade --datadir <DATA-DIRECTORY>
 ```
-
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 geth mpsdbupgrade --datadir data
 ```
-
-# Example result
+  </TabItem>
+  <TabItem value="Example result" label="Example result" default>
 
 ```bash
 Processing block 1 with hash 0xf668e8b8320040a0cabd1b6ec963a79a08536409d82b9ccaa31f62b0a1a4dc10
@@ -51,7 +55,8 @@ Processing block 1232739 with hash 0x2423b5d0f4c2883172f657f08d7d359b81f144b8cb8
 MPS DB upgrade finished successfully.
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 After execution, the node database contains the `empty` state and the `private` state (corresponding to the single private state that existed before the upgrade).
 

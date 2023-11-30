@@ -4,6 +4,10 @@ description: Using multi-tenancy via multiple private states
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Using multi-tenancy via multiple private states
 
 Use [multi-tenancy via multiple private states (MPS)](../../../concepts/multi-tenancy.md) to allow multiple tenants to use the same GoQuorum node, with each tenant having its own private state(s).

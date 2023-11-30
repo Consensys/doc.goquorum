@@ -3,6 +3,8 @@ title: Create a privacy-enabled network
 description: Creating a network with privacy enabled
 sidebar_position: 5
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Create a privacy-enabled network
 
@@ -225,29 +227,31 @@ PRIVATE_CONFIG=/<path to IBFT network>/IBFT-network/Tessera-1/tm.ipc geth --data
 
 In new terminal for each node in each node directory, start the remaining nodes using the same command as in the IBFT tutorial. Nodes 2, 3, and 4 do not have an attached Tessera node.
 
-<!--tabs-->
+<Tabs>
 
-# Node 2
+  <TabItem value="Node 2" label="Node 2" default>
 
 ```bash
 PRIVATE_CONFIG=ignore \
 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22002 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30302
 ```
-
-# Node 3
+  </TabItem>
+  <TabItem value="Node 3" label="Node 3" default>
 
 ```bash
 PRIVATE_CONFIG=ignore \
 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22003 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30303
 ```
 
-# Node 4
+  </TabItem>
+  <TabItem value="Node 4" label="Node 4" default>
 
 ```bash
 PRIVATE_CONFIG=ignore \
 geth --datadir data --nodiscover --istanbul.blockperiod 5 --syncmode full --mine --minerthreads 1 --verbosity 5 --networkid 10 --http --http.addr 127.0.0.1 --http.port 22004 --http.api admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --emitcheckpoints --port 30304
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Your node can now [send and receive private transactions](send-private-transaction.md).
