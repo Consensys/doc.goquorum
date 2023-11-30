@@ -3279,7 +3279,7 @@ eth.getPSI;
 
 ### `eth_getQuorumPayload`
 
-Returns the [unencrypted payload from Tessera](https://docs.tessera.consensys.net/en/stable/Concepts/Transaction-manager/#private-transaction-flow).
+Returns the [unencrypted payload from Tessera](https://docs.tessera.consensys.net/en/stable/Concepts/Privacy-Manager/Transaction-manager#private-transaction-flow).
 
 #### Parameters
 
