@@ -4,6 +4,9 @@ description: Configuring Raft consensus
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Configure Raft consensus
 
 GoQuorum implements the Raft proof of authority [consensus protocol](../../../concepts/consensus-index.md). To enable Raft consensus, specify the [`--raft`](../../../reference/cli-syntax.md#raft) command line option when starting GoQuorum. You can [create a private network using Raft](../../../tutorials/private-network/create-a-raft-network.md).

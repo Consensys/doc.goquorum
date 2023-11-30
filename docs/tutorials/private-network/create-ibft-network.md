@@ -4,6 +4,9 @@ description: Creating a network with IBFT consensus
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Create a private network using the IBFT consensus protocol
 
 A private network provides a configurable network for testing. This tutorial walks you through creating an [IBFT](../../configure-and-manage/configure/consensus-protocols/ibft.md) private network with five nodes.
@@ -235,9 +238,8 @@ The DevP2P port numbers must match the port numbers in [`static-nodes.json`](#4-
 
 :::
 
-<!--tabs-->
-
-# Node 1
+<Tabs>
+  <TabItem value="Node 1" label="Node 1" default>
 
 ```bash
 export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
@@ -254,7 +256,9 @@ geth --datadir data \
     --port 30301
 ```
 
-# Node 2
+  </TabItem>
+  <TabItem value="Node 2" label="Node 2" default>
+
 
 ```bash
 export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
@@ -271,7 +275,8 @@ geth --datadir data \
     --port 30302
 ```
 
-# Node 3
+  </TabItem>
+  <TabItem value="Node 3" label="Node 3" default>
 
 ```bash
 export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
@@ -288,7 +293,8 @@ geth --datadir data \
     --port 30303
 ```
 
-# Node 4
+  </TabItem>
+  <TabItem value="Node 4" label="Node 4" default>
 
 ```bash
 export ADDRESS=$(grep -o '"address": *"[^"]*"' ./data/keystore/accountKeystore | grep -o '"[^"]*"$' | sed 's/"//g')
@@ -305,7 +311,8 @@ geth --datadir data \
     --port 30304
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### 8. Attach to node 0
 
@@ -319,21 +326,22 @@ geth attach data/geth.ipc
 
 Use the JavaScript console to check the peer count:
 
-<!--tabs-->
-
-# Command
+<Tabs>
+  <TabItem value="Command" label="Command" default>
 
 ```bash
 net.peerCount
 ```
 
-# Result
+  </TabItem>
+  <TabItem value="Result" label="Result" default>
 
 ```bash
 4
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 :::info
 
@@ -353,21 +361,22 @@ INFO [12-08|10:44:55.044] Started P2P networking   self="enode://1647ade9de72863
 
 Use [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators) to view the validator addresses.
 
-<!--tabs-->
-
-# Command
+<Tabs>
+  <TabItem value="Command" label="Command" default>
 
 ```bash
 istanbul.getValidators("latest")
 ```
 
-# Result
+  </TabItem>
+  <TabItem value="Result" label="Result" default>
 
 ```bash
 ["e1a8d6a6866a6c8f25ed853e3f957b0ed06a8f1c", "6028d68da1df3c54d5f0949de6082fb69a7239d1", "c1ed779faf6975399c5bdb90b40e2f324185bad0", "6480d9bf06fc8ba9a0393976386e47a5c4f014de", "da4d64ac5fea8aaf2943680241ce9ca4befed870"]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### Next steps
 

@@ -4,6 +4,10 @@ description: Clef Ethereum account manager
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Using `clef`
 
 `clef` was introduced in Quorum `v2.6.0`.
@@ -70,21 +74,21 @@ An example workflow:
 3. Use `eth_sendRawTransaction` or `eth_sendRawPrivateTransaction` to send the signed transaction to a GoQuorum node that doesn't have your accounts available to it.
 4. The GoQuorum node validates the transaction and propagates it through the network for minting.
 
-<!--tabs-->
-
-# List accounts
+<Tabs>
+  <TabItem value="List accounts" label="List accounts" default>
 
 ```bash
 echo '{"id": 1, "jsonrpc": "2.0", "method": "account_list"}' | nc -U /path/to/clef.ipc
 ```
-
-# Sign data
+  </TabItem>
+  <TabItem value="Sign data" label="Sign data" default>
 
 ```bash
 echo '{"id": 1, "jsonrpc": "2.0", "method": "account_signData", "params": ["data/plain", "0x6038dc01869425004ca0b8370f6c81cf464213b3", "0xaaaaaa"]}' | nc -U /path/to/clef.ipc
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 :::
 

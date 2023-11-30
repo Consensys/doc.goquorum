@@ -4,6 +4,10 @@ description: GoQuorum command line interface reference
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # GoQuorum command line options
 
 This reference describes the syntax of the GoQuorum command line interface (CLI) options.
@@ -32,628 +36,619 @@ You can specify GoQuorum options:
 
 ### `allowedfutureblocktime`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --allowedfutureblocktime <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --allowedfutureblocktime 1
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Maximum time from current time allowed for blocks before they're considered future blocks, in seconds. This allows nodes to be slightly out of sync without receiving "Mining too far in the future" messages. The default is 0.
 
 ### `emitcheckpoints`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --emitcheckpoints
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 If included, emits specially formatted logging checkpoints.
 
 ### `immutabilitythreshold`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --immutabilitythreshold <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --immutabilitythreshold 1000000
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Overrides the default immutability threshold for GoQuorum nodes. Blocks below the immutability threshold are moved to the `ancient` data folder. The default is 3162240.
 
 ### `multitenancy`
 
-<!--tabs-->
-
-# Syntax
-
-```bash
---multitenancy
-```
-
-# Example
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --multitenancy
 ```
 
-<!--/tabs-->
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
+```bash
+--multitenancy
+```
+
+  </TabItem>  
+</Tabs>
 Enables [multi-tenancy](../concepts/multi-tenancy.md). This requires the [JSON-RPC Security plugin](../develop/json-rpc-apis.md) to also be configured.
 
 ### `override.istanbul`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --override.istanbul <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --override.istanbul 100
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Custom fork block when using [IBFT](../configure-and-manage/configure/consensus-protocols/ibft.md) or [QBFT](../configure-and-manage/configure/consensus-protocols/qbft.md) consensus. The default is 0.
 
 ### `permissioned`
 
-<!--tabs-->
-
-# Syntax
-
-```bash
---permissioned
-```
-
-# Example
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --permissioned
 ```
 
-<!--/tabs-->
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
+```bash
+--permissioned
+```
+
+  </TabItem>  
+</Tabs>
 Enables [basic network permissioning](../concepts/permissions-overview.md#basic-network-permissioning). The node allows only a defined list of nodes to connect.
 
 ### `plugins`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --plugins file:///<path>/<to>/plugins.json
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --plugins file:///opt/geth/plugins.json
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 URI of the [plugins settings JSON file](../develop/develop-plugins.md). Use this to configure [plugins](../concepts/plugins.md).
 
 ### `plugins.localverify`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
     ```bash
     --plugins.localverify
     ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 If included, verifies [plugin integrity](../concepts/plugins.md#plugin-integrity-verification) from the local file system. This requires a plugin signature file and [PGP public key file](#pluginspublickey) to be available.
 
 ### `plugins.publickey`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --plugins.publickey file:///<path>/<to>/<publicKeyFile>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --plugins.publickey file:///opt/geth/pubkey.pgp.asc
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 URI of the PGP public key for local [plugin verification](../concepts/plugins.md#plugin-integrity-verification). This option is only valid if [`--plugins.localverify`](#pluginslocalverify) is set.
 
 ### `plugins.skipverify`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --plugins.skipverify
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 If included, disables the [plugin verification](../concepts/plugins.md#plugin-integrity-verification) process.
 
 ### `privacymarker.enable`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --privacymarker.enable
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 If included, GoQuorum creates a [privacy marker transaction](../concepts/privacy/privacy-marker-transactions.md) when a private transaction is submitted.
 
 ### `ptm.dialtimeout`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --ptm.dialtimeout <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 ---ptm.dialtimeout 0
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Dial timeout in seconds for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md). Setting to 0 disables the timeout. The default is 1 second.
 
 ### `ptm.http.idletimeout`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --ptm.http.idletimeout <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 ---ptm.http.idletimeout 0
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Idle timeout in seconds for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md). Setting to 0 disables the timeout. The default is 10 seconds.
 
 ### `ptm.http.readbuffersize`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --ptm.http.readbuffersize <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 ---ptm.http.readbuffersize 0
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Size of the read buffer in bytes for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md). Setting to 0 or not specifying uses the `http.Transport` default.
 
 ### `ptm.http.writebuffersize`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --ptm.http.writebuffersize <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 ---ptm.http.writebuffersize 0
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Size of the write buffer in bytes for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md). Setting to 0 or not specifying uses the `http.Transport` default.
 
 ### `ptm.socket`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --ptm.socket <path>/<to>/<ipc>/<file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 ---ptm.socket qdata/c1/tm.ipc
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the IPC file when using a Unix domain socket for the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md).
 
 ### `ptm.timeout`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
     ```bash
     --ptm.timeout <INTEGER>
     ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
     ```bash
     ---ptm.timeout 0
     ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Timeout in seconds for communication over the [private transaction manager connection](../configure-and-manage/configure/private-transaction-manager.md). Setting to 0 disables the timeout. The default is 5 seconds.
 
 ### `ptm.tls.clientcert`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --ptm.tls.clientcert <path>/<to>/<client_cert_pem_file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 ---ptm.tls.clientcert client.cert.pem
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the file containing the client certificate (or chain of certificates) when using a TLS [connection to the private transaction manager](../configure-and-manage/configure/private-transaction-manager.md). This is required if the server is configured to use two-way authentication.
 
 ### `ptm.tls.clientkey`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --ptm.tls.clientkey <path>/<to>/<client_key_pem_file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 ---ptm.tls.clientkey client.key.pem
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the file containing the client's private key when using a TLS [connection to private transaction manager](../configure-and-manage/configure/private-transaction-manager.md). This is required if the server is configured to use two-way authentication.
 
 ### `ptm.tls.insecureskipverify`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --ptm.tls.insecureskipverify
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 If included, disables verification of the server's TLS certificate on [connection to private transaction manager](../configure-and-manage/configure/private-transaction-manager.md).
 
 ### `ptm.tls.mode`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --ptm.tls.mode <STRING>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 ---ptm.tls.mode "strict"
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Setting to `off` disables TLS. Setting to `strict` enables TLS when using an HTTPS [connection to the private transaction manager](../configure-and-manage/configure/private-transaction-manager.md).
 
 ### `ptm.tls.rootca`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --ptm.tls.rootca <path>/<to>/<rootca_pem_file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 ---ptm.tls.rootca certfile.pem
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the file containing the root CA certificate when using a TLS [connection to the private transaction manager](../configure-and-manage/configure/private-transaction-manager.md). The default is the host's certificates.
 
 ### `ptm.url`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --ptm.url <URL>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 ---ptm.url "https://127.0.0.1:9101"
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 URL when using an HTTP/HTTPS [connection to the private transaction manager](../configure-and-manage/configure/private-transaction-manager.md).
 
 ### `qlight.client`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Enables the [qlight client](../configure-and-manage/configure/qlight-node.md) P2P protocol.
 
 ### `qlight.client.psi`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client.psi <STRING>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.client.psi "private"
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 PSI the qlight client uses to connect to a server node. The default is `private`.
 
 ### `qlight.client.rpc.tls`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client.rpc.tls
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Enables the qlight client RPC connection to use TLS.
 
 ### `qlight.client.rpc.tls.cacert`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client.rpc.tls.cacert <path>/<to>/<client-RPC certicate-auth-file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.client.rpc.tls.cacert certfile.pem
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the qlight client RPC client certificate authority file.
 
 ### `qlight.client.rpc.tls.cert`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client.rpc.tls.cert <path>/<to>/<client-RPC-client-certificate-file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.client.rpc.tls.cert certfile.pem
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the qlight client RPC client certificate file.
 
 ### `qlight.client.rpc.tls.insecureskipverify`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client.rpc.tls.insecureskipverify
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Enables the qlight client RPC connection to skip TLS verification.
 
 ### `qlight.client.rpc.tls.key`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client.rpc.tls.key <path>/<to>/<client_TLS_key_pem_file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.client.rpc.tls.key client.TLS.key.pem
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the qlight client RPC client certificate private key.
 
 ### `qlight.client.serverNode`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client.serverNode <nodeID>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.client.serverNode 0xc35c3...d615f
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 The node ID of the target server node.
 
 ### `qlight.client.serverNodeRPC`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client.serverNodeRPC <URL>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.client.serverNodeRPC "http://127.0.0.1:8888"
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 The RPC URL of the target server node.
 
 ### `qlight.client.token.enabled`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client.token.enabled
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Enables the client to use a token when connecting to the qlight server.
 
 ### `qlight.client.token.management`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client.token.management <string>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.client.token.management "none"
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Mechanism used to refresh the token. Possible values:
 
 - `none` - Developer mode. The token is not refreshed.
@@ -662,224 +657,221 @@ Mechanism used to refresh the token. Possible values:
 
 ### `qlight.client.token.value`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.client.token.value <TOKEN>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.client.token.value "bearer AYjcyMzY3ZDhiNmJkNTY"
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Token the qlight client uses to connect to a server node.
 
 ### `qlight.server`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.server
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Enables the [qlight server](../configure-and-manage/configure/qlight-node.md) P2P protocol.
 
 ### `qlight.server.p2p.maxpeers`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.server.p2p.maxpeers <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.server.p2p.maxpeers 10
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Maximum number of qlight peers. The default is 10.
 
 ### `qlight.server.p2p.netrestrict`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.server.p2p.netrestrict <NETWORK MASK>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.server.p2p.netrestrict "xyz"
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Restricts network communication to the given IP networks (CIDR masks).
 
 ### `qlight.server.p2p.permissioning`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.server.p2p.permissioning
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Enables the qlight peers to check against a permissioned list and a disallowed list.
 
 ### `qlight.server.p2p.permissioning.prefix`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.server.p2p.permissioning.prefix <prefix>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.server.p2p.permissioning.prefix "qlight"
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Prefix for the `permissioned-nodes.json` and `disallowed-nodes.json` files specific for the [qlight server](../configure-and-manage/configure/qlight-node.md#file-based-permissioning) to distinguish from other [permissioned nodes](../configure-and-manage/manage/add-nodes.md#permissioned-nodes). File format is the prefix name, followed by a hyphen, followed by the default file name. For example, `qlight-permissioned-nodes.json`.
 
 ### `qlight.server.p2p.port`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.server.p2p.port=<INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.server.p2p.port=30305
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Port the qlight network listens to. The default is 30305.
 
 ### `qlight.tls`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.tls
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Enables the qlight client P2P protocol to use TLS.
 
 ### `qlight.tls.cacerts`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.tls.cacerts <path>/<to>/<qlight_tls_cacert_file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.tls.cacerts certfile.pem
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the certificate authorities file to use for validating P2P connection.
 
 ### `qlight.tls.cert`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.tls.cert` <path>/<to>/<qlight_tls_cert_file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.tls.cert certfile.pem
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the certificate file to use for the qlight P2P connection.
 
 ### `qlight.tls.ciphersuites`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.tls.ciphersuites <STRING>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.tls.ciphersuites "CIPHER_SUITE_1,CIPHER_SUITE_2"
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Cipher suites to use for the qlight P2P connection.
 
 ### `qlight.tls.clientauth`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.tls.clientauth <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.tls.clientauth 0
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Sets the method the client is authenticated. Possible values:
 
 - 0=`NoClientCert` (default)
@@ -890,274 +882,273 @@ Sets the method the client is authenticated. Possible values:
 
 ### `qlight.tls.key`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --qlight.tls.key <path>/<to>/<qlight_tls_key_file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --qlight.tls.key certfile.pem
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the key file to use for qlight P2P connection.
 
 ### `raft`
 
-<!--tabs-->
-
-# Syntax
-
-```bash
---raft
-```
-
-# Example
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --raft
 ```
 
-<!--/tabs-->
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
+```bash
+--raft
+```
+
+  </TabItem>  
+</Tabs>
 Enables [Raft](../configure-and-manage/configure/consensus-protocols/raft.md) for consensus.
 
 ### `raftblocktime`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --raftblocktime <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --raftblocktime 100
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Time between Raft block creations in milliseconds. The default is 50.
 
 ### `raftdnsenable`
 
-<!--tabs-->
-
-# Syntax
-
-```bash
---raftdnsenable
-```
-
-# Example
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --raftdnsenable
 ```
 
-<!--/tabs-->
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
+```bash
+--raftdnsenable
+```
+
+  </TabItem>  
+</Tabs>
 Enables [DNS resolution of peers](../configure-and-manage/configure/dns.md).
 
 ### `raftjoinexisting`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --raftjoinexisting <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --raftjoinexisting 1
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Raft ID to assume when [joining a pre-existing cluster](../configure-and-manage/manage/add-nodes.md#adding-goquorum-nodes). The default is 0.
 
 ### `raftlogdir`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --raftlogdir <DIRECTORY>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --raftlogdir raftlogdir
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Raft log directory used for the `quorum-raft-state`, `raft-snap`, and `raft-wal` folders. Defaults to the [`datadir` option](https://geth.ethereum.org/docs/interface/command-line-options).
 
 ### `raftport`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --raftport <PORT>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --raftport 50500
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Port to bind for the [Raft transport](../configure-and-manage/configure/consensus-protocols/raft.md#raft-transport-layer). The default is 50400.
 
 ### `revertreason`
 
-<!--tabs-->
-
-# Syntax
-
-```bash
---revertreason
-```
-
-# Example
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --revertreason
 ```
 
-<!--/tabs-->
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
+```bash
+--revertreason
+```
+
+  </TabItem>  
+</Tabs>
 Enables including the [revert reason](../configure-and-manage/manage/revert-reason.md) in the [`eth_getTransactionReceipt`](https://eth.wiki/json-rpc/API#eth_gettransactionreceipt) response.
 
 ### `rpcclitls.cacert`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --rpcclitls.cacert <path>/<to>/<TLS-CA-pem-file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --rpcclitls.cacert certfile.pem
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the file containing the CA certificate for the [server's TLS certificate](#rpcclitlscert) when using a [secured GoQuorum node connection](../develop/json-rpc-apis.md).
 
 ### `rpcclitls.cert`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --rpcclitls.cert <path>/<to>/<TLS-pem-file>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --rpcclitls.cert certfile.pem
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Path to the file containing the server's TLS certificate when using a [secured GoQuorum node connection](../develop/json-rpc-apis.md).
 
 ### `rpcclitls.ciphersuites`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --rpcclitls.ciphersuites <STRING>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --rpcclitls.ciphersuites "CIPHER_SUITE_1,CIPHER_SUITE_2"
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Comma-separated list of cipher suites to support when using a [secured GoQuorum node connection](../develop/json-rpc-apis.md).
 
 ### `rpcclitls.insecureskipverify`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --rpcclitls.insecureskipverify
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 If included, disables verification of the server's TLS certificate when using a [secured GoQuorum node connection](../develop/json-rpc-apis.md).
 
 ### `rpcclitoken`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --rpcclitoken <STRING>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --rpcclitoken "AYjcyMzY3ZDhiNmJkNTY"
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 JSON-RPC client access token when using a [secured GoQuorum node connection](../develop/json-rpc-apis.md).
 
 ### `vm.calltimeout`
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```bash
 --vm.calltimeout <INTEGER>
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```bash
 --vm.calltimeout 2
 ```
 
-<!--/tabs-->
-
+  </TabItem>  
+</Tabs>
 Timeout in seconds when executing [`eth_call`](https://geth.ethereum.org/docs/rpc/ns-eth#eth_call). The default is 5.

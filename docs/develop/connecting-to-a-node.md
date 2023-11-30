@@ -4,6 +4,10 @@ description: Connecting to a node
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Connect to a node
 
 ## Prerequisites
@@ -20,27 +24,28 @@ The Geth JavaScript console exposes the [Web3 JavaScript API](https://web3js.rea
 
 Run the `attach` subcommand and connect to the IPC socket, or, if enabled, to the RPC or WebSocket API endpoints:
 
-<!--tabs-->
+<Tabs>
+  <TabItem value="IPC socket" label="IPC socket" default>
 
-# IPC socket
 
 ```bash
 geth attach /path/to/geth.ipc
 ```
-
-# RPC API endpoint
+  </TabItem>
+  <TabItem value="RPC API endpoint" label="RPC API endpoint" default>
 
 ```bash
 geth attach http://host:8545  # connect over HTTP
 ```
-
-# WebSocket API endpoint
+  </TabItem>
+  <TabItem value="WebSocket API endpoint" label="WebSocket API endpoint" default>
 
 ```bash
 geth attach ws://host:8546    # connect over websocket
 ```
 
-# Geth console result
+  </TabItem>
+  <TabItem value="Geth console result" label="Geth console result" default>
 
 ```text
 Welcome to the Geth JavaScript console!
@@ -54,19 +59,20 @@ modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0
 To exit, press ctrl-d
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Once connected you can execute commands as normal. For example, check existing validators using the following command:
 
-<!--tabs-->
-
-# Geth console request
+<Tabs>
+  <TabItem value="Geth console request" label="Geth console request" default>
 
 ```javascript
 istanbul.getValidators();
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" default>
 
 ```json
 [
@@ -77,7 +83,8 @@ istanbul.getValidators();
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 Exit the console using the following command:
 
@@ -104,15 +111,15 @@ GoQuorum supports the [standard web3 JSON-RPC APIs](https://geth.ethereum.org/do
 
 For example, run the following command to get the list of validators at a given block in an IBFT or QBFT network:
 
-<!--tabs-->
-
-# curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" default>
 
 ```bash
 curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_getValidators","params":[10],"id":1}' --header "Content-Type: application/json"
 ```
 
-# JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" default>
 
 ```json
 {
@@ -126,7 +133,8 @@ curl -X POST http://localhost:8545 --data '{"jsonrpc":"2.0","method":"istanbul_g
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 You can any tool to make requests, such as [curl](https://curl.se/), [Postman](https://www.postman.com/), or [Web3](https://web3js.readthedocs.io/en/latest/).
 

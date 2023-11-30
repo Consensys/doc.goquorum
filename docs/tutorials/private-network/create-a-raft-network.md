@@ -4,6 +4,9 @@ description: Adding and removing Raft validators
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Create a private network using the Raft consensus protocol
 
 A private network provides a configurable network for testing. This private network uses the [Raft consensus protocol](../../configure-and-manage/configure/consensus-protocols/raft.md).
@@ -211,15 +214,16 @@ geth attach data/geth.ipc
 
 Use the Raft `cluster` command to confirm the cluster now has two nodes:
 
-<!--tabs-->
+<Tabs>
 
-# Command
+  <TabItem value="Command" label="Command" default>
 
 ```js
 raft.cluster;
 ```
 
-# Result
+  </TabItem>
+  <TabItem value="Result" label="Result" default>
 
 ```js
 [
@@ -242,7 +246,9 @@ raft.cluster;
 ];
 ```
 
-<!--/tabs-->
+
+  </TabItem>
+</Tabs>
 
 ### 9. Add more nodes
 

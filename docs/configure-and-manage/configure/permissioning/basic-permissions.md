@@ -4,6 +4,10 @@ description: Configure basic permissions
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Configure basic permissions
 
 [Basic network permissioning](../../../concepts/permissions-overview.md#basic-network-permissioning) is a feature that controls which nodes can connect to a given node, and which nodes the given node can dial out to. Configure basic permissions by providing the [--permissioned](../../../reference/cli-syntax.md#permissioned) command line option when starting the node.
@@ -14,9 +18,9 @@ If `--permissioned` is specified but no nodes are added to the `permissioned-nod
 
 The `permissioned-nodes.json` file is structured as follows, which is similar to the `<data-dir>/static-nodes.json` file that is used to specify the list of static nodes a given node always connects to:
 
-<!--tabs-->
+<Tabs>
 
-# Syntax
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```json title="permissioned-nodes.json"
 [
@@ -25,8 +29,8 @@ The `permissioned-nodes.json` file is structured as follows, which is similar to
   "enode://remotekey3@ip3:port3"
 ]
 ```
-
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```json title="permissioned-nodes.json"
 [
@@ -34,7 +38,8 @@ The `permissioned-nodes.json` file is structured as follows, which is similar to
 ]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 :::note
 

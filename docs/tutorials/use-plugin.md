@@ -4,6 +4,9 @@ description: HelloWorld plugin tutorial
 sidebar_position: 8
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Use the `HelloWorld` plugin
 
 This tutorial shows you how to use the `HelloWorld` [plugin](../concepts/plugins.md), which exposes a JSON-RPC endpoint to return a greeting message in Spanish.
@@ -35,21 +38,22 @@ The [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/bl
 
 3.  Rename `quorum-plugin-hello-world-1.0.0.zip` according to your operating system:
 
-    <!--tabs-->
-
-    # Linux
+<Tabs>
+  <TabItem value="Linux" label="Linux" >
 
     ```
     quorum-plugin-hello-world-1.0.0-linux-amd64.zip
     ```
 
-    # Intel MacOS
+  </TabItem>
+  <TabItem value="MacOS" label="MacOS" >
 
     ```
     quorum-plugin-hello-world-1.0.0-darwin-amd64.zip
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ## Start GoQuorum with plugin support
 
@@ -101,9 +105,8 @@ The [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/bl
 
 1.  Test the `HelloWorld` plugin using the following command:
 
-    <!--tabs-->
-
-    # curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" >
 
     ```bash
     curl -X POST http://localhost:8545 \
@@ -111,21 +114,22 @@ The [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/bl
         --data '{"jsonrpc":"2.0","method":"plugin@helloworld_greeting","params":["Quorum Plugin"],"id":1}'
     ```
 
-    # JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
     ```json
     { "jsonrpc": "2.0", "id": 1, "result": "Hello Quorum Plugin!" }
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
 2.  Update the plugin configuration `build/bin/hello-world-plugin-config.json` to support the `es` language (Spanish).
 
 3.  Reload the plugin using the following command:
 
-    <!--tabs-->
-
-    # curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" >
 
     ```bash
     curl -X POST http://localhost:8545 \
@@ -133,19 +137,20 @@ The [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/bl
         --data '{"jsonrpc":"2.0","method":"admin_reloadPlugin","params":["helloworld"],"id":1}'
     ```
 
-    # JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
     ```json
     { "jsonrpc": "2.0", "id": 1, "result": true }
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
 4.  Re-run the `HelloWorld` plugin:
 
-    <!--tabs-->
-
-    # curl HTTP request
+<Tabs>
+  <TabItem value="curl HTTP request" label="curl HTTP request" >
 
     ```bash
     curl -X POST http://localhost:8545 \
@@ -153,10 +158,12 @@ The [plugin interface](https://github.com/ConsenSys/quorum-plugin-definitions/bl
         --data '{"jsonrpc":"2.0","method":"plugin@helloworld_greeting","params":["Quorum Plugin"],"id":1}'
     ```
 
-    # JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" >
 
     ```json
     { "jsonrpc": "2.0", "id": 1, "result": "Hola Quorum Plugin!" }
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>

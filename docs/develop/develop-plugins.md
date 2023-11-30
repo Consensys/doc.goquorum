@@ -4,6 +4,10 @@ description: Develop GoQuorum plugins
 sidebar_position: 6
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Develop plugins
 
 GoQuorum uses HashiCorp's [`go-plugin`](https://github.com/hashicorp/go-plugin) library to enable a [plugin-based architecture](../concepts/plugins.md) using gRPC.
@@ -38,9 +42,8 @@ GoQuorum can load [plugins](../concepts/plugins.md) from:
 
 You can specify the plugin configuration file with the following content.
 
-<!--tabs-->
-
-# JSON file
+<Tabs>
+  <TabItem value="JSON file" label="JSON file" default>
 
 ```json
 {
@@ -52,7 +55,9 @@ You can specify the plugin configuration file with the following content.
 }
 ```
 
-# TOML file
+  </TabItem>
+  <TabItem value="TOML file" label="TOML file" default>
+
 
 ```toml
 [Node.Plugins]
@@ -66,7 +71,8 @@ You can specify the plugin configuration file with the following content.
         .. = .. from object(PluginDefinition)
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 | Field | Description |
 | :-- | :-- |
@@ -79,9 +85,9 @@ You can specify the plugin configuration file with the following content.
 
 [Plugin integrity verification](../concepts/plugins.md#plugin-integrity-verification) uses the GoQuorum Plugin Central Server by default. You can modify this section to configure your own local Plugin Central for plugin integrity verification.
 
-<!--tabs-->
+<Tabs>
+  <TabItem value="JSON file" label="JSON file" default>
 
-# JSON file
 
 ```json
 {
@@ -99,7 +105,9 @@ You can specify the plugin configuration file with the following content.
 }
 ```
 
-# TOML file
+  </TabItem>
+  <TabItem value="TOML file" label="TOML file" default>
+
 
 ```toml
 ...
@@ -113,7 +121,8 @@ You can specify the plugin configuration file with the following content.
 ...
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 | Field | Description |
 | :-- | :-- |
@@ -128,9 +137,9 @@ You can specify the plugin configuration file with the following content.
 
 You can define each supported plugin and its configuration in this section.
 
-<!--tabs-->
+<Tabs>
+  <TabItem value="JSON file" label="JSON file" default>
 
-# JSON file
 
 ```json
 {
@@ -146,7 +155,9 @@ You can define each supported plugin and its configuration in this section.
 }
 ```
 
-# TOML file
+  </TabItem>
+  <TabItem value="TOML file" label="TOML file" default>
+
 
 ```toml
 ...
@@ -159,7 +170,8 @@ You can define each supported plugin and its configuration in this section.
 ...
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 | Field | Description |
 | :-- | :-- |
@@ -179,9 +191,8 @@ A plugin metadata file `plugin-meta.json` must be included in the distribution Z
 
 The following key value pairs are required:
 
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
 ```json
 {
@@ -192,8 +203,8 @@ The following key value pairs are required:
     ...
 }
 ```
-
-# Example
+  </TabItem>
+  <TabItem value="Example" label="Example" default>
 
 ```json
 {
@@ -203,7 +214,8 @@ The following key value pairs are required:
 }
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 | Field        | Description                                                |
 | :----------- | :--------------------------------------------------------- |

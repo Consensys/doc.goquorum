@@ -4,6 +4,10 @@ description: GoQuorum client libraries
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # Client libraries
 
 GoQuorum supports common smart contract and dapp development, deployment, and operational use cases, using tools such as [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#overview), [web3.js] and [web3js-quorum](https://consensys.github.io/web3js-quorum/latest/index.html). The client supports common [JSON-RPC API](json-rpc-apis.md) methods, for example `eth`, `net`, `web3`, `debug`, and `miner`.
@@ -37,9 +41,9 @@ Initialize your client where:
 
 - `<GoQuorum JSON-RPC HTTP endpoint>` is the JSON-RPC HTTP endpoint of your GoQuorum node.
 
-<!--tabs-->
+<Tabs>
 
-# HTTP example
+  <TabItem value="HTTP example" label="HTTP example" default>
 
 ```js title="Example connection"
 const Web3 = require("web3");
@@ -53,7 +57,8 @@ const Web3 = require("web3");
 const web3 = new Web3("http://some.local.remote.endpoint:8546");
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### Deploying a contract
 
@@ -153,9 +158,9 @@ Initialize your client where:
 - `<enclave TLS cert file path>` is the enclave TLS client certificate file path (see Tessera TLS documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)).
 - `<enclave TLS CA cert file path>` is the enclave TLS certification authority (CA) certificate file path (see Tessera TLS documentation](https://docs.tessera.consensys.net/en/stable/HowTo/Configure/TLS/)).
 
-<!--tabs-->
+<Tabs>
 
-# Full syntax
+  <TabItem value="Full syntax" label="Full syntax" default>
 
 ```js
 const Web3 = require("web3");
@@ -190,7 +195,8 @@ IPC and HTTP are mutually exclusive. Choose one or the other depending on your n
 
 :::
 
-# IPC example
+  </TabItem>
+  <TabItem value="IPC Example" label="IPC Example" default>
 
 ```js
 const Web3 = require("web3");
@@ -214,7 +220,8 @@ If IPC is enabled with `ipcPath`, then HTTP `privateUrl` and TLS options will be
 
 :::
 
-# HTTP example
+  </TabItem>
+  <TabItem value="HTTP Example" label="HTTP Example" default>
 
 ```js
 const Web3 = require("web3");
@@ -238,7 +245,8 @@ If HTTP is enabled with `privateUrl`, then `ipcPath` options should not be used.
 
 :::
 
-# HTTP + enclave TLS example
+  </TabItem>
+  <TabItem value="HTTP + enclave TLS Example" label="HTTP + enclave TLS Example" default>
 
 ```js
 const Web3 = require("web3");
@@ -277,7 +285,8 @@ const web3 = new Web3Quorum(
 
 :::
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### Deploying a contract with `generateAndSendRawTransaction`
 

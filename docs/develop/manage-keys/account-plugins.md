@@ -4,6 +4,10 @@ description: Use account plugins
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 # `account` plugins
 
 You can use `account` [plugins](../../concepts/plugins.md) with GoQuorum or `clef` to provide additional account management.
@@ -20,21 +24,22 @@ See the [`account` plugin reference](../../reference/plugins/account.md) for mor
 
 Run an `account` plugin using GoQuorum or `clef`:
 
-<!--tabs-->
-
-# GoQuorum
+<Tabs>
+  <TabItem value="GoQuorum" label="GoQuorum" >
 
 ```bash
 geth --plugins file:///path/to/plugins.json ...
 ```
 
-# clef
+  </TabItem >
+  <TabItem value="clef" label="clef" >
 
 ```bash
 clef --plugins file:///path/to/plugins.json ...
 ```
 
-<!--/tabs-->
+  </TabItem >
+</Tabs>
 
 `plugins.json` is the [plugins configuration file](../develop-plugins.md) that defines an `account` provider:
 
@@ -68,9 +73,8 @@ Creates a plugin-managed account with a new key.
 
 `config`: _object_ - Plugin-specific JSON configuration for creating an account. See the plugin's documentation for more information on the JSON configuration required.
 
-<!--tabs-->
-
-# GoQuorum
+<Tabs>
+  <TabItem value="GoQuorum" label="GoQuorum" >
 
 ```bash
 curl -X POST \
@@ -85,13 +89,15 @@ curl -X POST \
     http://localhost:22000
 ```
 
-# JS console
+  </TabItem >
+  <TabItem value="JS console" label="JS console" >
 
 ```js
 plugin_account.newAccount({<config>})
 ```
 
-# clef
+  </TabItem >
+  <TabItem value="clef" label="clef" >
 
 ```bash
 echo '
@@ -104,7 +110,8 @@ echo '
 ' | nc -U /path/to/clef.ipc
 ```
 
-<!--tabs-->
+  </TabItem >
+</Tabs>
 
 ### `plugin@account_importRawKey`
 
@@ -123,9 +130,8 @@ Although you can use this API to move plugin-managed accounts between nodes, the
 
 :::tip Example
 
-<!--tabs-->
-
-# GoQuorum
+<Tabs>
+  <TabItem value="GoQuorum" label="GoQuorum" >
 
 ```bash
 curl -X POST \
@@ -140,17 +146,20 @@ curl -X POST \
     http://localhost:22000
 ```
 
-# JS console
+  </TabItem >
+  <TabItem value="JS console" label="JS console" >
 
 ```js
 plugin_account.importRawKey(<rawkey>, {<config>})
 ```
 
-# clef
+  </TabItem >
+  <TabItem value="clef" label="clef" >
 
 Not supported, use CLI instead
 
-<!--/tabs-->
+  </TabItem >
+</Tabs>
 
 :::
 
@@ -176,9 +185,8 @@ Creates a plugin-managed account from an existing key.
 
 `plugins.account.config`: Plugin-specific configuration for creating an account. The value can be `file://...` or inline JSON. See the plugin's documentation for more information on the JSON configuration required.
 
-<!--tabs-->
-
-# JSON file
+<Tabs>
+  <TabItem value="JSON file" label="JSON file" >
 
 ```bash
 geth account plugin new \
@@ -186,7 +194,8 @@ geth account plugin new \
     --plugins.account.config file:///path/to/new-acct-config.json
 ```
 
-# inline JSON
+  </TabItem>
+  <TabItem value="inline JSON" label="inline JSON" >
 
 ```bash
 geth account plugin new \
@@ -194,7 +203,8 @@ geth account plugin new \
     --plugins.account.config '{<json>}'
 ```
 
-<!--/tabs-->
+  </TabItem >
+</Tabs>
 
 ### `geth account plugin import`
 
@@ -205,9 +215,8 @@ Creates a plugin-managed account from an existing private key.
 - `plugins.account.config`: Plugin-specific configuration for creating an account. The value can be `file://...` or inline JSON. See the plugin's documentation for more information on the JSON configuration required.
 - `rawkey`: Path to the file containing a hex-encoded account private key (without the `0x` prefix) (for example `/path/to/raw.key`).
 
-<!--tabs-->
-
-# JSON file
+<Tabs>
+  <TabItem value="JSON file" label="JSON file" >
 
 ```bash
 geth account plugin import \
@@ -216,7 +225,8 @@ geth account plugin import \
     /path/to/raw.key
 ```
 
-# inline JSON
+  </TabItem>
+  <TabItem value="inline JSON" label="inline JSON" >
 
 ```bash
 geth account plugin import \
@@ -225,7 +235,8 @@ geth account plugin import \
     /path/to/raw.key
 ```
 
-<!--/tabs-->
+  </TabItem >
+</Tabs>
 
 ### `geth account plugin list`
 

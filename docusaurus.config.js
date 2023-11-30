@@ -1,5 +1,5 @@
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const lightCodeTheme = require("prism-react-renderer").themes.github;
+const darkCodeTheme = require("prism-react-renderer").themes.dracula;
 
 const isDev = process.env.NODE_ENV === "development";
 const baseUrl = isDev ? "/" : "/";
@@ -9,7 +9,7 @@ const config = {
   title: "ConsenSys GoQuorum",
   tagline:
     "An open-source Ethereum client, written in Go, that runs private, permissioned networks and implements proof of authority consensus mechanisms.",
-  url: "https://docs.goquorum.consensys.net",
+  url: "https://docs.goquorum.consensys.io",
   baseUrl,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
@@ -42,7 +42,6 @@ const config = {
           routeBasePath: "/",
           // @ts-ignore
           // eslint-disable-next-line global-require
-          remarkPlugins: [require("remark-docusaurus-tabs")],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
             "**/_*.{js,jsx,ts,tsx,md,mdx}",

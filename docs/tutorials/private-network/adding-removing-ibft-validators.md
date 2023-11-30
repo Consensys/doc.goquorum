@@ -3,6 +3,8 @@ title: Add and remove IBFT validators
 description: Adding and removing IBFT validators
 sidebar_position: 5
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Add and remove IBFT validators
 
@@ -40,16 +42,16 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
 
     Attach a `geth` console to the node:
 
-    <!--tabs-->
-
-    # geth attach
+<Tabs>
+  <TabItem value="Geth attach" label="Geth attach" default>
 
     ```bash
     cd ..
     geth attach node0/data/geth.ipc
     ```
 
-    # Result
+  </TabItem>
+  <TabItem value="Result" label="Result" default>
 
     ```
     Welcome to the Geth JavaScript console!
@@ -61,19 +63,20 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
     modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
     Check existing validators:
 
-    <!--tabs-->
-
-    # geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" default>
 
     ```javascript
     istanbul.getValidators();
     ```
 
-    # JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" default>
 
     ```json
     [
@@ -85,25 +88,27 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
     ]
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
     Propose the new validator using the command [`istanbul.propose(<address>, true)`](../../reference/api-methods.md#istanbul_propose) with `<address>` replaced by the new validator candidate node address:
 
-    <!--tabs-->
-
-    # geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" default>
 
     ```javascript
     istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1", true);
     ```
 
-    # JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" default>
 
     ```json
     null
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
     Exit the console:
 
@@ -121,15 +126,15 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
 
 1.  Verify that the new validator is now in the list of validators by running [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators) in a `geth` console attached to any of your nodes:
 
-    <!--tabs-->
-
-    # geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" default>
 
     ```javascript
     istanbul.getValidators();
     ```
 
-    # JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" default>
 
     ```json
     [
@@ -142,7 +147,8 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
     ]
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
     The list of validators contains six addresses now.
 
@@ -172,15 +178,15 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
 
 1.  Initialize the new node with the following command:
 
-    <!--tabs-->
-
-    # geth command
+<Tabs>
+  <TabItem value="Geth Command" label="Geth Command" default>
 
     ```bash
     geth --datadir data init data/genesis.json
     ```
 
-    # Result
+  </TabItem>
+  <TabItem value="Result" label="Result" default>
 
     ```
     INFO [06-11|16:42:27.120] Maximum peer count                       ETH=25 LES=0 total=25
@@ -194,7 +200,8 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
     INFO [06-11|16:42:27.142] Successfully wrote genesis state         database=lightchaindata                                                  hash=b992be…533db7
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
 1.  In the `Node-5` directory, start the first node:
 
@@ -228,15 +235,15 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
 
 1.  Attach a `geth` console to a running validator, run [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators), and identify the address of the validator that needs to be removed:
 
-    <!--tabs-->
-
-    # geth attach
+<Tabs>
+  <TabItem value="Geth attach" label="Geth attach" default>
 
     ```bash
     geth attach node0/data/geth.ipc
     ```
 
-    # Result
+  </TabItem>
+  <TabItem value="Result" label="Result" default>
 
     ```
     Welcome to the Geth JavaScript console!
@@ -248,19 +255,20 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
     modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
     Run `istanbul.getValidators`:
 
-    <!--tabs-->
-
-    # geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" default>
 
     ```javascript
     istanbul.getValidators();
     ```
 
-    # JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" default>
 
     ```json
     [
@@ -273,41 +281,43 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
     ]
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
     We will remove `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` from the validator list in this tutorial.
 
 2.  Run [`istanbul.propose(<address>, false)`](../../reference/api-methods.md#istanbul_propose) by passing the address of the validator that needs to be removed from more than half of the current validators:
 
-    <!--tabs-->
-
-    # geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" default>
 
     ```javascript
     istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1", false);
     ```
 
-    # JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" default>
 
     ```json
     null
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
     Repeat `istanbul.propose("0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1",false)` for node 1, node 2, and node 3.
 
 3.  Verify that the validator has been removed by running [`istanbul.getValidators`](../../reference/api-methods.md#istanbul_getvalidators) in one of the nodes' attached `geth` console:
 
-    <!--tabs-->
-
-    # geth console request
+<Tabs>
+  <TabItem value="geth console request" label="geth console request" default>
 
     ```javascript
     istanbul.getValidators();
     ```
 
-    # JSON result
+  </TabItem>
+  <TabItem value="JSON result" label="JSON result" default>
 
     ```json
     [
@@ -319,7 +329,8 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
     ]
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
     The validator `0x2aabbc1bb9bacef60a09764d1a1f4f04a47885c1` was removed and the validators list now only has five addresses.
 
@@ -336,15 +347,15 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
 
 5.  Stop the `geth` process corresponding to the validator that was removed:
 
-    <!--tabs-->
-
-    # Command
+<Tabs>
+  <TabItem value="Command" label="Command" default>
 
     ```bash
     ps
     ```
 
-    # Result
+  </TabItem>
+  <TabItem value="Result" label="Result" default>
 
     ```
       PID TTY           TIME CMD
@@ -361,7 +372,8 @@ An IBFT network as configured in the [IBFT tutorial](create-ibft-network.md).
     36493 ttys003    0:00.22 geth attach node4/data/geth.ipc
     ```
 
-    <!--/tabs-->
+  </TabItem>
+</Tabs>
 
     Kill the `geth` process that uses port `22005`, corresponding to node 5 as indicated in `start5.sh`:
 

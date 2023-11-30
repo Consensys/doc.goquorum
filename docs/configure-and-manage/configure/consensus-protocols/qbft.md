@@ -4,6 +4,9 @@ description: Configuring QBFT consensus
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Configure QBFT consensus
 
 GoQuorum implements the QBFT proof of authority [consensus protocol](../../../concepts/consensus-index.md). QBFT is the recommended enterprise-grade consensus protocol for private networks. You can [create a private network using QBFT](../../../tutorials/private-network/create-qbft-network.md).
@@ -161,9 +164,8 @@ To update an existing network with a new `blockperiodseconds`:
 
     <br />
 
-    <!--tabs-->
-
-    # Syntax
+<Tabs>
+  <TabItem value="Syntax" label="Syntax" default>
 
     ```json
     {
@@ -183,7 +185,8 @@ To update an existing network with a new `blockperiodseconds`:
     }
     ```
 
-    # Example
+  </TabItem>
+  <TabItem value="Example" label="Example" >
 
     ```json
     {
@@ -202,8 +205,9 @@ To update an existing network with a new `blockperiodseconds`:
     ...
     }
     ```
-
-    <!--/tabs-->
+  
+  </TabItem>
+</Tabs>
 
 3.  run `geth init` with the new genesis file
 4.  Restart all nodes in the network using the updated genesis file.
@@ -281,9 +285,9 @@ To configure rewards, add a `transitions` configuration item and set the followi
 - `miningBeneficiary` is a single account to receive benefits when the `miningBeneficiary` is set to `"fixed"`.
 - `beneficiaryMode` is `"fixed"` for a fixed single account or `"validator"` for the validator that validates that block. This applies to both transaction cost rewards and block rewards.
 
-<!--tabs-->
+<Tabs>
 
-# Single account no block reward
+  <TabItem value="Single account no block reward" label="Single account no block reward" default>
 
 ```json
 "transitions": [{
@@ -293,7 +297,8 @@ To configure rewards, add a `transitions` configuration item and set the followi
 }]
 ```
 
-# Validators no block rewards
+  </TabItem>
+  <TabItem value="Validators no block rewards" label="Validators no block rewards" >
 
 ```json
 "transitions": [{
@@ -302,11 +307,12 @@ To configure rewards, add a `transitions` configuration item and set the followi
 }]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
-<!--tabs-->
+<Tabs>
 
-# Single account with block reward
+  <TabItem value="Single account with block reward" label="Single account with block reward" default>
 
 ```json
 "transitions": [{
@@ -317,7 +323,8 @@ To configure rewards, add a `transitions` configuration item and set the followi
 }]
 ```
 
-# Validators with block rewards
+  </TabItem>
+  <TabItem value="Validators with block rewards" label="Validators with block rewards" >
 
 ```json
 "transitions": [{
@@ -327,7 +334,8 @@ To configure rewards, add a `transitions` configuration item and set the followi
 }]
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
 ### Swap validator management methods
 
@@ -342,9 +350,9 @@ To swap between block header validator selection and contract validator selectio
 
     <br />
 
-    <!--tabs-->
+<Tabs>
 
-    # Syntax
+  <TabItem value="Syntax" label="Syntax" default>
 
     ```json
     {
@@ -365,7 +373,8 @@ To swap between block header validator selection and contract validator selectio
     }
     ```
 
-    # Example
+  </TabItem>
+  <TabItem value="Example" label="Example" >
 
     ```json
     {
@@ -385,7 +394,8 @@ To swap between block header validator selection and contract validator selectio
       ...
     }
     ```
-
-    <!--/tabs-->
+    
+  </TabItem>
+</Tabs>
 
 3.  [Restart all nodes](../../../tutorials/private-network/create-qbft-network.md#5-initialize-nodes) in the network using the updated genesis file.
