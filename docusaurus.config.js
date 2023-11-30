@@ -9,7 +9,7 @@ const config = {
   title: "ConsenSys GoQuorum",
   tagline:
     "An open-source Ethereum client, written in Go, that runs private, permissioned networks and implements proof of authority consensus mechanisms.",
-  url: "https://docs.goquorum.consensys.net",
+  url: "https://docs.goquorum.consensys.io",
   baseUrl,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",

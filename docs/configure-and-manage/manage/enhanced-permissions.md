@@ -1213,7 +1213,7 @@ quorumPermission.acctList[3];
   </TabItem>
   <TabItem value="geth console result" label="geth console result" >
 
-````json
+```json
 {
   acctId: "0x0638e1574728b6d862dd5d3a3e0942c3be47d996",
   isOrgAdmin: true,
@@ -1221,7 +1221,7 @@ quorumPermission.acctList[3];
   roleId: "ADMIN",
   status: 1
 }
-    ```
+```
 
   </TabItem>
 </Tabs>
