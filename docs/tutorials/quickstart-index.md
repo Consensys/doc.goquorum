@@ -45,7 +45,7 @@ Many npm installations don't have permission to install global modules and will 
 You can provide these flags when running `quorum-dev-quickstart`:
 
 | Flag | Required to skip prompt | Description |
-| :-- | :-- | --- | --- |
+| :-- | :-- | --- |
 | `--clientType=<STRING>` | Yes | Use `quorum` for GoQuorum. |
 | `--privacy=<true | false>` | Yes | Enables or disables private transaction support. |
 | `--orchestrate=<true | false>` | No | Enables support for [ConsenSys Orchestrate](https://consensys.net/codefi/orchestrate/). |
